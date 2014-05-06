@@ -34,8 +34,9 @@ public class fun extends JApplet {
 		Graph<Integer, String> exampleQT = new SparseGraph<Integer, String>();
 		exampleQT.addEdge("edge1", 1, 2);
 		exampleQT.addEdge("edge2", 1, 3);
-		exampleQT.addEdge("edge3", 2, 3);
-		
+//		exampleQT.addEdge("edge3", 2, 3);
+//		exampleQT.addEdge("edge4", 1, 4);
+//		exampleQT.addEdge("edge5", 2, 4);
 		
 		
 		System.out.println(qtRecognition.qtCheckYan(exampleQT));

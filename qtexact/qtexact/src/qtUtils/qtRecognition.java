@@ -12,6 +12,11 @@ import edu.uci.ics.jung.graph.util.Pair;
 
 public class qtRecognition 
 {
+	/**
+	 * 
+	 * @param Graph G
+	 * @return DelegateForest
+	 */
 	public static DelegateForest<Integer, String> qtCheckYan(Graph<Integer, String> G)
 	{
 		//create a rooted forest representation F of G
@@ -26,8 +31,6 @@ public class qtRecognition
 		}
 		
 		//array of vertices
-		Integer[] vertexArray = new Integer[vertices.size()];
-		vertexArray = vertices.toArray(vertexArray);
 		ArrayList<Integer> vertexArrayList = new ArrayList<Integer>();
 		vertexArrayList.addAll(vertices);
 		
@@ -53,12 +56,12 @@ public class qtRecognition
 			if (inDegree.get(vertexArrayList.get(j)) >= 1)
 			{
 				//find neighbours of vertexArray[j]
-				Collection<Integer> neighbours = G.getNeighbors(vertexArray[j]);
+				Collection<Integer> neighbours = G.getNeighbors(vertexArrayList.get(j));
 				//create neighbour priority queue based on their in degree
 				PriorityQueue<vertexIn<Integer>> pQueue = new PriorityQueue<vertexIn<Integer>>();
 				for (int n : neighbours)
 				{
-					pQueue.add(new vertexIn<Integer>(n, G.inDegree(n)));
+					pQueue.add(new vertexIn<Integer>(n, inDegree.get(n)));
 				}
 				//choose a neighbour that fits criteria
 				Iterator<vertexIn<Integer>> iterator = pQueue.iterator();
@@ -67,7 +70,8 @@ public class qtRecognition
 				{
 					vertexIn<Integer> next = iterator.next();
 					//add edge to F
-					if ((G.degree(next.getVertex()) < vertexArrayList.get(j) || (G.degree(next.getVertex()) == G.degree(vertexArrayList.get(j)) && vertexArrayList.indexOf(next.getVertex()) < j)))
+					if ((G.degree(next.getVertex()) > vertexArrayList.get(j)) || 
+							((G.degree(next.getVertex()) == G.degree(vertexArrayList.get(j))) && (vertexArrayList.indexOf(next.getVertex()) < j)))
 					{
 						F.addEdge("e:" +  next.getVertex() + "-" + vertexArrayList.get(j), next.getVertex(), vertexArrayList.get(j));
 						finish = true;
@@ -80,7 +84,8 @@ public class qtRecognition
 		boolean check = true;
 		for (int j : vertices)
 		{
-			if (F.getPredecessorCount(j) != inDegree.get(j)) 
+			int predecessorCount = F.getPredecessorCount(j);
+			if (predecessorCount != inDegree.get(j)) 
 				check = false;
 		}
 		if (check == true)
