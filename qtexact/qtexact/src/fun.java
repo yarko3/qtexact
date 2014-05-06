@@ -10,6 +10,7 @@ import java.util.Set;
 import javax.swing.JApplet;
 import javax.swing.JFrame;
 
+import qtUtils.qtRecognition;
 import edu.uci.ics.jung.algorithms.cluster.EdgeBetweennessClusterer;
 import edu.uci.ics.jung.algorithms.layout.FRLayout;
 import edu.uci.ics.jung.graph.Graph;
@@ -29,13 +30,23 @@ public class fun extends JApplet {
 
 		String filename = "datasets/disease.net";
 		fillGraphFromFile(graph, filename);
-
-		findEdgeBetweennessClustering(graph, 1000);
+		
+		Graph<Integer, String> exampleQT = new SparseGraph<Integer, String>();
+		exampleQT.addEdge("edge1", 1, 2);
+		exampleQT.addEdge("edge2", 1, 3);
+		exampleQT.addEdge("edge3", 2, 3);
+		
+		
+		
+		System.out.println(qtRecognition.qtCheckYan(exampleQT));
+		
+		
+		//findEdgeBetweennessClustering(graph, 1000);
 
 		JFrame jf = new JFrame();
 		jf.setSize(1366, 768);
 
-		FRLayout frl = new FRLayout(graph);
+		FRLayout frl = new FRLayout(exampleQT);
 
 		frl.setAttractionMultiplier(1.5);
 		frl.lock(true);

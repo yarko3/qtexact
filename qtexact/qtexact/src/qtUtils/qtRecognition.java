@@ -1,5 +1,6 @@
 package qtUtils;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Hashtable;
 import java.util.Iterator;
@@ -7,6 +8,7 @@ import java.util.PriorityQueue;
 
 import edu.uci.ics.jung.graph.DelegateForest;
 import edu.uci.ics.jung.graph.Graph;
+import edu.uci.ics.jung.graph.util.Pair;
 
 public class qtRecognition 
 {
@@ -24,13 +26,31 @@ public class qtRecognition
 		}
 		
 		//array of vertices
-		Integer[] vertexArray = (Integer[]) vertices.toArray();
+		Integer[] vertexArray = new Integer[vertices.size()];
+		vertexArray = vertices.toArray(vertexArray);
+		ArrayList<Integer> vertexArrayList = new ArrayList<Integer>();
+		vertexArrayList.addAll(vertices);
 		
-		//create a hashtable to store visited vertices
-		Hashtable<Integer, Boolean> visited = new Hashtable<Integer, Boolean>();
-		for (int j = 1; j <= vertexArray.length; j++)
+		//initialize inDegree hashtable
+		Hashtable<Integer, Integer> inDegree = new Hashtable<Integer, Integer>();
+		for (int i : vertices)
 		{
-			if (G.getInEdges(vertexArray[j]).size() >= 1)
+			inDegree.put(i, 0);
+		}
+		
+		//for each edge, increment inDegree
+		for (String e : G.getEdges())
+		{
+			Pair<Integer> endpoints = G.getEndpoints(e);
+			if ((G.degree(endpoints.getFirst()) > G.degree(endpoints.getSecond())) || ((G.degree(endpoints.getFirst()) == G.degree(endpoints.getSecond())) && (vertexArrayList.indexOf(endpoints.getFirst()) < vertexArrayList.indexOf(endpoints.getSecond()))))
+				inDegree.put(endpoints.getSecond(), inDegree.get(endpoints.getSecond()) + 1);
+			else
+				inDegree.put(endpoints.getFirst(), inDegree.get(endpoints.getFirst()) + 1);
+		}
+
+		for (int j = 0; j < vertexArrayList.size(); j++)
+		{
+			if (inDegree.get(vertexArrayList.get(j)) >= 1)
 			{
 				//find neighbours of vertexArray[j]
 				Collection<Integer> neighbours = G.getNeighbors(vertexArray[j]);
@@ -42,25 +62,25 @@ public class qtRecognition
 				}
 				//choose a neighbour that fits criteria
 				Iterator<vertexIn<Integer>> iterator = pQueue.iterator();
-				while (iterator.hasNext())
+				boolean finish = false;
+				while (iterator.hasNext() && !finish)
 				{
 					vertexIn<Integer> next = iterator.next();
 					//add edge to F
-					if ((G.degree(next.getVertex()) < vertexArray[j]) || (G.degree(next.getVertex()) == G.degree(vertexArray[j]) && visited.contains(next.getVertex())))
+					if ((G.degree(next.getVertex()) < vertexArrayList.get(j) || (G.degree(next.getVertex()) == G.degree(vertexArrayList.get(j)) && vertexArrayList.indexOf(next.getVertex()) < j)))
 					{
-						F.addEdge("e:" +  next.getVertex() + "-" + vertexArray[j], next.getVertex(), vertexArray[j]);
-						break;
+						F.addEdge("e:" +  next.getVertex() + "-" + vertexArrayList.get(j), next.getVertex(), vertexArrayList.get(j));
+						finish = true;
 					}
 				}
 			}
-			visited.put(vertexArray[j], true);
 		}
 		
 		//check if number of ancestors of each vertex == in degree
 		boolean check = true;
 		for (int j : vertices)
 		{
-			if (F.getPredecessorCount(j) != G.inDegree(j)) 
+			if (F.getPredecessorCount(j) != inDegree.get(j)) 
 				check = false;
 		}
 		if (check == true)
