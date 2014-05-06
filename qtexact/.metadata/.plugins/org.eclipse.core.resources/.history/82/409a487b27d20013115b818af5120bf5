@@ -1,0 +1,68 @@
+import javax.swing.JApplet;
+
+import org.apache.commons.collections15.Factory;
+
+import edu.uci.ics.jung.algorithms.layout.TreeLayout;
+import edu.uci.ics.jung.graph.DelegateTree;
+import edu.uci.ics.jung.graph.DirectedGraph;
+import edu.uci.ics.jung.graph.DirectedSparseMultigraph;
+import edu.uci.ics.jung.graph.Forest;
+import edu.uci.ics.jung.graph.Tree;
+import edu.uci.ics.jung.samples.BalloonLayoutDemo;
+import edu.uci.ics.jung.samples.ShortestPathDemo;
+import edu.uci.ics.jung.visualization.VisualizationServer;
+import edu.uci.ics.jung.visualization.VisualizationViewer;
+
+
+@SuppressWarnings("serial")
+public class fun extends JApplet{
+	
+	/**
+	 * graph
+	 */
+	Forest<String, Integer> graph;
+	
+	Factory<DirectedGraph<String, Integer>> graphFactory = 
+			new Factory<DirectedGraph<String, Integer>>() {
+		
+			public DirectedGraph<String, Integer> create() {
+				return new DirectedSparseMultigraph<String, Integer>();
+			}
+	};
+	
+	Factory<Tree<String, Integer>> treeFactory = 
+			new Factory <Tree<String,Integer>> () {
+			public Tree<String, Integer> create() {
+				return new DelegateTree<String, Integer>(graphFactory);		
+			}
+	};
+	
+	Factory<Integer> edgeFactory = new Factory<Integer>() {
+		int i = 0;
+		public Integer create() {
+			return i++;
+		}
+	};
+	
+	Factory<String> vertexFactory = new Factory<String>() {
+		int i = 0;
+		public String create() {
+			return "V" + i++;
+		}
+	};
+	
+	VisualizationViewer<String, Integer> vv;
+	
+	VisualizationServer.Paintable rings;
+	
+	String root;
+	
+	TreeLayout<String, Integer> layout;
+	
+	public static void main(String[] args) 
+	{
+		ShortestPathDemo.main(args);
+		
+	}
+
+}

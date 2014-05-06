@@ -1,0 +1,12 @@
+import edu.uci.ics.jung.samples.BalloonLayoutDemo;
+
+
+public class fun {
+
+	public static void main(String[] args) 
+	{
+		 BalloonLayoutDemo.main(args);
+		
+	}
+
+}
