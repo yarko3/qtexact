@@ -57,30 +57,35 @@ public class qtRecognition
 		}
 		
 		//check if number of ancestors of each vertex == in degree
+		boolean check = true;
 		for (int j : vertices)
 		{
-			
+			if (F.getPredecessorCount(j) != G.inDegree(j)) 
+				check = false;
 		}
-		
+		if (check == true)
+			return F;
+		else
+			return null;
 		
 	}
+}
 	
-	//class containing vertex and inDegree for PriorityQueue in qtCheckYan
-	private class vertexIn<V> implements Comparable<vertexIn<V>>
+//class containing vertex and inDegree for PriorityQueue in qtCheckYan
+class vertexIn<V> implements Comparable<vertexIn<V>>
+{
+	private V vertex;
+	private int inDegree;
+	vertexIn(V v, int in)
 	{
-		private V vertex;
-		private int inDegree;
-		private vertexIn(V v, int in)
-		{
-			vertex = v;
-			inDegree = in;
-		}
-		
-		private V getVertex(){return vertex;};
-		private int getInDegree(){return inDegree;};
-		public int compareTo(vertexIn<V> v)
-		{
-			return Integer.compare(inDegree, v.getInDegree());
-		}
+		vertex = v;
+		inDegree = in;
+	}
+	
+	public V getVertex(){return vertex;};
+	public int getInDegree(){return inDegree;};
+	public int compareTo(vertexIn<V> v)
+	{
+		return Integer.compare(inDegree, v.getInDegree());
 	}
 }
