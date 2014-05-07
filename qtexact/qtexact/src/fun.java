@@ -10,6 +10,7 @@ import java.util.Set;
 import javax.swing.JApplet;
 import javax.swing.JFrame;
 
+import jimsFiles.IsA;
 import qtUtils.qtRecognition;
 import edu.uci.ics.jung.algorithms.cluster.EdgeBetweennessClusterer;
 import edu.uci.ics.jung.algorithms.layout.FRLayout;
@@ -29,19 +30,52 @@ public class fun extends JApplet {
 	public static void main(String[] args) {
 		graph = new SparseGraph<Integer, String>();
 
-		String filename = "datasets/disease.net";
+		String filename = "datasets/footballEdgeList.tgf";
 		fillGraphFromFile(graph, filename);
 		
 		Graph<Integer, String> exampleQT = new SparseGraph<Integer, String>();
-//		exampleQT.addEdge("edge1", 1, 2);
-//		exampleQT.addEdge("edge2", 1, 3);
-//		exampleQT.addEdge("edge3", 2, 3);
-//		exampleQT.addEdge("edge4", 1, 4);
-//		exampleQT.addEdge("edge5", 3, 4);
-//		exampleQT.addEdge("edge6", 0, 1);
-//		exampleQT.addEdge("edge7", 0, 2);
+		exampleQT.addEdge("edge1", 1, 2);
+		exampleQT.addEdge("edge2", 1, 3);
+		exampleQT.addEdge("edge3", 2, 3);
+		exampleQT.addEdge("edge4", 1, 4);
+		exampleQT.addEdge("edge5", 3, 4);
+		exampleQT.addEdge("edge6", 0, 1);
+		exampleQT.addEdge("edge7", 0, 3);
+		exampleQT = graph;
 		
 
+//		exampleQT.addEdge("edge1", 1, 2);
+//		exampleQT.addEdge("edge2", 1, 3);
+//		exampleQT.addEdge("edge3", 1, 4);
+//		exampleQT.addEdge("edge4", 2, 5);
+//		exampleQT.addEdge("edge5", 2, 4);
+//		exampleQT.addEdge("edge6", 2, 6);
+//		exampleQT.addEdge("edge7", 2, 7);
+//		exampleQT.addEdge("edge8", 3, 5);
+//		exampleQT.addEdge("edge9", 3, 4);
+//		exampleQT.addEdge("edge10", 3, 7);
+//		exampleQT.addEdge("edge11", 3, 6);
+//		exampleQT.addEdge("edge12", 4, 5);
+//		exampleQT.addEdge("edge13", 4, 6);
+//		exampleQT.addEdge("edge14", 4, 7);
+//		exampleQT.addEdge("edge15", 5, 6);
+//		exampleQT.addEdge("edge16", 5, 7);
+//		exampleQT.addEdge("edge17", 6, 8);
+//		exampleQT.addEdge("edge18", 6, 9);
+//		exampleQT.addEdge("edge19", 6, 10);
+//		exampleQT.addEdge("edge20", 6, 11);
+//		exampleQT.addEdge("edge21", 7, 8);
+//		exampleQT.addEdge("edge22", 7, 9);
+//		exampleQT.addEdge("edge23", 7, 10);
+//		exampleQT.addEdge("edge24", 7, 11);
+//		exampleQT.addEdge("edge25", 8, 9);
+//		exampleQT.addEdge("edge26", 8, 10);
+//		exampleQT.addEdge("edge27", 8, 11);
+//		exampleQT.addEdge("edge28", 9, 10);
+//		exampleQT.addEdge("edge29", 9, 11);
+//		exampleQT.addEdge("edge30", 6, 7);
+//		exampleQT.addEdge("edge31", 6, 1);
+		
 		
 		
 		
@@ -49,6 +83,8 @@ public class fun extends JApplet {
 		
 		System.out.println(qtRecognition.qtCheckYan(exampleQT));
 		
+		System.out.println("Is a chordal: " + IsA.Chordal(exampleQT));
+		System.out.println("Is a cograph: " + IsA.Cograph(exampleQT));
 		
 		//findEdgeBetweennessClustering(graph, 1000);
 
@@ -131,7 +167,7 @@ public class fun extends JApplet {
 		while (scan.hasNext()) {
 			Integer a = scan.nextInt();
 			Integer b = scan.nextInt();
-			Integer weight = scan.nextInt();
+			//Integer weight = scan.nextInt();
 
 			// for (int i = 0; i < weight; i++)
 			// {
