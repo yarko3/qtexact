@@ -16,6 +16,7 @@ import edu.uci.ics.jung.algorithms.layout.FRLayout;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.SparseGraph;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
+import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
 
 @SuppressWarnings("serial")
 public class fun extends JApplet {
@@ -32,11 +33,18 @@ public class fun extends JApplet {
 		fillGraphFromFile(graph, filename);
 		
 		Graph<Integer, String> exampleQT = new SparseGraph<Integer, String>();
-		exampleQT.addEdge("edge1", 1, 2);
-		exampleQT.addEdge("edge2", 1, 3);
+//		exampleQT.addEdge("edge1", 1, 2);
+//		exampleQT.addEdge("edge2", 1, 3);
 //		exampleQT.addEdge("edge3", 2, 3);
 //		exampleQT.addEdge("edge4", 1, 4);
-//		exampleQT.addEdge("edge5", 2, 4);
+//		exampleQT.addEdge("edge5", 3, 4);
+//		exampleQT.addEdge("edge6", 0, 1);
+//		exampleQT.addEdge("edge7", 0, 2);
+		
+
+		
+		
+		
 		
 		
 		System.out.println(qtRecognition.qtCheckYan(exampleQT));
@@ -53,14 +61,30 @@ public class fun extends JApplet {
 		frl.lock(true);
 		VisualizationViewer vv = new VisualizationViewer(frl, new Dimension(
 				1366, 768));
-		// ViewScalingControl scale = new ViewScalingControl();
-		// scale.scale(vv, (float) 0.8, new Point2D.Double(1366/2, 768/2));
-		// vv.scaleToLayout(scale);
 
+		vv.getRenderContext().setVertexLabelTransformer(new ToStringLabeller());
+		
 		jf.getContentPane().add(vv);
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jf.pack();
 		jf.setVisible(true);
+		
+		JFrame jf1 = new JFrame();
+		jf1.setSize(1366, 768);
+		FRLayout fr2 = new FRLayout(qtRecognition.qtCheckYan(exampleQT));
+
+		fr2.setAttractionMultiplier(1.5);
+		fr2.lock(true);
+		VisualizationViewer vv1 = new VisualizationViewer(fr2, new Dimension(
+				1366, 768));
+		// ViewScalingControl scale = new ViewScalingControl();
+		// scale.scale(vv, (float) 0.8, new Point2D.Double(1366/2, 768/2));
+		// vv.scaleToLayout(scale);
+		vv1.getRenderContext().setVertexLabelTransformer(new ToStringLabeller());
+		jf1.getContentPane().add(vv1);
+		jf1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		jf1.pack();
+		jf1.setVisible(true);
 	}
 
 	/**

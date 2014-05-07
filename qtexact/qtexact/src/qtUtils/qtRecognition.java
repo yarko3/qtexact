@@ -13,7 +13,7 @@ import edu.uci.ics.jung.graph.util.Pair;
 public class qtRecognition 
 {
 	/**
-	 * 
+	 * Use Yan algorithm for QT recognition (1994)
 	 * @param Graph G
 	 * @return DelegateForest
 	 */
@@ -22,6 +22,7 @@ public class qtRecognition
 		//create a rooted forest representation F of G
 		DelegateForest<Integer, String> F = new DelegateForest<Integer, String>();
 		
+		//vertices of G
 		Collection<Integer> vertices = G.getVertices();
 		
 		//add the G vertex set to F with no edges
@@ -30,15 +31,15 @@ public class qtRecognition
 			F.addVertex(i);
 		}
 		
-		//array of vertices
-		ArrayList<Integer> vertexArrayList = new ArrayList<Integer>();
+		//array list of vertices (used for indexing in algorithm)
+		ArrayList<Integer> vertexArrayList = new ArrayList<Integer>(vertices.size());
 		vertexArrayList.addAll(vertices);
 		
 		//initialize inDegree hashtable
-		Hashtable<Integer, Integer> inDegree = new Hashtable<Integer, Integer>();
-		for (int i : vertices)
+		Hashtable<Integer, Integer> inDegree = new Hashtable<Integer, Integer>(vertices.size());
+		for (int i = 0; i < vertices.size(); i++)
 		{
-			inDegree.put(i, 0);
+			inDegree.put(vertexArrayList.get(i), 0);
 		}
 		
 		//for each edge, increment inDegree
@@ -50,14 +51,15 @@ public class qtRecognition
 			else
 				inDegree.put(endpoints.getFirst(), inDegree.get(endpoints.getFirst()) + 1);
 		}
-
+		
+		//for each vertex j
 		for (int j = 0; j < vertexArrayList.size(); j++)
 		{
 			if (inDegree.get(vertexArrayList.get(j)) >= 1)
 			{
 				//find neighbours of vertexArray[j]
 				Collection<Integer> neighbours = G.getNeighbors(vertexArrayList.get(j));
-				//create neighbour priority queue based on their in degree
+				//create neighbour priority queue based on their inDegree
 				PriorityQueue<vertexIn<Integer>> pQueue = new PriorityQueue<vertexIn<Integer>>();
 				for (int n : neighbours)
 				{
@@ -70,7 +72,7 @@ public class qtRecognition
 				{
 					vertexIn<Integer> next = iterator.next();
 					//add edge to F
-					if ((G.degree(next.getVertex()) > vertexArrayList.get(j)) || 
+					if ((G.degree(next.getVertex()) > G.degree(vertexArrayList.get(j))) || 
 							((G.degree(next.getVertex()) == G.degree(vertexArrayList.get(j))) && (vertexArrayList.indexOf(next.getVertex()) < j)))
 					{
 						F.addEdge("e:" +  next.getVertex() + "-" + vertexArrayList.get(j), next.getVertex(), vertexArrayList.get(j));
@@ -82,21 +84,26 @@ public class qtRecognition
 		
 		//check if number of ancestors of each vertex == in degree
 		boolean check = true;
-		for (int j : vertices)
+		for (int j = 0; j < vertexArrayList.size(); j++)
 		{
-			int predecessorCount = F.getPredecessorCount(j);
-			if (predecessorCount != inDegree.get(j)) 
+			int depth = F.getDepth(vertexArrayList.get(j));
+			int inDegreeval = inDegree.get(vertexArrayList.get(j));
+			if (F.getDepth(vertexArrayList.get(j)) - 1 != inDegree.get(vertexArrayList.get(j))) 
 				check = false;
 		}
 		if (check == true)
 			return F;
 		else
 			return null;
-		
 	}
 }
 	
-//class containing vertex and inDegree for PriorityQueue in qtCheckYan
+/**
+ * class containing vertex and inDegree for PriorityQueue in qtCheckYan
+ * @author Yarko Senyuta
+ *
+ * @param <V>
+ */
 class vertexIn<V> implements Comparable<vertexIn<V>>
 {
 	private V vertex;
@@ -111,6 +118,6 @@ class vertexIn<V> implements Comparable<vertexIn<V>>
 	public int getInDegree(){return inDegree;};
 	public int compareTo(vertexIn<V> v)
 	{
-		return Integer.compare(inDegree, v.getInDegree());
+		return Integer.compare(v.getInDegree(), inDegree);
 	}
 }
