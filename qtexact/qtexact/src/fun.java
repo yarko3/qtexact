@@ -43,9 +43,13 @@ public class fun extends JApplet {
 		exampleQT.addEdge("edge6", 0, 1);
 		exampleQT.addEdge("edge7", 0, 3);
 
-		exampleQT = qtGenerate.qtGraph(4);
+		long start = System.currentTimeMillis();
+		exampleQT = qtGenerate.qtGraph(500);
+		System.out.println(1000*(System.currentTimeMillis()-start));
 		
+		start = System.currentTimeMillis();
 		System.out.println(qtRecognition.qtCheckYan(exampleQT));
+		System.out.println(1000*(System.currentTimeMillis()-start));
 		
 		System.out.println("Is a chordal: " + IsA.Chordal(exampleQT));
 		System.out.println("Is a cograph: " + IsA.Cograph(exampleQT));

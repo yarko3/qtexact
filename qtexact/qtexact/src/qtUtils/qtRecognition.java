@@ -14,6 +14,7 @@ public class qtRecognition
 {
 	/**
 	 * Use Yan algorithm for QT recognition (1994)
+	 * @author Yarko Senyuta
 	 * @param Graph G
 	 * @return DelegateForest
 	 */
@@ -66,11 +67,10 @@ public class qtRecognition
 					pQueue.add(new vertexIn<Integer>(n, inDegree.get(n)));
 				}
 				//choose a neighbour that fits criteria
-				Iterator<vertexIn<Integer>> iterator = pQueue.iterator();
 				boolean finish = false;
-				while (iterator.hasNext() && !finish)
+				while (!pQueue.isEmpty() && !finish)
 				{
-					vertexIn<Integer> next = iterator.next();
+					vertexIn<Integer> next = pQueue.remove();
 					//add edge to F
 					if ((G.degree(next.getVertex()) > G.degree(vertexArrayList.get(j))) || 
 							((G.degree(next.getVertex()) == G.degree(vertexArrayList.get(j))) && (vertexArrayList.indexOf(next.getVertex()) < j)))
