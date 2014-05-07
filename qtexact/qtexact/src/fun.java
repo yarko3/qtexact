@@ -2,6 +2,7 @@ import java.awt.Dimension;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
@@ -11,6 +12,7 @@ import javax.swing.JApplet;
 import javax.swing.JFrame;
 
 import jimsFiles.IsA;
+import qtUtils.genericLBFS;
 import qtUtils.qtGenerate;
 import qtUtils.qtRecognition;
 import edu.uci.ics.jung.algorithms.cluster.EdgeBetweennessClusterer;
@@ -28,7 +30,35 @@ public class fun extends JApplet {
 	 */
 	static Graph<Integer, String> graph;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) 
+	{
+		Graph<Integer, String> exampleQT = new SparseGraph<Integer, String>();
+		exampleQT.addEdge("edge1", 1, 2);
+		exampleQT.addEdge("edge2", 1, 3);
+		exampleQT.addEdge("edge3", 2, 3);
+		exampleQT.addEdge("edge4", 1, 4);
+		exampleQT.addEdge("edge5", 3, 4);
+		exampleQT.addEdge("edge6", 0, 1);
+		exampleQT.addEdge("edge7", 0, 3);
+		
+		exampleQT.addEdge("edge9", 2, 4);
+
+		
+		
+		ArrayList<Integer> param = new ArrayList<Integer>(exampleQT.getVertexCount());
+		param.addAll(exampleQT.getVertices());
+		for ( int i = 0; i < 5; i++)
+		{
+			param = genericLBFS.genericLexBFS(exampleQT,param);
+			System.out.println(param);
+		}
+		
+		
+	}
+	
+	
+	public void test()
+	{
 		graph = new SparseGraph<Integer, String>();
 
 		String filename = "datasets/footballEdgeList.tgf";

@@ -1,0 +1,8 @@
+0.148
+
+18.951
+Is a chordal: true
+175.18
+It is a cograph
+Is a cograph: true
+3089.762
