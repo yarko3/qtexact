@@ -45,11 +45,11 @@ public class fun extends JApplet {
 
 		long start = System.currentTimeMillis();
 		exampleQT = qtGenerate.qtGraph(500);
-		System.out.println(1000*(System.currentTimeMillis()-start));
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		start = System.currentTimeMillis();
 		System.out.println(qtRecognition.qtCheckYan(exampleQT));
-		System.out.println(1000*(System.currentTimeMillis()-start));
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		System.out.println("Is a chordal: " + IsA.Chordal(exampleQT));
 		System.out.println("Is a cograph: " + IsA.Cograph(exampleQT));
