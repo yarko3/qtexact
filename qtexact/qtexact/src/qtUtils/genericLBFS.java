@@ -44,7 +44,9 @@ public class genericLBFS {
 			s.add(i, x);
 			
 			//neighbours of x
-			Collection<Integer> hood = G.getNeighbors(x);
+			
+			ArrayList<Integer> hood = orderNeighbour(G, x);
+			
 			//number of new partitions inserted into L
 			int insertedC = 0;
 			//deep copy of L
@@ -64,8 +66,9 @@ public class genericLBFS {
 				//new partition to be inserted into L
 				ArrayList<Integer> pp = new ArrayList<Integer>(0);
 				
-				for (int h : hood)
+				for (int k = 0; k < hood.size(); k++)
 				{
+					int h = hood.get(k);
 					if (L.get(j).contains(h))
 					{
 						//remove element from L and add to pp
@@ -98,6 +101,25 @@ public class genericLBFS {
 		return s;
 	}
 	
+	private static ArrayList<Integer> orderNeighbour(Graph<Integer, String> G, int neighbour)
+	{
+		//return variable
+		ArrayList<Integer> ordered = new ArrayList<Integer>(0);
+		
+		//throw all vertices into priority queue then get the order back out
+		PriorityQueue<vertexIn<Integer>> pQueue = new PriorityQueue<vertexIn<Integer>>();
+		for (int n : G.getNeighbors(neighbour))
+		{
+			pQueue.add(new vertexIn<Integer>(n, G.degree(n)));
+		}
+		while (!pQueue.isEmpty())
+		{
+			ordered.add(pQueue.remove().getVertex());
+		}
+		
+		return ordered;
+	}
+	
 	/**Order the vertices in non-decreasing degrees for LexBFS
 	 * 
 	 * @param G graph
@@ -119,7 +141,7 @@ public class genericLBFS {
 			ordered.add(pQueue.remove().getVertex());
 		}
 		
-		//System.out.println("Ordered list: " + ordered);
+		System.out.println("Ordered list: " + ordered);
 		return ordered;
 
 	}
