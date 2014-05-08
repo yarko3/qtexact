@@ -99,7 +99,7 @@ public class qtRecognition
 }
 	
 /**
- * class containing vertex and inDegree for PriorityQueue in qtCheckYan
+ * class containing vertex and Degree for PriorityQueue in qtCheckYan
  * @author Yarko Senyuta
  *
  * @param <V>
@@ -107,17 +107,17 @@ public class qtRecognition
 class vertexIn<V> implements Comparable<vertexIn<V>>
 {
 	private V vertex;
-	private int inDegree;
+	private int degree;
 	vertexIn(V v, int in)
 	{
 		vertex = v;
-		inDegree = in;
+		degree = in;
 	}
 	
 	public V getVertex(){return vertex;};
-	public int getInDegree(){return inDegree;};
+	public int getDegree(){return degree;};
 	public int compareTo(vertexIn<V> v)
 	{
-		return Integer.compare(v.getInDegree(), inDegree);
+		return Integer.compare(v.getDegree(), degree);
 	}
 }

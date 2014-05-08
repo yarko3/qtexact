@@ -34,44 +34,26 @@ public class fun extends JApplet {
 	{
 		Graph<Integer, String> exampleQT = new SparseGraph<Integer, String>();
 		exampleQT.addEdge("edge1", 1, 2);
-		exampleQT.addEdge("edge2", 1, 3);
+		//exampleQT.addEdge("edge2", 1, 3);
 		//exampleQT.addEdge("edge3", 2, 3);
 		//exampleQT.addEdge("edge4", 1, 4);
-		exampleQT.addEdge("edge5", 3, 4);
+		//exampleQT.addEdge("edge5", 3, 4);
 		//exampleQT.addEdge("edge6", 0, 1);
 		//exampleQT.addEdge("edge7", 0, 3);
 		
 		//exampleQT.addEdge("edge9", 2, 4);
+		
+		//breaks qt
+		exampleQT.addEdge("edge10", 0, 4);
+		exampleQT.addEdge("edge11", 0, 2);
 
+		exampleQT = qtGenerate.qtGraph(500);
 		
 		
-		ArrayList<Integer> param = new ArrayList<Integer>(exampleQT.getVertexCount());
+		long start = System.currentTimeMillis();
+		System.out.println(genericLBFS.genericLexBFS(exampleQT));
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
-		
-		param.addAll(exampleQT.getVertices());
-		ArrayList<Integer> paramCopy = new ArrayList<Integer>();
-		
-		//sort elements of param to non-increasing degree (quad)
-		
-		for (int i = 0; i < exampleQT.getVertexCount(); i++)
-		{
-			int lDegree = -1;
-			int lElement = -1;
-			for (int j = 0; j < param.size(); j++)
-			{
-				if (exampleQT.degree(param.get(j)) >= lDegree)
-				{
-					lDegree = exampleQT.degree(param.get(j));
-					lElement = j;
-				}
-			}
-			paramCopy.add(param.remove(lElement));
-			
-		}
-		
-		paramCopy = genericLBFS.genericLexBFS(exampleQT,paramCopy);
-		System.out.println(paramCopy);
-			
 	}
 	
 	

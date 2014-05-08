@@ -2,6 +2,7 @@ package qtUtils;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.PriorityQueue;
 
 import edu.uci.ics.jung.graph.Graph;
 
@@ -13,8 +14,10 @@ public class genericLBFS {
 	 * @param t initial ordering of vertices
 	 * @return final LexBFS ordering of vertices
 	 */
-	public static ArrayList<Integer> genericLexBFS(Graph<Integer, String> G, ArrayList<Integer> t )
+	public static ArrayList<Integer> genericLexBFS(Graph<Integer, String> G)
 	{
+		ArrayList<Integer> t = orderVerticesNonDecreasingDegree(G);
+		
 		//new ordering
 		ArrayList<Integer> s = new ArrayList<Integer>(t.size());
 		//list of partitions (each partition has a common label)
@@ -71,7 +74,6 @@ public class genericLBFS {
 						Lcopy.get(j + insertedC).remove(Lcopy.get(j + insertedC).indexOf(h));
 						if (L.get(j).isEmpty())
 						{
-							//L.remove(j);
 							Lcopy.remove(j + insertedC);
 						}
 					}
@@ -79,7 +81,7 @@ public class genericLBFS {
 				//quasi-threshold check (should return C4 or P4)
 				if (j != 0 && !pp.isEmpty())
 				{
-					return null;
+					return TPCertificate(G, x, pp.get(0), s);
 				}
 				if (!pp.isEmpty())
 				{
@@ -93,6 +95,84 @@ public class genericLBFS {
 		}
 		
 		return s;
+	}
+	
+	/**Order the vertices in non-decreasing degrees for LexBFS
+	 * 
+	 * @param G graph
+	 * @return ordered ArrayList<Integer> of vertices
+	 */
+	private static ArrayList<Integer> orderVerticesNonDecreasingDegree(Graph<Integer, String> G)
+	{
+		//return variable
+		ArrayList<Integer> ordered = new ArrayList<Integer>(0);
+		
+		//throw all vertices into priority queue then get the order back out
+		PriorityQueue<vertexIn<Integer>> pQueue = new PriorityQueue<vertexIn<Integer>>();
+		for (int n : G.getVertices())
+		{
+			pQueue.add(new vertexIn<Integer>(n, G.degree(n)));
+		}
+		while (!pQueue.isEmpty())
+		{
+			ordered.add(pQueue.remove().getVertex());
+		}
+		
+		//System.out.println("Ordered list: " + ordered);
+		return ordered;
+
+	}
+	/**
+	 * 
+	 * @param G graph
+	 * @param x first element of partition retrieved/last element of s
+	 * @param y first element of P' 
+	 * @param s ordering until the C4 or P4 was found
+	 * @return
+	 */
+	private static ArrayList<Integer> TPCertificate(Graph<Integer, String> G, int x, int y, ArrayList<Integer> s)
+	{
+		ArrayList<Integer> S = new ArrayList<Integer>(0);
+		for (int v : s)
+		{
+			if (s.indexOf(v) < s.indexOf(x) && G.findEdge(v, x) != null && (G.findEdge(v, y) == null))
+			{
+				S.add(v);
+			}
+			Collection<Integer> vertices = G.getVertices();
+			for (int w : S)
+			{
+				for (int z : vertices)
+				{
+					if (G.findEdge(z, w) != null && G.findEdge(z, x) == null && z != x && z != y & z != w)
+					{
+						if (G.findEdge(z, y) != null)
+						{
+							System.out.println("Found C4: " + z + "-" + w + "-" + x + "-" + y);
+							ArrayList<Integer> rtn = new ArrayList<Integer>(0);
+							rtn.add(z);
+							rtn.add(w);
+							rtn.add(x);
+							rtn.add(y);
+							return rtn;
+						}
+						else
+						{
+							System.out.println("Found P4: " + z + "-" + w + "-" + x + "-" + y);
+							ArrayList<Integer> rtn = new ArrayList<Integer>(0);
+							rtn.add(z);
+							rtn.add(w);
+							rtn.add(x);
+							rtn.add(y);
+							return rtn;
+						}
+					}
+				}
+			}
+		}
+		
+		return null;
+		
 	}
 
 }
