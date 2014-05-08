@@ -47,13 +47,36 @@ public class fun extends JApplet {
 		exampleQT.addEdge("edge10", 0, 4);
 		exampleQT.addEdge("edge11", 0, 2);
 
-		exampleQT = qtGenerate.qtGraph(500);
+		exampleQT = qtGenerate.qtGraph(2, 1);
 		
 		
 		long start = System.currentTimeMillis();
 		System.out.println(genericLBFS.genericLexBFS(exampleQT));
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
+		start = System.currentTimeMillis();
+		System.out.println(qtRecognition.qtCheckYan(exampleQT));
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		
+		System.out.println(IsA.QuasiThreshold(exampleQT));
+		
+		
+		JFrame jf = new JFrame();
+		jf.setSize(1366, 768);
+
+		FRLayout frl = new FRLayout(exampleQT);
+
+		frl.setAttractionMultiplier(1.5);
+		frl.lock(true);
+		VisualizationViewer vv = new VisualizationViewer(frl, new Dimension(
+				1366, 768));
+
+		vv.getRenderContext().setVertexLabelTransformer(new ToStringLabeller());
+		
+		jf.getContentPane().add(vv);
+		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		jf.pack();
+		jf.setVisible(true);
 	}
 	
 	

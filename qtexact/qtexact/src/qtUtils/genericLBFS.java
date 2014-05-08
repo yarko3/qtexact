@@ -72,10 +72,11 @@ public class genericLBFS {
 						pp.add(L.get(j).remove(L.get(j).indexOf(h)));
 						//remove element from Lcopy
 						Lcopy.get(j + insertedC).remove(Lcopy.get(j + insertedC).indexOf(h));
-						if (L.get(j).isEmpty())
+						
+						/*if (L.get(j).isEmpty())
 						{
 							Lcopy.remove(j + insertedC);
-						}
+						}*/
 					}
 				}
 				//quasi-threshold check (should return C4 or P4)
@@ -122,7 +123,7 @@ public class genericLBFS {
 		return ordered;
 
 	}
-	/**
+	/**get C4 or P4 from graph
 	 * 
 	 * @param G graph
 	 * @param x first element of partition retrieved/last element of s
