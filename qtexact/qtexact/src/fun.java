@@ -48,7 +48,8 @@ public class fun extends JApplet {
 		exampleQT.addEdge("edge11", 0, 2);
 
 		//exampleQT = qtGenerate.qtGraph(4, 20);
-		exampleQT = qtGenerate.simpleC4();
+		//exampleQT = qtGenerate.simpleC4();
+		exampleQT = qtGenerate.cliqueJoin(4, 3);
 		
 		long start = System.currentTimeMillis();
 		System.out.println(genericLBFS.genericLexBFS(exampleQT));
@@ -64,7 +65,7 @@ public class fun extends JApplet {
 		JFrame jf = new JFrame();
 		jf.setSize(1366, 768);
 
-		FRLayout frl = new FRLayout(qtRecognition.qtCheckYan(exampleQT));
+		FRLayout frl = new FRLayout(exampleQT);
 
 		frl.setAttractionMultiplier(1.5);
 		frl.lock(true);

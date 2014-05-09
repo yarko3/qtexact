@@ -1,7 +1,6 @@
 package qtUtils;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.SparseGraph;
