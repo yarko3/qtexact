@@ -47,8 +47,7 @@ public class fun extends JApplet {
 		exampleQT.addEdge("edge10", 0, 4);
 		exampleQT.addEdge("edge11", 0, 2);
 
-		exampleQT = qtGenerate.qtGraph(22, 26);
-		
+		exampleQT = qtGenerate.qtGraph(2, 5);
 		
 		long start = System.currentTimeMillis();
 		System.out.println(genericLBFS.genericLexBFS(exampleQT));

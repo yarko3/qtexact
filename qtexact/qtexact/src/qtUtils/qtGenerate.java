@@ -40,7 +40,54 @@ public class qtGenerate<V, E>
 		return graph;
 	}
 	
+	
 	public static Graph<Integer, String> qtGraph(int n1, int n2)
+	{
+		SparseGraph<Integer, String> graph = new SparseGraph<Integer, String>();
+		
+		int curV = 0;
+		graph.addVertex(curV++);
+		if (n1 > 0)
+		{
+			while (curV <= n1)
+			{
+				Integer[] array = new Integer[graph.getVertexCount()];
+				array = graph.getVertices().toArray(array);
+				for (int v : array)
+				{
+					graph.addEdge("e:" + curV + "-" + v, curV, v);
+				}
+				curV++;
+			}
+		}
+		
+		
+		curV--;
+		
+		int newCount = 1;
+		
+		if (n2 > 0)
+		{
+			while (newCount <= n2)
+			{
+				for (int i = curV; i < newCount + curV; i++)
+				{
+					graph.addEdge("e:" + (curV + newCount) + "-" + i, curV + newCount, i);
+				}
+				newCount++;
+			}
+		}
+		return graph;
+
+		
+	}
+
+	
+	
+	
+	
+	
+	public static Graph<Integer, String> cliqueJoin(int n1, int n2)
 	{
 		SparseGraph<Integer, String> graph = new SparseGraph<Integer, String>();
 		
