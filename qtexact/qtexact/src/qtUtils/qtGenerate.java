@@ -147,5 +147,20 @@ public class qtGenerate<V, E>
 		return graph;
 		
 	}
+	
+	public static Graph<Integer, String> simpleC4()
+	{
+		SparseGraph<Integer, String> G = new SparseGraph<Integer, String>();
+		G.addEdge("e:" + 0 + "-" + 1, 0, 1);
+		G.addEdge("e:" + 0 + "-" + 3, 0, 3);
+		G.addEdge("e:" + 3 + "-" + 2, 3, 2);
+		G.addEdge("e:" + 1 + "-" + 2, 1, 2);
+		G.addEdge("e:" + 1 + "-" + 4, 1, 4);
+		G.addEdge("e:" + 1 + "-" + 5, 1, 5);
+		G.addEdge("e:" + 1 + "-" + 6, 1, 6);
+		
+		return G;
+	}
+	
 
 }

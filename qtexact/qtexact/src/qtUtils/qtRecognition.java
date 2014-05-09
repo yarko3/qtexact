@@ -2,6 +2,7 @@ package qtUtils;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.Hashtable;
 import java.util.PriorityQueue;
 
@@ -60,17 +61,22 @@ public class qtRecognition
 				//find neighbours of vertexArray[j]
 				Collection<Integer> neighbours = G.getNeighbors(vertexArrayList.get(j));
 				//create neighbour priority queue based on their inDegree
+				vertexInComparator comparator= new vertexInComparator();
 				PriorityQueue<vertexIn<Integer>> pQueue = new PriorityQueue<vertexIn<Integer>>();
 				for (int n : neighbours)
 				{
 					pQueue.add(new vertexIn<Integer>(n, inDegree.get(n)));
 				}
+				
 				//choose a neighbour that fits criteria
 				boolean finish = false;
 				while (!pQueue.isEmpty() && !finish)
 				{
 					vertexIn<Integer> next = pQueue.remove();
+					
+					
 					//add edge to F
+					
 					if ((G.degree(next.getVertex()) > G.degree(vertexArrayList.get(j))) || 
 							((G.degree(next.getVertex()) == G.degree(vertexArrayList.get(j))) && (vertexArrayList.indexOf(next.getVertex()) < j)))
 					{
@@ -97,6 +103,23 @@ public class qtRecognition
 	}
 }
 	
+class vertexInComparator implements Comparator<vertexIn<Integer>>
+{
+
+	public int compare(vertexIn<Integer> arg0, vertexIn<Integer> arg1) 
+	{
+		if (arg0.getDegree() != arg1.getDegree())
+		{
+			return Integer.compare(arg0.getDegree(), arg1.getDegree());
+		}
+		else
+		{
+			return Integer.compare((Integer) arg0.getVertex(), (Integer) arg1.getVertex());
+		}
+	}
+	
+}
+
 /**
  * class containing vertex and Degree for PriorityQueue in qtCheckYan
  * @author Yarko Senyuta

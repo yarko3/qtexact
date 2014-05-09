@@ -47,7 +47,8 @@ public class fun extends JApplet {
 		exampleQT.addEdge("edge10", 0, 4);
 		exampleQT.addEdge("edge11", 0, 2);
 
-		exampleQT = qtGenerate.cliqueJoin(1, 2);
+		//exampleQT = qtGenerate.qtGraph(4, 20);
+		exampleQT = qtGenerate.simpleC4();
 		
 		long start = System.currentTimeMillis();
 		System.out.println(genericLBFS.genericLexBFS(exampleQT));
@@ -60,10 +61,10 @@ public class fun extends JApplet {
 		System.out.println(IsA.QuasiThreshold(exampleQT));
 		
 		
-		/*JFrame jf = new JFrame();
+		JFrame jf = new JFrame();
 		jf.setSize(1366, 768);
 
-		FRLayout frl = new FRLayout(exampleQT);
+		FRLayout frl = new FRLayout(qtRecognition.qtCheckYan(exampleQT));
 
 		frl.setAttractionMultiplier(1.5);
 		frl.lock(true);
@@ -75,7 +76,7 @@ public class fun extends JApplet {
 		jf.getContentPane().add(vv);
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jf.pack();
-		jf.setVisible(true);*/
+		jf.setVisible(true);
 	}
 	
 	
