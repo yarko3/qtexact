@@ -3,7 +3,6 @@ package qtUtils;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Hashtable;
-import java.util.Iterator;
 import java.util.PriorityQueue;
 
 import edu.uci.ics.jung.graph.DelegateForest;
@@ -16,7 +15,7 @@ public class qtRecognition
 	 * Use Yan algorithm for QT recognition (1994)
 	 * @author Yarko Senyuta
 	 * @param Graph G
-	 * @return DelegateForest
+	 * @return a forest if graph is qt or null otherwise
 	 */
 	public static DelegateForest<Integer, String> qtCheckYan(Graph<Integer, String> G)
 	{

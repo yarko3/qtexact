@@ -38,6 +38,7 @@ public class genericLBFS {
 			//get first element x of first partition
 			ArrayList<Integer> p1 = L.get(0);
 			int x = p1.remove(0);
+			
 			//if first partition is empty, remove partition from L (haha, nope)
 			/*if (p1.isEmpty())
 			{

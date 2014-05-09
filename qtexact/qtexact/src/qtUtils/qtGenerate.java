@@ -16,8 +16,8 @@ public class qtGenerate<V, E>
 {
 	/**
 	 * generate a completely connected graph of number of edges
-	 * @param number
-	 * @return
+	 * @param number size of clique
+	 * @return graph
 	 */
 	public static Graph<Integer, String> qtGraph(int number)
 	{
@@ -40,7 +40,12 @@ public class qtGenerate<V, E>
 		return graph;
 	}
 	
-	
+	/**Generate graph of two cliques of size n1 and n2 that share one vertex (quasi threshold)
+	 * 
+	 * @param n1 first clique size
+	 * @param n2 second clique size
+	 * @return graph
+	 */
 	public static Graph<Integer, String> qtGraph(int n1, int n2)
 	{
 		SparseGraph<Integer, String> graph = new SparseGraph<Integer, String>();
@@ -83,10 +88,12 @@ public class qtGenerate<V, E>
 	}
 
 	
-	
-	
-	
-	
+	/**Generate graph of two cliques of vertices n1 and n2 that are connected by one edge (not quasi threshold)
+	 * 
+	 * @param n1 size of first clique
+	 * @param n2 size of second clique
+	 * @return graph
+	 */
 	public static Graph<Integer, String> cliqueJoin(int n1, int n2)
 	{
 		SparseGraph<Integer, String> graph = new SparseGraph<Integer, String>();
