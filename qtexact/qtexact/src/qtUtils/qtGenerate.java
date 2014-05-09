@@ -147,6 +147,10 @@ public class qtGenerate<V, E>
 		
 	}
 	
+	/**Generate a simple graph with an induced C4
+	 * 
+	 * @return graph with C4
+	 */
 	public static Graph<Integer, String> simpleC4()
 	{
 		SparseGraph<Integer, String> G = new SparseGraph<Integer, String>();
@@ -157,6 +161,7 @@ public class qtGenerate<V, E>
 		G.addEdge("e:" + 1 + "-" + 4, 1, 4);
 		G.addEdge("e:" + 1 + "-" + 5, 1, 5);
 		G.addEdge("e:" + 1 + "-" + 6, 1, 6);
+
 		
 		return G;
 	}
