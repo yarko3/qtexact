@@ -20,7 +20,7 @@ public class qtGenerate<V, E>
 	 * @param number size of clique
 	 * @return graph
 	 */
-	public static Graph<Integer, String> qtGraph(int number)
+	public static Graph<Integer, String> clique(int number)
 	{
 		SparseGraph<Integer, String> graph = new SparseGraph<Integer, String>();
 		if (number > 0)
@@ -47,7 +47,7 @@ public class qtGenerate<V, E>
 	 * @param n2 second clique size
 	 * @return graph
 	 */
-	public static Graph<Integer, String> qtGraph(int n1, int n2)
+	public static Graph<Integer, String> cliques(int n1, int n2)
 	{
 		SparseGraph<Integer, String> graph = new SparseGraph<Integer, String>();
 		
