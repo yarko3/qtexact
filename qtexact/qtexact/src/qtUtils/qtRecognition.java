@@ -13,7 +13,7 @@ import edu.uci.ics.jung.graph.util.Pair;
 public class qtRecognition 
 {
 	/**
-	 * Use Yan algorithm for QT recognition (1994)
+	 * Yan algorithm for QT recognition (1994)
 	 * @author Yarko Senyuta
 	 * @param Graph G
 	 * @return a forest if graph is qt or null otherwise
@@ -60,8 +60,6 @@ public class qtRecognition
 			{
 				//find neighbours of vertexArray[j]
 				Collection<Integer> neighbours = G.getNeighbors(vertexArrayList.get(j));
-				//create neighbour priority queue based on their inDegree
-				vertexInComparator comparator= new vertexInComparator();
 				PriorityQueue<vertexIn<Integer>> pQueue = new PriorityQueue<vertexIn<Integer>>();
 				for (int n : neighbours)
 				{
@@ -91,8 +89,6 @@ public class qtRecognition
 		boolean check = true;
 		for (int j = 0; j < vertexArrayList.size(); j++)
 		{
-			int depth = F.getDepth(vertexArrayList.get(j));
-			int inDegreeval = inDegree.get(vertexArrayList.get(j));
 			if (F.getDepth(vertexArrayList.get(j)) - 1 != inDegree.get(vertexArrayList.get(j))) 
 				check = false;
 		}

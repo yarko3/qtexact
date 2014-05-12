@@ -63,9 +63,6 @@ public class genericLBFS {
 			{
 				//new partition to be inserted into L
 				ArrayList<Integer> pp = new ArrayList<Integer>(0);
-				ArrayList<Integer> pj = L.get(j);
-				
-				
 				for (int k = 0; k < hood.size(); k++)
 				{
 					int h = hood.get(k);
@@ -134,7 +131,7 @@ public class genericLBFS {
 			ordered.add(pQueue.remove().getVertex());
 		}
 		
-		System.out.println("Ordered list: " + ordered);
+		//System.out.println("Ordered list: " + ordered);
 		return ordered;
 
 	}

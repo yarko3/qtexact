@@ -47,8 +47,8 @@ public class fun extends JApplet {
 		exampleQT.addEdge("edge10", 0, 4);
 		exampleQT.addEdge("edge11", 0, 2);
 
-		//exampleQT = qtGenerate.qtGraph(4, 20);
-		exampleQT = qtGenerate.simpleC4();
+		exampleQT = qtGenerate.cliqueJoin(4, 20);
+		//exampleQT = qtGenerate.simpleC4();
 		
 		long start = System.currentTimeMillis();
 		System.out.println(genericLBFS.genericLexBFS(exampleQT));
@@ -58,8 +58,9 @@ public class fun extends JApplet {
 		System.out.println(qtRecognition.qtCheckYan(exampleQT));
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
+		start = System.currentTimeMillis();
 		System.out.println(IsA.QuasiThreshold(exampleQT));
-		
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		JFrame jf = new JFrame();
 		jf.setSize(1366, 768);
