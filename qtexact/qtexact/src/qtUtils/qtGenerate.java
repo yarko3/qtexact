@@ -178,7 +178,7 @@ public class qtGenerate<V, E>
 		Collection<Integer> v;
 		Integer[] array;
 		
-		while (n - vCount != 0)
+		while (n - vCount > 0)
 		{
 			if (n - vCount < 3)
 			{
@@ -194,7 +194,7 @@ public class qtGenerate<V, E>
 			else
 			{
 				double r = rand.nextDouble();
-				switch ((int)(r * 4)){
+				switch ((int)(r * 3)){
 				//create a TP 3 vetex and TP 2 vertex
 					case (0):
 						if (n - vCount > 5)
