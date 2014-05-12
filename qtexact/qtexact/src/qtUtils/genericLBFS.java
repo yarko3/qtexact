@@ -18,6 +18,7 @@ public class genericLBFS {
 	{
 		ArrayList<Integer> t = orderVerticesNonDecreasingDegree(G);
 		
+		
 		//new ordering
 		ArrayList<Integer> s = new ArrayList<Integer>(t.size());
 		//list of partitions (each partition has a common label)
@@ -31,19 +32,23 @@ public class genericLBFS {
 		//for every vertex, ordered by t
 		for (int i = 0; i < tsize; i++)
 		{
+			//clean up L
 			while (L.get(0).isEmpty())
 			{
 				L.remove(0);
 			}
+			
 			//get first element x of first partition
 			ArrayList<Integer> p1 = L.get(0);
 			int x = p1.remove(0);
+			
 			
 			//if first partition is empty, remove partition from L (haha, nope)
 			/*if (p1.isEmpty())
 			{
 				L.remove(0);
 			}*/
+			
 			
 			//add x to s at i
 			s.add(i, x);
@@ -53,11 +58,7 @@ public class genericLBFS {
 			ArrayList<Integer> hood = orderNeighbour(G, x);
 			
 			//usually start j from 1, unless 1 element in L
-			int j = 1;
-			if (L.size() == 1)
-			{
-				j = 0;
-			}
+			int j = 0;
 			
 			while (j < L.size())
 			{
@@ -115,7 +116,7 @@ public class genericLBFS {
 	 * @param G graph
 	 * @return ordered ArrayList<Integer> of vertices
 	 */
-	private static ArrayList<Integer> orderVerticesNonDecreasingDegree(Graph<Integer, String> G)
+	public static ArrayList<Integer> orderVerticesNonDecreasingDegree(Graph<Integer, String> G)
 	{
 		//return variable
 		ArrayList<Integer> ordered = new ArrayList<Integer>(0);

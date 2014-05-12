@@ -33,29 +33,20 @@ public class fun extends JApplet {
 	public static void main(String[] args) 
 	{
 		Graph<Integer, String> exampleQT = new SparseGraph<Integer, String>();
-		exampleQT.addEdge("edge1", 1, 2);
-		//exampleQT.addEdge("edge2", 1, 3);
-		//exampleQT.addEdge("edge3", 2, 3);
-		exampleQT.addEdge("edge4", 1, 4);
-		//exampleQT.addEdge("edge5", 3, 4);
-		//exampleQT.addEdge("edge6", 0, 1);
-		//exampleQT.addEdge("edge7", 0, 3);
-		
-		//exampleQT.addEdge("edge9", 2, 4);
-		
-		//breaks qt
-		exampleQT.addEdge("edge10", 0, 4);
-		exampleQT.addEdge("edge11", 0, 2);
 
-		exampleQT = qtGenerate.cliqueJoin(4, 20);
-		//exampleQT = qtGenerate.simpleC4();
+		exampleQT = qtGenerate.randomQT(500);
+		//may break it
+		exampleQT.addEdge("edge0", 0, 6);
+		exampleQT.addEdge("edge1", 8, 1);
+		exampleQT.addEdge("edge2", 8, 5);
+		
 		
 		long start = System.currentTimeMillis();
-		System.out.println(genericLBFS.genericLexBFS(exampleQT));
+		System.out.println(qtRecognition.qtCheckYan(exampleQT));
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		start = System.currentTimeMillis();
-		System.out.println(qtRecognition.qtCheckYan(exampleQT));
+		System.out.println(genericLBFS.genericLexBFS(exampleQT));
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		start = System.currentTimeMillis();
@@ -68,10 +59,10 @@ public class fun extends JApplet {
 		FRLayout frl = new FRLayout(exampleQT);
 
 		frl.setAttractionMultiplier(1.5);
-		frl.lock(true);
+		//frl.lock(true);
 		VisualizationViewer vv = new VisualizationViewer(frl, new Dimension(
 				1366, 768));
-
+		
 		vv.getRenderContext().setVertexLabelTransformer(new ToStringLabeller());
 		
 		jf.getContentPane().add(vv);

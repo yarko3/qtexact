@@ -1,6 +1,8 @@
 package qtUtils;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Random;
 
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.SparseGraph;
@@ -163,6 +165,103 @@ public class qtGenerate<V, E>
 		G.addEdge("e:" + 1 + "-" + 6, 1, 6);
 
 		
+		return G;
+	}
+	
+	public static Graph<Integer, String> randomQT(int n)
+	{
+		SparseGraph<Integer, String> G = new SparseGraph<Integer, String>();
+		Random rand = new Random();
+		
+		int vCount = 0;
+
+		Collection<Integer> v;
+		Integer[] array;
+		
+		while (n - vCount != 0)
+		{
+			if (n - vCount < 3)
+			{
+				v = G.getVertices();
+				array = new Integer[v.size()];
+				array = v.toArray(array);
+				for (int i : array)
+				{
+					G.addEdge("e:"+i+"-"+vCount, i, vCount);
+				}
+				vCount++;	
+			}
+			else
+			{
+				double r = rand.nextDouble();
+				switch ((int)(r * 4)){
+				//create a TP 3 vetex and TP 2 vertex
+					case (0):
+						if (n - vCount > 5)
+						{
+							//create TP 3
+							G.addEdge("e:"+vCount+"-"+ (vCount + 1), vCount, ++vCount);
+							vCount++;
+							G.addEdge("e:"+vCount+"-"+ (vCount + 1), vCount, ++vCount);
+							vCount++;
+							
+							//create TP 2
+							G.addEdge("e:"+vCount+"-"+ (vCount + 1), vCount, ++vCount);
+							vCount++;
+							
+							//connect everything to one vertex
+							v = G.getVertices();
+							array = new Integer[v.size()];
+							array = v.toArray(array);
+							for (int i : array)
+							{
+								G.addEdge("e:"+i+"-"+vCount, i, vCount);
+							}
+							vCount++;
+							break;
+						}
+					case (1):
+						if (n - vCount > 3)
+						{
+							//create TP 3
+							G.addEdge("e:"+vCount+"-"+ (vCount + 1), vCount, ++vCount);
+							vCount++;
+							G.addEdge("e:"+vCount+"-"+ (vCount + 1), vCount, ++vCount);
+							vCount++;
+							
+							//connect everything to one vertex
+							v = G.getVertices();
+							array = new Integer[v.size()];
+							array = v.toArray(array);
+							for (int i : array)
+							{
+								G.addEdge("e:"+i+"-"+vCount, i, vCount);
+							}
+							vCount++;
+							break;
+						}
+					case (2):
+						if (n - vCount > 2)
+						{
+							//create TP 2
+							G.addEdge("e:"+vCount+"-"+ (vCount + 1), vCount, ++vCount);
+							vCount++;
+							
+							//connect everything to one vertex
+							v = G.getVertices();
+							array = new Integer[v.size()];
+							array = v.toArray(array);
+							for (int i : array)
+							{
+								G.addEdge("e:"+i+"-"+vCount, i, vCount);
+							}
+							vCount++;
+							break;
+						}
+				}
+						
+			}
+		}
 		return G;
 	}
 	
