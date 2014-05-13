@@ -14,13 +14,13 @@ public class qtBranching
 	
 	public static Cloner clone = new Cloner();
 	
-	public static void noHeuristic(Graph<Integer, String> G)
+	public static Graph noHeuristic(Graph<Integer, String> G)
 	{
 		//keep proper degree order as an ArrayList<LinkedList<vertex>>
 		ArrayList<LinkedList<Integer>> deg = degSequenceOrder(G);
 		
 		
-		G = branching(new branchingReturnType(G, deg, 0)).G;
+		return branching(new branchingReturnType(G, deg, 0)).G;
 		
 	}
 	
@@ -57,8 +57,8 @@ public class qtBranching
 			if (lexResult.get(4) == Character.getNumericValue('C'))
 			{
 				//result of adding 2 edges to break C4
-				branchingReturnType c4Add1 = branching(c4AddResult(G, deg, changes, lexResult, lexResult.get(0), lexResult.get(2)));
-				branchingReturnType c4Add2 = branching(c4AddResult(G, deg, changes, lexResult, lexResult.get(1), lexResult.get(3)));
+				//branchingReturnType c4Add1 = branching(c4AddResult(G, deg, changes, lexResult, lexResult.get(0), lexResult.get(2)));
+				//branchingReturnType c4Add2 = branching(c4AddResult(G, deg, changes, lexResult, lexResult.get(1), lexResult.get(3)));
 				
 				
 				//results of removing 2 edges to break C4
@@ -72,8 +72,8 @@ public class qtBranching
 				
 				//add to PriorityQueue to sort
 				PriorityQueue<branchingReturnType> pQueue = new PriorityQueue<branchingReturnType>();
-				pQueue.add(c4Add1);
-				pQueue.add(c4Add2);
+//				pQueue.add(c4Add1);
+//				pQueue.add(c4Add2);
 				pQueue.add(c4Remove0);
 				pQueue.add(c4Remove1);
 				pQueue.add(c4Remove2);
@@ -161,16 +161,16 @@ public class qtBranching
 		int v1Deg = G.degree(v1);
 		
 		deg.get(v0Deg).remove(v0);
-		if (deg.get(v0Deg - 1) == null)
+		if (deg.get(v0Deg).isEmpty() && v0Deg+1 == deg.size())
 		{
-			deg.add(v0Deg - 1, new LinkedList<Integer>());
+			deg.remove(v0Deg);
 		}
 		deg.get(v0Deg - 1).add(v0);
 		
 		deg.get(v1Deg).remove(v1);
-		if (deg.get(v1Deg - 1) == null)
+		if (deg.get(v1Deg).isEmpty() && v1Deg+1 == deg.size())
 		{
-			deg.add(v1Deg - 1, new LinkedList<Integer>());
+			deg.remove(v1Deg);
 		}
 		deg.get(v1Deg - 1).add(v1);
 		
