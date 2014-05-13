@@ -19,7 +19,8 @@ public class qtBranching
 		//keep proper degree order as an ArrayList<LinkedList<vertex>>
 		ArrayList<LinkedList<Integer>> deg = degSequenceOrder(G);
 		
-		
+		branchingReturnType goal = branching(new branchingReturnType(G, deg, 0));
+		System.out.println("Number of moves: " + goal.changes);
 		return branching(new branchingReturnType(G, deg, 0)).G;
 		
 	}

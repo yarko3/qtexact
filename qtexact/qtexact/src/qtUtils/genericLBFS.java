@@ -16,7 +16,7 @@ public class genericLBFS {
 	 */
 	public static ArrayList<Integer> genericLexBFS(Graph<Integer, String> G, ArrayList<Integer> t)
 	{
-		/*ArrayList<Integer> t = orderVerticesNonDecreasingDegree(G);*/
+		/*ArrayList<Integer> t = orderVerticesNonDecreasingDegree(G); */
 		
 		
 		//new ordering
