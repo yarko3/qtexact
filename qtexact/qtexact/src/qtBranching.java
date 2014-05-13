@@ -32,10 +32,14 @@ public class qtBranching
 		//check if graph is QT
 		ArrayList<Integer> t = new ArrayList<Integer>(0);
 		
-		for (int i = deg.size() - 1; i >= 0; i--)
+		ArrayList<LinkedList<Integer>> degCopy = clone.deepClone(deg);
+		
+		for (int i = degCopy.size() - 1; i >=0; i--)
 		{
-			while (!deg.get(i).isEmpty())
-				t.add(deg.get(i).remove());
+			while (!degCopy.get(i).isEmpty())
+			{
+				t.add(degCopy.get(i).remove());
+			}
 		}
 		ArrayList<Integer> lexResult = genericLBFS.genericLexBFS(G, t);
 		//qt graph has been found

@@ -186,7 +186,7 @@ public class genericLBFS {
 				}
 			}
 		}
-		
+		System.out.println("Certificate failed ");
 		return null;
 		
 	}
