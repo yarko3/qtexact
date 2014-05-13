@@ -14,9 +14,9 @@ public class genericLBFS {
 	 * @param t initial ordering of vertices
 	 * @return final LexBFS ordering of vertices
 	 */
-	public static ArrayList<Integer> genericLexBFS(Graph<Integer, String> G)
+	public static ArrayList<Integer> genericLexBFS(Graph<Integer, String> G, ArrayList<Integer> t)
 	{
-		ArrayList<Integer> t = orderVerticesNonDecreasingDegree(G);
+		//ArrayList<Integer> t = orderVerticesNonDecreasingDegree(G);
 		
 		
 		//new ordering

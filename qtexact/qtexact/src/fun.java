@@ -47,7 +47,7 @@ public class fun extends JApplet {
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		start = System.currentTimeMillis();
-		System.out.println(genericLBFS.genericLexBFS(exampleQT));
+		qtBranching.noHeuristic(exampleQT);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		start = System.currentTimeMillis();
