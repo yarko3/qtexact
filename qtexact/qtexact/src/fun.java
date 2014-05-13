@@ -40,6 +40,7 @@ public class fun extends JApplet {
 		exampleQT.addEdge("edge1", 8, 1);
 		exampleQT.addEdge("edge2", 8, 5);
 		
+		exampleQT = qtGenerate.simpleC4();
 		
 		
 		long start = System.currentTimeMillis();
