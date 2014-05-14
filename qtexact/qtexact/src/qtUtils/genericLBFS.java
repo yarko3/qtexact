@@ -124,6 +124,7 @@ public class genericLBFS {
 			}
 		}
 		
+		System.out.println(cComponents);
 		return s;
 	}
 	

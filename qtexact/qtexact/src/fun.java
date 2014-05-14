@@ -41,7 +41,7 @@ public class fun extends JApplet {
 		exampleQT.addEdge("e:" + 8 + "-" + 5, 8, 5);
 		
 		
-		
+		exampleQT = qtGenerate.simpleC4();
 		
 		
 		long start = System.currentTimeMillis();
