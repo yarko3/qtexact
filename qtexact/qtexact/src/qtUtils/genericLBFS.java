@@ -2,7 +2,10 @@ package qtUtils;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.PriorityQueue;
+import java.util.Set;
 
 import edu.uci.ics.jung.graph.Graph;
 
@@ -29,6 +32,11 @@ public class genericLBFS {
 		//initial element of L has all vertices
 		L.add(t);
 		int tsize = t.size();
+		
+		//get connected components
+		LinkedList<HashSet<Integer>> cComponents = new LinkedList<HashSet<Integer>>();
+		
+		
 		//for every vertex, ordered by t
 		for (int i = 0; i < tsize; i++)
 		{
@@ -56,6 +64,34 @@ public class genericLBFS {
 			//neighbours of x
 			
 			ArrayList<Integer> hood = orderNeighbour(G, x);
+			
+			
+			//find connected components
+			boolean found = false;
+			search:
+			for (HashSet<Integer> j : cComponents)
+			{
+				for (int n : hood)
+				{
+					//if a neighbour of x or x is already in a set, add the rest
+					if (j.contains(n) || j.contains(x))
+					{
+						j.addAll(hood);
+						j.add(x);
+						found = true;
+						break search;
+					}
+				}
+			}
+			//elements were not found in current set of connected components, make new one
+			if (!found)
+			{
+				cComponents.add(new HashSet<Integer>());
+				cComponents.getLast().addAll(hood);
+				cComponents.getLast().add(x);
+			}
+			
+			
 			
 			//usually start j from 1, unless 1 element in L
 			int j = 0;
