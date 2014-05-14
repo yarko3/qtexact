@@ -144,7 +144,7 @@ public class qtGenerate<V, E>
 		}
 		
 		//final edge to join the two halves 
-		graph.addEdge("e:" + 0 + "-" + (curV - 1), 0, curV+newCount-1);
+		graph.addEdge("e:" + 0 + "-" + (newCount+curV - 1), 0, curV+newCount-1);
 		return graph;
 		
 	}

@@ -40,6 +40,9 @@ public class fun extends JApplet {
 		exampleQT.addEdge("e:" + 8 + "-" + 1, 8, 1);
 		exampleQT.addEdge("e:" + 8 + "-" + 5, 8, 5);
 		
+		exampleQT = qtGenerate.cliqueJoin(5, 7);
+		
+		
 		
 		
 		long start = System.currentTimeMillis();

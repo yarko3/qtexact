@@ -14,14 +14,14 @@ public class qtBranching
 	
 	public static Cloner clone = new Cloner();
 	
-	public static Graph noHeuristic(Graph<Integer, String> G)
+	public static Graph<Integer, String> noHeuristic(Graph<Integer, String> G)
 	{
 		//keep proper degree order as an ArrayList<LinkedList<vertex>>
 		ArrayList<LinkedList<Integer>> deg = degSequenceOrder(G);
 		
 		branchingReturnType goal = branching(new branchingReturnType(G, deg, 0));
 		System.out.println("Number of moves: " + goal.changes);
-		return branching(new branchingReturnType(G, deg, 0)).G;
+		return goal.G;
 		
 	}
 	
@@ -36,7 +36,7 @@ public class qtBranching
 		ArrayList<Integer> t = new ArrayList<Integer>(0);
 		
 		ArrayList<LinkedList<Integer>> degCopy = clone.deepClone(deg);
-		
+		//reverse the order of deg and flatten it for lexBFS
 		for (int i = degCopy.size() - 1; i >=0; i--)
 		{
 			while (!degCopy.get(i).isEmpty())
@@ -161,19 +161,22 @@ public class qtBranching
 		int v0Deg = G.degree(v0);
 		int v1Deg = G.degree(v1);
 		
-		deg.get(v0Deg).remove(v0);
+		deg.get(v0Deg).removeFirstOccurrence(v0);
+		deg.get(v0Deg - 1).add(v0);
 		if (deg.get(v0Deg).isEmpty() && v0Deg+1 == deg.size())
 		{
 			deg.remove(v0Deg);
 		}
-		deg.get(v0Deg - 1).add(v0);
 		
-		deg.get(v1Deg).remove(v1);
+		
+		deg.get(v1Deg).removeFirstOccurrence(v1);
+		
+		deg.get(v1Deg - 1).add(v1);
 		if (deg.get(v1Deg).isEmpty() && v1Deg+1 == deg.size())
 		{
 			deg.remove(v1Deg);
 		}
-		deg.get(v1Deg - 1).add(v1);
+		
 		
 		//find the edge to remove
 		if (!G.removeEdge("e:" + v0 + "-" + v1))
