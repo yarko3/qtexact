@@ -46,7 +46,7 @@ public class qtBranching
 		}
 		ArrayList<Integer> lexResult = genericLBFS.genericLexBFS(G, t);
 		//qt graph has been found
-		if (lexResult.size() == G.getVertexCount() && lexResult.get(4) != Character.getNumericValue('C') && lexResult.get(4) != Character.getNumericValue('P'))
+		if (lexResult.size() == G.getVertexCount() && lexResult.get(4) != -1 && lexResult.get(4) != -2)
 		{
 			branchingReturnType rtn = new branchingReturnType(G, deg, changes);
 			return rtn;
@@ -55,7 +55,7 @@ public class qtBranching
 		else
 		{	
 			//C4 has been found
-			if (lexResult.get(4) == Character.getNumericValue('C'))
+			if (lexResult.get(4) == -1)
 			{
 				//result of adding 2 edges to break C4
 				//branchingReturnType c4Add1 = branching(c4AddResult(G, deg, changes, lexResult, lexResult.get(0), lexResult.get(2)));
@@ -162,7 +162,10 @@ public class qtBranching
 		int v1Deg = G.degree(v1);
 		
 		deg.get(v0Deg).removeFirstOccurrence(v0);
+		
+		
 		deg.get(v0Deg - 1).add(v0);
+		
 		if (deg.get(v0Deg).isEmpty() && v0Deg+1 == deg.size())
 		{
 			deg.remove(v0Deg);

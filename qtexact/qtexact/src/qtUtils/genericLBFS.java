@@ -168,7 +168,7 @@ public class genericLBFS {
 							rtn.add(w);
 							rtn.add(x);
 							rtn.add(y);
-							rtn.add(Character.getNumericValue('C'));
+							rtn.add(-1);
 							return rtn;
 						}
 						else
@@ -179,7 +179,7 @@ public class genericLBFS {
 							rtn.add(w);
 							rtn.add(x);
 							rtn.add(y);
-							rtn.add(Character.getNumericValue('P'));
+							rtn.add(-2);
 							return rtn;
 						}
 					}

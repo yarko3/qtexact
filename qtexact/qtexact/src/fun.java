@@ -34,13 +34,12 @@ public class fun extends JApplet {
 	{
 		Graph<Integer, String> exampleQT = new SparseGraph<Integer, String>();
 
-		exampleQT = qtGenerate.randomQT(14);
+		exampleQT = qtGenerate.randomQT(50);
 		//may break it
 		exampleQT.addEdge("e:" + 0 + "-" + 6, 0, 6);
 		exampleQT.addEdge("e:" + 8 + "-" + 1, 8, 1);
 		exampleQT.addEdge("e:" + 8 + "-" + 5, 8, 5);
 		
-		exampleQT = qtGenerate.cliqueJoin(5, 7);
 		
 		
 		
