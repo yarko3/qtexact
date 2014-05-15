@@ -34,7 +34,7 @@ public class fun extends JApplet {
 	{
 		Graph<Integer, String> exampleQT = new SparseGraph<Integer, String>();
 
-		exampleQT = qtGenerate.randomQT(25);
+		exampleQT = qtGenerate.randomQT(5);
 		//may break it
 		exampleQT.addEdge("e:" + 0 + "-" + 6, 0, 6);
 		exampleQT.addEdge("e:" + 8 + "-" + 1, 8, 1);
@@ -43,15 +43,19 @@ public class fun extends JApplet {
 		
 		//exampleQT = qtGenerate.simpleC4();
 		
-		exampleQT = qtGenerate.westernElectricNetwork();
 		
 		long start = System.currentTimeMillis();
 		System.out.println(qtRecognition.qtCheckYan(exampleQT));
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		start = System.currentTimeMillis();
-		exampleQT = qtBranching.connectedComponents(exampleQT);
+		qtBranching.qtEditConnectedComponents(exampleQT);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		
+		start = System.currentTimeMillis();
+		exampleQT = qtBranching.qtEditNoHeuristic(exampleQT);
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		
 		
 		start = System.currentTimeMillis();
 		System.out.println(IsA.QuasiThreshold(exampleQT));

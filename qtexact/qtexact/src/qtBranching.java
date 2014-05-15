@@ -19,18 +19,120 @@ public class qtBranching
 	public static Cloner clone = new Cloner();
 	public static int min = Integer.MAX_VALUE;
 	
-	public static Graph<Integer, String> connectedComponents(Graph<Integer, String> G)
+	public static Graph<Integer, String> qtEditConnectedComponents(Graph<Integer, String> G)
 	{
 		//keep proper degree order as an ArrayList<LinkedList<vertex>>
 		ArrayList<LinkedList<Integer>> deg = degSequenceOrder(G);
 		
-		branchingReturnType goal = branching(new branchingReturnType(G, deg, 0));
+		branchingReturnType goal = branchingCC(new branchingReturnType(G, deg, 0));
+		System.out.println("Number of moves: " + goal.changes);
+		return goal.G;
+		
+	}
+	public static Graph<Integer, String> qtEditNoHeuristic(Graph<Integer, String> G)
+	{
+		//keep proper degree order as an ArrayList<LinkedList<vertex>>
+		ArrayList<LinkedList<Integer>> deg = degSequenceOrder(G);
+		
+		branchingReturnType goal = branchingNoHeuristic(new branchingReturnType(G, deg, 0));
 		System.out.println("Number of moves: " + goal.changes);
 		return goal.G;
 		
 	}
 	
-	private static branchingReturnType branching(branchingReturnType s)
+	private static branchingReturnType branchingNoHeuristic(branchingReturnType s)
+	{
+		Graph<Integer, String> G = s.G;
+		ArrayList<LinkedList<Integer>> deg = s.deg;
+		int changes = s.changes;
+		
+		
+		//check if graph is QT
+		ArrayList<Integer> t = new ArrayList<Integer>(0);
+		
+		ArrayList<LinkedList<Integer>> degCopy = clone.deepClone(deg);
+		
+		for (int i = degCopy.size() - 1; i >=0; i--)
+		{
+			while (!degCopy.get(i).isEmpty())
+			{
+				t.add(degCopy.get(i).remove());
+			}
+		}
+		ArrayList<Integer> lexResult = genericLBFS.genericLexBFS(G, t).getList();
+		//qt graph has been found
+		if (lexResult.size() == G.getVertexCount() && lexResult.get(4) != Character.getNumericValue('C') && lexResult.get(4) != Character.getNumericValue('P'))
+		{
+			branchingReturnType rtn = new branchingReturnType(G, deg, changes);
+			return rtn;
+		}
+		//branch on found P4 or C4
+		else
+		{	
+			//C4 has been found
+			if (lexResult.get(4) == Character.getNumericValue('C'))
+			{
+				//result of adding 2 edges to break C4
+				//branchingReturnType c4Add1 = branching(c4AddResult(G, deg, changes, lexResult, lexResult.get(0), lexResult.get(2)));
+				//branchingReturnType c4Add2 = branching(c4AddResult(G, deg, changes, lexResult, lexResult.get(1), lexResult.get(3)));
+				
+				
+				//results of removing 2 edges to break C4
+				branchingReturnType c4Remove0 = branchingNoHeuristic(c4Delete2Result(G, deg, changes, lexResult.get(0), lexResult.get(1), lexResult.get(1), lexResult.get(2)));
+				branchingReturnType c4Remove1 = branchingNoHeuristic(c4Delete2Result(G, deg, changes, lexResult.get(0), lexResult.get(3), lexResult.get(2), lexResult.get(3)));
+				branchingReturnType c4Remove2 = branchingNoHeuristic(c4Delete2Result(G, deg, changes, lexResult.get(0), lexResult.get(1), lexResult.get(2), lexResult.get(3)));
+				branchingReturnType c4Remove3 = branchingNoHeuristic(c4Delete2Result(G, deg, changes, lexResult.get(0), lexResult.get(3), lexResult.get(1), lexResult.get(2)));
+				branchingReturnType c4Remove4 = branchingNoHeuristic(c4Delete2Result(G, deg, changes, lexResult.get(1), lexResult.get(2), lexResult.get(2), lexResult.get(3)));
+				branchingReturnType c4Remove5 = branchingNoHeuristic(c4Delete2Result(G, deg, changes, lexResult.get(0), lexResult.get(1), lexResult.get(0), lexResult.get(3)));
+				
+				
+				//add to PriorityQueue to sort
+				PriorityQueue<branchingReturnType> pQueue = new PriorityQueue<branchingReturnType>();
+//				pQueue.add(c4Add1);
+//				pQueue.add(c4Add2);
+				pQueue.add(c4Remove0);
+				pQueue.add(c4Remove1);
+				pQueue.add(c4Remove2);
+				pQueue.add(c4Remove3);
+				pQueue.add(c4Remove4);
+				pQueue.add(c4Remove5);
+				
+				branchingReturnType r = pQueue.remove();
+				
+				return r;
+				
+			}
+			//P4 has been found
+			else
+			{
+				branchingReturnType p4Remove0 = branchingNoHeuristic(p4DeleteResult(G, deg, changes, lexResult.get(0), lexResult.get(1)));
+				branchingReturnType p4Remove1 = branchingNoHeuristic(p4DeleteResult(G, deg, changes, lexResult.get(1), lexResult.get(2)));
+				branchingReturnType p4Remove2 = branchingNoHeuristic(p4DeleteResult(G, deg, changes, lexResult.get(2), lexResult.get(3)));
+				
+				//add to PriorityQueue to sort
+				PriorityQueue<branchingReturnType> pQueue = new PriorityQueue<branchingReturnType>();
+				pQueue.add(p4Remove0);
+				pQueue.add(p4Remove1);
+				pQueue.add(p4Remove2);
+				
+				branchingReturnType r = pQueue.remove();
+				
+				return r;
+				
+			}
+				
+			
+		}
+	}
+	
+	
+	/**
+	 * branch using connected components
+	 * 
+	 * @param s current search state
+	 * @return
+	 */
+	private static branchingReturnType branchingCC(branchingReturnType s)
 	{
 		Graph<Integer, String> G = s.G;
 		ArrayList<LinkedList<Integer>> deg = s.deg;
@@ -108,7 +210,7 @@ public class qtBranching
 					//if component is large enough to care
 					if (g.getVertexCount() > 3)
 					{
-						results.add(branching(new branchingReturnType(g,degSequenceOrder(g), 0)));
+						results.add(branchingCC(new branchingReturnType(g,degSequenceOrder(g), 0)));
 					}
 					else
 						results.add(new branchingReturnType(g, degSequenceOrder(g), 0));
@@ -162,17 +264,17 @@ public class qtBranching
 		if (lexResult.get(4) == -1)
 		{
 			//result of adding 2 edges to break C4
-			//branchingReturnType c4Add1 = branching(c4AddResult(G, deg, changes, lexResult, lexResult.get(0), lexResult.get(2)));
-			//branchingReturnType c4Add2 = branching(c4AddResult(G, deg, changes, lexResult, lexResult.get(1), lexResult.get(3)));
+			//branchingReturnType c4Add1 = branchingCC(c4AddResult(G, deg, changes, lexResult, lexResult.get(0), lexResult.get(2)));
+			//branchingReturnType c4Add2 = branchingCC(c4AddResult(G, deg, changes, lexResult, lexResult.get(1), lexResult.get(3)));
 			
 			
 			//results of removing 2 edges to break C4
-			branchingReturnType c4Remove0 = branching(c4Delete2Result(G, deg, changes, lexResult.get(0), lexResult.get(1), lexResult.get(1), lexResult.get(2)));
-			branchingReturnType c4Remove1 = branching(c4Delete2Result(G, deg, changes, lexResult.get(0), lexResult.get(3), lexResult.get(2), lexResult.get(3)));
-			branchingReturnType c4Remove2 = branching(c4Delete2Result(G, deg, changes, lexResult.get(0), lexResult.get(1), lexResult.get(2), lexResult.get(3)));
-			branchingReturnType c4Remove3 = branching(c4Delete2Result(G, deg, changes, lexResult.get(0), lexResult.get(3), lexResult.get(1), lexResult.get(2)));
-			branchingReturnType c4Remove4 = branching(c4Delete2Result(G, deg, changes, lexResult.get(1), lexResult.get(2), lexResult.get(2), lexResult.get(3)));
-			branchingReturnType c4Remove5 = branching(c4Delete2Result(G, deg, changes, lexResult.get(0), lexResult.get(1), lexResult.get(0), lexResult.get(3)));
+			branchingReturnType c4Remove0 = branchingCC(c4Delete2Result(G, deg, changes, lexResult.get(0), lexResult.get(1), lexResult.get(1), lexResult.get(2)));
+			branchingReturnType c4Remove1 = branchingCC(c4Delete2Result(G, deg, changes, lexResult.get(0), lexResult.get(3), lexResult.get(2), lexResult.get(3)));
+			branchingReturnType c4Remove2 = branchingCC(c4Delete2Result(G, deg, changes, lexResult.get(0), lexResult.get(1), lexResult.get(2), lexResult.get(3)));
+			branchingReturnType c4Remove3 = branchingCC(c4Delete2Result(G, deg, changes, lexResult.get(0), lexResult.get(3), lexResult.get(1), lexResult.get(2)));
+			branchingReturnType c4Remove4 = branchingCC(c4Delete2Result(G, deg, changes, lexResult.get(1), lexResult.get(2), lexResult.get(2), lexResult.get(3)));
+			branchingReturnType c4Remove5 = branchingCC(c4Delete2Result(G, deg, changes, lexResult.get(0), lexResult.get(1), lexResult.get(0), lexResult.get(3)));
 			
 			
 			//add to PriorityQueue to sort
@@ -194,9 +296,9 @@ public class qtBranching
 		//P4 has been found
 		else
 		{
-			branchingReturnType p4Remove0 = branching(p4DeleteResult(G, deg, changes, lexResult.get(0), lexResult.get(1)));
-			branchingReturnType p4Remove1 = branching(p4DeleteResult(G, deg, changes, lexResult.get(1), lexResult.get(2)));
-			branchingReturnType p4Remove2 = branching(p4DeleteResult(G, deg, changes, lexResult.get(2), lexResult.get(3)));
+			branchingReturnType p4Remove0 = branchingCC(p4DeleteResult(G, deg, changes, lexResult.get(0), lexResult.get(1)));
+			branchingReturnType p4Remove1 = branchingCC(p4DeleteResult(G, deg, changes, lexResult.get(1), lexResult.get(2)));
+			branchingReturnType p4Remove2 = branchingCC(p4DeleteResult(G, deg, changes, lexResult.get(2), lexResult.get(3)));
 			
 			//add to PriorityQueue to sort
 			PriorityQueue<branchingReturnType> pQueue = new PriorityQueue<branchingReturnType>();
