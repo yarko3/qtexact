@@ -34,22 +34,23 @@ public class fun extends JApplet {
 	{
 		Graph<Integer, String> exampleQT = new SparseGraph<Integer, String>();
 
-		exampleQT = qtGenerate.randomQT(5);
+		exampleQT = qtGenerate.randomQT(25);
 		//may break it
 		exampleQT.addEdge("e:" + 0 + "-" + 6, 0, 6);
 		exampleQT.addEdge("e:" + 8 + "-" + 1, 8, 1);
 		exampleQT.addEdge("e:" + 8 + "-" + 5, 8, 5);
 		
 		
-		exampleQT = qtGenerate.simpleC4();
+		//exampleQT = qtGenerate.simpleC4();
 		
+		exampleQT = qtGenerate.westernElectricNetwork();
 		
 		long start = System.currentTimeMillis();
 		System.out.println(qtRecognition.qtCheckYan(exampleQT));
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		start = System.currentTimeMillis();
-		exampleQT = qtBranching.noHeuristic(exampleQT);
+		exampleQT = qtBranching.connectedComponents(exampleQT);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		start = System.currentTimeMillis();

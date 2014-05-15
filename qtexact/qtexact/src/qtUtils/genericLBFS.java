@@ -210,7 +210,7 @@ public class genericLBFS {
 					{
 						if (G.findEdge(z, y) != null)
 						{
-							System.out.println("Found C4: " + z + "-" + w + "-" + x + "-" + y);
+							//System.out.println("Found C4: " + z + "-" + w + "-" + x + "-" + y);
 							ArrayList<Integer> rtn = new ArrayList<Integer>(0);
 							rtn.add(z);
 							rtn.add(w);
@@ -221,7 +221,7 @@ public class genericLBFS {
 						}
 						else
 						{
-							System.out.println("Found P4: " + z + "-" + w + "-" + x + "-" + y);
+							//System.out.println("Found P4: " + z + "-" + w + "-" + x + "-" + y);
 							ArrayList<Integer> rtn = new ArrayList<Integer>(0);
 							rtn.add(z);
 							rtn.add(w);

@@ -265,5 +265,41 @@ public class qtGenerate<V, E>
 		return G;
 	}
 	
+	public static Graph<Integer, String> westernElectricNetwork()
+	{
+		Graph<Integer,String> g = new SparseGraph<Integer,String>();
+		
+		g.addEdge("e:" + 11 + "-" + 21, 11,21);
+		g.addEdge("e:" + 11 + "-" + 22, 11,22);
+		g.addEdge("e:" + 11 + "-" + 23, 11,23);
+		g.addEdge("e:" + 11 + "-" + 24, 11,24);
+		g.addEdge("e:" + 21 + "-" + 22, 21,22);
+		g.addEdge("e:" + 21 + "-" + 23, 21,23);
+		g.addEdge("e:" + 21 + "-" + 24, 21,24);
+		g.addEdge("e:" + 21 + "-" + 25, 21,25);
+		g.addEdge("e:" + 21 + "-" + 31, 21,31);
+		g.addEdge("e:" + 22 + "-" + 23, 22,23);
+		g.addEdge("e:" + 22 + "-" + 24, 22,24);
+		g.addEdge("e:" + 22 + "-" + 31, 22,31);
+		g.addEdge("e:" + 23 + "-" + 24, 23,24);
+		g.addEdge("e:" + 23 + "-" + 25, 23,25);
+		g.addEdge("e:" + 23 + "-" + 31, 23,31);
+		g.addEdge("e:" + 24 + "-" + 25, 24,25);
+		g.addEdge("e:" + 24 + "-" + 31, 24,31);
+		g.addEdge("e:" + 25 + "-" + 27, 25,27);
+		g.addEdge("e:" + 25 + "-" + 31, 25,31);
+		g.addEdge("e:" + 26 + "-" + 27, 26,27);
+		g.addEdge("e:" + 26 + "-" + 28, 26,28);
+		g.addEdge("e:" + 26 + "-" + 29, 26,29);
+		g.addEdge("e:" + 27 + "-" + 28, 27,28);
+		g.addEdge("e:" + 27 + "-" + 29, 27,29);
+		g.addEdge("e:" + 27 + "-" + 34, 27,34);
+		g.addEdge("e:" + 28 + "-" + 29, 28,29);
+		g.addEdge("e:" + 28 + "-" + 34, 28,34);		
+		g.addEdge("e:" + 29 + "-" + 34, 29,34);
+		
+		return g;
+	}
+	
 
 }
