@@ -17,7 +17,7 @@ public class genericLBFS {
 	 * @param t initial ordering of vertices
 	 * @return final LexBFS ordering of vertices
 	 */
-	public static ArrayList<Integer> genericLexBFS(Graph<Integer, String> G, ArrayList<Integer> t)
+	public static lexReturn genericLexBFS(Graph<Integer, String> G, ArrayList<Integer> t)
 	{
 		/*ArrayList<Integer> t = orderVerticesNonDecreasingDegree(G); */
 		
@@ -36,6 +36,10 @@ public class genericLBFS {
 		//get connected components
 		LinkedList<HashSet<Integer>> cComponents = new LinkedList<HashSet<Integer>>();
 		
+		
+		//flag for whether the graph is QT and a forbidden P4 or C4
+		boolean isQT = true;
+		ArrayList<Integer> forbidden = null;
 		
 		//for every vertex, ordered by t
 		for (int i = 0; i < tsize; i++)
@@ -110,9 +114,10 @@ public class genericLBFS {
 					}
 				}
 				//quasi-threshold check (should return C4 or P4)
-				if (j != 0 && !pp.isEmpty())
+				if (isQT && j != 0 && !pp.isEmpty())
 				{
-					return TPCertificate(G, x, pp.get(0), s);
+					isQT = false;
+					forbidden = TPCertificate(G, x, pp.get(0), s);
 				}
 				if (!pp.isEmpty())
 				{
@@ -123,9 +128,15 @@ public class genericLBFS {
 					
 			}
 		}
-		
-		System.out.println(cComponents);
-		return s;
+		//return search results
+		if (isQT)
+		{
+			return new lexReturn(s, true, cComponents.size() == 1, cComponents);
+		}
+		else
+		{
+			return new lexReturn(forbidden, false, cComponents.size() == 1, cComponents);
+		}
 	}
 	
 	
@@ -229,3 +240,4 @@ public class genericLBFS {
 	}
 
 }
+

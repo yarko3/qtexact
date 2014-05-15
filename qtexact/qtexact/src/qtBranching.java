@@ -3,6 +3,7 @@ import java.util.LinkedList;
 import java.util.PriorityQueue;
 
 import qtUtils.genericLBFS;
+import qtUtils.lexReturn;
 
 import com.rits.cloning.Cloner;
 
@@ -44,9 +45,11 @@ public class qtBranching
 				t.add(degCopy.get(i).remove());
 			}
 		}
-		ArrayList<Integer> lexResult = genericLBFS.genericLexBFS(G, t);
+		lexReturn lexSearch = genericLBFS.genericLexBFS(G, t);
+		ArrayList<Integer> lexResult = lexSearch.getList();
+		
 		//qt graph has been found
-		if (lexResult.size() == G.getVertexCount() && lexResult.get(4) != -1 && lexResult.get(4) != -2)
+		if (lexSearch.isQT())
 		{
 			branchingReturnType rtn = new branchingReturnType(G, deg, changes);
 			return rtn;
