@@ -232,7 +232,7 @@ public class qtBranching
 					//add all the vertices
 					for (String a : r.G.getEdges())
 					{
-						rGraph.addEdge(a, Integer.parseInt(a.substring(2, 3)), Integer.parseInt(a.substring(4, 5)));
+						rGraph.addEdge(a, Integer.parseInt(a.substring(2, a.indexOf('-'))), Integer.parseInt(a.substring(a.indexOf('-'), a.length())));
 					}
 					
 					//add to degree sequence
