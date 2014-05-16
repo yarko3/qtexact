@@ -59,7 +59,7 @@ public class qtBranching
 				t.add(degCopy.get(i).remove());
 			}
 		}
-		ArrayList<Integer> lexResult = genericLBFS.genericLexBFS(G, t).getList();
+		ArrayList<Integer> lexResult = genericLBFS.qtLexBFS(G, t);
 		//qt graph has been found
 		if (lexResult.size() == G.getVertexCount() && lexResult.get(4) != Character.getNumericValue('C') && lexResult.get(4) != Character.getNumericValue('P'))
 		{
@@ -151,7 +151,7 @@ public class qtBranching
 				t.add(degCopy.get(i).remove());
 			}
 		}
-		lexReturn lexSearch = genericLBFS.genericLexBFS(G, t);
+		lexReturn lexSearch = genericLBFS.qtLexBFSComponents(G, t);
 		ArrayList<Integer> lexResult = lexSearch.getList();
 		
 		//qt graph has been found
@@ -205,7 +205,7 @@ public class qtBranching
 				
 				results.add(branch(gWtihForbidden, degSequenceOrder(gWtihForbidden), lexResult, 0));
 				//branch on the rest of the graphs
-				for (Graph g : cGraphs)
+				for (Graph<Integer, String> g : cGraphs)
 				{
 					//if component is large enough to care
 					if (g.getVertexCount() > 3)

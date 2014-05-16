@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
-import java.util.Set;
 
 import edu.uci.ics.jung.graph.Graph;
 
@@ -17,7 +16,7 @@ public class genericLBFS {
 	 * @param t initial ordering of vertices
 	 * @return final LexBFS ordering of vertices
 	 */
-	public static lexReturn genericLexBFS(Graph<Integer, String> G, ArrayList<Integer> t)
+	public static lexReturn qtLexBFSComponents(Graph<Integer, String> G, ArrayList<Integer> t)
 	{
 		/*ArrayList<Integer> t = orderVerticesNonDecreasingDegree(G); */
 		
@@ -139,6 +138,117 @@ public class genericLBFS {
 		}
 	}
 	
+	public static ArrayList<Integer> qtLexBFS(Graph<Integer, String> G, ArrayList<Integer> t)
+	{
+		/*ArrayList<Integer> t = orderVerticesNonDecreasingDegree(G); */
+		
+		
+		//new ordering
+		ArrayList<Integer> s = new ArrayList<Integer>(t.size());
+		//list of partitions (each partition has a common label)
+		ArrayList<ArrayList<Integer>> L = new ArrayList<ArrayList<Integer>>(0);
+		
+		
+		
+		//initial element of L has all vertices
+		L.add(t);
+		int tsize = t.size();
+		
+		//get connected components
+		LinkedList<HashSet<Integer>> cComponents = new LinkedList<HashSet<Integer>>();
+		
+		
+		//for every vertex, ordered by t
+		for (int i = 0; i < tsize; i++)
+		{
+			//clean up L
+			while (L.get(0).isEmpty())
+			{
+				L.remove(0);
+			}
+			
+			//get first element x of first partition
+			ArrayList<Integer> p1 = L.get(0);
+			int x = p1.remove(0);
+			
+			
+			//if first partition is empty, remove partition from L (haha, nope)
+			/*if (p1.isEmpty())
+			{
+				L.remove(0);
+			}*/
+			
+			
+			//add x to s at i
+			s.add(i, x);
+			
+			//neighbours of x
+			
+			ArrayList<Integer> hood = orderNeighbour(G, x);
+			
+			
+			//find connected components
+			boolean found = false;
+			search:
+			for (HashSet<Integer> j : cComponents)
+			{
+				for (int n : hood)
+				{
+					//if a neighbour of x or x is already in a set, add the rest
+					if (j.contains(n) || j.contains(x))
+					{
+						j.addAll(hood);
+						j.add(x);
+						found = true;
+						break search;
+					}
+				}
+			}
+			//elements were not found in current set of connected components, make new one
+			if (!found)
+			{
+				cComponents.add(new HashSet<Integer>());
+				cComponents.getLast().addAll(hood);
+				cComponents.getLast().add(x);
+			}
+			
+			
+			
+			//usually start j from 1, unless 1 element in L
+			int j = 0;
+			
+			while (j < L.size())
+			{
+				//new partition to be inserted into L
+				ArrayList<Integer> pp = new ArrayList<Integer>(0);
+				for (int k = 0; k < hood.size(); k++)
+				{
+					int h = hood.get(k);
+					if (L.get(j).contains(h))
+					{
+						//remove element from L and add to pp
+						pp.add(L.get(j).remove(L.get(j).indexOf(h)));
+					}
+				}
+				//quasi-threshold check (should return C4 or P4)
+				if (j != 0 && !pp.isEmpty())
+				{
+					
+					return TPCertificate(G, x, pp.get(0), s);
+				}
+				if (!pp.isEmpty())
+				{
+					L.add(j, pp);
+					j++;
+				}
+				j++;
+					
+			}
+		}
+		//return search results
+		return s;
+	}
+	
 	
 	private static ArrayList<Integer> orderNeighbour(Graph<Integer, String> G, int neighbour)
 	{
@@ -210,7 +320,7 @@ public class genericLBFS {
 					{
 						if (G.findEdge(z, y) != null)
 						{
-							System.out.println("Found C4: " + z + "-" + w + "-" + x + "-" + y);
+							//System.out.println("Found C4: " + z + "-" + w + "-" + x + "-" + y);
 							ArrayList<Integer> rtn = new ArrayList<Integer>(0);
 							rtn.add(z);
 							rtn.add(w);
@@ -221,7 +331,7 @@ public class genericLBFS {
 						}
 						else
 						{
-							System.out.println("Found P4: " + z + "-" + w + "-" + x + "-" + y);
+							//System.out.println("Found P4: " + z + "-" + w + "-" + x + "-" + y);
 							ArrayList<Integer> rtn = new ArrayList<Integer>(0);
 							rtn.add(z);
 							rtn.add(w);
