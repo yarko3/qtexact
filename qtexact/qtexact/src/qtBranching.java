@@ -193,7 +193,6 @@ public class qtBranching
 							{
 								c.addEdge("e:" + i + "-" + n, i, n);
 							}
-					
 						}
 					}
 					if (c != gWtihForbidden)
@@ -248,10 +247,8 @@ public class qtBranching
 							rDeg.add(i, new LinkedList<Integer>());
 							rDeg.get(i).addAll(r.deg.get(i));
 						}
-					}
-					
+					}	
 				}
-				
 				return new branchingReturnType(rGraph, rDeg, rChanges);
 			}
 			
@@ -421,9 +418,7 @@ public class qtBranching
 		}
 		
 		//add edge
-		G.addEdge("e:" + v0 + "-" + v1, v0, v1);
-		
-		
+		G.addEdge("e:" + v0 + "-" + v1, v0, v1);	
 	}
 	
 	
