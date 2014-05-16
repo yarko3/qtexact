@@ -16,7 +16,7 @@ public class genericLBFS {
 	 * @param t initial ordering of vertices
 	 * @return final LexBFS ordering of vertices
 	 */
-	public static lexReturn qtLexBFSComponents(Graph<Integer, String> G, ArrayList<Integer> t)
+	public static lexReturnC qtLexBFSComponents(Graph<Integer, String> G, ArrayList<Integer> t)
 	{
 		/*ArrayList<Integer> t = orderVerticesNonDecreasingDegree(G); */
 		
@@ -130,15 +130,15 @@ public class genericLBFS {
 		//return search results
 		if (isQT)
 		{
-			return new lexReturn(s, true, cComponents.size() == 1, cComponents);
+			return new lexReturnC(s, true, cComponents.size() == 1, cComponents);
 		}
 		else
 		{
-			return new lexReturn(forbidden, false, cComponents.size() == 1, cComponents);
+			return new lexReturnC(forbidden, false, cComponents.size() == 1, cComponents);
 		}
 	}
 	
-	public static ArrayList<Integer> qtLexBFS(Graph<Integer, String> G, ArrayList<Integer> t)
+	public static lexReturnC qtLexBFS(Graph<Integer, String> G, ArrayList<Integer> t)
 	{
 		/*ArrayList<Integer> t = orderVerticesNonDecreasingDegree(G); */
 		
@@ -187,34 +187,7 @@ public class genericLBFS {
 			ArrayList<Integer> hood = orderNeighbour(G, x);
 			
 			
-			//find connected components
-			boolean found = false;
-			search:
-			for (HashSet<Integer> j : cComponents)
-			{
-				for (int n : hood)
-				{
-					//if a neighbour of x or x is already in a set, add the rest
-					if (j.contains(n) || j.contains(x))
-					{
-						j.addAll(hood);
-						j.add(x);
-						found = true;
-						break search;
-					}
-				}
-			}
-			//elements were not found in current set of connected components, make new one
-			if (!found)
-			{
-				cComponents.add(new HashSet<Integer>());
-				cComponents.getLast().addAll(hood);
-				cComponents.getLast().add(x);
-			}
-			
-			
-			
-			//usually start j from 1, unless 1 element in L
+		
 			int j = 0;
 			
 			while (j < L.size())
@@ -234,7 +207,7 @@ public class genericLBFS {
 				if (j != 0 && !pp.isEmpty())
 				{
 					
-					return TPCertificate(G, x, pp.get(0), s);
+					return new lexReturnC(TPCertificate(G, x, pp.get(0), s), false, false, null);
 				}
 				if (!pp.isEmpty())
 				{
@@ -246,7 +219,7 @@ public class genericLBFS {
 			}
 		}
 		//return search results
-		return s;
+		return new lexReturnC(s, false, false, null);
 	}
 	
 	

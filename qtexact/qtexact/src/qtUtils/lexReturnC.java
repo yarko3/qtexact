@@ -9,7 +9,7 @@ import java.util.LinkedList;
  * @author Yarko Senyuta
  *
  */
-public class lexReturn
+public class lexReturnC
 {
 	//store ArrayList of either a found P4 or the final ordering
 	private ArrayList<Integer> list;
@@ -18,7 +18,7 @@ public class lexReturn
 	private boolean isConnected;
 	private LinkedList<HashSet<Integer>> cComponents;
 	
-	public lexReturn(ArrayList<Integer> l, boolean qt, boolean c, LinkedList<HashSet<Integer>> cComp)
+	public lexReturnC(ArrayList<Integer> l, boolean qt, boolean c, LinkedList<HashSet<Integer>> cComp)
 	{
 		setList(l);
 		setQT(qt);
