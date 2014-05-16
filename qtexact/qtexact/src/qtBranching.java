@@ -117,11 +117,8 @@ public class qtBranching
 				
 				branchingReturnType r = pQueue.remove();
 				
-				return r;
-				
+				return r;	
 			}
-				
-			
 		}
 	}
 	
@@ -221,8 +218,11 @@ public class qtBranching
 				int rChanges = changes;
 				Graph<Integer, String> rGraph = new SparseGraph<Integer, String>();
 				ArrayList<LinkedList<Integer>> rDeg = new ArrayList<LinkedList<Integer>>();
+				
+				//build graph from connected components
 				for (branchingReturnType r : results)
 				{
+					//update total number of changes made
 					rChanges += r.changes;
 					
 					//add all the edges
@@ -233,7 +233,7 @@ public class qtBranching
 					//add all the vertices
 					for (String a : r.G.getEdges())
 					{
-						rGraph.addEdge(a, r.G.getEndpoints(a).getFirst(), r.G.getEndpoints(a).getSecond());
+						rGraph.addEdge(a, Integer.parseInt(a.substring(2, 3)), Integer.parseInt(a.substring(4, 5)));
 					}
 					
 					//add to degree sequence
@@ -279,8 +279,8 @@ public class qtBranching
 			
 			//add to PriorityQueue to sort
 			PriorityQueue<branchingReturnType> pQueue = new PriorityQueue<branchingReturnType>();
-//				pQueue.add(c4Add1);
-//				pQueue.add(c4Add2);
+//			pQueue.add(c4Add1);
+//			pQueue.add(c4Add2);
 			pQueue.add(c4Remove0);
 			pQueue.add(c4Remove1);
 			pQueue.add(c4Remove2);
