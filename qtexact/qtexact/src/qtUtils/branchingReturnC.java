@@ -10,27 +10,32 @@ import edu.uci.ics.jung.graph.Graph;
 public class branchingReturnC implements Comparable<branchingReturnC>
 {
 	Graph<Integer, String> G;
-	int changes;
 	ArrayList<LinkedList<Integer>> deg;
-	LinkedList<String> deleteSet;
+	LinkedList<String> changes;
 	
-	public branchingReturnC(Graph<Integer, String> graph, ArrayList<LinkedList<Integer>> d, int c)
+	public branchingReturnC(Graph<Integer, String> graph, ArrayList<LinkedList<Integer>> d, LinkedList<String> c)
 	{
 		G = graph;
 		changes = c;
 		deg = d;
 	}
+	public branchingReturnC(Graph<Integer, String> graph, ArrayList<LinkedList<Integer>> d)
+	{
+		G = graph;
+		deg = d;
+		changes = new LinkedList<String>();
+	}
 
 	@Override
 	public int compareTo(branchingReturnC o) {
-		return Integer.compare(changes, o.changes);
+		return Integer.compare(changes.size(), o.changes.size());
 	}
 	
 	public Graph<Integer, String> getG(){
 		return G;
 	}
 	
-	public int getChanges()
+	public LinkedList<String> getChanges()
 	{
 		return changes;
 	}
@@ -44,7 +49,7 @@ public class branchingReturnC implements Comparable<branchingReturnC>
 	{
 		G = g;
 	}
-	public void setChanges(int c)
+	public void setChanges(LinkedList<String> c)
 	{
 		changes = c;
 	}

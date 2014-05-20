@@ -24,7 +24,7 @@ public class qtBranching
 		//keep proper degree order as an ArrayList<LinkedList<vertex>>
 		ArrayList<LinkedList<Integer>> deg = degSequenceOrder(G);
 		
-		branchingReturnC goal = branchingCC(new branchingReturnC(G, deg, 0));
+		branchingReturnC goal = branchingCC(new branchingReturnC(G, deg));
 		System.out.println("Number of moves: " + goal.getChanges());
 		return goal.getG();
 		
@@ -34,7 +34,7 @@ public class qtBranching
 		//keep proper degree order as an ArrayList<LinkedList<vertex>>
 		ArrayList<LinkedList<Integer>> deg = degSequenceOrder(G);
 		
-		branchingReturnC goal = branchingNoHeuristic(new branchingReturnC(G, deg, 0));
+		branchingReturnC goal = branchingNoHeuristic(new branchingReturnC(G, deg));
 		System.out.println("Number of moves: " + goal.getChanges());
 		return goal.getG();
 		
@@ -44,7 +44,7 @@ public class qtBranching
 	{
 		Graph<Integer, String> G = s.getG();
 		ArrayList<LinkedList<Integer>> deg = s.getDeg();
-		int changes = s.getChanges();
+		LinkedList<String> changes = s.getChanges();
 		
 		
 		//check if graph is QT
@@ -75,7 +75,7 @@ public class qtBranching
 	{
 		Graph<Integer, String> G = s.getG();
 		ArrayList<LinkedList<Integer>> deg = s.getDeg();
-		int changes = s.getChanges();
+		LinkedList<String> changes = s.getChanges();
 		
 		
 		//check if graph is QT
@@ -132,22 +132,22 @@ public class qtBranching
 						cGraphs.add(c);
 				}
 				
-				results.add(branch(gWtihForbidden, degSequenceOrder(gWtihForbidden), lexResult, 0));
+				results.add(branch(gWtihForbidden, degSequenceOrder(gWtihForbidden), lexResult, changes));
 				//branch on the rest of the graphs
 				for (Graph<Integer, String> g : cGraphs)
 				{
 					//if component is large enough to care
 					if (g.getVertexCount() > 3)
 					{
-						results.add(branchingCC(new branchingReturnC(g,degSequenceOrder(g), 0)));
+						results.add(branchingCC(new branchingReturnC(g,degSequenceOrder(g), changes)));
 					}
 					else
-						results.add(new branchingReturnC(g, degSequenceOrder(g), 0));
+						results.add(new branchingReturnC(g, degSequenceOrder(g)));
 						
 				}
 				
 				//final results return
-				int rChanges = changes;
+				LinkedList<String> rChanges = clone.deepClone(changes);
 				Graph<Integer, String> rGraph = new SparseGraph<Integer, String>();
 				ArrayList<LinkedList<Integer>> rDeg = new ArrayList<LinkedList<Integer>>();
 				
@@ -155,7 +155,7 @@ public class qtBranching
 				for (branchingReturnC r : results)
 				{
 					//update total number of changes made
-					rChanges += r.getChanges();
+					rChanges.addAll(r.getChanges());
 					
 					//add all the edges
 					for (Integer v : r.getG().getVertices())
@@ -196,7 +196,7 @@ public class qtBranching
 	 * @param changes changes made 
 	 * @return result of most efficient branching
 	 */
-	private static branchingReturnC branch(Graph<Integer, String> G, ArrayList<LinkedList<Integer>> deg, ArrayList<Integer>lexResult, int changes)
+	private static branchingReturnC branch(Graph<Integer, String> G, ArrayList<LinkedList<Integer>> deg, ArrayList<Integer>lexResult, LinkedList<String> changes)
 	{
 		//C4 has been found
 		if (lexResult.get(4) == -1)
@@ -262,16 +262,18 @@ public class qtBranching
 	 * @param v1 vertex of edge to be added
 	 * @return an object storing the new graph, updated degree order, changes
 	 */
-	private static branchingReturnC c4AddResult(Graph<Integer, String> G, ArrayList<LinkedList<Integer>> deg, int changes, ArrayList<Integer> lexResult, int v0, int v1)
+	private static branchingReturnC c4AddResult(Graph<Integer, String> G, ArrayList<LinkedList<Integer>> deg, LinkedList<String> changes, ArrayList<Integer> lexResult, int v0, int v1)
 	{
 		//make copy of graph and degree sequence
 		Graph<Integer, String> graphCopy = clone.deepClone(G);
 		ArrayList<LinkedList<Integer>> degCopy = clone.deepClone(deg);
-		
+		LinkedList<String> cCopy = clone.deepClone(changes);
 		//update degree sequence (first edge)
 		addEdge(graphCopy, degCopy, v0, v1);
 		
-		return new branchingReturnC(graphCopy, degCopy, changes + 1);
+		//add edge to changes 
+		cCopy.add("a:" + v0 + "-" + v1);
+		return new branchingReturnC(graphCopy, degCopy, cCopy);
 		
 	}
 	/**
@@ -283,22 +285,23 @@ public class qtBranching
 	 * @param v1 endpoint of first edge to be deleted
 	 * @param v2 endpoint of second edge to be deleted
 	 * @param v3 endpoint of second edge to be deleted
-	 * @return
+	 * @return graph, degree order and changes after deletion
 	 */
-	private static branchingReturnC c4Delete2Result(Graph<Integer, String> G, ArrayList<LinkedList<Integer>> deg, int changes, Integer v0, Integer v1, Integer v2, Integer v3)
+	private static branchingReturnC c4Delete2Result(Graph<Integer, String> G, ArrayList<LinkedList<Integer>> deg, LinkedList<String> changes, Integer v0, Integer v1, Integer v2, Integer v3)
 	{
 		//make copy of graph and degree sequence
 		Graph<Integer, String> graphCopy = clone.deepClone(G);
 		ArrayList<LinkedList<Integer>> degCopy = clone.deepClone(deg);
-		
+		LinkedList<String> cCopy = clone.deepClone(changes);
 		//update degree sequence (first edge)
 		removeEdge(graphCopy, degCopy, v0, v1);
 		
 		//update degree sequence (second edge)
 		removeEdge(graphCopy, degCopy, v2, v3);
 		
-		
-		return new branchingReturnC(graphCopy, degCopy, changes + 2);
+		cCopy.add("d:" + v0 + "-" + v1);
+		cCopy.add("d:" + v2 + "-" + v3);
+		return new branchingReturnC(graphCopy, degCopy, cCopy);
 		
 	}
 	
@@ -311,16 +314,17 @@ public class qtBranching
 	 * @param v1 endpoint of edge to be deleted
 	 * @return
 	 */
-	private static branchingReturnC p4DeleteResult(Graph<Integer, String> G, ArrayList<LinkedList<Integer>> deg, int changes, Integer v0, Integer v1)
+	private static branchingReturnC p4DeleteResult(Graph<Integer, String> G, ArrayList<LinkedList<Integer>> deg, LinkedList<String> changes, Integer v0, Integer v1)
 	{
 		//make copy of graph and degree sequence
 		Graph<Integer, String> graphCopy = clone.deepClone(G);
 		ArrayList<LinkedList<Integer>> degCopy = clone.deepClone(deg);
-		
+		LinkedList<String> cCopy = clone.deepClone(changes);
 		//update degree sequence (first edge)
 		removeEdge(graphCopy, degCopy, v0, v1);
 		
-		return new branchingReturnC(graphCopy, degCopy, changes + 1);
+		cCopy.add("d:" + v0 + "-" + v1);
+		return new branchingReturnC(graphCopy, degCopy, cCopy);
 		
 	}
 	
