@@ -169,7 +169,7 @@ public class qtGenerate<V>
 		return G;
 	}
 	
-	public static Graph<Integer, Pair<Integer>> randomQT(int n)
+	public Graph<Integer, Pair<Integer>> randomQT(int n)
 	{
 		SparseGraph<Integer, Pair<Integer>> G = new SparseGraph<Integer, Pair<Integer>>();
 		Random rand = new Random();

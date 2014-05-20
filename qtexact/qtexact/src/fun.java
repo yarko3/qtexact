@@ -19,6 +19,7 @@ import edu.uci.ics.jung.algorithms.cluster.EdgeBetweennessClusterer;
 import edu.uci.ics.jung.algorithms.layout.FRLayout;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.SparseGraph;
+import edu.uci.ics.jung.graph.util.Pair;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
 
@@ -32,13 +33,13 @@ public class fun extends JApplet {
 
 	public static void main(String[] args) 
 	{
-		Graph<Integer, String> exampleQT = new SparseGraph<Integer, String>();
-
-		exampleQT = qtGenerate.randomQT(20);
+		Graph<Integer, Pair<Integer>> exampleQT;
+		qtGenerate<Integer> gen = new qtGenerate<Integer>();
+		exampleQT = gen.randomQT(20);
 		//may break it
-		exampleQT.addEdge("e:" + 0 + "-" + 6, 0, 6);
-		exampleQT.addEdge("e:" + 8 + "-" + 1, 8, 1);
-		exampleQT.addEdge("e:" + 8 + "-" + 5, 8, 5);
+		exampleQT.addEdge(new Pair<Integer>(0, 6), 0, 6);
+		exampleQT.addEdge(new Pair<Integer>(8, 1), 8, 1);
+		exampleQT.addEdge(new Pair<Integer>(8 ,5), 8, 5);
 		
 		
 		//exampleQT = qtGenerate.simpleC4();
@@ -46,22 +47,25 @@ public class fun extends JApplet {
 		//exampleQT = qtGenerate.westernElectricNetwork();
 		
 		//exampleQT = qtGenerate.nonQTEx1();
+		qtRecognition<Integer> yan = new qtRecognition<Integer>();
 		
 		long start = System.currentTimeMillis();
-		System.out.println(qtRecognition.qtCheckYan(exampleQT));
+		System.out.println(yan.qtCheckYan(exampleQT));
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		
+		qtBranching<Integer> del = new qtBranching<Integer>();
+		
+		start = System.currentTimeMillis();
+		del.qtEditConnectedComponents(exampleQT);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		start = System.currentTimeMillis();
-		qtBranching.qtEditConnectedComponents(exampleQT);
-		System.out.println((System.currentTimeMillis()-start) / 1000.0);
-		
-		start = System.currentTimeMillis();
-		exampleQT = qtBranching.qtEditNoHeuristic(exampleQT);
+		exampleQT = del.qtEditNoHeuristic(exampleQT);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		
 		start = System.currentTimeMillis();
-		System.out.println(qtRecognition.qtCheckYan(exampleQT));
+		System.out.println(yan.qtCheckYan(exampleQT));
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		JFrame jf = new JFrame();
@@ -85,66 +89,66 @@ public class fun extends JApplet {
 	
 	public void test()
 	{
-		graph = new SparseGraph<Integer, String>();
-
-		String filename = "datasets/footballEdgeList.tgf";
-		fillGraphFromFile(graph, filename);
-		
-		Graph<Integer, String> exampleQT = new SparseGraph<Integer, String>();
-		exampleQT.addEdge("edge1", 1, 2);
-		exampleQT.addEdge("edge2", 1, 3);
-		exampleQT.addEdge("edge3", 2, 3);
-		exampleQT.addEdge("edge4", 1, 4);
-		exampleQT.addEdge("edge5", 3, 4);
-		exampleQT.addEdge("edge6", 0, 1);
-		exampleQT.addEdge("edge7", 0, 3);
-
-		long start = System.currentTimeMillis();
-		exampleQT = qtGenerate.clique(500);
-		System.out.println((System.currentTimeMillis()-start) / 1000.0);
-		
-		start = System.currentTimeMillis();
-		System.out.println(qtRecognition.qtCheckYan(exampleQT));
-		System.out.println((System.currentTimeMillis()-start) / 1000.0);
-		
-		System.out.println("Is a chordal: " + IsA.Chordal(exampleQT));
-		System.out.println("Is a cograph: " + IsA.Cograph(exampleQT));
-		
-		//findEdgeBetweennessClustering(graph, 1000);
-
-		JFrame jf = new JFrame();
-		jf.setSize(1366, 768);
-
-		FRLayout frl = new FRLayout(exampleQT);
-
-		frl.setAttractionMultiplier(1.5);
-		frl.lock(true);
-		VisualizationViewer vv = new VisualizationViewer(frl, new Dimension(
-				1366, 768));
-
-		vv.getRenderContext().setVertexLabelTransformer(new ToStringLabeller());
-		
-		jf.getContentPane().add(vv);
-		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		jf.pack();
-		jf.setVisible(true);
-		
-		JFrame jf1 = new JFrame();
-		jf1.setSize(1366, 768);
-		FRLayout fr2 = new FRLayout(qtRecognition.qtCheckYan(exampleQT));
-
-		fr2.setAttractionMultiplier(1.5);
-		fr2.lock(true);
-		VisualizationViewer vv1 = new VisualizationViewer(fr2, new Dimension(
-				1366, 768));
-		// ViewScalingControl scale = new ViewScalingControl();
-		// scale.scale(vv, (float) 0.8, new Point2D.Double(1366/2, 768/2));
-		// vv.scaleToLayout(scale);
-		vv1.getRenderContext().setVertexLabelTransformer(new ToStringLabeller());
-		jf1.getContentPane().add(vv1);
-		jf1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		jf1.pack();
-		jf1.setVisible(true);
+//		graph = new SparseGraph<Integer, String>();
+//
+//		String filename = "datasets/footballEdgeList.tgf";
+//		fillGraphFromFile(graph, filename);
+//		
+//		Graph<Integer, String> exampleQT = new SparseGraph<Integer, String>();
+//		exampleQT.addEdge("edge1", 1, 2);
+//		exampleQT.addEdge("edge2", 1, 3);
+//		exampleQT.addEdge("edge3", 2, 3);
+//		exampleQT.addEdge("edge4", 1, 4);
+//		exampleQT.addEdge("edge5", 3, 4);
+//		exampleQT.addEdge("edge6", 0, 1);
+//		exampleQT.addEdge("edge7", 0, 3);
+//
+//		long start = System.currentTimeMillis();
+//		exampleQT = qtGenerate.clique(500);
+//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+//		
+//		start = System.currentTimeMillis();
+//		System.out.println(qtRecognition.qtCheckYan(exampleQT));
+//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+//		
+//		System.out.println("Is a chordal: " + IsA.Chordal(exampleQT));
+//		System.out.println("Is a cograph: " + IsA.Cograph(exampleQT));
+//		
+//		//findEdgeBetweennessClustering(graph, 1000);
+//
+//		JFrame jf = new JFrame();
+//		jf.setSize(1366, 768);
+//
+//		FRLayout frl = new FRLayout(exampleQT);
+//
+//		frl.setAttractionMultiplier(1.5);
+//		frl.lock(true);
+//		VisualizationViewer vv = new VisualizationViewer(frl, new Dimension(
+//				1366, 768));
+//
+//		vv.getRenderContext().setVertexLabelTransformer(new ToStringLabeller());
+//		
+//		jf.getContentPane().add(vv);
+//		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		jf.pack();
+//		jf.setVisible(true);
+//		
+//		JFrame jf1 = new JFrame();
+//		jf1.setSize(1366, 768);
+//		FRLayout fr2 = new FRLayout(qtRecognition.qtCheckYan(exampleQT));
+//
+//		fr2.setAttractionMultiplier(1.5);
+//		fr2.lock(true);
+//		VisualizationViewer vv1 = new VisualizationViewer(fr2, new Dimension(
+//				1366, 768));
+//		// ViewScalingControl scale = new ViewScalingControl();
+//		// scale.scale(vv, (float) 0.8, new Point2D.Double(1366/2, 768/2));
+//		// vv.scaleToLayout(scale);
+//		vv1.getRenderContext().setVertexLabelTransformer(new ToStringLabeller());
+//		jf1.getContentPane().add(vv1);
+//		jf1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		jf1.pack();
+//		jf1.setVisible(true);
 	}
 
 	/**
