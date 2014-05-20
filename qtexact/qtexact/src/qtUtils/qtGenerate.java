@@ -6,26 +6,27 @@ import java.util.Random;
 
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.SparseGraph;
+import edu.uci.ics.jung.graph.util.Pair;
 /**Class used for generating quasi-threshold graphs
  * 
  * @author Yarko Senyuta
  *
  * @param <V> vertex
- * @param <E> edge
+ * @param 
  */
-public class qtGenerate<V, E>
+public class qtGenerate<V>
 {
 	/**
 	 * generate a completely connected graph of number of edges
 	 * @param number size of clique
 	 * @return graph
 	 */
-	public static Graph<Integer, String> clique(int number)
+	public SparseGraph<Integer, Pair<Integer>> clique(int number)
 	{
-		SparseGraph<Integer, String> graph = new SparseGraph<Integer, String>();
+		SparseGraph<Integer, Pair<Integer>> graph = new SparseGraph<Integer, Pair<Integer>>();
 		if (number > 0)
 		{
-			graph.addEdge("e:" + 1 + "-" + 2, 1, 2);
+			graph.addEdge(new Pair<Integer>(1, 2), 1, 2);
 			int curEdge = 3;
 			while (curEdge <= number)
 			{
@@ -33,7 +34,7 @@ public class qtGenerate<V, E>
 				array = graph.getVertices().toArray(array);
 				for(int v : array)
 				{
-					graph.addEdge("e:" + curEdge + "-" + v, curEdge, v);
+					graph.addEdge(new Pair<Integer>(curEdge, v), curEdge, v);
 				}
 				curEdge++;
 			}
@@ -47,9 +48,9 @@ public class qtGenerate<V, E>
 	 * @param n2 second clique size
 	 * @return graph
 	 */
-	public static Graph<Integer, String> cliques(int n1, int n2)
+	public static Graph<Integer, Pair<Integer>> cliques(int n1, int n2)
 	{
-		SparseGraph<Integer, String> graph = new SparseGraph<Integer, String>();
+		SparseGraph<Integer, Pair<Integer>> graph = new SparseGraph<Integer, Pair<Integer>>();
 		
 		int curV = 0;
 		graph.addVertex(curV++);
@@ -61,7 +62,7 @@ public class qtGenerate<V, E>
 				array = graph.getVertices().toArray(array);
 				for (int v : array)
 				{
-					graph.addEdge("e:" + curV + "-" + v, curV, v);
+					graph.addEdge(new Pair<Integer>(curV, v), curV, v);
 				}
 				curV++;
 			}
@@ -78,7 +79,7 @@ public class qtGenerate<V, E>
 			{
 				for (int i = curV; i < newCount + curV; i++)
 				{
-					graph.addEdge("e:" + (curV + newCount) + "-" + i, curV + newCount, i);
+					graph.addEdge(new Pair<Integer>(curV + newCount, i), curV + newCount, i);
 				}
 				newCount++;
 			}
@@ -95,9 +96,9 @@ public class qtGenerate<V, E>
 	 * @param n2 size of second clique
 	 * @return graph
 	 */
-	public static Graph<Integer, String> cliqueJoin(int n1, int n2)
+	public static Graph<Integer, Pair<Integer>> cliqueJoin(int n1, int n2)
 	{
-		SparseGraph<Integer, String> graph = new SparseGraph<Integer, String>();
+		SparseGraph<Integer, Pair<Integer>> graph = new SparseGraph<Integer, Pair<Integer>>();
 		
 		int curV = 0;
 		graph.addVertex(curV++);
@@ -109,7 +110,7 @@ public class qtGenerate<V, E>
 				array = graph.getVertices().toArray(array);
 				for (int v : array)
 				{
-					graph.addEdge("e:" + curV + "-" + v, curV, v);
+					graph.addEdge(new Pair<Integer>(curV, v), curV, v);
 				}
 				curV++;
 			}
@@ -137,14 +138,14 @@ public class qtGenerate<V, E>
 				for (int v : array)
 				{
 					if (!fHalf.contains(v))
-						graph.addEdge("e:" + (curV + newCount) + "-" + v, curV + newCount, v);
+						graph.addEdge(new Pair<Integer>(curV, v), curV + newCount, v);
 				}
 				newCount++;
 			}
 		}
 		
 		//final edge to join the two halves 
-		graph.addEdge("e:" + 0 + "-" + (newCount+curV - 1), 0, curV+newCount-1);
+		graph.addEdge(new Pair<Integer>(0, curV+newCount-1), 0, curV+newCount-1);
 		return graph;
 		
 	}
@@ -153,16 +154,16 @@ public class qtGenerate<V, E>
 	 * 
 	 * @return graph with C4
 	 */
-	public static Graph<Integer, String> simpleC4()
+	public static Graph<Integer, Pair<Integer>> simpleC4()
 	{
-		SparseGraph<Integer, String> G = new SparseGraph<Integer, String>();
-		G.addEdge("e:" + 0 + "-" + 1, 0, 1);
-		G.addEdge("e:" + 0 + "-" + 3, 0, 3);
-		G.addEdge("e:" + 3 + "-" + 2, 3, 2);
-		G.addEdge("e:" + 1 + "-" + 2, 1, 2);
-		G.addEdge("e:" + 1 + "-" + 4, 1, 4);
-		G.addEdge("e:" + 1 + "-" + 5, 1, 5);
-		G.addEdge("e:" + 1 + "-" + 6, 1, 6);
+		SparseGraph<Integer, Pair<Integer>> G = new SparseGraph<Integer, Pair<Integer>>();
+		G.addEdge(new Pair<Integer>(0, 1), 0, 1);
+		G.addEdge(new Pair<Integer>(0, 3), 0, 3);
+		G.addEdge(new Pair<Integer>(3, 2), 3, 2);
+		G.addEdge(new Pair<Integer>(1, 2), 1, 2);
+		G.addEdge(new Pair<Integer>(1, 4), 1, 4);
+		G.addEdge(new Pair<Integer>(1, 5), 1, 5);
+		G.addEdge(new Pair<Integer>(1, 6), 1, 6);
 
 		
 		return G;

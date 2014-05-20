@@ -10,7 +10,7 @@ import edu.uci.ics.jung.graph.DelegateForest;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Pair;
 
-public class qtRecognition 
+public class qtRecognition<V>
 {
 	/**
 	 * Yan algorithm for QT recognition (1994)
@@ -18,34 +18,34 @@ public class qtRecognition
 	 * @param Graph G
 	 * @return a forest if graph is qt or null otherwise
 	 */
-	public static DelegateForest<Integer, String> qtCheckYan(Graph<Integer, String> G)
+	public DelegateForest<V, Pair<V>> qtCheckYan(Graph<V, Pair<V>> G)
 	{
 		//create a rooted forest representation F of G
-		DelegateForest<Integer, String> F = new DelegateForest<Integer, String>();
+		DelegateForest<V, Pair<V>> F = new DelegateForest<V, Pair<V>>();
 		
 		//vertices of G
-		Collection<Integer> vertices = G.getVertices();
+		Collection<V> vertices = G.getVertices();
 		
 		//add the G vertex set to F with no edges
-		for (int i : vertices)
+		for (V i : vertices)
 		{
 			F.addVertex(i);
 		}
 		
 		//array list of vertices (used for indexing in algorithm)
-		ArrayList<Integer> vertexArrayList = genericLBFS.orderVerticesNonDecreasingDegree(G);
+		ArrayList<V> vertexArrayList = genericLBFS.orderVerticesNonDecreasingDegree(G);
 		
 		//initialize inDegree hashtable
-		Hashtable<Integer, Integer> inDegree = new Hashtable<Integer, Integer>(vertices.size());
+		Hashtable<V, Integer> inDegree = new Hashtable<V, Integer>(vertices.size());
 		for (int i = 0; i < vertices.size(); i++)
 		{
-			inDegree.put(vertexArrayList.get(i), 0);
+			inDegree.put((V) vertexArrayList.get(i), 0);
 		}
 		
 		//for each edge, increment inDegree
-		for (String e : G.getEdges())
+		for (Pair<V> e : G.getEdges())
 		{
-			Pair<Integer> endpoints = G.getEndpoints(e);
+			Pair<V> endpoints = e;
 			if ((G.degree(endpoints.getFirst()) > G.degree(endpoints.getSecond())) || ((G.degree(endpoints.getFirst()) == G.degree(endpoints.getSecond())) && (vertexArrayList.indexOf(endpoints.getFirst()) < vertexArrayList.indexOf(endpoints.getSecond()))))
 				inDegree.put(endpoints.getSecond(), inDegree.get(endpoints.getSecond()) + 1);
 			else
@@ -58,18 +58,18 @@ public class qtRecognition
 			if (inDegree.get(vertexArrayList.get(j)) >= 1)
 			{
 				//find neighbours of vertexArray[j]
-				Collection<Integer> neighbours = G.getNeighbors(vertexArrayList.get(j));
-				PriorityQueue<vertexIn<Integer>> pQueue = new PriorityQueue<vertexIn<Integer>>();
-				for (int n : neighbours)
+				Collection<V> neighbours = G.getNeighbors((V) vertexArrayList.get(j));
+				PriorityQueue<vertexIn<V>> pQueue = new PriorityQueue<vertexIn<V>>();
+				for (V n : neighbours)
 				{
-					pQueue.add(new vertexIn<Integer>(n, inDegree.get(n)));
+					pQueue.add(new vertexIn<V>(n, inDegree.get(n)));
 				}
 				
 				//choose a neighbour that fits criteria
 				boolean finish = false;
 				while (!pQueue.isEmpty() && !finish)
 				{
-					vertexIn<Integer> next = pQueue.remove();
+					vertexIn<V> next = pQueue.remove();
 					
 					
 					//add edge to F
@@ -77,7 +77,7 @@ public class qtRecognition
 					if ((G.degree(next.getVertex()) > G.degree(vertexArrayList.get(j))) || 
 							((G.degree(next.getVertex()) == G.degree(vertexArrayList.get(j))) && (vertexArrayList.indexOf(next.getVertex()) < j)))
 					{
-						F.addEdge("e:" +  next.getVertex() + "-" + vertexArrayList.get(j), next.getVertex(), vertexArrayList.get(j));
+						F.addEdge(new Pair<V>( next.getVertex(), vertexArrayList.get(j)), next.getVertex(), vertexArrayList.get(j));
 						finish = true;
 					}
 				}
