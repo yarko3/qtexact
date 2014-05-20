@@ -5,25 +5,26 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 import edu.uci.ics.jung.graph.Graph;
+import edu.uci.ics.jung.graph.util.Pair;
 
 //a class to keep the return graph and the number of alterations that have been made
-public class branchingReturnC implements Comparable<branchingReturnC>
+public class branchingReturnC<V> implements Comparable<branchingReturnC>
 {
-	Graph<Integer, String> G;
-	ArrayList<LinkedList<Integer>> deg;
-	LinkedList<String> changes;
+	Graph<V, Pair<V>> G;
+	ArrayList<LinkedList<V>> deg;
+	LinkedList<Pair<V>> changes;
 	
-	public branchingReturnC(Graph<Integer, String> graph, ArrayList<LinkedList<Integer>> d, LinkedList<String> c)
+	public branchingReturnC(Graph<V, Pair<V>> graph, ArrayList<LinkedList<V>> d, LinkedList<Pair<V>> c)
 	{
 		G = graph;
 		changes = c;
 		deg = d;
 	}
-	public branchingReturnC(Graph<Integer, String> graph, ArrayList<LinkedList<Integer>> d)
+	public branchingReturnC(Graph<V, Pair<V>> graph, ArrayList<LinkedList<V>> d)
 	{
 		G = graph;
 		deg = d;
-		changes = new LinkedList<String>();
+		changes = new LinkedList<Pair<V>>();
 	}
 
 	@Override
@@ -31,29 +32,29 @@ public class branchingReturnC implements Comparable<branchingReturnC>
 		return Integer.compare(changes.size(), o.changes.size());
 	}
 	
-	public Graph<Integer, String> getG(){
+	public Graph<V, Pair<V>> getG(){
 		return G;
 	}
 	
-	public LinkedList<String> getChanges()
+	public LinkedList<Pair<V>> getChanges()
 	{
 		return changes;
 	}
 	
-	public ArrayList<LinkedList<Integer>> getDeg()
+	public ArrayList<LinkedList<V>> getDeg()
 	{
 		return deg;
 	}
 	
-	public void setGraph(Graph<Integer, String> g)
+	public void setGraph(Graph<V, Pair<V>> g)
 	{
 		G = g;
 	}
-	public void setChanges(LinkedList<String> c)
+	public void setChanges(LinkedList<Pair<V>> c)
 	{
 		changes = c;
 	}
-	public void setDeg(ArrayList<LinkedList<Integer>> d)
+	public void setDeg(ArrayList<LinkedList<V>> d)
 	{
 		deg = d;
 	}

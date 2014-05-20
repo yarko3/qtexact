@@ -169,9 +169,9 @@ public class qtGenerate<V>
 		return G;
 	}
 	
-	public static Graph<Integer, String> randomQT(int n)
+	public static Graph<Integer, Pair<Integer>> randomQT(int n)
 	{
-		SparseGraph<Integer, String> G = new SparseGraph<Integer, String>();
+		SparseGraph<Integer, Pair<Integer>> G = new SparseGraph<Integer, Pair<Integer>>();
 		Random rand = new Random();
 		
 		int vCount = 0;
@@ -188,7 +188,7 @@ public class qtGenerate<V>
 				array = v.toArray(array);
 				for (int i : array)
 				{
-					G.addEdge("e:"+i+"-"+vCount, i, vCount);
+					G.addEdge(new Pair<Integer>(i, vCount), i, vCount);
 				}
 				vCount++;	
 			}
@@ -201,13 +201,13 @@ public class qtGenerate<V>
 						if (n - vCount > 5)
 						{
 							//create TP 3
-							G.addEdge("e:"+vCount+"-"+ (vCount + 1), vCount, ++vCount);
+							G.addEdge(new Pair<Integer>(vCount, vCount+1), vCount, ++vCount);
 							vCount++;
-							G.addEdge("e:"+vCount+"-"+ (vCount + 1), vCount, ++vCount);
+							G.addEdge(new Pair<Integer>(vCount, (vCount + 1)), vCount, ++vCount);
 							vCount++;
 							
 							//create TP 2
-							G.addEdge("e:"+vCount+"-"+ (vCount + 1), vCount, ++vCount);
+							G.addEdge(new Pair<Integer>(vCount, (vCount + 1)), vCount, ++vCount);
 							vCount++;
 							
 							//connect everything to one vertex
@@ -216,7 +216,7 @@ public class qtGenerate<V>
 							array = v.toArray(array);
 							for (int i : array)
 							{
-								G.addEdge("e:"+i+"-"+vCount, i, vCount);
+								G.addEdge(new Pair<Integer>(i, vCount), i, vCount);
 							}
 							vCount++;
 							break;
@@ -225,9 +225,9 @@ public class qtGenerate<V>
 						if (n - vCount > 3)
 						{
 							//create TP 3
-							G.addEdge("e:"+vCount+"-"+ (vCount + 1), vCount, ++vCount);
+							G.addEdge(new Pair<Integer>(vCount, (vCount + 1)), vCount, ++vCount);
 							vCount++;
-							G.addEdge("e:"+vCount+"-"+ (vCount + 1), vCount, ++vCount);
+							G.addEdge(new Pair<Integer>(vCount, (vCount + 1)), vCount, ++vCount);
 							vCount++;
 							
 							//connect everything to one vertex
@@ -236,7 +236,7 @@ public class qtGenerate<V>
 							array = v.toArray(array);
 							for (int i : array)
 							{
-								G.addEdge("e:"+i+"-"+vCount, i, vCount);
+								G.addEdge(new Pair<Integer>(i, vCount), i, vCount);
 							}
 							vCount++;
 							break;
@@ -245,7 +245,7 @@ public class qtGenerate<V>
 						if (n - vCount > 2)
 						{
 							//create TP 2
-							G.addEdge("e:"+vCount+"-"+ (vCount + 1), vCount, ++vCount);
+							G.addEdge(new Pair<Integer>(vCount, (vCount + 1)), vCount, ++vCount);
 							vCount++;
 							
 							//connect everything to one vertex
@@ -254,7 +254,7 @@ public class qtGenerate<V>
 							array = v.toArray(array);
 							for (int i : array)
 							{
-								G.addEdge("e:"+i+"-"+vCount, i, vCount);
+								G.addEdge(new Pair<Integer>(i, vCount), i, vCount);
 							}
 							vCount++;
 							break;
@@ -266,61 +266,61 @@ public class qtGenerate<V>
 		return G;
 	}
 	
-	public static Graph<Integer, String> westernElectricNetwork()
+	public static Graph<Integer, Pair<Integer>> westernElectricNetwork()
 	{
-		Graph<Integer,String> g = new SparseGraph<Integer,String>();
+		Graph<Integer,Pair<Integer>> g = new SparseGraph<Integer,Pair<Integer>>();
 		
-		g.addEdge("e:" + 11 + "-" + 21, 11,21);
-		g.addEdge("e:" + 11 + "-" + 22, 11,22);
-		g.addEdge("e:" + 11 + "-" + 23, 11,23);
-		g.addEdge("e:" + 11 + "-" + 24, 11,24);
-		g.addEdge("e:" + 21 + "-" + 22, 21,22);
-		g.addEdge("e:" + 21 + "-" + 23, 21,23);
-		g.addEdge("e:" + 21 + "-" + 24, 21,24);
-		g.addEdge("e:" + 21 + "-" + 25, 21,25);
-		g.addEdge("e:" + 21 + "-" + 31, 21,31);
-		g.addEdge("e:" + 22 + "-" + 23, 22,23);
-		g.addEdge("e:" + 22 + "-" + 24, 22,24);
-		g.addEdge("e:" + 22 + "-" + 31, 22,31);
-		g.addEdge("e:" + 23 + "-" + 24, 23,24);
-		g.addEdge("e:" + 23 + "-" + 25, 23,25);
-		g.addEdge("e:" + 23 + "-" + 31, 23,31);
-		g.addEdge("e:" + 24 + "-" + 25, 24,25);
-		g.addEdge("e:" + 24 + "-" + 31, 24,31);
-		g.addEdge("e:" + 25 + "-" + 27, 25,27);
-		g.addEdge("e:" + 25 + "-" + 31, 25,31);
-		g.addEdge("e:" + 26 + "-" + 27, 26,27);
-		g.addEdge("e:" + 26 + "-" + 28, 26,28);
-		g.addEdge("e:" + 26 + "-" + 29, 26,29);
-		g.addEdge("e:" + 27 + "-" + 28, 27,28);
-		g.addEdge("e:" + 27 + "-" + 29, 27,29);
-		g.addEdge("e:" + 27 + "-" + 34, 27,34);
-		g.addEdge("e:" + 28 + "-" + 29, 28,29);
-		g.addEdge("e:" + 28 + "-" + 34, 28,34);		
-		g.addEdge("e:" + 29 + "-" + 34, 29,34);
+		g.addEdge(new Pair<Integer>(11, 21), 11,21);
+		g.addEdge(new Pair<Integer>(11, 22), 11,22);
+		g.addEdge(new Pair<Integer>(11, 23), 11,23);
+		g.addEdge(new Pair<Integer>(11, 24), 11,24);
+		g.addEdge(new Pair<Integer>(21, 22), 21,22);
+		g.addEdge(new Pair<Integer>(21, 23), 21,23);
+		g.addEdge(new Pair<Integer>(21, 24), 21,24);
+		g.addEdge(new Pair<Integer>(21, 25), 21,25);
+		g.addEdge(new Pair<Integer>(21, 31), 21,31);
+		g.addEdge(new Pair<Integer>(22, 23), 22,23);
+		g.addEdge(new Pair<Integer>(22, 24), 22,24);
+		g.addEdge(new Pair<Integer>(22, 31), 22,31);
+		g.addEdge(new Pair<Integer>(23, 24), 23,24);
+		g.addEdge(new Pair<Integer>(23, 25), 23,25);
+		g.addEdge(new Pair<Integer>(23, 31), 23,31);
+		g.addEdge(new Pair<Integer>(24, 25), 24,25);
+		g.addEdge(new Pair<Integer>(24, 31), 24,31);
+		g.addEdge(new Pair<Integer>(25, 27), 25,27);
+		g.addEdge(new Pair<Integer>(25, 31), 25,31);
+		g.addEdge(new Pair<Integer>(26, 27), 26,27);
+		g.addEdge(new Pair<Integer>(26, 28), 26,28);
+		g.addEdge(new Pair<Integer>(26, 29), 26,29);
+		g.addEdge(new Pair<Integer>(27, 28), 27,28);
+		g.addEdge(new Pair<Integer>(27, 29), 27,29);
+		g.addEdge(new Pair<Integer>(27, 34), 27,34);
+		g.addEdge(new Pair<Integer>(28, 29), 28,29);
+		g.addEdge(new Pair<Integer>(28, 34), 28,34);		
+		g.addEdge(new Pair<Integer>(29, 34), 29,34);
 		
 		return g;
 	}
 	
-	public static Graph<Integer, String> nonQTEx1()
+	public static Graph<Integer, Pair<Integer>> nonQTEx1()
 	{
-		Graph<Integer,String> g = new SparseGraph<Integer,String>();
+		Graph<Integer,Pair<Integer>> g = new SparseGraph<Integer,Pair<Integer>>();
 		
-		g.addEdge("e:" + 0 + "-" + 1, 0, 1);
-		g.addEdge("e:" + 0 + "-" + 2, 0, 2);
-		g.addEdge("e:" + 0 + "-" + 4, 0, 4);
-		g.addEdge("e:" + 1 + "-" + 2, 1, 2);
-		g.addEdge("e:" + 1 + "-" + 4, 1, 4);
-		g.addEdge("e:" + 1 + "-" + 5, 1, 5);
-		g.addEdge("e:" + 2 + "-" + 3, 2, 3);
-		g.addEdge("e:" + 3 + "-" + 4, 3, 4);
-		g.addEdge("e:" + 4 + "-" + 5, 4, 5);
-		g.addEdge("e:" + 5 + "-" + 6, 5, 6);
-		g.addEdge("e:" + 6 + "-" + 7, 6, 7);
-		g.addEdge("e:" + 7 + "-" + 8, 7, 8);
-		g.addEdge("e:" + 6 + "-" + 9, 6, 9);
-		g.addEdge("e:" + 7 + "-" + 9, 7, 9);
-		g.addEdge("e:" + 9 + "-" + 10, 9,10);
+		g.addEdge(new Pair<Integer>(0, 1), 0, 1);
+		g.addEdge(new Pair<Integer>(0, 2), 0, 2);
+		g.addEdge(new Pair<Integer>(0, 4), 0, 4);
+		g.addEdge(new Pair<Integer>(1, 2), 1, 2);
+		g.addEdge(new Pair<Integer>(1, 4), 1, 4);
+		g.addEdge(new Pair<Integer>(1, 5), 1, 5);
+		g.addEdge(new Pair<Integer>(2, 3), 2, 3);
+		g.addEdge(new Pair<Integer>(3, 4), 3, 4);
+		g.addEdge(new Pair<Integer>(4, 5), 4, 5);
+		g.addEdge(new Pair<Integer>(5, 6), 5, 6);
+		g.addEdge(new Pair<Integer>(6, 7), 6, 7);
+		g.addEdge(new Pair<Integer>(7, 8), 7, 8);
+		g.addEdge(new Pair<Integer>(6, 9), 6, 9);
+		g.addEdge(new Pair<Integer>(7, 9), 7, 9);
+		g.addEdge(new Pair<Integer>(9, 10), 9,10);
 
 		return g;
 	}

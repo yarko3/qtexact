@@ -9,29 +9,31 @@ import java.util.LinkedList;
  * @author Yarko Senyuta
  *
  */
-public class lexReturnC
+public class lexReturnC<V>
 {
 	//store ArrayList of either a found P4 or the final ordering
-	private ArrayList<Integer> list;
+	private ArrayList<V> list;
 	//QT check
 	private boolean isQT;
 	private boolean isConnected;
-	private LinkedList<HashSet<Integer>> cComponents;
+	private LinkedList<HashSet<V>> cComponents;
+	private tpCertificateC<V> certificate;
 	
-	public lexReturnC(ArrayList<Integer> l, boolean qt, boolean c, LinkedList<HashSet<Integer>> cComp)
+	public lexReturnC(ArrayList<V> l, tpCertificateC<V> cert, boolean qt, boolean c, LinkedList<HashSet<V>> cComp)
 	{
 		setList(l);
 		setQT(qt);
 		setConnected(c);
 		setcComponents(cComp);
+		setCertificate(cert);
 	}
 
-	public ArrayList<Integer> getList() {
+	public ArrayList<V> getList() {
 		return list;
 	}
 
-	public void setList(ArrayList<Integer> list) {
-		this.list = list;
+	public void setList(ArrayList<V> l) {
+		this.list = l;
 	}
 
 	public boolean isQT() {
@@ -50,12 +52,20 @@ public class lexReturnC
 		this.isConnected = isConnected;
 	}
 
-	public LinkedList<HashSet<Integer>> getcComponents() {
+	public LinkedList<HashSet<V>> getcComponents() {
 		return cComponents;
 	}
 
-	public void setcComponents(LinkedList<HashSet<Integer>> cComponents) {
+	public void setcComponents(LinkedList<HashSet<V>> cComponents) {
 		this.cComponents = cComponents;
+	}
+
+	public tpCertificateC<V> getCertificate() {
+		return certificate;
+	}
+
+	public void setCertificate(tpCertificateC<V> certificate) {
+		this.certificate = certificate;
 	}
 	
 	

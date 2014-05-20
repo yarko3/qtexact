@@ -7,8 +7,9 @@ import java.util.LinkedList;
 import java.util.PriorityQueue;
 
 import edu.uci.ics.jung.graph.Graph;
+import edu.uci.ics.jung.graph.util.Pair;
 
-public class genericLBFS {
+public class genericLBFS<V> {
 	
 	/** LexBFS search 
 	 * 
@@ -16,15 +17,15 @@ public class genericLBFS {
 	 * @param t initial ordering of vertices
 	 * @return final LexBFS ordering of vertices
 	 */
-	public static lexReturnC qtLexBFSComponents(Graph<Integer, String> G, ArrayList<Integer> t)
+	public lexReturnC<V> qtLexBFSComponents(Graph<V, Pair<V>> G, ArrayList<V> t)
 	{
-		/*ArrayList<Integer> t = orderVerticesNonDecreasingDegree(G); */
+		/*ArrayList<V> t = orderVerticesNonDecreasingDegree(G); */
 		
 		
 		//new ordering
-		ArrayList<Integer> s = new ArrayList<Integer>(t.size());
+		ArrayList<V> s = new ArrayList<V>(t.size());
 		//list of partitions (each partition has a common label)
-		ArrayList<ArrayList<Integer>> L = new ArrayList<ArrayList<Integer>>(0);
+		ArrayList<ArrayList<V>> L = new ArrayList<ArrayList<V>>(0);
 		
 		
 		
@@ -33,12 +34,12 @@ public class genericLBFS {
 		int tsize = t.size();
 		
 		//get connected components
-		LinkedList<HashSet<Integer>> cComponents = new LinkedList<HashSet<Integer>>();
+		LinkedList<HashSet<V>> cComponents = new LinkedList<HashSet<V>>();
 		
 		
 		//flag for whether the graph is QT and a forbidden P4 or C4
 		boolean isQT = true;
-		ArrayList<Integer> forbidden = null;
+		tpCertificateC<V> forbidden = null;
 		
 		//for every vertex, ordered by t
 		for (int i = 0; i < tsize; i++)
@@ -50,8 +51,8 @@ public class genericLBFS {
 			}
 			
 			//get first element x of first partition
-			ArrayList<Integer> p1 = L.get(0);
-			int x = p1.remove(0);
+			ArrayList<V> p1 = L.get(0);
+			V x = p1.remove(0);
 			
 			
 			//if first partition is empty, remove partition from L (haha, nope)
@@ -66,15 +67,15 @@ public class genericLBFS {
 			
 			//neighbours of x
 			
-			ArrayList<Integer> hood = orderNeighbour(G, x);
+			ArrayList<V> hood = orderNeighbour(G, x);
 			
 			
 			//find connected components
 			boolean found = false;
 			search:
-			for (HashSet<Integer> j : cComponents)
+			for (HashSet<V> j : cComponents)
 			{
-				for (int n : hood)
+				for (V n : hood)
 				{
 					//if a neighbour of x or x is already in a set, add the rest
 					if (j.contains(n) || j.contains(x))
@@ -89,7 +90,7 @@ public class genericLBFS {
 			//elements were not found in current set of connected components, make new one
 			if (!found)
 			{
-				cComponents.add(new HashSet<Integer>());
+				cComponents.add(new HashSet<V>());
 				cComponents.getLast().addAll(hood);
 				cComponents.getLast().add(x);
 			}
@@ -102,10 +103,10 @@ public class genericLBFS {
 			while (j < L.size())
 			{
 				//new partition to be inserted into L
-				ArrayList<Integer> pp = new ArrayList<Integer>(0);
+				ArrayList<V> pp = new ArrayList<V>(0);
 				for (int k = 0; k < hood.size(); k++)
 				{
-					int h = hood.get(k);
+					V h = hood.get(k);
 					if (L.get(j).contains(h))
 					{
 						//remove element from L and add to pp
@@ -130,23 +131,23 @@ public class genericLBFS {
 		//return search results
 		if (isQT)
 		{
-			return new lexReturnC(s, true, cComponents.size() == 1, cComponents);
+			return new lexReturnC<V>(s, null, true, cComponents.size() == 1, cComponents);
 		}
 		else
 		{
-			return new lexReturnC(forbidden, false, cComponents.size() == 1, cComponents);
+			return new lexReturnC<V>(null, forbidden, false, cComponents.size() == 1, cComponents);
 		}
 	}
 	
-	public static lexReturnC qtLexBFS(Graph<Integer, String> G, ArrayList<Integer> t)
+	public lexReturnC<V> qtLexBFS(Graph<V, Pair<V>> G, ArrayList<V> t)
 	{
-		/*ArrayList<Integer> t = orderVerticesNonDecreasingDegree(G); */
+		/*ArrayList<V> t = orderVerticesNonDecreasingDegree(G); */
 		
 		
 		//new ordering
-		ArrayList<Integer> s = new ArrayList<Integer>(t.size());
+		ArrayList<V> s = new ArrayList<V>(t.size());
 		//list of partitions (each partition has a common label)
-		ArrayList<ArrayList<Integer>> L = new ArrayList<ArrayList<Integer>>(0);
+		ArrayList<ArrayList<V>> L = new ArrayList<ArrayList<V>>(0);
 		
 		
 		
@@ -154,8 +155,6 @@ public class genericLBFS {
 		L.add(t);
 		int tsize = t.size();
 		
-		//get connected components
-		LinkedList<HashSet<Integer>> cComponents = new LinkedList<HashSet<Integer>>();
 		
 		
 		//for every vertex, ordered by t
@@ -168,8 +167,8 @@ public class genericLBFS {
 			}
 			
 			//get first element x of first partition
-			ArrayList<Integer> p1 = L.get(0);
-			int x = p1.remove(0);
+			ArrayList<V> p1 = L.get(0);
+			V x = p1.remove(0);
 			
 			
 			//if first partition is empty, remove partition from L (haha, nope)
@@ -184,7 +183,7 @@ public class genericLBFS {
 			
 			//neighbours of x
 			
-			ArrayList<Integer> hood = orderNeighbour(G, x);
+			ArrayList<V> hood = orderNeighbour(G, x);
 			
 			
 		
@@ -193,10 +192,10 @@ public class genericLBFS {
 			while (j < L.size())
 			{
 				//new partition to be inserted into L
-				ArrayList<Integer> pp = new ArrayList<Integer>(0);
+				ArrayList<V> pp = new ArrayList<V>(0);
 				for (int k = 0; k < hood.size(); k++)
 				{
-					int h = hood.get(k);
+					V h = hood.get(k);
 					if (L.get(j).contains(h))
 					{
 						//remove element from L and add to pp
@@ -207,7 +206,7 @@ public class genericLBFS {
 				if (j != 0 && !pp.isEmpty())
 				{
 					
-					return new lexReturnC(TPCertificate(G, x, pp.get(0), s), false, false, null);
+					return new lexReturnC<V>(null, TPCertificate(G, x, pp.get(0), s), false, false, null);
 				}
 				if (!pp.isEmpty())
 				{
@@ -219,20 +218,20 @@ public class genericLBFS {
 			}
 		}
 		//return search results
-		return new lexReturnC(s, false, false, null);
+		return new lexReturnC<V>(s, null, false, false, null);
 	}
 	
 	
-	private static ArrayList<Integer> orderNeighbour(Graph<Integer, String> G, int neighbour)
+	private ArrayList<V> orderNeighbour(Graph<V, Pair<V>> G, V neighbour)
 	{
 		//return variable
-		ArrayList<Integer> ordered = new ArrayList<Integer>(0);
+		ArrayList<V> ordered = new ArrayList<V>(0);
 		
 		//throw all vertices into priority queue then get the order back out
-		PriorityQueue<vertexIn<Integer>> pQueue = new PriorityQueue<vertexIn<Integer>>();
-		for (int n : G.getNeighbors(neighbour))
+		PriorityQueue<vertexIn<V>> pQueue = new PriorityQueue<vertexIn<V>>();
+		for (V n : G.getNeighbors(neighbour))
 		{
-			pQueue.add(new vertexIn<Integer>(n, G.degree(n)));
+			pQueue.add(new vertexIn<V>(n, G.degree(n)));
 		}
 		while (!pQueue.isEmpty())
 		{
@@ -245,18 +244,18 @@ public class genericLBFS {
 	/**Order the vertices in non-decreasing degrees for LexBFS
 	 * 
 	 * @param G graph
-	 * @return ordered ArrayList<Integer> of vertices
+	 * @return ordered ArrayList<V> of vertices
 	 */
-	public static ArrayList<Integer> orderVerticesNonDecreasingDegree(Graph<Integer, String> G)
+	public ArrayList<V> orderVerticesNonDecreasingDegree(Graph<V, Pair<V>> G)
 	{
 		//return variable
-		ArrayList<Integer> ordered = new ArrayList<Integer>(0);
+		ArrayList<V> ordered = new ArrayList<V>(0);
 		
 		//throw all vertices into priority queue then get the order back out
-		PriorityQueue<vertexIn<Integer>> pQueue = new PriorityQueue<vertexIn<Integer>>();
-		for (int n : G.getVertices())
+		PriorityQueue<vertexIn<V>> pQueue = new PriorityQueue<vertexIn<V>>();
+		for (V n : G.getVertices())
 		{
-			pQueue.add(new vertexIn<Integer>(n, G.degree(n)));
+			pQueue.add(new vertexIn<V>(n, G.degree(n)));
 		}
 		while (!pQueue.isEmpty())
 		{
@@ -275,43 +274,41 @@ public class genericLBFS {
 	 * @param s ordering until the C4 or P4 was found
 	 * @return
 	 */
-	private static ArrayList<Integer> TPCertificate(Graph<Integer, String> G, int x, int y, ArrayList<Integer> s)
+	private tpCertificateC<V> TPCertificate(Graph<V, Pair<V>> G, V x, V y, ArrayList<V> s)
 	{
-		ArrayList<Integer> S = new ArrayList<Integer>(0);
-		for (int v : s)
+		ArrayList<V> S = new ArrayList<V>(0);
+		for (V v : s)
 		{
 			if (s.indexOf(v) < s.indexOf(x) && G.findEdge(v, x) != null && (G.findEdge(v, y) == null))
 			{
 				S.add(v);
 			}
-			Collection<Integer> vertices = G.getVertices();
-			for (int w : S)
+			Collection<V> vertices = G.getVertices();
+			for (V w : S)
 			{
-				for (int z : vertices)
+				for (V z : vertices)
 				{
 					if (G.findEdge(z, w) != null && G.findEdge(z, x) == null && z != x && z != y & z != w)
 					{
 						if (G.findEdge(z, y) != null)
 						{
 							//System.out.println("Found C4: " + z + "-" + w + "-" + x + "-" + y);
-							ArrayList<Integer> rtn = new ArrayList<Integer>(0);
+							ArrayList<V> rtn = new ArrayList<V>(0);
 							rtn.add(z);
 							rtn.add(w);
 							rtn.add(x);
 							rtn.add(y);
-							rtn.add(-1);
-							return rtn;
+							return new tpCertificateC<V>(rtn, -1);
 						}
 						else
 						{
 							//System.out.println("Found P4: " + z + "-" + w + "-" + x + "-" + y);
-							ArrayList<Integer> rtn = new ArrayList<Integer>(0);
+							ArrayList<V> rtn = new ArrayList<V>(0);
 							rtn.add(z);
 							rtn.add(w);
 							rtn.add(x);
 							rtn.add(y);
-							rtn.add(-2);
-							return rtn;
+							return new tpCertificateC<V>(rtn, -2);
 						}
 					}
 				}
