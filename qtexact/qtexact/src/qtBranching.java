@@ -134,11 +134,9 @@ public class qtBranching<V>
 						Collection<V> hood = G.getNeighbors(i);
 						for (V n : hood)
 						{
-							for (Pair<V> e : c.getEdges())
-							{
-								if ((e.getFirst() == i && e.getSecond() == n )|| (e.getFirst() == n && e.getSecond() == i ))
-									c.addEdge(new Pair<V>(i, n), i, n);
-							}
+							
+							if (!(c.containsEdge(new Pair<V>(i, n))))
+								c.addEdge(new Pair<V>(i, n), i, n);
 						}
 					}
 					if (c != gWtihForbidden)
