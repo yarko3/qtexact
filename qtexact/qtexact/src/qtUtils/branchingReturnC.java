@@ -12,6 +12,7 @@ public class branchingReturnC implements Comparable<branchingReturnC>
 	Graph<Integer, String> G;
 	int changes;
 	ArrayList<LinkedList<Integer>> deg;
+	LinkedList<String> deleteSet;
 	
 	public branchingReturnC(Graph<Integer, String> graph, ArrayList<LinkedList<Integer>> d, int c)
 	{

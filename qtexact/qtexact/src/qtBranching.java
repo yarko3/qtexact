@@ -188,6 +188,14 @@ public class qtBranching
 		}
 	}
 	
+	/**
+	 * branch on all options available
+	 * @param G graph to be modified
+	 * @param deg degree order
+	 * @param lexResult result of lexBFS search
+	 * @param changes changes made 
+	 * @return result of most efficient branching
+	 */
 	private static branchingReturnC branch(Graph<Integer, String> G, ArrayList<LinkedList<Integer>> deg, ArrayList<Integer>lexResult, int changes)
 	{
 		//C4 has been found
@@ -244,7 +252,16 @@ public class qtBranching
 	}
 	
 	
-	//result of adding an edge to break C4
+	/**
+	 * result of adding an edge to break C4
+	 * @param G graph
+	 * @param deg degree
+	 * @param changes changes made to the original graph
+	 * @param lexResult result of the lexBFS search for quasi-thresholdness
+	 * @param v0 vertex of edge to be added
+	 * @param v1 vertex of edge to be added
+	 * @return an object storing the new graph, updated degree order, changes
+	 */
 	private static branchingReturnC c4AddResult(Graph<Integer, String> G, ArrayList<LinkedList<Integer>> deg, int changes, ArrayList<Integer> lexResult, int v0, int v1)
 	{
 		//make copy of graph and degree sequence
@@ -257,7 +274,17 @@ public class qtBranching
 		return new branchingReturnC(graphCopy, degCopy, changes + 1);
 		
 	}
-	
+	/**
+	 * Return the result of deleting two edges from an identified C4
+	 * @param G graph
+	 * @param deg degree
+	 * @param changes changes made to the original graph
+	 * @param v0 endpoint of first edge to be deleted
+	 * @param v1 endpoint of first edge to be deleted
+	 * @param v2 endpoint of second edge to be deleted
+	 * @param v3 endpoint of second edge to be deleted
+	 * @return
+	 */
 	private static branchingReturnC c4Delete2Result(Graph<Integer, String> G, ArrayList<LinkedList<Integer>> deg, int changes, Integer v0, Integer v1, Integer v2, Integer v3)
 	{
 		//make copy of graph and degree sequence
@@ -275,6 +302,15 @@ public class qtBranching
 		
 	}
 	
+	/**
+	 * Delete an edge from a P4 and return a branchingReturnC with new graph and degree order
+	 * @param G graph
+	 * @param deg degree order
+	 * @param changes number of changes made to the initial graph
+	 * @param v0 endpoint of edge to be deleted
+	 * @param v1 endpoint of edge to be deleted
+	 * @return
+	 */
 	private static branchingReturnC p4DeleteResult(Graph<Integer, String> G, ArrayList<LinkedList<Integer>> deg, int changes, Integer v0, Integer v1)
 	{
 		//make copy of graph and degree sequence
@@ -288,7 +324,13 @@ public class qtBranching
 		
 	}
 	
-	
+	/**
+	 * Remove edge between v0 and v1 from graph G and update degree order deg
+	 * @param G graph
+	 * @param deg degree order
+	 * @param v0 endpoint of edge to be deleted
+	 * @param v1 endpoint of edge to be deleted
+	 */
 	private static void removeEdge(Graph<Integer, String> G, ArrayList<LinkedList<Integer>> deg, Integer v0, Integer v1)
 	{
 		int v0Deg = G.degree(v0);
@@ -319,19 +361,30 @@ public class qtBranching
 			G.removeEdge("e:" + v1 + "-" + v0);	
 	}
 	
+	/**
+	 * Add an edge to graph G between vertices v0 and v1 and update the degree order deg
+	 * @param G graph to be modified
+	 * @param deg degree order to be updated
+	 * @param v0 first endpoint of new edge
+	 * @param v1 second endpoint of new edge
+	 */
 	private static void addEdge(Graph<Integer, String> G, ArrayList<LinkedList<Integer>> deg, Integer v0, Integer v1)
 	{
+		//get current degrees of vertices
 		int v0Deg = G.degree(v0);
 		int v1Deg = G.degree(v1);
 		
+		//remove old occurrence of v0 in degree order
 		deg.get(v0Deg).remove(v0);
 		
+		//try to add v0 at new location
 		try
 		{
 			deg.get(v0Deg + 1).add(v0);
 		}
 		catch (IndexOutOfBoundsException e)
 		{
+			//make new element for growing degree order
 			deg.add(new LinkedList<Integer>());
 			deg.get(v0Deg + 1).add(v0);
 		}
