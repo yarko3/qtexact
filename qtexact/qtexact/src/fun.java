@@ -41,6 +41,7 @@ public class fun extends JApplet {
 		exampleQT.addEdge(new Pair<Integer>(8, 1), 8, 1);
 		exampleQT.addEdge(new Pair<Integer>(8 ,5), 8, 5);
 		
+		exampleQT = gen.nonQTEx1();
 		
 		//exampleQT = qtGenerate.simpleC4();
 		

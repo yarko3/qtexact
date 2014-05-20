@@ -53,11 +53,11 @@ public class qtBranching<V>
 		//check if graph is QT
 		ArrayList<V> t = flattenAndReverseDeg(deg);
 		lexReturnC<V> lexSearch = search.qtLexBFS(G, t);
-		ArrayList<V> lexResult = lexSearch.getList();
+		ArrayList<V> forbidden = lexSearch.getList();
 		//qt graph has been found
 		try
 		{
-			if (lexResult.size() == G.getVertexCount() && lexSearch.getCertificate().getFlag() != -1 && lexSearch.getCertificate().getFlag() != -2)
+			if (forbidden.size() == G.getVertexCount() && lexSearch.isQT())
 			{
 				branchingReturnC<V> rtn = new branchingReturnC<V>(G, deg, changes);
 				return rtn;
@@ -92,7 +92,7 @@ public class qtBranching<V>
 		ArrayList<V> t = flattenAndReverseDeg(deg);
 		
 		lexReturnC<V> lexSearch = search.qtLexBFSComponents(G, t);
-		ArrayList<V> lexResult = lexSearch.getList();
+		ArrayList<V> forbidden;
 		
 		//qt graph has been found
 		if (lexSearch.isQT())
@@ -102,7 +102,9 @@ public class qtBranching<V>
 		}
 		//branch on found P4 or C4
 		else
-		{	//search yields only one connected component, branch on one component
+		{	
+			forbidden = lexSearch.getCertificate().getVertices();
+			//search yields only one connected component, branch on one component
 			if (lexSearch.isConnected())
 			{
 				return branch(G, deg,lexSearch, changes);
@@ -120,7 +122,7 @@ public class qtBranching<V>
 					Graph<V, Pair<V>> c = new SparseGraph<V, Pair<V>>();
 					for (V i : l)
 					{
-						if (!gWithForbiddenFound && (i.equals(lexResult.get(0)) || i.equals(lexResult.get(1)) || i.equals(lexResult.get(2)) || i.equals(lexResult.get(3))))
+						if (!gWithForbiddenFound && (i.equals(forbidden.get(0)) || i.equals(forbidden.get(1)) || i.equals(forbidden.get(2)) || i.equals(forbidden.get(3))))
 						{
 							gWithForbiddenFound = true;
 							gWtihForbidden = c;
