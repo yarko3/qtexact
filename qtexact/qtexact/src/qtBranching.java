@@ -3,7 +3,6 @@
  * NSERC USRA Grant (2014)
  */
 
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -26,10 +25,14 @@ public class qtBranching<V>
 	public genericLBFS<V> search = new genericLBFS<V>();
 	
 	public static Cloner clone = new Cloner();
-	public static int min = Integer.MAX_VALUE;
+	public branchingReturnC<V> minMoves;
 	
 	public Graph<V, Pair<V>> qtEditConnectedComponents(Graph<V, Pair<V>> G)
 	{
+		//start with a clean minMoves
+		minMoves = null;
+		
+		
 		//keep proper degree order as an ArrayList<LinkedList<vertex>>
 		ArrayList<LinkedList<V>> deg = degSequenceOrder(G);
 		
@@ -40,6 +43,8 @@ public class qtBranching<V>
 	}
 	public Graph<V, Pair<V>> qtEditNoHeuristic(Graph<V, Pair<V>> G)
 	{
+		//start with empty minMoves
+		minMoves = null;
 		//keep proper degree order as an ArrayList<LinkedList<vertex>>
 		ArrayList<LinkedList<V>> deg = degSequenceOrder(G);
 		
@@ -64,25 +69,53 @@ public class qtBranching<V>
 		//check if graph is QT
 		ArrayList<V> t = flattenAndReverseDeg(deg);
 		lexReturnC<V> lexSearch = search.qtLexBFS(G, t);
-		ArrayList<V> forbidden = lexSearch.getList();
 		//qt graph has been found
-		try
+		
+		if (lexSearch.isQT())
 		{
-			if (forbidden.size() == G.getVertexCount() && lexSearch.isQT())
+			branchingReturnC<V> rtn = new branchingReturnC<V>(G, deg, changes);
+			//update the minMoves list
+			try
 			{
-				branchingReturnC<V> rtn = new branchingReturnC<V>(G, deg, changes);
-				return rtn;
+				if (rtn.getChanges().size() < minMoves.getChanges().size())
+				{
+					minMoves = rtn;
+				}
 			}
+			catch (NullPointerException e)
+			{
+				
+				minMoves = rtn;
+			}
+			return rtn;
+		}
 			//branch on found P4 or C4
 			else
 			{	
-				return branch(G, deg, lexSearch, changes);
+				try
+				{
+					if (minMoves.getChanges().size() > changes.size())
+					{
+						branchingReturnC<V> rtn = branch(G, deg, lexSearch, changes);
+						if (rtn.getChanges().size() < minMoves.getChanges().size() && changes.size() == 0)
+						{
+							minMoves = rtn;
+						}
+						return rtn;
+					}
+					else
+						return minMoves;
+				}
+				catch (NullPointerException e)
+				{
+					branchingReturnC<V> rtn = branch(G, deg, lexSearch, changes);
+					if (rtn.getChanges().size() < minMoves.getChanges().size() && changes.size() == 0)
+					{
+						minMoves = rtn;
+					}
+					return rtn;
+				}
 			}
-		}
-		catch (NullPointerException e)
-		{
-			return branch(G, deg, lexSearch, changes);
-		}
 	}
 	
 	
@@ -103,87 +136,53 @@ public class qtBranching<V>
 		ArrayList<V> t = flattenAndReverseDeg(deg);
 		
 		lexReturnC<V> lexSearch = search.qtLexBFSComponents(G, t);
-		ArrayList<V> forbidden;
 		
 		//qt graph has been found
 		if (lexSearch.isQT())
 		{
 			branchingReturnC<V> rtn = new branchingReturnC<V>(G, deg, changes);
+			//update the minMoves list
+			try
+			{
+				if (rtn.getChanges().size() < minMoves.getChanges().size() && changes.size() == 0)
+				{
+					minMoves = rtn;
+				}
+			}
+			catch (NullPointerException e)
+			{
+				
+				minMoves = rtn;
+			}
 			return rtn;
 		}
 		//branch on found P4 or C4
 		else
 		{	
-			forbidden = lexSearch.getCertificate().getVertices();
-			//search yields only one connected component, branch on one component
-			if (lexSearch.isConnected())
+			try
 			{
-				return branch(G, deg,lexSearch, changes);
+				if (minMoves.getChanges().size() > changes.size())
+				{
+					
+					branchingReturnC<V> rtn = connectedComponentBranch(G, deg, changes, lexSearch);
+					if (rtn.getChanges().size() < minMoves.getChanges().size() && changes.size() == 0)
+					{
+						minMoves = rtn;
+					}
+					return rtn;
+				}
+				//min moves is a better solution
+				else
+					return minMoves;
 			}
-			//multiple connected components exist
-			else
+			catch (NullPointerException e)
 			{
-				//build graphs from connected components
-				Graph<V, Pair<V>> gWtihForbidden = graphFromVertexSet(G, lexSearch.getcComponents().removeLast());
-				
-				LinkedList<Graph<V, Pair<V>>> cGraphs = new LinkedList<Graph<V, Pair<V>>>();
-				LinkedList<branchingReturnC<V>> results = new LinkedList<branchingReturnC<V>>();
-				for (HashSet<V> l : lexSearch.getcComponents())
+				branchingReturnC<V> rtn = connectedComponentBranch(G, deg, changes, lexSearch);
+				if (rtn.getChanges().size() < minMoves.getChanges().size() && changes.size() == 0)
 				{
-					cGraphs.add(graphFromVertexSet(G, l));
+					minMoves = rtn;
 				}
-				//branch on known forbidden structure
-				results.add(branch(gWtihForbidden, degSequenceOrder(gWtihForbidden), lexSearch, new LinkedList<Pair<V>>()));
-				//branch on the rest of the graphs
-				for (Graph<V, Pair<V>> g : cGraphs)
-				{
-					//if component is large enough to care
-					if (g.getVertexCount() > 3)
-					{
-						results.add(branchingCC(new branchingReturnC<V>(g,degSequenceOrder(g), new LinkedList<Pair<V>>())));
-					}
-					else
-						results.add(new branchingReturnC<V>(g, degSequenceOrder(g)));
-						
-				}
-				
-				//final results return
-				LinkedList<Pair<V>> rChanges = clone.deepClone(changes);
-				Graph<V, Pair<V>> rGraph = new SparseGraph<V, Pair<V>>();
-				ArrayList<LinkedList<V>> rDeg = new ArrayList<LinkedList<V>>();
-				
-				//build graph from connected components
-				for (branchingReturnC<V> r : results)
-				{
-					//update total number of changes made
-					rChanges.addAll(r.getChanges());
-					
-					//add all the edges
-					for (V v : r.getG().getVertices())
-					{
-						rGraph.addVertex(v);
-					}
-					//add all the vertices
-					for (Pair<V> a : r.getG().getEdges())
-					{
-						rGraph.addEdge(clone.deepClone(a), a.getFirst(), a.getSecond());
-					}
-					
-					//add to degree sequence
-					for (int i = 0; i < r.getDeg().size(); i ++)
-					{
-						try
-						{
-							rDeg.get(i).addAll(r.getDeg().get(i));
-						}
-						catch (IndexOutOfBoundsException e)
-						{
-							rDeg.add(i, new LinkedList<V>());
-							rDeg.get(i).addAll(r.getDeg().get(i));
-						}
-					}	
-				}
-				return new branchingReturnC<V>(rGraph, rDeg, rChanges);
+				return rtn;
 			}
 			
 		}
@@ -493,5 +492,82 @@ public class qtBranching<V>
 			}
 		}
 		return c;
+	}
+	
+	private branchingReturnC<V> connectedComponentBranch(Graph<V, Pair<V>> G, ArrayList<LinkedList<V>> deg, LinkedList<Pair<V>> changes, lexReturnC<V> lexSearch)
+	{
+		//search yields only one connected component, branch on one component
+		if (lexSearch.isConnected())
+		{
+			return branch(G, deg,lexSearch, changes);
+		}
+		//multiple connected components exist
+		else
+		{
+			//build graphs from connected components
+			Graph<V, Pair<V>> gWtihForbidden = graphFromVertexSet(G, lexSearch.getcComponents().removeLast());
+			
+			LinkedList<Graph<V, Pair<V>>> cGraphs = new LinkedList<Graph<V, Pair<V>>>();
+			LinkedList<branchingReturnC<V>> results = new LinkedList<branchingReturnC<V>>();
+			for (HashSet<V> l : lexSearch.getcComponents())
+			{
+				cGraphs.add(graphFromVertexSet(G, l));
+			}
+			//branch on known forbidden structure
+			results.add(branch(gWtihForbidden, degSequenceOrder(gWtihForbidden), lexSearch, clone.deepClone(changes)));
+			//branch on the rest of the graphs
+			for (Graph<V, Pair<V>> g : cGraphs)
+			{
+				//if component is large enough to care
+				if (g.getVertexCount() > 3)
+				{
+					results.add(branchingCC(new branchingReturnC<V>(g,degSequenceOrder(g), clone.deepClone(changes))));
+				}
+				else
+					results.add(new branchingReturnC<V>(g, degSequenceOrder(g)));
+					
+			}
+			
+			//final results return
+			LinkedList<Pair<V>> rChanges = new LinkedList<Pair<V>>();
+			HashSet<Pair<V>> tempChanges = new HashSet<Pair<V>>();
+			Graph<V, Pair<V>> rGraph = new SparseGraph<V, Pair<V>>();
+			ArrayList<LinkedList<V>> rDeg = new ArrayList<LinkedList<V>>();
+			
+			//build graph from connected components
+			for (branchingReturnC<V> r : results)
+			{
+				//update total number of changes made
+				tempChanges.addAll(r.getChanges());
+
+				
+				//add all the edges
+				for (V v : r.getG().getVertices())
+				{
+					rGraph.addVertex(v);
+				}
+				//add all the vertices
+				for (Pair<V> a : r.getG().getEdges())
+				{
+					rGraph.addEdge(clone.deepClone(a), a.getFirst(), a.getSecond());
+				}
+				
+				//add to degree sequence
+				for (int i = 0; i < r.getDeg().size(); i ++)
+				{
+					try
+					{
+						rDeg.get(i).addAll(r.getDeg().get(i));
+					}
+					catch (IndexOutOfBoundsException e)
+					{
+						rDeg.add(i, new LinkedList<V>());
+						rDeg.get(i).addAll(r.getDeg().get(i));
+					}
+				}	
+			}
+			rChanges.addAll(tempChanges);
+			return new branchingReturnC<V>(rGraph, rDeg, rChanges);
+		}
 	}
 }

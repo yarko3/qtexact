@@ -13,7 +13,7 @@ import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Pair;
 
 //a class to keep the return graph and the number of alterations that have been made
-public class branchingReturnC<V> implements Comparable<branchingReturnC>
+public class branchingReturnC<V> implements Comparable<branchingReturnC<V>>
 {
 	Graph<V, Pair<V>> G;
 	ArrayList<LinkedList<V>> deg;
@@ -33,7 +33,7 @@ public class branchingReturnC<V> implements Comparable<branchingReturnC>
 	}
 
 	@Override
-	public int compareTo(branchingReturnC o) {
+	public int compareTo(branchingReturnC<V> o) {
 		return Integer.compare(changes.size(), o.changes.size());
 	}
 	

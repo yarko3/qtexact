@@ -7,7 +7,6 @@ import java.awt.Dimension;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
@@ -16,14 +15,11 @@ import java.util.Set;
 import javax.swing.JApplet;
 import javax.swing.JFrame;
 
-import jimsFiles.IsA;
-import qtUtils.genericLBFS;
 import qtUtils.qtGenerate;
 import qtUtils.qtRecognition;
 import edu.uci.ics.jung.algorithms.cluster.EdgeBetweennessClusterer;
 import edu.uci.ics.jung.algorithms.layout.FRLayout;
 import edu.uci.ics.jung.graph.Graph;
-import edu.uci.ics.jung.graph.SparseGraph;
 import edu.uci.ics.jung.graph.util.Pair;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
@@ -40,7 +36,7 @@ public class fun extends JApplet {
 	{
 		Graph<Integer, Pair<Integer>> exampleQT;
 		qtGenerate<Integer> gen = new qtGenerate<Integer>();
-		exampleQT = gen.randomQT(20);
+		exampleQT = gen.randomQT(200);
 		//may break it
 		exampleQT.addEdge(new Pair<Integer>(0, 6), 0, 6);
 		exampleQT.addEdge(new Pair<Integer>(8, 1), 8, 1);
@@ -52,6 +48,7 @@ public class fun extends JApplet {
 		//exampleQT = qtGenerate.westernElectricNetwork();
 		
 		exampleQT = qtGenerate.nonQTEx1();
+		
 		qtRecognition<Integer> yan = new qtRecognition<Integer>();
 		
 		long start = System.currentTimeMillis();
