@@ -45,7 +45,7 @@ public class fun extends JApplet {
 		
 		//exampleQT = qtGenerate.westernElectricNetwork();
 		
-		//exampleQT = qtGenerate.nonQTEx1();
+		exampleQT = qtGenerate.nonQTEx1();
 		
 		long start = System.currentTimeMillis();
 		System.out.println(qtRecognition.qtCheckYan(exampleQT));

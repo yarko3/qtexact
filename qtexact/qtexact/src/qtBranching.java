@@ -132,14 +132,14 @@ public class qtBranching
 						cGraphs.add(c);
 				}
 				
-				results.add(branch(gWtihForbidden, degSequenceOrder(gWtihForbidden), lexResult, changes));
+				results.add(branch(gWtihForbidden, degSequenceOrder(gWtihForbidden), lexResult, new LinkedList<String>()));
 				//branch on the rest of the graphs
 				for (Graph<Integer, String> g : cGraphs)
 				{
 					//if component is large enough to care
 					if (g.getVertexCount() > 3)
 					{
-						results.add(branchingCC(new branchingReturnC(g,degSequenceOrder(g), changes)));
+						results.add(branchingCC(new branchingReturnC(g,degSequenceOrder(g), new LinkedList<String>())));
 					}
 					else
 						results.add(new branchingReturnC(g, degSequenceOrder(g)));
