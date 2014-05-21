@@ -40,11 +40,14 @@ public class genericLBFS<V> {
 		
 		//get connected components
 		LinkedList<HashSet<V>> cComponents = new LinkedList<HashSet<V>>();
-		
+		int compIndex = 0;
+		HashSet<V> component = new HashSet<V>();
 		
 		//flag for whether the graph is QT and a forbidden P4 or C4
 		boolean isQT = true;
 		tpCertificateC<V> forbidden = null;
+		
+		
 		
 		//for every vertex, ordered by t
 		for (int i = 0; i < tsize; i++)
@@ -59,13 +62,7 @@ public class genericLBFS<V> {
 			ArrayList<V> p1 = L.get(0);
 			V x = p1.remove(0);
 			
-			
-			//if first partition is empty, remove partition from L (haha, nope)
-			/*if (p1.isEmpty())
-			{
-				L.remove(0);
-			}*/
-			
+			component.add(x);
 			
 			//add x to s at i
 			s.add(i, x);
@@ -75,32 +72,8 @@ public class genericLBFS<V> {
 			ArrayList<V> hood = orderNeighbour(G, x);
 			
 			
-			//find connected components
-			boolean found = false;
-			search:
-			for (HashSet<V> j : cComponents)
-			{
-				for (V n : hood)
-				{
-					//if a neighbour of x or x is already in a set, add the rest
-					if (j.contains(n) || j.contains(x))
-					{
-						j.addAll(hood);
-						j.add(x);
-						found = true;
-						break search;
-					}
-				}
-			}
-			//elements were not found in current set of connected components, make new one
-			if (!found)
-			{
-				cComponents.add(new HashSet<V>());
-				cComponents.getLast().addAll(hood);
-				cComponents.getLast().add(x);
-			}
-			
-			
+			//flag to keep track if x is the last element of connected component
+			boolean compEnd = true;
 			
 			//usually start j from 1, unless 1 element in L
 			int j = 0;
@@ -115,7 +88,10 @@ public class genericLBFS<V> {
 					if (L.get(j).contains(h))
 					{
 						//remove element from L and add to pp
-						pp.add(L.get(j).remove(L.get(j).indexOf(h)));
+						V temp = L.get(j).remove(L.get(j).indexOf(h));
+						pp.add(temp);
+						component.add(temp);
+						compEnd = false;
 					}
 				}
 				//quasi-threshold check (should return C4 or P4)
@@ -132,16 +108,49 @@ public class genericLBFS<V> {
 				j++;
 					
 			}
+			
+			//x is the last element of connected component, add all preceding ones to list
+			if (compEnd && isQT)
+			{
+				HashSet<V> tempComp = new HashSet<V>();
+				//add elements of connected component
+				for (int k = compIndex; k <= i; k++)
+				{
+					tempComp.add(s.get(k));
+				}
+				if (tempComp.containsAll(component))
+				{
+					//update the end of last connected component
+					compIndex = i+1;
+					//add new connected component to list
+					cComponents.add(component);
+					component = new HashSet<V>();
+				}
+			}
+			
+			//if the graph is not QT, finish up connected component list
+			if (!isQT)
+			{
+				//add elements of forbidden component
+				for (int k = compIndex; k <= i; k++)
+				{
+					component.add(s.get(k));
+				}
+				for (ArrayList<V> v : L)
+				{
+					component.addAll(v);
+				}
+				//add forbidden component to list
+				cComponents.add(component);
+				
+				//return
+				return new lexReturnC<V>(null, forbidden, false, cComponents.size() == 1, cComponents);
+			}
 		}
 		//return search results
-		if (isQT)
-		{
-			return new lexReturnC<V>(s, null, true, cComponents.size() == 1, cComponents);
-		}
-		else
-		{
-			return new lexReturnC<V>(null, forbidden, false, cComponents.size() == 1, cComponents);
-		}
+		
+		return new lexReturnC<V>(s, null, true, cComponents.size() == 1, cComponents);
+		
 	}
 	
 	public lexReturnC<V> qtLexBFS(Graph<V, Pair<V>> G, ArrayList<V> t)

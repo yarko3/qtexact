@@ -124,36 +124,15 @@ public class qtBranching<V>
 			else
 			{
 				//build graphs from connected components
-				boolean gWithForbiddenFound = false;
-				Graph<V, Pair<V>> gWtihForbidden = null;
+				Graph<V, Pair<V>> gWtihForbidden = graphFromVertexSet(G, lexSearch.getcComponents().removeLast());
+				
 				LinkedList<Graph<V, Pair<V>>> cGraphs = new LinkedList<Graph<V, Pair<V>>>();
 				LinkedList<branchingReturnC<V>> results = new LinkedList<branchingReturnC<V>>();
 				for (HashSet<V> l : lexSearch.getcComponents())
 				{
-					Graph<V, Pair<V>> c = new SparseGraph<V, Pair<V>>();
-					for (V i : l)
-					{
-						if (!gWithForbiddenFound && (i.equals(forbidden.get(0)) || i.equals(forbidden.get(1)) || i.equals(forbidden.get(2)) || i.equals(forbidden.get(3))))
-						{
-							gWithForbiddenFound = true;
-							gWtihForbidden = c;
-						}
-						
-						c.addVertex(i);
-						
-						//neighbourhood of i
-						Collection<V> hood = G.getNeighbors(i);
-						for (V n : hood)
-						{
-							
-							if (!(c.containsEdge(new Pair<V>(i, n))))
-								c.addEdge(new Pair<V>(i, n), i, n);
-						}
-					}
-					if (c != gWtihForbidden)
-						cGraphs.add(c);
+					cGraphs.add(graphFromVertexSet(G, l));
 				}
-				
+				//branch on known forbidden structure
 				results.add(branch(gWtihForbidden, degSequenceOrder(gWtihForbidden), lexSearch, new LinkedList<Pair<V>>()));
 				//branch on the rest of the graphs
 				for (Graph<V, Pair<V>> g : cGraphs)
@@ -489,5 +468,30 @@ public class qtBranching<V>
 			}
 		}
 		return t;
+	}
+	
+	/**
+	 * get induced subgraph from vertex set
+	 * @param G original graph
+	 * @param l vertex set
+	 * @return induced subgraph
+	 */
+	private Graph<V, Pair<V>> graphFromVertexSet(Graph<V, Pair<V>> G, HashSet<V> l)
+	{
+		Graph<V, Pair<V>> c = new SparseGraph<V, Pair<V>>();
+		for (V i : l)
+		{
+			
+			c.addVertex(i);
+			
+			//neighbourhood of i
+			Collection<V> hood = G.getNeighbors(i);
+			for (V n : hood)
+			{
+				if (!(c.containsEdge(new Pair<V>(i, n))))
+					c.addEdge(new Pair<V>(i, n), i, n);
+			}
+		}
+		return c;
 	}
 }
