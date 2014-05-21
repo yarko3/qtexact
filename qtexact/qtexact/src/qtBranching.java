@@ -49,6 +49,11 @@ public class qtBranching<V>
 		
 	}
 	
+	/**
+	 * branch without using any heuristic
+	 * @param s contains graph, degree order, current set of edits
+	 * @return a modified graph, degree order and set of edits
+	 */
 	private branchingReturnC<V> branchingNoHeuristic(branchingReturnC<V> s)
 	{
 		Graph<V, Pair<V>> G = s.getG();
