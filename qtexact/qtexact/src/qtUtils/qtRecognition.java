@@ -1,3 +1,8 @@
+/**
+ * Yaroslav Senyuta
+ * NSERC USRA Grant (2014)
+ */
+
 package qtUtils;
 
 import java.util.ArrayList;
@@ -12,12 +17,6 @@ import edu.uci.ics.jung.graph.util.Pair;
 
 public class qtRecognition<V>
 {
-	/**
-	 * Yan algorithm for QT recognition (1994)
-	 * @author Yarko Senyuta
-	 * @param Graph G
-	 * @return a forest if graph is qt or null otherwise
-	 */
 	public DelegateForest<V, Pair<V>> qtCheckYan(Graph<V, Pair<V>> G)
 	{
 		//create a rooted forest representation F of G

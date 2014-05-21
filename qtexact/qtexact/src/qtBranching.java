@@ -1,3 +1,9 @@
+/**
+ * Yaroslav Senyuta
+ * NSERC USRA Grant (2014)
+ */
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;

@@ -1,3 +1,8 @@
+/**
+ * Yaroslav Senyuta
+ * NSERC USRA Grant (2014)
+ */
+
 import java.awt.Dimension;
 import java.io.FileNotFoundException;
 import java.io.FileReader;

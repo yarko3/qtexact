@@ -1,14 +1,15 @@
+/**
+ * Yaroslav Senyuta
+ * NSERC USRA Grant (2014)
+ */
+
 package qtUtils;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
 
-/**
- * lexBFS search return type
- * @author Yarko Senyuta
- *
- */
+
 public class lexReturnC<V>
 {
 	//store ArrayList of either a found P4 or the final ordering

@@ -1,3 +1,9 @@
+/**
+ * Yaroslav Senyuta
+ * NSERC USRA Grant (2014)
+ */
+
+
 package qtUtils;
 
 import java.util.ArrayList;
