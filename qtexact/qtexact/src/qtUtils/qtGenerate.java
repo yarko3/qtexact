@@ -330,5 +330,24 @@ public class qtGenerate<V>
 
 		return g;
 	}
+	
+	public static Graph<Integer, Pair<Integer>> nonQTEx2()
+	{
+		Graph<Integer,Pair<Integer>> g = new SparseGraph<Integer,Pair<Integer>>();
+		
+		g.addEdge(new Pair<Integer>(0, 1), 0, 1);
+		g.addEdge(new Pair<Integer>(1, 2), 1, 2);
+		g.addEdge(new Pair<Integer>(2, 3), 2, 3);
+		g.addEdge(new Pair<Integer>(3, 0), 3, 0);
+		g.addEdge(new Pair<Integer>(3, 4), 3, 4);
+		g.addEdge(new Pair<Integer>(4, 5), 4, 5);
+		g.addEdge(new Pair<Integer>(5, 6), 5, 6);
+		g.addEdge(new Pair<Integer>(6, 7), 6, 7);
+		g.addEdge(new Pair<Integer>(7, 4), 7, 4);
+		g.addEdge(new Pair<Integer>(7, 8), 7, 8);
+		g.addEdge(new Pair<Integer>(8, 5), 8, 5);
+
+		return g;
+	}
 
 }

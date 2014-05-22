@@ -47,7 +47,7 @@ public class fun extends JApplet {
 		
 		//exampleQT = qtGenerate.westernElectricNetwork();
 		
-		exampleQT = qtGenerate.nonQTEx1();
+		exampleQT = qtGenerate.nonQTEx2();
 		
 		qtRecognition<Integer> yan = new qtRecognition<Integer>();
 		

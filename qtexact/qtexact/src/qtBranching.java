@@ -42,9 +42,9 @@ public class qtBranching<V>
 		
 		//start with a clean minMoves
 		branchingReturnC<V> minMoves = new branchingReturnC<V>(G, deg);
-		minMoves.getChanges().addAll((Collection<? extends Pair<V>>) G.getVertices());
+		minMoves.getChanges().addAll((Collection<? extends Pair<V>>) G.getEdges());
 		branchingReturnC<V> goal = new branchingReturnC<V>(G, deg);
-		//goal.setMinMoves(goal);
+		goal.setMinMoves(minMoves);
 		
 		//branch on G with degree ordering deg
 		goal = branchingCC(goal);
@@ -156,16 +156,12 @@ public class qtBranching<V>
 			{
 				if (s.getChanges().size() < minMoves.getChanges().size())
 				{
-					minMoves = s;
-					minMoves.setMinMoves(s);
-					s.getMinMoves().setMinMoves(s);
+					s.setMinMoves(s);
 				}
 			}
 			catch (NullPointerException e)
 			{
-				minMoves = s;
-				minMoves.setMinMoves(s);
-				s.getMinMoves().setMinMoves(s);
+				s.setMinMoves(s);
 			}
 			return s;
 		}
@@ -270,12 +266,35 @@ public class qtBranching<V>
 			
 			//results of removing 2 edges to break C4
 			branchingReturnC<V> c4Remove0 = branchingCC(c4Delete2Result(G, deg, changes, lexResult.get(0), lexResult.get(1), lexResult.get(1), lexResult.get(2), minMoves));
+			if (c4Remove0.getMinMoves().getChanges().size() < minMoves.getChanges().size())
+			{
+				minMoves = c4Remove0;
+			}
 			branchingReturnC<V> c4Remove1 = branchingCC(c4Delete2Result(G, deg, changes, lexResult.get(0), lexResult.get(3), lexResult.get(2), lexResult.get(3), minMoves));
+			if (c4Remove1.getMinMoves().getChanges().size() < minMoves.getChanges().size())
+			{
+				minMoves = c4Remove1;
+			}
 			branchingReturnC<V> c4Remove2 = branchingCC(c4Delete2Result(G, deg, changes, lexResult.get(0), lexResult.get(1), lexResult.get(2), lexResult.get(3), minMoves));
+			if (c4Remove2.getMinMoves().getChanges().size() < minMoves.getChanges().size())
+			{
+				minMoves = c4Remove2;
+			}
 			branchingReturnC<V> c4Remove3 = branchingCC(c4Delete2Result(G, deg, changes, lexResult.get(0), lexResult.get(3), lexResult.get(1), lexResult.get(2), minMoves));
+			if (c4Remove3.getMinMoves().getChanges().size() < minMoves.getChanges().size())
+			{
+				minMoves = c4Remove3;
+			}
 			branchingReturnC<V> c4Remove4 = branchingCC(c4Delete2Result(G, deg, changes, lexResult.get(1), lexResult.get(2), lexResult.get(2), lexResult.get(3), minMoves));
+			if (c4Remove4.getMinMoves().getChanges().size() < minMoves.getChanges().size())
+			{
+				minMoves = c4Remove4;
+			}
 			branchingReturnC<V> c4Remove5 = branchingCC(c4Delete2Result(G, deg, changes, lexResult.get(0), lexResult.get(1), lexResult.get(0), lexResult.get(3), minMoves));
-			
+			if (c4Remove5.getMinMoves().getChanges().size() < minMoves.getChanges().size())
+			{
+				minMoves = c4Remove5;
+			}
 			
 			//add to PriorityQueue to sort
 			PriorityQueue<branchingReturnC<V>> pQueue = new PriorityQueue<branchingReturnC<V>>();
@@ -297,8 +316,20 @@ public class qtBranching<V>
 		else
 		{
 			branchingReturnC<V> p4Remove0 = branchingCC(p4DeleteResult(G, deg, changes, lexResult.get(0), lexResult.get(1), minMoves));
+			if (p4Remove0.getMinMoves().getChanges().size() < minMoves.getChanges().size())
+			{
+				minMoves = p4Remove0;
+			}
 			branchingReturnC<V> p4Remove1 = branchingCC(p4DeleteResult(G, deg, changes, lexResult.get(1), lexResult.get(2), minMoves));
+			if (p4Remove1.getMinMoves().getChanges().size() < minMoves.getChanges().size())
+			{
+				minMoves = p4Remove1;
+			}
 			branchingReturnC<V> p4Remove2 = branchingCC(p4DeleteResult(G, deg, changes, lexResult.get(2), lexResult.get(3), minMoves));
+			if (p4Remove2.getMinMoves().getChanges().size() < minMoves.getChanges().size())
+			{
+				minMoves = p4Remove2;
+			}
 			
 			//add to PriorityQueue to sort
 			PriorityQueue<branchingReturnC<V>> pQueue = new PriorityQueue<branchingReturnC<V>>();
@@ -442,6 +473,7 @@ public class qtBranching<V>
 		
 		cCopy.add(new Pair<V>(v0, v1));
 		cCopy.add(new Pair<V>(v2, v3));
+		
 		return new branchingReturnC<V>(graphCopy, degCopy, cCopy, minMoves);
 		
 	}
