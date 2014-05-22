@@ -35,14 +35,19 @@ public class qtBranching<V>
 	 */
 	public Graph<V, Pair<V>> qtEditConnectedComponents(Graph<V, Pair<V>> G)
 	{
-		//start with a clean minMoves
-		branchingReturnC<V> minMoves = null;
 		
 		//keep proper degree order as an ArrayList<LinkedList<vertex>>
 		ArrayList<LinkedList<V>> deg = degSequenceOrder(G);
 		
+		
+		//start with a clean minMoves
+		branchingReturnC<V> minMoves = new branchingReturnC<V>(G, deg);
+		minMoves.getChanges().addAll((Collection<? extends Pair<V>>) G.getVertices());
+		branchingReturnC<V> goal = new branchingReturnC<V>(G, deg);
+		//goal.setMinMoves(goal);
+		
 		//branch on G with degree ordering deg
-		branchingReturnC<V> goal = branchingCC(new branchingReturnC<V>(G, deg, minMoves));
+		goal = branchingCC(goal);
 		System.out.println("Number of moves: " + goal.getChanges());
 		return goal.getG();
 		
