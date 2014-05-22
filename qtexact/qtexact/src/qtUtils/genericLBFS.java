@@ -232,7 +232,7 @@ public class genericLBFS<V> {
 			}
 		}
 		//return search results
-		return new lexReturnC<V>(s, null, false, false, null);
+		return new lexReturnC<V>(s, null, true, false, null);
 	}
 	
 	

@@ -43,11 +43,11 @@ public class fun extends JApplet {
 		exampleQT.addEdge(new Pair<Integer>(8 ,5), 8, 5);
 		
 		
-		//exampleQT = qtGenerate.simpleC4();
+		exampleQT = qtGenerate.simpleC4();
 		
 		//exampleQT = qtGenerate.westernElectricNetwork();
 		
-		exampleQT = qtGenerate.nonQTEx1();
+		//exampleQT = qtGenerate.nonQTEx1();
 		
 		qtRecognition<Integer> yan = new qtRecognition<Integer>();
 		
