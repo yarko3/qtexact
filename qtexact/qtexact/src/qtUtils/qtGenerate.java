@@ -8,11 +8,18 @@ package qtUtils;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Random;
+
+import com.rits.cloning.Cloner;
 
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.SparseGraph;
 import edu.uci.ics.jung.graph.util.Pair;
+
+
+
 /**Class used for generating quasi-threshold graphs
  * 
  * @author Yarko Senyuta
@@ -22,12 +29,13 @@ import edu.uci.ics.jung.graph.util.Pair;
  */
 public class qtGenerate<V>
 {
+	public static Cloner clone = new Cloner();
 	/**
 	 * generate a completely connected graph of number of edges
 	 * @param number size of clique
 	 * @return graph
 	 */
-	public SparseGraph<Integer, Pair<Integer>> clique(int number)
+	public static SparseGraph<Integer, Pair<Integer>> clique(int number)
 	{
 		SparseGraph<Integer, Pair<Integer>> graph = new SparseGraph<Integer, Pair<Integer>>();
 		if (number > 0)
@@ -35,6 +43,28 @@ public class qtGenerate<V>
 			graph.addEdge(new Pair<Integer>(1, 2), 1, 2);
 			int curEdge = 3;
 			while (curEdge <= number)
+			{
+				Integer[] array = new Integer[graph.getVertexCount()];
+				array = graph.getVertices().toArray(array);
+				for(int v : array)
+				{
+					graph.addEdge(new Pair<Integer>(curEdge, v), curEdge, v);
+				}
+				curEdge++;
+			}
+		}
+		return graph;
+	}
+	
+	
+	public static SparseGraph<Integer, Pair<Integer>> clique(int number, int start)
+	{
+		SparseGraph<Integer, Pair<Integer>> graph = new SparseGraph<Integer, Pair<Integer>>();
+		if (number+ start > start)
+		{
+			graph.addEdge(new Pair<Integer>(start, start+1), start, start+1);
+			int curEdge = start+2;
+			while (curEdge <= number+start)
 			{
 				Integer[] array = new Integer[graph.getVertexCount()];
 				array = graph.getVertices().toArray(array);
@@ -104,58 +134,43 @@ public class qtGenerate<V>
 	 */
 	public static Graph<Integer, Pair<Integer>> cliqueJoin(int n1, int n2)
 	{
-		SparseGraph<Integer, Pair<Integer>> graph = new SparseGraph<Integer, Pair<Integer>>();
 		
-		int curV = 0;
-		graph.addVertex(curV++);
-		if (n1 > 0)
-		{
-			while (curV <= n1)
-			{
-				Integer[] array = new Integer[graph.getVertexCount()];
-				array = graph.getVertices().toArray(array);
-				for (int v : array)
-				{
-					graph.addEdge(new Pair<Integer>(curV, v), curV, v);
-				}
-				curV++;
-			}
-		}
+		Graph<Integer, Pair<Integer>> fHalf = clique(n1);
+		Graph<Integer, Pair<Integer>> sHalf = clique(n2, n1+1);
 		
-		Integer[] f = new Integer[graph.getVertexCount()];
+		LinkedList<Graph<Integer, Pair<Integer>>> l = new LinkedList<Graph<Integer, Pair<Integer>>>();
+		l.add(fHalf);
+		l.add(sHalf);
 		
-		f = graph.getVertices().toArray(f);
-		ArrayList<Integer> fHalf = new ArrayList<Integer>();
-		for (int i : f)
-		{
-			fHalf.add(i);
-		}
-		
-		graph.addVertex(curV);
-		
-		int newCount = 1;
-		
-		if (n2 > 0)
-		{
-			while (newCount <= n2)
-			{
-				Integer[] array = new Integer[graph.getVertexCount()];
-				array = graph.getVertices().toArray(array);
-				for (int v : array)
-				{
-					if (!fHalf.contains(v))
-						graph.addEdge(new Pair<Integer>(curV, v), curV + newCount, v);
-				}
-				newCount++;
-			}
-		}
+		Graph<Integer, Pair<Integer>> graph = graphJoin(l);
 		
 		//final edge to join the two halves 
-		graph.addEdge(new Pair<Integer>(0, curV+newCount-1), 0, curV+newCount-1);
+		graph.addEdge(new Pair<Integer>(n1, n1+1), n1, n1+1);
 		return graph;
 		
 	}
 	
+	private static SparseGraph<Integer, Pair<Integer>> graphJoin(LinkedList<Graph<Integer, Pair<Integer>>> l) {
+		SparseGraph<Integer, Pair<Integer>> rGraph = new SparseGraph<Integer, Pair<Integer>>();
+		//build graph from connected components
+		for (Graph<Integer, Pair<Integer>> r : l)
+		{
+			
+			//add all the edges
+			for (Integer v : r.getVertices())
+			{
+				rGraph.addVertex(v);
+			}
+			//add all the vertices
+			for (Pair<Integer> a : r.getEdges())
+			{
+				rGraph.addEdge(clone.deepClone(a), a.getFirst(), a.getSecond());
+			}
+
+		}
+		return rGraph;
+	}
+
 	/**Generate a simple graph with an induced C4
 	 * 
 	 * @return graph with C4

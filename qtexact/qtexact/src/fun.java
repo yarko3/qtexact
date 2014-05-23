@@ -42,12 +42,12 @@ public class fun extends JApplet {
 		exampleQT.addEdge(new Pair<Integer>(8, 1), 8, 1);
 		exampleQT.addEdge(new Pair<Integer>(8 ,5), 8, 5);
 		
-		
-		exampleQT = qtGenerate.simpleC4();
+		//exampleQT = gen.cliqueJoin(20, 30);
+		//exampleQT = qtGenerate.simpleC4();
 		
 		//exampleQT = qtGenerate.westernElectricNetwork();
 		
-		exampleQT = qtGenerate.nonQTEx2();
+		exampleQT = qtGenerate.nonQTEx1();
 		
 		qtRecognition<Integer> yan = new qtRecognition<Integer>();
 		
@@ -58,11 +58,11 @@ public class fun extends JApplet {
 		qtBranching<Integer> del = new qtBranching<Integer>();
 		
 		start = System.currentTimeMillis();
-		del.qtEditConnectedComponents(exampleQT);
+		exampleQT = del.qtEditConnectedComponents(exampleQT);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		start = System.currentTimeMillis();
-		exampleQT = del.qtEditNoHeuristic(exampleQT);
+		//exampleQT = del.qtEditNoHeuristic(exampleQT);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		

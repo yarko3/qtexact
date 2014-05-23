@@ -173,7 +173,7 @@ public class qtBranching<V>
 				//check if minMoves is a better choice than current state of search
 				if (minMoves.getChanges().size() > changes.size())
 				{
-					branchingReturnC<V> rtn = branchCCSplit(G, deg, changes, lexSearch, minMoves);
+					branchingReturnC<V> rtn = componentSplit(G, deg, changes, lexSearch, minMoves);
 					return rtn;
 				}
 				//min moves is a better solution
@@ -182,7 +182,7 @@ public class qtBranching<V>
 			}
 			catch (NullPointerException e)
 			{
-				branchingReturnC<V> rtn = branchCCSplit(G, deg, changes, lexSearch, minMoves);
+				branchingReturnC<V> rtn = componentSplit(G, deg, changes, lexSearch, minMoves);
 				return rtn;
 			}
 			
@@ -268,32 +268,32 @@ public class qtBranching<V>
 			branchingReturnC<V> c4Remove0 = branchingCC(c4Delete2Result(G, deg, changes, lexResult.get(0), lexResult.get(1), lexResult.get(1), lexResult.get(2), minMoves));
 			if (c4Remove0.getMinMoves().getChanges().size() < minMoves.getChanges().size())
 			{
-				minMoves = c4Remove0;
+				minMoves = c4Remove0.getMinMoves();
 			}
 			branchingReturnC<V> c4Remove1 = branchingCC(c4Delete2Result(G, deg, changes, lexResult.get(0), lexResult.get(3), lexResult.get(2), lexResult.get(3), minMoves));
 			if (c4Remove1.getMinMoves().getChanges().size() < minMoves.getChanges().size())
 			{
-				minMoves = c4Remove1;
+				minMoves = c4Remove1.getMinMoves();
 			}
 			branchingReturnC<V> c4Remove2 = branchingCC(c4Delete2Result(G, deg, changes, lexResult.get(0), lexResult.get(1), lexResult.get(2), lexResult.get(3), minMoves));
 			if (c4Remove2.getMinMoves().getChanges().size() < minMoves.getChanges().size())
 			{
-				minMoves = c4Remove2;
+				minMoves = c4Remove2.getMinMoves();
 			}
 			branchingReturnC<V> c4Remove3 = branchingCC(c4Delete2Result(G, deg, changes, lexResult.get(0), lexResult.get(3), lexResult.get(1), lexResult.get(2), minMoves));
 			if (c4Remove3.getMinMoves().getChanges().size() < minMoves.getChanges().size())
 			{
-				minMoves = c4Remove3;
+				minMoves = c4Remove3.getMinMoves();
 			}
 			branchingReturnC<V> c4Remove4 = branchingCC(c4Delete2Result(G, deg, changes, lexResult.get(1), lexResult.get(2), lexResult.get(2), lexResult.get(3), minMoves));
 			if (c4Remove4.getMinMoves().getChanges().size() < minMoves.getChanges().size())
 			{
-				minMoves = c4Remove4;
+				minMoves = c4Remove4.getMinMoves();
 			}
 			branchingReturnC<V> c4Remove5 = branchingCC(c4Delete2Result(G, deg, changes, lexResult.get(0), lexResult.get(1), lexResult.get(0), lexResult.get(3), minMoves));
 			if (c4Remove5.getMinMoves().getChanges().size() < minMoves.getChanges().size())
 			{
-				minMoves = c4Remove5;
+				minMoves = c4Remove5.getMinMoves();
 			}
 			
 			//add to PriorityQueue to sort
@@ -318,17 +318,17 @@ public class qtBranching<V>
 			branchingReturnC<V> p4Remove0 = branchingCC(p4DeleteResult(G, deg, changes, lexResult.get(0), lexResult.get(1), minMoves));
 			if (p4Remove0.getMinMoves().getChanges().size() < minMoves.getChanges().size())
 			{
-				minMoves = p4Remove0;
+				minMoves = p4Remove0.getMinMoves();
 			}
 			branchingReturnC<V> p4Remove1 = branchingCC(p4DeleteResult(G, deg, changes, lexResult.get(1), lexResult.get(2), minMoves));
 			if (p4Remove1.getMinMoves().getChanges().size() < minMoves.getChanges().size())
 			{
-				minMoves = p4Remove1;
+				minMoves = p4Remove1.getMinMoves();
 			}
 			branchingReturnC<V> p4Remove2 = branchingCC(p4DeleteResult(G, deg, changes, lexResult.get(2), lexResult.get(3), minMoves));
 			if (p4Remove2.getMinMoves().getChanges().size() < minMoves.getChanges().size())
 			{
-				minMoves = p4Remove2;
+				minMoves = p4Remove2.getMinMoves();
 			}
 			
 			//add to PriorityQueue to sort
@@ -344,8 +344,11 @@ public class qtBranching<V>
 		}
 	}
 	
-	private branchingReturnC<V> branchCCSplit(Graph<V, Pair<V>> G, ArrayList<LinkedList<V>> deg, LinkedList<Pair<V>> changes, lexReturnC<V> lexSearch, branchingReturnC<V> minMoves)
+	private branchingReturnC<V> componentSplit(Graph<V, Pair<V>> G, ArrayList<LinkedList<V>> deg, LinkedList<Pair<V>> changes, lexReturnC<V> lex, branchingReturnC<V> minMoves)
 	{
+		//make copy of search results, so multiple branches can use the same search
+		lexReturnC<V> lexSearch = clone.deepClone(lex);
+		
 		//search yields only one connected component, branch on one component
 		if (lexSearch.isConnected())
 		{
@@ -364,17 +367,30 @@ public class qtBranching<V>
 				cGraphs.add(graphFromVertexSet(G, l));
 			}
 			//branch on known forbidden structure
-			results.add(branchCC(gWtihForbidden, degSequenceOrder(gWtihForbidden), lexSearch, clone.deepClone(changes), null));
+			
+			//fill new minMoves with entire edge set
+			branchingReturnC<V> min = new branchingReturnC<V>(gWtihForbidden, deg);
+			min.getChanges().addAll((Collection<? extends Pair<V>>) gWtihForbidden.getEdges());
+			results.add(branchCC(gWtihForbidden, degSequenceOrder(gWtihForbidden), lexSearch, new LinkedList<Pair<V>>(), min));
 			//branch on the rest of the graphs
 			for (Graph<V, Pair<V>> g : cGraphs)
 			{
 				//if component is large enough to care
 				if (g.getVertexCount() > 3)
 				{
-					results.add(branchingCC(new branchingReturnC<V>(g,degSequenceOrder(g), clone.deepClone(changes), null)));
+					//fill new minMoves with entire edge set of component
+					min = new branchingReturnC<V>(g, deg);
+					min.getChanges().addAll((Collection<? extends Pair<V>>) g.getEdges());
+
+					results.add(branchingCC(new branchingReturnC<V>(g,degSequenceOrder(g), new LinkedList<Pair<V>>(), min)));
 				}
 				else
-					results.add(new branchingReturnC<V>(g, degSequenceOrder(g)));
+				{
+					//empty minMoves 
+					min = new branchingReturnC<V>(g, deg);
+					results.add(new branchingReturnC<V>(g, degSequenceOrder(g), min));
+				}
+					
 					
 			}
 			
@@ -384,46 +400,28 @@ public class qtBranching<V>
 			Graph<V, Pair<V>> rGraph = new SparseGraph<V, Pair<V>>();
 			ArrayList<LinkedList<V>> rDeg = new ArrayList<LinkedList<V>>();
 			
+			//construct graph, degree sequence, changes from components
+			graphFromComponentGraphs(rGraph, rDeg, rChanges, tempChanges, results);
 			
-			//build graph from connected components
+			
+			//construct new minMoves from all old ones
+			min = new branchingReturnC<V>(rGraph, rDeg);
+			//throw all minMoves into a HashSet, so they don't have duplicates
+			HashSet<Pair<V>> temp = new HashSet<Pair<V>>();
 			for (branchingReturnC<V> r : results)
 			{
-				//update total number of changes made
-				tempChanges.addAll(r.getChanges());
-				
-				//add all the edges
-				for (V v : r.getG().getVertices())
-				{
-					rGraph.addVertex(v);
-				}
-				//add all the vertices
-				for (Pair<V> a : r.getG().getEdges())
-				{
-					rGraph.addEdge(clone.deepClone(a), a.getFirst(), a.getSecond());
-				}
-				
-				//add to degree sequence
-				for (int i = 0; i < r.getDeg().size(); i ++)
-				{
-					try
-					{
-						rDeg.get(i).addAll(r.getDeg().get(i));
-					}
-					catch (IndexOutOfBoundsException e)
-					{
-						rDeg.add(i, new LinkedList<V>());
-						rDeg.get(i).addAll(r.getDeg().get(i));
-					}
-				}	
+				temp.addAll(r.getMinMoves().getChanges());
 			}
-			rChanges.addAll(tempChanges);
+			min.getChanges().addAll(temp);
+			min.getChanges().addAll(changes);
 			
-			branchingReturnC<V> rtn = new branchingReturnC<V>(rGraph, rDeg, rChanges);
+			branchingReturnC<V> rtn = new branchingReturnC<V>(rGraph, rDeg, rChanges, min);
 			rtn.setMinMoves(rtn);
 			
 			return rtn;
 		}
 	}
+	
 	/**
 	 * result of adding an edge to break C4
 	 * @param G graph
@@ -664,5 +662,51 @@ public class qtBranching<V>
 			}
 		}
 		return c;
+	}
+	
+	/**
+	 * Create a graph, the degree order, and changes from connected component graphs
+	 * @param rGraph
+	 * @param rDeg
+	 * @param rChanges
+	 * @param tempChanges
+	 * @param results
+	 */
+	private void graphFromComponentGraphs(Graph<V, Pair<V>> rGraph,
+			ArrayList<LinkedList<V>> rDeg, LinkedList<Pair<V>> rChanges,
+			HashSet<Pair<V>> tempChanges, LinkedList<branchingReturnC<V>> results) {
+		//build graph from connected components
+		for (branchingReturnC<V> r : results)
+		{
+			//update total number of changes made
+			tempChanges.addAll(r.getChanges());
+			
+			//add all the edges
+			for (V v : r.getG().getVertices())
+			{
+				rGraph.addVertex(v);
+			}
+			//add all the vertices
+			for (Pair<V> a : r.getG().getEdges())
+			{
+				rGraph.addEdge(clone.deepClone(a), a.getFirst(), a.getSecond());
+			}
+			
+			//add to degree sequence
+			for (int i = 0; i < r.getDeg().size(); i ++)
+			{
+				try
+				{
+					rDeg.get(i).addAll(r.getDeg().get(i));
+				}
+				catch (IndexOutOfBoundsException e)
+				{
+					rDeg.add(i, new LinkedList<V>());
+					rDeg.get(i).addAll(r.getDeg().get(i));
+				}
+			}	
+		}
+		rChanges.addAll(tempChanges);
+		
 	}
 }
