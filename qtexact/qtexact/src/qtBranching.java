@@ -403,6 +403,8 @@ public class qtBranching<V>
 			//construct graph, degree sequence, changes from components
 			graphFromComponentGraphs(rGraph, rDeg, rChanges, tempChanges, results);
 			
+			//keep old moves list
+			rChanges.addAll(changes);
 			
 			//construct new minMoves from all old ones
 			min = new branchingReturnC<V>(rGraph, rDeg);

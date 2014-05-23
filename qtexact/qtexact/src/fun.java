@@ -45,9 +45,9 @@ public class fun extends JApplet {
 		//exampleQT = gen.cliqueJoin(20, 30);
 		//exampleQT = qtGenerate.simpleC4();
 		
-		//exampleQT = qtGenerate.westernElectricNetwork();
+		exampleQT = qtGenerate.westernElectricNetwork();
 		
-		exampleQT = qtGenerate.nonQTEx1();
+		//exampleQT = qtGenerate.nonQTEx2();
 		
 		qtRecognition<Integer> yan = new qtRecognition<Integer>();
 		
