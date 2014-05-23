@@ -25,8 +25,6 @@ public class qtBranching<V>
 	public genericLBFS<V> search = new genericLBFS<V>();
 	
 	public static Cloner clone = new Cloner();
-	//current set of minimum moves to QT
-	//public branchingReturnC<V> minMoves;
 	
 	/**
 	 * Edit a graph by splitting it into connected components with bounding
@@ -40,7 +38,7 @@ public class qtBranching<V>
 		ArrayList<LinkedList<V>> deg = degSequenceOrder(G);
 		
 		
-		//start with a clean minMoves
+		//start with a full minMoves
 		branchingReturnC<V> minMoves = new branchingReturnC<V>(G, deg);
 		minMoves.getChanges().addAll((Collection<? extends Pair<V>>) G.getEdges());
 		branchingReturnC<V> goal = new branchingReturnC<V>(G, deg);
@@ -59,12 +57,18 @@ public class qtBranching<V>
 	 */
 	public Graph<V, Pair<V>> qtEditNoHeuristic(Graph<V, Pair<V>> G)
 	{
-		//start with empty minMoves
-		branchingReturnC<V> minMoves = null;
+
 		//keep proper degree order as an ArrayList<LinkedList<vertex>>
 		ArrayList<LinkedList<V>> deg = degSequenceOrder(G);
 		
-		branchingReturnC<V> goal = branchingNoHeuristic(new branchingReturnC<V>(G, deg, minMoves));
+		//start with a full minMoves
+		branchingReturnC<V> minMoves = new branchingReturnC<V>(G, deg);
+		minMoves.getChanges().addAll((Collection<? extends Pair<V>>) G.getEdges());
+		branchingReturnC<V> goal = new branchingReturnC<V>(G, deg);
+		goal.setMinMoves(minMoves);
+
+		//branch on G with degree ordering deg
+		goal = branchingNoHeuristic(goal);
 		System.out.println("Number of moves: " + goal.getChanges());
 		return goal.getG();
 		
@@ -91,40 +95,23 @@ public class qtBranching<V>
 		{
 			branchingReturnC<V> rtn = new branchingReturnC<V>(G, deg, changes, minMoves);
 			//update the minMoves list if this solution is better
-			try
+			if (rtn.getChanges().size() < minMoves.getChanges().size())
 			{
-				if (rtn.getChanges().size() < minMoves.getChanges().size())
-				{
-					System.out.println("New minMoves: " + minMoves);
-					minMoves = rtn;
-				}
-			}
-			//no minMoves has been instantiated yet
-			catch (NullPointerException e)
-			{
-				minMoves = rtn;
+				rtn.setMinMoves(rtn);
 			}
 			return rtn;
 		}
 			//branch on found P4 or C4
 			else
 			{	
-				try
-				{
-					//only branch if current minMoves is longer than current state of search
-					if (minMoves.getChanges().size() > changes.size())
-					{
-						branchingReturnC<V> rtn = branchNoHeuristic(G, deg, lexSearch, changes, minMoves);
-						return rtn;
-					}
-					else
-						return minMoves;
-				}
-				catch (NullPointerException e)
+				//only branch if current minMoves is longer than current state of search
+				if (minMoves.getChanges().size() > changes.size())
 				{
 					branchingReturnC<V> rtn = branchNoHeuristic(G, deg, lexSearch, changes, minMoves);
 					return rtn;
 				}
+				else
+					return minMoves;
 			}
 	}
 	
@@ -152,40 +139,25 @@ public class qtBranching<V>
 		if (lexSearch.isQT())
 		{
 			//update the minMoves list
-			try
-			{
-				if (s.getChanges().size() < minMoves.getChanges().size())
-				{
-					s.setMinMoves(s);
-				}
-			}
-			catch (NullPointerException e)
+			if (s.getChanges().size() < minMoves.getChanges().size())
 			{
 				s.setMinMoves(s);
 			}
+
 			return s;
 		}
 		//branch on found P4 or C4
 		else
 		{	
-			try
-			{
-				//check if minMoves is a better choice than current state of search
-				if (minMoves.getChanges().size() > changes.size())
-				{
-					branchingReturnC<V> rtn = componentSplit(G, deg, changes, lexSearch, minMoves);
-					return rtn;
-				}
-				//min moves is a better solution
-				else
-					return minMoves;
-			}
-			catch (NullPointerException e)
+			//check if minMoves is a better choice than current state of search
+			if (minMoves.getChanges().size() > changes.size())
 			{
 				branchingReturnC<V> rtn = componentSplit(G, deg, changes, lexSearch, minMoves);
 				return rtn;
 			}
-			
+			//min moves is a better solution
+			else
+				return minMoves;
 		}
 	}
 	
@@ -210,12 +182,35 @@ public class qtBranching<V>
 			
 			//results of removing 2 edges to break C4
 			branchingReturnC<V> c4Remove0 = branchingNoHeuristic(c4Delete2Result(G, deg, changes, lexResult.get(0), lexResult.get(1), lexResult.get(1), lexResult.get(2), minMoves));
+			if (c4Remove0.getMinMoves().getChanges().size() < minMoves.getChanges().size())
+			{
+				minMoves = c4Remove0.getMinMoves();
+			}
 			branchingReturnC<V> c4Remove1 = branchingNoHeuristic(c4Delete2Result(G, deg, changes, lexResult.get(0), lexResult.get(3), lexResult.get(2), lexResult.get(3), minMoves));
+			if (c4Remove1.getMinMoves().getChanges().size() < minMoves.getChanges().size())
+			{
+				minMoves = c4Remove1.getMinMoves();
+			}
 			branchingReturnC<V> c4Remove2 = branchingNoHeuristic(c4Delete2Result(G, deg, changes, lexResult.get(0), lexResult.get(1), lexResult.get(2), lexResult.get(3), minMoves));
+			if (c4Remove2.getMinMoves().getChanges().size() < minMoves.getChanges().size())
+			{
+				minMoves = c4Remove2.getMinMoves();
+			}
 			branchingReturnC<V> c4Remove3 = branchingNoHeuristic(c4Delete2Result(G, deg, changes, lexResult.get(0), lexResult.get(3), lexResult.get(1), lexResult.get(2), minMoves));
+			if (c4Remove3.getMinMoves().getChanges().size() < minMoves.getChanges().size())
+			{
+				minMoves = c4Remove3.getMinMoves();
+			}
 			branchingReturnC<V> c4Remove4 = branchingNoHeuristic(c4Delete2Result(G, deg, changes, lexResult.get(1), lexResult.get(2), lexResult.get(2), lexResult.get(3), minMoves));
+			if (c4Remove4.getMinMoves().getChanges().size() < minMoves.getChanges().size())
+			{
+				minMoves = c4Remove4.getMinMoves();
+			}
 			branchingReturnC<V> c4Remove5 = branchingNoHeuristic(c4Delete2Result(G, deg, changes, lexResult.get(0), lexResult.get(1), lexResult.get(0), lexResult.get(3), minMoves));
-			
+			if (c4Remove5.getMinMoves().getChanges().size() < minMoves.getChanges().size())
+			{
+				minMoves = c4Remove5.getMinMoves();
+			}
 			
 			//add to PriorityQueue to sort
 			PriorityQueue<branchingReturnC<V>> pQueue = new PriorityQueue<branchingReturnC<V>>();
@@ -237,8 +232,20 @@ public class qtBranching<V>
 		else
 		{
 			branchingReturnC<V> p4Remove0 = branchingNoHeuristic(p4DeleteResult(G, deg, changes, lexResult.get(0), lexResult.get(1), minMoves));
+			if (p4Remove0.getMinMoves().getChanges().size() < minMoves.getChanges().size())
+			{
+				minMoves = p4Remove0.getMinMoves();
+			}
 			branchingReturnC<V> p4Remove1 = branchingNoHeuristic(p4DeleteResult(G, deg, changes, lexResult.get(1), lexResult.get(2), minMoves));
+			if (p4Remove1.getMinMoves().getChanges().size() < minMoves.getChanges().size())
+			{
+				minMoves = p4Remove1.getMinMoves();
+			}
 			branchingReturnC<V> p4Remove2 = branchingNoHeuristic(p4DeleteResult(G, deg, changes, lexResult.get(2), lexResult.get(3), minMoves));
+			if (p4Remove2.getMinMoves().getChanges().size() < minMoves.getChanges().size())
+			{
+				minMoves = p4Remove2.getMinMoves();
+			}
 			
 			//add to PriorityQueue to sort
 			PriorityQueue<branchingReturnC<V>> pQueue = new PriorityQueue<branchingReturnC<V>>();
@@ -344,6 +351,15 @@ public class qtBranching<V>
 		}
 	}
 	
+	/**
+	 * branch on connected components if they are available
+	 * @param G
+	 * @param deg
+	 * @param changes
+	 * @param lex
+	 * @param minMoves
+	 * @return
+	 */
 	private branchingReturnC<V> componentSplit(Graph<V, Pair<V>> G, ArrayList<LinkedList<V>> deg, LinkedList<Pair<V>> changes, lexReturnC<V> lex, branchingReturnC<V> minMoves)
 	{
 		//make copy of search results, so multiple branches can use the same search

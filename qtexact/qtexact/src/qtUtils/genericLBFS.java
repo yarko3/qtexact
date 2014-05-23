@@ -10,8 +10,14 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
+import java.util.Random;
 
+import org.apache.commons.collections15.Factory;
+
+import edu.uci.ics.jung.algorithms.generators.random.ErdosRenyiGenerator;
 import edu.uci.ics.jung.graph.Graph;
+import edu.uci.ics.jung.graph.UndirectedGraph;
+import edu.uci.ics.jung.graph.UndirectedSparseGraph;
 import edu.uci.ics.jung.graph.util.Pair;
 
 public class genericLBFS<V> {
@@ -331,6 +337,33 @@ public class genericLBFS<V> {
 		System.out.println("Certificate failed ");
 		return null;
 		
+	}
+	
+	//should generate random graph
+	public Graph<Integer, Pair<Integer>> random()
+	{
+		Random rand = new Random();
+		Factory<UndirectedGraph<Integer, Pair<Integer>>> graphFactory = UndirectedSparseGraph.getFactory();
+		Factory<Integer> vertexFactory = new Factory<Integer>() {
+			int count;
+
+			public Integer create() {
+				return count++;
+			}
+		};
+		Factory<Pair<Integer>> edgeFactory = new Factory<Pair<Integer>>() {
+			int count;
+
+			public Pair<Integer> create() {
+				return new Pair<Integer>(count, (count++)+1);
+			}
+		};
+		int vertices = rand.nextInt(480) + 20;
+		double p = rand.nextDouble();
+		ErdosRenyiGenerator<Integer, Pair<Integer>> gen = new ErdosRenyiGenerator<Integer, Pair<Integer>>(graphFactory, vertexFactory, edgeFactory, vertices, p);
+		Graph<Integer, Pair<Integer>> graph = gen.create();
+		
+		return graph;
 	}
 
 }
