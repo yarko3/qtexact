@@ -15,6 +15,7 @@ import java.util.Set;
 import javax.swing.JApplet;
 import javax.swing.JFrame;
 
+import qtUtils.genericLBFS;
 import qtUtils.qtGenerate;
 import qtUtils.qtRecognition;
 import edu.uci.ics.jung.algorithms.cluster.EdgeBetweennessClusterer;
@@ -31,8 +32,13 @@ public class fun extends JApplet {
 	 * graph
 	 */
 	static Graph<Integer, String> graph;
-
-	public static void main(String[] args) 
+	public static void main(String[] args)
+	{
+		
+		editTest();
+	}
+	
+	public static void editTest() 
 	{
 		Graph<Integer, Pair<Integer>> exampleQT;
 		qtGenerate<Integer> gen = new qtGenerate<Integer>();
@@ -88,7 +94,66 @@ public class fun extends JApplet {
 		jf.setVisible(true);
 	}
 	
-	
+	public static void searchSpeedTest()
+	{
+		qtGenerate<Integer> gen = new qtGenerate<Integer>();
+		qtRecognition<Integer> yan = new qtRecognition<Integer>();
+		genericLBFS<Integer> lex = new genericLBFS<Integer>();
+		qtBranching<Integer> branch = new qtBranching<Integer>();
+		
+		Graph<Integer, Pair<Integer>> example0 = gen.randomQT(100);
+		System.out.println("\n100 node QT graph");
+		System.out.println("Yan:");
+		long start = System.currentTimeMillis();
+		System.out.println(yan.qtCheckYan(example0));
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		
+		System.out.println("LexBFS not connected:");
+		start = System.currentTimeMillis();
+		System.out.println(lex.qtLexBFS(example0, branch.flattenAndReverseDeg(branch.degSequenceOrder(example0))));
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		
+		System.out.println("LexBFS connected:");
+		start = System.currentTimeMillis();
+		System.out.println(lex.qtLexBFSComponents(example0, branch.flattenAndReverseDeg(branch.degSequenceOrder(example0))));
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		
+		example0 = gen.clique(100);
+		System.out.println("\n100 node clique graph");
+		System.out.println("Yan:");
+		start = System.currentTimeMillis();
+		System.out.println(yan.qtCheckYan(example0));
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		
+		System.out.println("LexBFS not connected:");
+		start = System.currentTimeMillis();
+		System.out.println(lex.qtLexBFS(example0, branch.flattenAndReverseDeg(branch.degSequenceOrder(example0))));
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		
+		System.out.println("LexBFS connected:");
+		start = System.currentTimeMillis();
+		System.out.println(lex.qtLexBFSComponents(example0, branch.flattenAndReverseDeg(branch.degSequenceOrder(example0))));
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		
+		example0 = gen.randomQT(1000);
+		System.out.println("\n1000 node qt graph");
+		System.out.println("Yan:");
+		start = System.currentTimeMillis();
+		System.out.println(yan.qtCheckYan(example0));
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		
+		System.out.println("LexBFS not connected:");
+		start = System.currentTimeMillis();
+		System.out.println(lex.qtLexBFS(example0, branch.flattenAndReverseDeg(branch.degSequenceOrder(example0))));
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		
+		System.out.println("LexBFS connected:");
+		start = System.currentTimeMillis();
+		System.out.println(lex.qtLexBFSComponents(example0, branch.flattenAndReverseDeg(branch.degSequenceOrder(example0))));
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		
+		
+	}
 	public void test()
 	{
 //		graph = new SparseGraph<Integer, String>();

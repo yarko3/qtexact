@@ -374,13 +374,13 @@ public class qtBranching<V>
 		else
 		{
 			//build graphs from connected components
-			Graph<V, Pair<V>> gWtihForbidden = graphFromVertexSet(G, lexSearch.getcComponents().removeLast());
+			Graph<V, Pair<V>> gWtihForbidden = connectedCFromVertexSet(G, lexSearch.getcComponents().removeLast());
 			
 			LinkedList<Graph<V, Pair<V>>> cGraphs = new LinkedList<Graph<V, Pair<V>>>();
 			LinkedList<branchingReturnC<V>> results = new LinkedList<branchingReturnC<V>>();
 			for (HashSet<V> l : lexSearch.getcComponents())
 			{
-				cGraphs.add(graphFromVertexSet(G, l));
+				cGraphs.add(connectedCFromVertexSet(G, l));
 			}
 			//branch on known forbidden structure
 			
@@ -641,7 +641,7 @@ public class qtBranching<V>
 	 * @param deg degree sequence
 	 * @return vertex set in non-increasing degree order
 	 */
-	private ArrayList<V> flattenAndReverseDeg(ArrayList<LinkedList<V>> deg)
+	public ArrayList<V> flattenAndReverseDeg(ArrayList<LinkedList<V>> deg)
 	{
 		ArrayList<V> t = new ArrayList<V>(0);
 		
@@ -668,19 +668,48 @@ public class qtBranching<V>
 		Graph<V, Pair<V>> c = new SparseGraph<V, Pair<V>>();
 		for (V i : l)
 		{
-			
 			c.addVertex(i);
 			
-			//neighbourhood of i
-			Collection<V> hood = G.getNeighbors(i);
-			for (V n : hood)
+			//get incident edges
+			Collection<Pair<V>> iEdges = c.getIncidentEdges(i);
+			//iterate through edges to add to new graph
+			for (Pair<V> e : iEdges)
 			{
-				if (!(c.containsEdge(new Pair<V>(i, n))))
-					c.addEdge(new Pair<V>(i, n), i, n);
+				if (e.getFirst().equals(i) && l.contains(e.getSecond()))
+					c.addEdge(e, e.getFirst(), e.getSecond());
+				else if (e.getSecond().equals(i) && l.contains(e.getFirst()))
+					c.addEdge(e, e.getFirst(), e.getSecond());
 			}
+			
+//			//neighbourhood of i
+//			Collection<V> hood = G.getNeighbors(i);
+//			for (V n : hood)
+//			{
+//				if (!(c.containsEdge(new Pair<V>(i, n))))
+//					c.addEdge(new Pair<V>(i, n), i, n);
+//			}
 		}
 		return c;
 	}
+	
+	private Graph<V, Pair<V>> connectedCFromVertexSet(Graph<V, Pair<V>> G, HashSet<V> l)
+	{
+		Graph<V, Pair<V>> c = new SparseGraph<V, Pair<V>>();
+		HashSet<Pair<V>> tempSet = new HashSet<Pair<V>>();
+		//throw all edges into hashset, no douplicates
+		for (V i : l)
+		{
+			tempSet.addAll(G.getIncidentEdges(i));
+		}
+		
+		//add all edges to c
+		for (Pair<V> e : tempSet)
+		{
+			c.addEdge(e, e.getFirst(), e.getSecond());
+		}
+		return c;
+	}
+	
 	
 	/**
 	 * Create a graph, the degree order, and changes from connected component graphs
