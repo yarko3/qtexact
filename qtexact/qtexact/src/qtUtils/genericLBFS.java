@@ -339,32 +339,5 @@ public class genericLBFS<V> {
 		
 	}
 	
-	//should generate random graph
-	public Graph<Integer, Pair<Integer>> random()
-	{
-		Random rand = new Random();
-		Factory<UndirectedGraph<Integer, Pair<Integer>>> graphFactory = UndirectedSparseGraph.getFactory();
-		Factory<Integer> vertexFactory = new Factory<Integer>() {
-			int count;
-
-			public Integer create() {
-				return count++;
-			}
-		};
-		Factory<Pair<Integer>> edgeFactory = new Factory<Pair<Integer>>() {
-			int count;
-
-			public Pair<Integer> create() {
-				return new Pair<Integer>(count, (count++)+1);
-			}
-		};
-		int vertices = rand.nextInt(480) + 20;
-		double p = rand.nextDouble();
-		ErdosRenyiGenerator<Integer, Pair<Integer>> gen = new ErdosRenyiGenerator<Integer, Pair<Integer>>(graphFactory, vertexFactory, edgeFactory, vertices, p);
-		Graph<Integer, Pair<Integer>> graph = gen.create();
-		
-		return graph;
-	}
-
 }
 

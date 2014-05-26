@@ -12,6 +12,7 @@ import java.util.PriorityQueue;
 import qtUtils.genericLBFS;
 import qtUtils.lexReturnC;
 import qtUtils.branchingReturnC;
+import qtUtils.myEdge;
 
 import com.rits.cloning.Cloner;
 
@@ -40,7 +41,7 @@ public class qtBranching<V>
 		
 		//start with a full minMoves
 		branchingReturnC<V> minMoves = new branchingReturnC<V>(G, deg);
-		minMoves.getChanges().addAll((Collection<? extends Pair<V>>) G.getEdges());
+		minMoves.setChanges(fillMyEdgeSet(G));
 		branchingReturnC<V> goal = new branchingReturnC<V>(G, deg);
 		goal.setMinMoves(minMoves);
 		
@@ -63,7 +64,7 @@ public class qtBranching<V>
 		
 		//start with a full minMoves
 		branchingReturnC<V> minMoves = new branchingReturnC<V>(G, deg);
-		minMoves.getChanges().addAll((Collection<? extends Pair<V>>) G.getEdges());
+		minMoves.setChanges(fillMyEdgeSet(G));
 		branchingReturnC<V> goal = new branchingReturnC<V>(G, deg);
 		goal.setMinMoves(minMoves);
 
@@ -83,7 +84,7 @@ public class qtBranching<V>
 	{
 		Graph<V, Pair<V>> G = s.getG();
 		ArrayList<LinkedList<V>> deg = s.getDeg();
-		LinkedList<Pair<V>> changes = s.getChanges();
+		LinkedList<myEdge<V>> changes = s.getChanges();
 		branchingReturnC<V> minMoves = s.getMinMoves();
 		
 		//check if graph is QT
@@ -126,7 +127,7 @@ public class qtBranching<V>
 	{
 		Graph<V, Pair<V>> G = s.getG();
 		ArrayList<LinkedList<V>> deg = s.getDeg();
-		LinkedList<Pair<V>> changes = s.getChanges();
+		LinkedList<myEdge<V>> changes = s.getChanges();
 		branchingReturnC<V> minMoves = s.getMinMoves();
 		
 		
@@ -169,7 +170,7 @@ public class qtBranching<V>
 	 * @param changes changes made 
 	 * @return result of most efficient branching
 	 */
-	private branchingReturnC<V> branchNoHeuristic(Graph<V, Pair<V>> G, ArrayList<LinkedList<V>> deg, lexReturnC<V> searchResult, LinkedList<Pair<V>> changes, branchingReturnC<V> minMoves)
+	private branchingReturnC<V> branchNoHeuristic(Graph<V, Pair<V>> G, ArrayList<LinkedList<V>> deg, lexReturnC<V> searchResult, LinkedList<myEdge<V>> changes, branchingReturnC<V> minMoves)
 	{
 		//C4 has been found
 		ArrayList<V> lexResult = searchResult.getCertificate().getVertices();
@@ -260,7 +261,7 @@ public class qtBranching<V>
 		}
 	}
 	
-	private branchingReturnC<V> branchCC(Graph<V, Pair<V>> G, ArrayList<LinkedList<V>> deg, lexReturnC<V> searchResult, LinkedList<Pair<V>> changes, branchingReturnC<V> minMoves)
+	private branchingReturnC<V> branchCC(Graph<V, Pair<V>> G, ArrayList<LinkedList<V>> deg, lexReturnC<V> searchResult, LinkedList<myEdge<V>> changes, branchingReturnC<V> minMoves)
 	{
 		//C4 has been found
 		ArrayList<V> lexResult = searchResult.getCertificate().getVertices();
@@ -360,7 +361,7 @@ public class qtBranching<V>
 	 * @param minMoves
 	 * @return
 	 */
-	private branchingReturnC<V> componentSplit(Graph<V, Pair<V>> G, ArrayList<LinkedList<V>> deg, LinkedList<Pair<V>> changes, lexReturnC<V> lex, branchingReturnC<V> minMoves)
+	private branchingReturnC<V> componentSplit(Graph<V, Pair<V>> G, ArrayList<LinkedList<V>> deg, LinkedList<myEdge<V>> changes, lexReturnC<V> lex, branchingReturnC<V> minMoves)
 	{
 		//make copy of search results, so multiple branches can use the same search
 		lexReturnC<V> lexSearch = clone.deepClone(lex);
@@ -386,8 +387,8 @@ public class qtBranching<V>
 			
 			//fill new minMoves with entire edge set
 			branchingReturnC<V> min = new branchingReturnC<V>(gWtihForbidden, deg);
-			min.getChanges().addAll((Collection<? extends Pair<V>>) gWtihForbidden.getEdges());
-			results.add(branchCC(gWtihForbidden, degSequenceOrder(gWtihForbidden), lexSearch, new LinkedList<Pair<V>>(), min));
+			min.setChanges(fillMyEdgeSet(gWtihForbidden));
+			results.add(branchCC(gWtihForbidden, degSequenceOrder(gWtihForbidden), lexSearch, new LinkedList<myEdge<V>>(), min));
 			//branch on the rest of the graphs
 			for (Graph<V, Pair<V>> g : cGraphs)
 			{
@@ -396,9 +397,9 @@ public class qtBranching<V>
 				{
 					//fill new minMoves with entire edge set of component
 					min = new branchingReturnC<V>(g, deg);
-					min.getChanges().addAll((Collection<? extends Pair<V>>) g.getEdges());
+					min.setChanges(fillMyEdgeSet(g));
 
-					results.add(branchingCC(new branchingReturnC<V>(g,degSequenceOrder(g), new LinkedList<Pair<V>>(), min)));
+					results.add(branchingCC(new branchingReturnC<V>(g,degSequenceOrder(g), new LinkedList<myEdge<V>>(), min)));
 				}
 				else
 				{
@@ -411,8 +412,8 @@ public class qtBranching<V>
 			}
 			
 			//final results return
-			LinkedList<Pair<V>> rChanges = new LinkedList<Pair<V>>();
-			HashSet<Pair<V>> tempChanges = new HashSet<Pair<V>>();
+			LinkedList<myEdge<V>> rChanges = new LinkedList<myEdge<V>>();
+			HashSet<myEdge<V>> tempChanges = new HashSet<myEdge<V>>();
 			Graph<V, Pair<V>> rGraph = new SparseGraph<V, Pair<V>>();
 			ArrayList<LinkedList<V>> rDeg = new ArrayList<LinkedList<V>>();
 			
@@ -425,7 +426,7 @@ public class qtBranching<V>
 			//construct new minMoves from all old ones
 			min = new branchingReturnC<V>(rGraph, rDeg);
 			//throw all minMoves into a HashSet, so they don't have duplicates
-			HashSet<Pair<V>> temp = new HashSet<Pair<V>>();
+			HashSet<myEdge<V>> temp = new HashSet<myEdge<V>>();
 			for (branchingReturnC<V> r : results)
 			{
 				temp.addAll(r.getMinMoves().getChanges());
@@ -450,17 +451,17 @@ public class qtBranching<V>
 	 * @param v1 vertex of edge to be added
 	 * @return an object storing the new graph, updated degree order, changes
 	 */
-	private branchingReturnC<V> c4AddResult(Graph<V, Pair<V>> G, ArrayList<LinkedList<V>> deg, LinkedList<Pair<V>> changes, ArrayList<V> lexResult, V v0, V v1)
+	private branchingReturnC<V> c4AddResult(Graph<V, Pair<V>> G, ArrayList<LinkedList<V>> deg, LinkedList<myEdge<V>> changes, ArrayList<V> lexResult, V v0, V v1)
 	{
 		//make copy of graph and degree sequence
 		Graph<V, Pair<V>> graphCopy = clone.deepClone(G);
 		ArrayList<LinkedList<V>> degCopy = clone.deepClone(deg);
-		LinkedList<Pair<V>> cCopy = clone.deepClone(changes);
+		LinkedList<myEdge<V>> cCopy = clone.deepClone(changes);
 		//update degree sequence (first edge)
 		addEdge(graphCopy, degCopy, v0, v1);
 		
 		//add edge to changes 
-		cCopy.add(new Pair<V>(v0, v1));
+		cCopy.add(new myEdge<V>(new Pair<V>(v0, v1), true));
 		return new branchingReturnC<V>(graphCopy, degCopy, cCopy);
 		
 	}
@@ -475,20 +476,20 @@ public class qtBranching<V>
 	 * @param v3 endpoint of second edge to be deleted
 	 * @return graph, degree order and changes after deletion
 	 */
-	private branchingReturnC<V> c4Delete2Result(Graph<V, Pair<V>> G, ArrayList<LinkedList<V>> deg, LinkedList<Pair<V>> changes, V v0, V v1, V v2, V v3, branchingReturnC<V> minMoves)
+	private branchingReturnC<V> c4Delete2Result(Graph<V, Pair<V>> G, ArrayList<LinkedList<V>> deg, LinkedList<myEdge<V>> changes, V v0, V v1, V v2, V v3, branchingReturnC<V> minMoves)
 	{
 		//make copy of graph and degree sequence
 		Graph<V, Pair<V>> graphCopy = clone.deepClone(G);
 		ArrayList<LinkedList<V>> degCopy = clone.deepClone(deg);
-		LinkedList<Pair<V>> cCopy = clone.deepClone(changes);
+		LinkedList<myEdge<V>> cCopy = clone.deepClone(changes);
 		//update degree sequence (first edge)
 		removeEdge(graphCopy, degCopy, v0, v1);
 		
 		//update degree sequence (second edge)
 		removeEdge(graphCopy, degCopy, v2, v3);
 		
-		cCopy.add(new Pair<V>(v0, v1));
-		cCopy.add(new Pair<V>(v2, v3));
+		cCopy.add(new myEdge<V>(new Pair<V>(v0, v1), false));
+		cCopy.add(new myEdge<V>(new Pair<V>(v2, v3), false));
 		
 		return new branchingReturnC<V>(graphCopy, degCopy, cCopy, minMoves);
 		
@@ -503,16 +504,16 @@ public class qtBranching<V>
 	 * @param v1 endpoint of edge to be deleted
 	 * @return
 	 */
-	private branchingReturnC<V> p4DeleteResult(Graph<V, Pair<V>> G, ArrayList<LinkedList<V>> deg, LinkedList<Pair<V>> changes, V v0, V v1, branchingReturnC<V> minMoves)
+	private branchingReturnC<V> p4DeleteResult(Graph<V, Pair<V>> G, ArrayList<LinkedList<V>> deg, LinkedList<myEdge<V>> changes, V v0, V v1, branchingReturnC<V> minMoves)
 	{
 		//make copy of graph and degree sequence
 		Graph<V, Pair<V>> graphCopy = clone.deepClone(G);
 		ArrayList<LinkedList<V>> degCopy = clone.deepClone(deg);
-		LinkedList<Pair<V>> cCopy = clone.deepClone(changes);
+		LinkedList<myEdge<V>> cCopy = clone.deepClone(changes);
 		//update degree sequence (first edge)
 		removeEdge(graphCopy, degCopy, v0, v1);
 		
-		cCopy.add(new Pair<V>(v0, v1));
+		cCopy.add(new myEdge<V>(new Pair<V>(v0, v1), false));
 		return new branchingReturnC<V>(graphCopy, degCopy, cCopy, minMoves);
 		
 	}
@@ -720,8 +721,8 @@ public class qtBranching<V>
 	 * @param results
 	 */
 	private void graphFromComponentGraphs(Graph<V, Pair<V>> rGraph,
-			ArrayList<LinkedList<V>> rDeg, LinkedList<Pair<V>> rChanges,
-			HashSet<Pair<V>> tempChanges, LinkedList<branchingReturnC<V>> results) {
+			ArrayList<LinkedList<V>> rDeg, LinkedList<myEdge<V>> rChanges,
+			HashSet<myEdge<V>> tempChanges, LinkedList<branchingReturnC<V>> results) {
 		//build graph from connected components
 		for (branchingReturnC<V> r : results)
 		{
@@ -755,5 +756,21 @@ public class qtBranching<V>
 		}
 		rChanges.addAll(tempChanges);
 		
+	}
+	
+	/**
+	 * fill a linked list with a myEdge LinkedList for the minMoves set
+	 * @param G
+	 * @return
+	 */
+	private LinkedList<myEdge<V>> fillMyEdgeSet(Graph<V, Pair<V>> G)
+	{
+		LinkedList<myEdge<V>> l = new LinkedList<myEdge<V>>();
+		for (Pair<V> e : G.getEdges())
+		{
+			//treat each edge in this set as a deletion
+			l.add(new myEdge<V>(e, false));
+		}
+		return l;
 	}
 }
