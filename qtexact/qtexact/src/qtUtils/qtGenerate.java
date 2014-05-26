@@ -364,5 +364,30 @@ public class qtGenerate<V>
 
 		return g;
 	}
+	
+	public static Graph<Integer, Pair<Integer>> ER(int vertices, double p)
+	{
+		Random rand = new Random();
+		
+		Graph<Integer, Pair<Integer>> graph = new SparseGraph<Integer, Pair<Integer>>();
+		
+		for (int i = 0; i < vertices; i++)
+		{
+			graph.addVertex(i);
+		}
+		for (Integer i : graph.getVertices())
+		{
+			for (Integer j : graph.getVertices())
+			{
+				if (rand.nextDouble() < p)
+				{
+					if (i != j)
+						graph.addEdge(new Pair<Integer>(i, j), i, j);
+				}
+			}
+		}
+		
+		return graph;
+	}
 
 }
