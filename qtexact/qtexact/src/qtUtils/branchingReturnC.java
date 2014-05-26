@@ -17,17 +17,17 @@ public class branchingReturnC<V> implements Comparable<branchingReturnC<V>>
 {
 	Graph<V, Pair<V>> G;
 	ArrayList<LinkedList<V>> deg;
-	LinkedList<Pair<V>> changes;
+	LinkedList<myEdge<V>> changes;
 	branchingReturnC<V>	minMoves;
 	
-	public branchingReturnC(Graph<V, Pair<V>> graph, ArrayList<LinkedList<V>> d, LinkedList<Pair<V>> c, branchingReturnC<V> m)
+	public branchingReturnC(Graph<V, Pair<V>> graph, ArrayList<LinkedList<V>> d, LinkedList<myEdge<V>> c, branchingReturnC<V> m)
 	{
 		G = graph;
 		changes = c;
 		deg = d;
 		minMoves = m;
 	}
-	public branchingReturnC(Graph<V, Pair<V>> graph, ArrayList<LinkedList<V>> d, LinkedList<Pair<V>> c)
+	public branchingReturnC(Graph<V, Pair<V>> graph, ArrayList<LinkedList<V>> d, LinkedList<myEdge<V>> c)
 	{
 		G = graph;
 		changes = c;
@@ -37,14 +37,14 @@ public class branchingReturnC<V> implements Comparable<branchingReturnC<V>>
 	{
 		G = graph;
 		deg = d;
-		changes = new LinkedList<Pair<V>>();
+		changes = new LinkedList<myEdge<V>>();
 		minMoves = m;
 	}
 	public branchingReturnC(Graph<V, Pair<V>> graph, ArrayList<LinkedList<V>> d)
 	{
 		G = graph;
 		deg = d;
-		changes = new LinkedList<Pair<V>>();
+		changes = new LinkedList<myEdge<V>>();
 	}
 
 	@Override
@@ -56,7 +56,7 @@ public class branchingReturnC<V> implements Comparable<branchingReturnC<V>>
 		return G;
 	}
 	
-	public LinkedList<Pair<V>> getChanges()
+	public LinkedList<myEdge<V>> getChanges()
 	{
 		return changes;
 	}
@@ -70,7 +70,7 @@ public class branchingReturnC<V> implements Comparable<branchingReturnC<V>>
 	{
 		G = g;
 	}
-	public void setChanges(LinkedList<Pair<V>> c)
+	public void setChanges(LinkedList<myEdge<V>> c)
 	{
 		changes = c;
 	}
