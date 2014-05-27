@@ -69,7 +69,7 @@ public class fun extends JApplet {
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		start = System.currentTimeMillis();
-		//exampleQT = del.qtEditNoHeuristic(exampleQT);
+		exampleQT = del.qtEditNoHeuristic(exampleQT);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		
