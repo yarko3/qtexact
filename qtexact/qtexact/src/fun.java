@@ -21,6 +21,7 @@ import qtUtils.qtRecognition;
 import edu.uci.ics.jung.algorithms.cluster.EdgeBetweennessClusterer;
 import edu.uci.ics.jung.algorithms.layout.FRLayout;
 import edu.uci.ics.jung.graph.Graph;
+import edu.uci.ics.jung.graph.SparseGraph;
 import edu.uci.ics.jung.graph.util.Pair;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
@@ -55,6 +56,9 @@ public class fun extends JApplet {
 		exampleQT = qtGenerate.westernElectricNetwork();
 		
 		//exampleQT = qtGenerate.nonQTEx3();
+		
+//		exampleQT = new SparseGraph<Integer, Pair<Integer>>();
+//		fillGraphFromFile(exampleQT, "datasets/karate.txt");
 		
 		qtRecognition<Integer> yan = new qtRecognition<Integer>();
 		
@@ -248,8 +252,9 @@ public class fun extends JApplet {
 	 * @param Graph graph
 	 * @param String filename
 	 */
-	private static void fillGraphFromFile(Graph<Integer, String> graph,
-			String filename) {
+	private static void fillGraphFromFile(Graph<Integer, Pair<Integer>> graph,
+			String filename) 
+	{
 		FileReader file = null;
 		try {
 			file = new FileReader(filename);
@@ -267,7 +272,7 @@ public class fun extends JApplet {
 
 			// for (int i = 0; i < weight; i++)
 			// {
-			graph.addEdge("e:" + a + "-" + b, a, b);
+			graph.addEdge(new Pair<Integer>(a, b), a, b);
 			// }
 		}
 		try {
