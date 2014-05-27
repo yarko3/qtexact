@@ -179,9 +179,6 @@ public class qtBranching<V>
 	 */
 	private branchingReturnC<V> branchOnNoHeuristic(branchingReturnC<V> s, lexReturnC<V> searchResult)
 	{
-		Graph<V, Pair<V>> G = s.getG();
-		ArrayList<LinkedList<V>> deg = s.getDeg() ;
-		LinkedList<myEdge<V>> changes = s.getChanges();
 		branchingReturnC<V> minMoves = s.getMinMoves();
 		
 		//C4 has been found
@@ -291,9 +288,7 @@ public class qtBranching<V>
 	
 	private branchingReturnC<V> branchOnCC(branchingReturnC<V> s, lexReturnC<V> searchResult)
 	{
-		Graph<V, Pair<V>> G = s.getG();
-		ArrayList<LinkedList<V>> deg = s.getDeg() ;
-		LinkedList<myEdge<V>> changes = s.getChanges();
+		
 		branchingReturnC<V> minMoves = s.getMinMoves();
 		
 		//C4 has been found
@@ -415,7 +410,7 @@ public class qtBranching<V>
 		Graph<V, Pair<V>> G = s.getG();
 		ArrayList<LinkedList<V>> deg = s.getDeg() ;
 		LinkedList<myEdge<V>> changes = s.getChanges();
-		branchingReturnC<V> minMoves = s.getMinMoves();
+		
 		
 		
 //		//make copy of search results, so multiple branches can use the same search
@@ -571,7 +566,6 @@ public class qtBranching<V>
 		Graph<V, Pair<V>> g = s.getG();
 		ArrayList<LinkedList<V>> deg = s.getDeg() ;
 		LinkedList<myEdge<V>> changes = s.getChanges();
-		branchingReturnC<V> minMoves = s.getMinMoves();
 		
 		//add edges back in
 		addEdge(g, deg, v0, v1);
@@ -611,7 +605,6 @@ public class qtBranching<V>
 		Graph<V, Pair<V>> g = s.getG();
 		ArrayList<LinkedList<V>> deg = s.getDeg() ;
 		LinkedList<myEdge<V>> changes = s.getChanges();
-		branchingReturnC<V> minMoves = s.getMinMoves();
 		
 		//update degree sequence (first edge)
 		addEdge(g, deg, v0, v1);

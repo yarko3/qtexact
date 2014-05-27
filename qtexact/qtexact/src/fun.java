@@ -49,7 +49,7 @@ public class fun extends JApplet {
 		exampleQT.addEdge(new Pair<Integer>(8, 1), 8, 1);
 		exampleQT.addEdge(new Pair<Integer>(8 ,5), 8, 5);
 		
-		exampleQT = gen.cliqueJoin(20, 30);
+		//exampleQT = gen.cliqueJoin(20, 30);
 		
 		//exampleQT = qtGenerate.simpleC4();
 		
@@ -57,6 +57,7 @@ public class fun extends JApplet {
 		
 		//exampleQT = qtGenerate.nonQTEx3();
 		
+		exampleQT = gen.
 //		exampleQT = new SparseGraph<Integer, Pair<Integer>>();
 //		fillGraphFromFile(exampleQT, "datasets/karate.txt");
 		
