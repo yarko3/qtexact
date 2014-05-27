@@ -57,7 +57,7 @@ public class fun extends JApplet {
 		
 		exampleQT = qtGenerate.nonQTEx3();
 		
-		//exampleQT = qtGenerate.ER(20, 0.8);
+		exampleQT = qtGenerate.ER(10, 0.5);
 		
 //		exampleQT = new SparseGraph<Integer, Pair<Integer>>();
 //		fillGraphFromFile(exampleQT, "datasets/karate.txt");
@@ -65,7 +65,7 @@ public class fun extends JApplet {
 		
 		qtRecognition<Integer> yan = new qtRecognition<Integer>();
 		
-		visualize(exampleQT);
+		//visualize(exampleQT);
 		
 		long start = System.currentTimeMillis();
 		System.out.println(yan.qtCheckYan(exampleQT));
@@ -85,6 +85,8 @@ public class fun extends JApplet {
 		start = System.currentTimeMillis();
 		System.out.println(yan.qtCheckYan(exampleQT));
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		
+		visualize(exampleQT);
 		
 		
 	}
