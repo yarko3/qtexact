@@ -55,14 +55,17 @@ public class fun extends JApplet {
 		
 		//exampleQT = qtGenerate.westernElectricNetwork();
 		
-		//exampleQT = qtGenerate.nonQTEx3();
+		exampleQT = qtGenerate.nonQTEx3();
 		
-		exampleQT = gen.ER(50, 0.2);
+		//exampleQT = qtGenerate.ER(20, 0.8);
 		
 //		exampleQT = new SparseGraph<Integer, Pair<Integer>>();
 //		fillGraphFromFile(exampleQT, "datasets/karate.txt");
 		
+		
 		qtRecognition<Integer> yan = new qtRecognition<Integer>();
+		
+		visualize(exampleQT);
 		
 		long start = System.currentTimeMillis();
 		System.out.println(yan.qtCheckYan(exampleQT));
@@ -83,10 +86,14 @@ public class fun extends JApplet {
 		System.out.println(yan.qtCheckYan(exampleQT));
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
+		
+	}
+	public static void visualize(Graph<Integer, Pair<Integer>> g)
+	{
 		JFrame jf = new JFrame();
 		jf.setSize(1366, 768);
 
-		FRLayout frl = new FRLayout(exampleQT);
+		FRLayout frl = new FRLayout(g);
 
 		frl.setAttractionMultiplier(1.5);
 		//frl.lock(true);
