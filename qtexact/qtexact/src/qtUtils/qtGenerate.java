@@ -6,9 +6,7 @@
 
 package qtUtils;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Random;
 
@@ -364,5 +362,20 @@ public class qtGenerate<V>
 
 		return g;
 	}
+	public static Graph<Integer, Pair<Integer>> nonQTEx3()
+	{
+		Graph<Integer,Pair<Integer>> g = new SparseGraph<Integer,Pair<Integer>>();
+		
+		g.addEdge(new Pair<Integer>(0, 1), 0, 1);
+		g.addEdge(new Pair<Integer>(1, 2), 1, 2);
+		g.addEdge(new Pair<Integer>(2, 3), 2, 3);
+		g.addEdge(new Pair<Integer>(2, 4), 2, 4);
+		g.addEdge(new Pair<Integer>(4, 5), 4, 5);
+		g.addEdge(new Pair<Integer>(0, 4), 0, 4);
+		
+		return g;
+	}
+		
+	
 
 }

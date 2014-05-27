@@ -49,7 +49,7 @@ public class branchingReturnC<V> implements Comparable<branchingReturnC<V>>
 
 	@Override
 	public int compareTo(branchingReturnC<V> o) {
-		return Integer.compare(changes.size(), o.changes.size());
+		return Integer.compare(minMoves.changes.size(), o.getMinMoves().changes.size());
 	}
 	
 	public Graph<V, Pair<V>> getG(){

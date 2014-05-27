@@ -52,9 +52,9 @@ public class fun extends JApplet {
 		
 		//exampleQT = qtGenerate.simpleC4();
 		
-		//exampleQT = qtGenerate.westernElectricNetwork();
+		exampleQT = qtGenerate.westernElectricNetwork();
 		
-		exampleQT = qtGenerate.nonQTEx1();
+		//exampleQT = qtGenerate.nonQTEx3();
 		
 		qtRecognition<Integer> yan = new qtRecognition<Integer>();
 		
@@ -65,11 +65,11 @@ public class fun extends JApplet {
 		qtBranching<Integer> del = new qtBranching<Integer>();
 		
 		start = System.currentTimeMillis();
-		del.qtEditConnectedComponents(exampleQT);
+		exampleQT = del.qtEditConnectedComponents(exampleQT);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		start = System.currentTimeMillis();
-		exampleQT = del.qtEditNoHeuristic(exampleQT);
+		//exampleQT = del.qtEditNoHeuristic(exampleQT);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		

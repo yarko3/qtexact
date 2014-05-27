@@ -70,7 +70,7 @@ public class qtBranching<V>
 
 		//branch on G with degree ordering deg
 		goal = branchingNoHeuristic(goal);
-		System.out.println("Number of moves: " + goal.getChanges());
+		System.out.println("Number of moves: " + goal.getMinMoves().getChanges());
 		return goal.getG();
 		
 	}
@@ -446,20 +446,20 @@ public class qtBranching<V>
 					
 			}
 			
-			//final results return
-			LinkedList<myEdge<V>> rChanges = new LinkedList<myEdge<V>>();
-			HashSet<myEdge<V>> tempChanges = new HashSet<myEdge<V>>();
-			Graph<V, Pair<V>> rGraph = new SparseGraph<V, Pair<V>>();
-			ArrayList<LinkedList<V>> rDeg = new ArrayList<LinkedList<V>>();
-			
-			//construct graph, degree sequence, changes from components
-			graphFromComponentGraphs(rGraph, rDeg, rChanges, tempChanges, results);
-			
-			//keep old moves list
-			rChanges.addAll(changes);
+//			//final results return
+//			LinkedList<myEdge<V>> rChanges = new LinkedList<myEdge<V>>();
+//			HashSet<myEdge<V>> tempChanges = new HashSet<myEdge<V>>();
+//			Graph<V, Pair<V>> rGraph = new SparseGraph<V, Pair<V>>();
+//			ArrayList<LinkedList<V>> rDeg = new ArrayList<LinkedList<V>>();
+//			
+//			//construct graph, degree sequence, changes from components
+//			graphFromComponentGraphs(rGraph, rDeg, rChanges, tempChanges, results);
+//			
+//			//keep old moves list
+//			rChanges.addAll(changes);
 			
 			//construct new minMoves from all old ones
-			min = new branchingReturnC<V>(rGraph, rDeg);
+			min = new branchingReturnC<V>(G, deg);
 			//throw all minMoves into a HashSet, so they don't have duplicates
 			HashSet<myEdge<V>> temp = new HashSet<myEdge<V>>();
 			for (branchingReturnC<V> r : results)
@@ -469,8 +469,7 @@ public class qtBranching<V>
 			min.getChanges().addAll(temp);
 			min.getChanges().addAll(changes);
 			
-			branchingReturnC<V> rtn = new branchingReturnC<V>(rGraph, rDeg, rChanges, min);
-			rtn.setMinMoves(rtn);
+			branchingReturnC<V> rtn = new branchingReturnC<V>(G, deg, changes, min);
 			
 			return rtn;
 		}
