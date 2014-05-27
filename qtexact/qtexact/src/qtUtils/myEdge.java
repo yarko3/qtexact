@@ -31,6 +31,13 @@ public class myEdge<V>
 		this.flag = flag;
 	}
 	
+	public String toString()
+	{
+		if (flag == false)
+			return "Delete: " + edge;
+		else
+			return "Add: " + edge;
+	}
 	
 
 }
