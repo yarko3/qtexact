@@ -199,8 +199,8 @@ public class qtBranching<V>
 			
 			if (c4Remove0.getMinMoves().getChanges().size() < minMoves.getChanges().size())
 			{
+				s.setMinMoves(c4Remove0.getMinMoves());
 				minMoves = c4Remove0.getMinMoves();
-				s.setMinMoves(minMoves);
 			}
 			
 			branchingReturnC<V> c4Remove1 = branchingNoHeuristic(c4Delete2Result(s, lexResult.get(0), lexResult.get(3), lexResult.get(2), lexResult.get(3)));
@@ -209,8 +209,8 @@ public class qtBranching<V>
 			
 			if (c4Remove1.getMinMoves().getChanges().size() < minMoves.getChanges().size())
 			{
+				s.setMinMoves(c4Remove1.getMinMoves());
 				minMoves = c4Remove1.getMinMoves();
-				s.setMinMoves(minMoves);
 			}
 			
 			branchingReturnC<V> c4Remove2 = branchingNoHeuristic(c4Delete2Result(s, lexResult.get(0), lexResult.get(1), lexResult.get(2), lexResult.get(3)));
@@ -218,8 +218,8 @@ public class qtBranching<V>
 			c4Delete2Revert(s, lexResult.get(0), lexResult.get(1), lexResult.get(2), lexResult.get(3));
 			if (c4Remove2.getMinMoves().getChanges().size() < minMoves.getChanges().size())
 			{
+				s.setMinMoves(c4Remove2.getMinMoves());
 				minMoves = c4Remove2.getMinMoves();
-				s.setMinMoves(minMoves);
 			}
 			
 			branchingReturnC<V> c4Remove3 = branchingNoHeuristic(c4Delete2Result(s, lexResult.get(0), lexResult.get(3), lexResult.get(1), lexResult.get(2)));
@@ -227,8 +227,8 @@ public class qtBranching<V>
 			c4Delete2Revert(s, lexResult.get(0), lexResult.get(3), lexResult.get(1), lexResult.get(2));
 			if (c4Remove3.getMinMoves().getChanges().size() < minMoves.getChanges().size())
 			{
+				s.setMinMoves(c4Remove3.getMinMoves());
 				minMoves = c4Remove3.getMinMoves();
-				s.setMinMoves(minMoves);
 			}
 			
 			branchingReturnC<V> c4Remove4 = branchingNoHeuristic(c4Delete2Result(s, lexResult.get(1), lexResult.get(2), lexResult.get(2), lexResult.get(3)));
@@ -236,6 +236,7 @@ public class qtBranching<V>
 			c4Delete2Revert(s, lexResult.get(1), lexResult.get(2), lexResult.get(2), lexResult.get(3));
 			if (c4Remove4.getMinMoves().getChanges().size() < minMoves.getChanges().size())
 			{
+				s.setMinMoves(c4Remove4.getMinMoves());
 				minMoves = c4Remove4.getMinMoves();
 			}
 			
@@ -244,8 +245,8 @@ public class qtBranching<V>
 			c4Delete2Revert(s, lexResult.get(0), lexResult.get(1), lexResult.get(0), lexResult.get(3));
 			if (c4Remove5.getMinMoves().getChanges().size() < minMoves.getChanges().size())
 			{
+				s.setMinMoves(c4Remove5.getMinMoves());
 				minMoves = c4Remove5.getMinMoves();
-				s.setMinMoves(minMoves);
 			}
 			
 			return minMoves;
@@ -259,8 +260,8 @@ public class qtBranching<V>
 			p4DeleteRevert(s,lexResult.get(0), lexResult.get(1));
 			if (p4Remove0.getMinMoves().getChanges().size() < minMoves.getChanges().size())
 			{
+				s.setMinMoves(p4Remove0.getMinMoves());
 				minMoves = p4Remove0.getMinMoves();
-				s.setMinMoves(minMoves);
 			}
 			
 			branchingReturnC<V> p4Remove1 = branchingNoHeuristic(p4DeleteResult(s, lexResult.get(1), lexResult.get(2)));
@@ -268,8 +269,8 @@ public class qtBranching<V>
 			p4DeleteRevert(s,lexResult.get(1), lexResult.get(2));
 			if (p4Remove1.getMinMoves().getChanges().size() < minMoves.getChanges().size())
 			{
+				s.setMinMoves(p4Remove1.getMinMoves());
 				minMoves = p4Remove1.getMinMoves();
-				s.setMinMoves(minMoves);
 			}
 			
 			branchingReturnC<V> p4Remove2 = branchingNoHeuristic(p4DeleteResult(s, lexResult.get(2), lexResult.get(3)));
@@ -277,8 +278,8 @@ public class qtBranching<V>
 			p4DeleteRevert(s,lexResult.get(2), lexResult.get(3));
 			if (p4Remove2.getMinMoves().getChanges().size() < minMoves.getChanges().size())
 			{
+				s.setMinMoves(p4Remove2.getMinMoves());
 				minMoves = p4Remove2.getMinMoves();
-				s.setMinMoves(minMoves);
 			}
 			
 			return minMoves;
@@ -309,8 +310,8 @@ public class qtBranching<V>
 			
 			if (c4Remove0.getMinMoves().getChanges().size() < minMoves.getChanges().size())
 			{
+				s.setMinMoves(c4Remove0.getMinMoves());
 				minMoves = c4Remove0.getMinMoves();
-				s.setMinMoves(minMoves);
 			}
 			
 			branchingReturnC<V> c4Remove1 = branchingCC(c4Delete2Result(s, lexResult.get(0), lexResult.get(3), lexResult.get(2), lexResult.get(3)));
@@ -319,8 +320,8 @@ public class qtBranching<V>
 			
 			if (c4Remove1.getMinMoves().getChanges().size() < minMoves.getChanges().size())
 			{
+				s.setMinMoves(c4Remove1.getMinMoves());
 				minMoves = c4Remove1.getMinMoves();
-				s.setMinMoves(minMoves);
 			}
 			
 			branchingReturnC<V> c4Remove2 = branchingCC(c4Delete2Result(s, lexResult.get(0), lexResult.get(1), lexResult.get(2), lexResult.get(3)));
@@ -328,6 +329,7 @@ public class qtBranching<V>
 			c4Delete2Revert(s, lexResult.get(0), lexResult.get(1), lexResult.get(2), lexResult.get(3));
 			if (c4Remove2.getMinMoves().getChanges().size() < minMoves.getChanges().size())
 			{
+				s.setMinMoves(c4Remove2.getMinMoves());
 				minMoves = c4Remove2.getMinMoves();
 			}
 			
@@ -336,6 +338,7 @@ public class qtBranching<V>
 			c4Delete2Revert(s, lexResult.get(0), lexResult.get(3), lexResult.get(1), lexResult.get(2));
 			if (c4Remove3.getMinMoves().getChanges().size() < minMoves.getChanges().size())
 			{
+				s.setMinMoves(c4Remove3.getMinMoves());
 				minMoves = c4Remove3.getMinMoves();
 			}
 			
@@ -344,8 +347,8 @@ public class qtBranching<V>
 			c4Delete2Revert(s, lexResult.get(1), lexResult.get(2), lexResult.get(2), lexResult.get(3));
 			if (c4Remove4.getMinMoves().getChanges().size() < minMoves.getChanges().size())
 			{
+				s.setMinMoves(c4Remove4.getMinMoves());
 				minMoves = c4Remove4.getMinMoves();
-				s.setMinMoves(minMoves);
 			}
 			
 			branchingReturnC<V> c4Remove5 = branchingCC(c4Delete2Result(s, lexResult.get(0), lexResult.get(1), lexResult.get(0), lexResult.get(3)));
@@ -353,8 +356,8 @@ public class qtBranching<V>
 			c4Delete2Revert(s, lexResult.get(0), lexResult.get(1), lexResult.get(0), lexResult.get(3));
 			if (c4Remove5.getMinMoves().getChanges().size() < minMoves.getChanges().size())
 			{
+				s.setMinMoves(c4Remove5.getMinMoves());
 				minMoves = c4Remove5.getMinMoves();
-				s.setMinMoves(minMoves);
 			}
 			
 			return minMoves;
@@ -368,8 +371,8 @@ public class qtBranching<V>
 			p4DeleteRevert(s,lexResult.get(0), lexResult.get(1));
 			if (p4Remove0.getMinMoves().getChanges().size() < minMoves.getChanges().size())
 			{
+				s.setMinMoves(p4Remove0.getMinMoves());
 				minMoves = p4Remove0.getMinMoves();
-				s.setMinMoves(minMoves);
 			}
 			
 			branchingReturnC<V> p4Remove1 = branchingCC(p4DeleteResult(s, lexResult.get(1), lexResult.get(2)));
@@ -377,8 +380,8 @@ public class qtBranching<V>
 			p4DeleteRevert(s,lexResult.get(1), lexResult.get(2));
 			if (p4Remove1.getMinMoves().getChanges().size() < minMoves.getChanges().size())
 			{
+				s.setMinMoves(p4Remove1.getMinMoves());
 				minMoves = p4Remove1.getMinMoves();
-				s.setMinMoves(minMoves);
 			}
 			
 			branchingReturnC<V> p4Remove2 = branchingCC(p4DeleteResult(s, lexResult.get(2), lexResult.get(3)));
@@ -386,8 +389,8 @@ public class qtBranching<V>
 			p4DeleteRevert(s,lexResult.get(2), lexResult.get(3));
 			if (p4Remove2.getMinMoves().getChanges().size() < minMoves.getChanges().size())
 			{
+				s.setMinMoves(p4Remove2.getMinMoves());
 				minMoves = p4Remove2.getMinMoves();
-				s.setMinMoves(minMoves);
 			}
 			
 			
@@ -440,6 +443,7 @@ public class qtBranching<V>
 			//fill new minMoves with entire edge set
 			branchingReturnC<V> min = new branchingReturnC<V>(gWtihForbidden, deg);
 			min.setChanges(fillMyEdgeSet(gWtihForbidden));
+			min.setMinMoves(min);
 			results.add(branchOnCC(new branchingReturnC<V>(gWtihForbidden, degSequenceOrder(gWtihForbidden), min), lexSearch));
 			//branch on the rest of the graphs
 			for (Graph<V, Pair<V>> g : cGraphs)
@@ -450,7 +454,7 @@ public class qtBranching<V>
 					//fill new minMoves with entire edge set of component
 					min = new branchingReturnC<V>(g, deg);
 					min.setChanges(fillMyEdgeSet(g));
-
+					min.setMinMoves(min);
 					results.add(branchingCC(new branchingReturnC<V>(g,degSequenceOrder(g), new LinkedList<myEdge<V>>(), min)));
 				}
 				//don't care about branching on this but still need it to build up the solution later
@@ -458,6 +462,7 @@ public class qtBranching<V>
 				{
 					//empty minMoves 
 					min = new branchingReturnC<V>(g, deg);
+					min.setMinMoves(min);
 					results.add(new branchingReturnC<V>(g, degSequenceOrder(g), min));
 				}
 					
@@ -487,6 +492,7 @@ public class qtBranching<V>
 			min.getChanges().addAll(temp);
 			min.getChanges().addAll(changes);
 			
+			min.setMinMoves(min);
 			branchingReturnC<V> rtn = new branchingReturnC<V>(G, deg, changes, min);
 			
 			return rtn;
