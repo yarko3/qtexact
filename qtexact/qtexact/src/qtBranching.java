@@ -241,20 +241,7 @@ public class qtBranching<V>
 				minMoves = c4Remove5.getMinMoves();
 			}
 			
-			//add to PriorityQueue to sort
-			PriorityQueue<branchingReturnC<V>> pQueue = new PriorityQueue<branchingReturnC<V>>();
-//					pQueue.add(c4Add1);
-//					pQueue.add(c4Add2);
-			pQueue.add(c4Remove0);
-			pQueue.add(c4Remove1);
-			pQueue.add(c4Remove2);
-			pQueue.add(c4Remove3);
-			pQueue.add(c4Remove4);
-			pQueue.add(c4Remove5);
-			
-			branchingReturnC<V> r = pQueue.remove();
-			
-			return r;
+			return minMoves;
 			
 		}
 		//P4 has been found
@@ -284,15 +271,7 @@ public class qtBranching<V>
 				minMoves = p4Remove2.getMinMoves();
 			}
 			
-			//add to PriorityQueue to sort
-			PriorityQueue<branchingReturnC<V>> pQueue = new PriorityQueue<branchingReturnC<V>>();
-			pQueue.add(p4Remove0);
-			pQueue.add(p4Remove1);
-			pQueue.add(p4Remove2);
-			
-			branchingReturnC<V> r = pQueue.remove();
-			
-			return r;
+			return minMoves;
 			
 		}
 	}
@@ -361,20 +340,7 @@ public class qtBranching<V>
 				minMoves = c4Remove5.getMinMoves();
 			}
 			
-			//add to PriorityQueue to sort
-			PriorityQueue<branchingReturnC<V>> pQueue = new PriorityQueue<branchingReturnC<V>>();
-//			pQueue.add(c4Add1);
-//			pQueue.add(c4Add2);
-			pQueue.add(c4Remove0);
-			pQueue.add(c4Remove1);
-			pQueue.add(c4Remove2);
-			pQueue.add(c4Remove3);
-			pQueue.add(c4Remove4);
-			pQueue.add(c4Remove5);
-			
-			branchingReturnC<V> r = pQueue.remove();
-			
-			return r;
+			return minMoves;
 			
 		}
 		//P4 has been found
@@ -404,15 +370,8 @@ public class qtBranching<V>
 				minMoves = p4Remove2.getMinMoves();
 			}
 			
-			//add to PriorityQueue to sort
-			PriorityQueue<branchingReturnC<V>> pQueue = new PriorityQueue<branchingReturnC<V>>();
-			pQueue.add(p4Remove0);
-			pQueue.add(p4Remove1);
-			pQueue.add(p4Remove2);
 			
-			branchingReturnC<V> r = pQueue.remove();
-			
-			return r;
+			return minMoves;
 			
 		}
 	}
