@@ -57,10 +57,10 @@ public class fun extends JApplet {
 		
 		//exampleQT = qtGenerate.nonQTEx3();
 		
-		exampleQT = gen.ER(10, 0.2);
+		//exampleQT = gen.ER(25, 0.1);
 		
-//		exampleQT = new SparseGraph<Integer, Pair<Integer>>();
-//		fillGraphFromFile(exampleQT, "datasets/karate.txt");
+		exampleQT = new SparseGraph<Integer, Pair<Integer>>();
+		fillGraphFromFile(exampleQT, "datasets/karate.txt");
 		
 		qtRecognition<Integer> yan = new qtRecognition<Integer>();
 		
@@ -71,7 +71,7 @@ public class fun extends JApplet {
 		qtBranching<Integer> del = new qtBranching<Integer>();
 		
 		start = System.currentTimeMillis();
-		exampleQT = del.qtEditConnectedComponents(exampleQT);
+		//exampleQT = del.qtEditConnectedComponents(exampleQT);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		start = System.currentTimeMillis();

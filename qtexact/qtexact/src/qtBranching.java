@@ -65,11 +65,16 @@ public class qtBranching<V>
 		//start with a full minMoves
 		branchingReturnC<V> minMoves = new branchingReturnC<V>(G, deg);
 		minMoves.setChanges(fillMyEdgeSet(G));
+		while (minMoves.getChanges().size() > 34)
+		{
+			minMoves.getChanges().removeLast();
+		}
+		minMoves.setMinMoves(minMoves);
 		branchingReturnC<V> goal = new branchingReturnC<V>(G, deg);
 		goal.setMinMoves(minMoves);
 
 		//branch on G with degree ordering deg
-		goal = branchingNoHeuristic(goal);
+		goal = branchingNoHeuristic(goal, 0);
 		System.out.println("Number of moves: " + goal.getMinMoves().getChanges());
 		return goal.getG();
 		
@@ -80,7 +85,7 @@ public class qtBranching<V>
 	 * @param s contains graph, degree order, current set of edits
 	 * @return a modified graph, degree order and set of edits
 	 */
-	private branchingReturnC<V> branchingNoHeuristic(branchingReturnC<V> s)
+	private branchingReturnC<V> branchingNoHeuristic(branchingReturnC<V> s, double percentDone)
 	{
 		Graph<V, Pair<V>> G = s.getG();
 		ArrayList<LinkedList<V>> deg = s.getDeg();
@@ -111,7 +116,7 @@ public class qtBranching<V>
 				//only branch if current minMoves is longer than current state of search
 				if (minMoves.getChanges().size() > changes.size())
 				{
-					branchingReturnC<V> rtn = branchOnNoHeuristic(s, lexSearch);
+					branchingReturnC<V> rtn = branchOnNoHeuristic(s, lexSearch, percentDone);
 					return rtn;
 				}
 				//min moves is a better solution
@@ -177,7 +182,7 @@ public class qtBranching<V>
 	 * @param changes changes made 
 	 * @return result of most efficient branching
 	 */
-	private branchingReturnC<V> branchOnNoHeuristic(branchingReturnC<V> s, lexReturnC<V> searchResult)
+	private branchingReturnC<V> branchOnNoHeuristic(branchingReturnC<V> s, lexReturnC<V> searchResult, double percentDone)
 	{
 		branchingReturnC<V> minMoves = s.getMinMoves();
 		
@@ -192,7 +197,10 @@ public class qtBranching<V>
 			
 			
 			//results of removing 2 edges to break C4
-			branchingReturnC<V> c4Remove0 = branchingNoHeuristic(c4Delete2Result(s, lexResult.get(0), lexResult.get(1), lexResult.get(1), lexResult.get(2)));
+			branchingReturnC<V> c4Remove0 = branchingNoHeuristic(c4Delete2Result(s, lexResult.get(0), lexResult.get(1), lexResult.get(1), lexResult.get(2)), percentDone);
+			
+			//update percentDone
+			percentDone = updatePercent(s, percentDone, 6);
 			
 			//revert change to global graph
 			c4Delete2Revert(s, lexResult.get(0), lexResult.get(1), lexResult.get(1), lexResult.get(2));
@@ -203,7 +211,11 @@ public class qtBranching<V>
 				s.setMinMoves(minMoves);
 			}
 			
-			branchingReturnC<V> c4Remove1 = branchingNoHeuristic(c4Delete2Result(s, lexResult.get(0), lexResult.get(3), lexResult.get(2), lexResult.get(3)));
+			branchingReturnC<V> c4Remove1 = branchingNoHeuristic(c4Delete2Result(s, lexResult.get(0), lexResult.get(3), lexResult.get(2), lexResult.get(3)), percentDone);
+			
+			//update percentDone
+			percentDone = updatePercent(s, percentDone, 6);
+			
 			//revert change to global graph
 			c4Delete2Revert(s, lexResult.get(0), lexResult.get(3), lexResult.get(2), lexResult.get(3));
 			
@@ -213,7 +225,11 @@ public class qtBranching<V>
 				s.setMinMoves(minMoves);
 			}
 			
-			branchingReturnC<V> c4Remove2 = branchingNoHeuristic(c4Delete2Result(s, lexResult.get(0), lexResult.get(1), lexResult.get(2), lexResult.get(3)));
+			branchingReturnC<V> c4Remove2 = branchingNoHeuristic(c4Delete2Result(s, lexResult.get(0), lexResult.get(1), lexResult.get(2), lexResult.get(3)), percentDone);
+			
+			//update percentDone
+			percentDone = updatePercent(s, percentDone, 6);
+			
 			//revert change to global graph
 			c4Delete2Revert(s, lexResult.get(0), lexResult.get(1), lexResult.get(2), lexResult.get(3));
 			if (c4Remove2.getMinMoves().getChanges().size() < minMoves.getChanges().size())
@@ -222,7 +238,11 @@ public class qtBranching<V>
 				s.setMinMoves(minMoves);
 			}
 			
-			branchingReturnC<V> c4Remove3 = branchingNoHeuristic(c4Delete2Result(s, lexResult.get(0), lexResult.get(3), lexResult.get(1), lexResult.get(2)));
+			branchingReturnC<V> c4Remove3 = branchingNoHeuristic(c4Delete2Result(s, lexResult.get(0), lexResult.get(3), lexResult.get(1), lexResult.get(2)), percentDone);
+			
+			//update percentDone
+			percentDone = updatePercent(s, percentDone, 6);
+			
 			//revert change to global graph
 			c4Delete2Revert(s, lexResult.get(0), lexResult.get(3), lexResult.get(1), lexResult.get(2));
 			if (c4Remove3.getMinMoves().getChanges().size() < minMoves.getChanges().size())
@@ -231,7 +251,11 @@ public class qtBranching<V>
 				s.setMinMoves(minMoves);
 			}
 			
-			branchingReturnC<V> c4Remove4 = branchingNoHeuristic(c4Delete2Result(s, lexResult.get(1), lexResult.get(2), lexResult.get(2), lexResult.get(3)));
+			branchingReturnC<V> c4Remove4 = branchingNoHeuristic(c4Delete2Result(s, lexResult.get(1), lexResult.get(2), lexResult.get(2), lexResult.get(3)), percentDone);
+			
+			//update percentDone
+			percentDone = updatePercent(s, percentDone, 6);
+			
 			//revert change to global graph
 			c4Delete2Revert(s, lexResult.get(1), lexResult.get(2), lexResult.get(2), lexResult.get(3));
 			if (c4Remove4.getMinMoves().getChanges().size() < minMoves.getChanges().size())
@@ -239,7 +263,11 @@ public class qtBranching<V>
 				minMoves = c4Remove4.getMinMoves();
 			}
 			
-			branchingReturnC<V> c4Remove5 = branchingNoHeuristic(c4Delete2Result(s, lexResult.get(0), lexResult.get(1), lexResult.get(0), lexResult.get(3)));
+			branchingReturnC<V> c4Remove5 = branchingNoHeuristic(c4Delete2Result(s, lexResult.get(0), lexResult.get(1), lexResult.get(0), lexResult.get(3)), percentDone);
+			
+			//update percentDone
+			percentDone = updatePercent(s, percentDone, 6);
+			
 			//revert change to global graph
 			c4Delete2Revert(s, lexResult.get(0), lexResult.get(1), lexResult.get(0), lexResult.get(3));
 			if (c4Remove5.getMinMoves().getChanges().size() < minMoves.getChanges().size())
@@ -254,7 +282,11 @@ public class qtBranching<V>
 		//P4 has been found
 		else
 		{
-			branchingReturnC<V> p4Remove0 = branchingNoHeuristic(p4DeleteResult(s, lexResult.get(0), lexResult.get(1)));
+			branchingReturnC<V> p4Remove0 = branchingNoHeuristic(p4DeleteResult(s, lexResult.get(0), lexResult.get(1)), percentDone);
+			
+			//update percentDone
+			percentDone = updatePercent(s, percentDone, 3);
+			
 			//revert changes to global graph
 			p4DeleteRevert(s,lexResult.get(0), lexResult.get(1));
 			if (p4Remove0.getMinMoves().getChanges().size() < minMoves.getChanges().size())
@@ -263,7 +295,11 @@ public class qtBranching<V>
 				s.setMinMoves(minMoves);
 			}
 			
-			branchingReturnC<V> p4Remove1 = branchingNoHeuristic(p4DeleteResult(s, lexResult.get(1), lexResult.get(2)));
+			branchingReturnC<V> p4Remove1 = branchingNoHeuristic(p4DeleteResult(s, lexResult.get(1), lexResult.get(2)), percentDone);
+			
+			//update percentDone
+			percentDone = updatePercent(s, percentDone, 3);
+			
 			//revert changes to global graph
 			p4DeleteRevert(s,lexResult.get(1), lexResult.get(2));
 			if (p4Remove1.getMinMoves().getChanges().size() < minMoves.getChanges().size())
@@ -272,7 +308,11 @@ public class qtBranching<V>
 				s.setMinMoves(minMoves);
 			}
 			
-			branchingReturnC<V> p4Remove2 = branchingNoHeuristic(p4DeleteResult(s, lexResult.get(2), lexResult.get(3)));
+			branchingReturnC<V> p4Remove2 = branchingNoHeuristic(p4DeleteResult(s, lexResult.get(2), lexResult.get(3)), percentDone);
+			
+			//update percentDone
+			percentDone = updatePercent(s, percentDone, 3);
+			
 			//revert changes to global graph
 			p4DeleteRevert(s,lexResult.get(2), lexResult.get(3));
 			if (p4Remove2.getMinMoves().getChanges().size() < minMoves.getChanges().size())
@@ -869,5 +909,14 @@ public class qtBranching<V>
 			l.add(new myEdge<V>(e, false));
 		}
 		return l;
+	}
+	
+	private double updatePercent(branchingReturnC<V> s, double percentDone, int branching)
+	{
+		percentDone += Math.pow(((double) 1 / (double) branching), s.getChanges().size());
+		System.out.println("Done: " + percentDone);
+		System.out.println("Size of best solution: " + s.getMinMoves().getChanges().size());
+		
+		return percentDone;
 	}
 }
