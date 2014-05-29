@@ -554,14 +554,12 @@ public class qtBranching<V>
 	}
 	
 	/**
-	 * result of adding an edge to break C4
-	 * @param G graph
-	 * @param deg degree
-	 * @param changes changes made to the original graph
-	 * @param lexResult result of the lexBFS search for quasi-thresholdness
-	 * @param v0 vertex of edge to be added
-	 * @param v1 vertex of edge to be added
-	 * @return an object storing the new graph, updated degree order, changes
+	 * 
+	 * @param s
+	 * @param lexResult
+	 * @param v0
+	 * @param v1
+	 * @return
 	 */
 	private branchingReturnC<V> c4AddResult(branchingReturnC<V> s, ArrayList<V> lexResult, V v0, V v1)
 	{
@@ -578,6 +576,7 @@ public class qtBranching<V>
 		return new branchingReturnC<V>(graphCopy, degCopy, cCopy);
 		
 	}
+	
 	/**
 	 * Return the result of deleting two edges from an identified C4
 	 * @param G graph
