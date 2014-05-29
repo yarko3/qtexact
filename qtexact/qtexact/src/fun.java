@@ -43,7 +43,7 @@ public class fun extends JApplet {
 	{
 		Graph<Integer, Pair<Integer>> exampleQT;
 		qtGenerate<Integer> gen = new qtGenerate<Integer>();
-		exampleQT = gen.randomQT(100);
+		exampleQT = gen.randomQT(300);
 		//may break it
 		exampleQT.addEdge(new Pair<Integer>(0, 6), 0, 6);
 		exampleQT.addEdge(new Pair<Integer>(8, 1), 8, 1);
@@ -57,10 +57,10 @@ public class fun extends JApplet {
 		
 		//exampleQT = qtGenerate.nonQTEx3();
 		
-		//exampleQT = gen.ER(30, 0.8);
+		//exampleQT = gen.ER(11, 0.75);
 		
-//		exampleQT = new SparseGraph<Integer, Pair<Integer>>();
-//		fillGraphFromFile(exampleQT, "datasets/karate.txt");
+		//exampleQT = new SparseGraph<Integer, Pair<Integer>>();
+		//fillGraphFromFile(exampleQT, "datasets/karate.txt");
 		
 		qtRecognition<Integer> yan = new qtRecognition<Integer>();
 		
@@ -71,11 +71,11 @@ public class fun extends JApplet {
 		qtBranching<Integer> del = new qtBranching<Integer>();
 		
 		start = System.currentTimeMillis();
-		exampleQT = del.qtEditConnectedComponentsBound(exampleQT, 4);
+		//exampleQT = del.qtEditConnectedComponentsBound(exampleQT, 4);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		start = System.currentTimeMillis();
-		exampleQT = del.qtEditNoHeuristicBound(exampleQT, 4);
+		exampleQT = del.qtEditNoHeuristicBound(exampleQT, 10);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		

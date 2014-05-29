@@ -401,5 +401,18 @@ public class qtGenerate<V>
 		return graph;
 	}
 	
-
+	public Graph<V, Pair<V>> applyMoves(Graph<V, Pair<V>> graph, LinkedList<myEdge<V>> list)
+	{
+		for (myEdge<V> m : list)
+		{
+			if (m.isFlag())
+				graph.addEdge(m.getEdge(), m.getEdge().getFirst(), m.getEdge().getSecond());
+			else
+				if (!graph.removeEdge(m.getEdge()))
+					graph.removeEdge(new Pair<V>(m.getEdge().getSecond(), m.getEdge().getFirst()));
+		}
+		
+		return graph;
+	}
 }
+	
