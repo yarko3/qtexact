@@ -71,11 +71,11 @@ public class fun extends JApplet {
 		qtBranching<Integer> del = new qtBranching<Integer>();
 		
 		start = System.currentTimeMillis();
-		//exampleQT = del.qtEditConnectedComponents(exampleQT);
+		exampleQT = del.qtEditConnectedComponentsBound(exampleQT, 4);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		start = System.currentTimeMillis();
-		exampleQT = del.qtEditNoHeuristicBound(exampleQT, 34);
+		exampleQT = del.qtEditNoHeuristicBound(exampleQT, 4);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		
