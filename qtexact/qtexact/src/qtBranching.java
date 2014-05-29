@@ -51,6 +51,32 @@ public class qtBranching<V>
 		return goal.getG();
 		
 	}
+	
+	public Graph<V, Pair<V>> qtEditNoHeuristicBound(Graph<V, Pair<V>> G, int n)
+	{
+
+		//keep proper degree order as an ArrayList<LinkedList<vertex>>
+		ArrayList<LinkedList<V>> deg = degSequenceOrder(G);
+		
+		//start with a full minMoves
+		branchingReturnC<V> minMoves = new branchingReturnC<V>(G, deg);
+		minMoves.setChanges(fillMyEdgeSet(G));
+		while (minMoves.getChanges().size() > n)
+		{
+			minMoves.getChanges().removeLast();
+		}
+		minMoves.setMinMoves(minMoves);
+		branchingReturnC<V> goal = new branchingReturnC<V>(G, deg);
+		goal.setMinMoves(minMoves);
+
+		//branch on G with degree ordering deg
+		goal = branchingNoHeuristic(goal, 0);
+		System.out.println("Number of moves: " + goal.getMinMoves().getChanges());
+		return goal.getG();
+		
+	}
+	
+	
 	/**
 	 * Edit graph with no heuristics other than bound
 	 * @param G graph to be edited
@@ -65,10 +91,6 @@ public class qtBranching<V>
 		//start with a full minMoves
 		branchingReturnC<V> minMoves = new branchingReturnC<V>(G, deg);
 		minMoves.setChanges(fillMyEdgeSet(G));
-		while (minMoves.getChanges().size() > 34)
-		{
-			minMoves.getChanges().removeLast();
-		}
 		minMoves.setMinMoves(minMoves);
 		branchingReturnC<V> goal = new branchingReturnC<V>(G, deg);
 		goal.setMinMoves(minMoves);
@@ -911,6 +933,13 @@ public class qtBranching<V>
 		return l;
 	}
 	
+	/**
+	 * update percent complete and give status of current search
+	 * @param s
+	 * @param percentDone
+	 * @param branching
+	 * @return
+	 */
 	private double updatePercent(branchingReturnC<V> s, double percentDone, int branching)
 	{
 		percentDone += Math.pow(((double) 1 / (double) branching), s.getChanges().size());
