@@ -57,7 +57,7 @@ public class fun extends JApplet {
 		
 		//exampleQT = qtGenerate.nonQTEx3();
 		
-		exampleQT = gen.ER(14, 0.5);
+		exampleQT = gen.ER(10, 0.4);
 		
 		//exampleQT = new SparseGraph<Integer, Pair<Integer>>();
 		//fillGraphFromFile(exampleQT, "datasets/karate.txt");
