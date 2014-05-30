@@ -6,9 +6,13 @@
 
 package qtUtils;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.Random;
+import java.util.Scanner;
 
 import com.rits.cloning.Cloner;
 
@@ -413,6 +417,62 @@ public class qtGenerate<V>
 		}
 		
 		return graph;
+	}
+	
+	public Graph<Integer, Pair<Integer>> fromBipartiteFile(String filename)
+	{
+		Graph<Integer, Pair<Integer>> initial = new SparseGraph<Integer, Pair<Integer>>();
+		
+		FileReader file = null;
+		try {
+			file = new FileReader(filename);
+		} catch (FileNotFoundException e) {
+			System.out.println("File " + filename + " could not be found.");
+			e.printStackTrace();
+		}
+		
+		Scanner scan = new Scanner(file);
+		
+		//get size of left and right sides of bipartite network
+		int left = scan.nextInt();
+		int right = scan.nextInt();
+		
+		while (scan.hasNext()) {
+			Integer a = scan.nextInt();
+			Integer b = scan.nextInt();
+			
+			initial.addEdge(new Pair<Integer>(a, right+b), a, right+b);
+		}
+		try {
+			scan.close();
+			file.close();
+		} catch (IOException e) {
+			System.out.println("File " + filename + " could not be found.");
+			e.printStackTrace();
+		}
+		
+		Graph<Integer, Pair<Integer>> g = new SparseGraph<Integer, Pair<Integer>>();
+		
+		//build new graph
+		
+		for (int i = 0; i < right; i++)
+		{
+			//get neighbours of each right node
+			Collection<Integer> neighbourhood = initial.getNeighbors(i + right);
+			
+			for (Integer n : neighbourhood)
+			{
+				for (Integer j : neighbourhood)
+				{
+					if (n != j)
+					{
+						g.addEdge(new Pair<Integer>(n, j), n, j);
+					}
+				}
+			}
+		}
+		return g;
+		
 	}
 }
 	

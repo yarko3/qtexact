@@ -57,10 +57,14 @@ public class fun extends JApplet {
 		
 		//exampleQT = qtGenerate.nonQTEx3();
 		
-		exampleQT = gen.ER(10, 0.4);
+		//exampleQT = gen.ER(10, 0.4);
 		
 		//exampleQT = new SparseGraph<Integer, Pair<Integer>>();
 		//fillGraphFromFile(exampleQT, "datasets/karate.txt");
+		
+		exampleQT = gen.fromBipartiteFile("datasets/southernwomen");
+		
+		visualize(exampleQT);
 		
 		qtRecognition<Integer> yan = new qtRecognition<Integer>();
 		
@@ -71,11 +75,11 @@ public class fun extends JApplet {
 		qtBranching<Integer> del = new qtBranching<Integer>();
 		
 		start = System.currentTimeMillis();
-		del.qtEditConnectedComponents(exampleQT, 0);
+		//del.qtEditConnectedComponents(exampleQT, 0);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		start = System.currentTimeMillis();
-		exampleQT = del.qtEditNoHeuristic(exampleQT, 0);
+		exampleQT = del.qtEditNoHeuristic(exampleQT, 10);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		
@@ -83,10 +87,14 @@ public class fun extends JApplet {
 		System.out.println(yan.qtCheckYan(exampleQT));
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
+		visualize(exampleQT);
+	}
+	
+	public static void visualize(Graph<Integer, Pair<Integer>> g){
 		JFrame jf = new JFrame();
 		jf.setSize(1366, 768);
 
-		FRLayout frl = new FRLayout(exampleQT);
+		FRLayout frl = new FRLayout(g);
 
 		frl.setAttractionMultiplier(1.5);
 		//frl.lock(true);
@@ -100,7 +108,6 @@ public class fun extends JApplet {
 		jf.pack();
 		jf.setVisible(true);
 	}
-	
 	public static void searchSpeedTest()
 	{
 		qtGenerate<Integer> gen = new qtGenerate<Integer>();

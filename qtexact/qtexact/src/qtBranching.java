@@ -1021,8 +1021,8 @@ public class qtBranching<V>
 	private double updatePercent(branchingReturnC<V> s, double percentDone, int branching)
 	{
 		percentDone += Math.pow(((double) 1 / (double) branching), s.getChanges().size());
-//		System.out.println("Done: " + percentDone);
-//		System.out.println("Size of best solution: " + s.getMinMoves().getChanges().size());
+		System.out.println("Done: " + percentDone);
+		System.out.println("Size of best solution: " + s.getMinMoves().getChanges().size());
 		
 		return percentDone;
 	}
