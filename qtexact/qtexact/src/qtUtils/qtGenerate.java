@@ -441,7 +441,7 @@ public class qtGenerate<V>
 			Integer a = scan.nextInt();
 			Integer b = scan.nextInt();
 			
-			initial.addEdge(new Pair<Integer>(a, right+b), a, right+b);
+			initial.addEdge(new Pair<Integer>(a, left+b), a, left+b);
 		}
 		try {
 			scan.close();
@@ -455,10 +455,10 @@ public class qtGenerate<V>
 		
 		//build new graph
 		
-		for (int i = 0; i < right; i++)
+		for (int i = 1; i <= right; i++)
 		{
 			//get neighbours of each right node
-			Collection<Integer> neighbourhood = initial.getNeighbors(i + right);
+			Collection<Integer> neighbourhood = initial.getNeighbors(i + left);
 			
 			for (Integer n : neighbourhood)
 			{
