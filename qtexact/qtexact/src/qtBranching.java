@@ -36,7 +36,7 @@ public class qtBranching<V>
 	{
 	
 		//keep proper degree order as an ArrayList<LinkedList<vertex>>
-		ArrayList<LinkedList<V>> deg = degSequenceOrder(G);
+		ArrayList<LinkedList<V>> deg = search.degSequenceOrder(G);
 		
 		//start with a full minMoves
 		branchingReturnC<V> minMoves = new branchingReturnC<V>(G, deg);
@@ -51,9 +51,16 @@ public class qtBranching<V>
 		
 		qtGenerate<V> gen = new qtGenerate<V>();
 		
-		Graph<V, Pair<V>> rtn = gen.applyMoves(goal.getG(), goal.getMinMoves().getChanges());
 		
-		return rtn;
+		Graph<V, Pair<V>> rtn = gen.applyMoves(clone.deepClone(goal.getG()), goal.getMinMoves().getChanges());
+		
+		//return QT graph if edit succeeds
+		if (search.isQT(rtn))
+			return rtn;
+		else
+			//otherwise return original graph
+			return goal.getG();
+		
 		
 	}
 
@@ -70,7 +77,7 @@ public class qtBranching<V>
 		branchingReturnC<V> minMoves = s.getMinMoves();
 		
 		//check if graph is QT
-		ArrayList<V> t = flattenAndReverseDeg(deg);
+		ArrayList<V> t = search.flattenAndReverseDeg(deg);
 		lexReturnC<V> lexSearch = search.qtLexBFS(G, t);
 		//qt graph has been found
 		
@@ -311,7 +318,7 @@ public class qtBranching<V>
 	{
 		
 		//keep proper degree order as an ArrayList<LinkedList<vertex>>
-		ArrayList<LinkedList<V>> deg = degSequenceOrder(G);
+		ArrayList<LinkedList<V>> deg = search.degSequenceOrder(G);
 		
 		
 		//start with a full minMoves
@@ -324,7 +331,17 @@ public class qtBranching<V>
 		//branch on G with degree ordering deg
 		goal = branchingCC(goal);
 		System.out.println("Number of moves: " + goal.getMinMoves().getChanges());
-		return goal.getG();
+		
+		qtGenerate<V> gen = new qtGenerate<V>();
+		
+		Graph<V, Pair<V>> rtn = gen.applyMoves(goal.getG(), goal.getMinMoves().getChanges());
+
+		//return QT graph if edit succeeds
+		if (search.isQT(rtn))
+			return rtn;
+		else
+			//otherwise return original graph
+			return goal.getG();
 		
 	}
 	
@@ -343,7 +360,7 @@ public class qtBranching<V>
 		
 		
 		//check if graph is QT
-		ArrayList<V> t = flattenAndReverseDeg(deg);
+		ArrayList<V> t = search.flattenAndReverseDeg(deg);
 		
 		lexReturnC<V> lexSearch = search.qtLexBFSComponents(G, t);
 		
@@ -422,7 +439,7 @@ public class qtBranching<V>
 				branchingReturnC<V> min = new branchingReturnC<V>(gWtihForbidden, deg);
 				//bound the search by the best solution so far
 				min.setChanges(fillMyEdgeSet(gWtihForbidden, minMoves.getChanges().size() - changes.size()));
-				results.add(branchOnCC(new branchingReturnC<V>(gWtihForbidden, degSequenceOrder(gWtihForbidden), min), lexSearch));
+				results.add(branchOnCC(new branchingReturnC<V>(gWtihForbidden, search.degSequenceOrder(gWtihForbidden), min), lexSearch));
 				//branch on the rest of the graphs
 				for (Graph<V, Pair<V>> g : cGraphs)
 				{
@@ -433,14 +450,14 @@ public class qtBranching<V>
 						min = new branchingReturnC<V>(g, deg);
 						min.setChanges(fillMyEdgeSet(g, minMoves.getChanges().size() - changes.size()));
 	
-						results.add(branchingCC(new branchingReturnC<V>(g,degSequenceOrder(g), new LinkedList<myEdge<V>>(), min)));
+						results.add(branchingCC(new branchingReturnC<V>(g,search.degSequenceOrder(g), new LinkedList<myEdge<V>>(), min)));
 					}
 					//don't care about branching on this but still need it to build up the solution later
 					else
 					{
 						//empty minMoves 
 						min = new branchingReturnC<V>(g, deg);
-						results.add(new branchingReturnC<V>(g, degSequenceOrder(g), min));
+						results.add(new branchingReturnC<V>(g, search.degSequenceOrder(g), min));
 					}		
 				}
 				
@@ -566,6 +583,47 @@ public class qtBranching<V>
 		//P4 has been found
 		else
 		{
+			//see if any vertices of P4 have a deg of 1 (if so, branch only on removing those ones)
+			int deg0 = s.getG().degree(lexResult.get(0));
+			int deg3 = s.getG().degree(lexResult.get(3));
+			
+			if (deg0 == 1 || deg3 == 1)
+			{
+				//branch only on the deletion of removing the first element of P4
+				if (deg0 == 1)
+				{
+					if (!changes.contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)))
+					{
+						branchingReturnC<V> p4Remove0 = branchingCC(p4DeleteResult(s, lexResult.get(0), lexResult.get(1)));
+						//revert changes to global graph
+						p4DeleteRevert(s,lexResult.get(0), lexResult.get(1));
+						if (p4Remove0.getMinMoves().getChanges().size() < minMoves.getChanges().size())
+						{
+							minMoves = p4Remove0.getMinMoves();
+							s.setMinMoves(minMoves);
+						}
+						return minMoves;
+					}
+				}
+				
+				if (deg3 == 1)
+				{
+					if (!changes.contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
+					{
+						branchingReturnC<V> p4Remove2 = branchingCC(p4DeleteResult(s, lexResult.get(2), lexResult.get(3)));
+						//revert changes to global graph
+						p4DeleteRevert(s,lexResult.get(2), lexResult.get(3));
+						if (p4Remove2.getMinMoves().getChanges().size() < minMoves.getChanges().size())
+						{
+							minMoves = p4Remove2.getMinMoves();
+							s.setMinMoves(minMoves);
+						}
+					}
+					return minMoves;
+				}
+			}
+			
+			//------------------------------------------------------------------------------------------------------------
 			//add an edge to break P4
 			if (!changes.contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(2)), false)))
 			{
@@ -833,64 +891,6 @@ public class qtBranching<V>
 	}
 	
 	/**
-	 * Compute an ArrayList where every index holds a LinkedList of vertices with degrees of index
-	 * @param G graph
-	 * @return degree set
-	 */
-	public ArrayList<LinkedList<V>> degSequenceOrder(Graph<V, Pair<V>> G)
-	{
-		//store vertices of same degree in LinkedList<V> at the index of their degree in ArrayList
-		ArrayList<LinkedList<V>> deg = new ArrayList<LinkedList<V>>();
-		int max = 0;
-		for (V i : G.getVertices())
-		{
-			if (G.degree(i) > max)
-				max = G.degree(i);
-		}
-		
-		for (int i = 0; i <= max; i++)
-		{
-			deg.add(new LinkedList<V>());
-		}
-		
-		//for every vertex, add it to the appropriate LinkedList
-		for (V i : G.getVertices())
-		{
-			int iDeg = G.degree(i);
-			if (deg.get(iDeg) == null)
-			{
-				deg.add(iDeg, new LinkedList<V>());
-			}
-			
-			deg.get(iDeg).add(i);
-		}
-		
-		deg.trimToSize();
-		return deg;
-	}
-	
-	/**
-	 * Flatten and reverse degree order
-	 * @param deg degree sequence
-	 * @return vertex set in non-increasing degree order
-	 */
-	public ArrayList<V> flattenAndReverseDeg(ArrayList<LinkedList<V>> deg)
-	{
-		ArrayList<V> t = new ArrayList<V>(0);
-		
-		ArrayList<LinkedList<V>> degCopy = clone.deepClone(deg);
-		//reverse the order of deg and flatten it for lexBFS
-		for (int i = degCopy.size() - 1; i >=0; i--)
-		{
-			while (!degCopy.get(i).isEmpty())
-			{
-				t.add(degCopy.get(i).remove());
-			}
-		}
-		return t;
-	}
-	
-	/**
 	 * get induced subgraph from vertex set
 	 * @param G original graph
 	 * @param l vertex set
@@ -1021,9 +1021,32 @@ public class qtBranching<V>
 	private double updatePercent(branchingReturnC<V> s, double percentDone, int branching)
 	{
 		percentDone += Math.pow(((double) 1 / (double) branching), s.getChanges().size());
-		System.out.println("Done: " + percentDone);
-		System.out.println("Size of best solution: " + s.getMinMoves().getChanges().size());
+		//System.out.println("Done: " + percentDone);
+		//System.out.println("Size of best solution: " + s.getMinMoves().getChanges().size());
 		
 		return percentDone;
+	}
+	
+	public Graph<V, Pair<V>> qtEditIDBound(Graph<V, Pair<V>> G, int MAX)
+	{
+		//bound to iterate down to
+		int bound = 1;
+		Graph<V, Pair<V>> goal = G;
+		
+		//while graph is not solved and the bound is less than MAX
+		while (bound <= MAX)
+		{
+			goal = qtEditNoHeuristic(G, bound);
+			//test if current graph is QT
+			if (search.isQT(goal))
+			{
+				return goal;
+			}
+			else
+			{
+				bound++;
+			}
+		}
+		return goal;
 	}
 }

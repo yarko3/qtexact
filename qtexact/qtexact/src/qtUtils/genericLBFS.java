@@ -14,6 +14,8 @@ import java.util.Random;
 
 import org.apache.commons.collections15.Factory;
 
+import com.rits.cloning.Cloner;
+
 import edu.uci.ics.jung.algorithms.generators.random.ErdosRenyiGenerator;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.UndirectedGraph;
@@ -21,6 +23,8 @@ import edu.uci.ics.jung.graph.UndirectedSparseGraph;
 import edu.uci.ics.jung.graph.util.Pair;
 
 public class genericLBFS<V> {
+	
+	public static Cloner clone = new Cloner();
 	
 	/** LexBFS search 
 	 * 
@@ -337,6 +341,74 @@ public class genericLBFS<V> {
 		System.out.println("Certificate failed ");
 		return null;
 		
+	}
+	/**
+	 * Compute an ArrayList where every index holds a LinkedList of vertices with degrees of index
+	 * @param G graph
+	 * @return degree set
+	 */
+	public ArrayList<LinkedList<V>> degSequenceOrder(Graph<V, Pair<V>> G)
+	{
+		//store vertices of same degree in LinkedList<V> at the index of their degree in ArrayList
+		ArrayList<LinkedList<V>> deg = new ArrayList<LinkedList<V>>();
+		int max = 0;
+		for (V i : G.getVertices())
+		{
+			if (G.degree(i) > max)
+				max = G.degree(i);
+		}
+		
+		for (int i = 0; i <= max; i++)
+		{
+			deg.add(new LinkedList<V>());
+		}
+		
+		//for every vertex, add it to the appropriate LinkedList
+		for (V i : G.getVertices())
+		{
+			int iDeg = G.degree(i);
+			if (deg.get(iDeg) == null)
+			{
+				deg.add(iDeg, new LinkedList<V>());
+			}
+			
+			deg.get(iDeg).add(i);
+		}
+		
+		deg.trimToSize();
+		return deg;
+	}
+	/**
+	 * Flatten and reverse degree order
+	 * @param deg degree sequence
+	 * @return vertex set in non-increasing degree order
+	 */
+	public ArrayList<V> flattenAndReverseDeg(ArrayList<LinkedList<V>> deg)
+	{
+		ArrayList<V> t = new ArrayList<V>(0);
+		
+		ArrayList<LinkedList<V>> degCopy = clone.deepClone(deg);
+		//reverse the order of deg and flatten it for lexBFS
+		for (int i = degCopy.size() - 1; i >=0; i--)
+		{
+			while (!degCopy.get(i).isEmpty())
+			{
+				t.add(degCopy.get(i).remove());
+			}
+		}
+		return t;
+	}
+	
+	public boolean isQT(Graph <V, Pair<V>> G)
+	{
+		ArrayList<LinkedList<V>> deg = degSequenceOrder(G);
+		
+		lexReturnC<V> search = qtLexBFS(G, flattenAndReverseDeg(deg));
+		
+		if (search.isQT())
+			return true;
+		else
+			return false;
 	}
 	
 }
