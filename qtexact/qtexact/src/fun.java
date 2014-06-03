@@ -62,7 +62,7 @@ public class fun extends JApplet {
 		//exampleQT = new SparseGraph<Integer, Pair<Integer>>();
 		//fillGraphFromFile(exampleQT, "datasets/karate.txt");
 		
-		//exampleQT = gen.fromBipartiteFile("datasets/southernwomen");
+		exampleQT = gen.fromBipartiteFile("datasets/southernwomen");
 		
 		visualize(exampleQT);
 		
@@ -84,7 +84,7 @@ public class fun extends JApplet {
 		
 		
 		start = System.currentTimeMillis();
-		exampleQT = del.qtEditIDBound(exampleQT, 30);
+		exampleQT = del.qtEditIDBound(exampleQT, 25, 30);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		

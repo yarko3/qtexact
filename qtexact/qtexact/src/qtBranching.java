@@ -32,11 +32,12 @@ public class qtBranching<V>
 	 * @param MAX maximum depth permitted
 	 * @return return an edited graph if one exists, otherwise return original graph 
 	 */
-	public Graph<V, Pair<V>> qtEditIDBound(Graph<V, Pair<V>> G, int MAX)
+	public Graph<V, Pair<V>> qtEditIDBound(Graph<V, Pair<V>> G, int START, int MAX)
 	{
 		//bound to iterate down to
-		int bound = 2;
+		int bound = START + 1;
 		Graph<V, Pair<V>> goal = G;
+		boolean isQT = false;
 		
 		//while graph is not solved and the bound is less than MAX
 		while (bound <= MAX + 1)
