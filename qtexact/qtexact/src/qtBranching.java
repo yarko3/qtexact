@@ -24,13 +24,42 @@ import edu.uci.ics.jung.graph.util.Pair;
 public class qtBranching<V>
 {
 	public genericLBFS<V> search = new genericLBFS<V>();
-	
 	public static Cloner clone = new Cloner();
 	
 	/**
-	 * Edit graph with no heuristics other than bound
+	 * edit graph using BFS (no heuristic)
 	 * @param G graph to be edited
-	 * @return edited QT graph
+	 * @param MAX maximum depth permitted
+	 * @return return an edited graph if one exists, otherwise return original graph 
+	 */
+	public Graph<V, Pair<V>> qtEditIDBound(Graph<V, Pair<V>> G, int MAX)
+	{
+		//bound to iterate down to
+		int bound = 2;
+		Graph<V, Pair<V>> goal = G;
+		
+		//while graph is not solved and the bound is less than MAX
+		while (bound <= MAX + 1)
+		{
+			goal = qtEditNoHeuristic(G, bound);
+			//test if current graph is QT
+			if (search.isQT(goal))
+			{
+				return goal;
+			}
+			else
+			{
+				bound++;
+			}
+		}
+		return goal;
+	}
+
+	/**
+	 * edit graph into quasi threshold with given bound of edits
+	 * @param G graph to be edited
+	 * @param bound maximum number of edits
+	 * @return an edited graph if one is found; original graph if no qt graph exists
 	 */
 	public Graph<V, Pair<V>> qtEditNoHeuristic(Graph<V, Pair<V>> G, int bound)
 	{
@@ -64,9 +93,12 @@ public class qtBranching<V>
 	}
 
 	/**
-	 * branch without using any heuristic (bounded by minMoves)
-	 * @param s contains graph, degree order, current set of edits
-	 * @return a modified graph, degree order and set of edits
+	 * recursive function for qt editing with no heuristics
+	 * graph is checked for qt; minMoves is updated if found solution is better
+	 * branch further if allowed by minMoves
+	 * @param s the state of the search
+	 * @param percentDone used for keeping track of progress (initialize to zero)
+	 * @return a state of the search
 	 */
 	private branchingReturnC<V> branchingNoHeuristic(branchingReturnC<V> s, double percentDone)
 	{	
@@ -103,12 +135,11 @@ public class qtBranching<V>
 	}
 
 	/**
-	 * branch on all options available
-	 * @param G graph to be modified
-	 * @param deg degree order
-	 * @param lexResult result of lexBFS search
-	 * @param changes changes made 
-	 * @return result of most efficient branching
+	 * remove P4/C4 when one is found
+	 * @param s state of search
+	 * @param searchResult lexBFS result
+	 * @param percentDone progress through search
+	 * @return state of search
 	 */
 	private branchingReturnC<V> branchOnNoHeuristic(branchingReturnC<V> s, lexReturnC<V> searchResult, double percentDone)
 	{
@@ -122,7 +153,7 @@ public class qtBranching<V>
 			//if we did not remove the edge that is about to be added
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(2)), false)))
 			{
-				branchingReturnC<V> c4Add1 = branchingNoHeuristic(c4p4AddResult(s, lexResult, lexResult.get(0), lexResult.get(2)), percentDone);
+				branchingReturnC<V> c4Add1 = branchingNoHeuristic(c4p4AddResult(s, lexResult.get(0), lexResult.get(2)), percentDone);
 				//revert changes
 				c4p4AddRevert(s, lexResult.get(0), lexResult.get(2));		
 				//update percentDone
@@ -134,7 +165,7 @@ public class qtBranching<V>
 			}
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false)))
 			{
-				branchingReturnC<V> c4Add2 = branchingNoHeuristic(c4p4AddResult(s, lexResult, lexResult.get(1), lexResult.get(3)), percentDone);
+				branchingReturnC<V> c4Add2 = branchingNoHeuristic(c4p4AddResult(s, lexResult.get(1), lexResult.get(3)), percentDone);
 				//revert changes
 				c4p4AddRevert(s, lexResult.get(1), lexResult.get(3));
 				//update percentDone
@@ -226,7 +257,7 @@ public class qtBranching<V>
 			//add an edge to break P4
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(2)), false)))
 			{
-				branchingReturnC<V> p4Add0 = branchingNoHeuristic(c4p4AddResult(s, lexResult, lexResult.get(0), lexResult.get(2)), percentDone);
+				branchingReturnC<V> p4Add0 = branchingNoHeuristic(c4p4AddResult(s, lexResult.get(0), lexResult.get(2)), percentDone);
 				//revert changes
 				c4p4AddRevert(s, lexResult.get(0), lexResult.get(2));
 				
@@ -239,7 +270,7 @@ public class qtBranching<V>
 			}
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false)))
 			{
-				branchingReturnC<V> p4Add1 = branchingNoHeuristic(c4p4AddResult(s, lexResult, lexResult.get(1), lexResult.get(3)), percentDone);
+				branchingReturnC<V> p4Add1 = branchingNoHeuristic(c4p4AddResult(s, lexResult.get(1), lexResult.get(3)), percentDone);
 				//revert changes
 				c4p4AddRevert(s, lexResult.get(1), lexResult.get(3));
 				//update percentDone
@@ -293,7 +324,8 @@ public class qtBranching<V>
 	/**
 	 * Edit a graph by splitting it into connected components with bounding
 	 * @param G graph to be edited
-	 * @return an edited QT graph
+	 * @param bound maximum number of edits permitted
+	 * @return edited graph if qt found; original graph if no solution is found
 	 */
 	public Graph<V, Pair<V>> qtEditConnectedComponents(Graph<V, Pair<V>> G, int bound)
 	{
@@ -373,80 +405,82 @@ public class qtBranching<V>
 		}
 	}
 	
-	
 	/**
-		 * branch on connected components if they are available
-		 * @param G
-		 * @param deg
-		 * @param changes
-		 * @param lex
-		 * @param minMoves
-		 * @return
-		 */
-		private branchingReturnC<V> componentSplit(branchingReturnC<V> s, lexReturnC<V> lexSearch)
-		{				
-			//search yields only one connected component, branch on one component
-			if (lexSearch.isConnected())
+	 * split graph into components and edit each individual component
+	 * @param s search state
+	 * @param lexSearch result of lexBFS search
+	 * @return search state
+	 */
+	private branchingReturnC<V> componentSplit(branchingReturnC<V> s, lexReturnC<V> lexSearch)
+	{				
+		//search yields only one connected component, branch on one component
+		if (lexSearch.isConnected())
+		{
+			return branchOnCC(s, lexSearch);
+		}
+		//multiple connected components exist
+		else
+		{
+			//build graphs from connected components
+			Graph<V, Pair<V>> gWtihForbidden = connectedCFromVertexSet(s.getG(), lexSearch.getcComponents().removeLast());
+			
+			LinkedList<Graph<V, Pair<V>>> cGraphs = new LinkedList<Graph<V, Pair<V>>>();
+			LinkedList<branchingReturnC<V>> results = new LinkedList<branchingReturnC<V>>();
+			for (HashSet<V> l : lexSearch.getcComponents())
 			{
-				return branchOnCC(s, lexSearch);
+				cGraphs.add(connectedCFromVertexSet(s.getG(), l));
 			}
-			//multiple connected components exist
-			else
+			//branch on known forbidden structure
+			
+			//fill new minMoves with entire edge set
+			branchingReturnC<V> min = new branchingReturnC<V>(gWtihForbidden, s.getDeg());
+			//bound the search by the best solution so far
+			min.setChanges(fillMyEdgeSet(gWtihForbidden, s.getMinMoves().getChanges().size() - s.getChanges().size()));
+			min.setMinMoves(min);
+			results.add(branchOnCC(new branchingReturnC<V>(gWtihForbidden, search.degSequenceOrder(gWtihForbidden), min), lexSearch));
+			//branch on the rest of the graphs
+			for (Graph<V, Pair<V>> g : cGraphs)
 			{
-				//build graphs from connected components
-				Graph<V, Pair<V>> gWtihForbidden = connectedCFromVertexSet(s.getG(), lexSearch.getcComponents().removeLast());
-				
-				LinkedList<Graph<V, Pair<V>>> cGraphs = new LinkedList<Graph<V, Pair<V>>>();
-				LinkedList<branchingReturnC<V>> results = new LinkedList<branchingReturnC<V>>();
-				for (HashSet<V> l : lexSearch.getcComponents())
+				//if component is large enough to care
+				if (g.getVertexCount() > 3)
 				{
-					cGraphs.add(connectedCFromVertexSet(s.getG(), l));
+					//fill new minMoves with bounded edge set of component
+					min = new branchingReturnC<V>(g, s.getDeg());
+					min.setChanges(fillMyEdgeSet(g, s.getMinMoves().getChanges().size() - s.getChanges().size()));
+					min.setMinMoves(min);
+					results.add(branchingCC(new branchingReturnC<V>(g,search.degSequenceOrder(g), new LinkedList<myEdge<V>>(), min)));
 				}
-				//branch on known forbidden structure
-				
-				//fill new minMoves with entire edge set
-				branchingReturnC<V> min = new branchingReturnC<V>(gWtihForbidden, s.getDeg());
-				//bound the search by the best solution so far
-				min.setChanges(fillMyEdgeSet(gWtihForbidden, s.getMinMoves().getChanges().size() - s.getChanges().size()));
-				min.setMinMoves(min);
-				results.add(branchOnCC(new branchingReturnC<V>(gWtihForbidden, search.degSequenceOrder(gWtihForbidden), min), lexSearch));
-				//branch on the rest of the graphs
-				for (Graph<V, Pair<V>> g : cGraphs)
+				//don't care about branching on this but still need it to build up the solution later
+				else
 				{
-					//if component is large enough to care
-					if (g.getVertexCount() > 3)
-					{
-						//fill new minMoves with bounded edge set of component
-						min = new branchingReturnC<V>(g, s.getDeg());
-						min.setChanges(fillMyEdgeSet(g, s.getMinMoves().getChanges().size() - s.getChanges().size()));
-						min.setMinMoves(min);
-						results.add(branchingCC(new branchingReturnC<V>(g,search.degSequenceOrder(g), new LinkedList<myEdge<V>>(), min)));
-					}
-					//don't care about branching on this but still need it to build up the solution later
-					else
-					{
-						//empty minMoves 
-						min = new branchingReturnC<V>(g, s.getDeg());
-						min.setMinMoves(min);
-						results.add(new branchingReturnC<V>(g, search.degSequenceOrder(g), min));
-					}		
-				}
-				
-				//construct new minMoves from all old ones
-				min = new branchingReturnC<V>(s.getG(), s.getDeg(), min);
-				//throw all minMoves into a HashSet, so they don't have duplicates
-				HashSet<myEdge<V>> temp = new HashSet<myEdge<V>>();
-				for (branchingReturnC<V> r : results)
-				{
-					temp.addAll(r.getMinMoves().getChanges());
-				}
-				min.getChanges().addAll(temp);
-				min.getChanges().addAll(s.getChanges());		
-				
-				return min;
+					//empty minMoves 
+					min = new branchingReturnC<V>(g, s.getDeg());
+					min.setMinMoves(min);
+					results.add(new branchingReturnC<V>(g, search.degSequenceOrder(g), min));
+				}		
+			}
+			
+			//construct new minMoves from all old ones
+			min = new branchingReturnC<V>(s.getG(), s.getDeg(), min);
+			//throw all minMoves into a HashSet, so they don't have duplicates
+			HashSet<myEdge<V>> temp = new HashSet<myEdge<V>>();
+			for (branchingReturnC<V> r : results)
+			{
+				temp.addAll(r.getMinMoves().getChanges());
+			}
+			min.getChanges().addAll(temp);
+			min.getChanges().addAll(s.getChanges());		
+			
+			return min;
 		}
 	}
 
+	/**
+	 * edit out a P4/C4 by adding or removing edges and branch further
+	 * @param s search state
+	 * @param searchResult lexBFS result
+	 * @return search state
+	 */
 	private branchingReturnC<V> branchOnCC(branchingReturnC<V> s, lexReturnC<V> searchResult)
 	{
 		
@@ -458,7 +492,7 @@ public class qtBranching<V>
 			//if we did not remove an edge that is about to be added
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(2)), false)))
 			{
-				branchingReturnC<V> c4Add1 = branchingCC(c4p4AddResult(s, lexResult, lexResult.get(0), lexResult.get(2)));
+				branchingReturnC<V> c4Add1 = branchingCC(c4p4AddResult(s, lexResult.get(0), lexResult.get(2)));
 				//revert changes
 				c4p4AddRevert(s, lexResult.get(0), lexResult.get(2));
 				if (c4Add1.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
@@ -468,7 +502,7 @@ public class qtBranching<V>
 			}
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false)))
 			{
-				branchingReturnC<V> c4Add2 = branchingCC(c4p4AddResult(s, lexResult, lexResult.get(1), lexResult.get(3)));
+				branchingReturnC<V> c4Add2 = branchingCC(c4p4AddResult(s, lexResult.get(1), lexResult.get(3)));
 				//revert changes
 				c4p4AddRevert(s, lexResult.get(1), lexResult.get(3));
 				if (c4Add2.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
@@ -585,7 +619,7 @@ public class qtBranching<V>
 			//add an edge to break P4
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(2)), false)))
 			{
-				branchingReturnC<V> p4Add0 = branchingCC(c4p4AddResult(s, lexResult, lexResult.get(0), lexResult.get(2)));
+				branchingReturnC<V> p4Add0 = branchingCC(c4p4AddResult(s, lexResult.get(0), lexResult.get(2)));
 				//revert changes
 				c4p4AddRevert(s, lexResult.get(0), lexResult.get(2));
 				if (p4Add0.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
@@ -595,7 +629,7 @@ public class qtBranching<V>
 			}
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false)))
 			{
-				branchingReturnC<V> p4Add1 = branchingCC(c4p4AddResult(s, lexResult, lexResult.get(1), lexResult.get(3)));
+				branchingReturnC<V> p4Add1 = branchingCC(c4p4AddResult(s, lexResult.get(1), lexResult.get(3)));
 				//revert changes
 				c4p4AddRevert(s, lexResult.get(1), lexResult.get(3));
 				if (p4Add1.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
@@ -638,7 +672,14 @@ public class qtBranching<V>
 		}
 	}
 	
-	private branchingReturnC<V> c4p4AddResult(branchingReturnC<V> s, ArrayList<V> lexResult, V v0, V v1)
+	/**
+	 * edit the graph by adding an edge between v0 and v1
+	 * @param s search state
+	 * @param v0 vertex
+	 * @param v1 vertex
+	 * @return edited search state
+	 */
+	private branchingReturnC<V> c4p4AddResult(branchingReturnC<V> s, V v0, V v1)
 	{
 		
 		//update degree sequence (first edge)
@@ -650,6 +691,12 @@ public class qtBranching<V>
 		return s;
 		
 	}
+	/**
+	 * revert the changes of adding an edge on v0 and v1
+	 * @param s search state
+	 * @param v0 vertex
+	 * @param v1 vertex
+	 */
 	private void c4p4AddRevert(branchingReturnC<V> s, V v0, V v1)
 	{
 		//update degree sequence (first edge)
@@ -659,6 +706,15 @@ public class qtBranching<V>
 	}
 	
 
+	/**
+	 * delete 2 edges to remove a C4
+	 * @param s search state
+	 * @param v0 vertex
+	 * @param v1 vertex
+	 * @param v2 vertex
+	 * @param v3 vertex
+	 * @return search state
+	 */
 	private branchingReturnC<V> c4Delete2Result(branchingReturnC<V> s, V v0, V v1, V v2, V v3)
 	{	
 		//update degree sequence (first edge)
@@ -675,7 +731,14 @@ public class qtBranching<V>
 		
 	}
 	
-
+	/**
+	 * revert changes made by removing 2 edges from a C4
+	 * @param s search state
+	 * @param v0 vertex
+	 * @param v1 vertex
+	 * @param v2 vertex
+	 * @param v3 vertex
+	 */
 	private void c4Delete2Revert(branchingReturnC<V> s, V v0,
 			V v1, V v2, V v3) 
 	{
@@ -690,6 +753,13 @@ public class qtBranching<V>
 	
 	}
 	
+	/**
+	 * edit a P4 by removing an edge
+	 * @param s search state
+	 * @param v0 vertex
+	 * @param v1 vertex
+	 * @return search state
+	 */
 	private branchingReturnC<V> p4DeleteResult(branchingReturnC<V> s, V v0, V v1)
 	{
 		//update degree sequence (first edge)
@@ -700,9 +770,14 @@ public class qtBranching<V>
 		
 	}
 	
+	/**
+	 * revert changes of removing an edge from a P4
+	 * @param s search state
+	 * @param v0 vertex
+	 * @param v1 vertex
+	 */
 	private void p4DeleteRevert(branchingReturnC<V> s, V v0, V v1)
 	{
-		
 		//update degree sequence (first edge)
 		addEdge(s.getG(), s.getDeg(), v0, v1);
 		
@@ -721,27 +796,18 @@ public class qtBranching<V>
 	{
 		int v0Deg = G.degree(v0);
 		int v1Deg = G.degree(v1);
-		
 		deg.get(v0Deg).removeFirstOccurrence(v0);
-		
-		
 		deg.get(v0Deg - 1).add(v0);
-		
 		if (deg.get(v0Deg).isEmpty() && v0Deg+1 == deg.size())
 		{
 			deg.remove(v0Deg);
 		}
-		
-		
 		deg.get(v1Deg).removeFirstOccurrence(v1);
-		
 		deg.get(v1Deg - 1).add(v1);
 		if (deg.get(v1Deg).isEmpty() && v1Deg+1 == deg.size())
 		{
 			deg.remove(v1Deg);
 		}
-		
-		
 		//find the edge to remove
 		if (!G.removeEdge(new Pair<V>(v0, v1)))
 			G.removeEdge(new Pair<V>(v1, v0));	
@@ -836,7 +902,6 @@ public class qtBranching<V>
 		{
 			tempSet.addAll(G.getIncidentEdges(i));
 		}
-		
 		//add all edges to c
 		for (Pair<V> e : tempSet)
 		{
@@ -927,28 +992,5 @@ public class qtBranching<V>
 		//System.out.println("Size of best solution: " + s.getMinMoves().getChanges().size());
 		
 		return percentDone;
-	}
-	
-	public Graph<V, Pair<V>> qtEditIDBound(Graph<V, Pair<V>> G, int MAX)
-	{
-		//bound to iterate down to
-		int bound = 2;
-		Graph<V, Pair<V>> goal = G;
-		
-		//while graph is not solved and the bound is less than MAX
-		while (bound <= MAX + 1)
-		{
-			goal = qtEditNoHeuristic(G, bound);
-			//test if current graph is QT
-			if (search.isQT(goal))
-			{
-				return goal;
-			}
-			else
-			{
-				bound++;
-			}
-		}
-		return goal;
 	}
 }
