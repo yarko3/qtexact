@@ -42,8 +42,7 @@ public class qtBranching<V>
 		branchingReturnC<V> minMoves = new branchingReturnC<V>(G, deg);
 		minMoves.setChanges(fillMyEdgeSet(G, bound));
 		minMoves.setMinMoves(minMoves);
-		branchingReturnC<V> goal = new branchingReturnC<V>(G, deg);
-		goal.setMinMoves(minMoves);
+		branchingReturnC<V> goal = new branchingReturnC<V>(G, deg, minMoves);
 	
 		//branch on G with degree ordering deg
 		goal = branchingNoHeuristic(goal, 0);
@@ -65,30 +64,24 @@ public class qtBranching<V>
 	}
 
 	/**
-	 * branch without using any heuristic
+	 * branch without using any heuristic (bounded by minMoves)
 	 * @param s contains graph, degree order, current set of edits
 	 * @return a modified graph, degree order and set of edits
 	 */
 	private branchingReturnC<V> branchingNoHeuristic(branchingReturnC<V> s, double percentDone)
-	{
-		Graph<V, Pair<V>> G = s.getG();
-		ArrayList<LinkedList<V>> deg = s.getDeg();
-		LinkedList<myEdge<V>> changes = s.getChanges();
-		branchingReturnC<V> minMoves = s.getMinMoves();
-		
+	{	
 		//check if graph is QT
-		ArrayList<V> t = search.flattenAndReverseDeg(deg);
-		lexReturnC<V> lexSearch = search.qtLexBFS(G, t);
+		ArrayList<V> t = search.flattenAndReverseDeg(s.getDeg());
+		lexReturnC<V> lexSearch = search.qtLexBFS(s.getG(), t);
 		//qt graph has been found
 		
 		if (lexSearch.isQT())
 		{
-			branchingReturnC<V> rtn = new branchingReturnC<V>(G, deg, changes, minMoves);
 			//update the minMoves list if this solution is better
-			if (rtn.getChanges().size() < minMoves.getChanges().size())
+			if (s.getChanges().size() < s.getMinMoves().getChanges().size())
 			{
 				//make a new minMoves to store
-				branchingReturnC<V> newMin = new branchingReturnC<V>(G, deg, clone.deepClone(changes));
+				branchingReturnC<V> newMin = new branchingReturnC<V>(s.getG(), s.getDeg(), clone.deepClone(s.getChanges()));
 				newMin.setMinMoves(newMin);
 				s.setMinMoves(newMin);
 			}
@@ -98,14 +91,14 @@ public class qtBranching<V>
 			else
 			{	
 				//only branch if current minMoves is longer than current state of search
-				if (minMoves.getChanges().size() > changes.size())
+				if (s.getMinMoves().getChanges().size() > s.getChanges().size())
 				{
 					branchingReturnC<V> rtn = branchOnNoHeuristic(s, lexSearch, percentDone);
 					return rtn;
 				}
 				//min moves is a better solution
 				else
-					return minMoves;
+					return s.getMinMoves();
 			}
 	}
 
@@ -119,126 +112,119 @@ public class qtBranching<V>
 	 */
 	private branchingReturnC<V> branchOnNoHeuristic(branchingReturnC<V> s, lexReturnC<V> searchResult, double percentDone)
 	{
-		branchingReturnC<V> minMoves = s.getMinMoves();
-		LinkedList<myEdge<V>> changes = s.getChanges();
-		//C4 has been found
+//		branchingReturnC<V> minMoves = s.getMinMoves();
+//		LinkedList<myEdge<V>> changes = s.getChanges();
 		ArrayList<V> lexResult = searchResult.getCertificate().getVertices();
+		//C4 has been found
 		if (searchResult.getCertificate().getFlag() == -1)
 		{
 			//result of adding 1 edge to break C4
-			//if we did not remove an edge that is about to be added
-			if (!changes.contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(2)), false)))
+			//if we did not remove the edge that is about to be added
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(2)), false)))
 			{
 				branchingReturnC<V> c4Add1 = branchingNoHeuristic(c4p4AddResult(s, lexResult, lexResult.get(0), lexResult.get(2)), percentDone);
 				//revert changes
 				c4p4AddRevert(s, lexResult.get(0), lexResult.get(2));		
 				//update percentDone
 				percentDone = updatePercent(c4Add1, percentDone, 5);
-				if (c4Add1.getMinMoves().getChanges().size() < minMoves.getChanges().size())
+				if (c4Add1.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 				{
-					minMoves = c4Add1.getMinMoves();
-					s.setMinMoves(minMoves);
+					s.setMinMoves(c4Add1.getMinMoves());
 				}
 			}
-			if (!changes.contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false)))
 			{
 				branchingReturnC<V> c4Add2 = branchingNoHeuristic(c4p4AddResult(s, lexResult, lexResult.get(1), lexResult.get(3)), percentDone);
 				//revert changes
 				c4p4AddRevert(s, lexResult.get(1), lexResult.get(3));
 				//update percentDone
 				percentDone = updatePercent(c4Add2, percentDone, 5);
-				if (c4Add2.getMinMoves().getChanges().size() < minMoves.getChanges().size())
+				if (c4Add2.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 				{
-					minMoves = c4Add2.getMinMoves();
-					s.setMinMoves(minMoves);
+					s.setMinMoves(c4Add2.getMinMoves());
 				}
 			}
 			//results of removing 2 edges to break C4
-			if (!changes.contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)) && !changes.contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)))
 			{
 				branchingReturnC<V> c4Remove0 = branchingNoHeuristic(c4Delete2Result(s, lexResult.get(0), lexResult.get(1), lexResult.get(1), lexResult.get(2)), percentDone);
 				//update percentDone
 				percentDone = updatePercent(c4Remove0, percentDone, 5);
 				//revert change to global graph
 				c4Delete2Revert(s, lexResult.get(0), lexResult.get(1), lexResult.get(1), lexResult.get(2));
-				if (c4Remove0.getMinMoves().getChanges().size() < minMoves.getChanges().size())
+				if (c4Remove0.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 				{
-					minMoves = c4Remove0.getMinMoves();
-					s.setMinMoves(minMoves);
+					s.setMinMoves(c4Remove0.getMinMoves());
 				}
 			}
-			if (!changes.contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(3)), true)) && !changes.contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(3)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
 			{
 				branchingReturnC<V> c4Remove1 = branchingNoHeuristic(c4Delete2Result(s, lexResult.get(0), lexResult.get(3), lexResult.get(2), lexResult.get(3)), percentDone);
 				//update percentDone
 				percentDone = updatePercent(c4Remove1, percentDone, 5);
 				//revert change to global graph
 				c4Delete2Revert(s, lexResult.get(0), lexResult.get(3), lexResult.get(2), lexResult.get(3));
-				if (c4Remove1.getMinMoves().getChanges().size() < minMoves.getChanges().size())
+				if (c4Remove1.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 				{
-					minMoves = c4Remove1.getMinMoves();
-					s.setMinMoves(minMoves);
+					s.setMinMoves(c4Remove1.getMinMoves());
 				}
 			}
-			if (!changes.contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)) && !changes.contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
 			{
 				branchingReturnC<V> c4Remove2 = branchingNoHeuristic(c4Delete2Result(s, lexResult.get(0), lexResult.get(1), lexResult.get(2), lexResult.get(3)), percentDone);
 				//update percentDone
 				percentDone = updatePercent(c4Remove2, percentDone, 5);
 				//revert change to global graph
 				c4Delete2Revert(s, lexResult.get(0), lexResult.get(1), lexResult.get(2), lexResult.get(3));
-				if (c4Remove2.getMinMoves().getChanges().size() < minMoves.getChanges().size())
+				if (c4Remove2.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 				{
-					minMoves = c4Remove2.getMinMoves();
-					s.setMinMoves(minMoves);
+					s.setMinMoves(c4Remove2.getMinMoves());
 				}
 			}
-			if (!changes.contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(3)), true)) && !changes.contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(3)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)))
 			{
 				branchingReturnC<V> c4Remove3 = branchingNoHeuristic(c4Delete2Result(s, lexResult.get(0), lexResult.get(3), lexResult.get(1), lexResult.get(2)), percentDone);
 				//update percentDone
 				percentDone = updatePercent(c4Remove3, percentDone, 5);
 				//revert change to global graph
 				c4Delete2Revert(s, lexResult.get(0), lexResult.get(3), lexResult.get(1), lexResult.get(2));
-				if (c4Remove3.getMinMoves().getChanges().size() < minMoves.getChanges().size())
+				if (c4Remove3.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 				{
-					minMoves = c4Remove3.getMinMoves();
-					s.setMinMoves(minMoves);
+					s.setMinMoves(c4Remove3.getMinMoves());
 				}
 			}
-			if (!changes.contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)) && !changes.contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
 			{
 				branchingReturnC<V> c4Remove4 = branchingNoHeuristic(c4Delete2Result(s, lexResult.get(1), lexResult.get(2), lexResult.get(2), lexResult.get(3)), percentDone);
 				//update percentDone
 				percentDone = updatePercent(c4Remove4, percentDone, 5);
 				//revert change to global graph
 				c4Delete2Revert(s, lexResult.get(1), lexResult.get(2), lexResult.get(2), lexResult.get(3));
-				if (c4Remove4.getMinMoves().getChanges().size() < minMoves.getChanges().size())
+				if (c4Remove4.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 				{
-					minMoves = c4Remove4.getMinMoves();
+					s.setMinMoves(c4Remove4.getMinMoves());
 				}
 			}
 			
-			if (!changes.contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)) && !changes.contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(3)), true)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(3)), true)))
 			{
 				branchingReturnC<V> c4Remove5 = branchingNoHeuristic(c4Delete2Result(s, lexResult.get(0), lexResult.get(1), lexResult.get(0), lexResult.get(3)), percentDone);
 				//update percentDone
 				percentDone = updatePercent(c4Remove5, percentDone, 5);
 				//revert change to global graph
 				c4Delete2Revert(s, lexResult.get(0), lexResult.get(1), lexResult.get(0), lexResult.get(3));
-				if (c4Remove5.getMinMoves().getChanges().size() < minMoves.getChanges().size())
+				if (c4Remove5.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 				{
-					minMoves = c4Remove5.getMinMoves();
-					s.setMinMoves(minMoves);
+					s.setMinMoves(c4Remove5.getMinMoves());
 				}
 			}
-			return minMoves;
+			return s.getMinMoves();
 		}
 		//P4 has been found
 		else
 		{
 			//add an edge to break P4
-			if (!changes.contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(2)), false)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(2)), false)))
 			{
 				branchingReturnC<V> p4Add0 = branchingNoHeuristic(c4p4AddResult(s, lexResult, lexResult.get(0), lexResult.get(2)), percentDone);
 				//revert changes
@@ -246,66 +232,61 @@ public class qtBranching<V>
 				
 				//update percentDone
 				percentDone = updatePercent(p4Add0, percentDone, 5);
-				if (p4Add0.getMinMoves().getChanges().size() < minMoves.getChanges().size())
+				if (p4Add0.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 				{
-					minMoves = p4Add0.getMinMoves();
-					s.setMinMoves(minMoves);
+					s.setMinMoves(p4Add0.getMinMoves());
 				}
 			}
-			if (!changes.contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false)))
 			{
 				branchingReturnC<V> p4Add1 = branchingNoHeuristic(c4p4AddResult(s, lexResult, lexResult.get(1), lexResult.get(3)), percentDone);
 				//revert changes
 				c4p4AddRevert(s, lexResult.get(1), lexResult.get(3));
 				//update percentDone
 				percentDone = updatePercent(p4Add1, percentDone, 5);
-				if (p4Add1.getMinMoves().getChanges().size() < minMoves.getChanges().size())
+				if (p4Add1.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 				{
-					minMoves = p4Add1.getMinMoves();
-					s.setMinMoves(minMoves);
+					s.setMinMoves(p4Add1.getMinMoves());
 				}
 			}
 			//remove an edge to break P4
-			if (!changes.contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)))
 			{
 				branchingReturnC<V> p4Remove0 = branchingNoHeuristic(p4DeleteResult(s, lexResult.get(0), lexResult.get(1)), percentDone);
 				//update percentDone
 				percentDone = updatePercent(s, percentDone, 5);
 				//revert changes to global graph
 				p4DeleteRevert(s,lexResult.get(0), lexResult.get(1));
-				if (p4Remove0.getMinMoves().getChanges().size() < minMoves.getChanges().size())
+				if (p4Remove0.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 				{
-					minMoves = p4Remove0.getMinMoves();
-					s.setMinMoves(minMoves);
+					s.setMinMoves(p4Remove0.getMinMoves());
 				}
 			}
-			if (!changes.contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)))
 			{
 				branchingReturnC<V> p4Remove1 = branchingNoHeuristic(p4DeleteResult(s, lexResult.get(1), lexResult.get(2)), percentDone);
 				//update percentDone
 				percentDone = updatePercent(s, percentDone, 5);
 				//revert changes to global graph
 				p4DeleteRevert(s,lexResult.get(1), lexResult.get(2));
-				if (p4Remove1.getMinMoves().getChanges().size() < minMoves.getChanges().size())
+				if (p4Remove1.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 				{
-					minMoves = p4Remove1.getMinMoves();
-					s.setMinMoves(minMoves);
+					s.setMinMoves(p4Remove1.getMinMoves());
 				}
 			}
-			if (!changes.contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
 			{
 				branchingReturnC<V> p4Remove2 = branchingNoHeuristic(p4DeleteResult(s, lexResult.get(2), lexResult.get(3)), percentDone);
 				//update percentDone
 				percentDone = updatePercent(s, percentDone, 5);
 				//revert changes to global graph
 				p4DeleteRevert(s,lexResult.get(2), lexResult.get(3));
-				if (p4Remove2.getMinMoves().getChanges().size() < minMoves.getChanges().size())
+				if (p4Remove2.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 				{
-					minMoves = p4Remove2.getMinMoves();
-					s.setMinMoves(minMoves);
+					s.setMinMoves(p4Remove2.getMinMoves());
 				}
 			}
-			return minMoves;
+			return s.getMinMoves();
 		}
 	}
 
@@ -325,8 +306,7 @@ public class qtBranching<V>
 		branchingReturnC<V> minMoves = new branchingReturnC<V>(G, deg);
 		minMoves.setChanges(fillMyEdgeSet(G, bound));
 		minMoves.setMinMoves(minMoves);
-		branchingReturnC<V> goal = new branchingReturnC<V>(G, deg);
-		goal.setMinMoves(minMoves);
+		branchingReturnC<V> goal = new branchingReturnC<V>(G, deg, minMoves);
 		
 		//branch on G with degree ordering deg
 		goal = branchingCC(goal);
@@ -334,7 +314,7 @@ public class qtBranching<V>
 		
 		qtGenerate<V> gen = new qtGenerate<V>();
 		
-		Graph<V, Pair<V>> rtn = gen.applyMoves(goal.getG(), goal.getMinMoves().getChanges());
+		Graph<V, Pair<V>> rtn = gen.applyMoves(clone.deepClone(goal.getG()), goal.getMinMoves().getChanges());
 
 		//return QT graph if edit succeeds
 		if (search.isQT(rtn))
@@ -353,25 +333,25 @@ public class qtBranching<V>
 	 */
 	private branchingReturnC<V> branchingCC(branchingReturnC<V> s)
 	{
-		Graph<V, Pair<V>> G = s.getG();
-		ArrayList<LinkedList<V>> deg = s.getDeg();
-		LinkedList<myEdge<V>> changes = s.getChanges();
-		branchingReturnC<V> minMoves = s.getMinMoves();
+//		Graph<V, Pair<V>> G = s.getG();
+//		ArrayList<LinkedList<V>> deg = s.getDeg();
+//		LinkedList<myEdge<V>> changes = s.getChanges();
+//		branchingReturnC<V> minMoves = s.getMinMoves();
 		
 		
 		//check if graph is QT
-		ArrayList<V> t = search.flattenAndReverseDeg(deg);
+		ArrayList<V> t = search.flattenAndReverseDeg(s.getDeg());
 		
-		lexReturnC<V> lexSearch = search.qtLexBFSComponents(G, t);
+		lexReturnC<V> lexSearch = search.qtLexBFSComponents(s.getG(), t);
 		
 		//qt graph has been found
 		if (lexSearch.isQT())
 		{
 			//update the minMoves list
-			if (s.getChanges().size() < minMoves.getChanges().size())
+			if (s.getChanges().size() < s.getMinMoves().getChanges().size())
 			{
 				//make a new minMoves to store
-				branchingReturnC<V> newMin = new branchingReturnC<V>(G, deg, clone.deepClone(changes));
+				branchingReturnC<V> newMin = new branchingReturnC<V>(s.getG(), s.getDeg(), clone.deepClone(s.getChanges()));
 				newMin.setMinMoves(newMin);
 				s.setMinMoves(newMin);
 			}
@@ -382,14 +362,14 @@ public class qtBranching<V>
 		else
 		{	
 			//check if minMoves is a better choice than current state of search
-			if (minMoves.getChanges().size() > changes.size())
+			if (s.getMinMoves().getChanges().size() > s.getChanges().size())
 			{
 				branchingReturnC<V> rtn = componentSplit(s, lexSearch);
 				return rtn;
 			}
 			//min moves is a better solution
 			else
-				return new branchingReturnC<V>(G, deg, minMoves.getChanges(), minMoves);
+				return s.getMinMoves();
 		}
 	}
 	
@@ -403,19 +383,8 @@ public class qtBranching<V>
 		 * @param minMoves
 		 * @return
 		 */
-		private branchingReturnC<V> componentSplit(branchingReturnC<V> s, lexReturnC<V> lex)
-		{
-			Graph<V, Pair<V>> G = s.getG();
-			ArrayList<LinkedList<V>> deg = s.getDeg() ;
-			LinkedList<myEdge<V>> changes = s.getChanges();
-			branchingReturnC<V> minMoves = s.getMinMoves();
-			
-			
-	//		//make copy of search results, so multiple branches can use the same search
-	//		lexReturnC<V> lexSearch = clone.deepClone(lex);
-			
-			lexReturnC<V> lexSearch = lex;
-			
+		private branchingReturnC<V> componentSplit(branchingReturnC<V> s, lexReturnC<V> lexSearch)
+		{				
 			//search yields only one connected component, branch on one component
 			if (lexSearch.isConnected())
 			{
@@ -425,20 +394,21 @@ public class qtBranching<V>
 			else
 			{
 				//build graphs from connected components
-				Graph<V, Pair<V>> gWtihForbidden = connectedCFromVertexSet(G, lexSearch.getcComponents().removeLast());
+				Graph<V, Pair<V>> gWtihForbidden = connectedCFromVertexSet(s.getG(), lexSearch.getcComponents().removeLast());
 				
 				LinkedList<Graph<V, Pair<V>>> cGraphs = new LinkedList<Graph<V, Pair<V>>>();
 				LinkedList<branchingReturnC<V>> results = new LinkedList<branchingReturnC<V>>();
 				for (HashSet<V> l : lexSearch.getcComponents())
 				{
-					cGraphs.add(connectedCFromVertexSet(G, l));
+					cGraphs.add(connectedCFromVertexSet(s.getG(), l));
 				}
 				//branch on known forbidden structure
 				
 				//fill new minMoves with entire edge set
-				branchingReturnC<V> min = new branchingReturnC<V>(gWtihForbidden, deg);
+				branchingReturnC<V> min = new branchingReturnC<V>(gWtihForbidden, s.getDeg());
 				//bound the search by the best solution so far
-				min.setChanges(fillMyEdgeSet(gWtihForbidden, minMoves.getChanges().size() - changes.size()));
+				min.setChanges(fillMyEdgeSet(gWtihForbidden, s.getMinMoves().getChanges().size() - s.getChanges().size()));
+				min.setMinMoves(min);
 				results.add(branchOnCC(new branchingReturnC<V>(gWtihForbidden, search.degSequenceOrder(gWtihForbidden), min), lexSearch));
 				//branch on the rest of the graphs
 				for (Graph<V, Pair<V>> g : cGraphs)
@@ -446,23 +416,24 @@ public class qtBranching<V>
 					//if component is large enough to care
 					if (g.getVertexCount() > 3)
 					{
-						//fill new minMoves with entire edge set of component
-						min = new branchingReturnC<V>(g, deg);
-						min.setChanges(fillMyEdgeSet(g, minMoves.getChanges().size() - changes.size()));
-	
+						//fill new minMoves with bounded edge set of component
+						min = new branchingReturnC<V>(g, s.getDeg());
+						min.setChanges(fillMyEdgeSet(g, s.getMinMoves().getChanges().size() - s.getChanges().size()));
+						min.setMinMoves(min);
 						results.add(branchingCC(new branchingReturnC<V>(g,search.degSequenceOrder(g), new LinkedList<myEdge<V>>(), min)));
 					}
 					//don't care about branching on this but still need it to build up the solution later
 					else
 					{
 						//empty minMoves 
-						min = new branchingReturnC<V>(g, deg);
+						min = new branchingReturnC<V>(g, s.getDeg());
+						min.setMinMoves(min);
 						results.add(new branchingReturnC<V>(g, search.degSequenceOrder(g), min));
 					}		
 				}
 				
 				//construct new minMoves from all old ones
-				min = new branchingReturnC<V>(G, deg);
+				min = new branchingReturnC<V>(s.getG(), s.getDeg(), min);
 				//throw all minMoves into a HashSet, so they don't have duplicates
 				HashSet<myEdge<V>> temp = new HashSet<myEdge<V>>();
 				for (branchingReturnC<V> r : results)
@@ -470,115 +441,104 @@ public class qtBranching<V>
 					temp.addAll(r.getMinMoves().getChanges());
 				}
 				min.getChanges().addAll(temp);
-				min.getChanges().addAll(changes);
+				min.getChanges().addAll(s.getChanges());		
 				
-				branchingReturnC<V> rtn = new branchingReturnC<V>(G, deg, changes, min);
-				
-				return rtn;
+				return min;
 		}
 	}
 
 	private branchingReturnC<V> branchOnCC(branchingReturnC<V> s, lexReturnC<V> searchResult)
 	{
 		
-		branchingReturnC<V> minMoves = s.getMinMoves();
-		LinkedList<myEdge<V>> changes = s.getChanges();
 		//C4 has been found
 		ArrayList<V> lexResult = searchResult.getCertificate().getVertices();
 		if (searchResult.getCertificate().getFlag() == -1)
 		{
 			//result of adding 1 edge to break C4
 			//if we did not remove an edge that is about to be added
-			if (!changes.contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(2)), false)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(2)), false)))
 			{
 				branchingReturnC<V> c4Add1 = branchingCC(c4p4AddResult(s, lexResult, lexResult.get(0), lexResult.get(2)));
 				//revert changes
 				c4p4AddRevert(s, lexResult.get(0), lexResult.get(2));
-				if (c4Add1.getMinMoves().getChanges().size() < minMoves.getChanges().size())
+				if (c4Add1.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 				{
-					minMoves = c4Add1.getMinMoves();
-					s.setMinMoves(minMoves);
+					s.setMinMoves(c4Add1.getMinMoves());
 				}
 			}
-			if (!changes.contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false)))
 			{
 				branchingReturnC<V> c4Add2 = branchingCC(c4p4AddResult(s, lexResult, lexResult.get(1), lexResult.get(3)));
 				//revert changes
 				c4p4AddRevert(s, lexResult.get(1), lexResult.get(3));
-				if (c4Add2.getMinMoves().getChanges().size() < minMoves.getChanges().size())
+				if (c4Add2.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 				{
-					minMoves = c4Add2.getMinMoves();
-					s.setMinMoves(minMoves);
+					s.setMinMoves(c4Add2.getMinMoves());
 				}
 			}
 			//results of removing 2 edges to break C4
-			if (!changes.contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)) && !changes.contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)))
 			{
 				branchingReturnC<V> c4Remove0 = branchingCC(c4Delete2Result(s, lexResult.get(0), lexResult.get(1), lexResult.get(1), lexResult.get(2)));
 				//revert change to global graph
 				c4Delete2Revert(s, lexResult.get(0), lexResult.get(1), lexResult.get(1), lexResult.get(2));
-				if (c4Remove0.getMinMoves().getChanges().size() < minMoves.getChanges().size())
+				if (c4Remove0.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 				{
-					minMoves = c4Remove0.getMinMoves();
-					s.setMinMoves(minMoves);
+					s.setMinMoves(c4Remove0.getMinMoves());
 				}
 			}
-			if (!changes.contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(3)), true)) && !changes.contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(3)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
 			{
 				branchingReturnC<V> c4Remove1 = branchingCC(c4Delete2Result(s, lexResult.get(0), lexResult.get(3), lexResult.get(2), lexResult.get(3)));
 				//revert change to global graph
 				c4Delete2Revert(s, lexResult.get(0), lexResult.get(3), lexResult.get(2), lexResult.get(3));
-				if (c4Remove1.getMinMoves().getChanges().size() < minMoves.getChanges().size())
+				if (c4Remove1.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 				{
-					minMoves = c4Remove1.getMinMoves();
-					s.setMinMoves(minMoves);
+					s.setMinMoves(c4Remove1.getMinMoves());
 				}
 			}
-			if (!changes.contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)) && !changes.contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
 			{
 				branchingReturnC<V> c4Remove2 = branchingCC(c4Delete2Result(s, lexResult.get(0), lexResult.get(1), lexResult.get(2), lexResult.get(3)));
 				//revert change to global graph
 				c4Delete2Revert(s, lexResult.get(0), lexResult.get(1), lexResult.get(2), lexResult.get(3));
-				if (c4Remove2.getMinMoves().getChanges().size() < minMoves.getChanges().size())
+				if (c4Remove2.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 				{
-					minMoves = c4Remove2.getMinMoves();
-					s.setMinMoves(minMoves);
+					s.setMinMoves(c4Remove2.getMinMoves());
 				}
 			}
-			if (!changes.contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(3)), true)) && !changes.contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(3)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)))
 			{
 				branchingReturnC<V> c4Remove3 = branchingCC(c4Delete2Result(s, lexResult.get(0), lexResult.get(3), lexResult.get(1), lexResult.get(2)));
 				//revert change to global graph
 				c4Delete2Revert(s, lexResult.get(0), lexResult.get(3), lexResult.get(1), lexResult.get(2));
-				if (c4Remove3.getMinMoves().getChanges().size() < minMoves.getChanges().size())
+				if (c4Remove3.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 				{
-					minMoves = c4Remove3.getMinMoves();
-					s.setMinMoves(minMoves);
+					s.setMinMoves(c4Remove3.getMinMoves());
 				}
 			}
-			if (!changes.contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)) && !changes.contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
 			{
 				branchingReturnC<V> c4Remove4 = branchingCC(c4Delete2Result(s, lexResult.get(1), lexResult.get(2), lexResult.get(2), lexResult.get(3)));
 				//revert change to global graph
 				c4Delete2Revert(s, lexResult.get(1), lexResult.get(2), lexResult.get(2), lexResult.get(3));
-				if (c4Remove4.getMinMoves().getChanges().size() < minMoves.getChanges().size())
+				if (c4Remove4.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 				{
-					minMoves = c4Remove4.getMinMoves();
+					s.setMinMoves(c4Remove4.getMinMoves());
 				}
 			}
 			
-			if (!changes.contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)) && !changes.contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(3)), true)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(3)), true)))
 			{
 				branchingReturnC<V> c4Remove5 = branchingCC(c4Delete2Result(s, lexResult.get(0), lexResult.get(1), lexResult.get(0), lexResult.get(3)));
 				//revert change to global graph
 				c4Delete2Revert(s, lexResult.get(0), lexResult.get(1), lexResult.get(0), lexResult.get(3));
-				if (c4Remove5.getMinMoves().getChanges().size() < minMoves.getChanges().size())
+				if (c4Remove5.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 				{
-					minMoves = c4Remove5.getMinMoves();
-					s.setMinMoves(minMoves);
+					s.setMinMoves(c4Remove5.getMinMoves());
 				}
 			}
-			return minMoves;
+			return s.getMinMoves();
 		}
 		//P4 has been found
 		else
@@ -592,219 +552,161 @@ public class qtBranching<V>
 				//branch only on the deletion of removing the first element of P4
 				if (deg0 == 1)
 				{
-					if (!changes.contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)))
+					if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)))
 					{
 						branchingReturnC<V> p4Remove0 = branchingCC(p4DeleteResult(s, lexResult.get(0), lexResult.get(1)));
 						//revert changes to global graph
 						p4DeleteRevert(s,lexResult.get(0), lexResult.get(1));
-						if (p4Remove0.getMinMoves().getChanges().size() < minMoves.getChanges().size())
+						if (p4Remove0.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 						{
-							minMoves = p4Remove0.getMinMoves();
-							s.setMinMoves(minMoves);
+							s.setMinMoves(p4Remove0.getMinMoves());
 						}
-						return minMoves;
+						return s.getMinMoves();
 					}
 				}
 				
 				if (deg3 == 1)
 				{
-					if (!changes.contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
+					if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
 					{
 						branchingReturnC<V> p4Remove2 = branchingCC(p4DeleteResult(s, lexResult.get(2), lexResult.get(3)));
 						//revert changes to global graph
 						p4DeleteRevert(s,lexResult.get(2), lexResult.get(3));
-						if (p4Remove2.getMinMoves().getChanges().size() < minMoves.getChanges().size())
+						if (p4Remove2.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 						{
-							minMoves = p4Remove2.getMinMoves();
-							s.setMinMoves(minMoves);
+							s.setMinMoves(p4Remove2.getMinMoves());
 						}
 					}
-					return minMoves;
+					return s.getMinMoves();
 				}
 			}
 			
 			//------------------------------------------------------------------------------------------------------------
 			//add an edge to break P4
-			if (!changes.contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(2)), false)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(2)), false)))
 			{
 				branchingReturnC<V> p4Add0 = branchingCC(c4p4AddResult(s, lexResult, lexResult.get(0), lexResult.get(2)));
 				//revert changes
 				c4p4AddRevert(s, lexResult.get(0), lexResult.get(2));
-				if (p4Add0.getMinMoves().getChanges().size() < minMoves.getChanges().size())
+				if (p4Add0.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 				{
-					minMoves = p4Add0.getMinMoves();
-					s.setMinMoves(minMoves);
+					s.setMinMoves(p4Add0.getMinMoves());
 				}
 			}
-			if (!changes.contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false)))
 			{
 				branchingReturnC<V> p4Add1 = branchingCC(c4p4AddResult(s, lexResult, lexResult.get(1), lexResult.get(3)));
 				//revert changes
 				c4p4AddRevert(s, lexResult.get(1), lexResult.get(3));
-				if (p4Add1.getMinMoves().getChanges().size() < minMoves.getChanges().size())
+				if (p4Add1.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 				{
-					minMoves = p4Add1.getMinMoves();
-					s.setMinMoves(minMoves);
+					s.setMinMoves(p4Add1.getMinMoves());
 				}
 			}
 			//remove an edge to break P4
-			if (!changes.contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)))
 			{
 				branchingReturnC<V> p4Remove0 = branchingCC(p4DeleteResult(s, lexResult.get(0), lexResult.get(1)));
 				//revert changes to global graph
 				p4DeleteRevert(s,lexResult.get(0), lexResult.get(1));
-				if (p4Remove0.getMinMoves().getChanges().size() < minMoves.getChanges().size())
+				if (p4Remove0.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 				{
-					minMoves = p4Remove0.getMinMoves();
-					s.setMinMoves(minMoves);
+					s.setMinMoves(p4Remove0.getMinMoves());
 				}
 			}
-			if (!changes.contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)))
 			{
 				branchingReturnC<V> p4Remove1 = branchingCC(p4DeleteResult(s, lexResult.get(1), lexResult.get(2)));
 				//revert changes to global graph
 				p4DeleteRevert(s,lexResult.get(1), lexResult.get(2));
-				if (p4Remove1.getMinMoves().getChanges().size() < minMoves.getChanges().size())
+				if (p4Remove1.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 				{
-					minMoves = p4Remove1.getMinMoves();
-					s.setMinMoves(minMoves);
+					s.setMinMoves(p4Remove1.getMinMoves());
 				}
 			}
-			if (!changes.contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
 			{
 				branchingReturnC<V> p4Remove2 = branchingCC(p4DeleteResult(s, lexResult.get(2), lexResult.get(3)));
 				//revert changes to global graph
 				p4DeleteRevert(s,lexResult.get(2), lexResult.get(3));
-				if (p4Remove2.getMinMoves().getChanges().size() < minMoves.getChanges().size())
+				if (p4Remove2.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 				{
-					minMoves = p4Remove2.getMinMoves();
-					s.setMinMoves(minMoves);
+					s.setMinMoves(p4Remove2.getMinMoves());
 				}
 			}
-			return minMoves;
+			return s.getMinMoves();
 		}
 	}
 	
-	/**
-	 * 
-	 * @param s
-	 * @param lexResult
-	 * @param v0
-	 * @param v1
-	 * @return
-	 */
 	private branchingReturnC<V> c4p4AddResult(branchingReturnC<V> s, ArrayList<V> lexResult, V v0, V v1)
 	{
-		Graph<V, Pair<V>> g = s.getG();
-		ArrayList<LinkedList<V>> deg = s.getDeg();
-		LinkedList<myEdge<V>> changes = s.getChanges();
 		
 		//update degree sequence (first edge)
-		addEdge(g, deg, v0, v1);
+		addEdge(s.getG(), s.getDeg(), v0, v1);
 		
 		//add edge to changes 
-		changes.addLast(new myEdge<V>(new Pair<V>(v0, v1), true));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v0, v1), true));
 		
-		return new branchingReturnC<V>(g, deg, changes, s.getMinMoves());
+		return s;
 		
 	}
 	private void c4p4AddRevert(branchingReturnC<V> s, V v0, V v1)
 	{
-		Graph<V, Pair<V>> g = s.getG();
-		ArrayList<LinkedList<V>> deg = s.getDeg();
-		LinkedList<myEdge<V>> changes = s.getChanges();
-		
 		//update degree sequence (first edge)
-		removeEdge(g, deg, v0, v1);
+		removeEdge(s.getG(), s.getDeg(), v0, v1);
 		
-		changes.removeLast();
+		s.getChanges().removeLast();
 	}
 	
 
 	private branchingReturnC<V> c4Delete2Result(branchingReturnC<V> s, V v0, V v1, V v2, V v3)
-	{
-		Graph<V, Pair<V>> g = s.getG();
-		ArrayList<LinkedList<V>> deg = s.getDeg() ;
-		LinkedList<myEdge<V>> changes = s.getChanges();
-		branchingReturnC<V> minMoves = s.getMinMoves();
-		
+	{	
 		//update degree sequence (first edge)
-		removeEdge(g, deg, v0, v1);
+		removeEdge(s.getG(), s.getDeg(), v0, v1);
 		
 		//update degree sequence (second edge)
-		removeEdge(g, deg, v2, v3);
+		removeEdge(s.getG(), s.getDeg(), v2, v3);
 		
 		//add edge deletions to changes
-		changes.addLast(new myEdge<V>(new Pair<V>(v0, v1), false));
-		changes.addLast(new myEdge<V>(new Pair<V>(v2, v3), false));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v0, v1), false));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v2, v3), false));
 		
-		return new branchingReturnC<V>(g, deg, changes, minMoves);
+		return s;
 		
 	}
 	
-	/**
-	 * revert changes made by removing 2 edges from a C4
-	 * @param g graph pointer
-	 * @param deg degree sequence pointer
-	 * @param changes changes log
-	 * @param v0
-	 * @param v1
-	 * @param v2
-	 * @param v3
-	 * @param minMoves
-	 */
+
 	private void c4Delete2Revert(branchingReturnC<V> s, V v0,
 			V v1, V v2, V v3) 
 	{
-		Graph<V, Pair<V>> g = s.getG();
-		ArrayList<LinkedList<V>> deg = s.getDeg() ;
-		LinkedList<myEdge<V>> changes = s.getChanges();
 		
 		//add edges back in
-		addEdge(g, deg, v0, v1);
-		addEdge(g, deg, v2, v3);
+		addEdge(s.getG(), s.getDeg(), v0, v1);
+		addEdge(s.getG(), s.getDeg(), v2, v3);
 		
 		//revert changes
-		changes.removeLast();
-		changes.removeLast();
+		s.getChanges().removeLast();
+		s.getChanges().removeLast();
 	
 	}
-	/**
-	 * Delete an edge from a P4 and return a branchingReturnC with new graph and degree order
-	 * @param G graph
-	 * @param deg degree order
-	 * @param changes number of changes made to the initial graph
-	 * @param v0 endpoint of edge to be deleted
-	 * @param v1 endpoint of edge to be deleted
-	 * @return
-	 */
+	
 	private branchingReturnC<V> p4DeleteResult(branchingReturnC<V> s, V v0, V v1)
 	{
-		Graph<V, Pair<V>> g = s.getG();
-		ArrayList<LinkedList<V>> deg = s.getDeg() ;
-		LinkedList<myEdge<V>> changes = s.getChanges();
-		branchingReturnC<V> minMoves = s.getMinMoves();
-		
 		//update degree sequence (first edge)
-		removeEdge(g, deg, v0, v1);
+		removeEdge(s.getG(), s.getDeg(), v0, v1);
 		
-		changes.addLast(new myEdge<V>(new Pair<V>(v0, v1), false));
-		return new branchingReturnC<V>(g, deg, changes, minMoves);
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v0, v1), false));
+		return s;
 		
 	}
 	
 	private void p4DeleteRevert(branchingReturnC<V> s, V v0, V v1)
 	{
-		Graph<V, Pair<V>> g = s.getG();
-		ArrayList<LinkedList<V>> deg = s.getDeg() ;
-		LinkedList<myEdge<V>> changes = s.getChanges();
 		
 		//update degree sequence (first edge)
-		addEdge(g, deg, v0, v1);
+		addEdge(s.getG(), s.getDeg(), v0, v1);
 		
-		changes.removeLast();
-		
-		
+		s.getChanges().removeLast();
 	}
 	
 	
@@ -1030,11 +932,11 @@ public class qtBranching<V>
 	public Graph<V, Pair<V>> qtEditIDBound(Graph<V, Pair<V>> G, int MAX)
 	{
 		//bound to iterate down to
-		int bound = 1;
+		int bound = 2;
 		Graph<V, Pair<V>> goal = G;
 		
 		//while graph is not solved and the bound is less than MAX
-		while (bound <= MAX)
+		while (bound <= MAX + 1)
 		{
 			goal = qtEditNoHeuristic(G, bound);
 			//test if current graph is QT

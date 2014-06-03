@@ -47,7 +47,7 @@ public class fun extends JApplet {
 		//may break it
 		exampleQT.addEdge(new Pair<Integer>(0, 6), 0, 6);
 		exampleQT.addEdge(new Pair<Integer>(8, 1), 8, 1);
-		exampleQT.addEdge(new Pair<Integer>(8 ,5), 8, 5);
+		exampleQT.addEdge(new Pair<Integer>(8, 5), 8, 5);
 		
 		//exampleQT = gen.cliqueJoin(20, 30);
 		
@@ -57,7 +57,7 @@ public class fun extends JApplet {
 		
 		//exampleQT = qtGenerate.nonQTEx3();
 		
-		exampleQT = gen.ER(12, 0.63);
+		exampleQT = gen.ER(13, 0.63);
 		
 		//exampleQT = new SparseGraph<Integer, Pair<Integer>>();
 		//fillGraphFromFile(exampleQT, "datasets/karate.txt");
@@ -75,7 +75,7 @@ public class fun extends JApplet {
 		qtBranching<Integer> del = new qtBranching<Integer>();
 		
 		start = System.currentTimeMillis();
-		//del.qtEditConnectedComponents(exampleQT, 0);
+		del.qtEditConnectedComponents(exampleQT, 10);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		start = System.currentTimeMillis();
@@ -84,7 +84,7 @@ public class fun extends JApplet {
 		
 		
 		start = System.currentTimeMillis();
-		exampleQT = del.qtEditIDBound(exampleQT, 20);
+		exampleQT = del.qtEditIDBound(exampleQT, 30);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		
