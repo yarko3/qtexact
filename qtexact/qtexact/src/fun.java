@@ -15,13 +15,11 @@ import java.util.Set;
 import javax.swing.JApplet;
 import javax.swing.JFrame;
 
-import qtUtils.genericLBFS;
 import qtUtils.qtGenerate;
 import qtUtils.qtRecognition;
 import edu.uci.ics.jung.algorithms.cluster.EdgeBetweennessClusterer;
 import edu.uci.ics.jung.algorithms.layout.FRLayout;
 import edu.uci.ics.jung.graph.Graph;
-import edu.uci.ics.jung.graph.SparseGraph;
 import edu.uci.ics.jung.graph.util.Pair;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;

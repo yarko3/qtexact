@@ -32,7 +32,7 @@ public class qtRecognition<V>
 		}
 		
 		//array list of vertices (used for indexing in algorithm)
-		genericLBFS<V> sort = new genericLBFS<V>();
+		qtLBFS<V> sort = new qtLBFS<V>();
 		ArrayList<V> vertexArrayList = sort.orderVerticesNonDecreasingDegree(G);
 		
 		//initialize inDegree hashtable

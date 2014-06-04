@@ -9,10 +9,10 @@ import java.util.HashSet;
 import java.util.LinkedList;
 
 import qtUtils.branchingReturnC;
-import qtUtils.genericLBFS;
 import qtUtils.lexReturnC;
 import qtUtils.myEdge;
 import qtUtils.qtGenerate;
+import qtUtils.qtLBFS;
 
 import com.rits.cloning.Cloner;
 
@@ -23,7 +23,7 @@ import edu.uci.ics.jung.graph.util.Pair;
 
 public class qtBranching<V>
 {
-	public genericLBFS<V> search = new genericLBFS<V>();
+	public qtLBFS<V> search = new qtLBFS<V>();
 	public static Cloner clone = new Cloner();
 	
 	/**
@@ -37,7 +37,6 @@ public class qtBranching<V>
 		//bound to iterate down to
 		int bound = START + 1;
 		Graph<V, Pair<V>> goal = G;
-		boolean isQT = false;
 		
 		//while graph is not solved and the bound is less than MAX
 		while (bound <= MAX + 1)

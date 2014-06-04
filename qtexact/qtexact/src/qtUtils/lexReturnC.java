@@ -18,9 +18,9 @@ public class lexReturnC<V>
 	private boolean isQT;
 	private boolean isConnected;
 	private LinkedList<HashSet<V>> cComponents;
-	private tpCertificateC<V> certificate;
+	private qtCertificateC<V> certificate;
 	
-	public lexReturnC(ArrayList<V> l, tpCertificateC<V> cert, boolean qt, boolean c, LinkedList<HashSet<V>> cComp)
+	public lexReturnC(ArrayList<V> l, qtCertificateC<V> cert, boolean qt, boolean c, LinkedList<HashSet<V>> cComp)
 	{
 		setList(l);
 		setQT(qt);
@@ -61,11 +61,11 @@ public class lexReturnC<V>
 		this.cComponents = cComponents;
 	}
 
-	public tpCertificateC<V> getCertificate() {
+	public qtCertificateC<V> getCertificate() {
 		return certificate;
 	}
 
-	public void setCertificate(tpCertificateC<V> certificate) {
+	public void setCertificate(qtCertificateC<V> certificate) {
 		this.certificate = certificate;
 	}
 	

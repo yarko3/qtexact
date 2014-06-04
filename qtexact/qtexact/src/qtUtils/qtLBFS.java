@@ -10,19 +10,13 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
-import java.util.Random;
-
-import org.apache.commons.collections15.Factory;
 
 import com.rits.cloning.Cloner;
 
-import edu.uci.ics.jung.algorithms.generators.random.ErdosRenyiGenerator;
 import edu.uci.ics.jung.graph.Graph;
-import edu.uci.ics.jung.graph.UndirectedGraph;
-import edu.uci.ics.jung.graph.UndirectedSparseGraph;
 import edu.uci.ics.jung.graph.util.Pair;
 
-public class genericLBFS<V> {
+public class qtLBFS<V> {
 	
 	public static Cloner clone = new Cloner();
 	
@@ -55,7 +49,7 @@ public class genericLBFS<V> {
 		
 		//flag for whether the graph is QT and a forbidden P4 or C4
 		boolean isQT = true;
-		tpCertificateC<V> forbidden = null;
+		qtCertificateC<V> forbidden = null;
 		
 		
 		
@@ -108,7 +102,7 @@ public class genericLBFS<V> {
 				if (isQT && j != 0 && !pp.isEmpty())
 				{
 					isQT = false;
-					forbidden = TPCertificate(G, x, pp.get(0), s);
+					forbidden = qtCertificate(G, x, pp.get(0), s);
 				}
 				if (!pp.isEmpty())
 				{
@@ -230,7 +224,7 @@ public class genericLBFS<V> {
 				if (j != 0 && !pp.isEmpty())
 				{
 					
-					return new lexReturnC<V>(null, TPCertificate(G, x, pp.get(0), s), false, false, null);
+					return new lexReturnC<V>(null, qtCertificate(G, x, pp.get(0), s), false, false, null);
 				}
 				if (!pp.isEmpty())
 				{
@@ -298,7 +292,7 @@ public class genericLBFS<V> {
 	 * @param s ordering until the C4 or P4 was found
 	 * @return
 	 */
-	private tpCertificateC<V> TPCertificate(Graph<V, Pair<V>> G, V x, V y, ArrayList<V> s)
+	private qtCertificateC<V> qtCertificate(Graph<V, Pair<V>> G, V x, V y, ArrayList<V> s)
 	{
 		ArrayList<V> S = new ArrayList<V>(0);
 		for (V v : s)
@@ -322,7 +316,7 @@ public class genericLBFS<V> {
 							rtn.add(w);
 							rtn.add(x);
 							rtn.add(y);
-							return new tpCertificateC<V>(rtn, -1);
+							return new qtCertificateC<V>(rtn, -1);
 						}
 						else
 						{
@@ -332,7 +326,7 @@ public class genericLBFS<V> {
 							rtn.add(w);
 							rtn.add(x);
 							rtn.add(y);
-							return new tpCertificateC<V>(rtn, -2);
+							return new qtCertificateC<V>(rtn, -2);
 						}
 					}
 				}

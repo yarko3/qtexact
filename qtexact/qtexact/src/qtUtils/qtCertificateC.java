@@ -7,12 +7,12 @@ package qtUtils;
 
 import java.util.ArrayList;
 
-public class tpCertificateC<V> {
+public class qtCertificateC<V> {
 	
 	private ArrayList<V> vertices;
 	//flag for C4 or P4 found
 	private int flag;
-	public tpCertificateC(ArrayList<V> v, int f)
+	public qtCertificateC(ArrayList<V> v, int f)
 	{
 		setVertices(v);
 		setFlag(f);
