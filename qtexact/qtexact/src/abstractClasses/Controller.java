@@ -7,9 +7,23 @@ import edu.uci.ics.jung.graph.util.Pair;
 
 public abstract class Controller<V> 
 {
+	public Controller(Branch<V> bStruct) {
+		super();
+		this.bStruct = bStruct;
+	}
+
 	//branching structure used by the controller
 	protected Branch<V> bStruct;
 	
+	public Branch<V> getbStruct() {
+		return bStruct;
+	}
+
+	public void setbStruct(Branch<V> bStruct) {
+		this.bStruct = bStruct;
+	}
+
+
 	public Graph<V, Pair<V>> branchID(Graph<V, Pair<V>> G, int START, int MAX)
 	{
 		//bound to iterate down to
@@ -33,6 +47,7 @@ public abstract class Controller<V>
 		return goal;
 	}
 	
+
 	public Graph<V, Pair<V>> branchStart(Graph<V, Pair<V>> G, int bound)
 	{
 		//set up branching
@@ -45,7 +60,7 @@ public abstract class Controller<V>
 		qtGenerate<V> gen = new qtGenerate<V>();
 		
 		
-		Graph<V, Pair<V>> rtn = gen.applyMoves(bStruct.clone.deepClone(goal.getG()), goal.getMinMoves().getChanges());
+		Graph<V, Pair<V>> rtn = gen.applyMoves(Branch.clone.deepClone(goal.getG()), goal.getMinMoves().getChanges());
 		
 		//return QT graph if edit succeeds
 		if (bStruct.search.isTarget(rtn))

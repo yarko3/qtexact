@@ -1,18 +1,24 @@
 package controller;
 
+import branch.qtBranch;
 import qtUtils.branchingReturnC;
+import abstractClasses.Branch;
 import abstractClasses.Controller;
 import abstractClasses.SearchResult;
-import abstractClasses.qtBranch;
+import search.qtLBFS;
 
 public class qtController<V> extends Controller<V> 
 {
+	public qtController(Branch<V> bStruct) {
+		super(bStruct);
+	}
+
 	protected qtBranch<V> bStruct;
 
 	public branchingReturnC<V> branch(branchingReturnC<V> s) 
 	{
 		//check if graph is target
-		SearchResult<V> searchResult = bStruct.getSearch().searchPrep(s);
+		SearchResult<V> searchResult = ((qtLBFS<V>) bStruct.getSearch()).searchPrep(s);
 		
 		
 		//target graph has been found
@@ -22,7 +28,7 @@ public class qtController<V> extends Controller<V>
 			if (s.getChanges().size() < s.getMinMoves().getChanges().size())
 			{
 				//make a new minMoves to store
-				branchingReturnC<V> newMin = new branchingReturnC<V>(s.getG(), s.getDeg(), bStruct.clone.deepClone(s.getChanges()));
+				branchingReturnC<V> newMin = new branchingReturnC<V>(s.getG(), s.getDeg(), Branch.clone.deepClone(s.getChanges()));
 				newMin.setMinMoves(newMin);
 				s.setMinMoves(newMin);
 			}

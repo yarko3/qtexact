@@ -3,16 +3,22 @@ package branch;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+import search.qtLBFS;
 import qtUtils.branchingReturnC;
 import qtUtils.myEdge;
 import search.qtLBFSNoHeuristic;
+import abstractClasses.Controller;
 import abstractClasses.SearchResult;
-import abstractClasses.qtBranch;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Pair;
 
 public class qtBranchNoHeuristic<V> extends qtBranch<V> 
 {
+	public qtBranchNoHeuristic(Controller<V> controller) {
+		super(controller);
+	}
+
+
 	/**
 	 * setup for quasi threshold editing with no heuristic
 	 */
@@ -20,7 +26,7 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 		
 		search = new qtLBFSNoHeuristic<V>();
 		//keep proper degree order as an ArrayList<LinkedList<vertex>>
-		ArrayList<LinkedList<V>> deg = search.degSequenceOrder(G);
+		ArrayList<LinkedList<V>> deg = ((qtLBFS<V>) search).degSequenceOrder(G);
 		
 		//start with a full minMoves
 		branchingReturnC<V> minMoves = new branchingReturnC<V>(G, deg);

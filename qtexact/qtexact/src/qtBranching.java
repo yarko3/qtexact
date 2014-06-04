@@ -12,7 +12,7 @@ import qtUtils.branchingReturnC;
 import qtUtils.lexReturnC;
 import qtUtils.myEdge;
 import qtUtils.qtGenerate;
-import abstractClasses.qtLBFS;
+import search.qtLBFS;
 
 import com.rits.cloning.Cloner;
 

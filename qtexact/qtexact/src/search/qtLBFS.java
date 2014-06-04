@@ -3,7 +3,7 @@
  * NSERC USRA Grant (2014)
  */
 
-package abstractClasses;
+package search;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -12,6 +12,7 @@ import java.util.PriorityQueue;
 
 import qtUtils.branchingReturnC;
 import qtUtils.vertexIn;
+import abstractClasses.SearchResult;
 import certificate.qtCertificateC;
 
 import com.rits.cloning.Cloner;

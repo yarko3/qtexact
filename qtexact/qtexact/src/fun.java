@@ -15,6 +15,11 @@ import java.util.Set;
 import javax.swing.JApplet;
 import javax.swing.JFrame;
 
+import abstractClasses.Branch;
+import abstractClasses.Controller;
+import branch.qtBranch;
+import branch.qtBranchNoHeuristic;
+import controller.qtController;
 import qtUtils.qtGenerate;
 import search.YanSearch;
 import edu.uci.ics.jung.algorithms.cluster.EdgeBetweennessClusterer;
@@ -62,6 +67,11 @@ public class fun extends JApplet {
 		
 		exampleQT = gen.fromBipartiteFile("datasets/southernwomen");
 		
+		qtController<Integer> c = new qtController<Integer>(null);
+		qtBranchNoHeuristic<Integer> b = new qtBranchNoHeuristic<Integer>(c);
+		c.setbStruct(b);
+		
+		
 		visualize(exampleQT);
 		
 		YanSearch<Integer> yan = new YanSearch<Integer>();
@@ -73,16 +83,17 @@ public class fun extends JApplet {
 		qtBranching<Integer> del = new qtBranching<Integer>();
 		
 		start = System.currentTimeMillis();
-		del.qtEditConnectedComponents(exampleQT, 10);
+		//del.qtEditConnectedComponents(exampleQT, 10);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		start = System.currentTimeMillis();
-		del.qtEditNoHeuristic(exampleQT, 10);
+		//del.qtEditNoHeuristic(exampleQT, 10);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		
 		start = System.currentTimeMillis();
-		exampleQT = del.qtEditIDBound(exampleQT, 25, 30);
+		//exampleQT = del.qtEditIDBound(exampleQT, 25, 30);
+		exampleQT = c.branchStart(exampleQT, 10);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		

@@ -8,6 +8,11 @@ import edu.uci.ics.jung.graph.util.Pair;
 
 public abstract class Branch<V> 
 {
+	public Branch(Controller<V> controller) {
+		super();
+		this.controller = controller;
+	}
+
 	protected Search<V> search;
 	protected Controller<V> controller;
 	
@@ -28,8 +33,4 @@ public abstract class Branch<V>
 	 * @return
 	 */
 	public abstract branchingReturnC<V> branchingRules(branchingReturnC<V> s, SearchResult<V> sResult);
-	
-	
-	
-
 }

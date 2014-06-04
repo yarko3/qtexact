@@ -7,12 +7,10 @@ package search;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Comparator;
 import java.util.Hashtable;
 import java.util.PriorityQueue;
 
 import qtUtils.vertexIn;
-import abstractClasses.qtLBFS;
 import edu.uci.ics.jung.graph.DelegateForest;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Pair;

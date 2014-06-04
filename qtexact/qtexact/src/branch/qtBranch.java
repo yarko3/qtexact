@@ -1,12 +1,16 @@
-package abstractClasses;
+package branch;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedList;
 
+import abstractClasses.Branch;
+import abstractClasses.Controller;
+import abstractClasses.Search;
 import qtUtils.branchingReturnC;
 import qtUtils.myEdge;
+import search.qtLBFS;
 import controller.qtController;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.SparseGraph;
@@ -15,11 +19,14 @@ import edu.uci.ics.jung.graph.util.Pair;
 
 public abstract class qtBranch<V> extends Branch<V> 
 {
-	protected qtLBFS<V> search;
+	public qtBranch(Controller<V> controller) {
+		super(controller);
+	}
+
 	protected qtController<V> controller;
 	
 	
-	public qtLBFS<V> getSearch() {
+	public Search<V> getSearch() {
 		return search;
 	}
 	public void setSearch(qtLBFS<V> search) {
