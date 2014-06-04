@@ -3,7 +3,7 @@
  * NSERC USRA Grant (2014)
  */
 
-package qtUtils;
+package search;
 
 import java.util.ArrayList;
 import java.util.Collection;

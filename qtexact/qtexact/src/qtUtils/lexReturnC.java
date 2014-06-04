@@ -5,25 +5,28 @@
 
 package qtUtils;
 
+import generic.SearchResult;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
 
+import search.qtCertificateC;
 
-public class lexReturnC<V>
+
+public class lexReturnC<V> extends SearchResult<V>
 {
 	//store ArrayList of either a found P4/C4 or the final ordering
 	private ArrayList<V> list;
 	//QT check
-	private boolean isQT;
 	private boolean isConnected;
 	private LinkedList<HashSet<V>> cComponents;
-	private qtCertificateC<V> certificate;
+
 	
 	public lexReturnC(ArrayList<V> l, qtCertificateC<V> cert, boolean qt, boolean c, LinkedList<HashSet<V>> cComp)
 	{
 		setList(l);
-		setQT(qt);
+		setTarget(qt);
 		setConnected(c);
 		setcComponents(cComp);
 		setCertificate(cert);
@@ -35,14 +38,6 @@ public class lexReturnC<V>
 
 	public void setList(ArrayList<V> l) {
 		this.list = l;
-	}
-
-	public boolean isQT() {
-		return isQT;
-	}
-
-	public void setQT(boolean isQT) {
-		this.isQT = isQT;
 	}
 
 	public boolean isConnected() {
@@ -61,13 +56,5 @@ public class lexReturnC<V>
 		this.cComponents = cComponents;
 	}
 
-	public qtCertificateC<V> getCertificate() {
-		return certificate;
-	}
-
-	public void setCertificate(qtCertificateC<V> certificate) {
-		this.certificate = certificate;
-	}
-	
 	
 }

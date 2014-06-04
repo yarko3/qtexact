@@ -12,7 +12,7 @@ import qtUtils.branchingReturnC;
 import qtUtils.lexReturnC;
 import qtUtils.myEdge;
 import qtUtils.qtGenerate;
-import qtUtils.qtLBFS;
+import search.qtLBFS;
 
 import com.rits.cloning.Cloner;
 
@@ -107,7 +107,7 @@ public class qtBranching<V>
 		lexReturnC<V> lexSearch = search.qtLexBFS(s.getG(), t);
 		//qt graph has been found
 		
-		if (lexSearch.isQT())
+		if (lexSearch.isTarget())
 		{
 			//update the minMoves list if this solution is better
 			if (s.getChanges().size() < s.getMinMoves().getChanges().size())
@@ -377,7 +377,7 @@ public class qtBranching<V>
 		lexReturnC<V> lexSearch = search.qtLexBFSComponents(s.getG(), t);
 		
 		//qt graph has been found
-		if (lexSearch.isQT())
+		if (lexSearch.isTarget())
 		{
 			//update the minMoves list
 			if (s.getChanges().size() < s.getMinMoves().getChanges().size())

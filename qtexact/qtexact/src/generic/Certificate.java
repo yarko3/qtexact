@@ -1,22 +1,25 @@
-/**
- * Yaroslav Senyuta
- * NSERC USRA Grant (2014)
- */
-
-package qtUtils;
+package generic;
 
 import java.util.ArrayList;
 
-public class qtCertificateC<V> {
-	
+/**
+ * an abstract class for the certificate of an obstruction given by a search
+ * 
+ * @author Yaroslav Senyuta
+ *
+ * @param <V>
+ */
+public abstract class Certificate<V> 
+{
 	private ArrayList<V> vertices;
-	//flag for C4 or P4 found
 	private int flag;
-	public qtCertificateC(ArrayList<V> v, int f)
+	
+	public Certificate(ArrayList<V> v, int f)
 	{
 		setVertices(v);
 		setFlag(f);
 	}
+	
 	public ArrayList<V> getVertices() {
 		return vertices;
 	}
@@ -29,5 +32,8 @@ public class qtCertificateC<V> {
 	public void setFlag(int flag) {
 		this.flag = flag;
 	}
+	
+	
+	
 
 }
