@@ -5,13 +5,12 @@
 
 package qtUtils;
 
-import generic.SearchResult;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
 
-import search.qtCertificateC;
+import certificate.qtCertificateC;
+import abstractClasses.SearchResult;
 
 
 public class lexReturnC<V> extends SearchResult<V>

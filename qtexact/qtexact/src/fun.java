@@ -16,7 +16,7 @@ import javax.swing.JApplet;
 import javax.swing.JFrame;
 
 import qtUtils.qtGenerate;
-import search.qtRecognition;
+import search.YanSearch;
 import edu.uci.ics.jung.algorithms.cluster.EdgeBetweennessClusterer;
 import edu.uci.ics.jung.algorithms.layout.FRLayout;
 import edu.uci.ics.jung.graph.Graph;
@@ -64,10 +64,10 @@ public class fun extends JApplet {
 		
 		visualize(exampleQT);
 		
-		qtRecognition<Integer> yan = new qtRecognition<Integer>();
+		YanSearch<Integer> yan = new YanSearch<Integer>();
 		
 		long start = System.currentTimeMillis();
-		System.out.println(yan.qtCheckYan(exampleQT));
+		System.out.println(yan.search(exampleQT));
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		qtBranching<Integer> del = new qtBranching<Integer>();
@@ -87,7 +87,7 @@ public class fun extends JApplet {
 		
 		
 		start = System.currentTimeMillis();
-		System.out.println(yan.qtCheckYan(exampleQT));
+		System.out.println(yan.search(exampleQT));
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		visualize(exampleQT);

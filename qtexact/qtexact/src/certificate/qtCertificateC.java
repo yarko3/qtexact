@@ -3,11 +3,11 @@
  * NSERC USRA Grant (2014)
  */
 
-package search;
-
-import generic.Certificate;
+package certificate;
 
 import java.util.ArrayList;
+
+import abstractClasses.Certificate;
 
 public class qtCertificateC<V> extends Certificate<V>
 {

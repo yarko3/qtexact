@@ -11,13 +11,20 @@ import java.util.Comparator;
 import java.util.Hashtable;
 import java.util.PriorityQueue;
 
+import qtUtils.vertexIn;
+import abstractClasses.qtLBFS;
 import edu.uci.ics.jung.graph.DelegateForest;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Pair;
 
-public class qtRecognition<V>
+public class YanSearch<V>
 {
-	public DelegateForest<V, Pair<V>> qtCheckYan(Graph<V, Pair<V>> G)
+	/**
+	 * returns true if graph given is quasi threshold, false otherwise
+	 * @param G
+	 * @return true if QT
+	 */
+	public boolean search(Graph<V, Pair<V>> G)
 	{
 		//create a rooted forest representation F of G
 		DelegateForest<V, Pair<V>> F = new DelegateForest<V, Pair<V>>();
@@ -32,7 +39,7 @@ public class qtRecognition<V>
 		}
 		
 		//array list of vertices (used for indexing in algorithm)
-		qtLBFS<V> sort = new qtLBFS<V>();
+		qtLBFS<V> sort = new qtLBFSNoHeuristic<V>();
 		ArrayList<V> vertexArrayList = sort.orderVerticesNonDecreasingDegree(G);
 		
 		//initialize inDegree hashtable
@@ -92,49 +99,9 @@ public class qtRecognition<V>
 				check = false;
 		}
 		if (check == true)
-			return F;
+			return true;
 		else
-			return null;
+			return false;
 	}
 }
 	
-class vertexInComparator implements Comparator<vertexIn<Integer>>
-{
-
-	public int compare(vertexIn<Integer> arg0, vertexIn<Integer> arg1) 
-	{
-		if (arg0.getDegree() != arg1.getDegree())
-		{
-			return Integer.compare(arg0.getDegree(), arg1.getDegree());
-		}
-		else
-		{
-			return Integer.compare((Integer) arg0.getVertex(), (Integer) arg1.getVertex());
-		}
-	}
-	
-}
-
-/**
- * class containing vertex and Degree for PriorityQueue in qtCheckYan
- * @author Yarko Senyuta
- *
- * @param <V>
- */
-class vertexIn<V> implements Comparable<vertexIn<V>>
-{
-	private V vertex;
-	private int degree;
-	vertexIn(V v, int in)
-	{
-		vertex = v;
-		degree = in;
-	}
-	
-	public V getVertex(){return vertex;};
-	public int getDegree(){return degree;};
-	public int compareTo(vertexIn<V> v)
-	{
-		return Integer.compare(v.getDegree(), degree);
-	}
-}

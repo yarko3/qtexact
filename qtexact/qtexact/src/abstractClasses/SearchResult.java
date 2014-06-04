@@ -1,4 +1,4 @@
-package generic;
+package abstractClasses;
 
 /**
  * an abstract class for the return type of searches

@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.LinkedList;
 
 import qtUtils.lexReturnC;
+import certificate.qtCertificateC;
+import abstractClasses.qtLBFS;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Pair;
 
@@ -153,6 +155,11 @@ public class qtLBFSComponents<V> extends qtLBFS<V>
 			return true;
 		else
 			return false;
+	}
+
+	@Override
+	public boolean isTarget(Graph<V, Pair<V>> g) {
+		return isQT(g);
 	}
 
 }
