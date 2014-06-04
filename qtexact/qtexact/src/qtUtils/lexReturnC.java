@@ -12,7 +12,7 @@ import java.util.LinkedList;
 
 public class lexReturnC<V>
 {
-	//store ArrayList of either a found P4 or the final ordering
+	//store ArrayList of either a found P4/C4 or the final ordering
 	private ArrayList<V> list;
 	//QT check
 	private boolean isQT;
