@@ -5,19 +5,26 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedList;
 
-import com.rits.cloning.Cloner;
-
 import qtUtils.branchingReturnC;
 import qtUtils.myEdge;
+import controller.qtController;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.SparseGraph;
 import edu.uci.ics.jung.graph.util.Pair;
 
 
-
 public abstract class qtBranch<V> extends Branch<V> 
 {
 	protected qtLBFS<V> search;
+	protected qtController<V> controller;
+	
+	
+	public qtLBFS<V> getSearch() {
+		return search;
+	}
+	public void setSearch(qtLBFS<V> search) {
+		this.search = search;
+	}
 	
 	
 	/**

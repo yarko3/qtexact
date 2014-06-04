@@ -9,6 +9,8 @@ import edu.uci.ics.jung.graph.util.Pair;
 public abstract class Branch<V> 
 {
 	protected Search<V> search;
+	protected Controller<V> controller;
+	
 	public static Cloner clone = new Cloner();
 	
 	/**

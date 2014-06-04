@@ -10,6 +10,7 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 
+import qtUtils.branchingReturnC;
 import qtUtils.vertexIn;
 import certificate.qtCertificateC;
 
@@ -20,15 +21,14 @@ import edu.uci.ics.jung.graph.util.Pair;
 
 public abstract class qtLBFS<V> extends LBFS<V> 
 {
-	
 	public static Cloner clone = new Cloner();
 
 	public abstract boolean isQT(Graph <V, Pair<V>> G);
 	
-	public SearchResult<V> searchPrep(Graph<V, Pair<V>> G, ArrayList<LinkedList<V>> l)
+	public SearchResult<V> searchPrep(branchingReturnC<V> s)
 	{
-		ArrayList<V> t = flattenAndReverseDeg(l);
-		return search(G, t);
+		ArrayList<V> t = flattenAndReverseDeg(s.getDeg());
+		return search(s.getG(), t);
 	}
 	
 	
