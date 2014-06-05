@@ -11,6 +11,7 @@ import java.util.LinkedList;
 import java.util.PriorityQueue;
 
 import qtUtils.branchingReturnC;
+import qtUtils.lexReturnC;
 import qtUtils.vertexIn;
 import abstractClasses.SearchResult;
 import certificate.qtCertificateC;
@@ -20,12 +21,17 @@ import com.rits.cloning.Cloner;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Pair;
 
+/**
+ * an abstract class that provides helper methods for qtLBFS searches
+ * 
+ * @author Yaroslav Senyuta
+ *
+ * @param <V>
+ */
 public abstract class qtLBFS<V> extends LBFS<V> 
 {
 	public static Cloner clone = new Cloner();
 
-	public abstract boolean isQT(Graph <V, Pair<V>> G);
-	
 	@Override
 	public boolean isTarget(Graph<V, Pair<V>> g) {
 		return isQT(g);
@@ -189,6 +195,22 @@ public abstract class qtLBFS<V> extends LBFS<V>
 			}
 		}
 		return t;
+	}
+	
+	/**
+	 * checks if graph is quasi threshold
+	 * @param G
+	 * @return true if graph is qt, otherwise false
+	 */
+	public boolean isQT(Graph<V, Pair<V>> G) {
+		ArrayList<LinkedList<V>> deg = degSequenceOrder(G);
+		
+		lexReturnC<V> search = search(G, flattenAndReverseDeg(deg));
+		
+		if (search.isTarget())
+			return true;
+		else
+			return false;
 	}
 	
 }

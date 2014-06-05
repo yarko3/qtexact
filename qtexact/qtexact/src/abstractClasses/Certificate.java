@@ -11,9 +11,20 @@ import java.util.ArrayList;
  */
 public abstract class Certificate<V> 
 {
+	/**
+	 * vertices which induce obstruction
+	 */
 	private ArrayList<V> vertices;
+	/**
+	 * flag of obstruction found
+	 */
 	private int flag;
 	
+	/**
+	 * constructor
+	 * @param v vertices
+	 * @param f flag
+	 */
 	public Certificate(ArrayList<V> v, int f)
 	{
 		setVertices(v);

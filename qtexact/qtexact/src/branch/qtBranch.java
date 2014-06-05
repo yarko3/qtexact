@@ -5,20 +5,29 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedList;
 
+import controller.Controller;
 import qtUtils.branchingReturnC;
 import qtUtils.myEdge;
 import search.qtLBFS;
 import abstractClasses.Branch;
-import controller.qtController;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.SparseGraph;
 import edu.uci.ics.jung.graph.util.Pair;
 
-
+/**
+ * class used to hold many helper functions required for quasi threshold editing
+ * @author Yaroslav Senyuta
+ *
+ * @param <V>
+ */
 public abstract class qtBranch<V> extends Branch<V> 
 {
-	public qtBranch(qtController<V> controller, qtLBFS<V> search) {
-		super(controller, search);
+	/**
+	 * constructor
+	 * @param controller controller for qt branching
+	 */
+	public qtBranch(Controller<V> controller) {
+		super(controller);
 	}
 
 	

@@ -12,7 +12,12 @@ import java.util.LinkedList;
 import certificate.qtCertificateC;
 import abstractClasses.SearchResult;
 
-
+/**
+ * return type of lexBFS search
+ * @author Yaroslav Senyuta
+ *
+ * @param <V>
+ */
 public class lexReturnC<V> extends SearchResult<V>
 {
 	//store ArrayList of either a found P4/C4 or the final ordering

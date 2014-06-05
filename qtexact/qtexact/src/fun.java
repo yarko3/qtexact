@@ -15,14 +15,11 @@ import java.util.Set;
 import javax.swing.JApplet;
 import javax.swing.JFrame;
 
-import abstractClasses.Branch;
-import abstractClasses.Controller;
-import branch.qtBranch;
-import branch.qtBranchNoHeuristic;
-import controller.qtController;
+import controller.Controller;
 import qtUtils.qtGenerate;
 import search.YanSearch;
-import search.qtLBFSNoHeuristic;
+import branch.qtBranchComponents;
+import branch.qtBranchNoHeuristic;
 import edu.uci.ics.jung.algorithms.cluster.EdgeBetweennessClusterer;
 import edu.uci.ics.jung.algorithms.layout.FRLayout;
 import edu.uci.ics.jung.graph.Graph;
@@ -61,20 +58,24 @@ public class fun extends JApplet {
 		
 		//exampleQT = qtGenerate.nonQTEx3();
 		
-		exampleQT = gen.ER(13, 0.63);
+		//exampleQT = gen.ER(10, 0.53);
 		
 		//exampleQT = new SparseGraph<Integer, Pair<Integer>>();
 		//fillGraphFromFile(exampleQT, "datasets/karate.txt");
 		
-		exampleQT = gen.fromBipartiteFile("datasets/southernwomen");
+		//exampleQT = gen.fromBipartiteFile("datasets/southernwomen");
 		
-		qtController<Integer> c = new qtController<Integer>(null);
-		qtLBFSNoHeuristic<Integer> s = new qtLBFSNoHeuristic<Integer>();
-		qtBranchNoHeuristic<Integer> b = new qtBranchNoHeuristic<Integer>(c, s);
-		c.setbStruct(b);
+		Controller<Integer> cNoHeuristic = new Controller<Integer>(null);
+		qtBranchNoHeuristic<Integer> b = new qtBranchNoHeuristic<Integer>(cNoHeuristic);
+		cNoHeuristic.setbStruct(b);
+		
+		Controller<Integer> cConnected = new Controller<Integer>(null);
+		qtBranchComponents<Integer> bConnected = new qtBranchComponents<Integer>(cConnected);
+		cConnected.setbStruct(bConnected);
 		
 		
-		visualize(exampleQT);
+		
+		//visualize(exampleQT);
 		
 		YanSearch<Integer> yan = new YanSearch<Integer>();
 		
@@ -82,23 +83,25 @@ public class fun extends JApplet {
 		System.out.println(yan.search(exampleQT));
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
-		qtBranching<Integer> del = new qtBranching<Integer>();
-		
+		System.out.println("\nIterative Deepening connected components: ");
 		start = System.currentTimeMillis();
-		//del.qtEditConnectedComponents(exampleQT, 10);
+		cConnected.branchID(exampleQT, 1, 10);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
+		System.out.println("\nIterative Deepening no heuristic: ");
 		start = System.currentTimeMillis();
-		//del.qtEditNoHeuristic(exampleQT, 10);
-		c.branchID(exampleQT, 1, 5);
+		cNoHeuristic.branchID(exampleQT, 1, 10);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
-		
+		System.out.println("\nConnected components: ");
 		start = System.currentTimeMillis();
-		//exampleQT = del.qtEditIDBound(exampleQT, 25, 30);
-		exampleQT = c.branchStart(exampleQT, 10);
+		cConnected.branchStart(exampleQT, 10);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
+		System.out.println("\nNo heuristic: ");
+		start = System.currentTimeMillis();
+		exampleQT = cNoHeuristic.branchStart(exampleQT, 10);
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		start = System.currentTimeMillis();
 		System.out.println(yan.search(exampleQT));

@@ -1,7 +1,12 @@
 package qtUtils;
 
 import edu.uci.ics.jung.graph.util.Pair;
-
+/**
+ * class used for storing an edge of an edit set
+ * @author ssd
+ *
+ * @param <V>
+ */
 public class myEdge<V> 
 {
 	//edge stored

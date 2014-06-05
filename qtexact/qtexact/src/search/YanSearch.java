@@ -15,6 +15,13 @@ import edu.uci.ics.jung.graph.DelegateForest;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Pair;
 
+/**
+ * a class containing the search for quasi threshold graphs 
+ * Yan 1995
+ * @author ssd
+ *
+ * @param <V>
+ */
 public class YanSearch<V>
 {
 	/**

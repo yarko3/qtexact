@@ -12,7 +12,12 @@ import java.util.LinkedList;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Pair;
 
-//a class to keep the return graph and the number of alterations that have been made
+/**
+ * a class to keep the state of the graph and the number of alterations that have been made
+ * @author Yaroslav Senyuta
+ *
+ * @param <V>
+ */
 public class branchingReturnC<V> implements Comparable<branchingReturnC<V>>
 {
 	Graph<V, Pair<V>> G;

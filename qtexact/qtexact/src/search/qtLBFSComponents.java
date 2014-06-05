@@ -9,6 +9,13 @@ import certificate.qtCertificateC;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Pair;
 
+/**
+ * A lexBFS search for quasi threshold graphs while also finding connected components
+ * 
+ * @author Yaroslav Senyuta
+ *
+ * @param <V>
+ */
 public class qtLBFSComponents<V> extends qtLBFS<V> 
 {
 	/** LexBFS search 
@@ -143,17 +150,6 @@ public class qtLBFSComponents<V> extends qtLBFS<V>
 		
 		return new lexReturnC<V>(s, null, true, cComponents.size() == 1, cComponents);
 		
-	}
-	
-	public boolean isQT(Graph<V, Pair<V>> G) {
-		ArrayList<LinkedList<V>> deg = degSequenceOrder(G);
-		
-		lexReturnC<V> search = search(G, flattenAndReverseDeg(deg));
-		
-		if (search.isTarget())
-			return true;
-		else
-			return false;
 	}
 
 }

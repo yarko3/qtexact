@@ -7,6 +7,12 @@ import qtUtils.lexReturnC;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Pair;
 
+/**
+ * a lexBFS search for quasi threshold graphs
+ * @author Yaroslav Senyuta
+ *
+ * @param <V>
+ */
 public class qtLBFSNoHeuristic<V> extends qtLBFS<V> 
 {
 	
@@ -74,15 +80,4 @@ public class qtLBFSNoHeuristic<V> extends qtLBFS<V>
 		return new lexReturnC<V>(s, null, true, false, null);
 	}
 
-	
-	public boolean isQT(Graph<V, Pair<V>> G) {
-		ArrayList<LinkedList<V>> deg = degSequenceOrder(G);
-		
-		lexReturnC<V> search = search(G, flattenAndReverseDeg(deg));
-		
-		if (search.isTarget())
-			return true;
-		else
-			return false;
-	}
 }

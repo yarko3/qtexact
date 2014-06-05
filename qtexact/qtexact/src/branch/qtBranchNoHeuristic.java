@@ -3,20 +3,29 @@ package branch;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+import controller.Controller;
 import qtUtils.branchingReturnC;
 import qtUtils.myEdge;
 import search.qtLBFS;
 import search.qtLBFSNoHeuristic;
 import abstractClasses.SearchResult;
-import controller.qtController;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Pair;
 
+/**
+ * class used for branching into quasi threshold without any heuristics
+ * @author Yaroslav Senyuta
+ *
+ * @param <V>
+ */
 public class qtBranchNoHeuristic<V> extends qtBranch<V> 
 {
-
-	public qtBranchNoHeuristic(qtController<V> controller, qtLBFS<V> search) {
-		super(controller, search);
+	/**
+	 * constructor
+	 * @param controller
+	 */
+	public qtBranchNoHeuristic(Controller<V> controller) {
+		super(controller);
 	}
 
 	/**
@@ -37,7 +46,9 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 		return goal;
 	}
 
-	
+	/**
+	 * branching rules for quasi threshold editing
+	 */
 	public branchingReturnC<V> branchingRules(branchingReturnC<V> s, SearchResult<V> searchResult) 
 	{
 		ArrayList<V> lexResult = searchResult.getCertificate().getVertices();
@@ -51,8 +62,7 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 				branchingReturnC<V> c4Add1 = controller.branch(c4p4AddResult(s, lexResult.get(0), lexResult.get(2)));
 				//revert changes
 				c4p4AddRevert(s, lexResult.get(0), lexResult.get(2));		
-				//update percentDone
-
+				
 				if (c4Add1.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 				{
 					s.setMinMoves(c4Add1.getMinMoves());

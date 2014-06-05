@@ -4,9 +4,16 @@ import qtUtils.branchingReturnC;
 
 import com.rits.cloning.Cloner;
 
+import controller.Controller;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Pair;
 
+/**
+ * Class for holding branching rules and search class associated with a particular graph edit
+ * @author Yaroslav Senyuta
+ *
+ * @param <V>
+ */
 public abstract class Branch<V> 
 {
 	/**
@@ -24,9 +31,8 @@ public abstract class Branch<V>
 	 * a Branch datatype needs a controller to run recursively in branchingRules(...)
 	 * @param controller
 	 */
-	public Branch(Controller<V> controller, Search<V> search) {
+	public Branch(Controller<V> controller) {
 		super();
-		this.search = search;
 		this.controller = controller;
 	}
 

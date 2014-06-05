@@ -1,7 +1,7 @@
 package qtUtils;
 
 /**
- * class containing vertex and Degree for PriorityQueue in qtCheckYan
+ * class containing vertex and degree for PriorityQueue in qtCheckYan
  * @author Yarko Senyuta
  *
  * @param <V>
