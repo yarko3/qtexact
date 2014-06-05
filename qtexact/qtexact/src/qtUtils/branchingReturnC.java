@@ -24,6 +24,7 @@ public class branchingReturnC<V> implements Comparable<branchingReturnC<V>>
 	ArrayList<LinkedList<V>> deg;
 	LinkedList<myEdge<V>> changes;
 	branchingReturnC<V>	minMoves;
+	double percent;
 	
 	public branchingReturnC(Graph<V, Pair<V>> graph, ArrayList<LinkedList<V>> d, LinkedList<myEdge<V>> c, branchingReturnC<V> m)
 	{
@@ -92,4 +93,12 @@ public class branchingReturnC<V> implements Comparable<branchingReturnC<V>>
 		return minMoves;
 	}
 	
+	public void setPercent(double p)
+	{
+		percent = p;
+	}
+	public double getPercent()
+	{
+		return percent;
+	}
 }

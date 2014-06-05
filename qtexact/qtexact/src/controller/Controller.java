@@ -16,6 +16,7 @@ import edu.uci.ics.jung.graph.util.Pair;
  */
 public class Controller<V> 
 {
+	
 	/**
 	 * constructor
 	 * @param bStruct Branch object
@@ -118,6 +119,7 @@ public class Controller<V>
 		//target graph has been found
 		if (searchResult.isTarget())
 		{
+			
 			//update the minMoves list if this solution is better
 			if (s.getChanges().size() < s.getMinMoves().getChanges().size())
 			{
@@ -139,7 +141,9 @@ public class Controller<V>
 			}
 			//min moves is a better solution
 				else
+				{
 					return s.getMinMoves();
+				}
 		}
 	}
 	
