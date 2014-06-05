@@ -1,24 +1,21 @@
 package controller;
 
-import branch.qtBranch;
 import qtUtils.branchingReturnC;
 import abstractClasses.Branch;
 import abstractClasses.Controller;
 import abstractClasses.SearchResult;
-import search.qtLBFS;
+import branch.qtBranch;
 
 public class qtController<V> extends Controller<V> 
 {
-	public qtController(Branch<V> bStruct) {
+	public qtController(qtBranch<V> bStruct) {
 		super(bStruct);
 	}
-
-	protected qtBranch<V> bStruct;
 
 	public branchingReturnC<V> branch(branchingReturnC<V> s) 
 	{
 		//check if graph is target
-		SearchResult<V> searchResult = ((qtLBFS<V>) bStruct.getSearch()).searchPrep(s);
+		SearchResult<V> searchResult = ((qtBranch<V>) bStruct).getSearch().searchPrep(s);
 		
 		
 		//target graph has been found

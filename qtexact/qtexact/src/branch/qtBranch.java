@@ -5,12 +5,10 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedList;
 
-import abstractClasses.Branch;
-import abstractClasses.Controller;
-import abstractClasses.Search;
 import qtUtils.branchingReturnC;
 import qtUtils.myEdge;
 import search.qtLBFS;
+import abstractClasses.Branch;
 import controller.qtController;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.SparseGraph;
@@ -19,15 +17,14 @@ import edu.uci.ics.jung.graph.util.Pair;
 
 public abstract class qtBranch<V> extends Branch<V> 
 {
-	public qtBranch(Controller<V> controller) {
-		super(controller);
+	public qtBranch(qtController<V> controller, qtLBFS<V> search) {
+		super(controller, search);
 	}
 
-	protected qtController<V> controller;
 	
-	
-	public Search<V> getSearch() {
-		return search;
+	@Override
+	public qtLBFS<V> getSearch() {
+		return (qtLBFS<V>) search;
 	}
 	public void setSearch(qtLBFS<V> search) {
 		this.search = search;

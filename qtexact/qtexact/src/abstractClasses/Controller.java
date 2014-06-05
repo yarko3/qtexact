@@ -55,7 +55,7 @@ public abstract class Controller<V>
 		
 		goal = branch(goal);
 		
-		System.out.println("Completed in moves: " + goal.getMinMoves().getChanges().size());
+		System.out.println("Completed after moves: " + goal.getMinMoves().getChanges().size());
 		
 		qtGenerate<V> gen = new qtGenerate<V>();
 		
@@ -64,14 +64,20 @@ public abstract class Controller<V>
 		
 		//return QT graph if edit succeeds
 		if (bStruct.search.isTarget(rtn))
+		{
+			System.out.println("Solution found. ");
 			return rtn;
+		}
 		else
+		{
 			//otherwise return original graph
+			System.out.println("Solution not found. ");
 			return goal.getG();
+		}
 		
 	}
 	
-	protected abstract branchingReturnC<V> branch(branchingReturnC<V> s);
+	public abstract branchingReturnC<V> branch(branchingReturnC<V> s);
 	
 
 }

@@ -26,6 +26,11 @@ public abstract class qtLBFS<V> extends LBFS<V>
 
 	public abstract boolean isQT(Graph <V, Pair<V>> G);
 	
+	@Override
+	public boolean isTarget(Graph<V, Pair<V>> g) {
+		return isQT(g);
+	}
+	
 	public SearchResult<V> searchPrep(branchingReturnC<V> s)
 	{
 		ArrayList<V> t = flattenAndReverseDeg(s.getDeg());

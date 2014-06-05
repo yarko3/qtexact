@@ -156,9 +156,4 @@ public class qtLBFSComponents<V> extends qtLBFS<V>
 			return false;
 	}
 
-	@Override
-	public boolean isTarget(Graph<V, Pair<V>> g) {
-		return isQT(g);
-	}
-
 }

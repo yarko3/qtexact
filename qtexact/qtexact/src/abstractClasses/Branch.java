@@ -1,23 +1,35 @@
 package abstractClasses;
 
+import qtUtils.branchingReturnC;
+
 import com.rits.cloning.Cloner;
 
-import qtUtils.branchingReturnC;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Pair;
 
 public abstract class Branch<V> 
 {
-	public Branch(Controller<V> controller) {
-		super();
-		this.controller = controller;
-	}
-
+	/**
+	 * a search class used for identifying a solution or a certificate to branch on 
+	 */
 	protected Search<V> search;
+	/**
+	 * a controller used to run the branching
+	 */
 	protected Controller<V> controller;
 	
 	public static Cloner clone = new Cloner();
 	
+	/**
+	 * a Branch datatype needs a controller to run recursively in branchingRules(...)
+	 * @param controller
+	 */
+	public Branch(Controller<V> controller, Search<V> search) {
+		super();
+		this.search = search;
+		this.controller = controller;
+	}
+
 	/**
 	 * set up the search environment (minMoves, etc.)
 	 * @param G
@@ -33,4 +45,8 @@ public abstract class Branch<V>
 	 * @return
 	 */
 	public abstract branchingReturnC<V> branchingRules(branchingReturnC<V> s, SearchResult<V> sResult);
+
+	public Search<V> getSearch() {
+		return search;
+	}
 }

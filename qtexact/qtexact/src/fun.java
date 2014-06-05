@@ -22,6 +22,7 @@ import branch.qtBranchNoHeuristic;
 import controller.qtController;
 import qtUtils.qtGenerate;
 import search.YanSearch;
+import search.qtLBFSNoHeuristic;
 import edu.uci.ics.jung.algorithms.cluster.EdgeBetweennessClusterer;
 import edu.uci.ics.jung.algorithms.layout.FRLayout;
 import edu.uci.ics.jung.graph.Graph;
@@ -68,7 +69,8 @@ public class fun extends JApplet {
 		exampleQT = gen.fromBipartiteFile("datasets/southernwomen");
 		
 		qtController<Integer> c = new qtController<Integer>(null);
-		qtBranchNoHeuristic<Integer> b = new qtBranchNoHeuristic<Integer>(c);
+		qtLBFSNoHeuristic<Integer> s = new qtLBFSNoHeuristic<Integer>();
+		qtBranchNoHeuristic<Integer> b = new qtBranchNoHeuristic<Integer>(c, s);
 		c.setbStruct(b);
 		
 		
@@ -88,6 +90,7 @@ public class fun extends JApplet {
 		
 		start = System.currentTimeMillis();
 		//del.qtEditNoHeuristic(exampleQT, 10);
+		c.branchID(exampleQT, 1, 5);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		

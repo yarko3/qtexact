@@ -85,11 +85,4 @@ public class qtLBFSNoHeuristic<V> extends qtLBFS<V>
 		else
 			return false;
 	}
-
-
-	@Override
-	public boolean isTarget(Graph<V, Pair<V>> g) {
-		return isQT(g);
-	}
-
 }

@@ -3,21 +3,21 @@ package branch;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-import search.qtLBFS;
 import qtUtils.branchingReturnC;
 import qtUtils.myEdge;
+import search.qtLBFS;
 import search.qtLBFSNoHeuristic;
-import abstractClasses.Controller;
 import abstractClasses.SearchResult;
+import controller.qtController;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Pair;
 
 public class qtBranchNoHeuristic<V> extends qtBranch<V> 
 {
-	public qtBranchNoHeuristic(Controller<V> controller) {
-		super(controller);
-	}
 
+	public qtBranchNoHeuristic(qtController<V> controller, qtLBFS<V> search) {
+		super(controller, search);
+	}
 
 	/**
 	 * setup for quasi threshold editing with no heuristic
