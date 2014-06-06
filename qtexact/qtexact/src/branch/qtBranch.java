@@ -160,7 +160,7 @@ public abstract class qtBranch<V> extends Branch<V>
 	 * @param v0 endpoint of edge to be deleted
 	 * @param v1 endpoint of edge to be deleted
 	 */
-	private void removeEdge(Graph<V, Pair<V>> G, ArrayList<LinkedList<V>> deg, V v0, V v1)
+	public void removeEdge(Graph<V, Pair<V>> G, ArrayList<LinkedList<V>> deg, V v0, V v1)
 	{
 		int v0Deg = G.degree(v0);
 		int v1Deg = G.degree(v1);

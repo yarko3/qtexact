@@ -17,9 +17,11 @@ public abstract class SearchResult<V>
 	public boolean isTarget() {
 		return isTarget;
 	}
-	public void setTarget(boolean isTarget) {
-		this.isTarget = isTarget;
+	public void setTarget(boolean b)
+	{
+		isTarget = b;
 	}
+	
 	public Certificate<V> getCertificate() {
 		return certificate;
 	}

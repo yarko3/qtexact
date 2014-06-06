@@ -44,7 +44,10 @@ public abstract class Certificate<V>
 		this.flag = flag;
 	}
 	
-	
+	public String toString()
+	{
+		return "Vertices: " + vertices + ", flag: " + flag;
+	}
 	
 
 }

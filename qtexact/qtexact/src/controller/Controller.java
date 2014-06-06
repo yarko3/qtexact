@@ -112,6 +112,10 @@ public class Controller<V>
 	 */
 	public branchingReturnC<V> branch(branchingReturnC<V> s)
 	{
+		//run reduction step
+		s = bStruct.reduce(s);
+		
+		
 		//check if graph is target
 		SearchResult<V> searchResult =  bStruct.getSearch().searchPrep(s);
 		

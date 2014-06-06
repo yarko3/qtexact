@@ -15,13 +15,15 @@ import java.util.Set;
 import javax.swing.JApplet;
 import javax.swing.JFrame;
 
-import controller.Controller;
-import controller.ControllerP;
 import qtUtils.qtGenerate;
+import reduction.edgeBoundReduction;
 import search.YanSearch;
+import abstractClasses.Reduction;
 import branch.qtBranchComponents;
 import branch.qtBranchNoHeuristic;
 import branch.qtBranchNoHeuristicP;
+import controller.Controller;
+import controller.ControllerP;
 import edu.uci.ics.jung.algorithms.cluster.EdgeBetweennessClusterer;
 import edu.uci.ics.jung.algorithms.layout.FRLayout;
 import edu.uci.ics.jung.graph.Graph;
@@ -55,18 +57,18 @@ public class fun extends JApplet {
 		
 		//exampleQT = gen.cliqueJoin(20, 30);
 		
-		exampleQT = qtGenerate.simpleC4();
+		//exampleQT = qtGenerate.simpleC4();
 		
 		//exampleQT = qtGenerate.westernElectricNetwork();
 		
 		//exampleQT = qtGenerate.nonQTEx3();
 		
-		//exampleQT = gen.ER(10, 0.53);
+		//exampleQT = gen.ER(15, 0.53);
 		
-		//exampleQT = new SparseGraph<Integer, Pair<Integer>>();
-		//fillGraphFromFile(exampleQT, "datasets/karate.txt");
+		exampleQT = new SparseGraph<Integer, Pair<Integer>>();
+		fillGraphFromFile(exampleQT, "datasets/karate.txt");
 		
-		exampleQT = gen.fromBipartiteFile("datasets/southernwomen");
+		//exampleQT = gen.fromBipartiteFile("datasets/southernwomen");
 		
 		Controller<Integer> cNoHeuristic = new Controller<Integer>(null);
 		qtBranchNoHeuristic<Integer> b = new qtBranchNoHeuristic<Integer>(cNoHeuristic);
@@ -79,6 +81,10 @@ public class fun extends JApplet {
 		ControllerP<Integer> cNoHeuristicP = new ControllerP<Integer>(null);
 		qtBranchNoHeuristicP<Integer> branchNoHP = new qtBranchNoHeuristicP<Integer>(cNoHeuristicP);
 		cNoHeuristicP.setbStruct(branchNoHP);
+		
+		Reduction<Integer> r = new edgeBoundReduction<Integer>(branchNoHP);
+		branchNoHP.addReduction(r);
+		
 		
 		//visualize(exampleQT);
 		
@@ -103,10 +109,10 @@ public class fun extends JApplet {
 		cConnected.branchStart(exampleQT, 10);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);*/
 		
-		/*System.out.println("\nNo heuristic: ");
-		start = System.currentTimeMillis();
-		exampleQT = cNoHeuristic.branchStart(exampleQT, 10);
-		System.out.println((System.currentTimeMillis()-start) / 1000.0);*/
+//		System.out.println("\nNo heuristic: ");
+//		start = System.currentTimeMillis();
+//		exampleQT = cNoHeuristicP.branchStart(exampleQT, 30);
+//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		start = System.currentTimeMillis();
 		System.out.println(yan.search(exampleQT));

@@ -1,5 +1,7 @@
 package abstractClasses;
 
+import java.util.LinkedList;
+
 import qtUtils.branchingReturnC;
 
 import com.rits.cloning.Cloner;
@@ -16,6 +18,11 @@ import edu.uci.ics.jung.graph.util.Pair;
  */
 public abstract class Branch<V> 
 {
+	/**
+	 * a linked list which holds all of the reductions applicable to this Branch object
+	 */
+	protected LinkedList<Reduction<V>> reductions;
+	
 	/**
 	 * a search class used for identifying a solution or a certificate to branch on 
 	 */
@@ -54,5 +61,35 @@ public abstract class Branch<V>
 
 	public Search<V> getSearch() {
 		return search;
+	}
+	
+	/**
+	 * reduction step prior to performing a search
+	 * @param s initial edit state
+	 * @return reduced edit state
+	 */
+	public branchingReturnC<V> reduce(branchingReturnC<V> s)
+	{
+		if (reductions != null)
+		{
+			for (Reduction<V> r : reductions)
+			{
+				s = r.reduce(s);
+			}
+		}
+		return s;
+	}
+	
+	/**
+	 * add a reduction to this branch object
+	 * @param r reduction
+	 */
+	public void addReduction(Reduction<V> r)
+	{
+		if (reductions == null)
+		{
+			reductions = new LinkedList<Reduction<V>>();
+		}
+		reductions.add(r);
 	}
 }
