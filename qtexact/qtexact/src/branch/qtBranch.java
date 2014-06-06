@@ -5,11 +5,11 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedList;
 
+import abstractClasses.Branch;
 import controller.Controller;
 import qtUtils.branchingReturnC;
 import qtUtils.myEdge;
 import search.qtLBFS;
-import abstractClasses.Branch;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.SparseGraph;
 import edu.uci.ics.jung.graph.util.Pair;

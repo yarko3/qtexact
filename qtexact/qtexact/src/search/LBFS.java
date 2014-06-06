@@ -2,8 +2,8 @@ package search;
 
 import java.util.ArrayList;
 
-import qtUtils.lexReturnC;
 import abstractClasses.Search;
+import qtUtils.lexReturnC;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Pair;
 /**
