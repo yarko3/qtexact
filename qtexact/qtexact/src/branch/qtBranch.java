@@ -128,7 +128,7 @@ public abstract class qtBranch<V> extends Branch<V>
 	 * @param v1 vertex
 	 * @return search state
 	 */
-	protected branchingReturnC<V> p4DeleteResult(branchingReturnC<V> s, V v0, V v1)
+	public branchingReturnC<V> p4DeleteResult(branchingReturnC<V> s, V v0, V v1)
 	{
 		//update degree sequence (first edge)
 		removeEdge(s.getG(), s.getDeg(), v0, v1);
@@ -144,12 +144,17 @@ public abstract class qtBranch<V> extends Branch<V>
 	 * @param v0 vertex
 	 * @param v1 vertex
 	 */
-	protected void p4DeleteRevert(branchingReturnC<V> s, V v0, V v1)
+	public void p4DeleteRevert(branchingReturnC<V> s)
 	{
+		myEdge<V> deleted = s.getChanges().removeLast();
+		
+		V v0 = deleted.getEdge().getFirst();
+		V v1 = deleted.getEdge().getSecond();
+		
 		//update degree sequence (first edge)
 		addEdge(s.getG(), s.getDeg(), v0, v1);
 		
-		s.getChanges().removeLast();
+		
 	}
 	
 	
@@ -160,7 +165,7 @@ public abstract class qtBranch<V> extends Branch<V>
 	 * @param v0 endpoint of edge to be deleted
 	 * @param v1 endpoint of edge to be deleted
 	 */
-	public void removeEdge(Graph<V, Pair<V>> G, ArrayList<LinkedList<V>> deg, V v0, V v1)
+	protected void removeEdge(Graph<V, Pair<V>> G, ArrayList<LinkedList<V>> deg, V v0, V v1)
 	{
 		int v0Deg = G.degree(v0);
 		int v1Deg = G.degree(v1);

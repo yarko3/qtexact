@@ -197,7 +197,7 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 				branchingReturnC<V> p4Remove0 = controller.branch(p4DeleteResult(s, lexResult.get(0), lexResult.get(1)));
 				
 				//revert changes to global graph
-				p4DeleteRevert(s,lexResult.get(0), lexResult.get(1));
+				p4DeleteRevert(s);
 				if (p4Remove0.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 				{
 					s.setMinMoves(p4Remove0.getMinMoves());
@@ -209,7 +209,7 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 				branchingReturnC<V> p4Remove1 = controller.branch(p4DeleteResult(s, lexResult.get(1), lexResult.get(2)));
 				
 				//revert changes to global graph
-				p4DeleteRevert(s,lexResult.get(1), lexResult.get(2));
+				p4DeleteRevert(s);
 				if (p4Remove1.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 				{
 					s.setMinMoves(p4Remove1.getMinMoves());
@@ -221,7 +221,7 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 				branchingReturnC<V> p4Remove2 = controller.branch(p4DeleteResult(s, lexResult.get(2), lexResult.get(3)));
 				
 				//revert changes to global graph
-				p4DeleteRevert(s,lexResult.get(2), lexResult.get(3));
+				p4DeleteRevert(s);
 				if (p4Remove2.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 				{
 					s.setMinMoves(p4Remove2.getMinMoves());

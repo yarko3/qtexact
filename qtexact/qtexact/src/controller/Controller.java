@@ -132,6 +132,8 @@ public class Controller<V>
 				newMin.setMinMoves(newMin);
 				s.setMinMoves(newMin);
 			}
+			//reverse the reduction
+			s = bStruct.reduceRevert(s);
 			return s;
 		}
 		//branch on found obstruction
@@ -141,11 +143,22 @@ public class Controller<V>
 			if (s.getMinMoves().getChanges().size() > s.getChanges().size())
 			{
 				branchingReturnC<V> rtn = bStruct.branchingRules(s, searchResult);
+				
+				branchingReturnC<V> reverted = bStruct.reduceRevert(s);
+				s.setChanges(reverted.getChanges());
+				s.setDeg(reverted.getDeg());
+				s.setGraph(reverted.getG());
+				
 				return rtn;
 			}
 			//min moves is a better solution
 				else
 				{
+					branchingReturnC<V> reverted = bStruct.reduceRevert(s);
+					s.setChanges(reverted.getChanges());
+					s.setDeg(reverted.getDeg());
+					s.setGraph(reverted.getG());
+					
 					return s.getMinMoves();
 				}
 		}

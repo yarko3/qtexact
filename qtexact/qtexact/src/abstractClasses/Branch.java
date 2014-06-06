@@ -80,6 +80,18 @@ public abstract class Branch<V>
 		return s;
 	}
 	
+	public branchingReturnC<V> reduceRevert(branchingReturnC<V> s)
+	{
+		if (reductions != null)
+		{
+			for (Reduction<V> r : reductions)
+			{
+				s = r.revertReduce(s);
+			}
+		}
+		return s;
+	}
+	
 	/**
 	 * add a reduction to this branch object
 	 * @param r reduction

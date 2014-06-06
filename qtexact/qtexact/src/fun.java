@@ -61,12 +61,12 @@ public class fun extends JApplet {
 		
 		//exampleQT = qtGenerate.westernElectricNetwork();
 		
-		//exampleQT = qtGenerate.nonQTEx3();
+		exampleQT = qtGenerate.nonQTEx3();
 		
 		//exampleQT = gen.ER(15, 0.53);
 		
-		exampleQT = new SparseGraph<Integer, Pair<Integer>>();
-		fillGraphFromFile(exampleQT, "datasets/karate.txt");
+		//exampleQT = new SparseGraph<Integer, Pair<Integer>>();
+		//fillGraphFromFile(exampleQT, "datasets/karate.txt");
 		
 		//exampleQT = gen.fromBipartiteFile("datasets/southernwomen");
 		
@@ -99,20 +99,20 @@ public class fun extends JApplet {
 		cConnected.branchID(exampleQT, 1, 10);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);*/
 		
-		System.out.println("\nIterative Deepening no heuristic: ");
+		/*System.out.println("\nIterative Deepening no heuristic: ");
 		start = System.currentTimeMillis();
 		cNoHeuristicP.branchID(exampleQT, 1, 30);
-		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);*/
 		
 		/*System.out.println("\nConnected components: ");
 		start = System.currentTimeMillis();
 		cConnected.branchStart(exampleQT, 10);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);*/
 		
-//		System.out.println("\nNo heuristic: ");
-//		start = System.currentTimeMillis();
-//		exampleQT = cNoHeuristicP.branchStart(exampleQT, 30);
-//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		System.out.println("\nNo heuristic: ");
+		start = System.currentTimeMillis();
+		exampleQT = cNoHeuristicP.branchStart(exampleQT, 30);
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		start = System.currentTimeMillis();
 		System.out.println(yan.search(exampleQT));

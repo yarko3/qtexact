@@ -3,6 +3,7 @@ package reduction;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.Stack;
 
 import qtUtils.branchingReturnC;
 import qtUtils.myEdge;
@@ -20,11 +21,14 @@ public class edgeBoundReduction<V> extends Reduction<V>
 {
 	Cloner clone = new Cloner();
 	qtBranch<V> bStruct;
+	Stack<Integer> stack;
+	
 	
 	public edgeBoundReduction(qtBranch<V> b)
 	{
 		super();
 		bStruct = b;
+		stack = new Stack<Integer>();
 	}
 	
 	@Override
@@ -34,18 +38,18 @@ public class edgeBoundReduction<V> extends Reduction<V>
 		//TODO may not be the worth it if cloning is too expensive
 		branchingReturnC<V> rtn = clone.deepClone(s);
 		
+		int delCount = 0;
 		//for every edge, find C4s and P4s
 		for (Pair<V> e : s.getG().getEdges())
 		{
 			//if leaving the edge is out of bounds, remove this edge
 			if (getObstructionCount(e, s.getG()) > s.getMinMoves().getChanges().size() - s.getChanges().size() && !s.getChanges().contains(new myEdge<V>(e, false)))
 			{
-				bStruct.removeEdge(rtn.getG(), rtn.getDeg(), e.getFirst(), e.getSecond());
-//				rtn.getG().removeEdge(e);
-				rtn.getChanges().add(new myEdge<V>(e, false));
+				bStruct.p4DeleteResult(rtn, e.getFirst(), e.getSecond());
+				delCount++;
 			}
 		}
-		
+		stack.push(delCount);
 		return rtn;
 		
 	}
@@ -123,6 +127,18 @@ public class edgeBoundReduction<V> extends Reduction<V>
 		}
 		//TODO can use the c4 and p4 information later
 		return c4.size() + p4.size();
+	}
+
+	@Override
+	public branchingReturnC<V> revertReduce(branchingReturnC<V> s) 
+	{
+		int delCount = stack.pop();
+		
+		for (int i = 0; i < delCount; i++)
+		{
+			bStruct.p4DeleteRevert(s);
+		}
+		return s;
 	}
 
 }
