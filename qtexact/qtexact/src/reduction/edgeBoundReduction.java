@@ -53,7 +53,13 @@ public class edgeBoundReduction<V> extends Reduction<V>
 		return rtn;
 		
 	}
-	
+	/**
+	 * enumerate the number of obstructions on a given edge
+	 * 
+	 * @param e edge
+	 * @param g graph
+	 * @return number of C4/P4
+	 */
 	private int getObstructionCount(Pair<V> e, Graph<V, Pair<V>> g)
 	{
 		//endpoints
@@ -89,7 +95,7 @@ public class edgeBoundReduction<V> extends Reduction<V>
 		HashSet<Certificate<V>> c4 = new HashSet<Certificate<V>>();
 		HashSet<Certificate<V>> p4 = new HashSet<Certificate<V>>();
 		
-		//find C4 by looking for an edge between any two nodes from opposite neighbours
+		//find C4/P4 by looking for an edge between any two nodes from opposite neighbours
 		for (V n0 : v0Neighbours)
 		{
 			for (V n1 : v1Neighbours)
@@ -104,7 +110,7 @@ public class edgeBoundReduction<V> extends Reduction<V>
 						obstruction.add(v0);
 						obstruction.add(v1);
 						obstruction.add(n1);
-						
+						//store as a C4
 						Certificate<V> cert = new qtCertificateC<V>(obstruction, -1);
 						c4.add(cert);
 						
@@ -117,7 +123,7 @@ public class edgeBoundReduction<V> extends Reduction<V>
 						obstruction.add(v0);
 						obstruction.add(v1);
 						obstruction.add(n1);
-						
+						//store as a P4
 						Certificate<V> cert = new qtCertificateC<V>(obstruction, -2);
 						p4.add(cert);
 					}
@@ -130,8 +136,12 @@ public class edgeBoundReduction<V> extends Reduction<V>
 	}
 
 	@Override
+	/**
+	 * undo the reduction
+	 */
 	public branchingReturnC<V> revertReduce(branchingReturnC<V> s) 
 	{
+		//return the number of deletes from stack
 		int delCount = stack.pop();
 		
 		for (int i = 0; i < delCount; i++)

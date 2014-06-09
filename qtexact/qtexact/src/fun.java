@@ -61,12 +61,12 @@ public class fun extends JApplet {
 		
 		//exampleQT = qtGenerate.westernElectricNetwork();
 		
-		exampleQT = qtGenerate.nonQTEx3();
+		//exampleQT = qtGenerate.nonQTEx3();
 		
 		//exampleQT = gen.ER(15, 0.53);
 		
-		//exampleQT = new SparseGraph<Integer, Pair<Integer>>();
-		//fillGraphFromFile(exampleQT, "datasets/karate.txt");
+		exampleQT = new SparseGraph<Integer, Pair<Integer>>();
+		fillGraphFromFile(exampleQT, "datasets/karate.txt");
 		
 		//exampleQT = gen.fromBipartiteFile("datasets/southernwomen");
 		
@@ -111,7 +111,7 @@ public class fun extends JApplet {
 		
 		System.out.println("\nNo heuristic: ");
 		start = System.currentTimeMillis();
-		exampleQT = cNoHeuristicP.branchStart(exampleQT, 30);
+		exampleQT = cNoHeuristicP.branchID(exampleQT, 5, 30);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		start = System.currentTimeMillis();
