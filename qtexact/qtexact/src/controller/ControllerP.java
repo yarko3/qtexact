@@ -8,6 +8,7 @@ public class ControllerP<V> extends Controller<V>
 {
 	double globalPercent;
 	
+	
 	public ControllerP(Branch<V> bStruct) {
 		super(bStruct);
 		globalPercent = 0;
@@ -21,9 +22,17 @@ public class ControllerP<V> extends Controller<V>
 	@Override
 	public branchingReturnC<V> branch(branchingReturnC<V> s)
 	{
-		//run reduction step
-		s = bStruct.reduce(s);
+		timesRun++;
 		
+		boolean reduced = false;
+		
+		//run reduction step
+		if (true || s.getChanges().size() % 4 == 0 || timesRun == 1)
+		{	
+			//System.out.println("Percent done: " + globalPercent);
+			reduced = true;
+			s = bStruct.reduce(s);
+		}
 		//check if graph is target
 		SearchResult<V> searchResult =  bStruct.getSearch().searchPrep(s);
 		
@@ -33,7 +42,7 @@ public class ControllerP<V> extends Controller<V>
 		{
 			//update global percent
 			globalPercent += s.getPercent();
-			System.out.println("Percent done: " + globalPercent);
+			//System.out.println("Percent done: " + globalPercent);
 			
 			//update the minMoves list if this solution is better
 			if (s.getChanges().size() < s.getMinMoves().getChanges().size())
@@ -44,7 +53,8 @@ public class ControllerP<V> extends Controller<V>
 				s.setMinMoves(newMin);
 			}
 			
-			s = bStruct.reduceRevert(s);
+			if (reduced)
+				s = bStruct.reduceRevert(s);
 			
 			return s;
 		}
@@ -56,10 +66,14 @@ public class ControllerP<V> extends Controller<V>
 			{
 				branchingReturnC<V> rtn = bStruct.branchingRules(s, searchResult);
 				
-				branchingReturnC<V> reverted = bStruct.reduceRevert(s);
-				s.setChanges(reverted.getChanges());
-				s.setDeg(reverted.getDeg());
-				s.setGraph(reverted.getG());
+				if (reduced)
+				{
+					branchingReturnC<V> reverted = bStruct.reduceRevert(s);
+					s.setChanges(reverted.getChanges());
+					s.setDeg(reverted.getDeg());
+					s.setGraph(reverted.getG());
+				}
+				
 				
 				return rtn;
 			}
@@ -68,12 +82,15 @@ public class ControllerP<V> extends Controller<V>
 				{
 					//update global percent
 					globalPercent += s.getPercent();
-					System.out.println("Percent done: " + globalPercent);
+					//System.out.println("Percent done: " + globalPercent);
 					
-					branchingReturnC<V> reverted = bStruct.reduceRevert(s);
-					s.setChanges(reverted.getChanges());
-					s.setDeg(reverted.getDeg());
-					s.setGraph(reverted.getG());
+					if (reduced)
+					{
+						branchingReturnC<V> reverted = bStruct.reduceRevert(s);
+						s.setChanges(reverted.getChanges());
+						s.setDeg(reverted.getDeg());
+						s.setGraph(reverted.getG());
+					}
 					
 					return s.getMinMoves();
 				}

@@ -1,7 +1,6 @@
 package search;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 import qtUtils.lexReturnC;
 import edu.uci.ics.jung.graph.Graph;

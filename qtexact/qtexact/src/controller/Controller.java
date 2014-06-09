@@ -16,6 +16,7 @@ import edu.uci.ics.jung.graph.util.Pair;
  */
 public class Controller<V> 
 {
+	protected int timesRun;
 	
 	/**
 	 * constructor
@@ -24,6 +25,7 @@ public class Controller<V>
 	public Controller(Branch<V> bStruct) {
 		super();
 		this.bStruct = bStruct;
+		timesRun = 0;
 	}
 
 	/**
@@ -89,6 +91,8 @@ public class Controller<V>
 		
 		
 		Graph<V, Pair<V>> rtn = gen.applyMoves(Branch.clone.deepClone(goal.getG()), goal.getMinMoves().getChanges());
+		
+		System.out.println("Branching run: " + timesRun);
 		
 		//return QT graph if edit succeeds
 		if (bStruct.getSearch().isTarget(rtn))

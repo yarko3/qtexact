@@ -39,6 +39,25 @@ public abstract class qtBranch<V> extends Branch<V>
 		this.search = search;
 	}
 	
+	/**
+	 * given a move list, apply moves to graph
+	 * @param s search state
+	 * @param list list of myEdge objects that provide an addition or deletion flag
+	 */
+	public void applyMoves(branchingReturnC<V> s, LinkedList<myEdge<V>> list)
+	{
+		for (myEdge<V> edit : list)
+		{
+			if (edit.isFlag())
+			{
+				//add edge
+				c4p4AddResult(s, edit.getEdge().getFirst(), edit.getEdge().getSecond());
+			}
+			else
+				//remove edge
+				p4DeleteResult(s, edit.getEdge().getFirst(), edit.getEdge().getSecond());
+		}
+	}
 	
 	/**
 	 * edit the graph by adding an edge between v0 and v1
