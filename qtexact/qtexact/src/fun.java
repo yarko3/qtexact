@@ -21,9 +21,7 @@ import search.YanSearch;
 import abstractClasses.Reduction;
 import branch.qtBranchComponents;
 import branch.qtBranchNoHeuristic;
-import branch.qtBranchNoHeuristicP;
 import controller.Controller;
-import controller.ControllerP;
 import edu.uci.ics.jung.algorithms.cluster.EdgeBetweennessClusterer;
 import edu.uci.ics.jung.algorithms.layout.FRLayout;
 import edu.uci.ics.jung.graph.Graph;
@@ -78,9 +76,9 @@ public class fun extends JApplet {
 		qtBranchComponents<Integer> bConnected = new qtBranchComponents<Integer>(cConnected);
 		cConnected.setbStruct(bConnected);
 		
-		ControllerP<Integer> cNoHeuristicP = new ControllerP<Integer>(null);
-		qtBranchNoHeuristicP<Integer> branchNoHP = new qtBranchNoHeuristicP<Integer>(cNoHeuristicP);
-		cNoHeuristicP.setbStruct(branchNoHP);
+		cNoHeuristic = new Controller<Integer>(null, false);
+		qtBranchNoHeuristic<Integer> branchNoHP = new qtBranchNoHeuristic<Integer>(cNoHeuristic);
+		cNoHeuristic.setbStruct(branchNoHP);
 		
 		Reduction<Integer> r = new edgeBoundReduction<Integer>(branchNoHP);
 		branchNoHP.addReduction(r);
@@ -111,7 +109,7 @@ public class fun extends JApplet {
 		
 		System.out.println("\nNo heuristic: ");
 		start = System.currentTimeMillis();
-		exampleQT = cNoHeuristicP.branchStart(exampleQT, 11);
+		exampleQT = cNoHeuristic.branchStart(exampleQT, 9);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		start = System.currentTimeMillis();

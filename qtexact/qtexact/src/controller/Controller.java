@@ -17,6 +17,14 @@ import edu.uci.ics.jung.graph.util.Pair;
 public class Controller<V> 
 {
 	protected int timesRun;
+	private double globalPercent;
+	private boolean output;
+	
+	
+	/**
+	 * branching structure used by the controller
+	 */
+	protected Branch<V> bStruct;
 	
 	/**
 	 * constructor
@@ -24,14 +32,26 @@ public class Controller<V>
 	 */
 	public Controller(Branch<V> bStruct) {
 		super();
-		this.bStruct = bStruct;
+		globalPercent = 0;
 		timesRun = 0;
+		output = false;
 	}
-
 	/**
-	 * branching structure used by the controller
+	 * set output flag with constructor
+	 * @param bStruct
+	 * @param o
 	 */
-	protected Branch<V> bStruct;
+	public Controller(Branch<V> bStruct, boolean o) {
+		super();
+		globalPercent = 0;
+		timesRun = 0;
+		output = o;
+	}
+	
+	public void setGlobalPercent(double p)
+	{
+		globalPercent = p;
+	}
 	
 	public Branch<V> getbStruct() {
 		return bStruct;
@@ -39,6 +59,11 @@ public class Controller<V>
 
 	public void setbStruct(Branch<V> bStruct) {
 		this.bStruct = bStruct;
+	}
+	
+	public boolean getOutputFlag()
+	{
+		return output;
 	}
 
 	/**
@@ -116,9 +141,14 @@ public class Controller<V>
 	 */
 	public branchingReturnC<V> branch(branchingReturnC<V> s)
 	{
-		//run reduction step
-		s = bStruct.reduce(s);
+		//increment the number of times this controller has branched
+		timesRun++;
+		//set flag for whether this node has been reduced
+		boolean reduced = false;
 		
+		//run reduction
+		reduced = true;
+		s = bStruct.reduce(s);
 		
 		//check if graph is target
 		SearchResult<V> searchResult =  bStruct.getSearch().searchPrep(s);
@@ -127,6 +157,12 @@ public class Controller<V>
 		//target graph has been found
 		if (searchResult.isTarget())
 		{
+			if (output)
+			{
+				//update global percent
+				globalPercent += s.getPercent();
+				System.out.println("Percent done: " + globalPercent);
+			}
 			
 			//update the minMoves list if this solution is better
 			if (s.getChanges().size() < s.getMinMoves().getChanges().size())
@@ -136,8 +172,10 @@ public class Controller<V>
 				newMin.setMinMoves(newMin);
 				s.setMinMoves(newMin);
 			}
-			//reverse the reduction
-			s = bStruct.reduceRevert(s);
+			
+			if (reduced)
+				s = bStruct.reduceRevert(s);
+			
 			return s;
 		}
 		//branch on found obstruction
@@ -148,20 +186,35 @@ public class Controller<V>
 			{
 				branchingReturnC<V> rtn = bStruct.branchingRules(s, searchResult);
 				
-				branchingReturnC<V> reverted = bStruct.reduceRevert(s);
-				s.setChanges(reverted.getChanges());
-				s.setDeg(reverted.getDeg());
-				s.setGraph(reverted.getG());
+				if (reduced)
+				{
+					branchingReturnC<V> reverted = bStruct.reduceRevert(s);
+					s.setChanges(reverted.getChanges());
+					s.setDeg(reverted.getDeg());
+					s.setGraph(reverted.getG());
+				}
+				
 				
 				return rtn;
 			}
 			//min moves is a better solution
 				else
 				{
-					branchingReturnC<V> reverted = bStruct.reduceRevert(s);
-					s.setChanges(reverted.getChanges());
-					s.setDeg(reverted.getDeg());
-					s.setGraph(reverted.getG());
+					if (output)
+					{
+						//update global percent
+						globalPercent += s.getPercent();
+						System.out.println("Percent done: " + globalPercent);
+					}
+					
+					
+					if (reduced)
+					{
+						branchingReturnC<V> reverted = bStruct.reduceRevert(s);
+						s.setChanges(reverted.getChanges());
+						s.setDeg(reverted.getDeg());
+						s.setGraph(reverted.getG());
+					}
 					
 					return s.getMinMoves();
 				}
