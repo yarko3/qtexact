@@ -53,7 +53,7 @@ public class fun extends JApplet {
 		exampleQT.addEdge(new Pair<Integer>(8, 1), 8, 1);
 		exampleQT.addEdge(new Pair<Integer>(8, 5), 8, 5);
 		
-		//exampleQT = gen.cliqueJoin(20, 30);
+		exampleQT = gen.cliqueJoin(20, 30);
 		
 		//exampleQT = qtGenerate.simpleC4();
 		
@@ -68,23 +68,12 @@ public class fun extends JApplet {
 		
 		//exampleQT = gen.fromBipartiteFile("datasets/southernwomen");
 		
-		Controller<Integer> cNoHeuristic = new Controller<Integer>(null);
-		qtBranchNoHeuristic<Integer> b = new qtBranchNoHeuristic<Integer>(cNoHeuristic);
-		cNoHeuristic.setbStruct(b);
-		
-		Controller<Integer> cConnected = new Controller<Integer>(null);
-		qtBranchComponents<Integer> bConnected = new qtBranchComponents<Integer>(cConnected);
-		cConnected.setbStruct(bConnected);
-		
-		cNoHeuristic = new Controller<Integer>(null, false);
+		Controller<Integer> cNoHeuristic = new Controller<Integer>(null, true);
 		qtBranchNoHeuristic<Integer> branchNoHP = new qtBranchNoHeuristic<Integer>(cNoHeuristic);
 		cNoHeuristic.setbStruct(branchNoHP);
 		
 		Reduction<Integer> r = new edgeBoundReduction<Integer>(branchNoHP);
 		branchNoHP.addReduction(r);
-		
-		
-		//visualize(exampleQT);
 		
 		YanSearch<Integer> yan = new YanSearch<Integer>();
 		

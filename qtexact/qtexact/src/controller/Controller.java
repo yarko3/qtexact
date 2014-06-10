@@ -147,8 +147,11 @@ public class Controller<V>
 		boolean reduced = false;
 		
 		//run reduction
-		reduced = true;
-		s = bStruct.reduce(s);
+		if (timesRun % 2 == 0){
+			reduced = true;
+			s = bStruct.reduce(s);
+		
+		}
 		
 		//check if graph is target
 		SearchResult<V> searchResult =  bStruct.getSearch().searchPrep(s);
