@@ -66,7 +66,7 @@ public abstract class qtBranch<V> extends Branch<V>
 	 * @param v1 vertex
 	 * @return edited search state
 	 */
-	protected branchingReturnC<V> c4p4AddResult(branchingReturnC<V> s, V v0, V v1)
+	public branchingReturnC<V> c4p4AddResult(branchingReturnC<V> s, V v0, V v1)
 	{
 		
 		//update degree sequence (first edge)
@@ -84,12 +84,17 @@ public abstract class qtBranch<V> extends Branch<V>
 	 * @param v0 vertex
 	 * @param v1 vertex
 	 */
-	protected void c4p4AddRevert(branchingReturnC<V> s, V v0, V v1)
+	public void c4p4AddRevert(branchingReturnC<V> s)
 	{
-		//update degree sequence (first edge)
+		
+		myEdge<V> added = s.getChanges().removeLast();
+		
+		V v0 = added.getEdge().getFirst();
+		V v1 = added.getEdge().getSecond();
+		
+		//update degree sequence
 		removeEdge(s.getG(), s.getDeg(), v0, v1);
 		
-		s.getChanges().removeLast();
 	}
 	
 
@@ -170,10 +175,8 @@ public abstract class qtBranch<V> extends Branch<V>
 		V v0 = deleted.getEdge().getFirst();
 		V v1 = deleted.getEdge().getSecond();
 		
-		//update degree sequence (first edge)
+		//update degree sequence
 		addEdge(s.getG(), s.getDeg(), v0, v1);
-		
-		
 	}
 	
 	
@@ -186,23 +189,26 @@ public abstract class qtBranch<V> extends Branch<V>
 	 */
 	protected void removeEdge(Graph<V, Pair<V>> G, ArrayList<LinkedList<V>> deg, V v0, V v1)
 	{
-		int v0Deg = G.degree(v0);
-		int v1Deg = G.degree(v1);
-		deg.get(v0Deg).removeFirstOccurrence(v0);
-		deg.get(v0Deg - 1).add(v0);
-		if (deg.get(v0Deg).isEmpty() && v0Deg+1 == deg.size())
+		if (G.isNeighbor(v0, v1))
 		{
-			deg.remove(v0Deg);
+			int v0Deg = G.degree(v0);
+			int v1Deg = G.degree(v1);
+			deg.get(v0Deg).removeFirstOccurrence(v0);
+			deg.get(v0Deg - 1).add(v0);
+			if (deg.get(v0Deg).isEmpty() && v0Deg+1 == deg.size())
+			{
+				deg.remove(v0Deg);
+			}
+			deg.get(v1Deg).removeFirstOccurrence(v1);
+			deg.get(v1Deg - 1).add(v1);
+			if (deg.get(v1Deg).isEmpty() && v1Deg+1 == deg.size())
+			{
+				deg.remove(v1Deg);
+			}
+			//find the edge to remove
+			if (!G.removeEdge(new Pair<V>(v0, v1)))
+				G.removeEdge(new Pair<V>(v1, v0));	
 		}
-		deg.get(v1Deg).removeFirstOccurrence(v1);
-		deg.get(v1Deg - 1).add(v1);
-		if (deg.get(v1Deg).isEmpty() && v1Deg+1 == deg.size())
-		{
-			deg.remove(v1Deg);
-		}
-		//find the edge to remove
-		if (!G.removeEdge(new Pair<V>(v0, v1)))
-			G.removeEdge(new Pair<V>(v1, v0));	
 	}
 	
 	/**
@@ -214,40 +220,44 @@ public abstract class qtBranch<V> extends Branch<V>
 	 */
 	private void addEdge(Graph<V, Pair<V>> G, ArrayList<LinkedList<V>> deg, V v0, V v1)
 	{
-		//get current degrees of vertices
-		int v0Deg = G.degree(v0);
-		int v1Deg = G.degree(v1);
-		
-		//remove old occurrence of v0 in degree order
-		deg.get(v0Deg).remove(v0);
-		
-		//try to add v0 at new location
-		try
+		//if the edge already doesn't exist
+		if (!G.isNeighbor(v0, v1))
 		{
-			deg.get(v0Deg + 1).add(v0);
+			//get current degrees of vertices
+			int v0Deg = G.degree(v0);
+			int v1Deg = G.degree(v1);
+			
+			//remove old occurrence of v0 in degree order
+			deg.get(v0Deg).remove(v0);
+			
+			//try to add v0 at new location
+			try
+			{
+				deg.get(v0Deg + 1).add(v0);
+			}
+			catch (IndexOutOfBoundsException e)
+			{
+				//make new element for growing degree order
+				deg.add(new LinkedList<V>());
+				deg.get(v0Deg + 1).add(v0);
+			}
+			
+			
+			deg.get(v1Deg).remove(v1);
+			
+			try
+			{
+				deg.get(v1Deg + 1).add(v1);
+			}
+			catch (IndexOutOfBoundsException e)
+			{
+				deg.add(new LinkedList<V>());
+				deg.get(v1Deg + 1).add(v1);
+			}
+			
+			//add edge
+			G.addEdge(new Pair<V>(v0, v1), v0, v1);	
 		}
-		catch (IndexOutOfBoundsException e)
-		{
-			//make new element for growing degree order
-			deg.add(new LinkedList<V>());
-			deg.get(v0Deg + 1).add(v0);
-		}
-		
-		
-		deg.get(v1Deg).remove(v1);
-		
-		try
-		{
-			deg.get(v1Deg + 1).add(v1);
-		}
-		catch (IndexOutOfBoundsException e)
-		{
-			deg.add(new LinkedList<V>());
-			deg.get(v1Deg + 1).add(v1);
-		}
-		
-		//add edge
-		G.addEdge(new Pair<V>(v0, v1), v0, v1);	
 	}
 	
 	/**

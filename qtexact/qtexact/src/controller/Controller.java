@@ -146,10 +146,12 @@ public class Controller<V>
 		//set flag for whether this node has been reduced
 		boolean reduced = false;
 		
-		//run reduction
-		
-		reduced = true;
-		s = bStruct.reduce(s);
+		if (timesRun != 1)
+		{
+			//run reduction	
+			reduced = true;
+			s = bStruct.reduce(s);
+		}
 		
 		//check if graph is target
 		SearchResult<V> searchResult =  bStruct.getSearch().searchPrep(s);
@@ -187,6 +189,60 @@ public class Controller<V>
 			{
 				branchingReturnC<V> rtn = bStruct.branchingRules(s, searchResult);
 				
+				return rtn;
+			}
+			
+			
+//			if (reduced)
+//			{
+//				branchingReturnC<V> reverted = bStruct.reduceRevert(s);
+//				s.setChanges(reverted.getChanges());
+//				s.setDeg(reverted.getDeg());
+//				s.setGraph(reverted.getG());
+//				s.setMinMoves(reverted.getMinMoves());
+//				
+//				
+//				//new search is needed
+//				searchResult =  bStruct.getSearch().searchPrep(s);
+//				//new branching
+//				
+//				if (searchResult.isTarget())
+//				{
+//					if (output)
+//					{
+//						//update global percent
+//						globalPercent += s.getPercent();
+//						System.out.println("Percent done: " + globalPercent);
+//					}
+//					
+//					//update the minMoves list if this solution is better
+//					if (s.getChanges().size() < s.getMinMoves().getChanges().size())
+//					{
+//						//make a new minMoves to store
+//						branchingReturnC<V> newMin = new branchingReturnC<V>(s.getG(), s.getDeg(), Branch.clone.deepClone(s.getChanges()));
+//						newMin.setMinMoves(newMin);
+//						s.setMinMoves(newMin);
+//					}
+//					return s;
+//				}
+//				else
+//				{
+//					branchingReturnC<V> rtn = bStruct.branchingRules(s, searchResult);
+//					return rtn;
+//				}
+//			}
+			
+			//min moves is a better solution
+			else
+			{
+				if (output)
+				{
+					//update global percent
+					globalPercent += s.getPercent();
+					System.out.println("Percent done: " + globalPercent);
+				}
+				
+				
 				if (reduced)
 				{
 					branchingReturnC<V> reverted = bStruct.reduceRevert(s);
@@ -195,30 +251,8 @@ public class Controller<V>
 					s.setGraph(reverted.getG());
 				}
 				
-				
-				return rtn;
+				return s.getMinMoves();
 			}
-			//min moves is a better solution
-				else
-				{
-					if (output)
-					{
-						//update global percent
-						globalPercent += s.getPercent();
-						System.out.println("Percent done: " + globalPercent);
-					}
-					
-					
-					if (reduced)
-					{
-						branchingReturnC<V> reverted = bStruct.reduceRevert(s);
-						s.setChanges(reverted.getChanges());
-						s.setDeg(reverted.getDeg());
-						s.setGraph(reverted.getG());
-					}
-					
-					return s.getMinMoves();
-				}
 		}
 	}
 	

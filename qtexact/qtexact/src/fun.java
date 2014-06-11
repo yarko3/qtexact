@@ -16,10 +16,10 @@ import javax.swing.JApplet;
 import javax.swing.JFrame;
 
 import qtUtils.qtGenerate;
+import reduction.commonC4Reduction;
 import reduction.edgeBoundReduction;
 import search.YanSearch;
 import abstractClasses.Reduction;
-import branch.qtBranchComponents;
 import branch.qtBranchNoHeuristic;
 import controller.Controller;
 import edu.uci.ics.jung.algorithms.cluster.EdgeBetweennessClusterer;
@@ -55,7 +55,7 @@ public class fun extends JApplet {
 		
 		exampleQT = gen.cliqueJoin(20, 30);
 		
-		//exampleQT = qtGenerate.simpleC4();
+		exampleQT = qtGenerate.simpleC4();
 		
 		//exampleQT = qtGenerate.westernElectricNetwork();
 		
@@ -68,16 +68,21 @@ public class fun extends JApplet {
 		
 		exampleQT = gen.fromBipartiteFile("datasets/southernwomen");
 		
-		Controller<Integer> c = new Controller<Integer>(null, false);
+		
+		Controller<Integer> c = new Controller<Integer>(null, true);
 		qtBranchNoHeuristic<Integer> branchNoHP = new qtBranchNoHeuristic<Integer>(c);
 		c.setbStruct(branchNoHP);
 		
-		qtBranchComponents<Integer> branchC = new qtBranchComponents<Integer>(c);
-		c.setbStruct(branchC);
+		//qtBranchComponents<Integer> branchC = new qtBranchComponents<Integer>(c);
+		//c.setbStruct(branchC);
 		
 		Reduction<Integer> r = new edgeBoundReduction<Integer>(branchNoHP);
-		branchNoHP.addReduction(r);
-		branchC.addReduction(r);
+		//branchNoHP.addReduction(r);
+		//branchC.addReduction(r);
+		
+		Reduction<Integer> r2 = new commonC4Reduction<Integer>(branchNoHP);
+		branchNoHP.addReduction(r2);
+		
 		
 		YanSearch<Integer> yan = new YanSearch<Integer>();
 		
@@ -102,7 +107,7 @@ public class fun extends JApplet {
 		
 		System.out.println("\nNo heuristic: ");
 		start = System.currentTimeMillis();
-		exampleQT = c.branchID(exampleQT, 2, 10);
+		exampleQT = c.branchStart(exampleQT, 5);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		start = System.currentTimeMillis();

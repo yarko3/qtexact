@@ -43,24 +43,20 @@ public class edgeBoundReduction<V> extends Reduction<V>
 			//if leaving the edge is out of bounds, remove this edge
 			if (!s.getChanges().contains(new myEdge<V>(e, true)) && getObstructionCount(e, s.getG()) > s.getMinMoves().getChanges().size() - s.getChanges().size())
 			{
-
-			
 				//add the move to be applied to list
 				toApply.addLast(new myEdge<V>(new Pair<V>(e.getFirst(), e.getSecond()), false));
 				
-				if (toApply.size() > s.getMinMoves().getChanges().size() - s.getChanges().size())
+				//if no more reduction steps are allowed
+				if (toApply.size() == s.getMinMoves().getChanges().size() - s.getChanges().size())
 					break;
 			}
 		}
 		
+	
+		bStruct.applyMoves(s, toApply);
 		//store the number of last reduction deletions
 		stack.push(toApply.size());
-		
-		//apply moves
-		bStruct.applyMoves(s, toApply);
-		
-		//System.out.println(toApply);
-		//Thread.sleep(1000);
+			
 		
 		
 		return s;

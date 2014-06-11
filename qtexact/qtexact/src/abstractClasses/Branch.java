@@ -72,9 +72,9 @@ public abstract class Branch<V>
 	{
 		if (reductions != null)
 		{
-			for (Reduction<V> r : reductions)
+			for (int i = 0; i < reductions.size(); i++)
 			{
-				s = r.reduce(s);
+				s = reductions.get(i).reduce(s);
 			}
 		}
 		return s;
@@ -84,9 +84,9 @@ public abstract class Branch<V>
 	{
 		if (reductions != null)
 		{
-			for (Reduction<V> r : reductions)
+			for (int i = reductions.size() - 1; i >= 0; i--)
 			{
-				s = r.revertReduce(s);
+				s = reductions.get(i).revertReduce(s);
 			}
 		}
 		return s;

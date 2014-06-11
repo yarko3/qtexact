@@ -136,7 +136,7 @@ public class qtBranchComponents<V> extends qtBranch<V>
 			{
 				branchingReturnC<V> c4Add1 = controller.branch(c4p4AddResult(s, lexResult.get(0), lexResult.get(2)));
 				//revert changes
-				c4p4AddRevert(s, lexResult.get(0), lexResult.get(2));
+				c4p4AddRevert(s);
 				if (c4Add1.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 				{
 					s.setMinMoves(c4Add1.getMinMoves());
@@ -146,7 +146,7 @@ public class qtBranchComponents<V> extends qtBranch<V>
 			{
 				branchingReturnC<V> c4Add2 = controller.branch(c4p4AddResult(s, lexResult.get(1), lexResult.get(3)));
 				//revert changes
-				c4p4AddRevert(s, lexResult.get(1), lexResult.get(3));
+				c4p4AddRevert(s);
 				if (c4Add2.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 				{
 					s.setMinMoves(c4Add2.getMinMoves());
@@ -226,7 +226,7 @@ public class qtBranchComponents<V> extends qtBranch<V>
 			{
 				branchingReturnC<V> p4Add0 = controller.branch(c4p4AddResult(s, lexResult.get(0), lexResult.get(2)));
 				//revert changes
-				c4p4AddRevert(s, lexResult.get(0), lexResult.get(2));
+				c4p4AddRevert(s);
 				if (p4Add0.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 				{
 					s.setMinMoves(p4Add0.getMinMoves());
@@ -236,7 +236,7 @@ public class qtBranchComponents<V> extends qtBranch<V>
 			{
 				branchingReturnC<V> p4Add1 = controller.branch(c4p4AddResult(s, lexResult.get(1), lexResult.get(3)));
 				//revert changes
-				c4p4AddRevert(s, lexResult.get(1), lexResult.get(3));
+				c4p4AddRevert(s);
 				if (p4Add1.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 				{
 					s.setMinMoves(p4Add1.getMinMoves());
