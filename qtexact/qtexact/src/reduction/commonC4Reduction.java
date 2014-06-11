@@ -95,7 +95,7 @@ public class commonC4Reduction<V> extends Reduction<V>
 	 *   @param k the number to choose (0 <= k <= n)
 	 *   @return n choose k (the binomial coefficient)
 	 */
-	 public static int binomial(int n, int k) 
+	 private static int binomial(int n, int k) 
 	 { 
 	    if (n < 2) {
 	        return 1;
