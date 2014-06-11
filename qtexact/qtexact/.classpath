@@ -2,25 +2,25 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
-	<classpathentry kind="lib" path="C:/Documents and Settings/ssd/qtexact/qtexact/qtexact/external JARs/collections-generic-4.01.jar"/>
-	<classpathentry kind="lib" path="C:/Documents and Settings/ssd/qtexact/qtexact/qtexact/external JARs/colt-1.2.0.jar"/>
-	<classpathentry kind="lib" path="C:/Documents and Settings/ssd/qtexact/qtexact/qtexact/external JARs/concurrent-1.3.4.jar"/>
-	<classpathentry kind="lib" path="C:/Documents and Settings/ssd/qtexact/qtexact/qtexact/external JARs/j3d-core-1.3.1.jar"/>
-	<classpathentry kind="lib" path="C:/Documents and Settings/ssd/qtexact/qtexact/qtexact/external JARs/jung-3d-2.0.1.jar"/>
-	<classpathentry kind="lib" path="C:/Documents and Settings/ssd/qtexact/qtexact/qtexact/external JARs/jung-3d-demos-2.0.1.jar"/>
-	<classpathentry kind="lib" path="C:/Documents and Settings/ssd/qtexact/qtexact/qtexact/external JARs/jung-algorithms-2.0.1.jar"/>
-	<classpathentry kind="lib" path="C:/Documents and Settings/ssd/qtexact/qtexact/qtexact/external JARs/jung-api-2.0.1.jar"/>
-	<classpathentry kind="lib" path="C:/Documents and Settings/ssd/qtexact/qtexact/qtexact/external JARs/jung-graph-impl-2.0.1.jar"/>
-	<classpathentry kind="lib" path="C:/Documents and Settings/ssd/qtexact/qtexact/qtexact/external JARs/jung-io-2.0.1.jar"/>
-	<classpathentry kind="lib" path="C:/Documents and Settings/ssd/qtexact/qtexact/qtexact/external JARs/jung-jai-2.0.1.jar"/>
-	<classpathentry kind="lib" path="C:/Documents and Settings/ssd/qtexact/qtexact/qtexact/external JARs/jung-jai-samples-2.0.1.jar"/>
-	<classpathentry kind="lib" path="C:/Documents and Settings/ssd/qtexact/qtexact/qtexact/external JARs/jung-samples-2.0.1.jar"/>
-	<classpathentry kind="lib" path="C:/Documents and Settings/ssd/qtexact/qtexact/qtexact/external JARs/jung-visualization-2.0.1.jar"/>
-	<classpathentry kind="lib" path="C:/Documents and Settings/ssd/qtexact/qtexact/qtexact/external JARs/stax-api-1.0.1.jar"/>
-	<classpathentry kind="lib" path="C:/Documents and Settings/ssd/qtexact/qtexact/qtexact/external JARs/vecmath-1.3.1.jar"/>
-	<classpathentry kind="lib" path="C:/Documents and Settings/ssd/qtexact/qtexact/qtexact/external JARs/wstx-asl-3.2.6.jar"/>
-	<classpathentry kind="lib" path="C:/Documents and Settings/ssd/qtexact/qtexact/qtexact/external JARs/cloning-1.9.0-dist/cloning-1.9.0/cloning-1.9.0.jar"/>
-	<classpathentry kind="lib" path="C:/Documents and Settings/ssd/qtexact/qtexact/qtexact/external JARs/cloning-1.9.0-dist/cloning-1.9.0/cloning-1.9.0-sources.jar"/>
-	<classpathentry kind="lib" path="C:/Documents and Settings/ssd/qtexact/qtexact/qtexact/external JARs/cloning-1.9.0-dist/cloning-1.9.0/lib/objenesis-1.2.jar"/>
+	<classpathentry kind="lib" path="external JARs/collections-generic-4.01.jar"/>
+	<classpathentry kind="lib" path="external JARs/colt-1.2.0.jar"/>
+	<classpathentry kind="lib" path="external JARs/concurrent-1.3.4.jar"/>
+	<classpathentry kind="lib" path="external JARs/j3d-core-1.3.1.jar"/>
+	<classpathentry kind="lib" path="external JARs/jung-3d-2.0.1.jar"/>
+	<classpathentry kind="lib" path="external JARs/jung-3d-demos-2.0.1.jar"/>
+	<classpathentry kind="lib" path="external JARs/jung-algorithms-2.0.1.jar"/>
+	<classpathentry kind="lib" path="external JARs/jung-api-2.0.1.jar"/>
+	<classpathentry kind="lib" path="external JARs/jung-graph-impl-2.0.1.jar"/>
+	<classpathentry kind="lib" path="external JARs/jung-io-2.0.1.jar"/>
+	<classpathentry kind="lib" path="external JARs/jung-jai-2.0.1.jar"/>
+	<classpathentry kind="lib" path="external JARs/jung-jai-samples-2.0.1.jar"/>
+	<classpathentry kind="lib" path="external JARs/jung-samples-2.0.1.jar"/>
+	<classpathentry kind="lib" path="external JARs/jung-visualization-2.0.1.jar"/>
+	<classpathentry kind="lib" path="external JARs/stax-api-1.0.1.jar"/>
+	<classpathentry kind="lib" path="external JARs/vecmath-1.3.1.jar"/>
+	<classpathentry kind="lib" path="external JARs/wstx-asl-3.2.6.jar"/>
+	<classpathentry kind="lib" path="external JARs/cloning-1.9.0-dist/cloning-1.9.0/cloning-1.9.0.jar"/>
+	<classpathentry kind="lib" path="external JARs/cloning-1.9.0-dist/cloning-1.9.0/cloning-1.9.0-sources.jar"/>
+	<classpathentry kind="lib" path="external JARs/cloning-1.9.0-dist/cloning-1.9.0/lib/objenesis-1.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

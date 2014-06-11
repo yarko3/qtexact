@@ -61,19 +61,23 @@ public class fun extends JApplet {
 		
 		//exampleQT = qtGenerate.nonQTEx3();
 		
-		//exampleQT = gen.ER(15, 0.53);
+		//exampleQT = gen.ER(10, 0.55);
 		
-		exampleQT = new SparseGraph<Integer, Pair<Integer>>();
-		fillGraphFromFile(exampleQT, "datasets/karate.txt");
+		//exampleQT = new SparseGraph<Integer, Pair<Integer>>();
+		//fillGraphFromFile(exampleQT, "datasets/karate.txt");
 		
-		//exampleQT = gen.fromBipartiteFile("datasets/southernwomen");
+		exampleQT = gen.fromBipartiteFile("datasets/southernwomen");
 		
-		Controller<Integer> cNoHeuristic = new Controller<Integer>(null, true);
-		qtBranchNoHeuristic<Integer> branchNoHP = new qtBranchNoHeuristic<Integer>(cNoHeuristic);
-		cNoHeuristic.setbStruct(branchNoHP);
+		Controller<Integer> c = new Controller<Integer>(null, false);
+		qtBranchNoHeuristic<Integer> branchNoHP = new qtBranchNoHeuristic<Integer>(c);
+		c.setbStruct(branchNoHP);
+		
+		qtBranchComponents<Integer> branchC = new qtBranchComponents<Integer>(c);
+		c.setbStruct(branchC);
 		
 		Reduction<Integer> r = new edgeBoundReduction<Integer>(branchNoHP);
 		branchNoHP.addReduction(r);
+		branchC.addReduction(r);
 		
 		YanSearch<Integer> yan = new YanSearch<Integer>();
 		
@@ -98,7 +102,7 @@ public class fun extends JApplet {
 		
 		System.out.println("\nNo heuristic: ");
 		start = System.currentTimeMillis();
-		exampleQT = cNoHeuristic.branchStart(exampleQT, 9);
+		exampleQT = c.branchID(exampleQT, 2, 10);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		start = System.currentTimeMillis();
