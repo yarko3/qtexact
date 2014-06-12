@@ -51,11 +51,11 @@ public abstract class qtBranch<V> extends Branch<V>
 			if (edit.isFlag())
 			{
 				//add edge
-				c4p4AddResult(s, edit.getEdge().getFirst(), edit.getEdge().getSecond());
+				addResult(s, edit.getEdge().getFirst(), edit.getEdge().getSecond());
 			}
 			else
 				//remove edge
-				p4DeleteResult(s, edit.getEdge().getFirst(), edit.getEdge().getSecond());
+				deleteResult(s, edit.getEdge().getFirst(), edit.getEdge().getSecond());
 		}
 	}
 	
@@ -66,7 +66,7 @@ public abstract class qtBranch<V> extends Branch<V>
 	 * @param v1 vertex
 	 * @return edited search state
 	 */
-	public branchingReturnC<V> c4p4AddResult(branchingReturnC<V> s, V v0, V v1)
+	public branchingReturnC<V> addResult(branchingReturnC<V> s, V v0, V v1)
 	{
 		
 		//update degree sequence (first edge)
@@ -79,26 +79,6 @@ public abstract class qtBranch<V> extends Branch<V>
 		
 	}
 	/**
-	 * revert the changes of adding an edge on v0 and v1
-	 * @param s search state
-	 * @param v0 vertex
-	 * @param v1 vertex
-	 */
-	public void c4p4AddRevert(branchingReturnC<V> s)
-	{
-		
-		myEdge<V> added = s.getChanges().removeLast();
-		
-		V v0 = added.getEdge().getFirst();
-		V v1 = added.getEdge().getSecond();
-		
-		//update degree sequence
-		removeEdge(s.getG(), s.getDeg(), v0, v1);
-		
-	}
-	
-
-	/**
 	 * delete 2 edges to remove a C4
 	 * @param s search state
 	 * @param v0 vertex
@@ -107,7 +87,7 @@ public abstract class qtBranch<V> extends Branch<V>
 	 * @param v3 vertex
 	 * @return search state
 	 */
-	protected branchingReturnC<V> c4Delete2Result(branchingReturnC<V> s, V v0, V v1, V v2, V v3)
+	protected branchingReturnC<V> delete2Result(branchingReturnC<V> s, V v0, V v1, V v2, V v3)
 	{	
 		//update degree sequence (first edge)
 		removeEdge(s.getG(), s.getDeg(), v0, v1);
@@ -124,35 +104,13 @@ public abstract class qtBranch<V> extends Branch<V>
 	}
 	
 	/**
-	 * revert changes made by removing 2 edges from a C4
-	 * @param s search state
-	 * @param v0 vertex
-	 * @param v1 vertex
-	 * @param v2 vertex
-	 * @param v3 vertex
-	 */
-	protected void c4Delete2Revert(branchingReturnC<V> s, V v0,
-			V v1, V v2, V v3) 
-	{
-		
-		//add edges back in
-		addEdge(s.getG(), s.getDeg(), v0, v1);
-		addEdge(s.getG(), s.getDeg(), v2, v3);
-		
-		//revert changes
-		s.getChanges().removeLast();
-		s.getChanges().removeLast();
-	
-	}
-	
-	/**
 	 * edit a P4 by removing an edge
 	 * @param s search state
 	 * @param v0 vertex
 	 * @param v1 vertex
 	 * @return search state
 	 */
-	public branchingReturnC<V> p4DeleteResult(branchingReturnC<V> s, V v0, V v1)
+	public branchingReturnC<V> deleteResult(branchingReturnC<V> s, V v0, V v1)
 	{
 		//update degree sequence (first edge)
 		removeEdge(s.getG(), s.getDeg(), v0, v1);
@@ -162,22 +120,36 @@ public abstract class qtBranch<V> extends Branch<V>
 		
 	}
 	
+	
 	/**
-	 * revert changes of removing an edge from a P4
+	 * roll back one edit
+	 * 
 	 * @param s search state
-	 * @param v0 vertex
-	 * @param v1 vertex
 	 */
-	public void p4DeleteRevert(branchingReturnC<V> s)
+	public void revert(branchingReturnC<V> s)
 	{
-		myEdge<V> deleted = s.getChanges().removeLast();
+		myEdge<V> edited = s.getChanges().removeLast();
 		
-		V v0 = deleted.getEdge().getFirst();
-		V v1 = deleted.getEdge().getSecond();
+		V v0 = edited.getEdge().getFirst();
+		V v1 = edited.getEdge().getSecond();
 		
 		//update degree sequence
-		addEdge(s.getG(), s.getDeg(), v0, v1);
+		if (edited.isFlag() == false)
+			addEdge(s.getG(), s.getDeg(), v0, v1);
+		else
+			removeEdge(s.getG(), s.getDeg(), v0, v1);
 	}
+	
+	/**
+	 * roll back two moves
+	 * @param s search state
+	 */
+	protected void revert2(branchingReturnC<V> s)
+	{
+		revert(s);
+		revert(s);
+	}
+	
 	
 	
 	/**

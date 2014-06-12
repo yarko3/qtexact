@@ -84,7 +84,7 @@ public class commonC4Reduction<V> extends Reduction<V>
 		
 		for (int i = 0; i < addCount; i++)
 		{
-			bStruct.c4p4AddRevert(s);
+			bStruct.revert(s);
 		}
 		return s;
 	}

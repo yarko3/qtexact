@@ -104,4 +104,9 @@ public abstract class Branch<V>
 		}
 		reductions.add(r);
 	}
+	
+	public LinkedList<Reduction<V>> getReductions()
+	{
+		return reductions;
+	}
 }

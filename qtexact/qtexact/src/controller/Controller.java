@@ -146,7 +146,7 @@ public class Controller<V>
 		//set flag for whether this node has been reduced
 		boolean reduced = false;
 		
-		if (timesRun != 1)
+		if ((bStruct.getReductions() != null))
 		{
 			//run reduction	
 			reduced = true;

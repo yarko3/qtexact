@@ -157,7 +157,7 @@ public class edgeBoundReduction<V> extends Reduction<V>
 		
 		for (int i = 0; i < delCount; i++)
 		{
-			bStruct.p4DeleteRevert(s);
+			bStruct.revert(s);
 		}
 		return s;
 	}

@@ -21,6 +21,7 @@ import reduction.edgeBoundReduction;
 import search.YanSearch;
 import abstractClasses.Reduction;
 import branch.qtBranchNoHeuristic;
+import branch.qtKite;
 import controller.Controller;
 import edu.uci.ics.jung.algorithms.cluster.EdgeBetweennessClusterer;
 import edu.uci.ics.jung.algorithms.layout.FRLayout;
@@ -47,39 +48,43 @@ public class fun extends JApplet {
 	{
 		Graph<Integer, Pair<Integer>> exampleQT;
 		qtGenerate<Integer> gen = new qtGenerate<Integer>();
-		exampleQT = gen.randomQT(100);
+		exampleQT = gen.randomQT(50);
 		//may break it
 		exampleQT.addEdge(new Pair<Integer>(0, 6), 0, 6);
 		exampleQT.addEdge(new Pair<Integer>(8, 1), 8, 1);
 		exampleQT.addEdge(new Pair<Integer>(8, 5), 8, 5);
 		
-		exampleQT = gen.cliqueJoin(20, 30);
+		//exampleQT = gen.cliqueJoin(20, 30);
 		
-		exampleQT = qtGenerate.simpleC4();
+		//exampleQT = qtGenerate.simpleC4();
 		
 		//exampleQT = qtGenerate.westernElectricNetwork();
 		
 		//exampleQT = qtGenerate.nonQTEx3();
 		
-		//exampleQT = gen.ER(10, 0.55);
+		exampleQT = gen.ER(15, 0.3);
 		
-		exampleQT = new SparseGraph<Integer, Pair<Integer>>();
-		fillGraphFromFile(exampleQT, "datasets/karate.txt");
+		//exampleQT = new SparseGraph<Integer, Pair<Integer>>();
+		//fillGraphFromFile(exampleQT, "datasets/karate.txt");
 		
 		//exampleQT = gen.fromBipartiteFile("datasets/southernwomen");
 	
 		Controller<Integer> c = new Controller<Integer>(null, true);
-		qtBranchNoHeuristic<Integer> branchNoHP = new qtBranchNoHeuristic<Integer>(c);
-		c.setbStruct(branchNoHP);
+		//qtBranchNoHeuristic<Integer> branchNoHP = new qtBranchNoHeuristic<Integer>(c);
+		//c.setbStruct(branchNoHP);
+		
+		qtKite<Integer> kite = new qtKite<Integer>(c);
+		c.setbStruct(kite);
 		
 		//qtBranchComponents<Integer> branchC = new qtBranchComponents<Integer>(c);
 		//c.setbStruct(branchC);
 		
-		Reduction<Integer> r = new edgeBoundReduction<Integer>(branchNoHP);
-		branchNoHP.addReduction(r);
-		//branchC.addReduction(r);
 		
-		Reduction<Integer> r2 = new commonC4Reduction<Integer>(branchNoHP);
+		Reduction<Integer> r = new edgeBoundReduction<Integer>(kite);
+		//branchNoHP.addReduction(r);
+		//branchC.addReduction(r);
+		kite.addReduction(r);
+		//Reduction<Integer> r2 = new commonC4Reduction<Integer>(branchNoHP);
 		//branchNoHP.addReduction(r2);
 		
 		
@@ -106,7 +111,7 @@ public class fun extends JApplet {
 		
 		System.out.println("\nNo heuristic: ");
 		start = System.currentTimeMillis();
-		exampleQT = c.branchStart(exampleQT, 20);
+		exampleQT = c.branchID(exampleQT, 2, 10);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		start = System.currentTimeMillis();

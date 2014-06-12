@@ -40,10 +40,10 @@ public class qtGenerate<V>
 	public static SparseGraph<Integer, Pair<Integer>> clique(int number)
 	{
 		SparseGraph<Integer, Pair<Integer>> graph = new SparseGraph<Integer, Pair<Integer>>();
-		if (number > 0)
+		if (number >= 0)
 		{
-			graph.addEdge(new Pair<Integer>(1, 2), 1, 2);
-			int curEdge = 3;
+			graph.addEdge(new Pair<Integer>(0, 1), 0, 1);
+			int curEdge = 2;
 			while (curEdge <= number)
 			{
 				Integer[] array = new Integer[graph.getVertexCount()];

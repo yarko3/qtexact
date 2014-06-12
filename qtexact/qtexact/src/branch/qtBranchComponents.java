@@ -134,9 +134,9 @@ public class qtBranchComponents<V> extends qtBranch<V>
 			//if we did not remove an edge that is about to be added
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(2)), false)))
 			{
-				branchingReturnC<V> c4Add1 = controller.branch(c4p4AddResult(s, lexResult.get(0), lexResult.get(2)));
+				branchingReturnC<V> c4Add1 = controller.branch(addResult(s, lexResult.get(0), lexResult.get(2)));
 				//revert changes
-				c4p4AddRevert(s);
+				revert(s);
 				if (c4Add1.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 				{
 					s.setMinMoves(c4Add1.getMinMoves());
@@ -144,9 +144,9 @@ public class qtBranchComponents<V> extends qtBranch<V>
 			}
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false)))
 			{
-				branchingReturnC<V> c4Add2 = controller.branch(c4p4AddResult(s, lexResult.get(1), lexResult.get(3)));
+				branchingReturnC<V> c4Add2 = controller.branch(addResult(s, lexResult.get(1), lexResult.get(3)));
 				//revert changes
-				c4p4AddRevert(s);
+				revert(s);
 				if (c4Add2.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 				{
 					s.setMinMoves(c4Add2.getMinMoves());
@@ -155,9 +155,9 @@ public class qtBranchComponents<V> extends qtBranch<V>
 			//results of removing 2 edges to break C4
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)))
 			{
-				branchingReturnC<V> c4Remove0 = controller.branch(c4Delete2Result(s, lexResult.get(0), lexResult.get(1), lexResult.get(1), lexResult.get(2)));
+				branchingReturnC<V> c4Remove0 = controller.branch(delete2Result(s, lexResult.get(0), lexResult.get(1), lexResult.get(1), lexResult.get(2)));
 				//revert change to global graph
-				c4Delete2Revert(s, lexResult.get(0), lexResult.get(1), lexResult.get(1), lexResult.get(2));
+				revert2(s);
 				if (c4Remove0.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 				{
 					s.setMinMoves(c4Remove0.getMinMoves());
@@ -165,9 +165,9 @@ public class qtBranchComponents<V> extends qtBranch<V>
 			}
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(3)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
 			{
-				branchingReturnC<V> c4Remove1 = controller.branch(c4Delete2Result(s, lexResult.get(0), lexResult.get(3), lexResult.get(2), lexResult.get(3)));
+				branchingReturnC<V> c4Remove1 = controller.branch(delete2Result(s, lexResult.get(0), lexResult.get(3), lexResult.get(2), lexResult.get(3)));
 				//revert change to global graph
-				c4Delete2Revert(s, lexResult.get(0), lexResult.get(3), lexResult.get(2), lexResult.get(3));
+				revert2(s);
 				if (c4Remove1.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 				{
 					s.setMinMoves(c4Remove1.getMinMoves());
@@ -175,9 +175,9 @@ public class qtBranchComponents<V> extends qtBranch<V>
 			}
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
 			{
-				branchingReturnC<V> c4Remove2 = controller.branch(c4Delete2Result(s, lexResult.get(0), lexResult.get(1), lexResult.get(2), lexResult.get(3)));
+				branchingReturnC<V> c4Remove2 = controller.branch(delete2Result(s, lexResult.get(0), lexResult.get(1), lexResult.get(2), lexResult.get(3)));
 				//revert change to global graph
-				c4Delete2Revert(s, lexResult.get(0), lexResult.get(1), lexResult.get(2), lexResult.get(3));
+				revert2(s);
 				if (c4Remove2.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 				{
 					s.setMinMoves(c4Remove2.getMinMoves());
@@ -185,9 +185,9 @@ public class qtBranchComponents<V> extends qtBranch<V>
 			}
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(3)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)))
 			{
-				branchingReturnC<V> c4Remove3 = controller.branch(c4Delete2Result(s, lexResult.get(0), lexResult.get(3), lexResult.get(1), lexResult.get(2)));
+				branchingReturnC<V> c4Remove3 = controller.branch(delete2Result(s, lexResult.get(0), lexResult.get(3), lexResult.get(1), lexResult.get(2)));
 				//revert change to global graph
-				c4Delete2Revert(s, lexResult.get(0), lexResult.get(3), lexResult.get(1), lexResult.get(2));
+				revert2(s);
 				if (c4Remove3.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 				{
 					s.setMinMoves(c4Remove3.getMinMoves());
@@ -195,9 +195,9 @@ public class qtBranchComponents<V> extends qtBranch<V>
 			}
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
 			{
-				branchingReturnC<V> c4Remove4 = controller.branch(c4Delete2Result(s, lexResult.get(1), lexResult.get(2), lexResult.get(2), lexResult.get(3)));
+				branchingReturnC<V> c4Remove4 = controller.branch(delete2Result(s, lexResult.get(1), lexResult.get(2), lexResult.get(2), lexResult.get(3)));
 				//revert change to global graph
-				c4Delete2Revert(s, lexResult.get(1), lexResult.get(2), lexResult.get(2), lexResult.get(3));
+				revert2(s);
 				if (c4Remove4.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 				{
 					s.setMinMoves(c4Remove4.getMinMoves());
@@ -206,9 +206,9 @@ public class qtBranchComponents<V> extends qtBranch<V>
 			
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(3)), true)))
 			{
-				branchingReturnC<V> c4Remove5 = controller.branch(c4Delete2Result(s, lexResult.get(0), lexResult.get(1), lexResult.get(0), lexResult.get(3)));
+				branchingReturnC<V> c4Remove5 = controller.branch(delete2Result(s, lexResult.get(0), lexResult.get(1), lexResult.get(0), lexResult.get(3)));
 				//revert change to global graph
-				c4Delete2Revert(s, lexResult.get(0), lexResult.get(1), lexResult.get(0), lexResult.get(3));
+				revert2(s);
 				if (c4Remove5.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 				{
 					s.setMinMoves(c4Remove5.getMinMoves());
@@ -224,9 +224,9 @@ public class qtBranchComponents<V> extends qtBranch<V>
 			//add an edge to break P4
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(2)), false)))
 			{
-				branchingReturnC<V> p4Add0 = controller.branch(c4p4AddResult(s, lexResult.get(0), lexResult.get(2)));
+				branchingReturnC<V> p4Add0 = controller.branch(addResult(s, lexResult.get(0), lexResult.get(2)));
 				//revert changes
-				c4p4AddRevert(s);
+				revert(s);
 				if (p4Add0.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 				{
 					s.setMinMoves(p4Add0.getMinMoves());
@@ -234,9 +234,9 @@ public class qtBranchComponents<V> extends qtBranch<V>
 			}
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false)))
 			{
-				branchingReturnC<V> p4Add1 = controller.branch(c4p4AddResult(s, lexResult.get(1), lexResult.get(3)));
+				branchingReturnC<V> p4Add1 = controller.branch(addResult(s, lexResult.get(1), lexResult.get(3)));
 				//revert changes
-				c4p4AddRevert(s);
+				revert(s);
 				if (p4Add1.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 				{
 					s.setMinMoves(p4Add1.getMinMoves());
@@ -245,9 +245,9 @@ public class qtBranchComponents<V> extends qtBranch<V>
 			//remove an edge to break P4
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)))
 			{
-				branchingReturnC<V> p4Remove0 = controller.branch(p4DeleteResult(s, lexResult.get(0), lexResult.get(1)));
+				branchingReturnC<V> p4Remove0 = controller.branch(deleteResult(s, lexResult.get(0), lexResult.get(1)));
 				//revert changes to global graph
-				p4DeleteRevert(s);
+				revert(s);
 				if (p4Remove0.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 				{
 					s.setMinMoves(p4Remove0.getMinMoves());
@@ -255,9 +255,9 @@ public class qtBranchComponents<V> extends qtBranch<V>
 			}
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)))
 			{
-				branchingReturnC<V> p4Remove1 = controller.branch(p4DeleteResult(s, lexResult.get(1), lexResult.get(2)));
+				branchingReturnC<V> p4Remove1 = controller.branch(deleteResult(s, lexResult.get(1), lexResult.get(2)));
 				//revert changes to global graph
-				p4DeleteRevert(s);
+				revert(s);
 				if (p4Remove1.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 				{
 					s.setMinMoves(p4Remove1.getMinMoves());
@@ -265,9 +265,9 @@ public class qtBranchComponents<V> extends qtBranch<V>
 			}
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
 			{
-				branchingReturnC<V> p4Remove2 = controller.branch(p4DeleteResult(s, lexResult.get(2), lexResult.get(3)));
+				branchingReturnC<V> p4Remove2 = controller.branch(deleteResult(s, lexResult.get(2), lexResult.get(3)));
 				//revert changes to global graph
-				p4DeleteRevert(s);
+				revert(s);
 				if (p4Remove2.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 				{
 					s.setMinMoves(p4Remove2.getMinMoves());
