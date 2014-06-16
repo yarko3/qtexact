@@ -54,7 +54,7 @@ public class fun extends JApplet {
 		exampleQT.addEdge(new Pair<Integer>(8, 1), 8, 1);
 		exampleQT.addEdge(new Pair<Integer>(8, 5), 8, 5);
 		
-		//exampleQT = gen.cliqueJoin(20, 30);
+		exampleQT = gen.cliqueJoin(20, 30);
 		
 		//exampleQT = qtGenerate.simpleC4();
 		
@@ -62,15 +62,18 @@ public class fun extends JApplet {
 		
 		//exampleQT = qtGenerate.nonQTEx3();
 		
-		exampleQT = gen.ER(15, 0.3);
+		exampleQT = gen.ER(15, 0.5);
 		
-		//exampleQT = new SparseGraph<Integer, Pair<Integer>>();
-		//fillGraphFromFile(exampleQT, "datasets/karate.txt");
+		exampleQT = new SparseGraph<Integer, Pair<Integer>>();
+		fillGraphFromFile(exampleQT, "datasets/karate.txt");
 		
 		//exampleQT = gen.fromBipartiteFile("datasets/southernwomen");
 	
+		//exampleQT = gen.manyInducedC4(6);
+		
+		
 		Controller<Integer> c = new Controller<Integer>(null, true);
-		//qtBranchNoHeuristic<Integer> branchNoHP = new qtBranchNoHeuristic<Integer>(c);
+		qtBranchNoHeuristic<Integer> branchNoHP = new qtBranchNoHeuristic<Integer>(c);
 		//c.setbStruct(branchNoHP);
 		
 		qtKite<Integer> kite = new qtKite<Integer>(c);
@@ -84,8 +87,9 @@ public class fun extends JApplet {
 		//branchNoHP.addReduction(r);
 		//branchC.addReduction(r);
 		kite.addReduction(r);
-		//Reduction<Integer> r2 = new commonC4Reduction<Integer>(branchNoHP);
-		//branchNoHP.addReduction(r2);
+		
+		Reduction<Integer> r2 = new commonC4Reduction<Integer>(branchNoHP);
+		kite.addReduction(r2);
 		
 		
 		YanSearch<Integer> yan = new YanSearch<Integer>();
@@ -111,7 +115,7 @@ public class fun extends JApplet {
 		
 		System.out.println("\nNo heuristic: ");
 		start = System.currentTimeMillis();
-		exampleQT = c.branchID(exampleQT, 2, 10);
+		exampleQT = c.branchStart(exampleQT, 12);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		start = System.currentTimeMillis();

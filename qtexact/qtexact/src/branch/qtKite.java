@@ -11,6 +11,12 @@ import abstractClasses.SearchResult;
 import controller.Controller;
 import edu.uci.ics.jung.graph.util.Pair;
 
+/**
+ * Branching on a kite formation
+ * @author Yaroslav Senyuta
+ *
+ * @param <V>
+ */
 public class qtKite<V> extends qtBranchNoHeuristic<V> 
 {
 
@@ -38,7 +44,7 @@ public class qtKite<V> extends qtBranchNoHeuristic<V>
 				if (output)
 				{
 					//change progress percent
-					s.setPercent(oldPercent / 6);
+					s.setPercent(oldPercent / 6.0);
 				}
 				branchingReturnC<V> kAdd = controller.branch(addResult(s, lexResult.get(1), lexResult.get(3)));
 				
@@ -56,6 +62,9 @@ public class qtKite<V> extends qtBranchNoHeuristic<V>
 					s.setMinMoves(kAdd.getMinMoves());
 				}
 			}
+			else
+				if (output)
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 6);
 			
 			//delete 2 edges
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)) 
@@ -64,7 +73,7 @@ public class qtKite<V> extends qtBranchNoHeuristic<V>
 				if (output)
 				{
 					//change progress percent
-					s.setPercent(oldPercent / 6);
+					s.setPercent(oldPercent / 6.0);
 				}
 				branchingReturnC<V> kDelete20 = controller.branch(delete2Result(s, lexResult.get(2), lexResult.get(3), lexResult.get(3), lexResult.get(4)));
 				
@@ -82,6 +91,9 @@ public class qtKite<V> extends qtBranchNoHeuristic<V>
 					s.setMinMoves(kDelete20.getMinMoves());
 				}
 			}
+			else
+				if (output)
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 6);
 			
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)) 
 					&& !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(4), lexResult.get(1)), true)))
@@ -89,7 +101,7 @@ public class qtKite<V> extends qtBranchNoHeuristic<V>
 				if (output)
 				{
 					//change progress percent
-					s.setPercent(oldPercent / 6);
+					s.setPercent(oldPercent / 6.0);
 				}
 				branchingReturnC<V> kDelete21 = controller.branch(delete2Result(s, lexResult.get(2), lexResult.get(3), lexResult.get(4), lexResult.get(1)));
 				
@@ -107,6 +119,9 @@ public class qtKite<V> extends qtBranchNoHeuristic<V>
 					s.setMinMoves(kDelete21.getMinMoves());
 				}
 			}
+			else
+				if (output)
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 6);
 			
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)) 
 					&& !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(3), lexResult.get(4)), true)))
@@ -114,7 +129,7 @@ public class qtKite<V> extends qtBranchNoHeuristic<V>
 				if (output)
 				{
 					//change progress percent
-					s.setPercent(oldPercent / 6);
+					s.setPercent(oldPercent / 6.0);
 				}
 				branchingReturnC<V> kDelete22 = controller.branch(delete2Result(s, lexResult.get(1), lexResult.get(2), lexResult.get(3), lexResult.get(4)));
 				
@@ -132,6 +147,9 @@ public class qtKite<V> extends qtBranchNoHeuristic<V>
 					s.setMinMoves(kDelete22.getMinMoves());
 				}
 			}
+			else
+				if (output)
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 6);
 			
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)) 
 					&& !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(4), lexResult.get(1)), true)))
@@ -139,7 +157,7 @@ public class qtKite<V> extends qtBranchNoHeuristic<V>
 				if (output)
 				{
 					//change progress percent
-					s.setPercent(oldPercent / 6);
+					s.setPercent(oldPercent / 6.0);
 				}
 				branchingReturnC<V> kDelete23 = controller.branch(delete2Result(s, lexResult.get(1), lexResult.get(2), lexResult.get(4), lexResult.get(1)));
 				
@@ -157,6 +175,9 @@ public class qtKite<V> extends qtBranchNoHeuristic<V>
 					s.setMinMoves(kDelete23.getMinMoves());
 				}
 			}
+			else
+				if (output)
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 6);
 			
 			//add one, remove one
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)) 
@@ -165,7 +186,7 @@ public class qtKite<V> extends qtBranchNoHeuristic<V>
 				if (output)
 				{
 					//change progress percent
-					s.setPercent(oldPercent / 6);
+					s.setPercent(oldPercent / 6.0);
 				}
 				
 				
@@ -186,6 +207,9 @@ public class qtKite<V> extends qtBranchNoHeuristic<V>
 					s.setMinMoves(kAddDelete.getMinMoves());
 				}
 			}
+			else
+				if (output)
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 6);
 			
 			return s.getMinMoves();
 		}
@@ -196,8 +220,6 @@ public class qtKite<V> extends qtBranchNoHeuristic<V>
 		}
 		
 	}
-	
-	
 	
 	
 	/**

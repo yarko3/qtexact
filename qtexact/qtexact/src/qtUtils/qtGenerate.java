@@ -476,18 +476,16 @@ public class qtGenerate<V>
 	}
 	
 	
-	public Graph<Integer, Pair<Integer>> manyInducedC4()
+	public Graph<Integer, Pair<Integer>> manyInducedC4(int n)
 	{
 		Graph<Integer, Pair<Integer>> g = new SparseGraph<Integer, Pair<Integer>>();
 		
-		g.addEdge(new Pair<Integer>(0, 2), 0, 2);
-		g.addEdge(new Pair<Integer>(1, 2), 1, 2);
-		g.addEdge(new Pair<Integer>(0, 3), 0, 3);
-		g.addEdge(new Pair<Integer>(1, 3), 1, 3);
-		g.addEdge(new Pair<Integer>(0, 4), 0, 4);
-		g.addEdge(new Pair<Integer>(1, 4), 1, 4);
-		g.addEdge(new Pair<Integer>(0, 5), 0, 5);
-		g.addEdge(new Pair<Integer>(1, 5), 1, 5);
+		for (int i = 2; i < n + 2; i++)
+		{
+			g.addEdge(new Pair<Integer>(0, i), 0, i);
+			g.addEdge(new Pair<Integer>(1, i), 1, i);
+		}
+		
 		
 		return g;
 		

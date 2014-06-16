@@ -53,6 +53,11 @@ public class Controller<V>
 		globalPercent = p;
 	}
 	
+	public double getGlobalPercent()
+	{
+		return globalPercent;
+	}
+	
 	public Branch<V> getbStruct() {
 		return bStruct;
 	}
@@ -123,6 +128,7 @@ public class Controller<V>
 		if (bStruct.getSearch().isTarget(rtn))
 		{
 			System.out.println("Solution found. ");
+			System.out.println(goal.getChanges());
 			return rtn;
 		}
 		else

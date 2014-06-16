@@ -104,6 +104,10 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 					s.setMinMoves(c4Add1.getMinMoves());
 				}
 			}
+			else
+				if (output)
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 8);
+			
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false)))
 			{
 				if (output)
@@ -126,6 +130,10 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 					s.setMinMoves(c4Add2.getMinMoves());
 				}
 			}
+			else
+				if (output)
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 8);
+			
 			//results of removing 2 edges to break C4
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)))
 			{
@@ -148,6 +156,10 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 					s.setMinMoves(c4Remove0.getMinMoves());
 				}
 			}
+			else
+				if (output)
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 8);
+			
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(3)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
 			{
 				if (output)
@@ -168,6 +180,10 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 					s.setMinMoves(c4Remove1.getMinMoves());
 				}
 			}
+			else
+				if (output)
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 8);
+			
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
 			{
 				if (output)
@@ -189,6 +205,10 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 					s.setMinMoves(c4Remove2.getMinMoves());
 				}
 			}
+			else
+				if (output)
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 8);
+			
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(3)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)))
 			{
 				if (output)
@@ -209,6 +229,10 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 					s.setMinMoves(c4Remove3.getMinMoves());
 				}
 			}
+			else
+				if (output)
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 8);
+			
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
 			{
 				if (output)
@@ -227,6 +251,10 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 					s.setMinMoves(c4Remove4.getMinMoves());
 				}
 			}
+			else
+				if (output)
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 8);
+			
 			
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(3)), true)))
 			{
@@ -246,6 +274,10 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 					s.setMinMoves(c4Remove5.getMinMoves());
 				}
 			}
+			else
+				if (output)
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 8);
+			
 			return s.getMinMoves();
 		}
 		//P4 has been found
@@ -270,6 +302,10 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 					s.setMinMoves(p4Add0.getMinMoves());
 				}
 			}
+			else
+				if (output)
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 5);
+			
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false)))
 			{
 				if (output)
@@ -289,6 +325,10 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 					s.setMinMoves(p4Add1.getMinMoves());
 				}
 			}
+			else
+				if (output)
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 5);
+			
 			//remove an edge to break P4
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)))
 			{
@@ -308,6 +348,10 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 					s.setMinMoves(p4Remove0.getMinMoves());
 				}
 			}
+			else
+				if (output)
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 5);
+			
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)))
 			{
 				if (output)
@@ -326,6 +370,10 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 					s.setMinMoves(p4Remove1.getMinMoves());
 				}
 			}
+			else
+				if (output)
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 5);
+			
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
 			{
 				if (output)
@@ -344,6 +392,10 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 					s.setMinMoves(p4Remove2.getMinMoves());
 				}
 			}
+			else
+				if (output)
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 5);
+			
 			return s.getMinMoves();
 		}
 	}

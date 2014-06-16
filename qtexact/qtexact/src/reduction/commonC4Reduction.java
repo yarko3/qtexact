@@ -1,5 +1,6 @@
 package reduction;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Stack;
@@ -39,16 +40,22 @@ public class commonC4Reduction<V> extends Reduction<V>
 		LinkedList<myEdge<V>> toApply = new LinkedList<myEdge<V>>();
 		
 		//look through every two non-neighbours
+		ArrayList<V> vertices = new ArrayList<V>();
+		vertices.addAll(s.getG().getVertices());
 		outer:
-		for (V v0 : s.getG().getVertices())
+		for (int i = 0; i < vertices.size(); i++)
 		{
-			for (V v1 : s.getG().getVertices())
+			V v0 = vertices.get(i);
+			
+			for (int j = i+1; j < vertices.size(); j++)
 			{
-				if (v0 != v1 && !s.getG().isNeighbor(v0, v1))
+				V v1 = vertices.get(j);
+				
+				if (!s.getG().isNeighbor(v0, v1))
 				{
 					//get all common neighbours
 					HashSet<V> all = new HashSet<V>();
-					HashSet<V> common = new HashSet<V>();
+					ArrayList<V> common = new ArrayList<V>();
 					
 					all.addAll(s.getG().getNeighbors(v0));
 					
@@ -59,12 +66,33 @@ public class commonC4Reduction<V> extends Reduction<V>
 							common.add(v);
 					}
 					
-					//if number of induced C4s is greater than the allowed number of moves, add an edge
-					if (binomial(common.size(), 2) > s.getMinMoves().getChanges().size() - s.getChanges().size())
+					
+					for (int k = 0; k < common.size(); k++)
 					{
+						V temp = common.remove(k);
+						boolean flag = true;
+						for (V n : common)
+						{
+							if (!s.getG().isNeighbor(temp, n))
+								flag = false;
+						}
+						
+						if (flag == false)
+						{
+							common.add(k, temp);
+						}
+						else
+							k--;
+					}
+					
+					
+					//if number of induced C4s is greater than the allowed number of moves, add an edge
+					if (common.size() > s.getMinMoves().getChanges().size() - s.getChanges().size() && !toApply.contains(new myEdge<V>(new Pair<V>(v0, v1), true)))
+					{
+						
 						toApply.addLast(new myEdge<V>(new Pair<V>(v0, v1), true));
 						
-						if (toApply.size() > s.getMinMoves().getChanges().size() - s.getChanges().size())
+						if (toApply.size() == s.getMinMoves().getChanges().size() - s.getChanges().size())
 							break outer;
 					}
 				}

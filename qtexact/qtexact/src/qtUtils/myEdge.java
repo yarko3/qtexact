@@ -7,7 +7,7 @@ import edu.uci.ics.jung.graph.util.Pair;
  *
  * @param <V>
  */
-public class myEdge<V> 
+public class myEdge<V> implements Comparable<myEdge<V>>
 {
 	//edge stored
 	private Pair<V> edge;
@@ -42,6 +42,30 @@ public class myEdge<V>
 			return "Delete: " + edge;
 		else
 			return "Add: " + edge;
+	}
+
+	@Override
+	public int compareTo(myEdge<V> arg0) 
+	{
+		if ((arg0.getEdge().getFirst().equals(edge.getFirst()) && arg0.getEdge().getSecond().equals(edge.getSecond())) || (arg0.getEdge().getSecond().equals(edge.getFirst()) && arg0.getEdge().getFirst().equals(edge.getSecond())))
+		{
+			if (arg0.isFlag() == flag)
+				return 0;
+			else
+				return -1;
+		}
+		
+		return arg0.getEdge().hashCode() - this.getEdge().hashCode();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public boolean equals(Object arg0) 
+	{
+		if (compareTo((myEdge<V>) arg0) == 0)
+			return true;
+		else
+			return false;
 	}
 	
 
