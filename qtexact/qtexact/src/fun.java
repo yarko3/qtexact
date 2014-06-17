@@ -64,10 +64,10 @@ public class fun extends JApplet {
 		
 		exampleQT = gen.ER(15, 0.6);
 		
-		//exampleQT = new SparseGraph<Integer, Pair<Integer>>();
-		//fillGraphFromFile(exampleQT, "datasets/karate.txt");
+		exampleQT = new SparseGraph<Integer, Pair<Integer>>();
+		fillGraphFromFile(exampleQT, "datasets/karate.txt");
 		
-		exampleQT = gen.fromBipartiteFile("datasets/southernwomen");
+		//exampleQT = gen.fromBipartiteFile("datasets/southernwomen");
 	
 		//exampleQT = gen.manyInducedC4(6);
 		
@@ -89,7 +89,7 @@ public class fun extends JApplet {
 		kite.addReduction(r);
 		
 		Reduction<Integer> r2 = new commonC4Reduction<Integer>(branchNoHP);
-		kite.addReduction(r2);
+		//kite.addReduction(r2);
 		
 		
 		YanSearch<Integer> yan = new YanSearch<Integer>();

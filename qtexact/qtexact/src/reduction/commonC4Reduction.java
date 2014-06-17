@@ -2,14 +2,11 @@ package reduction;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.Stack;
 
 import qtUtils.branchingReturnC;
-import qtUtils.myEdge;
 import abstractClasses.Reduction;
 import branch.qtBranch;
-import edu.uci.ics.jung.graph.util.Pair;
 
 /**
  * Reduction for removing induced C4s
@@ -36,8 +33,6 @@ public class commonC4Reduction<V> extends Reduction<V>
 	 */
 	public branchingReturnC<V> reduce(branchingReturnC<V> s) 
 	{
-		//store the moves to be applied
-		LinkedList<myEdge<V>> toApply = new LinkedList<myEdge<V>>();
 		
 		int count = 0;
 		
@@ -94,7 +89,7 @@ public class commonC4Reduction<V> extends Reduction<V>
 							
 							
 							//if number of induced C4s is greater than the allowed number of moves, add an edge
-							if (common.size() > s.getMinMoves().getChanges().size() - s.getChanges().size() && !toApply.contains(new myEdge<V>(new Pair<V>(v0, v1), true)))
+							if (common.size() > s.getMinMoves().getChanges().size() - s.getChanges().size())
 							{
 								
 								//toApply.addLast(new myEdge<V>(new Pair<V>(v0, v1), true));

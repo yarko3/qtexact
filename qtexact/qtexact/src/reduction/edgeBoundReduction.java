@@ -30,43 +30,36 @@ public class edgeBoundReduction<V> extends Reduction<V>
 	@Override
 	public branchingReturnC<V> reduce(branchingReturnC<V> s) 
 	{
-		//store the moves to be applied
-		LinkedList<myEdge<V>> toApply = new LinkedList<myEdge<V>>();
-		int count = 0;
+		LinkedList<myEdge<V>> toDo = new LinkedList<myEdge<V>>();
 		
 		//for every edge, find C4s and P4s
 		ArrayList<Pair<V>> edges = new ArrayList<Pair<V>>();
 		edges.addAll(s.getG().getEdges());
 		
-		for (int i = 0; i < edges.size(); i++)
+		for (Pair<V> e : s.getG().getEdges())
 		{
-			Pair<V> e = edges.get(i);
+			
 			//if leaving the edge is out of bounds, remove this edge
 			if (!s.getChanges().contains(new myEdge<V>(e, true)) && getObstructionCount(e, s.getG()) > s.getMinMoves().getChanges().size() - s.getChanges().size())
 			{
-				//add the move to be applied to list
-				//toApply.addLast(new myEdge<V>(new Pair<V>(e.getFirst(), e.getSecond()), false));
 				
-				edges.remove(i);
-				i--;
+				//remove edge
+				toDo.add(new myEdge<V>(e, false));
 				
 				//make deletion
-				s = bStruct.deleteResult(s, e.getFirst(), e.getSecond());
-				
-				count++;
+				//s = bStruct.deleteResult(s, e.getFirst(), e.getSecond());
+			
 				
 				
 				//if no more reduction steps are allowed
-				if (count == s.getMinMoves().getChanges().size() - s.getChanges().size())
+				if (toDo.size() == s.getMinMoves().getChanges().size() - s.getChanges().size())
 					break;
 			}
 		}
 		
-	
-		//bStruct.applyMoves(s, toApply);
 		//store the number of last reduction deletions
-		stack.push(count);
-			
+		stack.push(toDo.size());
+		bStruct.applyMoves(s, toDo);
 		
 		
 		return s;
