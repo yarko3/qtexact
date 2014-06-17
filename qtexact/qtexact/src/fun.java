@@ -89,7 +89,7 @@ public class fun extends JApplet {
 		kite.addReduction(r);
 		
 		Reduction<Integer> r2 = new commonC4Reduction<Integer>(branchNoHP);
-		kite.addReduction(r2);
+		//kite.addReduction(r2);
 		
 		
 		YanSearch<Integer> yan = new YanSearch<Integer>();
