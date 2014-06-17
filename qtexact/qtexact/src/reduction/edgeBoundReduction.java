@@ -1,5 +1,6 @@
 package reduction;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Stack;
@@ -9,15 +10,11 @@ import qtUtils.myEdge;
 import qtUtils.qtGenerate;
 import abstractClasses.Reduction;
 import branch.qtBranch;
-
-import com.rits.cloning.Cloner;
-
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Pair;
 
 public class edgeBoundReduction<V> extends Reduction<V> 
 {
-	Cloner clone = new Cloner();
 	qtBranch<V> bStruct;
 	Stack<Integer> stack;
 	
@@ -35,27 +32,40 @@ public class edgeBoundReduction<V> extends Reduction<V>
 	{
 		//store the moves to be applied
 		LinkedList<myEdge<V>> toApply = new LinkedList<myEdge<V>>();
-		
+		int count = 0;
 		
 		//for every edge, find C4s and P4s
-		for (Pair<V> e : s.getG().getEdges())
+		ArrayList<Pair<V>> edges = new ArrayList<Pair<V>>();
+		edges.addAll(s.getG().getEdges());
+		
+		for (int i = 0; i < edges.size(); i++)
 		{
+			Pair<V> e = edges.get(i);
 			//if leaving the edge is out of bounds, remove this edge
 			if (!s.getChanges().contains(new myEdge<V>(e, true)) && getObstructionCount(e, s.getG()) > s.getMinMoves().getChanges().size() - s.getChanges().size())
 			{
 				//add the move to be applied to list
-				toApply.addLast(new myEdge<V>(new Pair<V>(e.getFirst(), e.getSecond()), false));
+				//toApply.addLast(new myEdge<V>(new Pair<V>(e.getFirst(), e.getSecond()), false));
+				
+				edges.remove(i);
+				i--;
+				
+				//make deletion
+				s = bStruct.deleteResult(s, e.getFirst(), e.getSecond());
+				
+				count++;
+				
 				
 				//if no more reduction steps are allowed
-				if (toApply.size() == s.getMinMoves().getChanges().size() - s.getChanges().size())
+				if (count == s.getMinMoves().getChanges().size() - s.getChanges().size())
 					break;
 			}
 		}
 		
 	
-		bStruct.applyMoves(s, toApply);
+		//bStruct.applyMoves(s, toApply);
 		//store the number of last reduction deletions
-		stack.push(toApply.size());
+		stack.push(count);
 			
 		
 		

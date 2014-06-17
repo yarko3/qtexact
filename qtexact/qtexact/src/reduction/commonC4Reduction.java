@@ -39,6 +39,9 @@ public class commonC4Reduction<V> extends Reduction<V>
 		//store the moves to be applied
 		LinkedList<myEdge<V>> toApply = new LinkedList<myEdge<V>>();
 		
+		int count = 0;
+		
+		
 		//look through every two non-neighbours
 		ArrayList<V> vertices = new ArrayList<V>();
 		vertices.addAll(s.getG().getVertices());
@@ -94,9 +97,13 @@ public class commonC4Reduction<V> extends Reduction<V>
 							if (common.size() > s.getMinMoves().getChanges().size() - s.getChanges().size() && !toApply.contains(new myEdge<V>(new Pair<V>(v0, v1), true)))
 							{
 								
-								toApply.addLast(new myEdge<V>(new Pair<V>(v0, v1), true));
+								//toApply.addLast(new myEdge<V>(new Pair<V>(v0, v1), true));
 								
-								if (toApply.size() == s.getMinMoves().getChanges().size() - s.getChanges().size())
+								s = bStruct.addResult(s, v0, v1);
+								count++;
+								
+								
+								if (count == s.getMinMoves().getChanges().size() - s.getChanges().size())
 									break outer;
 							}
 						}
@@ -105,8 +112,8 @@ public class commonC4Reduction<V> extends Reduction<V>
 			}
 		}
 		
-		stack.push(toApply.size());
-		bStruct.applyMoves(s, toApply);
+		stack.push(count);
+		//bStruct.applyMoves(s, toApply);
 		return s;
 		
 	}
