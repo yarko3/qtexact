@@ -86,10 +86,10 @@ public class fun extends JApplet {
 		Reduction<Integer> r = new edgeBoundReduction<Integer>(kite);
 		//branchNoHP.addReduction(r);
 		//branchC.addReduction(r);
-		kite.addReduction(r);
+		//kite.addReduction(r);
 		
 		Reduction<Integer> r2 = new commonC4Reduction<Integer>(branchNoHP);
-		//kite.addReduction(r2);
+		kite.addReduction(r2);
 		
 		
 		YanSearch<Integer> yan = new YanSearch<Integer>();
@@ -115,7 +115,7 @@ public class fun extends JApplet {
 		
 		System.out.println("\nNo heuristic: ");
 		start = System.currentTimeMillis();
-		exampleQT = c.branchStart(exampleQT, 12);
+		exampleQT = c.branchStart(exampleQT, 8);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		start = System.currentTimeMillis();

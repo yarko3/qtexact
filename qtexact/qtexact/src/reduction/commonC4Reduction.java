@@ -38,8 +38,12 @@ public class commonC4Reduction<V> extends Reduction<V>
 		
 		
 		//look through every two non-neighbours
-		ArrayList<V> vertices = new ArrayList<V>();
-		vertices.addAll(s.getG().getVertices());
+		//ArrayList<V> vertices = bStruct.getSearch().orderVerticesNonDecreasingDegree(s.getG());
+		
+		
+		//vertices.addAll(s.getG().getVertices());
+		
+		
 		outer:
 		for (V v0 : s.getG().getVertices())
 		{
