@@ -20,6 +20,7 @@ import reduction.commonC4Reduction;
 import reduction.edgeBoundReduction;
 import search.YanSearch;
 import abstractClasses.Reduction;
+import branch.qtBranchComponents;
 import branch.qtBranchNoHeuristic;
 import branch.qtKite;
 import controller.Controller;
@@ -48,11 +49,11 @@ public class fun extends JApplet {
 	{
 		Graph<Integer, Pair<Integer>> exampleQT;
 		qtGenerate<Integer> gen = new qtGenerate<Integer>();
-		//exampleQT = gen.randomQT(50);
+		exampleQT = gen.randomQT(50);
 		//may break it
-		//exampleQT.addEdge(new Pair<Integer>(0, 6), 0, 6);
-		//exampleQT.addEdge(new Pair<Integer>(8, 1), 8, 1);
-		//exampleQT.addEdge(new Pair<Integer>(8, 5), 8, 5);
+		exampleQT.addEdge(new Pair<Integer>(0, 6), 0, 6);
+		exampleQT.addEdge(new Pair<Integer>(8, 1), 8, 1);
+		exampleQT.addEdge(new Pair<Integer>(8, 5), 8, 5);
 		
 		//exampleQT = gen.cliqueJoin(20, 30);
 		
@@ -62,35 +63,35 @@ public class fun extends JApplet {
 		
 		//exampleQT = qtGenerate.nonQTEx3();
 		
-		//exampleQT = gen.ER(14, 0.76);
+		//exampleQT = gen.ER(16, 0.1);
 		
-		exampleQT = new SparseGraph<Integer, Pair<Integer>>();
-		fillGraphFromFile(exampleQT, "datasets/karate.txt");
+		//exampleQT = new SparseGraph<Integer, Pair<Integer>>();
+		//fillGraphFromFile(exampleQT, "datasets/karate.txt");
 		
-		//exampleQT = gen.fromBipartiteFile("datasets/southernwomen");
+		exampleQT = gen.fromBipartiteFile("datasets/southernwomen");
 	
 		//exampleQT = gen.manyInducedC4(6);
 		
 		
 		Controller<Integer> c = new Controller<Integer>(null, true);
-		qtBranchNoHeuristic<Integer> branchNoHP = new qtBranchNoHeuristic<Integer>(c);
+		//qtBranchNoHeuristic<Integer> branchNoHP = new qtBranchNoHeuristic<Integer>(c);
 		//c.setbStruct(branchNoHP);
 		
 		qtKite<Integer> kite = new qtKite<Integer>(c);
-		c.setbStruct(kite);
+		//c.setbStruct(kite);
 		
-		//qtBranchComponents<Integer> branchC = new qtBranchComponents<Integer>(c);
-		//c.setbStruct(branchC);
+		qtBranchComponents<Integer> branchC = new qtBranchComponents<Integer>(c);
+		c.setbStruct(branchC);
 		
 		
-		Reduction<Integer> r = new edgeBoundReduction<Integer>(kite);
+		Reduction<Integer> r = new edgeBoundReduction<Integer>(branchC);
 		//branchNoHP.addReduction(r);
-		//branchC.addReduction(r);
-		kite.addReduction(r);
+		branchC.addReduction(r);
+		//kite.addReduction(r);
 		
-		Reduction<Integer> r2 = new commonC4Reduction<Integer>(kite);
-		kite.addReduction(r2);
-		
+		Reduction<Integer> r2 = new commonC4Reduction<Integer>(branchC);
+		//kite.addReduction(r2);
+		branchC.addReduction(r2);
 		
 		YanSearch<Integer> yan = new YanSearch<Integer>();
 		

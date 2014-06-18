@@ -144,7 +144,7 @@ public class qtGenerate<V>
 		l.add(fHalf);
 		l.add(sHalf);
 		
-		Graph<Integer, Pair<Integer>> graph = graphJoin(l);
+		Graph<Integer, Pair<Integer>> graph = graphJoinP(l);
 		
 		//final edge to join the two halves 
 		graph.addEdge(new Pair<Integer>(n1, n1+1), n1, n1+1);
@@ -152,7 +152,7 @@ public class qtGenerate<V>
 		
 	}
 	
-	private static SparseGraph<Integer, Pair<Integer>> graphJoin(LinkedList<Graph<Integer, Pair<Integer>>> l) {
+	private static SparseGraph<Integer, Pair<Integer>> graphJoinP(LinkedList<Graph<Integer, Pair<Integer>>> l) {
 		SparseGraph<Integer, Pair<Integer>> rGraph = new SparseGraph<Integer, Pair<Integer>>();
 		//build graph from connected components
 		for (Graph<Integer, Pair<Integer>> r : l)
@@ -165,6 +165,27 @@ public class qtGenerate<V>
 			}
 			//add all the vertices
 			for (Pair<Integer> a : r.getEdges())
+			{
+				rGraph.addEdge(clone.deepClone(a), a.getFirst(), a.getSecond());
+			}
+
+		}
+		return rGraph;
+	}
+	
+	public SparseGraph<V, Pair<V>> graphJoin(LinkedList<Graph<V, Pair<V>>> l) {
+		SparseGraph<V, Pair<V>> rGraph = new SparseGraph<V, Pair<V>>();
+		//build graph from connected components
+		for (Graph<V, Pair<V>> r : l)
+		{
+			
+			//add all the edges
+			for (V v : r.getVertices())
+			{
+				rGraph.addVertex(v);
+			}
+			//add all the vertices
+			for (Pair<V> a : r.getEdges())
 			{
 				rGraph.addEdge(clone.deepClone(a), a.getFirst(), a.getSecond());
 			}

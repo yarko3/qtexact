@@ -27,7 +27,11 @@ public class qtHouse<V> extends qtKite<V>
 		
 		
 		//if a C4 was found
-		
+		//look for common neighbours between every two incident vertices 
+		for (int i = 0; i < 4; i++)
+		{
+			
+		}
 		
 	}
 	

@@ -131,7 +131,7 @@ public class Controller<V>
 		if (bStruct.getSearch().isTarget(rtn))
 		{
 			System.out.println("Solution found. ");
-			System.out.println(goal.getChanges());
+			System.out.println(goal.getMinMoves().getChanges());
 			return rtn;
 		}
 		else

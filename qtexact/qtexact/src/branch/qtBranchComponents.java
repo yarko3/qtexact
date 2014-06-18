@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
 
-import controller.Controller;
 import qtUtils.branchingReturnC;
 import qtUtils.lexReturnC;
 import qtUtils.myEdge;
+import qtUtils.qtGenerate;
 import search.qtLBFS;
 import search.qtLBFSComponents;
 import abstractClasses.SearchResult;
+import controller.Controller;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Pair;
 /**
@@ -102,6 +103,7 @@ public class qtBranchComponents<V> extends qtBranch<V>
 				}		
 			}
 			
+			
 			//construct new minMoves from all old ones
 			min = new branchingReturnC<V>(s.getG(), s.getDeg(), min);
 			//throw all minMoves into a HashSet, so they don't have duplicates
@@ -113,7 +115,8 @@ public class qtBranchComponents<V> extends qtBranch<V>
 			min.getChanges().addAll(temp);
 			min.getChanges().addAll(s.getChanges());		
 			
-			return min;
+			s.setChanges(min.getChanges());
+			return s;
 		}
 	}
 	

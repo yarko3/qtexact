@@ -41,11 +41,12 @@ public class commonC4Reduction<V> extends Reduction<V>
 		
 		ArrayList<V> vertices = bStruct.getSearch().orderVerticesNonDecreasingDegree(s.getG());
 		
-		
+		int max = 5;
+		if (vertices.size() <= 5)
+			max = vertices.size() - 1;
 		
 		outer:
-		//for (V v0 : s.getG().getVertices())
-		for (int i = 1; i < 5; i++)
+		for (int i = 1; i < max; i++)
 		{
 			V v0 = vertices.get(i);
 			
