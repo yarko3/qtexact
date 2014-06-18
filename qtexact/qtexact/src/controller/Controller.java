@@ -18,7 +18,9 @@ public class Controller<V>
 {
 	protected int timesRun;
 	private double globalPercent;
+	private double percent;
 	private boolean output;
+	
 	
 	
 	/**
@@ -33,6 +35,7 @@ public class Controller<V>
 	public Controller(Branch<V> bStruct) {
 		super();
 		globalPercent = 0;
+		percent = 0;
 		timesRun = 0;
 		output = false;
 	}
@@ -170,7 +173,11 @@ public class Controller<V>
 			{
 				//update global percent
 				globalPercent += s.getPercent();
-				System.out.println("Percent done: " + globalPercent);
+				if (globalPercent - percent > .01)
+				{
+					percent+=0.01;
+					System.out.println((int)(percent*100) + "%");
+				}
 			}
 			
 			//update the minMoves list if this solution is better
@@ -215,7 +222,11 @@ public class Controller<V>
 				{
 					//update global percent
 					globalPercent += s.getPercent();
-					System.out.println("Percent done: " + globalPercent);
+					if (globalPercent - percent > .01)
+					{
+						percent+= 0.01;
+						System.out.println(((int) (percent*100)) + "%");
+					}
 				}
 				
 				

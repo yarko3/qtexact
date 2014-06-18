@@ -115,7 +115,7 @@ public class fun extends JApplet {
 		
 		System.out.println("\nNo heuristic: ");
 		start = System.currentTimeMillis();
-		exampleQT = c.branchStart(exampleQT, 14);
+		exampleQT = c.branchStart(exampleQT, 10);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		start = System.currentTimeMillis();
