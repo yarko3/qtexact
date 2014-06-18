@@ -326,6 +326,7 @@ public class qtKite<V> extends qtBranchNoHeuristic<V>
 			{
 				obstruction.getVertices().add(4, all.iterator().next());
 				obstruction.setFlag(-3);
+				
 				return obstruction;
 			}
 			

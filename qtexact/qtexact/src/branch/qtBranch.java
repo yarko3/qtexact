@@ -367,5 +367,44 @@ public abstract class qtBranch<V> extends Branch<V>
 		
 		return percentDone;
 	}
+	
+	/**
+	 * return a HashSet of common neighbours to both vertices given
+	 * @param s
+	 * @param v0
+	 * @param v1
+	 * @return
+	 */
+	public HashSet<V> commonNeighbours(branchingReturnC<V> s, V v0, V v1)
+	{
+		HashSet<V> all = new HashSet<V>();
+		HashSet<V> common = new HashSet<V>();
+		
+		all.addAll(s.getG().getNeighbors(v0));
+		
+		for (V n : s.getG().getNeighbors(v1))
+		{
+			if (!all.add(n))
+				common.add(n);
+		}
+		
+		return common;
+	}
+	
+	public HashSet<V> commonNeighbours(branchingReturnC<V> s, V v0, V v1, V v2)
+	{
+		HashSet<V> all = commonNeighbours(s, v0, v1);
+		HashSet<V> common = new HashSet<V>();
+		
+		
+		for (V n : s.getG().getNeighbors(v2))
+		{
+			if (!all.add(n))
+				common.add(n);
+		}
+		
+		return common;
+		
+	}
 
 }

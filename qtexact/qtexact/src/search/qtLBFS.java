@@ -112,7 +112,7 @@ public abstract class qtLBFS<V> extends LBFS<V>
 				{
 					if (G.findEdge(z, w) != null && G.findEdge(z, x) == null && z != x && z != y & z != w)
 					{
-						if (G.findEdge(z, y) != null)
+						if (G.isNeighbor(z, y))
 						{
 							//System.out.println("Found C4: " + z + "-" + w + "-" + x + "-" + y);
 							ArrayList<V> rtn = new ArrayList<V>(0);

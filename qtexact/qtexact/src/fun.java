@@ -65,10 +65,10 @@ public class fun extends JApplet {
 		
 		//exampleQT = gen.ER(16, 0.1);
 		
-		//exampleQT = new SparseGraph<Integer, Pair<Integer>>();
-		//fillGraphFromFile(exampleQT, "datasets/karate.txt");
+		exampleQT = new SparseGraph<Integer, Pair<Integer>>();
+		fillGraphFromFile(exampleQT, "datasets/karate.txt");
 		
-		exampleQT = gen.fromBipartiteFile("datasets/southernwomen");
+		//exampleQT = gen.fromBipartiteFile("datasets/southernwomen");
 	
 		//exampleQT = gen.manyInducedC4(6);
 		
@@ -78,20 +78,20 @@ public class fun extends JApplet {
 		//c.setbStruct(branchNoHP);
 		
 		qtKite<Integer> kite = new qtKite<Integer>(c);
-		//c.setbStruct(kite);
+		c.setbStruct(kite);
 		
-		qtBranchComponents<Integer> branchC = new qtBranchComponents<Integer>(c);
-		c.setbStruct(branchC);
+		//qtBranchComponents<Integer> branchC = new qtBranchComponents<Integer>(c);
+		//c.setbStruct(branchC);
 		
 		
-		Reduction<Integer> r = new edgeBoundReduction<Integer>(branchC);
+		Reduction<Integer> r = new edgeBoundReduction<Integer>(kite);
 		//branchNoHP.addReduction(r);
-		branchC.addReduction(r);
-		//kite.addReduction(r);
+		//branchC.addReduction(r);
+		kite.addReduction(r);
 		
-		Reduction<Integer> r2 = new commonC4Reduction<Integer>(branchC);
-		//kite.addReduction(r2);
-		branchC.addReduction(r2);
+		Reduction<Integer> r2 = new commonC4Reduction<Integer>(kite);
+		kite.addReduction(r2);
+		//branchC.addReduction(r2);
 		
 		YanSearch<Integer> yan = new YanSearch<Integer>();
 		
