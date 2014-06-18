@@ -7,7 +7,6 @@ import java.util.LinkedList;
 import qtUtils.branchingReturnC;
 import qtUtils.lexReturnC;
 import qtUtils.myEdge;
-import qtUtils.qtGenerate;
 import search.qtLBFS;
 import search.qtLBFSComponents;
 import abstractClasses.SearchResult;
