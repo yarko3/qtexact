@@ -48,21 +48,21 @@ public class fun extends JApplet {
 	{
 		Graph<Integer, Pair<Integer>> exampleQT;
 		qtGenerate<Integer> gen = new qtGenerate<Integer>();
-		exampleQT = gen.randomQT(50);
+		//exampleQT = gen.randomQT(50);
 		//may break it
-		exampleQT.addEdge(new Pair<Integer>(0, 6), 0, 6);
-		exampleQT.addEdge(new Pair<Integer>(8, 1), 8, 1);
-		exampleQT.addEdge(new Pair<Integer>(8, 5), 8, 5);
+		//exampleQT.addEdge(new Pair<Integer>(0, 6), 0, 6);
+		//exampleQT.addEdge(new Pair<Integer>(8, 1), 8, 1);
+		//exampleQT.addEdge(new Pair<Integer>(8, 5), 8, 5);
 		
-		exampleQT = gen.cliqueJoin(20, 30);
+		//exampleQT = gen.cliqueJoin(20, 30);
 		
-		exampleQT = qtGenerate.simpleC4();
+		//exampleQT = qtGenerate.simpleC4();
 		
 		//exampleQT = qtGenerate.westernElectricNetwork();
 		
 		//exampleQT = qtGenerate.nonQTEx3();
 		
-		exampleQT = gen.ER(15, 0.6);
+		//exampleQT = gen.ER(14, 0.76);
 		
 		exampleQT = new SparseGraph<Integer, Pair<Integer>>();
 		fillGraphFromFile(exampleQT, "datasets/karate.txt");
@@ -86,9 +86,9 @@ public class fun extends JApplet {
 		Reduction<Integer> r = new edgeBoundReduction<Integer>(kite);
 		//branchNoHP.addReduction(r);
 		//branchC.addReduction(r);
-		//kite.addReduction(r);
+		kite.addReduction(r);
 		
-		Reduction<Integer> r2 = new commonC4Reduction<Integer>(branchNoHP);
+		Reduction<Integer> r2 = new commonC4Reduction<Integer>(kite);
 		kite.addReduction(r2);
 		
 		
@@ -115,7 +115,7 @@ public class fun extends JApplet {
 		
 		System.out.println("\nNo heuristic: ");
 		start = System.currentTimeMillis();
-		exampleQT = c.branchStart(exampleQT, 8);
+		exampleQT = c.branchStart(exampleQT, 14);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		start = System.currentTimeMillis();

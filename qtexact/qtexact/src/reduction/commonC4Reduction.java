@@ -37,75 +37,72 @@ public class commonC4Reduction<V> extends Reduction<V>
 		int count = 0;
 		
 		
-		//look through every two non-neighbours
-		//ArrayList<V> vertices = bStruct.getSearch().orderVerticesNonDecreasingDegree(s.getG());
+		//look through first few two non-neighbours
 		
+		ArrayList<V> vertices = bStruct.getSearch().orderVerticesNonDecreasingDegree(s.getG());
 		
-		//vertices.addAll(s.getG().getVertices());
 		
 		
 		outer:
-		for (V v0 : s.getG().getVertices())
+		//for (V v0 : s.getG().getVertices())
+		for (int i = 1; i < 5; i++)
 		{
+			V v0 = vertices.get(i);
 			
 			if (s.getG().getNeighborCount(v0) < s.getMinMoves().getChanges().size() - s.getChanges().size())
 				continue;
 			
-			for (V n0 : s.getG().getNeighbors(v0))
+			for (int j = 0; j < i; j++)
 			{
-				for (V v1 : s.getG().getNeighbors(n0))
+				V v1 = vertices.get(j);
+				
+				if (!s.getG().isNeighbor(v0, v1))
 				{
-					if (v1 != v0)
+					//get all common neighbours
+					HashSet<V> all = new HashSet<V>();
+					ArrayList<V> common = new ArrayList<V>();
+					
+					all.addAll(s.getG().getNeighbors(v0));
+					
+					//get all the duplicates in common, while all neighbours are stored in all
+					for (V v : s.getG().getNeighbors(v1))
 					{
-						if (!s.getG().isNeighbor(v0, v1))
+						if (!all.add(v))
+							common.add(v);
+					}
+					
+					
+					for (int k = 0; k < common.size(); k++)
+					{
+						V temp = common.remove(k);
+						boolean flag = true;
+						for (V n : common)
 						{
-							//get all common neighbours
-							HashSet<V> all = new HashSet<V>();
-							ArrayList<V> common = new ArrayList<V>();
-							
-							all.addAll(s.getG().getNeighbors(v0));
-							
-							//get all the duplicates in common, while all neighbours are stored in all
-							for (V v : s.getG().getNeighbors(v1))
-							{
-								if (!all.add(v))
-									common.add(v);
-							}
-							
-							
-							for (int k = 0; k < common.size(); k++)
-							{
-								V temp = common.remove(k);
-								boolean flag = true;
-								for (V n : common)
-								{
-									if (!s.getG().isNeighbor(temp, n))
-										flag = false;
-								}
-								
-								if (flag == false)
-								{
-									common.add(k, temp);
-								}
-								else
-									k--;
-							}
-							
-							
-							//if number of induced C4s is greater than the allowed number of moves, add an edge
-							if (common.size() > s.getMinMoves().getChanges().size() - s.getChanges().size())
-							{
-								
-								//toApply.addLast(new myEdge<V>(new Pair<V>(v0, v1), true));
-								
-								s = bStruct.addResult(s, v0, v1);
-								count++;
-								
-								
-								if (count == s.getMinMoves().getChanges().size() - s.getChanges().size())
-									break outer;
-							}
+							if (!s.getG().isNeighbor(temp, n))
+								flag = false;
 						}
+						
+						if (flag == false)
+						{
+							common.add(k, temp);
+						}
+						else
+							k--;
+					}
+					
+					
+					//if number of induced C4s is greater than the allowed number of moves, add an edge
+					if (common.size() > s.getMinMoves().getChanges().size() - s.getChanges().size())
+					{
+						
+						//toApply.addLast(new myEdge<V>(new Pair<V>(v0, v1), true));
+						
+						s = bStruct.addResult(s, v0, v1);
+						count++;
+						
+						
+						if (count == s.getMinMoves().getChanges().size() - s.getChanges().size())
+							break outer;
 					}
 				}
 			}
