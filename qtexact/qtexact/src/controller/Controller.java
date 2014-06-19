@@ -181,19 +181,19 @@ public class Controller<V>
 		//increment the number of times this controller has branched
 		timesRun++;
 		
-//		System.out.println("Times run: " + timesRun);
-//		System.out.println("Bound: " + bound);
-//		System.out.println("Moves made: " + s.getChanges().size());
-//		System.out.println("Min moves: " + s.getMinMoves().getChanges().size());
-//		System.out.println("Size of graph: " + s.getG().getVertexCount());
-//		
-//		
-//		if (s.getMinMoves().getChanges().size() > globalBound)
-//		{
-//			System.out.println("Whoa: global bound " + globalBound);
-//			System.out.println("Moves made: " + s.getChanges().size());
-//			System.out.println();
-//		}
+		System.out.println("Times run: " + timesRun);
+		System.out.println("Bound: " + bound);
+		System.out.println("Moves made: " + s.getChanges().size());
+		System.out.println("Min moves: " + s.getMinMoves().getChanges().size());
+		System.out.println("Size of graph: " + s.getG().getVertexCount());
+		
+		
+		if (s.getMinMoves().getChanges().size() > globalBound)
+		{
+			System.out.println("Whoa: global bound " + globalBound);
+			System.out.println("Moves made: " + s.getChanges().size());
+			System.out.println();
+		}
 		
 		
 		

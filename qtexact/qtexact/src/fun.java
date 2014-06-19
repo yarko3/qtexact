@@ -135,11 +135,11 @@ public class fun extends JApplet {
 		System.out.println(yan.search(exampleQT));
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
-		c.setbStruct(branchC);
-		System.out.println("\nConnected component with no reductions: ");
-		start = System.currentTimeMillis();
-		c.branchStart(exampleQT, 10);
-		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+//		c.setbStruct(branchC);
+//		System.out.println("\nConnected component with no reductions: ");
+//		start = System.currentTimeMillis();
+//		c.branchStart(exampleQT, 10);
+//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 //		
 		c.setbStruct(branchNoHP);
 		System.out.println("\nNo heuristic without reductions: ");
