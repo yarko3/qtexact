@@ -69,7 +69,7 @@ public class fun extends JApplet {
 		//exampleQT = qtGenerate.nonQTEx3();
 		
 		//random graph join
-		//exampleQT = gen.erJoins(5, 5, 5, .9, .9, .9);
+		exampleQT = gen.erJoins(5, 5, 5, .9, .9, .9);
 		
 		//exampleQT = gen.ER(11, 0.2);
 		

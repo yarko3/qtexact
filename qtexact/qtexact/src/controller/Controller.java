@@ -158,7 +158,7 @@ public class Controller<V>
 		//current number of allowed moves
 		int bound = s.getMinMoves().getChanges().size() - s.getChanges().size();
 		
-		//check if bound allows any more moves
+		//check if bound allows any more moves (does not matter if current graph state is at target)
 		if (bound < 0)
 		{
 			if (output)
