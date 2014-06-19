@@ -31,7 +31,6 @@ import controller.Controller;
 import edu.uci.ics.jung.algorithms.cluster.EdgeBetweennessClusterer;
 import edu.uci.ics.jung.algorithms.layout.FRLayout;
 import edu.uci.ics.jung.graph.Graph;
-import edu.uci.ics.jung.graph.SparseGraph;
 import edu.uci.ics.jung.graph.util.Pair;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
@@ -65,12 +64,12 @@ public class fun extends JApplet {
 		
 		//exampleQT = qtGenerate.simpleC4();
 		
-		exampleQT = qtGenerate.westernElectricNetwork();
+		//exampleQT = qtGenerate.westernElectricNetwork();
 		
 		//exampleQT = qtGenerate.nonQTEx3();
 		
 		//random graph join
-		exampleQT = gen.erJoins(8, 8, 5, .9, .9, .9);
+		//exampleQT = gen.erJoins(5, 5, 5, .9, .9, .9);
 		
 		//exampleQT = gen.ER(11, 0.2);
 		
@@ -81,7 +80,7 @@ public class fun extends JApplet {
 	
 		//exampleQT = gen.manyInducedC4(6);
 		
-		//exampleQT = gen.houseStruct();
+		exampleQT = gen.houseStruct();
 		
 		
 //		exampleQT = new SparseGraph<Integer, Pair<Integer>>();
@@ -135,31 +134,28 @@ public class fun extends JApplet {
 		System.out.println(yan.search(exampleQT));
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
-		c.setbStruct(branchC);
-		System.out.println("\nConnected component with no reductions: ");
-		start = System.currentTimeMillis();
-		c.branchStart(exampleQT, 12);
-		System.out.println((System.currentTimeMillis()-start) / 1000.0);
-		
+//		c.setbStruct(branchC);
+//		System.out.println("\nConnected component with no reductions: ");
+//		start = System.currentTimeMillis();
+//		c.branchStart(exampleQT, 10);
+//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+//		
 		c.setbStruct(branchNoHP);
 		System.out.println("\nNo heuristic without reductions: ");
 		start = System.currentTimeMillis();
-		c.branchStart(exampleQT, 12);
+		c.branchStart(exampleQT, 10);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
-		
-		
 		
 		c.setbStruct(pan);
 		System.out.println("\npan: ");
 		start = System.currentTimeMillis();
-		c.branchStart(exampleQT, 12);
+		c.branchStart(exampleQT, 10);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
-		
 		
 		c.setbStruct(house);
 		System.out.println("\nHouse: ");
 		start = System.currentTimeMillis();
-		c.branchStart(exampleQT, 12);
+		c.branchStart(exampleQT, 10);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		start = System.currentTimeMillis();

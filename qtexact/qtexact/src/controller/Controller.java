@@ -160,8 +160,19 @@ public class Controller<V>
 		
 		//check if bound allows any more moves
 		if (bound < 0)
+		{
+			if (output)
+			{
+				//update global percent
+				globalPercent += s.getPercent();
+				if (globalPercent - percent > .01)
+				{
+					percent+=0.01;
+					System.out.println(Math.round(percent*100.0) + "%%%");
+				}
+			}
 			return s.getMinMoves();
-		
+		}
 		
 		//increment the number of times this controller has branched
 		timesRun++;
@@ -189,13 +200,13 @@ public class Controller<V>
 				globalPercent += s.getPercent();
 				if (globalPercent - percent > .01)
 				{
-					percent+=0.01;
+					percent = globalPercent;
 					System.out.println(Math.round(percent*100.0) + "%%");
 				}
 			}
 			
 			//update the minMoves list if this solution is better
-			if (s.getChanges().size() < s.getMinMoves().getChanges().size())
+			if (bound >= 0)
 			{
 				//make a new minMoves to store
 				branchingReturnC<V> newMin = new branchingReturnC<V>(s.getG(), s.getDeg(), Branch.clone.deepClone(s.getChanges()));
@@ -212,7 +223,7 @@ public class Controller<V>
 		else
 		{	
 			//only branch if current minMoves is longer than current state of search
-			if (s.getMinMoves().getChanges().size() > s.getChanges().size())
+			if (bound > 0)
 			{
 				branchingReturnC<V> rtn = bStruct.branchingRules(s, searchResult);
 				
@@ -233,7 +244,7 @@ public class Controller<V>
 					globalPercent += s.getPercent();
 					if (globalPercent - percent > .01)
 					{
-						percent+= 0.01;
+						percent = globalPercent;
 						System.out.println(Math.round(percent*100.0) + "%");
 					}
 				}
