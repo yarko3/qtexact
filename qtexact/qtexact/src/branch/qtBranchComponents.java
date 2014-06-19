@@ -20,7 +20,7 @@ import edu.uci.ics.jung.graph.util.Pair;
  *
  * @param <V>
  */
-public class qtBranchComponents<V> extends qtBranch<V> 
+public class qtBranchComponents<V> extends qtBranchNoHeuristic<V> 
 {
 	/**
 	 * constructor
@@ -60,7 +60,7 @@ public class qtBranchComponents<V> extends qtBranch<V>
 		//search yields only one connected component, branch on one component
 		if (lex.isConnected())
 		{
-			return rules(s, lex);
+			return super.branchingRules(s, lex);
 		}
 		//multiple connected components exist
 		else
@@ -119,7 +119,8 @@ public class qtBranchComponents<V> extends qtBranch<V>
 			
 			
 			//construct new minMoves from all old ones
-			min = new branchingReturnC<V>(s.getG(), s.getDeg(), min);
+			min = new branchingReturnC<V>(s.getG(), s.getDeg());
+			min.setMinMoves(min);
 			//throw all minMoves into a HashSet, so they don't have duplicates
 			HashSet<myEdge<V>> temp = new HashSet<myEdge<V>>();
 			for (branchingReturnC<V> r : results)

@@ -20,7 +20,7 @@ public class Controller<V>
 	private double globalPercent;
 	private double percent;
 	private boolean output;
-	
+	private int globalBound;
 	
 	
 	/**
@@ -117,6 +117,8 @@ public class Controller<V>
 		globalPercent = 0;
 		percent = 0;
 		timesRun = 0;
+		globalBound = bound;
+		
 		
 		//set up branching
 		branchingReturnC<V> goal = bStruct.setup(G, bound);
@@ -131,6 +133,8 @@ public class Controller<V>
 		Graph<V, Pair<V>> rtn = gen.applyMoves(Branch.clone.deepClone(goal.getG()), goal.getMinMoves().getChanges());
 		
 		System.out.println("Branching run: " + timesRun);
+		
+		
 		
 		//return QT graph if edit succeeds
 		if (bStruct.getSearch().isTarget(rtn))
@@ -176,6 +180,23 @@ public class Controller<V>
 		
 		//increment the number of times this controller has branched
 		timesRun++;
+		
+//		System.out.println("Times run: " + timesRun);
+//		System.out.println("Bound: " + bound);
+//		System.out.println("Moves made: " + s.getChanges().size());
+//		System.out.println("Min moves: " + s.getMinMoves().getChanges().size());
+//		System.out.println("Size of graph: " + s.getG().getVertexCount());
+//		
+//		
+//		if (s.getMinMoves().getChanges().size() > globalBound)
+//		{
+//			System.out.println("Whoa: global bound " + globalBound);
+//			System.out.println("Moves made: " + s.getChanges().size());
+//			System.out.println();
+//		}
+		
+		
+		
 		//set flag for whether this node has been reduced
 		boolean reduced = false;
 		

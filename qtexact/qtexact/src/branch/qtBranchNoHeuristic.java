@@ -80,60 +80,6 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 		//C4 has been found
 		if (searchResult.getCertificate().getFlag() == -1)
 		{
-			//result of adding 1 edge to break C4
-			//if we did not remove the edge that is about to be added
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(2)), false)))
-			{
-				if (output)
-				{
-					//change progress percent
-					s.setPercent(oldPercent / 8);
-				}
-				
-				
-				branchingReturnC<V> c4Add1 = controller.branch(addResult(s, lexResult.get(0), lexResult.get(2)));
-				//revert changes
-				revert(s);		
-				if (output)
-				{
-					//revert percent
-					s.setPercent(oldPercent);
-				}
-				
-				if (c4Add1.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
-				{
-					s.setMinMoves(c4Add1.getMinMoves());
-				}
-			}
-			else
-				if (output)
-					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 8);
-			
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false)))
-			{
-				if (output)
-				{
-					//change progress percent
-					s.setPercent(oldPercent / 8);
-				}
-				
-				branchingReturnC<V> c4Add2 = controller.branch(addResult(s, lexResult.get(1), lexResult.get(3)));
-				//revert changes
-				if (output)
-				{
-					s.setPercent(oldPercent);
-				}
-				
-				revert(s);
-				//update percentDone
-				if (c4Add2.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
-				{
-					s.setMinMoves(c4Add2.getMinMoves());
-				}
-			}
-			else
-				if (output)
-					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 8);
 			
 			//results of removing 2 edges to break C4
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)))
@@ -279,57 +225,67 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 				if (output)
 					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 8);
 			
-			return s.getMinMoves();
-		}
-		//P4 has been found
-		else
-		{
-			//add an edge to break P4
+			//result of adding 1 edge to break C4
+			//if we did not remove the edge that is about to be added
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(2)), false)))
 			{
 				if (output)
-					//change progress percent
-					s.setPercent(oldPercent / 5);
-				
-				branchingReturnC<V> p4Add0 = controller.branch(addResult(s, lexResult.get(0), lexResult.get(2)));
-				if (output)
-					s.setPercent(oldPercent);
-				
-				//revert changes
-				revert(s);
-				
-				if (p4Add0.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 				{
-					s.setMinMoves(p4Add0.getMinMoves());
+					//change progress percent
+					s.setPercent(oldPercent / 8);
+				}
+				
+				
+				branchingReturnC<V> c4Add1 = controller.branch(addResult(s, lexResult.get(0), lexResult.get(2)));
+				//revert changes
+				revert(s);		
+				if (output)
+				{
+					//revert percent
+					s.setPercent(oldPercent);
+				}
+				
+				if (c4Add1.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
+				{
+					s.setMinMoves(c4Add1.getMinMoves());
 				}
 			}
 			else
 				if (output)
-					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 5);
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 8);
 			
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false)))
 			{
 				if (output)
-					//change progress percent
-					s.setPercent(oldPercent / 5);
-				
-				branchingReturnC<V> p4Add1 = controller.branch(addResult(s, lexResult.get(1), lexResult.get(3)));
-				
-				if (output)
-					s.setPercent(oldPercent);
-				
-				//revert changes
-				revert(s);
-				
-				if (p4Add1.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
 				{
-					s.setMinMoves(p4Add1.getMinMoves());
+					//change progress percent
+					s.setPercent(oldPercent / 8);
+				}
+				
+				branchingReturnC<V> c4Add2 = controller.branch(addResult(s, lexResult.get(1), lexResult.get(3)));
+				//revert changes
+				if (output)
+				{
+					s.setPercent(oldPercent);
+				}
+				
+				revert(s);
+				//update percentDone
+				if (c4Add2.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
+				{
+					s.setMinMoves(c4Add2.getMinMoves());
 				}
 			}
 			else
 				if (output)
-					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 5);
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 8);
 			
+			
+			return s.getMinMoves();
+		}
+		//P4 has been found
+		else
+		{	
 			//remove an edge to break P4
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)))
 			{
@@ -396,6 +352,53 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 			else
 				if (output)
 					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 5);
+			
+			//add an edge to break P4
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(2)), false)))
+			{
+				if (output)
+					//change progress percent
+					s.setPercent(oldPercent / 5);
+				
+				branchingReturnC<V> p4Add0 = controller.branch(addResult(s, lexResult.get(0), lexResult.get(2)));
+				if (output)
+					s.setPercent(oldPercent);
+				
+				//revert changes
+				revert(s);
+				
+				if (p4Add0.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
+				{
+					s.setMinMoves(p4Add0.getMinMoves());
+				}
+			}
+			else
+				if (output)
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 5);
+			
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false)))
+			{
+				if (output)
+					//change progress percent
+					s.setPercent(oldPercent / 5);
+				
+				branchingReturnC<V> p4Add1 = controller.branch(addResult(s, lexResult.get(1), lexResult.get(3)));
+				
+				if (output)
+					s.setPercent(oldPercent);
+				
+				//revert changes
+				revert(s);
+				
+				if (p4Add1.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
+				{
+					s.setMinMoves(p4Add1.getMinMoves());
+				}
+			}
+			else
+				if (output)
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 5);
+			
 			
 			return s.getMinMoves();
 		}

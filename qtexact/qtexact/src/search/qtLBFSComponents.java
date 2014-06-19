@@ -43,6 +43,12 @@ public class qtLBFSComponents<V> extends qtLBFSNoHeuristic<V>
 			//split into connected components
 			Set<Set<V>> cComponents = cluster.transform(s.getG());
 			
+			if (cComponents.size() > 1)
+			{
+				System.out.println("Multiple components.");
+			}
+			
+			
 			lexReturnC<V> rtn = searchPrep(s);
 			rtn.setcComponents(cComponents);
 			rtn.setConnected(cComponents.size() == 1);

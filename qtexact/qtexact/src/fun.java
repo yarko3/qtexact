@@ -31,6 +31,7 @@ import controller.Controller;
 import edu.uci.ics.jung.algorithms.cluster.EdgeBetweennessClusterer;
 import edu.uci.ics.jung.algorithms.layout.FRLayout;
 import edu.uci.ics.jung.graph.Graph;
+import edu.uci.ics.jung.graph.SparseGraph;
 import edu.uci.ics.jung.graph.util.Pair;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
@@ -60,7 +61,7 @@ public class fun extends JApplet {
 		exampleQT.addEdge(new Pair<Integer>(8, 1), 8, 1);
 		exampleQT.addEdge(new Pair<Integer>(8, 5), 8, 5);
 		
-		//exampleQT = gen.cliqueJoin(20, 30);
+		exampleQT = gen.cliqueJoin(5, 5);
 		
 		//exampleQT = qtGenerate.simpleC4();
 		
@@ -69,7 +70,7 @@ public class fun extends JApplet {
 		//exampleQT = qtGenerate.nonQTEx3();
 		
 		//random graph join
-		exampleQT = gen.erJoins(5, 5, 5, .9, .9, .9);
+		exampleQT = gen.erJoins(10, 10, 5, .9, .9, .9);
 		
 		//exampleQT = gen.ER(11, 0.2);
 		
@@ -83,8 +84,8 @@ public class fun extends JApplet {
 		//exampleQT = gen.houseStruct();
 		
 		
-//		exampleQT = new SparseGraph<Integer, Pair<Integer>>();
-//		fillGraphFromFile(exampleQT, "datasets/grass_web.pairs");
+		//exampleQT = new SparseGraph<Integer, Pair<Integer>>();
+		//fillGraphFromFile(exampleQT, "datasets/grass_web.pairs");
 		
 		
 		//visualize(exampleQT);
