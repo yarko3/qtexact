@@ -167,7 +167,7 @@ public class Controller<V>
 				globalPercent += s.getPercent();
 				if (globalPercent - percent > .01)
 				{
-					percent+=0.01;
+					percent = globalPercent;
 					System.out.println(Math.round(percent*100.0) + "%%%");
 				}
 			}

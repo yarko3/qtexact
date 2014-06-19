@@ -76,11 +76,11 @@ public class fun extends JApplet {
 		//exampleQT = new SparseGraph<Integer, Pair<Integer>>();
 		//fillGraphFromFile(exampleQT, "datasets/karate.txt");
 		
-		//exampleQT = gen.fromBipartiteFile("datasets/southernwomen");
+		exampleQT = gen.fromBipartiteFile("datasets/southernwomen");
 	
 		//exampleQT = gen.manyInducedC4(6);
 		
-		exampleQT = gen.houseStruct();
+		//exampleQT = gen.houseStruct();
 		
 		
 //		exampleQT = new SparseGraph<Integer, Pair<Integer>>();
@@ -134,11 +134,11 @@ public class fun extends JApplet {
 		System.out.println(yan.search(exampleQT));
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
-//		c.setbStruct(branchC);
-//		System.out.println("\nConnected component with no reductions: ");
-//		start = System.currentTimeMillis();
-//		c.branchStart(exampleQT, 10);
-//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		c.setbStruct(branchC);
+		System.out.println("\nConnected component with no reductions: ");
+		start = System.currentTimeMillis();
+		c.branchStart(exampleQT, 10);
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 //		
 		c.setbStruct(branchNoHP);
 		System.out.println("\nNo heuristic without reductions: ");
@@ -155,7 +155,7 @@ public class fun extends JApplet {
 		c.setbStruct(house);
 		System.out.println("\nHouse: ");
 		start = System.currentTimeMillis();
-		c.branchStart(exampleQT, 10);
+		exampleQT = c.branchStart(exampleQT, 10);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		start = System.currentTimeMillis();
