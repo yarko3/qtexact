@@ -76,7 +76,7 @@ public class fun extends JApplet {
 		//exampleQT = new SparseGraph<Integer, Pair<Integer>>();
 		//fillGraphFromFile(exampleQT, "datasets/karate.txt");
 		
-		exampleQT = gen.fromBipartiteFile("datasets/southernwomen");
+		//exampleQT = gen.fromBipartiteFile("datasets/southernwomen");
 	
 		//exampleQT = gen.manyInducedC4(6);
 		
