@@ -76,8 +76,43 @@ public abstract class qtBranch<V> extends Branch<V>
 		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v0, v1), true));
 		
 		return s;
-		
 	}
+	
+	
+	public branchingReturnC<V> add2Result(branchingReturnC<V> s, V v0, V v1, V v2, V v3)
+	{
+		
+		//update degree sequence 
+		addEdge(s.getG(), s.getDeg(), v0, v1);
+		addEdge(s.getG(), s.getDeg(), v2, v3);
+		
+		
+		
+		//add edge to changes 
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v0, v1), true));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v2, v3), true));
+		
+		return s;
+	}
+	
+	
+	public branchingReturnC<V> addRemoveResult(branchingReturnC<V> s, V v0, V v1, V v2, V v3)
+	{
+		
+		//update degree sequence 
+		addEdge(s.getG(), s.getDeg(), v0, v1);
+		removeEdge(s.getG(), s.getDeg(), v2, v3);
+		
+		
+		
+		//add edge to changes 
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v0, v1), true));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v2, v3), false));
+		
+		return s;
+	}
+	
+	
 	/**
 	 * delete 2 edges to remove a C4
 	 * @param s search state
@@ -98,6 +133,26 @@ public abstract class qtBranch<V> extends Branch<V>
 		//add edge deletions to changes
 		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v0, v1), false));
 		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v2, v3), false));
+		
+		return s;
+		
+	}
+	
+	protected branchingReturnC<V> delete3Result(branchingReturnC<V> s, V v0, V v1, V v2, V v3, V v4, V v5)
+	{	
+		//update degree sequence (first edge)
+		removeEdge(s.getG(), s.getDeg(), v0, v1);
+		
+		//update degree sequence (second edge)
+		removeEdge(s.getG(), s.getDeg(), v2, v3);
+		
+		//update degree sequence (third edge)
+		removeEdge(s.getG(), s.getDeg(), v4, v5);
+		
+		//add edge deletions to changes
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v0, v1), false));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v2, v3), false));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v4, v5), false));
 		
 		return s;
 		
@@ -150,6 +205,11 @@ public abstract class qtBranch<V> extends Branch<V>
 		revert(s);
 	}
 	
+	protected void revert3(branchingReturnC<V> s)
+	{
+		revert2(s);
+		revert(s);
+	}
 	
 	
 	/**

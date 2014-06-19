@@ -20,8 +20,7 @@ import reduction.commonC4Reduction;
 import reduction.edgeBoundReduction;
 import search.YanSearch;
 import abstractClasses.Reduction;
-import branch.qtBranchComponents;
-import branch.qtBranchNoHeuristic;
+import branch.qtHouse;
 import branch.qtKite;
 import controller.Controller;
 import edu.uci.ics.jung.algorithms.cluster.EdgeBetweennessClusterer;
@@ -72,10 +71,16 @@ public class fun extends JApplet {
 	
 		//exampleQT = gen.manyInducedC4(6);
 		
+		//exampleQT = gen.houseStruct();
 		
 		Controller<Integer> c = new Controller<Integer>(null, true);
 		//qtBranchNoHeuristic<Integer> branchNoHP = new qtBranchNoHeuristic<Integer>(c);
 		//c.setbStruct(branchNoHP);
+		
+		
+		qtHouse<Integer> house = new qtHouse<Integer>(c);
+		c.setbStruct(house);
+		
 		
 		qtKite<Integer> kite = new qtKite<Integer>(c);
 		c.setbStruct(kite);
@@ -88,10 +93,13 @@ public class fun extends JApplet {
 		//branchNoHP.addReduction(r);
 		//branchC.addReduction(r);
 		kite.addReduction(r);
+		house.addReduction(r);
+		
 		
 		Reduction<Integer> r2 = new commonC4Reduction<Integer>(kite);
 		kite.addReduction(r2);
 		//branchC.addReduction(r2);
+		house.addReduction(r2);
 		
 		YanSearch<Integer> yan = new YanSearch<Integer>();
 		
@@ -103,6 +111,7 @@ public class fun extends JApplet {
 		start = System.currentTimeMillis();
 		cConnected.branchID(exampleQT, 1, 10);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);*/
+		
 		
 		/*System.out.println("\nIterative Deepening no heuristic: ");
 		start = System.currentTimeMillis();
@@ -116,7 +125,7 @@ public class fun extends JApplet {
 		
 		System.out.println("\nNo heuristic: ");
 		start = System.currentTimeMillis();
-		exampleQT = c.branchStart(exampleQT, 13);
+		exampleQT = c.branchStart(exampleQT, 11);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		start = System.currentTimeMillis();

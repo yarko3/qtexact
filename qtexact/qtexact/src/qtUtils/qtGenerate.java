@@ -511,5 +511,23 @@ public class qtGenerate<V>
 		return g;
 		
 	}
+	
+	public Graph<Integer, Pair<Integer>> houseStruct()
+	{
+		Graph<Integer, Pair<Integer>> g = new SparseGraph<Integer, Pair<Integer>>();
+		
+		g.addEdge(new Pair<Integer>(0, 1), 0, 1);
+		g.addEdge(new Pair<Integer>(1, 2), 1, 2);
+		g.addEdge(new Pair<Integer>(2, 3), 2, 3);
+		g.addEdge(new Pair<Integer>(3, 4), 3, 4);
+		g.addEdge(new Pair<Integer>(4, 0), 4, 0);
+		g.addEdge(new Pair<Integer>(4, 1), 4, 1);
+
+		//g.addEdge(new Pair<Integer>(1, 3), 1, 3);
+		
+		return g;
+		
+		
+	}
 }
 	
