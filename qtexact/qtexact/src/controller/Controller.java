@@ -113,6 +113,11 @@ public class Controller<V>
 	 */
 	public Graph<V, Pair<V>> branchStart(Graph<V, Pair<V>> G, int bound)
 	{
+		//initialize percent
+		globalPercent = 0;
+		percent = 0;
+		timesRun = 0;
+		
 		//set up branching
 		branchingReturnC<V> goal = bStruct.setup(G, bound);
 		
@@ -176,7 +181,7 @@ public class Controller<V>
 				if (globalPercent - percent > .01)
 				{
 					percent+=0.01;
-					System.out.println((int)(percent*100) + "%");
+					System.out.println(Math.round(percent*100.0) + "%");
 				}
 			}
 			
@@ -225,7 +230,7 @@ public class Controller<V>
 					if (globalPercent - percent > .01)
 					{
 						percent+= 0.01;
-						System.out.println(((int) (percent*100)) + "%");
+						System.out.println(Math.round(percent*100.0) + "%%");
 					}
 				}
 				

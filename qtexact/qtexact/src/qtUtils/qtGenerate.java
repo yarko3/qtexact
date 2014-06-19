@@ -526,8 +526,6 @@ public class qtGenerate<V>
 		//g.addEdge(new Pair<Integer>(1, 3), 1, 3);
 		
 		return g;
-		
-		
 	}
 }
 	

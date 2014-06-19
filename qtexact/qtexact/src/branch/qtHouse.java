@@ -549,7 +549,7 @@ public class qtHouse<V> extends qtKite<V>
 				
 				
 				//look for common neighbours that fit house constraint
-				HashSet<V> all = commonNeighbours(s, v0, v1);;
+				HashSet<V> all = commonNeighbours(s, v0, v1);
 				
 				//check for no edges to the rest of c4 from common neighbours
 				HashSet<V> common = new HashSet<V>();
@@ -625,53 +625,6 @@ public class qtHouse<V> extends qtKite<V>
 		Certificate<V> obstruction = searchResult.getCertificate();
 		
 		
-		if (s.getG().isNeighbor(oVert.get(0), oVert.get(2)))
-		{
-			//find corner of the house
-			
-			//look through common neighbours of first and last node of P4 as well as 2nd and last
-			
-			//option 1
-			V v0 = oVert.get(0);
-			V v1 = oVert.get(3);
-			
-			HashSet<V> common = commonNeighbours(s, v0, v1);
-			
-			for (V n : common)
-			{
-				if (!s.getG().isNeighbor(n, oVert.get(2)) && !s.getG().isNeighbor(n, oVert.get(1)))
-				{
-					//a house has been found
-					oVert.add(n);
-					oVert.add(oVert.remove(0));
-					obstruction.setFlag(-4);
-					obstruction.setVertices(oVert);
-					return obstruction;
-				}
-			}
-			
-			
-			//option 2
-			v0 = oVert.get(1);
-			
-			common = commonNeighbours(s, v0, v1);
-			
-			for (V n : common)
-			{
-				if (!s.getG().isNeighbor(n, oVert.get(2)) && !s.getG().isNeighbor(n, oVert.get(0)))
-				{
-					//a house has been found
-					oVert.add(2, n);
-					oVert.add(oVert.remove(3));
-					obstruction.setFlag(-4);
-					obstruction.setVertices(oVert);
-					return obstruction;
-				}
-			}
-			
-		}
-		
-		//option 3
 		HashSet<V> common = commonNeighbours(s, oVert.get(0), oVert.get(1), oVert.get(3));
 		
 		for (V n : common)

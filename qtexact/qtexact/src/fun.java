@@ -62,7 +62,7 @@ public class fun extends JApplet {
 		
 		//exampleQT = qtGenerate.nonQTEx3();
 		
-		//exampleQT = gen.ER(16, 0.1);
+		exampleQT = gen.ER(16, 0.5);
 		
 		exampleQT = new SparseGraph<Integer, Pair<Integer>>();
 		fillGraphFromFile(exampleQT, "datasets/karate.txt");
@@ -81,25 +81,33 @@ public class fun extends JApplet {
 		qtHouse<Integer> house = new qtHouse<Integer>(c);
 		c.setbStruct(house);
 		
-		
 		qtKite<Integer> kite = new qtKite<Integer>(c);
-		c.setbStruct(kite);
+		
+		//qtKite<Integer> kite = new qtKite<Integer>(c);
+		//c.setbStruct(kite);
 		
 		//qtBranchComponents<Integer> branchC = new qtBranchComponents<Integer>(c);
 		//c.setbStruct(branchC);
 		
 		
-		Reduction<Integer> r = new edgeBoundReduction<Integer>(kite);
+		Reduction<Integer> rHouse = new edgeBoundReduction<Integer>(house);
 		//branchNoHP.addReduction(r);
 		//branchC.addReduction(r);
-		kite.addReduction(r);
-		house.addReduction(r);
+		//kite.addReduction(r);
+		house.addReduction(rHouse);
 		
 		
-		Reduction<Integer> r2 = new commonC4Reduction<Integer>(kite);
-		kite.addReduction(r2);
+		Reduction<Integer> r2House = new commonC4Reduction<Integer>(house);
+		//kite.addReduction(r2);
 		//branchC.addReduction(r2);
-		house.addReduction(r2);
+		house.addReduction(r2House);
+		
+		Reduction<Integer> rKite = new edgeBoundReduction<Integer>(kite);
+		kite.addReduction(rKite);
+		
+		
+		Reduction<Integer> r2Kite = new commonC4Reduction<Integer>(kite);
+		kite.addReduction(r2Kite);
 		
 		YanSearch<Integer> yan = new YanSearch<Integer>();
 		
@@ -123,10 +131,20 @@ public class fun extends JApplet {
 		cConnected.branchStart(exampleQT, 10);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);*/
 		
-		System.out.println("\nNo heuristic: ");
+		
+		
+		System.out.println("\nHouse: ");
 		start = System.currentTimeMillis();
-		exampleQT = c.branchStart(exampleQT, 11);
+		c.branchStart(exampleQT, 12);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		
+		c.setbStruct(kite);
+		
+		System.out.println("\nKite: ");
+		start = System.currentTimeMillis();
+		exampleQT = c.branchStart(exampleQT, 12);
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+	
 		
 		start = System.currentTimeMillis();
 		System.out.println(yan.search(exampleQT));
