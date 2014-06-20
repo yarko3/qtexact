@@ -471,8 +471,25 @@ public abstract class qtBranch<V> extends Branch<V>
 		
 	}
 	
-	
-	public Certificate<V> findStructures(branchingReturnC<V> s, SearchResult<V> searchResult)
+	/**
+	 * find forbidden structures
+	 * 
+	 * Flag index:
+	 * -1 C4
+	 * -2 P4
+	 * -3 4 pan
+	 * -4 house
+	 * -5 P5
+	 * -6 fork
+	 * -7 3 pan (extra node on handle)
+	 * -8 C5
+	 * -9 kite
+	 * 
+	 * @param s
+	 * @param searchResult
+	 * @return
+	 */
+	public SearchResult<V> findStructures(branchingReturnC<V> s, SearchResult<V> searchResult)
 	{
 		Certificate<V> obstruction = searchResult.getCertificate();
 		ArrayList<V> vertices = obstruction.getVertices();
@@ -496,17 +513,24 @@ public abstract class qtBranch<V> extends Branch<V>
 			hash.remove(v);
 		
 		
-		//if C4 was found
-		if (obstruction.getFlag() == -1)
-		{	
-			//look for a 4 pan
-			for (V n : hash.keySet())
-			{
-				if (hash.get(n) == 1)
+		for (V n : hash.keySet())
+		{
+			//number of neighbours of n in obstruction
+			int nVal = hash.get(n);
+			
+			
+			//if C4 was found
+			if (obstruction.getFlag() == -1)
+			{	
+				if (nVal == 1)
+				{
 					//a 4 pan has been found
-					return construct4Pan(s, searchResult, n);
+					searchResult.setCertificate(construct4Pan(s, searchResult, n));
+					return searchResult;
+				}
 				
-				else if (hash.get(n) == 2)
+				
+				else if (nVal == 2)
 				{
 					//look for a house
 					for (int i = 0; i < vertices.size(); i++)
@@ -526,7 +550,7 @@ public abstract class qtBranch<V> extends Branch<V>
 								}
 								
 								obstruction.setFlag(-4);
-								return obstruction;
+								return searchResult;
 								
 							}
 						}
@@ -534,16 +558,104 @@ public abstract class qtBranch<V> extends Branch<V>
 				}
 			}
 			
-			
+			//if P4 was found
+			if (obstruction.getFlag() == -2)
+			{
+				if (nVal == 1)
+				{
+					//either a P5 or a fork has been found
+					if (s.getG().isNeighbor(vertices.get(0), n) || s.getG().isNeighbor(vertices.get(3), n))
+					{
+						//a P5 has been found
+						vertices.add(n);
+						obstruction.setFlag(-5);
+						
+						return searchResult;
+					}
+					else
+					{
+						//a fork has been found
+						vertices.add(n);
+						obstruction.setFlag(-6);
+						
+						return searchResult;
+					}
+				}
+				else if (nVal == 2)
+				{
+					//look for 4 pan
+					if ((s.getG().isNeighbor(vertices.get(0), n) && s.getG().isNeighbor(vertices.get(2), n)) ||
+							(s.getG().isNeighbor(vertices.get(1), n) && s.getG().isNeighbor(vertices.get(3), n)))
+					{
+						searchResult.setCertificate(construct4Pan(s, searchResult, n));
+					}
+					
+					//look for a C5
+					if ((s.getG().isNeighbor(vertices.get(0), n) && s.getG().isNeighbor(vertices.get(3), n)))
+					{
+						vertices.add(n);
+						obstruction.setFlag(-8);
+						return searchResult;
+					}
+					
+					//look for a 3 pan with extra node on handle
+					if ((s.getG().isNeighbor(vertices.get(0), n) && s.getG().isNeighbor(vertices.get(1), n)) ||
+							(s.getG().isNeighbor(vertices.get(2), n) && s.getG().isNeighbor(vertices.get(3), n)))
+					{
+						if (s.getG().isNeighbor(vertices.get(0), n))
+						{
+							Collections.reverse(vertices);
+						}
+						vertices.add(n);
+						
+						obstruction.setFlag(-7);
+						return searchResult;
+					}
+				}
+				else if (nVal == 3)
+				{
+					//look for a kite
+					if (!s.getG().isNeighbor(vertices.get(0), n) || !s.getG().isNeighbor(vertices.get(3), n))
+					{
+						if (!s.getG().isNeighbor(vertices.get(0), n))
+						{
+							vertices.add(n);
+							
+							obstruction.setFlag(-9);
+							return searchResult;
+						}
+						else
+						{
+							Collections.reverse(vertices);
+							vertices.add(n);
+							obstruction.setFlag(-9);
+							return searchResult;
+							
+						}
+					}
+					//a house is found
+					else
+					{
+						if (s.getG().isNeighbor(vertices.get(1), n))
+						{
+							vertices.add(n);
+							obstruction.setFlag(-4);
+							return searchResult;
+						}
+						else
+						{
+							Collections.reverse(vertices);
+							vertices.add(n);
+							obstruction.setFlag(-4);
+							return searchResult;
+						}
+					}
+					
+				}
+			}
 		}
-		
-		//if P4 was found
-		if (obstruction.getFlag() == -2)
-		{
-			
-		}
-		
-		return obstruction;
+		//no better structures found
+		return searchResult;
 		
 	}
 	
