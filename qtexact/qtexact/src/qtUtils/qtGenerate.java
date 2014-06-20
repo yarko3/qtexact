@@ -523,9 +523,12 @@ public class qtGenerate<V>
 		g.addEdge(new Pair<Integer>(4, 0), 4, 0);
 		g.addEdge(new Pair<Integer>(4, 1), 4, 1);
 
-		//g.addEdge(new Pair<Integer>(1, 3), 1, 3);
+		g.addEdge(new Pair<Integer>(0, 2), 0, 2);
+		g.addEdge(new Pair<Integer>(0, 3), 0, 3);
 		
 		return g;
 	}
+	
+	
 }
 	

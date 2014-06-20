@@ -46,20 +46,25 @@ public class edgeBoundReduction<V> extends Reduction<V>
 				//remove edge
 				toDo.add(new myEdge<V>(e, false));
 				
-				//make deletion
-				//s = bStruct.deleteResult(s, e.getFirst(), e.getSecond());
-			
-				
 				
 				//if no more reduction steps are allowed
-				if (toDo.size() >= s.getMinMoves().getChanges().size() - s.getChanges().size())
+				if (toDo.size() > s.getMinMoves().getChanges().size() - s.getChanges().size())
 					break;
 			}
 		}
 		
-		//store the number of last reduction deletions
-		stack.push(toDo.size());
-		bStruct.applyMoves(s, toDo);
+		//if too many moves need to be done
+		if (toDo.size() > s.getMinMoves().getChanges().size() - s.getChanges().size())
+		{
+			stack.push(0);
+			s = s.getMinMoves();
+		}
+		else
+		{
+			//store the number of last reduction deletions
+			stack.push(toDo.size());
+			bStruct.applyMoves(s, toDo);
+		}
 		
 		
 		return s;

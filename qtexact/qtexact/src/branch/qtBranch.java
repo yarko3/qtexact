@@ -2,14 +2,18 @@ package branch;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 
-import abstractClasses.Branch;
-import controller.Controller;
 import qtUtils.branchingReturnC;
 import qtUtils.myEdge;
 import search.qtLBFS;
+import abstractClasses.Branch;
+import abstractClasses.Certificate;
+import abstractClasses.SearchResult;
+import controller.Controller;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.SparseGraph;
 import edu.uci.ics.jung.graph.util.Pair;
@@ -465,6 +469,140 @@ public abstract class qtBranch<V> extends Branch<V>
 		
 		return common;
 		
+	}
+	
+	
+	public Certificate<V> findStructures(branchingReturnC<V> s, SearchResult<V> searchResult)
+	{
+		Certificate<V> obstruction = searchResult.getCertificate();
+		ArrayList<V> vertices = obstruction.getVertices();
+		
+		HashMap<V, Integer> hash = new HashMap<V, Integer>();
+		
+		//add one for every common neighbour into hash
+		for (V v : vertices)
+		{
+			for (V n : s.getG().getNeighbors(v))
+			{
+				int entry = 1;
+				if (hash.containsKey(n))
+					entry = hash.get(n) + 1;
+				hash.put(n, entry);
+			}
+		}
+		
+		//remove vertices of structure from hash
+		for (V v : vertices)
+			hash.remove(v);
+		
+		
+		//if C4 was found
+		if (obstruction.getFlag() == -1)
+		{	
+			//look for a 4 pan
+			for (V n : hash.keySet())
+			{
+				if (hash.get(n) == 1)
+					//a 4 pan has been found
+					return construct4Pan(s, searchResult, n);
+				
+				else if (hash.get(n) == 2)
+				{
+					//look for a house
+					for (int i = 0; i < vertices.size(); i++)
+					{
+						V v = vertices.get(i);
+						if (s.getG().isNeighbor(v, n))
+						{
+							V next = vertices.get((i + 1) % 4);
+							//check next vertex for adjacency
+							if (s.getG().isNeighbor(n, next))
+							{
+								//a house has been found, rotate it into shape
+								vertices.add(0, n);
+								while (vertices.get(1) != next)
+								{
+									vertices.add(1, obstruction.getVertices().remove(4));
+								}
+								
+								obstruction.setFlag(-4);
+								return obstruction;
+								
+							}
+						}
+					}
+				}
+			}
+			
+			
+		}
+		
+		//if P4 was found
+		if (obstruction.getFlag() == -2)
+		{
+			
+		}
+		
+		return obstruction;
+		
+	}
+	
+	private Certificate<V> construct4Pan(branchingReturnC<V> s, SearchResult<V> searchResult, V n)
+	{
+		Certificate<V> obstruction = searchResult.getCertificate();
+		ArrayList<V> vertices = obstruction.getVertices();
+		
+		//a 4 pan found from a C4
+		if (obstruction.getFlag() == -1)
+		{
+			V common = null;
+			int cIndex;
+			
+			//find the vertex adjacent in structure
+			for (cIndex = 0; cIndex < vertices.size(); cIndex++)
+			{
+				V v = vertices.get(cIndex);
+				if (s.getG().isNeighbor(n, v))
+				{
+					common = v;
+					break;
+				}
+			}
+			
+			//update obstruction
+			obstruction.getVertices().add(0, n);
+			
+			//rotate C4 into proper shape
+			while (obstruction.getVertices().get(1) != common)
+			{
+				obstruction.getVertices().add(1, obstruction.getVertices().remove(4));
+			}
+			
+			obstruction.setFlag(-3);
+			
+			return obstruction;
+		}
+		//a pan is found from a P4
+		else
+		{
+			//if n is closer to the front of the obstruction
+			if (s.getG().isNeighbor(vertices.get(0), n))
+			{
+				//reverse obstruction order
+				Collections.reverse(obstruction.getVertices());
+				
+				obstruction.getVertices().add(4, n);
+				obstruction.setFlag(-3);
+				return obstruction;
+			}
+			else
+			{
+				obstruction.getVertices().add(4, n);
+				obstruction.setFlag(-3);
+				return obstruction;
+			}
+		}
+			
 	}
 
 }

@@ -71,7 +71,7 @@ public class fun extends JApplet {
 	
 		//exampleQT = gen.manyInducedC4(6);
 		
-		//exampleQT = gen.houseStruct();
+		exampleQT = gen.houseStruct();
 		
 		Controller<Integer> c = new Controller<Integer>(null, true);
 		//qtBranchNoHeuristic<Integer> branchNoHP = new qtBranchNoHeuristic<Integer>(c);
@@ -133,18 +133,19 @@ public class fun extends JApplet {
 		
 		
 		
-		System.out.println("\nHouse: ");
+		
+		c.setbStruct(kite);
+		System.out.println("\nKite: ");
 		start = System.currentTimeMillis();
 		c.branchStart(exampleQT, 12);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
-		c.setbStruct(kite);
 		
-		System.out.println("\nKite: ");
+		c.setbStruct(house);
+		System.out.println("\nHouse: ");
 		start = System.currentTimeMillis();
-		exampleQT = c.branchStart(exampleQT, 12);
+		c.branchStart(exampleQT, 12);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
-	
 		
 		start = System.currentTimeMillis();
 		System.out.println(yan.search(exampleQT));
