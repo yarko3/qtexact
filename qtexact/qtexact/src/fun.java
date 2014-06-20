@@ -21,7 +21,7 @@ import reduction.edgeBoundReduction;
 import search.YanSearch;
 import abstractClasses.Reduction;
 import branch.qtHouse;
-import branch.qtKite;
+import branch.qtPan;
 import controller.Controller;
 import edu.uci.ics.jung.algorithms.cluster.EdgeBetweennessClusterer;
 import edu.uci.ics.jung.algorithms.layout.FRLayout;
@@ -81,7 +81,7 @@ public class fun extends JApplet {
 		qtHouse<Integer> house = new qtHouse<Integer>(c);
 		c.setbStruct(house);
 		
-		qtKite<Integer> kite = new qtKite<Integer>(c);
+		qtPan<Integer> kite = new qtPan<Integer>(c);
 		
 		//qtKite<Integer> kite = new qtKite<Integer>(c);
 		//c.setbStruct(kite);

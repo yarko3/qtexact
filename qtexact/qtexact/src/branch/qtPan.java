@@ -12,15 +12,15 @@ import controller.Controller;
 import edu.uci.ics.jung.graph.util.Pair;
 
 /**
- * Branching on a kite formation
+ * Branching on a Pan formation
  * @author Yaroslav Senyuta
  *
  * @param <V>
  */
-public class qtKite<V> extends qtBranchNoHeuristic<V> 
+public class qtPan<V> extends qtBranchNoHeuristic<V> 
 {
 
-	public qtKite(Controller<V> controller) {
+	public qtPan(Controller<V> controller) {
 		super(controller);
 	}
 	
@@ -29,15 +29,15 @@ public class qtKite<V> extends qtBranchNoHeuristic<V>
 	public branchingReturnC<V> branchingRules(branchingReturnC<V> s, SearchResult<V> searchResult)
 	{
 		//update certificate
-		searchResult.setCertificate(hasKite(s, searchResult));
+		searchResult.setCertificate(hasPan(s, searchResult));
 		
-		//if a kite has been found, use new branching rules
+		//if a Pan has been found, use new branching rules
 		if (searchResult.getCertificate().getFlag() == -3)
 		{
 			ArrayList<V> lexResult = searchResult.getCertificate().getVertices();
 			double oldPercent = s.getPercent();
 			
-			//kite branching
+			//Pan branching
 			//add one edge on C4
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false)))
 			{
@@ -223,13 +223,13 @@ public class qtKite<V> extends qtBranchNoHeuristic<V>
 	
 	
 	/**
-	 * attempt to find kite formation from obstruction
+	 * attempt to find Pan formation from obstruction
 	 * 
 	 * @param s search state
 	 * @param searchResult search result
-	 * @return kite certificate or original certificate
+	 * @return Pan certificate or original certificate
 	 */
-	private Certificate<V> hasKite(branchingReturnC<V> s, SearchResult<V> searchResult)
+	private Certificate<V> hasPan(branchingReturnC<V> s, SearchResult<V> searchResult)
 	{
 		
 		Certificate<V> obstruction = searchResult.getCertificate();
@@ -252,7 +252,7 @@ public class qtKite<V> extends qtBranchNoHeuristic<V>
 					if (temp != v)
 						all.removeAll(s.getG().getNeighbors(temp));
 				}
-				//a kite has been found
+				//a Pan has been found
 				if (!all.isEmpty())
 				{
 					//change certificate
@@ -292,7 +292,7 @@ public class qtKite<V> extends qtBranchNoHeuristic<V>
 			all.removeAll(obstruction.getVertices());
 			
 			
-			//a kite has been found
+			//a Pan has been found
 			if (!all.isEmpty())
 			{
 				//reverse obstruction order
@@ -321,7 +321,7 @@ public class qtKite<V> extends qtBranchNoHeuristic<V>
 			
 			all.removeAll(obstruction.getVertices());
 			
-			//a kite has been found
+			//a Pan has been found
 			if (!all.isEmpty())
 			{
 				obstruction.getVertices().add(4, all.iterator().next());

@@ -11,7 +11,7 @@ import abstractClasses.SearchResult;
 import controller.Controller;
 import edu.uci.ics.jung.graph.util.Pair;
 
-public class qtHouse<V> extends qtKite<V> 
+public class qtHouse<V> extends qtBranchNoHeuristic<V> 
 {
 
 	public qtHouse(Controller<V> controller) {

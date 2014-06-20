@@ -52,7 +52,7 @@ public class edgeBoundReduction<V> extends Reduction<V>
 				
 				
 				//if no more reduction steps are allowed
-				if (toDo.size() == s.getMinMoves().getChanges().size() - s.getChanges().size())
+				if (toDo.size() >= s.getMinMoves().getChanges().size() - s.getChanges().size())
 					break;
 			}
 		}

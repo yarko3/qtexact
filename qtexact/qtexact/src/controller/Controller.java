@@ -155,12 +155,21 @@ public class Controller<V>
 	 */
 	public branchingReturnC<V> branch(branchingReturnC<V> s)
 	{
+		//current number of allowed moves
+		int bound = s.getMinMoves().getChanges().size() - s.getChanges().size();
+		
+		//check if bound allows any more moves
+		if (bound <= 0)
+			return s.getMinMoves();
+		
+		
 		//increment the number of times this controller has branched
 		timesRun++;
 		//set flag for whether this node has been reduced
 		boolean reduced = false;
 		
-		if ((bStruct.getReductions() != null))
+		//if branch has a reduction and bound allows more moves, reduce
+		if (bStruct.getReductions() != null && bound > 0)
 		{
 			//run reduction	
 			reduced = true;
@@ -217,9 +226,7 @@ public class Controller<V>
 				
 				
 				return rtn;
-			}
-			
-			
+			}	
 			//min moves is a better solution
 			else
 			{

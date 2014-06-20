@@ -102,7 +102,7 @@ public class commonC4Reduction<V> extends Reduction<V>
 						count++;
 						
 						
-						if (count == s.getMinMoves().getChanges().size() - s.getChanges().size())
+						if (count >= s.getMinMoves().getChanges().size() - s.getChanges().size())
 							break outer;
 					}
 				}
