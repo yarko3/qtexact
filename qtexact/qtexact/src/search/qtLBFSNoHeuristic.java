@@ -65,7 +65,7 @@ public class qtLBFSNoHeuristic<V> extends qtLBFS<V>
 				//quasi-threshold check (should return C4 or P4)
 				if (j != 0 && !pp.isEmpty())
 				{
-					return new lexReturnC<V>(null, qtCertificate(G, x, pp.get(0), s), false, false, null);
+					return new lexReturnC<V>(null, qtCertificate(G, x, pp.get(0), s), false, true, null);
 				}
 				if (!pp.isEmpty())
 				{
@@ -76,7 +76,7 @@ public class qtLBFSNoHeuristic<V> extends qtLBFS<V>
 			}
 		}
 		//return search results
-		return new lexReturnC<V>(s, null, true, false, null);
+		return new lexReturnC<V>(s, null, true, true, null);
 	}
 
 }

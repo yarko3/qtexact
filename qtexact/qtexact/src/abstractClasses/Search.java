@@ -24,5 +24,7 @@ public abstract class Search<V>
 	 * @return
 	 */
 	public abstract SearchResult<V> searchPrep(branchingReturnC<V> s);
+	
+	public abstract SearchResult<V> search(branchingReturnC<V> s);
 
 }

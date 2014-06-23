@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.Set;
 
 import qtUtils.branchingReturnC;
 import qtUtils.myEdge;
@@ -331,7 +332,7 @@ public abstract class qtBranch<V> extends Branch<V>
 		return c;
 	}
 	
-	protected Graph<V, Pair<V>> connectedCFromVertexSet(Graph<V, Pair<V>> G, HashSet<V> l)
+	protected Graph<V, Pair<V>> connectedCFromVertexSet(Graph<V, Pair<V>> G, Set<V> l)
 	{
 		Graph<V, Pair<V>> c = new SparseGraph<V, Pair<V>>();
 		HashSet<Pair<V>> tempSet = new HashSet<Pair<V>>();

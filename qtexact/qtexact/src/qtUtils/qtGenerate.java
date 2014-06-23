@@ -428,6 +428,32 @@ public class qtGenerate<V>
 		return graph;
 	}
 	
+	
+	public static Graph<Integer, Pair<Integer>> ER(int vertices, double p, int start)
+	{
+		Random rand = new Random();
+		
+		Graph<Integer, Pair<Integer>> graph = new SparseGraph<Integer, Pair<Integer>>();
+		
+		for (int i = start; i < vertices+start; i++)
+		{
+			graph.addVertex(i);
+		}
+		for (Integer i : graph.getVertices())
+		{
+			for (Integer j : graph.getVertices())
+			{
+				if (rand.nextDouble() < p)
+				{
+					if (i != j)
+						graph.addEdge(new Pair<Integer>(i, j), i, j);
+				}
+			}
+		}
+		
+		return graph;
+	}
+	
 	public Graph<V, Pair<V>> applyMoves(Graph<V, Pair<V>> graph, LinkedList<myEdge<V>> list)
 	{
 		for (myEdge<V> m : list)
@@ -566,5 +592,34 @@ public class qtGenerate<V>
 		
 		return true;
 	}
+	
+	public Graph<Integer, Pair<Integer>> erJoins(int n0, int n1, int n2, double p0, double p1, double p2)
+	{
+		//generate graphs
+		Graph<Integer, Pair<Integer>> g0 = ER(n0, p0);
+		Graph<Integer, Pair<Integer>> g1 = ER(n1, p1, n0);
+		Graph<Integer, Pair<Integer>> g2 = ER(n2, p2, n0+n1);
+		
+		
+		g0.addEdge(new Pair<Integer>(0, n0), 0, n0);
+		g0.addEdge(new Pair<Integer>(n0-1, n0), n0-1, n0);
+		g1.addEdge(new Pair<Integer>(n0, n0+n1), n0, n0+n1);
+		g1.addEdge(new Pair<Integer>(n0+n1-1, n0+n1), n0+n1-1, n0+n1);
+		g1.addEdge(new Pair<Integer>(n0+n1, 0), n0+n1, 0);
+		g1.addEdge(new Pair<Integer>(n0+n1+n2-1, 0), n0+n1+n2-1, 0);
+		
+		LinkedList<Graph<Integer, Pair<Integer>>> list = new LinkedList<Graph<Integer, Pair<Integer>>>();
+		list.add(g0);
+		list.add(g1);
+		list.add(g2);
+		
+		return graphJoinP(list);
+		
+		
+		
+		
+	}
+	
+	
 }
 	

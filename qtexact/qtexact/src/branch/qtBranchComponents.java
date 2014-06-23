@@ -3,11 +3,11 @@ package branch;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.Set;
 
 import qtUtils.branchingReturnC;
 import qtUtils.lexReturnC;
 import qtUtils.myEdge;
-import qtUtils.qtGenerate;
 import search.qtLBFS;
 import search.qtLBFSComponents;
 import abstractClasses.SearchResult;
@@ -65,30 +65,33 @@ public class qtBranchComponents<V> extends qtBranch<V>
 		//multiple connected components exist
 		else
 		{
-			//make an initial clone of graph to compare to later
-			//TODO remove later
-			Graph<V, Pair<V>> copy = clone.deepClone(s.getG());
-			
+			//bound
+			int bound = s.getMinMoves().getChanges().size() - s.getChanges().size();
 			
 			
 			//build graphs from connected components
-			Graph<V, Pair<V>> gWithForbidden = connectedCFromVertexSet(s.getG(), lex.getcComponents().removeLast());
+//			Graph<V, Pair<V>> gWithForbidden = connectedCFromVertexSet(s.getG(), lex.getcComponents().removeLast());
 			
 			LinkedList<Graph<V, Pair<V>>> cGraphs = new LinkedList<Graph<V, Pair<V>>>();
 			LinkedList<branchingReturnC<V>> results = new LinkedList<branchingReturnC<V>>();
-			for (HashSet<V> l : lex.getcComponents())
+			for (Set<V> l : lex.getcComponents())
 			{
 				cGraphs.add(connectedCFromVertexSet(s.getG(), l));
 			}
 			//branch on known forbidden structure
 			
 			//fill new minMoves with entire edge set
+			branchingReturnC<V> min = null;
 			
-			branchingReturnC<V> min = new branchingReturnC<V>(gWithForbidden, ((qtLBFS<V>) search).degSequenceOrder(gWithForbidden));
-			//bound the search by the best solution so far
-			min.setChanges(fillMinMoves(gWithForbidden, s.getMinMoves().getChanges().size() - s.getChanges().size()));
-			min.setMinMoves(min);
-			results.add(rules(new branchingReturnC<V>(gWithForbidden, min.getDeg(), min), lex));
+//			branchingReturnC<V> min = new branchingReturnC<V>(gWithForbidden, ((qtLBFS<V>) search).degSequenceOrder(gWithForbidden));
+//			//bound the search by the best solution so far
+//			min.setChanges(fillMinMoves(gWithForbidden, bound));
+//			min.setMinMoves(min);
+//			results.addFirst(rules(new branchingReturnC<V>(gWithForbidden, min.getDeg(), min), lex));
+//			//update bound
+//			bound -= results.get(0).getMinMoves().getChanges().size();
+//			
+			
 			//branch on the rest of the graphs
 			for (Graph<V, Pair<V>> g : cGraphs)
 			{
@@ -97,9 +100,12 @@ public class qtBranchComponents<V> extends qtBranch<V>
 				{
 					//fill new minMoves with bounded edge set of component
 					min = new branchingReturnC<V>(g, ((qtLBFS<V>) search).degSequenceOrder(g));
-					min.setChanges(fillMinMoves(g, s.getMinMoves().getChanges().size() - s.getChanges().size()));
+					min.setChanges(fillMinMoves(g, bound));
 					min.setMinMoves(min);
-					results.add(controller.branch(new branchingReturnC<V>(g, min.getDeg(), new LinkedList<myEdge<V>>(), min)));
+					results.addFirst(controller.branch(new branchingReturnC<V>(g, min.getDeg(), new LinkedList<myEdge<V>>(), min)));
+					//update bound
+					bound -= results.get(0).getMinMoves().getChanges().size();
+					
 				}
 				//don't care about branching on this but still need it to build up the solution later
 				else
@@ -126,18 +132,8 @@ public class qtBranchComponents<V> extends qtBranch<V>
 			//if this solution is better than current one
 			if (s.getMinMoves().getChanges().size() > min.getChanges().size())
 			{
-				s.setMinMoves(min);
+				s.getMinMoves().setChanges(min.getChanges());;
 			}
-			
-			
-			//make sure copy is equal to current graph
-			qtGenerate<V> gen = new qtGenerate<V>();
-			
-			if (gen.graphEquals(copy, s.getG()))
-			{
-				System.out.println("GRAPHS DO NOT EQUAL");
-			}
-			
 			
 			
 			return s;

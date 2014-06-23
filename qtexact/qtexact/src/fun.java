@@ -8,7 +8,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
@@ -25,10 +24,14 @@ import branch.qtBranchComponents;
 import branch.qtBranchNoHeuristic;
 import branch.qtHouse;
 import branch.qtPan;
+
+import com.rits.cloning.Cloner;
+
 import controller.Controller;
 import edu.uci.ics.jung.algorithms.cluster.EdgeBetweennessClusterer;
 import edu.uci.ics.jung.algorithms.layout.FRLayout;
 import edu.uci.ics.jung.graph.Graph;
+import edu.uci.ics.jung.graph.SparseGraph;
 import edu.uci.ics.jung.graph.util.Pair;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
@@ -40,6 +43,8 @@ public class fun extends JApplet {
 	 * graph
 	 */
 	static Graph<Integer, String> graph;
+	static Cloner clone = new Cloner();
+	
 	public static void main(String[] args)
 	{
 		
@@ -60,19 +65,14 @@ public class fun extends JApplet {
 		
 		//exampleQT = qtGenerate.simpleC4();
 		
-		//exampleQT = qtGenerate.westernElectricNetwork();
+		exampleQT = qtGenerate.westernElectricNetwork();
 		
-		exampleQT = qtGenerate.nonQTEx3();
-		
-		exampleQT = gen.ER(7, 0.1);
+		//exampleQT = qtGenerate.nonQTEx3();
 		
 		//random graph join
-		LinkedList<Graph<Integer, Pair<Integer>>> list = new LinkedList<Graph<Integer, Pair<Integer>>>();
-		list.add(gen.ER(6, 0.5));
-		list.add(gen.ER(6, 0.5));
+		exampleQT = gen.erJoins(8, 8, 5, .9, .9, .9);
 		
-		
-		exampleQT = gen.graphJoin(list);
+		//exampleQT = gen.ER(11, 0.2);
 		
 		//exampleQT = new SparseGraph<Integer, Pair<Integer>>();
 		//fillGraphFromFile(exampleQT, "datasets/karate.txt");
@@ -83,7 +83,15 @@ public class fun extends JApplet {
 		
 		//exampleQT = gen.houseStruct();
 		
-		Controller<Integer> c = new Controller<Integer>(null, false);
+		
+//		exampleQT = new SparseGraph<Integer, Pair<Integer>>();
+//		fillGraphFromFile(exampleQT, "datasets/grass_web.pairs");
+		
+		
+		//visualize(exampleQT);
+		
+		
+		Controller<Integer> c = new Controller<Integer>(null, true);
 		qtBranchNoHeuristic<Integer> branchNoHP = new qtBranchNoHeuristic<Integer>(c);
 		//c.setbStruct(branchNoHP);
 		
@@ -110,15 +118,15 @@ public class fun extends JApplet {
 		pan.addReduction(r2pan);
 		
 		
-//		Reduction<Integer> rC = new edgeBoundReduction<Integer>(branchC);
-//		branchC.addReduction(rC);
-//		Reduction<Integer> r2C = new commonC4Reduction<Integer>(branchC);
-//		branchC.addReduction(r2C);
+		Reduction<Integer> rC = new edgeBoundReduction<Integer>(branchC);
+		branchC.addReduction(rC);
+		Reduction<Integer> r2C = new commonC4Reduction<Integer>(branchC);
+		branchC.addReduction(r2C);
 		
-//		Reduction<Integer> rNo = new edgeBoundReduction<Integer>(branchNoHP);
-//		branchC.addReduction(rNo);
-//		Reduction<Integer> r2No = new commonC4Reduction<Integer>(branchNoHP);
-//		branchC.addReduction(r2No);
+		Reduction<Integer> rNo = new edgeBoundReduction<Integer>(branchNoHP);
+		branchNoHP.addReduction(rNo);
+		Reduction<Integer> r2No = new commonC4Reduction<Integer>(branchNoHP);
+		branchNoHP.addReduction(r2No);
 		
 		
 		YanSearch<Integer> yan = new YanSearch<Integer>();
@@ -127,19 +135,18 @@ public class fun extends JApplet {
 		System.out.println(yan.search(exampleQT));
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
-		
 		c.setbStruct(branchC);
 		System.out.println("\nConnected component with no reductions: ");
 		start = System.currentTimeMillis();
 		c.branchStart(exampleQT, 12);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
-		
 		c.setbStruct(branchNoHP);
 		System.out.println("\nNo heuristic without reductions: ");
 		start = System.currentTimeMillis();
 		c.branchStart(exampleQT, 12);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		
 		
 		
 		c.setbStruct(pan);

@@ -13,7 +13,6 @@ import java.util.PriorityQueue;
 import qtUtils.branchingReturnC;
 import qtUtils.lexReturnC;
 import qtUtils.vertexIn;
-import abstractClasses.SearchResult;
 import certificate.qtCertificateC;
 
 import com.rits.cloning.Cloner;
@@ -37,12 +36,16 @@ public abstract class qtLBFS<V> extends LBFS<V>
 		return isQT(g);
 	}
 	
-	public SearchResult<V> searchPrep(branchingReturnC<V> s)
+	public lexReturnC<V> searchPrep(branchingReturnC<V> s)
 	{
 		ArrayList<V> t = flattenAndReverseDeg(s.getDeg());
 		return search(s.getG(), t);
 	}
 	
+	public lexReturnC<V> search(branchingReturnC<V> s)
+	{
+		return searchPrep(s);
+	}
 	
 	protected ArrayList<V> orderNeighbour(Graph<V, Pair<V>> G, V neighbour)
 	{

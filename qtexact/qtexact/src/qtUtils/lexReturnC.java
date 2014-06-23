@@ -6,11 +6,10 @@
 package qtUtils;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedList;
+import java.util.Set;
 
-import certificate.qtCertificateC;
 import abstractClasses.SearchResult;
+import certificate.qtCertificateC;
 
 /**
  * return type of lexBFS search
@@ -24,10 +23,10 @@ public class lexReturnC<V> extends SearchResult<V>
 	private ArrayList<V> list;
 	//QT check
 	private boolean isConnected;
-	private LinkedList<HashSet<V>> cComponents;
+	private Set<Set<V>> cComponents;
 
 	
-	public lexReturnC(ArrayList<V> l, qtCertificateC<V> cert, boolean qt, boolean c, LinkedList<HashSet<V>> cComp)
+	public lexReturnC(ArrayList<V> l, qtCertificateC<V> cert, boolean qt, boolean c, Set<Set<V>> cComp)
 	{
 		setList(l);
 		setTarget(qt);
@@ -52,11 +51,11 @@ public class lexReturnC<V> extends SearchResult<V>
 		this.isConnected = isConnected;
 	}
 
-	public LinkedList<HashSet<V>> getcComponents() {
+	public Set<Set<V>> getcComponents() {
 		return cComponents;
 	}
 
-	public void setcComponents(LinkedList<HashSet<V>> cComponents) {
+	public void setcComponents(Set<Set<V>> cComponents) {
 		this.cComponents = cComponents;
 	}
 

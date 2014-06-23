@@ -159,7 +159,7 @@ public class Controller<V>
 		int bound = s.getMinMoves().getChanges().size() - s.getChanges().size();
 		
 		//check if bound allows any more moves
-		if (bound <= 0)
+		if (bound < 0)
 			return s.getMinMoves();
 		
 		
@@ -177,7 +177,7 @@ public class Controller<V>
 		}
 		
 		//check if graph is target
-		SearchResult<V> searchResult =  bStruct.getSearch().searchPrep(s);
+		SearchResult<V> searchResult =  bStruct.getSearch().search(s);
 		
 		
 		//target graph has been found
