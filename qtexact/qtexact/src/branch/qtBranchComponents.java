@@ -77,7 +77,7 @@ public class qtBranchComponents<V> extends qtBranch<V>
 			//fill new minMoves with entire edge set
 			branchingReturnC<V> min = new branchingReturnC<V>(gWtihForbidden, s.getDeg());
 			//bound the search by the best solution so far
-			min.setChanges(fillMyEdgeSet(gWtihForbidden, s.getMinMoves().getChanges().size() - s.getChanges().size()));
+			min.setChanges(fillMinMoves(gWtihForbidden, s.getMinMoves().getChanges().size() - s.getChanges().size()));
 			min.setMinMoves(min);
 			results.add(rules(new branchingReturnC<V>(gWtihForbidden, ((qtLBFS<V>) search).degSequenceOrder(gWtihForbidden), min), lex));
 			//branch on the rest of the graphs
@@ -88,7 +88,7 @@ public class qtBranchComponents<V> extends qtBranch<V>
 				{
 					//fill new minMoves with bounded edge set of component
 					min = new branchingReturnC<V>(g, s.getDeg());
-					min.setChanges(fillMyEdgeSet(g, s.getMinMoves().getChanges().size() - s.getChanges().size()));
+					min.setChanges(fillMinMoves(g, s.getMinMoves().getChanges().size() - s.getChanges().size()));
 					min.setMinMoves(min);
 					results.add(controller.branch(new branchingReturnC<V>(g, ((qtLBFS<V>)search).degSequenceOrder(g), new LinkedList<myEdge<V>>(), min)));
 				}
