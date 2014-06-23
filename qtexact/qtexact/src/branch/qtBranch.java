@@ -400,7 +400,7 @@ public abstract class qtBranch<V> extends Branch<V>
 	 * @param G
 	 * @return
 	 */
-	protected LinkedList<myEdge<V>> fillMyEdgeSet(Graph<V, Pair<V>> G, int bound)
+	protected LinkedList<myEdge<V>> fillMinMoves(Graph<V, Pair<V>> G, int bound)
 	{
 		LinkedList<myEdge<V>> l = new LinkedList<myEdge<V>>();
 		for (Pair<V> e : G.getEdges())

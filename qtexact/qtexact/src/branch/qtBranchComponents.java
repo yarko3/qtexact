@@ -41,7 +41,7 @@ public class qtBranchComponents<V> extends qtBranch<V>
 		
 		//start with a full minMoves
 		branchingReturnC<V> minMoves = new branchingReturnC<V>(G, deg);
-		minMoves.setChanges(fillMyEdgeSet(G, bound));
+		minMoves.setChanges(fillMinMoves(G, bound));
 		minMoves.setMinMoves(minMoves);
 		branchingReturnC<V> goal = new branchingReturnC<V>(G, deg, minMoves);
 		return goal;
