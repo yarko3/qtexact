@@ -23,10 +23,10 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 	public branchingReturnC<V> branchingRules(branchingReturnC<V> s, SearchResult<V> searchResult)
 	{
 		//update certificate if a house is not found
-//		if (searchResult.getCertificate().getFlag() != -4)
-//			searchResult.setCertificate(hasHouse(s, searchResult));
+		if (searchResult.getCertificate().getFlag() != -4)
+			searchResult.setCertificate(hasHouse(s, searchResult));
 		
-		searchResult = findStructures(s, searchResult);
+		//searchResult = findStructures(s, searchResult);
 		
 		branchingReturnC<V> temp;
 		

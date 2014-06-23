@@ -176,6 +176,8 @@ public class qtGenerate<V>
 	public SparseGraph<V, Pair<V>> graphJoin(LinkedList<Graph<V, Pair<V>>> l) {
 		SparseGraph<V, Pair<V>> rGraph = new SparseGraph<V, Pair<V>>();
 		//build graph from connected components
+		
+		//map to new Integers
 		for (Graph<V, Pair<V>> r : l)
 		{
 			
@@ -529,6 +531,40 @@ public class qtGenerate<V>
 		return g;
 	}
 	
-	
+	/**
+	 * quick and dirty graph equation method
+	 * 
+	 * @param g0
+	 * @param g1
+	 * @return
+	 */
+	public boolean graphEquals(Graph<V, Pair<V>> g0, Graph<V, Pair<V>> g1)
+	{
+		//check vertices
+		for (V v0 : g0.getVertices())
+		{
+			if (!g1.containsVertex(v0))
+				return false;
+		}
+		for (V v1 : g1.getVertices())
+		{
+			if (!g0.containsVertex(v1))
+				return false;
+		}
+		
+		//check edges
+		for (Pair<V> e0 : g0.getEdges())
+		{
+			if (!g1.isNeighbor(e0.getFirst(), e0.getSecond()))
+				return false;
+		}
+		for (Pair<V> e1 : g1.getEdges())
+		{
+			if (!g0.isNeighbor(e1.getFirst(), e1.getSecond()))
+				return false;
+		}
+		
+		return true;
+	}
 }
 	

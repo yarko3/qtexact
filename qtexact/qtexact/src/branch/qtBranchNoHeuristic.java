@@ -38,6 +38,8 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 		}
 		else
 			output = false;
+		//initialize search
+		search = new qtLBFSNoHeuristic<V>();
 	}
 
 	/**
@@ -45,7 +47,6 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 	 */
 	public branchingReturnC<V> setup(Graph<V, Pair<V>> G, int bound) {
 		
-		search = new qtLBFSNoHeuristic<V>();
 		//keep proper degree order as an ArrayList<LinkedList<vertex>>
 		ArrayList<LinkedList<V>> deg = ((qtLBFS<V>) search).degSequenceOrder(G);
 		

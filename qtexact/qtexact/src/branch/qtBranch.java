@@ -339,11 +339,13 @@ public abstract class qtBranch<V> extends Branch<V>
 		for (V i : l)
 		{
 			tempSet.addAll(G.getIncidentEdges(i));
+			c.addVertex(i);
 		}
 		//add all edges to c
 		for (Pair<V> e : tempSet)
 		{
-			c.addEdge(e, e.getFirst(), e.getSecond());
+			Pair<V> edge = clone.deepClone(e);
+			c.addEdge(edge, edge.getFirst(), edge.getSecond());
 		}
 		return c;
 	}

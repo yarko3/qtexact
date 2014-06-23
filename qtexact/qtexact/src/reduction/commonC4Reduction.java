@@ -72,7 +72,7 @@ public class commonC4Reduction<V> extends Reduction<V>
 							common.add(v);
 					}
 					
-					
+					//look for independent sets in common neighbours
 					for (int k = 0; k < common.size(); k++)
 					{
 						V temp = common.remove(k);

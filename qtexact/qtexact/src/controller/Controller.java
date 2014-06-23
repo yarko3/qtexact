@@ -204,7 +204,7 @@ public class Controller<V>
 			}
 			
 			if (reduced)
-				s = bStruct.reduceRevert(s);
+				bStruct.reduceRevert(s);
 			
 			return s;
 		}
@@ -218,10 +218,7 @@ public class Controller<V>
 				
 				if (reduced)
 				{
-					branchingReturnC<V> reverted = bStruct.reduceRevert(s);
-					s.setChanges(reverted.getChanges());
-					s.setDeg(reverted.getDeg());
-					s.setGraph(reverted.getG());
+					bStruct.reduceRevert(s);
 				}
 				
 				
