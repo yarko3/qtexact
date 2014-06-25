@@ -65,17 +65,17 @@ public class fun extends JApplet {
 		
 		//exampleQT = qtGenerate.simpleC4();
 		
-		exampleQT = qtGenerate.westernElectricNetwork();
+		//exampleQT = qtGenerate.westernElectricNetwork();
 		
 		//exampleQT = qtGenerate.nonQTEx3();
 		
 		//random graph join
-		//exampleQT = gen.erJoins(50, 20, 10, .95, 1, 1);
+		exampleQT = gen.erJoins(50, 120, 10, .95, 1, 1);
 		
 		//exampleQT = gen.ER(11, 0.2);
 		
-		exampleQT = new SparseGraph<Integer, Pair<Integer>>();
-		fillGraphFromFile(exampleQT, "datasets/karate.txt");
+		//exampleQT = new SparseGraph<Integer, Pair<Integer>>();
+		//fillGraphFromFile(exampleQT, "datasets/karate.txt");
 		
 		//exampleQT = gen.fromBipartiteFile("datasets/southernwomen");
 	
@@ -150,7 +150,7 @@ public class fun extends JApplet {
 		c.setbStruct(pan);
 		System.out.println("\npan: ");
 		start = System.currentTimeMillis();
-		c.branchStart(exampleQT, 14);
+		c.branchStart(exampleQT, 10);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 //		c.setbStruct(house);

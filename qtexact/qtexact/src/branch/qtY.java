@@ -16,6 +16,9 @@ public class qtY<V> extends qtBranchNoHeuristic<V>
 		super(controller);
 	}
 	
+	/**
+	 * fork branching rules
+	 */
 	@Override
 	public branchingReturnC<V> branchingRules(branchingReturnC<V> s, SearchResult<V> searchResult)
 	{

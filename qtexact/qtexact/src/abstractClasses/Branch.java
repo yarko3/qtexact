@@ -1,6 +1,7 @@
 package abstractClasses;
 
 import java.util.LinkedList;
+import java.util.Stack;
 
 import qtUtils.branchingReturnC;
 
@@ -34,6 +35,10 @@ public abstract class Branch<V>
 	
 	public static Cloner clone = new Cloner();
 	
+	
+	private Stack<Integer> reductionStack;
+	
+	
 	/**
 	 * a Branch datatype needs a controller to run recursively in branchingRules(...)
 	 * @param controller
@@ -41,6 +46,7 @@ public abstract class Branch<V>
 	public Branch(Controller<V> controller) {
 		super();
 		this.controller = controller;
+		reductionStack = new Stack<Integer>();
 	}
 
 	/**
@@ -70,12 +76,30 @@ public abstract class Branch<V>
 	 */
 	public branchingReturnC<V> reduce(branchingReturnC<V> s)
 	{
+		//get number of moves done. Run reductions until no further changes are made.
+		//push number of changes onto stack.
+		int bound = s.getMinMoves().getChanges().size() - s.getChanges().size();
+		int oldMoves = s.getChanges().size();
+		int newMoves = 0;
+		int count = 0;
+		
 		if (reductions != null)
 		{
-			for (int i = 0; i < reductions.size(); i++)
+			do
 			{
-				s = reductions.get(i).reduce(s);
-			}
+				oldMoves = newMoves;
+				count++;
+				for (int i = 0; i < reductions.size(); i++)
+				{
+					s = reductions.get(i).reduce(s);
+				}
+				newMoves = s.getChanges().size();
+				
+				bound = s.getMinMoves().getChanges().size() - s.getChanges().size();
+				
+			} while(newMoves != oldMoves && bound > 0);
+			
+			reductionStack.push(count);
 		}
 		return s;
 	}
@@ -84,9 +108,14 @@ public abstract class Branch<V>
 	{
 		if (reductions != null)
 		{
-			for (int i = reductions.size() - 1; i >= 0; i--)
+			//pop the number of reduction loops ran during reduction
+			int count = reductionStack.pop();
+			for (int j = 0; j < count; j++)
 			{
-				s = reductions.get(i).revertReduce(s);
+				for (int i = reductions.size() - 1; i >= 0; i--)
+				{
+					s = reductions.get(i).revertReduce(s);
+				}
 			}
 		}
 		return s;
