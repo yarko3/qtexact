@@ -20,7 +20,7 @@ import edu.uci.ics.jung.graph.util.Pair;
  *
  * @param <V>
  */
-public class qtBranchComponents<V> extends qtBranchNoHeuristic<V> 
+public class qtBranchComponents<V> extends qtPan<V> 
 {
 	/**
 	 * constructor

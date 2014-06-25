@@ -70,7 +70,7 @@ public class fun extends JApplet {
 		//exampleQT = qtGenerate.nonQTEx3();
 		
 		//random graph join
-		//exampleQT = gen.erJoins(10, 10, 10, .8, .9, .9);
+		//exampleQT = gen.erJoins(50, 20, 10, .95, 1, 1);
 		
 		//exampleQT = gen.ER(11, 0.2);
 		
@@ -138,26 +138,26 @@ public class fun extends JApplet {
 //		c.setbStruct(branchC);
 //		System.out.println("\nConnected component with no reductions: ");
 //		start = System.currentTimeMillis();
-//		c.branchStart(exampleQT, 10);
+//		c.branchStart(exampleQT, 7);
 //		System.out.println((System.currentTimeMillis()-start) / 1000.0);
-		
-		c.setbStruct(branchNoHP);
-		System.out.println("\nNo heuristic without reductions: ");
-		start = System.currentTimeMillis();
-		c.branchStart(exampleQT, 10);
-		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+//		
+//		c.setbStruct(branchNoHP);
+//		System.out.println("\nNo heuristic without reductions: ");
+//		start = System.currentTimeMillis();
+//		c.branchStart(exampleQT, 7);
+//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		c.setbStruct(pan);
 		System.out.println("\npan: ");
 		start = System.currentTimeMillis();
-		c.branchStart(exampleQT, 10);
+		c.branchStart(exampleQT, 14);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
-		c.setbStruct(house);
-		System.out.println("\nHouse: ");
-		start = System.currentTimeMillis();
-		exampleQT = c.branchStart(exampleQT, 10);
-		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+//		c.setbStruct(house);
+//		System.out.println("\nHouse: ");
+//		start = System.currentTimeMillis();
+//		exampleQT = c.branchStart(exampleQT, 7);
+//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		start = System.currentTimeMillis();
 		System.out.println(yan.search(exampleQT));
