@@ -287,6 +287,31 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 		else
 		{	
 			//remove an edge to break P4
+			//remove middle edge first
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)))
+			{
+				if (output)
+					//change progress percent
+					s.setPercent(oldPercent / 5);
+				
+				branchingReturnC<V> p4Remove1 = controller.branch(deleteResult(s, lexResult.get(1), lexResult.get(2)));
+				
+				if (output)
+					s.setPercent(oldPercent);
+				
+				//revert changes to global graph
+				revert(s);
+				if (p4Remove1.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
+				{
+					s.setMinMoves(p4Remove1.getMinMoves());
+				}
+			}
+			else
+				if (output)
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 5);
+			
+			
+			//try other edges later
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)))
 			{
 				if (output)
@@ -309,27 +334,6 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 				if (output)
 					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 5);
 			
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)))
-			{
-				if (output)
-					//change progress percent
-					s.setPercent(oldPercent / 5);
-				
-				branchingReturnC<V> p4Remove1 = controller.branch(deleteResult(s, lexResult.get(1), lexResult.get(2)));
-				
-				if (output)
-					s.setPercent(oldPercent);
-				
-				//revert changes to global graph
-				revert(s);
-				if (p4Remove1.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
-				{
-					s.setMinMoves(p4Remove1.getMinMoves());
-				}
-			}
-			else
-				if (output)
-					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 5);
 			
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
 			{

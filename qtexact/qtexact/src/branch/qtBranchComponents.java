@@ -65,6 +65,10 @@ public class qtBranchComponents<V> extends qtBranchNoHeuristic<V>
 		//multiple connected components exist
 		else
 		{
+			
+			System.out.println("Component split.");
+			
+			
 			//bound
 			int bound = s.getMinMoves().getChanges().size() - s.getChanges().size();
 			
@@ -133,9 +137,8 @@ public class qtBranchComponents<V> extends qtBranchNoHeuristic<V>
 			//if this solution is better than current one
 			if (s.getMinMoves().getChanges().size() > min.getChanges().size())
 			{
-				s.getMinMoves().setChanges(min.getChanges());;
+				s.setMinMoves(min);
 			}
-			
 			
 			return s;
 		}

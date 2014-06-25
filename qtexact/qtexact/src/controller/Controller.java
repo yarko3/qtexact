@@ -159,6 +159,9 @@ public class Controller<V>
 	 */
 	public branchingReturnC<V> branch(branchingReturnC<V> s)
 	{
+		//run garbage collection
+		//System.gc();
+		
 		//current number of allowed moves
 		int bound = s.getMinMoves().getChanges().size() - s.getChanges().size();
 		
@@ -181,20 +184,20 @@ public class Controller<V>
 		//increment the number of times this controller has branched
 		timesRun++;
 		
-		System.out.println("Times run: " + timesRun);
-		System.out.println("Bound: " + bound);
-		System.out.println("Moves made: " + s.getChanges().size());
-		System.out.println("Min moves: " + s.getMinMoves().getChanges().size());
-		System.out.println("Size of graph: " + s.getG().getVertexCount());
-		
-		
-		if (s.getMinMoves().getChanges().size() > globalBound)
-		{
-			System.out.println("Whoa: global bound " + globalBound);
-			System.out.println("Moves made: " + s.getChanges().size());
-			System.out.println();
-		}
-		
+//		System.out.println("Times run: " + timesRun);
+//		System.out.println("Bound: " + bound);
+//		System.out.println("Moves made: " + s.getChanges().size());
+//		System.out.println("Min moves:4 " + s.getMinMoves().getChanges().size());
+//		System.out.println("Size of graph: " + s.getG().getVertexCount());
+//		
+//		
+//		if (s.getMinMoves().getChanges().size() > globalBound)
+//		{
+//			System.out.println("\n\nWhoa: global bound " + globalBound);
+//			System.out.println("Moves made: " + s.getChanges().size());
+//			System.out.println();
+//		}
+//		
 		
 		
 		//set flag for whether this node has been reduced
@@ -206,6 +209,8 @@ public class Controller<V>
 			//run reduction	
 			reduced = true;
 			s = bStruct.reduce(s);
+			//update bound
+			bound = s.getMinMoves().getChanges().size() - s.getChanges().size();
 		}
 		
 		//check if graph is target

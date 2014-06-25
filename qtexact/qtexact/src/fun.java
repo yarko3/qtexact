@@ -65,17 +65,17 @@ public class fun extends JApplet {
 		
 		//exampleQT = qtGenerate.simpleC4();
 		
-		//exampleQT = qtGenerate.westernElectricNetwork();
+		exampleQT = qtGenerate.westernElectricNetwork();
 		
 		//exampleQT = qtGenerate.nonQTEx3();
 		
 		//random graph join
-		exampleQT = gen.erJoins(10, 10, 5, .9, .9, .9);
+		//exampleQT = gen.erJoins(10, 10, 10, .8, .9, .9);
 		
 		//exampleQT = gen.ER(11, 0.2);
 		
-		//exampleQT = new SparseGraph<Integer, Pair<Integer>>();
-		//fillGraphFromFile(exampleQT, "datasets/karate.txt");
+		exampleQT = new SparseGraph<Integer, Pair<Integer>>();
+		fillGraphFromFile(exampleQT, "datasets/karate.txt");
 		
 		//exampleQT = gen.fromBipartiteFile("datasets/southernwomen");
 	
@@ -140,7 +140,7 @@ public class fun extends JApplet {
 //		start = System.currentTimeMillis();
 //		c.branchStart(exampleQT, 10);
 //		System.out.println((System.currentTimeMillis()-start) / 1000.0);
-//		
+		
 		c.setbStruct(branchNoHP);
 		System.out.println("\nNo heuristic without reductions: ");
 		start = System.currentTimeMillis();
