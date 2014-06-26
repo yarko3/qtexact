@@ -88,46 +88,49 @@ public class fun extends JApplet {
 		fillGraphFromFile(exampleQT, "datasets/grass_web.pairs");
 		
 		
+		Graph<String, Pair<String>> fb = gen.facebookGraph("datasets/fbFriends.txt");
+		
+		
 		//visualize(exampleQT);
 		
 		
-		Controller<Integer> c = new Controller<Integer>(null, true);
-		qtBranchNoHeuristic<Integer> branchNoHP = new qtBranchNoHeuristic<Integer>(c);
+		Controller<String> c = new Controller<String>(null, true);
+		//qtBranchNoHeuristic<Integer> branchNoHP = new qtBranchNoHeuristic<Integer>(c);
 		//c.setbStruct(branchNoHP);
 		
 		
-		qtHouse<Integer> house = new qtHouse<Integer>(c);
+		//qtHouse<Integer> house = new qtHouse<Integer>(c);
 		//c.setbStruct(house);
 		
-		qtPan<Integer> pan = new qtPan<Integer>(c);
+		qtPan<String> pan = new qtPan<String>(c);
 		
 		
-		qtBranchComponents<Integer> branchC = new qtBranchComponents<Integer>(c);
+		qtBranchComponents<String> branchC = new qtBranchComponents<String>(c);
 		//c.setbStruct(branchC);
 		
 		
 		
-		Reduction<Integer> rHouse = new edgeBoundReduction<Integer>(house);
-		house.addReduction(rHouse);
-		Reduction<Integer> r2House = new commonC4Reduction<Integer>(house);
-		house.addReduction(r2House);
-		
-		Reduction<Integer> rpan = new edgeBoundReduction<Integer>(pan);
+//		Reduction<Integer> rHouse = new edgeBoundReduction<Integer>(house);
+//		house.addReduction(rHouse);
+//		Reduction<Integer> r2House = new commonC4Reduction<Integer>(house);
+//		house.addReduction(r2House);
+//		
+		Reduction<String> rpan = new edgeBoundReduction<String>(pan);
 		pan.addReduction(rpan);
-		Reduction<Integer> r2pan = new commonC4Reduction<Integer>(pan);
+		Reduction<String> r2pan = new commonC4Reduction<String>(pan);
 		pan.addReduction(r2pan);
 		
 		
-		Reduction<Integer> rC = new edgeBoundReduction<Integer>(branchC);
+		Reduction<String> rC = new edgeBoundReduction<String>(branchC);
 		branchC.addReduction(rC);
-		Reduction<Integer> r2C = new commonC4Reduction<Integer>(branchC);
+		Reduction<String> r2C = new commonC4Reduction<String>(branchC);
 		branchC.addReduction(r2C);
-		
-		Reduction<Integer> rNo = new edgeBoundReduction<Integer>(branchNoHP);
-		branchNoHP.addReduction(rNo);
-		Reduction<Integer> r2No = new commonC4Reduction<Integer>(branchNoHP);
-		branchNoHP.addReduction(r2No);
-		
+//		
+//		Reduction<Integer> rNo = new edgeBoundReduction<Integer>(branchNoHP);
+//		branchNoHP.addReduction(rNo);
+//		Reduction<Integer> r2No = new commonC4Reduction<Integer>(branchNoHP);
+//		branchNoHP.addReduction(r2No);
+//		
 		
 		YanSearch<Integer> yan = new YanSearch<Integer>();
 		
@@ -138,7 +141,7 @@ public class fun extends JApplet {
 		c.setbStruct(branchC);
 		System.out.println("\nConnected component with no reductions: ");
 		start = System.currentTimeMillis();
-		c.branchStart(exampleQT, 14);
+		c.branchStart(fb, 30);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 //		
 //		c.setbStruct(branchNoHP);
@@ -147,11 +150,11 @@ public class fun extends JApplet {
 //		c.branchStart(exampleQT, 7);
 //		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
-		c.setbStruct(pan);
-		System.out.println("\npan: ");
-		start = System.currentTimeMillis();
-		c.branchStart(exampleQT, 14);
-		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+//		c.setbStruct(pan);
+//		System.out.println("\npan: ");
+//		start = System.currentTimeMillis();
+//		c.branchStart(fb, 10);
+//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 //		c.setbStruct(house);
 //		System.out.println("\nHouse: ");
@@ -163,10 +166,10 @@ public class fun extends JApplet {
 		System.out.println(yan.search(exampleQT));
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
-		visualize(exampleQT);
+		visualize(fb);
 	}
 	
-	public static void visualize(Graph<Integer, Pair<Integer>> g){
+	public static void visualize(Graph<String, Pair<String>> g){
 		JFrame jf = new JFrame();
 		jf.setSize(1366, 768);
 

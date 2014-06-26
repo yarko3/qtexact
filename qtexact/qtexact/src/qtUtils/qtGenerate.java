@@ -615,11 +615,48 @@ public class qtGenerate<V>
 		
 		return graphJoinP(list);
 		
-		
-		
-		
 	}
 	
+	public Graph<String, Pair<String>> facebookGraph(String filename)
+	{
+		Graph<String, Pair<String>> g = new SparseGraph<String, Pair<String>>();
+		
+		FileReader file = null;
+		try {
+			file = new FileReader(filename);
+		} catch (FileNotFoundException e) {
+			System.out.println("File " + filename + " could not be found.");
+			e.printStackTrace();
+		}
+		
+		Scanner scan = new Scanner(file);
+		
+		scan.useDelimiter("\"");
+		
+		String name0;
+		String name1;
+		
+		while (scan.hasNext())
+		{
+			//get rid of initial number
+			scan.next();
+			//get first name
+			name0 = scan.next();
+			
+			//skip middle bit
+			scan.next();
+			
+			//get second name
+			name1 = scan.next();
+			
+			//add edge
+			g.addEdge(new Pair<String>(name0, name1), name0, name1);
+		}
+		
+		scan.close();
+		return g;
+		
+	}
 	
 }
 	

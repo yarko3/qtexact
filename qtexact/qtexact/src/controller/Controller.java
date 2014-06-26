@@ -168,16 +168,7 @@ public class Controller<V>
 		//check if bound allows any more moves (does not matter if current graph state is at target)
 		if (bound < 0)
 		{
-			if (output)
-			{
-				//update global percent
-				globalPercent += s.getPercent();
-				if (globalPercent - percent > .01)
-				{
-					percent = globalPercent;
-					System.out.println(Math.round(percent*100.0) + "%%%");
-				}
-			}
+			updatePercent(s);
 			return s.getMinMoves();
 		}
 		
@@ -211,6 +202,19 @@ public class Controller<V>
 			s = bStruct.reduce(s);
 			//update bound
 			bound = s.getMinMoves().getChanges().size() - s.getChanges().size();
+			
+			//check if reductions have exceeded parameter
+			if (bound < 0)
+			{
+				updatePercent(s);
+				
+				if (reduced)
+				{
+					bStruct.reduceRevert(s);
+				}
+				
+				return s.getMinMoves();
+			}
 		}
 		
 		//check if graph is target
@@ -220,16 +224,7 @@ public class Controller<V>
 		//target graph has been found
 		if (searchResult.isTarget())
 		{
-			if (output)
-			{
-				//update global percent
-				globalPercent += s.getPercent();
-				if (globalPercent - percent > .01)
-				{
-					percent = globalPercent;
-					System.out.println(Math.round(percent*100.0) + "%%");
-				}
-			}
+			updatePercent(s);
 			
 			//update the minMoves list if this solution is better
 			if (bound >= 0)
@@ -264,24 +259,11 @@ public class Controller<V>
 			//min moves is a better solution
 			else
 			{
-				if (output)
-				{
-					//update global percent
-					globalPercent += s.getPercent();
-					if (globalPercent - percent > .01)
-					{
-						percent = globalPercent;
-						System.out.println(Math.round(percent*100.0) + "%");
-					}
-				}
-				
+				updatePercent(s);
 				
 				if (reduced)
 				{
 					branchingReturnC<V> reverted = bStruct.reduceRevert(s);
-					s.setChanges(reverted.getChanges());
-					s.setDeg(reverted.getDeg());
-					s.setGraph(reverted.getG());
 				}
 				
 				return s.getMinMoves();
@@ -289,5 +271,18 @@ public class Controller<V>
 		}
 	}
 	
+	private void updatePercent(branchingReturnC<V> s)
+	{
+		if (output)
+		{
+			//update global percent
+			globalPercent += s.getPercent();
+			if (globalPercent - percent > .01)
+			{
+				percent = globalPercent;
+				System.out.println(Math.round(percent*100.0) + "%");
+			}
+		}
+	}
 
 }
