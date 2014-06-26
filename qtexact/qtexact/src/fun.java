@@ -141,7 +141,7 @@ public class fun extends JApplet {
 		c.setbStruct(branchC);
 		System.out.println("\nConnected component with no reductions: ");
 		start = System.currentTimeMillis();
-		c.branchStart(fb, 30);
+		c.branchStart(fb, 22);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 //		
 //		c.setbStruct(branchNoHP);

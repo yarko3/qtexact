@@ -243,8 +243,10 @@ public abstract class qtBranch<V> extends Branch<V>
 				deg.remove(v1Deg);
 			}
 			//find the edge to remove
-			if (!G.removeEdge(new Pair<V>(v0, v1)))
-				G.removeEdge(new Pair<V>(v1, v0));	
+//			if (!G.removeEdge(new Pair<V>(v0, v1)))
+//				G.removeEdge(new Pair<V>(v1, v0));	
+			
+			G.removeEdge(G.findEdge(v0, v1));
 		}
 	}
 	
