@@ -29,6 +29,13 @@ public class qtBranchComponents<V> extends qtPan<V>
 	public qtBranchComponents(Controller<V> controller) {
 		super(controller);
 		
+		if (controller != null)
+		{
+			output = controller.getOutputFlag();
+		}
+		else
+			output = false;
+		
 		//use proper search function
 		search = new qtLBFSComponents<V>();
 	}
@@ -46,6 +53,13 @@ public class qtBranchComponents<V> extends qtPan<V>
 		minMoves.setChanges(fillMinMoves(G, bound));
 		minMoves.setMinMoves(minMoves);
 		branchingReturnC<V> goal = new branchingReturnC<V>(G, deg, minMoves);
+		//output flags
+		if (output)
+		{
+			goal.setPercent(1);
+			controller.setGlobalPercent(0);
+		}
+		
 		return goal;
 	}
 
@@ -66,7 +80,7 @@ public class qtBranchComponents<V> extends qtPan<V>
 		else
 		{
 			
-			System.out.println("Component split.");
+			//System.out.println("Component split.");
 			
 			
 			//bound
@@ -96,6 +110,24 @@ public class qtBranchComponents<V> extends qtPan<V>
 //			bound -= results.get(0).getMinMoves().getChanges().size();
 //			
 			
+			branchingReturnC<V> t;
+			int count = 0;
+			
+			//get number of graphs we need to keep track of for percent
+			if (output)
+			{
+				for (Graph<V, Pair<V>> g : cGraphs)
+				{
+					//if component is large enough to care
+					if (g.getVertexCount() > 3)
+					{
+						count++;
+					}
+				}
+			}
+			
+			
+			
 			//branch on the rest of the graphs
 			for (Graph<V, Pair<V>> g : cGraphs)
 			{
@@ -106,9 +138,14 @@ public class qtBranchComponents<V> extends qtPan<V>
 					min = new branchingReturnC<V>(g, ((qtLBFS<V>) search).degSequenceOrder(g));
 					min.setChanges(fillMinMoves(g, bound));
 					min.setMinMoves(min);
-					results.addFirst(controller.branch(new branchingReturnC<V>(g, min.getDeg(), new LinkedList<myEdge<V>>(), min)));
+					
+					t = new branchingReturnC<V>(g, min.getDeg(), new LinkedList<myEdge<V>>(), min);
+					//set new percent
+					t.setPercent(s.getPercent() / count);
+					
+					results.addFirst(controller.branch(t));
 					//update bound
-					bound -= results.get(0).getMinMoves().getChanges().size();
+					bound -= t.getMinMoves().getChanges().size();
 					
 				}
 				//don't care about branching on this but still need it to build up the solution later
