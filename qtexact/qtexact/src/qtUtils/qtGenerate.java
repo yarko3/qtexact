@@ -638,7 +638,7 @@ public class qtGenerate<V>
 		
 		int n = 0;
 		
-		while (scan.hasNext() && n < 60)
+		while (scan.hasNext() /*&& n < 60*/)
 		{
 			//get rid of initial number
 			scan.next();
