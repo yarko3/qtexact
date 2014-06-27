@@ -136,16 +136,16 @@ public class qtBranchComponents<V> extends qtPan<V>
 				{
 					//fill new minMoves with bounded edge set of component
 					min = new branchingReturnC<V>(g, ((qtLBFS<V>) search).degSequenceOrder(g));
-					min.setChanges(fillMinMoves(g, bound));
+					min.setChanges(fillMinMoves(g, bound + s.getChanges().size()));
 					min.setMinMoves(min);
 					
-					t = new branchingReturnC<V>(g, min.getDeg(), new LinkedList<myEdge<V>>(), min);
+					t = new branchingReturnC<V>(g, min.getDeg(), clone.deepClone(s.getChanges()), min);
 					//set new percent
 					t.setPercent(s.getPercent() / count);
 					
 					results.addFirst(controller.branch(t));
 					//update bound
-					bound -= t.getMinMoves().getChanges().size();
+					bound -= (t.getMinMoves().getChanges().size() - s.getChanges().size());
 					
 				}
 				//don't care about branching on this but still need it to build up the solution later

@@ -636,7 +636,9 @@ public class qtGenerate<V>
 		String name0;
 		String name1;
 		
-		while (scan.hasNext())
+		int n = 0;
+		
+		while (scan.hasNext() && n < 60)
 		{
 			//get rid of initial number
 			scan.next();
@@ -651,6 +653,7 @@ public class qtGenerate<V>
 			
 			//add edge
 			g.addEdge(new Pair<String>(name0, name1), name0, name1);
+			n++;
 		}
 		
 		scan.close();

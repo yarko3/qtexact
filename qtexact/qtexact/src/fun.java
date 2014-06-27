@@ -91,7 +91,7 @@ public class fun extends JApplet {
 		Graph<String, Pair<String>> fb = gen.facebookGraph("datasets/fbFriends.txt");
 		
 		
-		//visualize(exampleQT);
+		visualize(fb);
 		
 		
 		Controller<String> c = new Controller<String>(null, true);
@@ -141,7 +141,7 @@ public class fun extends JApplet {
 		c.setbStruct(branchC);
 		System.out.println("\nConnected component with no reductions: ");
 		start = System.currentTimeMillis();
-		c.branchStart(fb, 22);
+		fb = c.branchStart(fb, 10);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 //		
 //		c.setbStruct(branchNoHP);
@@ -169,11 +169,11 @@ public class fun extends JApplet {
 		visualize(fb);
 	}
 	
-	public static void visualize(Graph<String, Pair<String>> g){
+	public static void visualize(Graph<String, Pair<String>> fb){
 		JFrame jf = new JFrame();
 		jf.setSize(1366, 768);
 
-		FRLayout frl = new FRLayout(g);
+		FRLayout frl = new FRLayout(fb);
 
 		frl.setAttractionMultiplier(1.5);
 		//frl.lock(true);

@@ -104,7 +104,7 @@ public abstract class qtLBFS<V> extends LBFS<V>
 		ArrayList<V> S = new ArrayList<V>(0);
 		for (V v : s)
 		{
-			if (s.indexOf(v) < s.indexOf(x) && G.findEdge(v, x) != null && (G.findEdge(v, y) == null))
+			if (s.indexOf(v) < s.indexOf(x) && G.isNeighbor(v, x) && !G.isNeighbor(v, y))
 			{
 				S.add(v);
 			}
@@ -113,7 +113,7 @@ public abstract class qtLBFS<V> extends LBFS<V>
 			{
 				for (V z : vertices)
 				{
-					if (G.findEdge(z, w) != null && G.findEdge(z, x) == null && z != x && z != y & z != w)
+					if (G.isNeighbor(z, w) && !G.isNeighbor(z, x) && !z.equals(x) && !z.equals(y) && !z.equals(w))
 					{
 						if (G.isNeighbor(z, y))
 						{
