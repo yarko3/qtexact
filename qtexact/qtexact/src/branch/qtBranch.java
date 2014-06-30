@@ -117,6 +117,24 @@ public abstract class qtBranch<V> extends Branch<V>
 		return s;
 	}
 	
+	public branchingReturnC<V> addRemove2Result(branchingReturnC<V> s, V v0, V v1, V v2, V v3, V v4, V v5)
+	{
+		
+		//update degree sequence 
+		addEdge(s.getG(), s.getDeg(), v0, v1);
+		removeEdge(s.getG(), s.getDeg(), v2, v3);
+		removeEdge(s.getG(), s.getDeg(), v4, v5);
+		
+		
+		
+		//add edge to changes 
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v0, v1), true));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v2, v3), false));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v4, v5), false));
+		
+		return s;
+	}
+	
 	
 	/**
 	 * delete 2 edges to remove a C4
@@ -612,8 +630,8 @@ public abstract class qtBranch<V> extends Branch<V>
 							Collections.reverse(vertices);
 						}
 						vertices.add(n);
-						
-						obstruction.setFlag(-7);
+						//this structure has the same branching rules as a fork
+						obstruction.setFlag(-6);
 						return searchResult;
 					}
 				}
