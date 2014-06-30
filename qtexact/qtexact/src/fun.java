@@ -141,7 +141,7 @@ public class fun extends JApplet {
 		c.setbStruct(branchC);
 		System.out.println("\nConnected component with no reductions: ");
 		start = System.currentTimeMillis();
-		fb = c.branchID(fb, 23, 40);
+		fb = c.branchStart(fb, 24);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 //		
 //		c.setbStruct(branchNoHP);
@@ -171,14 +171,15 @@ public class fun extends JApplet {
 	
 	public static void visualize(Graph<String, Pair<String>> fb){
 		JFrame jf = new JFrame();
-		jf.setSize(1366, 768);
+		jf.setSize(1900, 1000);
 
 		FRLayout frl = new FRLayout(fb);
 
-		frl.setAttractionMultiplier(1.5);
+		frl.setAttractionMultiplier(3);
+		frl.setRepulsionMultiplier(1.1);
 		//frl.lock(true);
 		VisualizationViewer vv = new VisualizationViewer(frl, new Dimension(
-				1366, 768));
+				1900, 1000));
 		
 		vv.getRenderContext().setVertexLabelTransformer(new ToStringLabeller());
 		
