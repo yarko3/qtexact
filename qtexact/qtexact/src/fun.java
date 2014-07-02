@@ -70,9 +70,9 @@ public class fun extends JApplet {
 		//exampleQT = qtGenerate.nonQTEx3();
 		
 		//random graph join
-		exampleQT = gen.erJoins(20, 10, 5, .86, .86, 1);
+		//exampleQT = gen.erJoins(20, 10, 5, .86, .86, 1);
 		
-		//exampleQT = gen.ER(11, 0.2);
+		exampleQT = gen.ER(15, 0.6);
 		
 		//exampleQT = new SparseGraph<Integer, Pair<Integer>>();
 		//fillGraphFromFile(exampleQT, "datasets/karate.txt");
@@ -84,17 +84,17 @@ public class fun extends JApplet {
 		//exampleQT = gen.houseStruct();
 		
 		
-		exampleQT = new SparseGraph<Integer, Pair<Integer>>();
-		fillGraphFromFile(exampleQT, "datasets/grass_web.pairs");
+		//exampleQT = new SparseGraph<Integer, Pair<Integer>>();
+		//fillGraphFromFile(exampleQT, "datasets/grass_web.pairs");
 		
 		
-		Graph<String, Pair<String>> fb = gen.facebookGraph("datasets/fbFriends.txt");
+		//Graph<String, Pair<String>> fb = gen.facebookGraph("datasets/fbFriends.txt");
 		
 		
-		visualize(fb);
+		//visualize(exampleQT);
 		
 		
-		Controller<String> c = new Controller<String>(null, true);
+		Controller<Integer> c = new Controller<Integer>(null, true);
 		//qtBranchNoHeuristic<Integer> branchNoHP = new qtBranchNoHeuristic<Integer>(c);
 		//c.setbStruct(branchNoHP);
 		
@@ -102,10 +102,10 @@ public class fun extends JApplet {
 		//qtHouse<Integer> house = new qtHouse<Integer>(c);
 		//c.setbStruct(house);
 		
-		qtPan<String> pan = new qtPan<String>(c);
+		qtPan<Integer> pan = new qtPan<Integer>(c);
 		
 		
-		qtBranchComponents<String> branchC = new qtBranchComponents<String>(c);
+		qtBranchComponents<Integer> branchC = new qtBranchComponents<Integer>(c);
 		//c.setbStruct(branchC);
 		
 		
@@ -115,15 +115,15 @@ public class fun extends JApplet {
 //		Reduction<Integer> r2House = new commonC4Reduction<Integer>(house);
 //		house.addReduction(r2House);
 //		
-		Reduction<String> rpan = new edgeBoundReduction<String>(pan);
+		Reduction<Integer> rpan = new edgeBoundReduction<Integer>(pan);
 		pan.addReduction(rpan);
-		Reduction<String> r2pan = new commonC4Reduction<String>(pan);
+		Reduction<Integer> r2pan = new commonC4Reduction<Integer>(pan);
 		pan.addReduction(r2pan);
 		
 		
-		Reduction<String> rC = new edgeBoundReduction<String>(branchC);
+		Reduction<Integer> rC = new edgeBoundReduction<Integer>(branchC);
 		branchC.addReduction(rC);
-		Reduction<String> r2C = new commonC4Reduction<String>(branchC);
+		Reduction<Integer> r2C = new commonC4Reduction<Integer>(branchC);
 		branchC.addReduction(r2C);
 //		
 //		Reduction<Integer> rNo = new edgeBoundReduction<Integer>(branchNoHP);
@@ -138,11 +138,6 @@ public class fun extends JApplet {
 		System.out.println(yan.search(exampleQT));
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
-		c.setbStruct(branchC);
-		System.out.println("\nConnected component with no reductions: ");
-		start = System.currentTimeMillis();
-		fb = c.branchStart(fb, 24);
-		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 //		
 //		c.setbStruct(branchNoHP);
 //		System.out.println("\nNo heuristic without reductions: ");
@@ -150,11 +145,21 @@ public class fun extends JApplet {
 //		c.branchStart(exampleQT, 7);
 //		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
-//		c.setbStruct(pan);
-//		System.out.println("\npan: ");
-//		start = System.currentTimeMillis();
-//		c.branchStart(fb, 10);
-//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		c.setbStruct(branchC);
+		System.out.println("\nConnected component: ");
+		start = System.currentTimeMillis();
+		c.branchStart(exampleQT, 15);
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		
+		
+		
+		c.setbStruct(pan);
+		System.out.println("\npan: ");
+		start = System.currentTimeMillis();
+		c.branchStart(exampleQT, 15);
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		
+		
 		
 //		c.setbStruct(house);
 //		System.out.println("\nHouse: ");
@@ -166,10 +171,10 @@ public class fun extends JApplet {
 		System.out.println(yan.search(exampleQT));
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
-		visualize(fb);
+		visualize(exampleQT);
 	}
 	
-	public static void visualize(Graph<String, Pair<String>> fb){
+	public static void visualize(Graph<Integer, Pair<Integer>> fb){
 		JFrame jf = new JFrame();
 		jf.setSize(1900, 1000);
 
