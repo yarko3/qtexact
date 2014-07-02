@@ -598,7 +598,16 @@ public abstract class qtBranch<V> extends Branch<V>
 					else
 					{
 						//a fork has been found
-						vertices.add(n);
+						
+						//TODO check where to add on extra node
+						if (s.getG().isNeighbor(vertices.get(2), n))
+							vertices.add(n);
+						else
+						{
+							//reverse order of P4
+							Collections.reverse(vertices);
+							vertices.add(n);
+						}
 						obstruction.setFlag(-6);
 						
 						return searchResult;
@@ -611,6 +620,7 @@ public abstract class qtBranch<V> extends Branch<V>
 							(s.getG().isNeighbor(vertices.get(1), n) && s.getG().isNeighbor(vertices.get(3), n)))
 					{
 						searchResult.setCertificate(construct4Pan(s, searchResult, n));
+						return searchResult;
 					}
 					
 					//look for a C5

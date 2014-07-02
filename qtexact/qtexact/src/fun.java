@@ -20,9 +20,8 @@ import reduction.commonC4Reduction;
 import reduction.edgeBoundReduction;
 import search.YanSearch;
 import abstractClasses.Reduction;
+import branch.qtAllStruct;
 import branch.qtBranchComponents;
-import branch.qtBranchNoHeuristic;
-import branch.qtHouse;
 import branch.qtPan;
 
 import com.rits.cloning.Cloner;
@@ -31,7 +30,6 @@ import controller.Controller;
 import edu.uci.ics.jung.algorithms.cluster.EdgeBetweennessClusterer;
 import edu.uci.ics.jung.algorithms.layout.FRLayout;
 import edu.uci.ics.jung.graph.Graph;
-import edu.uci.ics.jung.graph.SparseGraph;
 import edu.uci.ics.jung.graph.util.Pair;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
@@ -67,12 +65,12 @@ public class fun extends JApplet {
 		
 		//exampleQT = qtGenerate.westernElectricNetwork();
 		
-		//exampleQT = qtGenerate.nonQTEx3();
+		//exampleQT = qtGenerate.nonQTEx1();
 		
 		//random graph join
 		//exampleQT = gen.erJoins(20, 10, 5, .86, .86, 1);
 		
-		exampleQT = gen.ER(15, 0.6);
+		exampleQT = gen.ER(11, 0.1);
 		
 		//exampleQT = new SparseGraph<Integer, Pair<Integer>>();
 		//fillGraphFromFile(exampleQT, "datasets/karate.txt");
@@ -91,7 +89,7 @@ public class fun extends JApplet {
 		//Graph<String, Pair<String>> fb = gen.facebookGraph("datasets/fbFriends.txt");
 		
 		
-		//visualize(exampleQT);
+		visualize(exampleQT);
 		
 		
 		Controller<Integer> c = new Controller<Integer>(null, true);
@@ -103,6 +101,8 @@ public class fun extends JApplet {
 		//c.setbStruct(house);
 		
 		qtPan<Integer> pan = new qtPan<Integer>(c);
+		
+		qtAllStruct<Integer> all = new qtAllStruct<Integer>(c);
 		
 		
 		qtBranchComponents<Integer> branchC = new qtBranchComponents<Integer>(c);
@@ -125,6 +125,12 @@ public class fun extends JApplet {
 		branchC.addReduction(rC);
 		Reduction<Integer> r2C = new commonC4Reduction<Integer>(branchC);
 		branchC.addReduction(r2C);
+		
+		
+		rC = new edgeBoundReduction<Integer>(all);
+		all.addReduction(rC);
+		r2C = new commonC4Reduction<Integer>(all);
+		all.addReduction(r2C);
 //		
 //		Reduction<Integer> rNo = new edgeBoundReduction<Integer>(branchNoHP);
 //		branchNoHP.addReduction(rNo);
@@ -145,20 +151,25 @@ public class fun extends JApplet {
 //		c.branchStart(exampleQT, 7);
 //		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
-		c.setbStruct(branchC);
-		System.out.println("\nConnected component: ");
+		c.setbStruct(all);
+		System.out.println("\nAll structures: ");
 		start = System.currentTimeMillis();
-		c.branchStart(exampleQT, 15);
+		c.branchStart(exampleQT, 6);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
-		
-		
 		
 		c.setbStruct(pan);
 		System.out.println("\npan: ");
 		start = System.currentTimeMillis();
-		c.branchStart(exampleQT, 15);
+		c.branchStart(exampleQT, 6);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
+		c.setbStruct(branchC);
+		System.out.println("\nConnected component: ");
+		start = System.currentTimeMillis();
+		c.branchStart(exampleQT, 6);
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		
+
 		
 		
 //		c.setbStruct(house);
