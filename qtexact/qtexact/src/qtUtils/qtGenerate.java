@@ -608,24 +608,36 @@ public class qtGenerate<V>
 		for (V v0 : g0.getVertices())
 		{
 			if (!g1.containsVertex(v0))
+			{
+				System.out.println("\nGraph 1 does not contain vertex " + v0);
 				return false;
+			}
 		}
 		for (V v1 : g1.getVertices())
 		{
 			if (!g0.containsVertex(v1))
+			{
+				System.out.println("\nGraph 0 does not contain vertex " + v1);
 				return false;
+			}
 		}
 		
 		//check edges
 		for (Pair<V> e0 : g0.getEdges())
 		{
-			if (!g1.isNeighbor(e0.getFirst(), e0.getSecond()))
+			if (!g1.isNeighbor(e0.getFirst(), e0.getSecond())){
+				
+				System.out.println("\nGraph 1 does not contain edge " + e0);
 				return false;
+			}
 		}
 		for (Pair<V> e1 : g1.getEdges())
 		{
 			if (!g0.isNeighbor(e1.getFirst(), e1.getSecond()))
+			{
+				System.out.println("\nGraph 0 does not contain edge " + e1);
 				return false;
+			}
 		}
 		
 		return true;

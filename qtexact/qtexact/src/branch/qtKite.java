@@ -20,12 +20,22 @@ public class qtKite<V> extends  qtBranchNoHeuristic<V>
 	public branchingReturnC<V> branchingRules(branchingReturnC<V> s, SearchResult<V> searchResult)
 	{
 		Certificate<V> certificate = searchResult.getCertificate();
+		
+		
+		SearchResult<V> old = clone.deepClone(searchResult);
+		
+		this.findStructures(s, searchResult);
+		
+		if (searchResult.getCertificate().getFlag() != -9)
+			searchResult = old;
+		
+		
+		
 		//check if fork is present
 		if (certificate.getFlag() == -9)
 		{
 			ArrayList<V> lexResult = certificate.getVertices();
 			double oldPercent = s.getPercent();
-			branchingReturnC<V> temp;
 			
 			int ruleCount = 7;
 			
@@ -38,7 +48,7 @@ public class qtKite<V> extends  qtBranchNoHeuristic<V>
 					s.setPercent(oldPercent / ruleCount);
 				}
 				
-				temp = controller.branch(addResult(s, lexResult.get(1), lexResult.get(3)));
+				controller.branch(addResult(s, lexResult.get(1), lexResult.get(3)));
 				
 				//revert changes
 				revert(s);		
@@ -47,11 +57,6 @@ public class qtKite<V> extends  qtBranchNoHeuristic<V>
 				{
 					//revert percent
 					s.setPercent(oldPercent);
-				}
-				
-				if (temp.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
-				{
-					s.setMinMoves(temp.getMinMoves());
 				}
 			}
 			else
@@ -68,7 +73,7 @@ public class qtKite<V> extends  qtBranchNoHeuristic<V>
 					s.setPercent(oldPercent / ruleCount);
 				}
 				
-				temp = controller.branch(delete2Result(s, lexResult.get(0), lexResult.get(1), lexResult.get(1), lexResult.get(2)));
+				controller.branch(delete2Result(s, lexResult.get(0), lexResult.get(1), lexResult.get(1), lexResult.get(2)));
 				
 				//revert changes
 				revert2(s);		
@@ -77,11 +82,6 @@ public class qtKite<V> extends  qtBranchNoHeuristic<V>
 				{
 					//revert percent
 					s.setPercent(oldPercent);
-				}
-				
-				if (temp.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
-				{
-					s.setMinMoves(temp.getMinMoves());
 				}
 			}
 			else
@@ -98,7 +98,7 @@ public class qtKite<V> extends  qtBranchNoHeuristic<V>
 					s.setPercent(oldPercent / ruleCount);
 				}
 				
-				temp = controller.branch(delete2Result(s, lexResult.get(0), lexResult.get(1), lexResult.get(1), lexResult.get(4)));
+				controller.branch(delete2Result(s, lexResult.get(0), lexResult.get(1), lexResult.get(1), lexResult.get(4)));
 				
 				//revert changes
 				revert2(s);		
@@ -107,11 +107,6 @@ public class qtKite<V> extends  qtBranchNoHeuristic<V>
 				{
 					//revert percent
 					s.setPercent(oldPercent);
-				}
-				
-				if (temp.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
-				{
-					s.setMinMoves(temp.getMinMoves());
 				}
 			}
 			else
@@ -128,7 +123,7 @@ public class qtKite<V> extends  qtBranchNoHeuristic<V>
 					s.setPercent(oldPercent / ruleCount);
 				}
 				
-				temp = controller.branch(delete2Result(s, lexResult.get(1), lexResult.get(2), lexResult.get(1), lexResult.get(4)));
+				controller.branch(delete2Result(s, lexResult.get(1), lexResult.get(2), lexResult.get(1), lexResult.get(4)));
 				
 				//revert changes
 				revert2(s);		
@@ -137,11 +132,6 @@ public class qtKite<V> extends  qtBranchNoHeuristic<V>
 				{
 					//revert percent
 					s.setPercent(oldPercent);
-				}
-				
-				if (temp.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
-				{
-					s.setMinMoves(temp.getMinMoves());
 				}
 			}
 			else
@@ -159,7 +149,7 @@ public class qtKite<V> extends  qtBranchNoHeuristic<V>
 					s.setPercent(oldPercent / ruleCount);
 				}
 				
-				temp = controller.branch(delete2Result(s, lexResult.get(3), lexResult.get(2), lexResult.get(3), lexResult.get(4)));
+				controller.branch(delete2Result(s, lexResult.get(3), lexResult.get(2), lexResult.get(3), lexResult.get(4)));
 				
 				//revert changes
 				revert2(s);		
@@ -168,11 +158,6 @@ public class qtKite<V> extends  qtBranchNoHeuristic<V>
 				{
 					//revert percent
 					s.setPercent(oldPercent);
-				}
-				
-				if (temp.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
-				{
-					s.setMinMoves(temp.getMinMoves());
 				}
 			}
 			else
@@ -191,7 +176,7 @@ public class qtKite<V> extends  qtBranchNoHeuristic<V>
 					s.setPercent(oldPercent / ruleCount);
 				}
 				
-				temp = controller.branch(addRemove2Result(s, lexResult.get(0), lexResult.get(2), lexResult.get(3), lexResult.get(4), lexResult.get(1), lexResult.get(4)));
+				controller.branch(addRemove2Result(s, lexResult.get(0), lexResult.get(2), lexResult.get(3), lexResult.get(4), lexResult.get(1), lexResult.get(4)));
 				
 				//revert changes
 				revert3(s);		
@@ -200,11 +185,6 @@ public class qtKite<V> extends  qtBranchNoHeuristic<V>
 				{
 					//revert percent
 					s.setPercent(oldPercent);
-				}
-				
-				if (temp.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
-				{
-					s.setMinMoves(temp.getMinMoves());
 				}
 			}
 			else
@@ -222,7 +202,7 @@ public class qtKite<V> extends  qtBranchNoHeuristic<V>
 					s.setPercent(oldPercent / ruleCount);
 				}
 				
-				temp = controller.branch(addRemove2Result(s, lexResult.get(0), lexResult.get(4), lexResult.get(1), lexResult.get(2), lexResult.get(2), lexResult.get(3)));
+				controller.branch(addRemove2Result(s, lexResult.get(0), lexResult.get(4), lexResult.get(1), lexResult.get(2), lexResult.get(2), lexResult.get(3)));
 				
 				//revert changes
 				revert3(s);		
@@ -232,17 +212,12 @@ public class qtKite<V> extends  qtBranchNoHeuristic<V>
 					//revert percent
 					s.setPercent(oldPercent);
 				}
-				
-				if (temp.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
-				{
-					s.setMinMoves(temp.getMinMoves());
-				}
 			}
 			else
 				if (output)
 					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
 			
-			return s.getMinMoves();
+			return s;
 		}
 		else
 			return super.branchingRules(s, searchResult);

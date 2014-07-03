@@ -23,12 +23,21 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 	public branchingReturnC<V> branchingRules(branchingReturnC<V> s, SearchResult<V> searchResult)
 	{
 		//update certificate if a house is not found
-		if (searchResult.getCertificate().getFlag() != -4)
-			searchResult.setCertificate(hasHouse(s, searchResult));
+//		if (searchResult.getCertificate().getFlag() != -4)
+//			searchResult.setCertificate(hasHouse(s, searchResult));
 		
 		//searchResult = findStructures(s, searchResult);
 		
-		branchingReturnC<V> temp;
+		
+		SearchResult<V> old = clone.deepClone(searchResult);
+		
+		this.findStructures(s, searchResult);
+		
+		if (searchResult.getCertificate().getFlag() != -4)
+			searchResult = old;
+		
+		
+		
 		
 		//if a house was found, apply house rules
 		if (searchResult.getCertificate().getFlag() == -4)
@@ -44,7 +53,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 					//change progress percent
 					s.setPercent(oldPercent / 16);
 				}
-				temp = controller.branch(delete2Result(s, lexResult.get(1), lexResult.get(2), lexResult.get(3), lexResult.get(4)));
+				controller.branch(delete2Result(s, lexResult.get(1), lexResult.get(2), lexResult.get(3), lexResult.get(4)));
 				
 				//revert changes
 				revert2(s);		
@@ -53,11 +62,6 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 				{
 					//revert percent
 					s.setPercent(oldPercent);
-				}
-				
-				if (temp.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
-				{
-					s.setMinMoves(temp.getMinMoves());
 				}
 			}
 			else
@@ -73,7 +77,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 					s.setPercent(oldPercent / 16);
 				}
 				
-				temp = controller.branch(delete2Result(s, lexResult.get(1), lexResult.get(2), lexResult.get(2), lexResult.get(3)));
+				controller.branch(delete2Result(s, lexResult.get(1), lexResult.get(2), lexResult.get(2), lexResult.get(3)));
 				
 				//revert changes
 				revert2(s);		
@@ -82,11 +86,6 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 				{
 					//revert percent
 					s.setPercent(oldPercent);
-				}
-				
-				if (temp.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
-				{
-					s.setMinMoves(temp.getMinMoves());
 				}
 			}
 			else
@@ -102,7 +101,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 					s.setPercent(oldPercent / 16);
 				}
 				
-				temp = controller.branch(delete2Result(s, lexResult.get(2), lexResult.get(3), lexResult.get(3), lexResult.get(4)));
+				controller.branch(delete2Result(s, lexResult.get(2), lexResult.get(3), lexResult.get(3), lexResult.get(4)));
 				
 				//revert changes
 				revert2(s);		
@@ -111,11 +110,6 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 				{
 					//revert percent
 					s.setPercent(oldPercent);
-				}
-				
-				if (temp.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
-				{
-					s.setMinMoves(temp.getMinMoves());
 				}
 			}
 			else
@@ -136,7 +130,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 					s.setPercent(oldPercent / 16);
 				}
 				
-				temp = controller.branch(delete3Result(s, lexResult.get(0), lexResult.get(1), lexResult.get(2), lexResult.get(3), lexResult.get(1), lexResult.get(4)));
+				controller.branch(delete3Result(s, lexResult.get(0), lexResult.get(1), lexResult.get(2), lexResult.get(3), lexResult.get(1), lexResult.get(4)));
 				
 				//revert changes
 				revert3(s);		
@@ -145,11 +139,6 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 				{
 					//revert percent
 					s.setPercent(oldPercent);
-				}
-				
-				if (temp.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
-				{
-					s.setMinMoves(temp.getMinMoves());
 				}
 			}
 			else
@@ -167,7 +156,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 					s.setPercent(oldPercent / 16);
 				}
 				
-				temp = controller.branch(delete3Result(s, lexResult.get(0), lexResult.get(4), lexResult.get(2), lexResult.get(3), lexResult.get(1), lexResult.get(4)));
+				controller.branch(delete3Result(s, lexResult.get(0), lexResult.get(4), lexResult.get(2), lexResult.get(3), lexResult.get(1), lexResult.get(4)));
 				
 				//revert changes
 				revert3(s);		
@@ -176,11 +165,6 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 				{
 					//revert percent
 					s.setPercent(oldPercent);
-				}
-				
-				if (temp.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
-				{
-					s.setMinMoves(temp.getMinMoves());
 				}
 			}
 			else
@@ -198,7 +182,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 					s.setPercent(oldPercent / 16);
 				}
 				
-				temp = controller.branch(delete3Result(s, lexResult.get(0), lexResult.get(1), lexResult.get(3), lexResult.get(4), lexResult.get(1), lexResult.get(4)));
+				controller.branch(delete3Result(s, lexResult.get(0), lexResult.get(1), lexResult.get(3), lexResult.get(4), lexResult.get(1), lexResult.get(4)));
 				
 				//revert changes
 				revert3(s);		
@@ -207,11 +191,6 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 				{
 					//revert percent
 					s.setPercent(oldPercent);
-				}
-				
-				if (temp.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
-				{
-					s.setMinMoves(temp.getMinMoves());
 				}
 			}
 			else
@@ -229,7 +208,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 					s.setPercent(oldPercent / 16);
 				}
 				
-				temp = controller.branch(delete3Result(s, lexResult.get(0), lexResult.get(4), lexResult.get(1), lexResult.get(2), lexResult.get(1), lexResult.get(4)));
+				controller.branch(delete3Result(s, lexResult.get(0), lexResult.get(4), lexResult.get(1), lexResult.get(2), lexResult.get(1), lexResult.get(4)));
 				
 				//revert changes
 				revert3(s);		
@@ -238,11 +217,6 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 				{
 					//revert percent
 					s.setPercent(oldPercent);
-				}
-				
-				if (temp.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
-				{
-					s.setMinMoves(temp.getMinMoves());
 				}
 			}
 			else
@@ -260,7 +234,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 					s.setPercent(oldPercent / 16);
 				}
 				
-				temp = controller.branch(add2Result(s, lexResult.get(1), lexResult.get(3), lexResult.get(2), lexResult.get(4)));
+				controller.branch(add2Result(s, lexResult.get(1), lexResult.get(3), lexResult.get(2), lexResult.get(4)));
 				
 				//revert changes
 				revert2(s);		
@@ -269,11 +243,6 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 				{
 					//revert percent
 					s.setPercent(oldPercent);
-				}
-				
-				if (temp.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
-				{
-					s.setMinMoves(temp.getMinMoves());
 				}
 			}
 			else
@@ -290,7 +259,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 					s.setPercent(oldPercent / 16);
 				}
 				
-				temp = controller.branch(add2Result(s, lexResult.get(1), lexResult.get(3), lexResult.get(3), lexResult.get(0)));
+				controller.branch(add2Result(s, lexResult.get(1), lexResult.get(3), lexResult.get(3), lexResult.get(0)));
 				
 				//revert changes
 				revert2(s);		
@@ -299,11 +268,6 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 				{
 					//revert percent
 					s.setPercent(oldPercent);
-				}
-				
-				if (temp.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
-				{
-					s.setMinMoves(temp.getMinMoves());
 				}
 			}
 			else
@@ -319,7 +283,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 					s.setPercent(oldPercent / 16);
 				}
 				
-				temp = controller.branch(add2Result(s, lexResult.get(2), lexResult.get(4), lexResult.get(0), lexResult.get(2)));
+				controller.branch(add2Result(s, lexResult.get(2), lexResult.get(4), lexResult.get(0), lexResult.get(2)));
 				
 				//revert changes
 				revert2(s);		
@@ -328,11 +292,6 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 				{
 					//revert percent
 					s.setPercent(oldPercent);
-				}
-				
-				if (temp.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
-				{
-					s.setMinMoves(temp.getMinMoves());
 				}
 			}
 			else
@@ -351,7 +310,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 					s.setPercent(oldPercent / 16);
 				}
 				
-				temp = controller.branch(addRemoveResult(s, lexResult.get(1), lexResult.get(3), lexResult.get(3), lexResult.get(4)));
+				controller.branch(addRemoveResult(s, lexResult.get(1), lexResult.get(3), lexResult.get(3), lexResult.get(4)));
 				
 				//revert changes
 				revert2(s);		
@@ -360,11 +319,6 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 				{
 					//revert percent
 					s.setPercent(oldPercent);
-				}
-				
-				if (temp.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
-				{
-					s.setMinMoves(temp.getMinMoves());
 				}
 			}
 			else
@@ -380,7 +334,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 					s.setPercent(oldPercent / 16);
 				}
 				
-				temp = controller.branch(addRemoveResult(s, lexResult.get(1), lexResult.get(3), lexResult.get(0), lexResult.get(4)));
+				controller.branch(addRemoveResult(s, lexResult.get(1), lexResult.get(3), lexResult.get(0), lexResult.get(4)));
 				
 				//revert changes
 				revert2(s);		
@@ -389,11 +343,6 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 				{
 					//revert percent
 					s.setPercent(oldPercent);
-				}
-				
-				if (temp.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
-				{
-					s.setMinMoves(temp.getMinMoves());
 				}
 			}
 			else
@@ -410,7 +359,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 					s.setPercent(oldPercent / 16);
 				}
 				
-				temp = controller.branch(addRemoveResult(s, lexResult.get(1), lexResult.get(3), lexResult.get(2), lexResult.get(3)));
+				controller.branch(addRemoveResult(s, lexResult.get(1), lexResult.get(3), lexResult.get(2), lexResult.get(3)));
 				
 				//revert changes
 				revert2(s);		
@@ -419,11 +368,6 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 				{
 					//revert percent
 					s.setPercent(oldPercent);
-				}
-				
-				if (temp.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
-				{
-					s.setMinMoves(temp.getMinMoves());
 				}
 			}
 			else
@@ -440,7 +384,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 					s.setPercent(oldPercent / 16);
 				}
 				
-				temp = controller.branch(addRemoveResult(s, lexResult.get(2), lexResult.get(4), lexResult.get(1), lexResult.get(2)));
+				controller.branch(addRemoveResult(s, lexResult.get(2), lexResult.get(4), lexResult.get(1), lexResult.get(2)));
 				
 				//revert changes
 				revert2(s);		
@@ -449,11 +393,6 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 				{
 					//revert percent
 					s.setPercent(oldPercent);
-				}
-				
-				if (temp.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
-				{
-					s.setMinMoves(temp.getMinMoves());
 				}
 			}
 			else
@@ -469,7 +408,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 					s.setPercent(oldPercent / 16);
 				}
 				
-				temp = controller.branch(addRemoveResult(s, lexResult.get(2), lexResult.get(4), lexResult.get(2), lexResult.get(3)));
+				controller.branch(addRemoveResult(s, lexResult.get(2), lexResult.get(4), lexResult.get(2), lexResult.get(3)));
 				
 				//revert changes
 				revert2(s);		
@@ -480,10 +419,6 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 					s.setPercent(oldPercent);
 				}
 				
-				if (temp.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
-				{
-					s.setMinMoves(temp.getMinMoves());
-				}
 			}
 			else
 				if (output)
@@ -499,7 +434,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 					s.setPercent(oldPercent / 16);
 				}
 				
-				temp = controller.branch(addRemoveResult(s, lexResult.get(2), lexResult.get(4), lexResult.get(0), lexResult.get(1)));
+				controller.branch(addRemoveResult(s, lexResult.get(2), lexResult.get(4), lexResult.get(0), lexResult.get(1)));
 				
 				//revert changes
 				revert2(s);		
@@ -509,18 +444,13 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 					//revert percent
 					s.setPercent(oldPercent);
 				}
-				
-				if (temp.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
-				{
-					s.setMinMoves(temp.getMinMoves());
-				}
 			}
 			else
 				if (output)
 					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 16);
 			
 			
-			return s.getMinMoves();
+			return s;
 			
 		}
 		else

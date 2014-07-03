@@ -29,7 +29,8 @@ public class qtPan<V> extends qtBranchNoHeuristic<V>
 	public branchingReturnC<V> branchingRules(branchingReturnC<V> s, SearchResult<V> searchResult)
 	{
 		//update certificate
-		searchResult.setCertificate(hasPan(s, searchResult));
+		if (searchResult.getCertificate().getFlag() != -3)
+			searchResult.setCertificate(hasPan(s, searchResult));
 		
 		//if a Pan has been found, use new branching rules
 		if (searchResult.getCertificate().getFlag() == -3)
@@ -46,7 +47,7 @@ public class qtPan<V> extends qtBranchNoHeuristic<V>
 					//change progress percent
 					s.setPercent(oldPercent / 6.0);
 				}
-				branchingReturnC<V> kAdd = controller.branch(addResult(s, lexResult.get(1), lexResult.get(3)));
+				controller.branch(addResult(s, lexResult.get(1), lexResult.get(3)));
 				
 				//revert changes
 				revert(s);		
@@ -55,11 +56,6 @@ public class qtPan<V> extends qtBranchNoHeuristic<V>
 				{
 					//revert percent
 					s.setPercent(oldPercent);
-				}
-				
-				if (kAdd.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
-				{
-					s.setMinMoves(kAdd.getMinMoves());
 				}
 			}
 			else
@@ -75,7 +71,7 @@ public class qtPan<V> extends qtBranchNoHeuristic<V>
 					//change progress percent
 					s.setPercent(oldPercent / 6.0);
 				}
-				branchingReturnC<V> kDelete20 = controller.branch(delete2Result(s, lexResult.get(2), lexResult.get(3), lexResult.get(3), lexResult.get(4)));
+				controller.branch(delete2Result(s, lexResult.get(2), lexResult.get(3), lexResult.get(3), lexResult.get(4)));
 				
 				//revert changes
 				revert2(s);		
@@ -84,11 +80,6 @@ public class qtPan<V> extends qtBranchNoHeuristic<V>
 				{
 					//revert percent
 					s.setPercent(oldPercent);
-				}
-				
-				if (kDelete20.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
-				{
-					s.setMinMoves(kDelete20.getMinMoves());
 				}
 			}
 			else
@@ -103,7 +94,7 @@ public class qtPan<V> extends qtBranchNoHeuristic<V>
 					//change progress percent
 					s.setPercent(oldPercent / 6.0);
 				}
-				branchingReturnC<V> kDelete21 = controller.branch(delete2Result(s, lexResult.get(2), lexResult.get(3), lexResult.get(4), lexResult.get(1)));
+				controller.branch(delete2Result(s, lexResult.get(2), lexResult.get(3), lexResult.get(4), lexResult.get(1)));
 				
 				//revert changes
 				revert2(s);		
@@ -112,11 +103,6 @@ public class qtPan<V> extends qtBranchNoHeuristic<V>
 				{
 					//revert percent
 					s.setPercent(oldPercent);
-				}
-				
-				if (kDelete21.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
-				{
-					s.setMinMoves(kDelete21.getMinMoves());
 				}
 			}
 			else
@@ -131,7 +117,7 @@ public class qtPan<V> extends qtBranchNoHeuristic<V>
 					//change progress percent
 					s.setPercent(oldPercent / 6.0);
 				}
-				branchingReturnC<V> kDelete22 = controller.branch(delete2Result(s, lexResult.get(1), lexResult.get(2), lexResult.get(3), lexResult.get(4)));
+				controller.branch(delete2Result(s, lexResult.get(1), lexResult.get(2), lexResult.get(3), lexResult.get(4)));
 				
 				//revert changes
 				revert2(s);		
@@ -140,11 +126,6 @@ public class qtPan<V> extends qtBranchNoHeuristic<V>
 				{
 					//revert percent
 					s.setPercent(oldPercent);
-				}
-				
-				if (kDelete22.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
-				{
-					s.setMinMoves(kDelete22.getMinMoves());
 				}
 			}
 			else
@@ -159,7 +140,7 @@ public class qtPan<V> extends qtBranchNoHeuristic<V>
 					//change progress percent
 					s.setPercent(oldPercent / 6.0);
 				}
-				branchingReturnC<V> kDelete23 = controller.branch(delete2Result(s, lexResult.get(1), lexResult.get(2), lexResult.get(4), lexResult.get(1)));
+				controller.branch(delete2Result(s, lexResult.get(1), lexResult.get(2), lexResult.get(4), lexResult.get(1)));
 				
 				//revert changes
 				revert2(s);		
@@ -168,11 +149,6 @@ public class qtPan<V> extends qtBranchNoHeuristic<V>
 				{
 					//revert percent
 					s.setPercent(oldPercent);
-				}
-				
-				if (kDelete23.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
-				{
-					s.setMinMoves(kDelete23.getMinMoves());
 				}
 			}
 			else
@@ -190,7 +166,7 @@ public class qtPan<V> extends qtBranchNoHeuristic<V>
 				}
 				
 				
-				branchingReturnC<V> kAddDelete = controller.branch(addRemoveResult(s, lexResult.get(2), lexResult.get(4), lexResult.get(0), lexResult.get(1)));
+				controller.branch(addRemoveResult(s, lexResult.get(2), lexResult.get(4), lexResult.get(0), lexResult.get(1)));
 				
 				//revert changes
 				revert2(s);		
@@ -200,17 +176,12 @@ public class qtPan<V> extends qtBranchNoHeuristic<V>
 					//revert percent
 					s.setPercent(oldPercent);
 				}
-				
-				if (kAddDelete.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
-				{
-					s.setMinMoves(kAddDelete.getMinMoves());
-				}
 			}
 			else
 				if (output)
 					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 6);
 			
-			return s.getMinMoves();
+			return s;
 		}
 		//otherwise use old branching rules
 		else

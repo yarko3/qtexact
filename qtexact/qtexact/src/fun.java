@@ -22,7 +22,13 @@ import search.YanSearch;
 import abstractClasses.Reduction;
 import branch.qtAllStruct;
 import branch.qtBranchComponents;
+import branch.qtBranchNoHeuristic;
+import branch.qtC5;
+import branch.qtHouse;
+import branch.qtKite;
+import branch.qtP5;
 import branch.qtPan;
+import branch.qtY;
 
 import com.rits.cloning.Cloner;
 
@@ -30,6 +36,7 @@ import controller.Controller;
 import edu.uci.ics.jung.algorithms.cluster.EdgeBetweennessClusterer;
 import edu.uci.ics.jung.algorithms.layout.FRLayout;
 import edu.uci.ics.jung.graph.Graph;
+import edu.uci.ics.jung.graph.SparseGraph;
 import edu.uci.ics.jung.graph.util.Pair;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
@@ -70,10 +77,10 @@ public class fun extends JApplet {
 		//random graph join
 		//exampleQT = gen.erJoins(20, 10, 5, .86, .86, 1);
 		
-		//exampleQT = gen.ER(11, 0.1);
+		exampleQT = gen.ER(11, 0.2);
 		
-		//exampleQT = new SparseGraph<Integer, Pair<Integer>>();
-		//fillGraphFromFile(exampleQT, "datasets/karate.txt");
+//		exampleQT = new SparseGraph<Integer, Pair<Integer>>();
+//		fillGraphFromFile(exampleQT, "datasets/karate.txt");
 		
 		//exampleQT = gen.fromBipartiteFile("datasets/southernwomen");
 	
@@ -89,11 +96,13 @@ public class fun extends JApplet {
 		//Graph<String, Pair<String>> fb = gen.facebookGraph("datasets/fbFriends.txt");
 		
 		Graph<Integer, Pair<Integer>> cln = clone.deepClone(exampleQT);
-		visualize(exampleQT);
+		visualize(cln);
 		
 		
 		Controller<Integer> c = new Controller<Integer>(null, true);
-		//qtBranchNoHeuristic<Integer> branchNoHP = new qtBranchNoHeuristic<Integer>(c);
+		
+		
+		qtBranchNoHeuristic<Integer> branchNoHP = new qtBranchNoHeuristic<Integer>(c);
 		//c.setbStruct(branchNoHP);
 		
 		
@@ -108,6 +117,15 @@ public class fun extends JApplet {
 		qtBranchComponents<Integer> branchC = new qtBranchComponents<Integer>(c);
 		//c.setbStruct(branchC);
 		
+		qtC5<Integer> C5 = new qtC5<Integer>(c);
+		
+		qtHouse<Integer> house = new qtHouse<Integer>(c);
+		
+		qtKite<Integer> kite = new qtKite<Integer>(c);
+		
+		qtP5<Integer> P5 = new qtP5<Integer>(c);
+		
+		qtY<Integer> y = new qtY<Integer>(c);
 		
 		
 //		Reduction<Integer> rHouse = new edgeBoundReduction<Integer>(house);
@@ -132,10 +150,10 @@ public class fun extends JApplet {
 		r2C = new commonC4Reduction<Integer>(all);
 		all.addReduction(r2C);
 //		
-//		Reduction<Integer> rNo = new edgeBoundReduction<Integer>(branchNoHP);
-//		branchNoHP.addReduction(rNo);
-//		Reduction<Integer> r2No = new commonC4Reduction<Integer>(branchNoHP);
-//		branchNoHP.addReduction(r2No);
+		Reduction<Integer> rNo = new edgeBoundReduction<Integer>(branchNoHP);
+		branchNoHP.addReduction(rNo);
+		Reduction<Integer> r2No = new commonC4Reduction<Integer>(branchNoHP);
+		branchNoHP.addReduction(r2No);
 //		
 		
 		YanSearch<Integer> yan = new YanSearch<Integer>();
@@ -144,38 +162,143 @@ public class fun extends JApplet {
 		System.out.println(yan.search(exampleQT));
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
+		
+		rC = new edgeBoundReduction<Integer>(C5);
+		C5.addReduction(rC);
+		r2C = new commonC4Reduction<Integer>(C5);
+		C5.addReduction(r2C);
+		
+		rC = new edgeBoundReduction<Integer>(house);
+		house.addReduction(rC);
+		r2C = new commonC4Reduction<Integer>(house);
+		house.addReduction(r2C);
+		
+		
+		rC = new edgeBoundReduction<Integer>(kite);
+		kite.addReduction(rC);
+		r2C = new commonC4Reduction<Integer>(kite);
+		kite.addReduction(r2C);
+		
+		rC = new edgeBoundReduction<Integer>(P5);
+		P5.addReduction(rC);
+		r2C = new commonC4Reduction<Integer>(P5);
+		P5.addReduction(r2C);
+		
+		rC = new edgeBoundReduction<Integer>(y);
+		y.addReduction(rC);
+		r2C = new commonC4Reduction<Integer>(y);
+		y.addReduction(r2C);
+		
 //		
-//		c.setbStruct(branchNoHP);
-//		System.out.println("\nNo heuristic without reductions: ");
-//		start = System.currentTimeMillis();
-//		c.branchStart(exampleQT, 7);
-//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
-		c.setbStruct(branchC);
-		System.out.println("\nConnected component: ");
+		c.setbStruct(C5);
+		System.out.println("\nC5: ");
 		start = System.currentTimeMillis();
-		c.branchStart(exampleQT, 6);
+		c.branchStart(exampleQT, 10);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
-
-		c.setbStruct(pan);
-		System.out.println("\npan: ");
-		start = System.currentTimeMillis();
-		c.branchStart(exampleQT, 6);
-		System.out.println((System.currentTimeMillis()-start) / 1000.0);
-		
-		
-		c.setbStruct(all);
-		System.out.println("\nAll structures: ");
-		start = System.currentTimeMillis();
-		c.branchStart(exampleQT, 6);
-		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
+//		
+		Graph<Integer, Pair<Integer>> cln4 = clone.deepClone(exampleQT);
+//		visualize(cln4);
 		
 //		c.setbStruct(house);
 //		System.out.println("\nHouse: ");
 //		start = System.currentTimeMillis();
-//		exampleQT = c.branchStart(exampleQT, 7);
+//		c.branchStart(exampleQT, 10);
 //		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+//		
+//		
+//		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
+		
+		
+//		Graph<Integer, Pair<Integer>> cln5 = clone.deepClone(exampleQT);
+//		visualize(cln5);
+		
+//		c.setbStruct(kite);
+//		System.out.println("\nKite: ");
+//		start = System.currentTimeMillis();
+//		c.branchStart(exampleQT, 10);
+//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+//		
+//		
+//		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
+//		
+//		Graph<Integer, Pair<Integer>> cln6 = clone.deepClone(exampleQT);
+//		visualize(cln6);
+		
+//		c.setbStruct(P5);
+//		System.out.println("\nP5: ");
+//		start = System.currentTimeMillis();
+//		c.branchStart(exampleQT, 10);
+//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+//		
+//		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
+		
+//		Graph<Integer, Pair<Integer>> cln7 = clone.deepClone(exampleQT);
+//		visualize(cln7);
+		
+//		c.setbStruct(y);
+//		System.out.println("\nY: ");
+//		start = System.currentTimeMillis();
+//		c.branchStart(exampleQT, 10);
+//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+//		
+//		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
+//		
+//		Graph<Integer, Pair<Integer>> cln8 = clone.deepClone(exampleQT);
+//		visualize(cln8);
+		
+		
+//		c.setbStruct(all);
+//		System.out.println("\nAll structures: ");
+//		start = System.currentTimeMillis();
+//		c.branchStart(exampleQT, 10);
+//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+//		
+//		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
+		
+		
+//		Graph<Integer, Pair<Integer>> cln9 = clone.deepClone(exampleQT);
+//		visualize(cln9);
+		
+		
+//		
+		
+//		c.setbStruct(branchNoHP);
+//		System.out.println("\nNo Heuristic: ");
+//		start = System.currentTimeMillis();
+//		c.branchStart(exampleQT, 10);
+//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+//		
+//		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
+//		
+//		
+//		Graph<Integer, Pair<Integer>> cln3 = clone.deepClone(exampleQT);
+//		visualize(cln3);
+//		
+//		c.setbStruct(pan);
+//		System.out.println("\npan: ");
+//		start = System.currentTimeMillis();
+//		c.branchStart(exampleQT, 10);
+//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+//		
+//		
+//		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
+//		
+//		Graph<Integer, Pair<Integer>> cln2 = clone.deepClone(exampleQT);
+//		visualize(cln2);
+//	
+//		c.setbStruct(branchC);
+//		System.out.println("\nConnected component: ");
+//		start = System.currentTimeMillis();
+//		c.branchStart(exampleQT, 10);
+//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+//		
+//		
+//		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
+//		
+		
 		
 		start = System.currentTimeMillis();
 		System.out.println(yan.search(exampleQT));
@@ -193,6 +316,8 @@ public class fun extends JApplet {
 
 		frl.setAttractionMultiplier(3);
 		frl.setRepulsionMultiplier(1.1);
+		
+		frl.setMaxIterations(1000);
 		//frl.lock(true);
 		VisualizationViewer vv = new VisualizationViewer(frl, new Dimension(
 				1900, 1000));

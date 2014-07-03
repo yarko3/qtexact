@@ -590,7 +590,10 @@ public abstract class qtBranch<V> extends Branch<V>
 					if (s.getG().isNeighbor(vertices.get(0), n) || s.getG().isNeighbor(vertices.get(3), n))
 					{
 						//a P5 has been found
-						vertices.add(n);
+						if (s.getG().isNeighbor(vertices.get(0), n))
+							vertices.add(0, n);
+						else
+							vertices.add(n);
 						obstruction.setFlag(-5);
 						
 						return searchResult;

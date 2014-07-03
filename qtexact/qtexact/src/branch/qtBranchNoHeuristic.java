@@ -91,7 +91,9 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 				}
 				
 				
-				branchingReturnC<V> c4Add1 = controller.branch(addResult(s, lexResult.get(0), lexResult.get(2)));
+				controller.branch(addResult(s, lexResult.get(0), lexResult.get(2)));
+				
+				
 				//revert changes
 				revert(s);		
 				if (output)
@@ -100,10 +102,6 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 					s.setPercent(oldPercent);
 				}
 				
-				if (c4Add1.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
-				{
-					s.setMinMoves(c4Add1.getMinMoves());
-				}
 			}
 			else
 				if (output)
@@ -117,7 +115,7 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 					s.setPercent(oldPercent / 8);
 				}
 				
-				branchingReturnC<V> c4Add2 = controller.branch(addResult(s, lexResult.get(1), lexResult.get(3)));
+				controller.branch(addResult(s, lexResult.get(1), lexResult.get(3)));
 				//revert changes
 				if (output)
 				{
@@ -126,10 +124,6 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 				
 				revert(s);
 				//update percentDone
-				if (c4Add2.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
-				{
-					s.setMinMoves(c4Add2.getMinMoves());
-				}
 			}
 			else
 				if (output)
@@ -145,7 +139,8 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 					s.setPercent(oldPercent / 8);
 				}
 				
-				branchingReturnC<V> c4Remove0 = controller.branch(delete2Result(s, lexResult.get(0), lexResult.get(1), lexResult.get(1), lexResult.get(2)));
+				controller.branch(delete2Result(s, lexResult.get(0), lexResult.get(1), lexResult.get(1), lexResult.get(2)));
+				
 				if (output)
 				{
 					s.setPercent(oldPercent);
@@ -153,10 +148,6 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 				
 				//revert change to global graph
 				revert2(s);
-				if (c4Remove0.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
-				{
-					s.setMinMoves(c4Remove0.getMinMoves());
-				}
 			}
 			else
 				if (output)
@@ -169,7 +160,7 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 					//change progress percent
 					s.setPercent(oldPercent / 8);
 				}
-				branchingReturnC<V> c4Remove1 = controller.branch(delete2Result(s, lexResult.get(0), lexResult.get(3), lexResult.get(2), lexResult.get(3)));
+				controller.branch(delete2Result(s, lexResult.get(0), lexResult.get(3), lexResult.get(2), lexResult.get(3)));
 				
 				if (output)
 				{
@@ -177,10 +168,6 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 				}
 				//revert change to global graph
 				revert2(s);
-				if (c4Remove1.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
-				{
-					s.setMinMoves(c4Remove1.getMinMoves());
-				}
 			}
 			else
 				if (output)
@@ -194,7 +181,7 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 					s.setPercent(oldPercent / 8);
 				}
 				
-				branchingReturnC<V> c4Remove2 = controller.branch(delete2Result(s, lexResult.get(0), lexResult.get(1), lexResult.get(2), lexResult.get(3)));
+				controller.branch(delete2Result(s, lexResult.get(0), lexResult.get(1), lexResult.get(2), lexResult.get(3)));
 				if (output)
 				{
 					s.setPercent(oldPercent);
@@ -202,10 +189,6 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 				
 				//revert change to global graph
 				revert2(s);
-				if (c4Remove2.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
-				{
-					s.setMinMoves(c4Remove2.getMinMoves());
-				}
 			}
 			else
 				if (output)
@@ -219,17 +202,13 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 					s.setPercent(oldPercent / 8);
 				}
 				
-				branchingReturnC<V> c4Remove3 = controller.branch(delete2Result(s, lexResult.get(0), lexResult.get(3), lexResult.get(1), lexResult.get(2)));
+				controller.branch(delete2Result(s, lexResult.get(0), lexResult.get(3), lexResult.get(1), lexResult.get(2)));
 				
 				if (output)
 					s.setPercent(oldPercent);
 				
 				//revert change to global graph
 				revert2(s);
-				if (c4Remove3.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
-				{
-					s.setMinMoves(c4Remove3.getMinMoves());
-				}
 			}
 			else
 				if (output)
@@ -241,17 +220,13 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 					//change progress percent
 					s.setPercent(oldPercent / 8);
 				
-				branchingReturnC<V> c4Remove4 = controller.branch(delete2Result(s, lexResult.get(1), lexResult.get(2), lexResult.get(2), lexResult.get(3)));
+				controller.branch(delete2Result(s, lexResult.get(1), lexResult.get(2), lexResult.get(2), lexResult.get(3)));
 				
 				if (output)
 					s.setPercent(oldPercent);
 				
 				//revert change to global graph
 				revert2(s);
-				if (c4Remove4.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
-				{
-					s.setMinMoves(c4Remove4.getMinMoves());
-				}
 			}
 			else
 				if (output)
@@ -264,17 +239,13 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 					//change progress percent
 					s.setPercent(oldPercent / 8);
 				
-				branchingReturnC<V> c4Remove5 = controller.branch(delete2Result(s, lexResult.get(0), lexResult.get(1), lexResult.get(0), lexResult.get(3)));
+				controller.branch(delete2Result(s, lexResult.get(0), lexResult.get(1), lexResult.get(0), lexResult.get(3)));
 				
 				if (output)
 					s.setPercent(oldPercent);
 				
 				//revert change to global graph
 				revert2(s);
-				if (c4Remove5.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
-				{
-					s.setMinMoves(c4Remove5.getMinMoves());
-				}
 			}
 			else
 				if (output)
@@ -295,17 +266,13 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 					//change progress percent
 					s.setPercent(oldPercent / 5);
 				
-				branchingReturnC<V> p4Remove1 = controller.branch(deleteResult(s, lexResult.get(1), lexResult.get(2)));
+				controller.branch(deleteResult(s, lexResult.get(1), lexResult.get(2)));
 				
 				if (output)
 					s.setPercent(oldPercent);
 				
 				//revert changes to global graph
 				revert(s);
-				if (p4Remove1.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
-				{
-					s.setMinMoves(p4Remove1.getMinMoves());
-				}
 			}
 			else
 				if (output)
@@ -319,17 +286,13 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 					//change progress percent
 					s.setPercent(oldPercent / 5);
 				
-				branchingReturnC<V> p4Remove0 = controller.branch(deleteResult(s, lexResult.get(0), lexResult.get(1)));
+				controller.branch(deleteResult(s, lexResult.get(0), lexResult.get(1)));
 				
 				if (output)
 					s.setPercent(oldPercent);
 				
 				//revert changes to global graph
 				revert(s);
-				if (p4Remove0.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
-				{
-					s.setMinMoves(p4Remove0.getMinMoves());
-				}
 			}
 			else
 				if (output)
@@ -342,17 +305,13 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 					//change progress percent
 					s.setPercent(oldPercent / 5);
 				
-				branchingReturnC<V> p4Remove2 = controller.branch(deleteResult(s, lexResult.get(2), lexResult.get(3)));
+				controller.branch(deleteResult(s, lexResult.get(2), lexResult.get(3)));
 				
 				if (output)
 					s.setPercent(oldPercent);
 				
 				//revert changes to global graph
 				revert(s);
-				if (p4Remove2.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
-				{
-					s.setMinMoves(p4Remove2.getMinMoves());
-				}
 			}
 			else
 				if (output)
@@ -365,17 +324,12 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 					//change progress percent
 					s.setPercent(oldPercent / 5);
 				
-				branchingReturnC<V> p4Add0 = controller.branch(addResult(s, lexResult.get(0), lexResult.get(2)));
+				controller.branch(addResult(s, lexResult.get(0), lexResult.get(2)));
 				if (output)
 					s.setPercent(oldPercent);
 				
 				//revert changes
 				revert(s);
-				
-				if (p4Add0.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
-				{
-					s.setMinMoves(p4Add0.getMinMoves());
-				}
 			}
 			else
 				if (output)
@@ -387,25 +341,20 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 					//change progress percent
 					s.setPercent(oldPercent / 5);
 				
-				branchingReturnC<V> p4Add1 = controller.branch(addResult(s, lexResult.get(1), lexResult.get(3)));
+				controller.branch(addResult(s, lexResult.get(1), lexResult.get(3)));
 				
 				if (output)
 					s.setPercent(oldPercent);
 				
 				//revert changes
 				revert(s);
-				
-				if (p4Add1.getMinMoves().getChanges().size() < s.getMinMoves().getChanges().size())
-				{
-					s.setMinMoves(p4Add1.getMinMoves());
-				}
 			}
 			else
 				if (output)
 					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 5);
 			
 			
-			return s.getMinMoves();
+			return s;
 		}
 	}
 

@@ -213,7 +213,7 @@ public class Controller<V>
 					bStruct.reduceRevert(s);
 				}
 				
-				return s.getMinMoves();
+				return s;
 			}
 		}
 		
@@ -266,7 +266,7 @@ public class Controller<V>
 					branchingReturnC<V> reverted = bStruct.reduceRevert(s);
 				}
 				
-				return s.getMinMoves();
+				return s;
 			}
 		}
 	}
