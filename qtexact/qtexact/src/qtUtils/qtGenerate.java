@@ -403,6 +403,44 @@ public class qtGenerate<V>
 		return g;
 	}
 	
+	public static Graph<Integer, Pair<Integer>> nonQTEx4()
+	{
+		Graph<Integer,Pair<Integer>> g = new SparseGraph<Integer,Pair<Integer>>();
+		
+		g.addEdge(new Pair<Integer>(3, 4), 3, 4);
+		g.addEdge(new Pair<Integer>(3, 5), 3, 5);
+		g.addEdge(new Pair<Integer>(5, 6), 5, 6);
+		g.addEdge(new Pair<Integer>(6, 9), 6, 9);
+		g.addEdge(new Pair<Integer>(6, 10), 6, 10);
+		g.addEdge(new Pair<Integer>(3, 10), 3, 10);
+		g.addEdge(new Pair<Integer>(10, 0), 10, 0);
+		
+		
+		return g;
+	}
+	
+	public static Graph<Integer, Pair<Integer>> nonQTEx5()
+	{
+		Graph<Integer,Pair<Integer>> g = new SparseGraph<Integer,Pair<Integer>>();
+		
+		g.addEdge(new Pair<Integer>(2, 3), 2, 3);
+		//g.addEdge(new Pair<Integer>(3, 6), 3, 6);
+		g.addEdge(new Pair<Integer>(3, 10), 3, 10);
+		g.addEdge(new Pair<Integer>(2, 8), 2, 8);
+		g.addEdge(new Pair<Integer>(0, 2), 0, 2);
+		g.addEdge(new Pair<Integer>(8, 10), 8, 10);
+		g.addEdge(new Pair<Integer>(10, 0), 10, 0);
+		g.addEdge(new Pair<Integer>(0, 9), 0, 9);
+		g.addEdge(new Pair<Integer>(6, 9), 6, 9);
+		//g.addEdge(new Pair<Integer>(7, 4), 7, 4);
+		//g.addEdge(new Pair<Integer>(6, 7), 6, 7);
+		//g.addEdge(new Pair<Integer>(10, 7), 10, 7);
+		//g.addEdge(new Pair<Integer>(7, 0), 7, 0);
+		
+		
+		return g;
+	}
+	
 	public static Graph<Integer, Pair<Integer>> ER(int vertices, double p)
 	{
 		Random rand = new Random();

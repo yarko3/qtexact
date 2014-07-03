@@ -221,7 +221,7 @@ public class qtP5<V> extends qtBranchNoHeuristic<V>
 					s.setPercent(oldPercent / ruleCount);
 				}
 				
-				temp = controller.branch(add2Result(s, lexResult.get(0), lexResult.get(3), lexResult.get(2), lexResult.get(3)));
+				temp = controller.branch(add2Result(s, lexResult.get(0), lexResult.get(3), lexResult.get(1), lexResult.get(3)));
 				
 				//revert changes
 				revert2(s);		

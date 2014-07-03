@@ -169,7 +169,6 @@ public class qtBranchComponents<V> extends qtBranchNoHeuristic<V>
 				temp.addAll(r.getMinMoves().getChanges());
 			}
 			min.getChanges().addAll(temp);
-			min.getChanges().addAll(s.getChanges());		
 			
 			//if this solution is better than current one
 			if (s.getMinMoves().getChanges().size() > min.getChanges().size())

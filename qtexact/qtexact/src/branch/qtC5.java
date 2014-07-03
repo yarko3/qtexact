@@ -21,7 +21,7 @@ public class qtC5<V> extends qtP5<V>
 	{
 		Certificate<V> certificate = searchResult.getCertificate();
 		//check if fork is present
-		if (certificate.getFlag() == -5)
+		if (certificate.getFlag() == -8)
 		{
 			ArrayList<V> lexResult = certificate.getVertices();
 			double oldPercent = s.getPercent();

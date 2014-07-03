@@ -190,8 +190,7 @@ public class qtPan<V> extends qtBranchNoHeuristic<V>
 				}
 				
 				
-				branchingReturnC<V> kAddDelete = deleteResult(s, lexResult.get(0), lexResult.get(1));
-				kAddDelete = controller.branch(addResult(kAddDelete, lexResult.get(2), lexResult.get(4)));
+				branchingReturnC<V> kAddDelete = controller.branch(addRemoveResult(s, lexResult.get(2), lexResult.get(4), lexResult.get(0), lexResult.get(1)));
 				
 				//revert changes
 				revert2(s);		
