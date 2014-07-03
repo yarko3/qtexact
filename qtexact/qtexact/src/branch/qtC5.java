@@ -292,160 +292,160 @@ public class qtC5<V> extends qtP5<V>
 			
 			
 			
-			//remove an edge and branch like a P5
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(3), lexResult.get(4)), true)))
-			{
-				if (output)
-				{
-					//change progress percent
-					s.setPercent(oldPercent / ruleCount);
-				}
-				
-				//rotate C5
-				lexResult.set(0, lexResult.get(4));
-				
-				certificate.setFlag(-5);
-				
-				
-				controller.branch(super.branchingRules(deleteResult(s, lexResult.get(3), lexResult.get(4)), searchResult));
-				
-				//revert changes
-				revert(s);		
-				
-				
-				if (output)
-				{
-					//revert percent
-					s.setPercent(oldPercent);
-				}
-			}
-			else
-				if (output)
-					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
-		
-			//remove an edge and branch like a P5
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(3), lexResult.get(4)), true)))
-			{
-				if (output)
-				{
-					//change progress percent
-					s.setPercent(oldPercent / ruleCount);
-				}
-				
-				//rotate C5
-				lexResult.set(0, lexResult.get(4));
-				
-				certificate.setFlag(-5);
-				
-				
-				controller.branch(super.branchingRules(deleteResult(s, lexResult.get(3), lexResult.get(4)), searchResult));
-				
-				//revert changes
-				revert(s);		
-				
-				
-				if (output)
-				{
-					//revert percent
-					s.setPercent(oldPercent);
-				}
-			}
-			else
-				if (output)
-					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
-			
-			//remove an edge and branch like a P5
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(3), lexResult.get(4)), true)))
-			{
-				if (output)
-				{
-					//change progress percent
-					s.setPercent(oldPercent / ruleCount);
-				}
-				
-				//rotate C5
-				lexResult.set(0, lexResult.get(4));
-				
-				certificate.setFlag(-5);
-				
-				
-				controller.branch(super.branchingRules(deleteResult(s, lexResult.get(3), lexResult.get(4)), searchResult));
-				
-				//revert changes
-				revert(s);		
-				
-				
-				if (output)
-				{
-					//revert percent
-					s.setPercent(oldPercent);
-				}
-			}
-			else
-				if (output)
-					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
-			
-			//remove an edge and branch like a P5
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(3), lexResult.get(4)), true)))
-			{
-				if (output)
-				{
-					//change progress percent
-					s.setPercent(oldPercent / ruleCount);
-				}
-				
-				//rotate C5
-				lexResult.set(0, lexResult.get(4));
-				
-				certificate.setFlag(-5);
-				
-				
-				controller.branch(super.branchingRules(deleteResult(s, lexResult.get(3), lexResult.get(4)), searchResult));
-				
-				//revert changes
-				revert(s);		
-				
-				
-				if (output)
-				{
-					//revert percent
-					s.setPercent(oldPercent);
-				}
-			}
-			else
-				if (output)
-					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
-			
-			//remove an edge and branch like a P5
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(3), lexResult.get(4)), true)))
-			{
-				if (output)
-				{
-					//change progress percent
-					s.setPercent(oldPercent / ruleCount);
-				}
-				
-				//rotate C5
-				lexResult.set(0, lexResult.get(4));
-				
-				certificate.setFlag(-5);
-				
-				
-				controller.branch(super.branchingRules(deleteResult(s, lexResult.get(3), lexResult.get(4)), searchResult));
-				
-				//revert changes
-				revert(s);		
-				
-				
-				if (output)
-				{
-					//revert percent
-					s.setPercent(oldPercent);
-				}
-			}
-			else
-				if (output)
-					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
+//			//remove an edge and branch like a P5
+//			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(3), lexResult.get(4)), true)))
+//			{
+//				if (output)
+//				{
+//					//change progress percent
+//					s.setPercent(oldPercent / ruleCount);
+//				}
+//				
+//				//rotate C5
+//				lexResult.set(0, lexResult.get(4));
+//				
+//				certificate.setFlag(-5);
+//				
+//				
+//				controller.branch(super.branchingRules(deleteResult(s, lexResult.get(3), lexResult.get(4)), searchResult));
+//				
+//				//revert changes
+//				revert(s);		
+//				
+//				
+//				if (output)
+//				{
+//					//revert percent
+//					s.setPercent(oldPercent);
+//				}
+//			}
+//			else
+//				if (output)
+//					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
+//		
+//			//remove an edge and branch like a P5
+//			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(3), lexResult.get(4)), true)))
+//			{
+//				if (output)
+//				{
+//					//change progress percent
+//					s.setPercent(oldPercent / ruleCount);
+//				}
+//				
+//				//rotate C5
+//				lexResult.set(0, lexResult.get(4));
+//				
+//				certificate.setFlag(-5);
+//				
+//				
+//				controller.branch(super.branchingRules(deleteResult(s, lexResult.get(3), lexResult.get(4)), searchResult));
+//				
+//				//revert changes
+//				revert(s);		
+//				
+//				
+//				if (output)
+//				{
+//					//revert percent
+//					s.setPercent(oldPercent);
+//				}
+//			}
+//			else
+//				if (output)
+//					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
+//			
+//			//remove an edge and branch like a P5
+//			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(3), lexResult.get(4)), true)))
+//			{
+//				if (output)
+//				{
+//					//change progress percent
+//					s.setPercent(oldPercent / ruleCount);
+//				}
+//				
+//				//rotate C5
+//				lexResult.set(0, lexResult.get(4));
+//				
+//				certificate.setFlag(-5);
+//				
+//				
+//				controller.branch(super.branchingRules(deleteResult(s, lexResult.get(3), lexResult.get(4)), searchResult));
+//				
+//				//revert changes
+//				revert(s);		
+//				
+//				
+//				if (output)
+//				{
+//					//revert percent
+//					s.setPercent(oldPercent);
+//				}
+//			}
+//			else
+//				if (output)
+//					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
+//			
+//			//remove an edge and branch like a P5
+//			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(3), lexResult.get(4)), true)))
+//			{
+//				if (output)
+//				{
+//					//change progress percent
+//					s.setPercent(oldPercent / ruleCount);
+//				}
+//				
+//				//rotate C5
+//				lexResult.set(0, lexResult.get(4));
+//				
+//				certificate.setFlag(-5);
+//				
+//				
+//				controller.branch(super.branchingRules(deleteResult(s, lexResult.get(3), lexResult.get(4)), searchResult));
+//				
+//				//revert changes
+//				revert(s);		
+//				
+//				
+//				if (output)
+//				{
+//					//revert percent
+//					s.setPercent(oldPercent);
+//				}
+//			}
+//			else
+//				if (output)
+//					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
+//			
+//			//remove an edge and branch like a P5
+//			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(3), lexResult.get(4)), true)))
+//			{
+//				if (output)
+//				{
+//					//change progress percent
+//					s.setPercent(oldPercent / ruleCount);
+//				}
+//				
+//				//rotate C5
+//				lexResult.set(0, lexResult.get(4));
+//				
+//				certificate.setFlag(-5);
+//				
+//				
+//				controller.branch(super.branchingRules(deleteResult(s, lexResult.get(3), lexResult.get(4)), searchResult));
+//				
+//				//revert changes
+//				revert(s);		
+//				
+//				
+//				if (output)
+//				{
+//					//revert percent
+//					s.setPercent(oldPercent);
+//				}
+//			}
+//			else
+//				if (output)
+//					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
 			
 			return s;
 			

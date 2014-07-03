@@ -79,8 +79,8 @@ public class fun extends JApplet {
 		
 		exampleQT = gen.ER(11, 0.2);
 		
-//		exampleQT = new SparseGraph<Integer, Pair<Integer>>();
-//		fillGraphFromFile(exampleQT, "datasets/karate.txt");
+		exampleQT = new SparseGraph<Integer, Pair<Integer>>();
+		fillGraphFromFile(exampleQT, "datasets/karate.txt");
 		
 		//exampleQT = gen.fromBipartiteFile("datasets/southernwomen");
 	
@@ -191,12 +191,12 @@ public class fun extends JApplet {
 		
 //		
 		
-		c.setbStruct(C5);
-		System.out.println("\nC5: ");
-		start = System.currentTimeMillis();
-		c.branchStart(exampleQT, 10);
-		System.out.println((System.currentTimeMillis()-start) / 1000.0);
-		
+//		c.setbStruct(C5);
+//		System.out.println("\nC5: ");
+//		start = System.currentTimeMillis();
+//		c.branchStart(exampleQT, 10);
+//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+//		
 		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
 //		
 		Graph<Integer, Pair<Integer>> cln4 = clone.deepClone(exampleQT);
@@ -250,13 +250,13 @@ public class fun extends JApplet {
 //		visualize(cln8);
 		
 		
-//		c.setbStruct(all);
-//		System.out.println("\nAll structures: ");
-//		start = System.currentTimeMillis();
-//		c.branchStart(exampleQT, 10);
-//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
-//		
-//		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
+		c.setbStruct(all);
+		System.out.println("\nAll structures: ");
+		start = System.currentTimeMillis();
+		c.branchStart(exampleQT, 16);
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		
+		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
 		
 		
 //		Graph<Integer, Pair<Integer>> cln9 = clone.deepClone(exampleQT);
