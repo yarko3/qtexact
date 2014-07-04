@@ -9,7 +9,7 @@ import abstractClasses.SearchResult;
 import controller.Controller;
 import edu.uci.ics.jung.graph.util.Pair;
 
-public class qtC5<V> extends qtP5<V> 
+public class qtC5<V> extends qtBranchNoHeuristic<V> 
 {
 
 	public qtC5(Controller<V> controller) {
@@ -122,7 +122,7 @@ public class qtC5<V> extends qtP5<V>
 					s.setPercent(oldPercent / ruleCount);
 				}
 				
-				controller.branch(add2Result(s, lexResult.get(1), lexResult.get(3), lexResult.get(0), lexResult.get(1)));
+				controller.branch(add2Result(s, lexResult.get(3), lexResult.get(0), lexResult.get(3), lexResult.get(1)));
 				
 				//revert changes
 				revert2(s);		

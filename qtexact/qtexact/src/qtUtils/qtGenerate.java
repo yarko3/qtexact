@@ -424,7 +424,7 @@ public class qtGenerate<V>
 		Graph<Integer,Pair<Integer>> g = new SparseGraph<Integer,Pair<Integer>>();
 		
 		g.addEdge(new Pair<Integer>(2, 3), 2, 3);
-		//g.addEdge(new Pair<Integer>(3, 6), 3, 6);
+		g.addEdge(new Pair<Integer>(3, 6), 3, 6);
 		g.addEdge(new Pair<Integer>(3, 10), 3, 10);
 		g.addEdge(new Pair<Integer>(2, 8), 2, 8);
 		g.addEdge(new Pair<Integer>(0, 2), 0, 2);
@@ -432,9 +432,9 @@ public class qtGenerate<V>
 		g.addEdge(new Pair<Integer>(10, 0), 10, 0);
 		g.addEdge(new Pair<Integer>(0, 9), 0, 9);
 		g.addEdge(new Pair<Integer>(6, 9), 6, 9);
-		//g.addEdge(new Pair<Integer>(7, 4), 7, 4);
-		//g.addEdge(new Pair<Integer>(6, 7), 6, 7);
-		//g.addEdge(new Pair<Integer>(10, 7), 10, 7);
+		g.addEdge(new Pair<Integer>(7, 4), 7, 4);
+		g.addEdge(new Pair<Integer>(6, 7), 6, 7);
+		g.addEdge(new Pair<Integer>(10, 7), 10, 7);
 		//g.addEdge(new Pair<Integer>(7, 0), 7, 0);
 		
 		
@@ -604,13 +604,16 @@ public class qtGenerate<V>
 	 */
 	public boolean graphEquals(Graph<V, Pair<V>> g0, Graph<V, Pair<V>> g1)
 	{
+		
+		boolean flag = true;
+		
 		//check vertices
 		for (V v0 : g0.getVertices())
 		{
 			if (!g1.containsVertex(v0))
 			{
 				System.out.println("\nGraph 1 does not contain vertex " + v0);
-				return false;
+				flag = false;
 			}
 		}
 		for (V v1 : g1.getVertices())
@@ -618,7 +621,7 @@ public class qtGenerate<V>
 			if (!g0.containsVertex(v1))
 			{
 				System.out.println("\nGraph 0 does not contain vertex " + v1);
-				return false;
+				flag = false;
 			}
 		}
 		
@@ -628,7 +631,7 @@ public class qtGenerate<V>
 			if (!g1.isNeighbor(e0.getFirst(), e0.getSecond())){
 				
 				System.out.println("\nGraph 1 does not contain edge " + e0);
-				return false;
+				flag = false;
 			}
 		}
 		for (Pair<V> e1 : g1.getEdges())
@@ -636,11 +639,11 @@ public class qtGenerate<V>
 			if (!g0.isNeighbor(e1.getFirst(), e1.getSecond()))
 			{
 				System.out.println("\nGraph 0 does not contain edge " + e1);
-				return false;
+				flag = false;
 			}
 		}
 		
-		return true;
+		return flag;
 	}
 	
 	public Graph<Integer, Pair<Integer>> erJoins(int n0, int n1, int n2, double p0, double p1, double p2)

@@ -266,6 +266,10 @@ public abstract class qtBranch<V> extends Branch<V>
 			
 			G.removeEdge(G.findEdge(v0, v1));
 		}
+		else
+		{
+			System.out.println("Tried to delete edge between " + v0 + " and " + v1 + ". No such edge");
+		}
 	}
 	
 	/**
@@ -314,6 +318,10 @@ public abstract class qtBranch<V> extends Branch<V>
 			
 			//add edge
 			G.addEdge(new Pair<V>(v0, v1), v0, v1);	
+		}
+		else
+		{
+			System.out.println("Tried to add edge between " + v0 + " and " + v1 + ". Edge already exists.");
 		}
 	}
 	

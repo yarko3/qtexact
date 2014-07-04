@@ -263,7 +263,7 @@ public class Controller<V>
 				
 				if (reduced)
 				{
-					branchingReturnC<V> reverted = bStruct.reduceRevert(s);
+					bStruct.reduceRevert(s);
 				}
 				
 				return s;
