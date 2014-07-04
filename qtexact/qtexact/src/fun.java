@@ -75,12 +75,12 @@ public class fun extends JApplet {
 		exampleQT = qtGenerate.nonQTEx5();
 		
 		//random graph join
-		//exampleQT = gen.erJoins(8, 8, 5, .86, .86, .9);
+		exampleQT = gen.erJoins(8, 8, 5, .86, .86, .9);
 		
-		//exampleQT = gen.ER(15, 0.7);
+		//exampleQT = gen.ER(17, 0.7);
 		
-		exampleQT = new SparseGraph<Integer, Pair<Integer>>();
-		fillGraphFromFile(exampleQT, "datasets/karate.txt");
+//		exampleQT = new SparseGraph<Integer, Pair<Integer>>();
+//		fillGraphFromFile(exampleQT, "datasets/karate.txt");
 		
 		//exampleQT = gen.fromBipartiteFile("datasets/southernwomen");
 	
@@ -89,8 +89,8 @@ public class fun extends JApplet {
 		//exampleQT = gen.houseStruct();
 		
 		
-		//exampleQT = new SparseGraph<Integer, Pair<Integer>>();
-		//fillGraphFromFile(exampleQT, "datasets/grass_web.pairs");
+		exampleQT = new SparseGraph<Integer, Pair<Integer>>();
+		fillGraphFromFile(exampleQT, "datasets/grass_web.pairs");
 		
 		
 		//Graph<String, Pair<String>> fb = gen.facebookGraph("datasets/fbFriends.txt");
@@ -250,13 +250,13 @@ public class fun extends JApplet {
 //		visualize(cln8);
 		
 		
-		c.setbStruct(all);
-		System.out.println("\nAll structures: ");
-		start = System.currentTimeMillis();
-		c.branchStart(exampleQT, 17);
-		System.out.println((System.currentTimeMillis()-start) / 1000.0);
-		
-		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
+//		c.setbStruct(all);
+//		System.out.println("\nAll structures: ");
+//		start = System.currentTimeMillis();
+//		c.branchStart(exampleQT, 17);
+//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+//		
+//		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
 		
 		
 //		Graph<Integer, Pair<Integer>> cln9 = clone.deepClone(exampleQT);
@@ -289,14 +289,14 @@ public class fun extends JApplet {
 //		Graph<Integer, Pair<Integer>> cln2 = clone.deepClone(exampleQT);
 //		visualize(cln2);
 //	
-//		c.setbStruct(branchC);
-//		System.out.println("\nConnected component: ");
-//		start = System.currentTimeMillis();
-//		c.branchStart(exampleQT, 10);
-//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
-//		
-//		
-//		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
+		c.setbStruct(branchC);
+		System.out.println("\nConnected component: ");
+		start = System.currentTimeMillis();
+		c.branchStart(exampleQT, 15);
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		
+		
+		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
 //		
 		
 		
