@@ -91,7 +91,7 @@ public class Controller<V>
 		//while graph is not solved and the bound is less than MAX
 		while (bound <= MAX + 1)
 		{
-			goal = branchStart(G, bound);
+			goal = branchStart(G, bound).getG();
 			//test if current graph is QT
 			if (bStruct.getSearch().isTarget(goal))
 			{
@@ -111,7 +111,7 @@ public class Controller<V>
 	 * @param bound maximum depth of edits
 	 * @return an edited graph, if one exists, or the original graph
 	 */
-	public Graph<V, Pair<V>> branchStart(Graph<V, Pair<V>> G, int bound)
+	public branchingReturnC<V> branchStart(Graph<V, Pair<V>> G, int bound)
 	{
 		//initialize percent
 		globalPercent = 0;
@@ -141,13 +141,15 @@ public class Controller<V>
 		{
 			System.out.println("Solution found. ");
 			System.out.println(goal.getMinMoves().getChanges());
-			return rtn;
+			goal.setGraph(rtn);
+			return goal;
 		}
 		else
 		{
 			//otherwise return original graph
 			System.out.println("Solution not found. ");
-			return goal.getG();
+			goal.setGraph(null);
+			return goal;
 		}
 		
 	}
@@ -174,6 +176,7 @@ public class Controller<V>
 		
 		//increment the number of times this controller has branched
 		timesRun++;
+		
 		
 //		System.out.println("Times run: " + timesRun);
 //		System.out.println("Bound: " + bound);

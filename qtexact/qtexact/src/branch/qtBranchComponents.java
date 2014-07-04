@@ -134,28 +134,31 @@ public class qtBranchComponents<V> extends qtAllStruct<V>
 				//if component is large enough to care
 				if (g.getVertexCount() > 3)
 				{
-					//fill new minMoves with bounded edge set of component
-					min = new branchingReturnC<V>(g, ((qtLBFS<V>) search).degSequenceOrder(g));
-					min.setChanges(fillMinMoves(g, bound + s.getChanges().size()));
-					min.setMinMoves(min);
-					
-					t = new branchingReturnC<V>(g, min.getDeg(), clone.deepClone(s.getChanges()), min);
-					//set new percent
-					t.setPercent(s.getPercent() / count);
-					
-					results.addFirst(controller.branch(t));
-					//update bound
-					bound -= (t.getMinMoves().getChanges().size() - s.getChanges().size());
+					if (bound > 0)
+					{
+						//fill new minMoves with bounded edge set of component
+						min = new branchingReturnC<V>(g, ((qtLBFS<V>) search).degSequenceOrder(g));
+						min.setChanges(fillMinMoves(g, bound + s.getChanges().size()));
+						min.setMinMoves(min);
+						
+						t = new branchingReturnC<V>(g, min.getDeg(), clone.deepClone(s.getChanges()), min);
+						//set new percent
+						t.setPercent(s.getPercent() / count);
+						
+						results.addFirst(controller.branch(t));
+						//update bound
+						bound -= (t.getMinMoves().getChanges().size() - s.getChanges().size());
+					}
 					
 				}
-				//don't care about branching on this but still need it to build up the solution later
-				else
-				{
-					//empty minMoves 
-					min = new branchingReturnC<V>(g, s.getDeg());
-					min.setMinMoves(min);
-					results.add(new branchingReturnC<V>(g, ((qtLBFS<V>)search).degSequenceOrder(g), min));
-				}		
+//				//don't care about branching on this but still need it to build up the solution later
+//				else
+//				{
+//					//empty minMoves 
+//					min = new branchingReturnC<V>(g, s.getDeg());
+//					min.setMinMoves(min);
+//					results.add(new branchingReturnC<V>(g, ((qtLBFS<V>)search).degSequenceOrder(g), min));
+//				}		
 			}
 			
 			

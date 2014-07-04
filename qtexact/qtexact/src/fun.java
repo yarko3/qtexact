@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
@@ -15,6 +16,8 @@ import java.util.Set;
 import javax.swing.JApplet;
 import javax.swing.JFrame;
 
+import qtUtils.branchingReturnC;
+import qtUtils.myEdge;
 import qtUtils.qtGenerate;
 import reduction.commonC4Reduction;
 import reduction.edgeBoundReduction;
@@ -28,6 +31,8 @@ import branch.qtHouse;
 import branch.qtKite;
 import branch.qtP5;
 import branch.qtPan;
+import branch.qtRandom;
+import branch.qtSimple;
 import branch.qtY;
 
 import com.rits.cloning.Cloner;
@@ -79,8 +84,8 @@ public class fun extends JApplet {
 		
 		//exampleQT = gen.ER(17, 0.7);
 		
-//		exampleQT = new SparseGraph<Integer, Pair<Integer>>();
-//		fillGraphFromFile(exampleQT, "datasets/karate.txt");
+		exampleQT = new SparseGraph<Integer, Pair<Integer>>();
+		fillGraphFromFile(exampleQT, "datasets/karate.txt");
 		
 		//exampleQT = gen.fromBipartiteFile("datasets/southernwomen");
 	
@@ -89,8 +94,8 @@ public class fun extends JApplet {
 		//exampleQT = gen.houseStruct();
 		
 		
-		exampleQT = new SparseGraph<Integer, Pair<Integer>>();
-		fillGraphFromFile(exampleQT, "datasets/grass_web.pairs");
+		//exampleQT = new SparseGraph<Integer, Pair<Integer>>();
+		//fillGraphFromFile(exampleQT, "datasets/grass_web.pairs");
 		
 		
 		//Graph<String, Pair<String>> fb = gen.facebookGraph("datasets/fbFriends.txt");
@@ -99,7 +104,7 @@ public class fun extends JApplet {
 		visualize(cln);
 		
 		
-		Controller<Integer> c = new Controller<Integer>(null, true);
+		Controller<Integer> c = new Controller<Integer>(null, false);
 		
 		
 		qtBranchNoHeuristic<Integer> branchNoHP = new qtBranchNoHeuristic<Integer>(c);
@@ -126,6 +131,11 @@ public class fun extends JApplet {
 		qtP5<Integer> P5 = new qtP5<Integer>(c);
 		
 		qtY<Integer> y = new qtY<Integer>(c);
+		
+		
+		qtSimple<Integer> simple = new qtSimple<Integer>(c);
+		
+		qtRandom<Integer> random = new qtRandom<Integer>(c);
 		
 		
 //		Reduction<Integer> rHouse = new edgeBoundReduction<Integer>(house);
@@ -189,7 +199,58 @@ public class fun extends JApplet {
 		r2C = new commonC4Reduction<Integer>(y);
 		y.addReduction(r2C);
 		
+		
+		rC = new edgeBoundReduction<Integer>(simple);
+		simple.addReduction(rC);
+		r2C = new commonC4Reduction<Integer>(simple);
+		simple.addReduction(r2C);
+		
+		rC = new edgeBoundReduction<Integer>(random);
+		random.addReduction(rC);
+		r2C = new commonC4Reduction<Integer>(random);
+		random.addReduction(r2C);
+		
+		
 //		
+		
+//		c.setbStruct(simple);
+//		System.out.println("\nSimple: ");
+//		start = System.currentTimeMillis();
+//		c.branchStart(exampleQT, 21);
+//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		
+		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
+		
+		c.setbStruct(random);
+		System.out.println("\nRandom: ");
+		start = System.currentTimeMillis();
+		
+		int hit = 0;
+		LinkedList<myEdge<Integer>> min = null;
+		
+		while (hit < 10)
+		{
+			branchingReturnC<Integer> rtn = c.branchStart(exampleQT, 34);
+			if (rtn.getG() != null)
+			{
+				if (min == null)
+					min = rtn.getMinMoves().getChanges();
+				
+				else if (min.size() > rtn.getMinMoves().getChanges().size())
+					min = rtn.getMinMoves().getChanges();
+					
+				hit++;
+			}
+		}
+		
+		System.out.println("Number of min moves: " + min.size());
+		System.out.println("Min moves: " + min);
+		
+		
+		
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		
+		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
 		
 //		c.setbStruct(C5);
 //		System.out.println("\nC5: ");
@@ -253,7 +314,7 @@ public class fun extends JApplet {
 //		c.setbStruct(all);
 //		System.out.println("\nAll structures: ");
 //		start = System.currentTimeMillis();
-//		c.branchStart(exampleQT, 17);
+//		c.branchStart(exampleQT, 16);
 //		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 //		
 //		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
@@ -289,14 +350,14 @@ public class fun extends JApplet {
 //		Graph<Integer, Pair<Integer>> cln2 = clone.deepClone(exampleQT);
 //		visualize(cln2);
 //	
-		c.setbStruct(branchC);
-		System.out.println("\nConnected component: ");
-		start = System.currentTimeMillis();
-		c.branchStart(exampleQT, 15);
-		System.out.println((System.currentTimeMillis()-start) / 1000.0);
-		
-		
-		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
+//		c.setbStruct(branchC);
+//		System.out.println("\nConnected component: ");
+//		start = System.currentTimeMillis();
+//		c.branchStart(exampleQT, 17);
+//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+//		
+//		
+//		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
 //		
 		
 		

@@ -66,9 +66,7 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 		return goal;
 	}
 
-	/**
-	 * branching rules for quasi threshold editing
-	 */
+	
 	/**
 	 * branching rules for quasi threshold editing
 	 */
@@ -252,9 +250,8 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 8);
 			
 			
-			
-			return s.getMinMoves();
 		}
+		
 		//P4 has been found
 		else
 		{	
@@ -353,9 +350,10 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 				if (output)
 					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 5);
 			
-			
-			return s;
+		
 		}
+		
+		return s;
 	}
 
 }
