@@ -208,7 +208,7 @@ public abstract class qtLBFS<V> extends LBFS<V>
 		for (int i = degCopy.size() - 1; i >=0; i--)
 		{
 			if (!degCopy.get(i).isEmpty())
-				System.out.println("Degree " + i + ": " + degCopy.get(i).size() + " vertices");
+				System.out.println(i + "\t" + degCopy.get(i).size());
 
 		}
 	}

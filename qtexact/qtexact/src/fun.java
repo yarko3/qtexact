@@ -85,7 +85,7 @@ public class fun<V> extends JApplet {
 		//exampleQT = gen.ER(17, 0.7);
 		
 		exampleQT = new SparseGraph<Integer, Pair<Integer>>();
-		fillGraphFromFile(exampleQT, "datasets/karate.txt");
+		fillGraphFromFile(exampleQT, "datasets/karateJimSolution.txt");
 		
 		//exampleQT = gen.fromBipartiteFile("datasets/southernwomen");
 	
@@ -98,17 +98,17 @@ public class fun<V> extends JApplet {
 		//fillGraphFromFile(exampleQT, "datasets/grass_web.pairs");
 		
 		
-		//exampleQT = gen.treeRandom(500);
+		//exampleQT = gen.treeRandom(100000);
 		
 		//Graph<String, Pair<String>> fb = gen.facebookGraph("datasets/fbFriends.txt");
 		
 		Graph<Integer, Pair<Integer>> cln = clone.deepClone(exampleQT);
 
 
-		//visualize(cln);
+		visualize(cln);
 		
 		
-		visualize(exampleQT);
+		//visualize(exampleQT);
 		
 		Controller<Integer> c = new Controller<Integer>(null, true);
 		
@@ -317,32 +317,15 @@ public class fun<V> extends JApplet {
 //		visualize(cln8);
 		
 		
-		Graph<Integer, Pair<Integer>> rtn = gen.applyMoves(Branch.clone.deepClone(exampleQT),gen.karateSolution());
-		
-		qtLBFS<Integer> search = new qtLBFSNoHeuristic<Integer>();
-		
-		
-		//return QT graph if edit succeeds
-		if (search.isTarget(rtn))
-		{
-			System.out.println("Solution found. ");
-		}
-		else
-		{
-			//otherwise return original graph
-			System.out.println("Solution not found. ");
-			
-		}
-		
 		
 		c.setbStruct(all);
 		System.out.println("\nAll structures: ");
 		start = System.currentTimeMillis();
-		c.branchStart(exampleQT, 16);
+		c.branchStart(exampleQT, 17);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
-		
+//		
 		
 //		Graph<Integer, Pair<Integer>> cln9 = clone.deepClone(exampleQT);
 //		visualize(cln9);

@@ -763,6 +763,8 @@ public class qtGenerate<V>
 		
 		search.flattenAndReverseDegPrint(search.degSequenceOrder(rtn));
 		
+		rtn.removeVertex(0);
+		
 		return rtn;
 	}
 	
