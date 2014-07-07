@@ -13,6 +13,8 @@ public class qtAllStruct<V> extends qtBranchNoHeuristic<V>
 	private qtP5<V> P5;
 	private qtPan<V> pan;
 	private qtY<V> y;
+	private int all;
+	private int fail;
 	
 	public qtAllStruct(Controller<V> controller) {
 		super(controller);
@@ -34,16 +36,19 @@ public class qtAllStruct<V> extends qtBranchNoHeuristic<V>
 		searchResult = findStructures(s, searchResult);
 		
 		int flag = searchResult.getCertificate().getFlag();
+		all++;
 		
 		switch (flag)
 		{
 		//a C4 was found
 		case (-1):
 			//System.out.println("Found a C4.");
+			fail++;
 			return super.branchingRules(s, searchResult);
 		//a P4 was found
 		case (-2):
 			//System.out.println("Found a P4.");
+			fail++;
 			return super.branchingRules(s, searchResult);
 		//a 4 pan was found
 		case (-3):

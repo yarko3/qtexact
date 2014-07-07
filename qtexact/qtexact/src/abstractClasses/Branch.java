@@ -35,9 +35,10 @@ public abstract class Branch<V>
 	
 	public static Cloner clone = new Cloner();
 	
-	
+	/**
+	 * use stack to store number of times reduction loop was run
+	 */
 	private Stack<Integer> reductionStack;
-	
 	
 	/**
 	 * a Branch datatype needs a controller to run recursively in branchingRules(...)

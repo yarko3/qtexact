@@ -200,6 +200,19 @@ public abstract class qtLBFS<V> extends LBFS<V>
 		return t;
 	}
 	
+	public void flattenAndReverseDegPrint(ArrayList<LinkedList<V>> deg)
+	{
+		
+		ArrayList<LinkedList<V>> degCopy = clone.deepClone(deg);
+		//reverse the order of deg and flatten it for lexBFS
+		for (int i = degCopy.size() - 1; i >=0; i--)
+		{
+			if (!degCopy.get(i).isEmpty())
+				System.out.println("Degree " + i + ": " + degCopy.get(i).size() + " vertices");
+
+		}
+	}
+	
 	/**
 	 * checks if graph is quasi threshold
 	 * @param G

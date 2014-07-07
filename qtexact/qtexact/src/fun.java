@@ -8,7 +8,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
@@ -16,12 +15,13 @@ import java.util.Set;
 import javax.swing.JApplet;
 import javax.swing.JFrame;
 
-import qtUtils.branchingReturnC;
-import qtUtils.myEdge;
 import qtUtils.qtGenerate;
 import reduction.commonC4Reduction;
 import reduction.edgeBoundReduction;
 import search.YanSearch;
+import search.qtLBFS;
+import search.qtLBFSNoHeuristic;
+import abstractClasses.Branch;
 import abstractClasses.Reduction;
 import branch.qtAllStruct;
 import branch.qtBranchComponents;
@@ -47,7 +47,7 @@ import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
 
 @SuppressWarnings("serial")
-public class fun extends JApplet {
+public class fun<V> extends JApplet {
 
 	/**
 	 * graph
@@ -57,7 +57,7 @@ public class fun extends JApplet {
 	
 	public static void main(String[] args)
 	{
-		
+		//fbTest();
 		editTest();
 	}
 	
@@ -98,13 +98,19 @@ public class fun extends JApplet {
 		//fillGraphFromFile(exampleQT, "datasets/grass_web.pairs");
 		
 		
+		//exampleQT = gen.treeRandom(500);
+		
 		//Graph<String, Pair<String>> fb = gen.facebookGraph("datasets/fbFriends.txt");
 		
 		Graph<Integer, Pair<Integer>> cln = clone.deepClone(exampleQT);
-		visualize(cln);
+
+
+		//visualize(cln);
 		
 		
-		Controller<Integer> c = new Controller<Integer>(null, false);
+		visualize(exampleQT);
+		
+		Controller<Integer> c = new Controller<Integer>(null, true);
 		
 		
 		qtBranchNoHeuristic<Integer> branchNoHP = new qtBranchNoHeuristic<Integer>(c);
@@ -219,38 +225,38 @@ public class fun extends JApplet {
 //		c.branchStart(exampleQT, 21);
 //		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
-		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
-		
-		c.setbStruct(random);
-		System.out.println("\nRandom: ");
-		start = System.currentTimeMillis();
-		
-		int hit = 0;
-		LinkedList<myEdge<Integer>> min = null;
-		
-		while (hit < 10)
-		{
-			branchingReturnC<Integer> rtn = c.branchStart(exampleQT, 34);
-			if (rtn.getG() != null)
-			{
-				if (min == null)
-					min = rtn.getMinMoves().getChanges();
-				
-				else if (min.size() > rtn.getMinMoves().getChanges().size())
-					min = rtn.getMinMoves().getChanges();
-					
-				hit++;
-			}
-		}
-		
-		System.out.println("Number of min moves: " + min.size());
-		System.out.println("Min moves: " + min);
-		
-		
-		
-		System.out.println((System.currentTimeMillis()-start) / 1000.0);
-		
-		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
+//		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
+//		
+//		c.setbStruct(random);
+//		System.out.println("\nRandom: ");
+//		start = System.currentTimeMillis();
+//		
+//		int hit = 0;
+//		LinkedList<myEdge<Integer>> min = null;
+//		
+//		while (hit < 10)
+//		{
+//			branchingReturnC<Integer> rtn = c.branchStart(exampleQT, 34);
+//			if (rtn.getG() != null)
+//			{
+//				if (min == null)
+//					min = rtn.getMinMoves().getChanges();
+//				
+//				else if (min.size() > rtn.getMinMoves().getChanges().size())
+//					min = rtn.getMinMoves().getChanges();
+//					
+//				hit++;
+//			}
+//		}
+//		
+//		System.out.println("Number of min moves: " + min.size());
+//		System.out.println("Min moves: " + min);
+//		
+//		
+//		
+//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+//		
+//		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
 		
 //		c.setbStruct(C5);
 //		System.out.println("\nC5: ");
@@ -311,13 +317,31 @@ public class fun extends JApplet {
 //		visualize(cln8);
 		
 		
-//		c.setbStruct(all);
-//		System.out.println("\nAll structures: ");
-//		start = System.currentTimeMillis();
-//		c.branchStart(exampleQT, 16);
-//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
-//		
-//		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
+		Graph<Integer, Pair<Integer>> rtn = gen.applyMoves(Branch.clone.deepClone(exampleQT),gen.karateSolution());
+		
+		qtLBFS<Integer> search = new qtLBFSNoHeuristic<Integer>();
+		
+		
+		//return QT graph if edit succeeds
+		if (search.isTarget(rtn))
+		{
+			System.out.println("Solution found. ");
+		}
+		else
+		{
+			//otherwise return original graph
+			System.out.println("Solution not found. ");
+			
+		}
+		
+		
+		c.setbStruct(all);
+		System.out.println("\nAll structures: ");
+		start = System.currentTimeMillis();
+		c.branchStart(exampleQT, 16);
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		
+		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
 		
 		
 //		Graph<Integer, Pair<Integer>> cln9 = clone.deepClone(exampleQT);
@@ -366,7 +390,38 @@ public class fun extends JApplet {
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		
-		visualize(exampleQT);
+		//visualize(exampleQT);
+	}
+	
+	public static void fbTest()
+	{
+		qtGenerate<String> gen = new qtGenerate<String>();
+		
+		Graph<String, Pair<String>> fb = gen.facebookGraph("datasets/fbFriends.txt");
+		
+		Controller<String> c = new Controller<String>(null, true);
+		
+		qtAllStruct<String> all = new qtAllStruct<String>(c);
+		
+		qtBranchComponents<String> branchC = new qtBranchComponents<String>(c);
+		
+		long start;
+		
+		//visualize(fb);
+		
+		c.setbStruct(branchC);
+		System.out.println("\nConnected component: ");
+		start = System.currentTimeMillis();
+		c.branchStart(fb, 17);
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		
+		c.setbStruct(all);
+		System.out.println("\nAll structures: ");
+		start = System.currentTimeMillis();
+		c.branchStart(fb, 17);
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		
+		
 	}
 	
 	public static void visualize(Graph<Integer, Pair<Integer>> fb){
@@ -391,69 +446,6 @@ public class fun extends JApplet {
 		jf.setVisible(true);
 	}
 	
-	public void test()
-	{
-//		graph = new SparseGraph<Integer, String>();
-//
-//		String filename = "datasets/footballEdgeList.tgf";
-//		fillGraphFromFile(graph, filename);
-//		
-//		Graph<Integer, String> exampleQT = new SparseGraph<Integer, String>();
-//		exampleQT.addEdge("edge1", 1, 2);
-//		exampleQT.addEdge("edge2", 1, 3);
-//		exampleQT.addEdge("edge3", 2, 3);
-//		exampleQT.addEdge("edge4", 1, 4);
-//		exampleQT.addEdge("edge5", 3, 4);
-//		exampleQT.addEdge("edge6", 0, 1);
-//		exampleQT.addEdge("edge7", 0, 3);
-//
-//		long start = System.currentTimeMillis();
-//		exampleQT = qtGenerate.clique(500);
-//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
-//		
-//		start = System.currentTimeMillis();
-//		System.out.println(qtRecognition.qtCheckYan(exampleQT));
-//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
-//		
-//		System.out.println("Is a chordal: " + IsA.Chordal(exampleQT));
-//		System.out.println("Is a cograph: " + IsA.Cograph(exampleQT));
-//		
-//		//findEdgeBetweennessClustering(graph, 1000);
-//
-//		JFrame jf = new JFrame();
-//		jf.setSize(1366, 768);
-//
-//		FRLayout frl = new FRLayout(exampleQT);
-//
-//		frl.setAttractionMultiplier(1.5);
-//		frl.lock(true);
-//		VisualizationViewer vv = new VisualizationViewer(frl, new Dimension(
-//				1366, 768));
-//
-//		vv.getRenderContext().setVertexLabelTransformer(new ToStringLabeller());
-//		
-//		jf.getContentPane().add(vv);
-//		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		jf.pack();
-//		jf.setVisible(true);
-//		
-//		JFrame jf1 = new JFrame();
-//		jf1.setSize(1366, 768);
-//		FRLayout fr2 = new FRLayout(qtRecognition.qtCheckYan(exampleQT));
-//
-//		fr2.setAttractionMultiplier(1.5);
-//		fr2.lock(true);
-//		VisualizationViewer vv1 = new VisualizationViewer(fr2, new Dimension(
-//				1366, 768));
-//		// ViewScalingControl scale = new ViewScalingControl();
-//		// scale.scale(vv, (float) 0.8, new Point2D.Double(1366/2, 768/2));
-//		// vv.scaleToLayout(scale);
-//		vv1.getRenderContext().setVertexLabelTransformer(new ToStringLabeller());
-//		jf1.getContentPane().add(vv1);
-//		jf1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		jf1.pack();
-//		jf1.setVisible(true);
-	}
 
 	/**
 	 * find edge betweenness clustering of graph with num edge deletions

@@ -10,9 +10,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Random;
 import java.util.Scanner;
+
+import search.qtLBFSNoHeuristic;
 
 import com.rits.cloning.Cloner;
 
@@ -711,6 +714,103 @@ public class qtGenerate<V>
 		
 		scan.close();
 		return g;
+		
+	}
+	
+	public Graph<Integer, Pair<Integer>> treeRandom(int n)
+	{
+		Graph<myVertex, Pair<myVertex>> init = new SparseGraph<myVertex, Pair<myVertex>>();
+		Random rand = new Random();
+		//generate first vertex
+		myVertex root = new myVertex(0, null);
+		
+		int count = 1;
+		int random;
+		myVertex parent;
+		myVertex next;
+		
+		HashMap<Integer, myVertex> vertices = new HashMap<Integer, myVertex>();
+		vertices.put(0, root);
+		
+		while (count < n)
+		{
+			//get data of next parent
+			random = rand.nextInt(count);
+			parent = vertices.get(random);
+			//new vertex to be added
+			next = new myVertex(count, parent);
+			vertices.put(count, next);
+			
+			while (parent != null)
+			{
+				init.addEdge(new Pair<myVertex>(next, parent), next, parent);
+				parent = parent.parent;
+			}
+			
+			count++;
+		}
+		
+		Graph<Integer, Pair<Integer>> rtn = new SparseGraph<Integer, Pair<Integer>>();
+		
+		//copy all edges and vertices to return graph
+		
+		for (Pair<myVertex> e: init.getEdges())
+		{
+			rtn.addEdge(new Pair<Integer>(e.getFirst().data, e.getSecond().data), e.getFirst().data, e.getSecond().data);
+		}
+		
+		qtLBFSNoHeuristic<Integer> search = new qtLBFSNoHeuristic<Integer>();
+		
+		search.flattenAndReverseDegPrint(search.degSequenceOrder(rtn));
+		
+		return rtn;
+	}
+	
+	
+	//my vertex data for tree random graph
+	class myVertex
+	{
+		myVertex parent;
+		Integer data;
+		
+		myVertex(Integer d, myVertex p)
+		{
+			parent = p;
+			data = d;
+		}
+	}
+	
+	
+	public LinkedList<myEdge<Integer>> karateSolution()
+	{
+		LinkedList<myEdge<Integer>> l = new LinkedList<myEdge<Integer>>();
+		//deletions
+		l.add(new myEdge<Integer>(new Pair<Integer>(19, 2), false));
+		l.add(new myEdge<Integer>(new Pair<Integer>(2, 4), false));
+		l.add(new myEdge<Integer>(new Pair<Integer>(22, 3), false));
+		l.add(new myEdge<Integer>(new Pair<Integer>(18, 22), false));
+		l.add(new myEdge<Integer>(new Pair<Integer>(11, 18), false));
+		l.add(new myEdge<Integer>(new Pair<Integer>(14, 2), false));
+		l.add(new myEdge<Integer>(new Pair<Integer>(2, 3), false));
+		l.add(new myEdge<Integer>(new Pair<Integer>(12, 10), false));
+		l.add(new myEdge<Integer>(new Pair<Integer>(11, 14), false));
+		l.add(new myEdge<Integer>(new Pair<Integer>(2, 15), false));
+		l.add(new myEdge<Integer>(new Pair<Integer>(17, 23), false));
+		l.add(new myEdge<Integer>(new Pair<Integer>(13, 16), false));
+		l.add(new myEdge<Integer>(new Pair<Integer>(12, 18), false));
+		l.add(new myEdge<Integer>(new Pair<Integer>(20, 32), false));
+		l.add(new myEdge<Integer>(new Pair<Integer>(20, 35), false));
+		l.add(new myEdge<Integer>(new Pair<Integer>(33, 26), false));
+		
+		
+		//additions
+		l.add(new myEdge<Integer>(new Pair<Integer>(19, 15), true));
+		l.add(new myEdge<Integer>(new Pair<Integer>(19, 14), true));
+		l.add(new myEdge<Integer>(new Pair<Integer>(31, 23), true));
+		l.add(new myEdge<Integer>(new Pair<Integer>(33, 22), true));
+		l.add(new myEdge<Integer>(new Pair<Integer>(29, 27), true));
+		
+		return l;
 		
 	}
 	
