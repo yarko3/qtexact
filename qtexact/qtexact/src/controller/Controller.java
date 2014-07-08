@@ -1,6 +1,7 @@
 package controller;
 
 import qtUtils.branchingReturnC;
+import qtUtils.myEdge;
 import qtUtils.qtGenerate;
 import abstractClasses.Branch;
 import abstractClasses.SearchResult;
@@ -148,7 +149,7 @@ public class Controller<V>
 		{
 			//otherwise return original graph
 			System.out.println("Solution not found. ");
-			goal.setGraph(null);
+			//goal.setGraph(null);
 			return goal;
 		}
 		
@@ -178,20 +179,20 @@ public class Controller<V>
 		timesRun++;
 		
 		
-//		System.out.println("Times run: " + timesRun);
-//		System.out.println("Bound: " + bound);
-//		System.out.println("Moves made: " + s.getChanges().size());
-//		System.out.println("Min moves:4 " + s.getMinMoves().getChanges().size());
-//		System.out.println("Size of graph: " + s.getG().getVertexCount());
-//		
-//		
-//		if (s.getMinMoves().getChanges().size() > globalBound)
-//		{
-//			System.out.println("\n\nWhoa: global bound " + globalBound);
-//			System.out.println("Moves made: " + s.getChanges().size());
-//			System.out.println();
-//		}
-//		
+		System.out.println("Times run: " + timesRun);
+		System.out.println("Bound: " + bound);
+		System.out.println("Moves made: " + s.getChanges().size());
+		System.out.println("Min moves: " + s.getMinMoves().getChanges().size());
+		System.out.println("Size of graph: " + s.getG().getVertexCount());
+		
+		
+		if (s.getMinMoves().getChanges().size() > globalBound)
+		{
+			System.out.println("\n\nWhoa: global bound " + globalBound);
+			System.out.println("Moves made: " + s.getChanges().size());
+			System.out.println();
+		}
+		
 		
 		
 		//set flag for whether this node has been reduced

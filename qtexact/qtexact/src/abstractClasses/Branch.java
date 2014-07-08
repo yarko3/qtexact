@@ -81,7 +81,7 @@ public abstract class Branch<V>
 		//push number of changes onto stack.
 		int bound = s.getMinMoves().getChanges().size() - s.getChanges().size();
 		int oldMoves = s.getChanges().size();
-		int newMoves = 0;
+		int newMoves = s.getChanges().size();
 		int count = 0;
 		
 		if (reductions != null)

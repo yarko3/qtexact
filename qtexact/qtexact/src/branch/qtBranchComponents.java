@@ -44,13 +44,15 @@ public class qtBranchComponents<V> extends qtAllStruct<V>
 	/**
 	 * setup for quasi threshold editing with no heuristic
 	 */
+	@Override
 	public branchingReturnC<V> setup(Graph<V, Pair<V>> G, int bound) {
+		
 		//keep proper degree order as an ArrayList<LinkedList<vertex>>
 		ArrayList<LinkedList<V>> deg = ((qtLBFS<V>) search).degSequenceOrder(G);
 		
 		//start with a full minMoves
 		branchingReturnC<V> minMoves = new branchingReturnC<V>(G, deg);
-		minMoves.setChanges(fillMinMoves(G, bound));
+		minMoves.setChanges(fillMinMoves(minMoves, bound));
 		minMoves.setMinMoves(minMoves);
 		branchingReturnC<V> goal = new branchingReturnC<V>(G, deg, minMoves);
 		//output flags
@@ -138,7 +140,7 @@ public class qtBranchComponents<V> extends qtAllStruct<V>
 					{
 						//fill new minMoves with bounded edge set of component
 						min = new branchingReturnC<V>(g, ((qtLBFS<V>) search).degSequenceOrder(g));
-						min.setChanges(fillMinMoves(g, bound + s.getChanges().size()));
+						min.setChanges(fillMinMoves(s, bound + s.getChanges().size()));
 						min.setMinMoves(min);
 						
 						t = new branchingReturnC<V>(g, min.getDeg(), clone.deepClone(s.getChanges()), min);

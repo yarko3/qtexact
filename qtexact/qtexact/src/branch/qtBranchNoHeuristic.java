@@ -52,7 +52,7 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 		
 		//start with a full minMoves
 		branchingReturnC<V> minMoves = new branchingReturnC<V>(G, deg);
-		minMoves.setChanges(fillMinMoves(G, bound));
+		minMoves.setChanges(fillMinMoves(minMoves, bound));
 		minMoves.setMinMoves(minMoves);
 		branchingReturnC<V> goal = new branchingReturnC<V>(G, deg, minMoves);
 		

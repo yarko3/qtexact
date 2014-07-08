@@ -244,6 +244,7 @@ public abstract class qtBranch<V> extends Branch<V>
 	 */
 	protected void removeEdge(Graph<V, Pair<V>> G, ArrayList<LinkedList<V>> deg, V v0, V v1)
 	{
+		
 		if (G.isNeighbor(v0, v1))
 		{
 			int v0Deg = G.degree(v0);
@@ -431,28 +432,32 @@ public abstract class qtBranch<V> extends Branch<V>
 	 * @param G
 	 * @return
 	 */
-	protected LinkedList<myEdge<V>> fillMinMoves(Graph<V, Pair<V>> G, int bound)
+	protected LinkedList<myEdge<V>> fillMinMoves(branchingReturnC<V> s, int bound)
 	{
 		LinkedList<myEdge<V>> l = new LinkedList<myEdge<V>>();
 		int count = 0;
 		if (bound > 0)
 		{
-			for (Pair<V> e : G.getEdges())
-			{
-				//treat each edge in this set as a deletion
-				l.add(new myEdge<V>(e, false));
-				count++;
-				if (count == bound)
-					break;
-			}
+			l.addAll(s.getChanges());
+			count += s.getChanges().size();
+			
+			if (count < bound)
+				for (Pair<V> e : s.getG().getEdges())
+				{
+					//treat each edge in this set as a deletion
+					l.add(new myEdge<V>(e, false));
+					count++;
+					if (count >= bound)
+						break;
+				}
 		}
-		
-		if (count < bound)
-			while (count < bound)
-			{
-				l.add(l.getLast());
-				count++;
-			}
+//		
+//		if (count < bound)
+//			while (count < bound)
+//			{
+//				l.add(l.getLast());
+//				count++;
+//			}
 		return l;
 	}
 	

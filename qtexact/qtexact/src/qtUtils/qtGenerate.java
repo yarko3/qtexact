@@ -438,7 +438,34 @@ public class qtGenerate<V>
 		g.addEdge(new Pair<Integer>(7, 4), 7, 4);
 		g.addEdge(new Pair<Integer>(6, 7), 6, 7);
 		g.addEdge(new Pair<Integer>(10, 7), 10, 7);
-		//g.addEdge(new Pair<Integer>(7, 0), 7, 0);
+		g.addEdge(new Pair<Integer>(7, 0), 7, 0);
+		
+		
+		return g;
+	}
+	
+	public static Graph<Integer, Pair<Integer>> nonQTEx6()
+	{
+		Graph<Integer,Pair<Integer>> g = new SparseGraph<Integer,Pair<Integer>>();
+		
+		g.addEdge(new Pair<Integer>(11, 22), 11, 22);
+		//g.addEdge(new Pair<Integer>(11, 18), 11, 18);
+		g.addEdge(new Pair<Integer>(22, 6), 22, 6);
+		g.addEdge(new Pair<Integer>(18, 23), 18, 23);
+		g.addEdge(new Pair<Integer>(18, 5), 18, 5);
+		g.addEdge(new Pair<Integer>(18, 6), 18, 6);
+		g.addEdge(new Pair<Integer>(6, 16), 6, 16);
+		//g.addEdge(new Pair<Integer>(6, 5), 6, 5);
+		//g.addEdge(new Pair<Integer>(6, 4), 6, 4);
+		g.addEdge(new Pair<Integer>(6, 3), 6, 3);
+		g.addEdge(new Pair<Integer>(5, 4), 5, 4);
+		g.addEdge(new Pair<Integer>(4, 3), 4, 3);
+		g.addEdge(new Pair<Integer>(3, 10), 3, 10);
+		g.addEdge(new Pair<Integer>(5, 2), 5, 2);
+		g.addEdge(new Pair<Integer>(2, 4), 2, 4);
+		g.addEdge(new Pair<Integer>(2, 8), 2, 8);
+		//g.addEdge(new Pair<Integer>(2, 26), 2, 26);
+		g.addEdge(new Pair<Integer>(5, 26), 5, 26);
 		
 		
 		return g;
@@ -741,7 +768,7 @@ public class qtGenerate<V>
 			next = new myVertex(count, parent);
 			vertices.put(count, next);
 			
-			while (parent != null)
+			while (parent != null && rand.nextInt(2) == 0)
 			{
 				init.addEdge(new Pair<myVertex>(next, parent), next, parent);
 				parent = parent.parent;
@@ -761,7 +788,7 @@ public class qtGenerate<V>
 		
 		qtLBFSNoHeuristic<Integer> search = new qtLBFSNoHeuristic<Integer>();
 		
-		search.flattenAndReverseDegPrint(search.degSequenceOrder(rtn));
+		//search.flattenAndReverseDegPrint(search.degSequenceOrder(rtn));
 		
 		rtn.removeVertex(0);
 		

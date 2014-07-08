@@ -125,6 +125,8 @@ public class c4p4Reduction<V> extends Reduction<V>
 			}
 		}
 		
+	
+		
 		stack.push(count);
 		//bStruct.applyMoves(s, toApply);
 		return s;
