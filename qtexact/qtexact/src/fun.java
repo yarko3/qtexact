@@ -16,6 +16,7 @@ import javax.swing.JApplet;
 import javax.swing.JFrame;
 
 import qtUtils.qtGenerate;
+import reduction.c4p4Reduction;
 import reduction.commonC4Reduction;
 import reduction.edgeBoundReduction;
 import search.YanSearch;
@@ -77,7 +78,7 @@ public class fun<V> extends JApplet {
 		
 		//exampleQT = qtGenerate.westernElectricNetwork();
 		
-		exampleQT = qtGenerate.nonQTEx5();
+		//exampleQT = qtGenerate.nonQTEx5();
 		
 		//random graph join
 		exampleQT = gen.erJoins(8, 8, 5, .86, .86, .9);
@@ -85,7 +86,7 @@ public class fun<V> extends JApplet {
 		//exampleQT = gen.ER(17, 0.7);
 		
 		exampleQT = new SparseGraph<Integer, Pair<Integer>>();
-		fillGraphFromFile(exampleQT, "datasets/karateJimSolution.txt");
+		fillGraphFromFile(exampleQT, "datasets/zachary.txt");
 		
 		//exampleQT = gen.fromBipartiteFile("datasets/southernwomen");
 	
@@ -123,6 +124,8 @@ public class fun<V> extends JApplet {
 		qtPan<Integer> pan = new qtPan<Integer>(c);
 		
 		qtAllStruct<Integer> all = new qtAllStruct<Integer>(c);
+		
+		qtAllStruct<Integer> all2 = new qtAllStruct<Integer>(c);
 		
 		
 		qtBranchComponents<Integer> branchC = new qtBranchComponents<Integer>(c);
@@ -165,6 +168,9 @@ public class fun<V> extends JApplet {
 		all.addReduction(rC);
 		r2C = new commonC4Reduction<Integer>(all);
 		all.addReduction(r2C);
+		
+		rC = new c4p4Reduction<Integer>(all2);
+		all2.addReduction(rC);
 //		
 		Reduction<Integer> rNo = new edgeBoundReduction<Integer>(branchNoHP);
 		branchNoHP.addReduction(rNo);
@@ -318,10 +324,20 @@ public class fun<V> extends JApplet {
 		
 		
 		
+		c.setbStruct(all2);
+		System.out.println("\nAll structures (Single reduction): ");
+		start = System.currentTimeMillis();
+		c.branchStart(exampleQT, 16);
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		
+		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
+		
+		
+		
 		c.setbStruct(all);
 		System.out.println("\nAll structures: ");
 		start = System.currentTimeMillis();
-		c.branchStart(exampleQT, 17);
+		c.branchStart(exampleQT, 16);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
