@@ -99,7 +99,7 @@ public class fun<V> extends JApplet {
 		//fillGraphFromFile(exampleQT, "datasets/grass_web.pairs");
 		
 		
-		//exampleQT = gen.treeRandom(30);
+		exampleQT = gen.treeRandom(40);
 		
 		//Graph<String, Pair<String>> fb = gen.facebookGraph("datasets/fbFriends.txt");
 		
@@ -327,14 +327,14 @@ public class fun<V> extends JApplet {
 //		visualize(cln8);
 		
 		
-		
-		c.setbStruct(all2);
-		System.out.println("\nAll structures (Single reduction): ");
-		start = System.currentTimeMillis();
-		c.branchStart(exampleQT, 7);
-		System.out.println((System.currentTimeMillis()-start) / 1000.0);
-		
-		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
+//		
+//		c.setbStruct(all2);
+//		System.out.println("\nAll structures (Single reduction): ");
+//		start = System.currentTimeMillis();
+//		c.branchStart(exampleQT, 9);
+//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+//		
+//		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
 		
 		
 		
@@ -380,7 +380,7 @@ public class fun<V> extends JApplet {
 		c.setbStruct(branchC);
 		System.out.println("\nConnected component: ");
 		start = System.currentTimeMillis();
-		exampleQT = c.branchStart(exampleQT, 7).getG();
+		exampleQT = c.branchStart(exampleQT, 10).getG();
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 //		
 //		

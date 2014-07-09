@@ -194,6 +194,12 @@ public class Controller<V>
 		}
 		
 		
+		if (s.getMinMoves().getChanges().size() == 7)
+			System.out.print("");
+		
+		if (timesRun == 1371)
+			System.out.print("");
+//		
 		
 		//set flag for whether this node has been reduced
 		boolean reduced = false;

@@ -81,17 +81,11 @@ public class qtBranchComponents<V> extends qtAllStruct<V>
 		//multiple connected components exist
 		else
 		{
-			
-			//System.out.println("Component split.");
-			
-			
 			//bound
 			int bound = s.getMinMoves().getChanges().size() - s.getChanges().size();
 			
 			
 			//build graphs from connected components
-//			Graph<V, Pair<V>> gWithForbidden = connectedCFromVertexSet(s.getG(), lex.getcComponents().removeLast());
-			
 			LinkedList<Graph<V, Pair<V>>> cGraphs = new LinkedList<Graph<V, Pair<V>>>();
 			LinkedList<branchingReturnC<V>> results = new LinkedList<branchingReturnC<V>>();
 			for (Set<V> l : lex.getcComponents())
@@ -102,15 +96,6 @@ public class qtBranchComponents<V> extends qtAllStruct<V>
 			
 			//fill new minMoves with entire edge set
 			branchingReturnC<V> min = null;
-			
-//			branchingReturnC<V> min = new branchingReturnC<V>(gWithForbidden, ((qtLBFS<V>) search).degSequenceOrder(gWithForbidden));
-//			//bound the search by the best solution so far
-//			min.setChanges(fillMinMoves(gWithForbidden, bound));
-//			min.setMinMoves(min);
-//			results.addFirst(rules(new branchingReturnC<V>(gWithForbidden, min.getDeg(), min), lex));
-//			//update bound
-//			bound -= results.get(0).getMinMoves().getChanges().size();
-//			
 			
 			branchingReturnC<V> t;
 			int count = 0;
@@ -129,14 +114,14 @@ public class qtBranchComponents<V> extends qtAllStruct<V>
 			}
 			
 			
-			
 			//branch on the rest of the graphs
 			for (Graph<V, Pair<V>> g : cGraphs)
 			{
 				//if component is large enough to care
 				if (g.getVertexCount() > 3)
 				{
-					if (bound > 0)
+					//if more moves are allowed
+					if (bound >= 0)
 					{
 						//fill new minMoves with bounded edge set of component
 						min = new branchingReturnC<V>(g, ((qtLBFS<V>) search).degSequenceOrder(g));
@@ -169,14 +154,18 @@ public class qtBranchComponents<V> extends qtAllStruct<V>
 			min.setMinMoves(min);
 			//throw all minMoves into a HashSet, so they don't have duplicates
 			HashSet<myEdge<V>> temp = new HashSet<myEdge<V>>();
+			temp.addAll(s.getChanges());
 			for (branchingReturnC<V> r : results)
 			{
+				r.getMinMoves().getChanges().removeAll(s.getChanges());
+				
 				temp.addAll(r.getMinMoves().getChanges());
 			}
+			
 			min.getChanges().addAll(temp);
 			
 			//if this solution is better than current one
-			if (s.getMinMoves().getChanges().size() > min.getChanges().size())
+			if (s.getMinMoves().getChanges().size() >= min.getChanges().size())
 			{
 				s.setMinMoves(min);
 			}
