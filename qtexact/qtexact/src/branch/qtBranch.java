@@ -445,10 +445,13 @@ public abstract class qtBranch<V> extends Branch<V>
 				for (Pair<V> e : s.getG().getEdges())
 				{
 					//treat each edge in this set as a deletion
-					l.add(new myEdge<V>(e, false));
-					count++;
-					if (count >= bound)
-						break;
+					if (!l.contains(new myEdge<V>(e, false)) || !l.contains(new myEdge<V>(e, true)))
+					{	
+						l.add(new myEdge<V>(e, false));
+						count++;
+						if (count >= bound)
+							break;
+					}
 				}
 		}
 //		

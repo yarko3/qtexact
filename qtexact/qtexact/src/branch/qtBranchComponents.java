@@ -165,7 +165,7 @@ public class qtBranchComponents<V> extends qtAllStruct<V>
 			min.getChanges().addAll(temp);
 			
 			//if this solution is better than current one
-			if (s.getMinMoves().getChanges().size() >= min.getChanges().size())
+			if (s.getMinMoves().getChanges().size() > min.getChanges().size())
 			{
 				s.setMinMoves(min);
 			}

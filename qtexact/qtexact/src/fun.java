@@ -99,7 +99,7 @@ public class fun<V> extends JApplet {
 		//fillGraphFromFile(exampleQT, "datasets/grass_web.pairs");
 		
 		
-		exampleQT = gen.treeRandom(40);
+		exampleQT = gen.treeRandom(60);
 		
 		//Graph<String, Pair<String>> fb = gen.facebookGraph("datasets/fbFriends.txt");
 		
@@ -326,15 +326,25 @@ public class fun<V> extends JApplet {
 //		Graph<Integer, Pair<Integer>> cln8 = clone.deepClone(exampleQT);
 //		visualize(cln8);
 		
+//		
+		c.setbStruct(branchC);
+		System.out.println("\nConnected component: ");
+		start = System.currentTimeMillis();
+		System.out.println(yan.search(c.branchStart(exampleQT, 15).getG()));
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+//		
+//		
+		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
+		
 		
 //		
-//		c.setbStruct(all2);
-//		System.out.println("\nAll structures (Single reduction): ");
-//		start = System.currentTimeMillis();
-//		c.branchStart(exampleQT, 9);
-//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
-//		
-//		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
+		c.setbStruct(all2);
+		System.out.println("\nAll structures (Single reduction): ");
+		start = System.currentTimeMillis();
+		System.out.println(yan.search(c.branchStart(exampleQT, 15).getG()));
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		
+		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
 		
 		
 		
@@ -377,14 +387,14 @@ public class fun<V> extends JApplet {
 //		Graph<Integer, Pair<Integer>> cln2 = clone.deepClone(exampleQT);
 //		visualize(cln2);
 //	
-		c.setbStruct(branchC);
-		System.out.println("\nConnected component: ");
-		start = System.currentTimeMillis();
-		exampleQT = c.branchStart(exampleQT, 10).getG();
-		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+//		c.setbStruct(branchC);
+//		System.out.println("\nConnected component: ");
+//		start = System.currentTimeMillis();
+//		System.out.println(yan.search(c.branchStart(exampleQT, 20).getG()));
+//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 //		
 //		
-		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
+//		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
 //		
 		
 		

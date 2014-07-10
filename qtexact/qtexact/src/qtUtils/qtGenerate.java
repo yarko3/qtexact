@@ -748,7 +748,7 @@ public class qtGenerate<V>
 	{
 		Graph<myVertex, Pair<myVertex>> init = new SparseGraph<myVertex, Pair<myVertex>>();
 		Random rand = new Random();
-		rand.setSeed(1);
+		//rand.setSeed(8);
 		
 		//generate first vertex
 		myVertex root = new myVertex(0, null);
@@ -794,26 +794,54 @@ public class qtGenerate<V>
 		
 		rtn.removeVertex(0);
 		
-		rtn.removeVertex(10);
-		rtn.removeVertex(14);
-		rtn.removeVertex(23);
-		rtn.removeVertex(37);
-		rtn.removeVertex(1);
-		rtn.removeVertex(19);
-		rtn.removeVertex(22);
-		rtn.removeVertex(15);
-		rtn.removeVertex(18);
-		rtn.removeVertex(29);
-		rtn.removeVertex(30);
+//		rtn.removeVertex(13);
+//		rtn.removeVertex(25);
+//		rtn.removeVertex(43);
+//		rtn.removeVertex(42);
+//		rtn.removeVertex(23);
+//		rtn.removeVertex(19);
+//		rtn.removeVertex(12);
+//		rtn.removeVertex(27);
+//		rtn.removeVertex(23);
+//		rtn.removeVertex(42);
+//		rtn.removeVertex(30);
+//		rtn.removeVertex(24);
+//		rtn.removeVertex(48);
+//		rtn.removeVertex(39);
+//		rtn.removeVertex(7);
+//		rtn.removeVertex(18);
+//		rtn.removeVertex(32);
+//		
+//		rtn.removeVertex(5);
+//		rtn.removeVertex(22);
+//		rtn.removeVertex(17);
+//		rtn.removeVertex(44);
+//		rtn.removeVertex(31);
+//		rtn.removeVertex(1);
+//		rtn.removeVertex(3);
+//		rtn.removeVertex(2);
+//		rtn.removeVertex(29);
+//		rtn.removeVertex(15);
+//		rtn.removeVertex(35);
+//		
+//		
+//		
+//		
+////		rtn.removeEdge(new Pair<Integer>(3,1));
+//		
+//		
+//		rtn.removeEdge(rtn.findEdge(2, 1));
+//		rtn.removeEdge(rtn.findEdge(5, 29));
+//		rtn.removeEdge(rtn.findEdge(6, 1));
+//		rtn.removeEdge(rtn.findEdge(1, 44));
+//		
 		
-		
-		rtn.removeEdge(new Pair<Integer>(3,2));
-		rtn.removeEdge(new Pair<Integer>(3,5));
-		rtn.removeEdge(new Pair<Integer>(14,2));
-		rtn.removeEdge(new Pair<Integer>(37,2));
-		rtn.removeEdge(new Pair<Integer>(23,2));
-		rtn.removeEdge(new Pair<Integer>(17,9));
-		rtn.removeEdge(new Pair<Integer>(5,2));
+//		rtn.removeEdge(new Pair<Integer>(3,5));
+//		rtn.removeEdge(new Pair<Integer>(14,2));
+//		rtn.removeEdge(new Pair<Integer>(37,2));
+//		rtn.removeEdge(new Pair<Integer>(23,2));
+//		rtn.removeEdge(new Pair<Integer>(17,9));
+//		rtn.removeEdge(new Pair<Integer>(5,2));
 		
 		
 		return rtn;
