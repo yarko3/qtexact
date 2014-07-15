@@ -21,6 +21,7 @@ import com.rits.cloning.Cloner;
 
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.SparseGraph;
+import edu.uci.ics.jung.graph.UndirectedSparseGraph;
 import edu.uci.ics.jung.graph.util.Pair;
 
 
@@ -317,7 +318,7 @@ public class qtGenerate<V>
 	
 	public static Graph<Integer, Pair<Integer>> westernElectricNetwork()
 	{
-		Graph<Integer,Pair<Integer>> g = new SparseGraph<Integer,Pair<Integer>>();
+		Graph<Integer,Pair<Integer>> g = new UndirectedSparseGraph<Integer,Pair<Integer>>();
 		
 		g.addEdge(new Pair<Integer>(11, 21), 11,21);
 		g.addEdge(new Pair<Integer>(11, 22), 11,22);
@@ -748,7 +749,7 @@ public class qtGenerate<V>
 	{
 		Graph<myVertex, Pair<myVertex>> init = new SparseGraph<myVertex, Pair<myVertex>>();
 		Random rand = new Random();
-		rand.setSeed(9);
+		//rand.setSeed(9);
 		
 		//generate first vertex
 		myVertex root = new myVertex(0, null, 0);
@@ -788,7 +789,7 @@ public class qtGenerate<V>
 			depthVert.get(parent.depth + 1).add(next);
 			
 			
-			while (parent != null /*&& rand.nextInt(2) == 0*/)
+			while (parent != null && rand.nextInt(2) == 0)
 			{
 				init.addEdge(new Pair<myVertex>(next, parent), next, parent);
 				parent = parent.parent;
@@ -819,7 +820,7 @@ public class qtGenerate<V>
 		}
 		
 		
-		Graph<Integer, Pair<Integer>> rtn = new SparseGraph<Integer, Pair<Integer>>();
+		Graph<Integer, Pair<Integer>> rtn = new UndirectedSparseGraph<Integer, Pair<Integer>>();
 		
 		//copy all edges and vertices to return graph
 		

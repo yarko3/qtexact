@@ -17,6 +17,7 @@ import abstractClasses.SearchResult;
 import controller.Controller;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.SparseGraph;
+import edu.uci.ics.jung.graph.UndirectedSparseGraph;
 import edu.uci.ics.jung.graph.util.Pair;
 
 /**
@@ -363,7 +364,7 @@ public abstract class qtBranch<V> extends Branch<V>
 	
 	protected Graph<V, Pair<V>> connectedCFromVertexSet(Graph<V, Pair<V>> G, Set<V> l)
 	{
-		Graph<V, Pair<V>> c = new SparseGraph<V, Pair<V>>();
+		Graph<V, Pair<V>> c = new UndirectedSparseGraph<V, Pair<V>>();
 		HashSet<Pair<V>> tempSet = new HashSet<Pair<V>>();
 		//throw all edges into hashset, no duplicates
 		for (V i : l)
