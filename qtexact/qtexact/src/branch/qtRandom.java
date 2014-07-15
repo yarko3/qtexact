@@ -21,6 +21,7 @@ public class qtRandom<V> extends qtBranchNoHeuristic<V>
 	/**
 	 * Randomly choose a P4 edge to delete
 	 */
+	@Override
 	public branchingReturnC<V> branchingRules(branchingReturnC<V> s, SearchResult<V> searchResult) 
 	{
 		ArrayList<V> lexResult = searchResult.getCertificate().getVertices();
@@ -29,106 +30,335 @@ public class qtRandom<V> extends qtBranchNoHeuristic<V>
 		//C4 has been found
 		if (searchResult.getCertificate().getFlag() == -1)
 		{
-			//result of adding 1 edge to break C4
-			//if we did not remove the edge that is about to be added
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(2)), false)))
+			//randomly choose an addition
+			
+			int r = rand.nextInt(2);
+			
+			switch (r)
 			{
-				if (output)
+			case 0:
+				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(2)), false)))
 				{
-					//change progress percent
-					s.setPercent(oldPercent / 2);
+					if (output)
+					{
+						//change progress percent
+						s.setPercent(oldPercent / 2);
+					}
+					
+					
+					controller.branch(addResult(s, lexResult.get(0), lexResult.get(2)));
+					
+					
+					//revert changes
+					revert(s);		
+					if (output)
+					{
+						//revert percent
+						s.setPercent(oldPercent);
+					}
+					
 				}
+				else
+					if (output)
+						controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 2);
 				
+				break;
+			case 1:
 				
-				controller.branch(addResult(s, lexResult.get(0), lexResult.get(2)));
-				
-				
-				//revert changes
-				revert(s);		
-				if (output)
+				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false)))
 				{
-					//revert percent
-					s.setPercent(oldPercent);
+					if (output)
+					{
+						//change progress percent
+						s.setPercent(oldPercent / 2);
+					}
+					
+					controller.branch(addResult(s, lexResult.get(1), lexResult.get(3)));
+					//revert changes
+					if (output)
+					{
+						s.setPercent(oldPercent);
+					}
+					
+					revert(s);
+					//update percentDone
 				}
-				
+				else
+					if (output)
+						controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 2);
 			}
-			else
-				if (output)
-					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 2);
+				
+			//randomly choose a deletion
+			r = rand.nextInt(6);
 			
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false)))
+			
+			switch (r)
 			{
-				if (output)
+			case 0:
+				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)))
 				{
-					//change progress percent
-					s.setPercent(oldPercent / 2);
+					if (output)
+					{
+						//change progress percent
+						s.setPercent(oldPercent / 2);
+					}
+					
+					controller.branch(delete2Result(s, lexResult.get(0), lexResult.get(1), lexResult.get(1), lexResult.get(2)));
+					
+					if (output)
+					{
+						s.setPercent(oldPercent);
+					}
+					
+					//revert change to global graph
+					revert2(s);
 				}
+				else
+					if (output)
+						controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 2);
 				
-				controller.branch(addResult(s, lexResult.get(1), lexResult.get(3)));
-				//revert changes
-				if (output)
+				break;
+				
+			case 1:
+				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(3)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
 				{
-					s.setPercent(oldPercent);
+					if (output)
+					{
+						//change progress percent
+						s.setPercent(oldPercent / 2);
+					}
+					controller.branch(delete2Result(s, lexResult.get(0), lexResult.get(3), lexResult.get(2), lexResult.get(3)));
+					
+					if (output)
+					{
+						s.setPercent(oldPercent);
+					}
+					//revert change to global graph
+					revert2(s);
 				}
+				else
+					if (output)
+						controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 2);
 				
-				revert(s);
-				//update percentDone
+				break;
+				
+			case 2:
+				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
+				{
+					if (output)
+					{
+						//change progress percent
+						s.setPercent(oldPercent / 2);
+					}
+					
+					controller.branch(delete2Result(s, lexResult.get(0), lexResult.get(1), lexResult.get(2), lexResult.get(3)));
+					if (output)
+					{
+						s.setPercent(oldPercent);
+					}
+					
+					//revert change to global graph
+					revert2(s);
+				}
+				else
+					if (output)
+						controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 2);
+				
+				break;
+			case 3:
+				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(3)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)))
+				{
+					if (output)
+					{
+						//change progress percent
+						s.setPercent(oldPercent / 2);
+					}
+					
+					controller.branch(delete2Result(s, lexResult.get(0), lexResult.get(3), lexResult.get(1), lexResult.get(2)));
+					
+					if (output)
+						s.setPercent(oldPercent);
+					
+					//revert change to global graph
+					revert2(s);
+				}
+				else
+					if (output)
+						controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 2);
+				
+				break;
+				
+			case 4:
+				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
+				{
+					if (output)
+						//change progress percent
+						s.setPercent(oldPercent / 2);
+					
+					controller.branch(delete2Result(s, lexResult.get(1), lexResult.get(2), lexResult.get(2), lexResult.get(3)));
+					
+					if (output)
+						s.setPercent(oldPercent);
+					
+					//revert change to global graph
+					revert2(s);
+				}
+				else
+					if (output)
+						controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 2);
+				
+				break;
+			case 5:
+				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(3)), true)))
+				{
+					if (output)
+						//change progress percent
+						s.setPercent(oldPercent / 2);
+					
+					controller.branch(delete2Result(s, lexResult.get(0), lexResult.get(1), lexResult.get(0), lexResult.get(3)));
+					
+					if (output)
+						s.setPercent(oldPercent);
+					
+					//revert change to global graph
+					revert2(s);
+				}
+				else
+					if (output)
+						controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 2);
 			}
-			else
-				if (output)
-					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 2);
 			
+			return s;
 			
-			
-
 		}
+		
 		//P4 has been found
 		else
 		{	
-			int index = rand.nextInt(3);
+			double index = rand.nextDouble();
 			
-			
-			switch (index)
+			//remove an edge to break P4
+			//remove middle edge first
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)))
 			{
-			case (0):
-				//remove an edge to break P4
-				//remove middle edge first
-				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)))
+				if (output)
 				{
-					
-					controller.branch(deleteResult(s, lexResult.get(1), lexResult.get(2)));
-					
-					//revert changes to global graph
-					revert(s);
-					
-					return s;
+					//change progress percent
+					s.setPercent(oldPercent / 2);
 				}
+				
+				controller.branch(deleteResult(s, lexResult.get(1), lexResult.get(2)));
+				
+				
+				if (output)
+				{
+					s.setPercent(oldPercent);
+				}
+				
+				//revert changes to global graph
+				revert(s);
+				
+			}
+			else
+				if (output)
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 2);
 			
-			case (1):
-				//try other edges later
+			
+			if (index < 0.35)
+			{
 				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)))
 				{
 					
+					if (output)
+					{
+						//change progress percent
+						s.setPercent(oldPercent / 2);
+					}
+					
 					controller.branch(deleteResult(s, lexResult.get(0), lexResult.get(1)));
+					
+					
+					if (output)
+					{
+						s.setPercent(oldPercent);
+					}
 					
 					//revert changes to global graph
 					revert(s);
-					
-					return s;
+				
 				}
+				else
+					if (output)
+						controller.setGlobalPercent(controller.getGlobalPercent() +oldPercent / 2);
+			}
 			
-			case (2):
-			
+			else if (index < .7)
+			{
 				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
 				{
+					if (output)
+					{
+						//change progress percent
+						s.setPercent(oldPercent / 2);
+					}
 					
 					controller.branch(deleteResult(s, lexResult.get(2), lexResult.get(3)));
 					
+					if (output)
+					{
+						s.setPercent(oldPercent);
+					}
+					
 					//revert changes to global graph
 					revert(s);
 					
-					return s;
 				}
+				else
+					if (output)
+						controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 2);
+			}
+		
+			
+			else if (index < 0.85)
+			{
+				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(2)), false)))
+				{
+					if (output)
+						//change progress percent
+						s.setPercent(oldPercent / 2);
+					
+					controller.branch(addResult(s, lexResult.get(0), lexResult.get(2)));
+					if (output)
+						s.setPercent(oldPercent);
+					
+					//revert changes
+					revert(s);
+				}
+				else
+					if (output)
+						controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 2);
+			
+			}
+				
+			else
+			{
+				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false)))
+				{
+					if (output)
+						//change progress percent
+						s.setPercent(oldPercent / 2);
+					
+					controller.branch(addResult(s, lexResult.get(1), lexResult.get(3)));
+					
+					if (output)
+						s.setPercent(oldPercent);
+					
+					//revert changes
+					revert(s);
+				}
+				else
+					if (output)
+						controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 2);
 			
 			}
 		}

@@ -200,6 +200,40 @@ public abstract class qtLBFS<V> extends LBFS<V>
 		return t;
 	}
 	
+	
+	
+	public ArrayList<LinkedList<V>> degSequenceOrder(Graph<V, Pair<V>> G, LinkedList<V> vertexList)
+	{
+		//store vertices of same degree in LinkedList<V> at the index of their degree in ArrayList
+		ArrayList<LinkedList<V>> deg = new ArrayList<LinkedList<V>>();
+		int max = 0;
+		for (V i : vertexList)
+		{
+			if (G.degree(i) > max)
+				max = G.degree(i);
+		}
+		
+		for (int i = 0; i <= max; i++)
+		{
+			deg.add(new LinkedList<V>());
+		}
+		
+		//for every vertex, add it to the appropriate LinkedList
+		for (V i : vertexList)
+		{
+			int iDeg = G.degree(i);
+			if (deg.get(iDeg) == null)
+			{
+				deg.add(iDeg, new LinkedList<V>());
+			}
+			
+			deg.get(iDeg).add(i);
+		}
+		
+		deg.trimToSize();
+		return deg;
+	}
+	
 	public void flattenAndReverseDegPrint(ArrayList<LinkedList<V>> deg)
 	{
 		

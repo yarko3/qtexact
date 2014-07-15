@@ -748,29 +748,47 @@ public class qtGenerate<V>
 	{
 		Graph<myVertex, Pair<myVertex>> init = new SparseGraph<myVertex, Pair<myVertex>>();
 		Random rand = new Random();
-		//rand.setSeed(8);
+		rand.setSeed(9);
 		
 		//generate first vertex
-		myVertex root = new myVertex(0, null);
+		myVertex root = new myVertex(0, null, 0);
 		
 		int count = 1;
 		int random;
 		myVertex parent;
 		myVertex next;
-		
+		//store vertices based on their data
 		HashMap<Integer, myVertex> vertices = new HashMap<Integer, myVertex>();
 		vertices.put(0, root);
+		
+		//store vertices at their depths as well
+		HashMap<Integer, LinkedList<myVertex>> depthVert = new HashMap<Integer, LinkedList<myVertex>>();
+		
+		if (depthVert.get(0) == null)
+		{
+			depthVert.put(0, new LinkedList<myVertex>());
+		}
+		depthVert.get(0).add(root);
 		
 		while (count < n)
 		{
 			//get data of next parent
 			random = rand.nextInt(count);
 			parent = vertices.get(random);
+			
+			
 			//new vertex to be added
-			next = new myVertex(count, parent);
+			next = new myVertex(count, parent, parent.depth + 1);
 			vertices.put(count, next);
 			
-			while (parent != null && rand.nextInt(2) == 0)
+			if (depthVert.get(parent.depth + 1) == null)
+			{
+				depthVert.put(parent.depth + 1, new LinkedList<myVertex>());
+			}
+			depthVert.get(parent.depth + 1).add(next);
+			
+			
+			while (parent != null /*&& rand.nextInt(2) == 0*/)
 			{
 				init.addEdge(new Pair<myVertex>(next, parent), next, parent);
 				parent = parent.parent;
@@ -778,6 +796,28 @@ public class qtGenerate<V>
 			
 			count++;
 		}
+		
+		//depth and frequency
+		for (Integer k : depthVert.keySet())
+		{
+			System.out.println(k + "\t" + depthVert.get(k).size());
+		}
+		
+		
+		//change depth HashMap to regular integer LinkedLists
+		HashMap<Integer, LinkedList<Integer>> list = new HashMap<Integer, LinkedList<Integer>>();
+		for (Integer k : depthVert.keySet())
+		{
+			LinkedList<myVertex> l = depthVert.get(k);
+			
+			list.put(k, new LinkedList<Integer>());
+			
+			for (myVertex v : l)
+			{
+				list.get(k).add(v.data);
+			}
+		}
+		
 		
 		Graph<Integer, Pair<Integer>> rtn = new SparseGraph<Integer, Pair<Integer>>();
 		
@@ -792,57 +832,25 @@ public class qtGenerate<V>
 		
 		//search.flattenAndReverseDegPrint(search.degSequenceOrder(rtn));
 		
+//		//depth 9
+//		System.out.println("Depth 9: ");
+//		search.flattenAndReverseDegPrint(search.degSequenceOrder(rtn, list.get(9)));
+//		
+//		//depth 10
+//		System.out.println("Depth 10: ");
+//		search.flattenAndReverseDegPrint(search.degSequenceOrder(rtn, list.get(10)));
+//		
+//		//depth 11
+//		System.out.println("Depth 11: ");
+//		search.flattenAndReverseDegPrint(search.degSequenceOrder(rtn, list.get(11)));
+//		
+//		//depth 12
+//		System.out.println("Depth 12: ");
+//		search.flattenAndReverseDegPrint(search.degSequenceOrder(rtn, list.get(12)));
+//		
+//		
 		rtn.removeVertex(0);
-		
-//		rtn.removeVertex(13);
-//		rtn.removeVertex(25);
-//		rtn.removeVertex(43);
-//		rtn.removeVertex(42);
-//		rtn.removeVertex(23);
-//		rtn.removeVertex(19);
-//		rtn.removeVertex(12);
-//		rtn.removeVertex(27);
-//		rtn.removeVertex(23);
-//		rtn.removeVertex(42);
-//		rtn.removeVertex(30);
-//		rtn.removeVertex(24);
-//		rtn.removeVertex(48);
-//		rtn.removeVertex(39);
-//		rtn.removeVertex(7);
-//		rtn.removeVertex(18);
-//		rtn.removeVertex(32);
-//		
-//		rtn.removeVertex(5);
-//		rtn.removeVertex(22);
-//		rtn.removeVertex(17);
-//		rtn.removeVertex(44);
-//		rtn.removeVertex(31);
-//		rtn.removeVertex(1);
-//		rtn.removeVertex(3);
-//		rtn.removeVertex(2);
-//		rtn.removeVertex(29);
-//		rtn.removeVertex(15);
-//		rtn.removeVertex(35);
-//		
-//		
-//		
-//		
-////		rtn.removeEdge(new Pair<Integer>(3,1));
-//		
-//		
-//		rtn.removeEdge(rtn.findEdge(2, 1));
-//		rtn.removeEdge(rtn.findEdge(5, 29));
-//		rtn.removeEdge(rtn.findEdge(6, 1));
-//		rtn.removeEdge(rtn.findEdge(1, 44));
-//		
-		
-//		rtn.removeEdge(new Pair<Integer>(3,5));
-//		rtn.removeEdge(new Pair<Integer>(14,2));
-//		rtn.removeEdge(new Pair<Integer>(37,2));
-//		rtn.removeEdge(new Pair<Integer>(23,2));
-//		rtn.removeEdge(new Pair<Integer>(17,9));
-//		rtn.removeEdge(new Pair<Integer>(5,2));
-		
+	
 		
 		return rtn;
 	}
@@ -853,11 +861,19 @@ public class qtGenerate<V>
 	{
 		myVertex parent;
 		Integer data;
+		Integer depth;
 		
-		myVertex(Integer d, myVertex p)
+		myVertex(Integer d, myVertex p, Integer dep)
 		{
 			parent = p;
 			data = d;
+			depth = dep;
+		}
+		
+		@Override
+		public String toString()
+		{
+			return data.toString();
 		}
 	}
 	

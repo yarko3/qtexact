@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
@@ -15,14 +16,13 @@ import java.util.Set;
 import javax.swing.JApplet;
 import javax.swing.JFrame;
 
+import qtUtils.branchingReturnC;
+import qtUtils.myEdge;
 import qtUtils.qtGenerate;
 import reduction.c4p4Reduction;
 import reduction.commonC4Reduction;
 import reduction.edgeBoundReduction;
 import search.YanSearch;
-import search.qtLBFS;
-import search.qtLBFSNoHeuristic;
-import abstractClasses.Branch;
 import abstractClasses.Reduction;
 import branch.qtAllStruct;
 import branch.qtBranchComponents;
@@ -76,9 +76,9 @@ public class fun<V> extends JApplet {
 		
 		//exampleQT = qtGenerate.simpleC4();
 		
-		//exampleQT = qtGenerate.westernElectricNetwork();
+		exampleQT = qtGenerate.westernElectricNetwork();
 		
-		exampleQT = qtGenerate.nonQTEx6();
+		//exampleQT = qtGenerate.nonQTEx6();
 		
 		//random graph join
 		//exampleQT = gen.erJoins(8, 8, 5, .86, .86, .9);
@@ -95,11 +95,11 @@ public class fun<V> extends JApplet {
 		//exampleQT = gen.houseStruct();
 		
 		
-		//exampleQT = new SparseGraph<Integer, Pair<Integer>>();
-		//fillGraphFromFile(exampleQT, "datasets/grass_web.pairs");
-		
-		
-		exampleQT = gen.treeRandom(60);
+//		exampleQT = new SparseGraph<Integer, Pair<Integer>>();
+//		fillGraphFromFile(exampleQT, "datasets/grass_web.pairs");
+//		
+//		
+		//exampleQT = gen.treeRandom(100000);
 		
 		//Graph<String, Pair<String>> fb = gen.facebookGraph("datasets/fbFriends.txt");
 		
@@ -244,16 +244,18 @@ public class fun<V> extends JApplet {
 //		int hit = 0;
 //		LinkedList<myEdge<Integer>> min = null;
 //		
-//		while (hit < 10)
+//		while (hit < 1)
 //		{
-//			branchingReturnC<Integer> rtn = c.branchStart(exampleQT, 34);
-//			if (rtn.getG() != null)
+//			branchingReturnC<Integer> rtn = c.branchStart(exampleQT, 30);
+//			if (yan.search(rtn.getG()))
 //			{
 //				if (min == null)
 //					min = rtn.getMinMoves().getChanges();
 //				
 //				else if (min.size() > rtn.getMinMoves().getChanges().size())
 //					min = rtn.getMinMoves().getChanges();
+//				
+//				exampleQT = rtn.getG();
 //					
 //				hit++;
 //			}
@@ -327,25 +329,25 @@ public class fun<V> extends JApplet {
 //		visualize(cln8);
 		
 //		
-		c.setbStruct(branchC);
-		System.out.println("\nConnected component: ");
-		start = System.currentTimeMillis();
-		System.out.println(yan.search(c.branchStart(exampleQT, 15).getG()));
-		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+//		c.setbStruct(branchC);
+//		System.out.println("\nConnected component: ");
+//		start = System.currentTimeMillis();
+//		System.out.println(yan.search(c.branchStart(exampleQT, 15).getG()));
+//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+////		
+////		
+//		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
 //		
 //		
-		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
-		
-		
-//		
+////		
 		c.setbStruct(all2);
 		System.out.println("\nAll structures (Single reduction): ");
 		start = System.currentTimeMillis();
-		System.out.println(yan.search(c.branchStart(exampleQT, 15).getG()));
+		System.out.println(yan.search(c.branchStart(exampleQT, 16).getG()));
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
-		
+//		
 		
 		
 //		c.setbStruct(all);
@@ -390,12 +392,12 @@ public class fun<V> extends JApplet {
 //		c.setbStruct(branchC);
 //		System.out.println("\nConnected component: ");
 //		start = System.currentTimeMillis();
-//		System.out.println(yan.search(c.branchStart(exampleQT, 20).getG()));
+//		System.out.println(yan.search(c.branchStart(exampleQT, 16).getG()));
 //		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 //		
 //		
 //		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
-//		
+		
 		
 		
 		start = System.currentTimeMillis();

@@ -1,7 +1,6 @@
 package controller;
 
 import qtUtils.branchingReturnC;
-import qtUtils.myEdge;
 import qtUtils.qtGenerate;
 import abstractClasses.Branch;
 import abstractClasses.SearchResult;
@@ -21,7 +20,6 @@ public class Controller<V>
 	private double globalPercent;
 	private double percent;
 	private boolean output;
-	private int globalBound;
 	
 	
 	/**
@@ -118,7 +116,7 @@ public class Controller<V>
 		globalPercent = 0;
 		percent = 0;
 		timesRun = 0;
-		globalBound = bound;
+
 		
 		
 		//set up branching

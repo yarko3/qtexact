@@ -33,13 +33,15 @@ public class c4p4Reduction<V> extends Reduction<V>
 	{
 		
 		int count = 0;
-		
+		int bound = s.getMinMoves().getChanges().size() - s.getChanges().size();
 		
 		//look through first few two non-neighbours
 		
 		ArrayList<V> vertices = bStruct.getSearch().orderVerticesNonDecreasingDegree(s.getG());
 		//number of nodes to be checked
 		int max = s.getG().getVertexCount() / 5;
+		
+		max = s.getG().getVertexCount() / bound;
 		
 		//for each most connected vertex, check other most connected vertices
 		outer:
@@ -99,8 +101,7 @@ public class c4p4Reduction<V> extends Reduction<V>
 						s = bStruct.addResult(s, v0, v1);
 						count++;
 						
-						
-						if (count >= s.getMinMoves().getChanges().size() - s.getChanges().size())
+						if (count >= bound)
 							break outer;
 					}
 				}
@@ -117,7 +118,7 @@ public class c4p4Reduction<V> extends Reduction<V>
 						s = bStruct.deleteResult(s, v0, v1);
 						count++;
 						
-						if (count >= s.getMinMoves().getChanges().size() - s.getChanges().size())
+						if (count >= bound)
 							break outer;
 						
 					}
