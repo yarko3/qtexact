@@ -33,8 +33,11 @@ public class biconnectedReduction<V> extends Reduction<V> {
 	public branchingReturnC<V> reduce(branchingReturnC<V> s) {
 		BicomponentClusterer<V, Pair<V>> cluster = new BicomponentClusterer<V, Pair<V>>();
 		
+		//get the clusters
 		Set<Set<V>> components = cluster.transform((UndirectedGraph<V, Pair<V>>) s.getG());
+		//number of edges deleted as a result of the reduction
 		int count = 0;
+		//number of allowed moves
 		int bound = s.getMinMoves().getChanges().size() - s.getChanges().size();
 		
 		
@@ -60,6 +63,7 @@ public class biconnectedReduction<V> extends Reduction<V> {
 				s = bStruct.deleteResult(s, edge.getFirst(), edge.getSecond());
 				count++;
 				
+				//if all the moves allowed have been made, break
 				if (count == bound)
 				{
 					break;

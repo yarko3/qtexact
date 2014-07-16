@@ -43,6 +43,10 @@ public class c4p4Reduction<V> extends Reduction<V>
 		
 		max = s.getG().getVertexCount() / bound;
 		
+		max = bound;
+		
+		//max = s.getG().getVertexCount();
+		
 		//for each most connected vertex, check other most connected vertices
 		outer:
 		for (int i = 1; i < max; i++)

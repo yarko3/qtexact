@@ -8,8 +8,10 @@ import java.util.Set;
 import qtUtils.branchingReturnC;
 import qtUtils.lexReturnC;
 import qtUtils.myEdge;
+import qtUtils.qtGenerate;
 import search.qtLBFS;
 import search.qtLBFSComponents;
+import abstractClasses.Branch;
 import abstractClasses.SearchResult;
 import controller.Controller;
 import edu.uci.ics.jung.graph.Graph;
@@ -22,6 +24,8 @@ import edu.uci.ics.jung.graph.util.Pair;
  */
 public class qtBranchComponents<V> extends qtAllStruct<V> 
 {
+	qtGenerate<V> gen = new qtGenerate<V>();
+	
 	/**
 	 * constructor
 	 * @param controller
@@ -98,6 +102,7 @@ public class qtBranchComponents<V> extends qtAllStruct<V>
 			branchingReturnC<V> min = null;
 			
 			branchingReturnC<V> t;
+			//number of components larger than 3 nodes
 			int count = 0;
 			
 			//get number of graphs we need to keep track of for percent
@@ -109,6 +114,20 @@ public class qtBranchComponents<V> extends qtAllStruct<V>
 					if (g.getVertexCount() > 3)
 					{
 						count++;
+					}
+				}
+			}
+			
+			//sort connected components in increasing size
+			outer:
+			for (int i = 0; i < cGraphs.size(); i++)
+			{
+				for (int j = 0; j < i; j++)
+				{
+					if (cGraphs.get(i).getVertexCount() < cGraphs.get(j).getVertexCount())
+					{
+						cGraphs.add(j, cGraphs.remove(i));
+						continue outer;
 					}
 				}
 			}
@@ -165,7 +184,9 @@ public class qtBranchComponents<V> extends qtAllStruct<V>
 			min.getChanges().addAll(temp);
 			
 			//if this solution is better than current one
-			if (s.getMinMoves().getChanges().size() > min.getChanges().size())
+			Graph<V, Pair<V>> rtn = gen.applyMoves(Branch.clone.deepClone(s.getG()), min.getChanges());
+			
+			if (s.getMinMoves().getChanges().size() >= min.getChanges().size() && getSearch().isTarget(rtn))
 			{
 				s.setMinMoves(min);
 			}

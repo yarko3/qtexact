@@ -701,9 +701,9 @@ public class qtGenerate<V>
 		
 	}
 	
-	public Graph<String, Pair<String>> facebookGraph(String filename)
+	public Graph<Integer, Pair<Integer>> facebookGraph(String filename)
 	{
-		Graph<String, Pair<String>> g = new SparseGraph<String, Pair<String>>();
+		Graph<Integer, Pair<Integer>> g = new UndirectedSparseGraph<Integer, Pair<Integer>>();
 		
 		FileReader file = null;
 		try {
@@ -736,7 +736,7 @@ public class qtGenerate<V>
 			name1 = scan.next();
 			
 			//add edge
-			g.addEdge(new Pair<String>(name0, name1), name0, name1);
+			g.addEdge(new Pair<Integer>(name0.hashCode(), name1.hashCode()), name0.hashCode(), name1.hashCode());
 			n++;
 		}
 		
@@ -749,7 +749,7 @@ public class qtGenerate<V>
 	{
 		Graph<myVertex, Pair<myVertex>> init = new SparseGraph<myVertex, Pair<myVertex>>();
 		Random rand = new Random();
-		//rand.setSeed(9);
+		rand.setSeed(10);
 		
 		//generate first vertex
 		myVertex root = new myVertex(0, null, 0);
@@ -799,10 +799,11 @@ public class qtGenerate<V>
 		}
 		
 		//depth and frequency
-		for (Integer k : depthVert.keySet())
-		{
-			System.out.println(k + "\t" + depthVert.get(k).size());
-		}
+//		for (Integer k : depthVert.keySet())
+//		{
+//			System.out.println(k + "\t" + depthVert.get(k).size());
+//		}
+		
 		
 		
 		//change depth HashMap to regular integer LinkedLists

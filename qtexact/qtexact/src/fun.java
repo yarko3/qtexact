@@ -81,7 +81,7 @@ public class fun<V> extends JApplet {
 		//random graph join
 		//exampleQT = gen.erJoins(8, 8, 5, .86, .86, .9);
 		
-		//exampleQT = gen.ER(18, 0.7);
+		exampleQT = gen.ER(18, 0.);
 		
 		exampleQT = new UndirectedSparseGraph<Integer, Pair<Integer>>();
 		fillGraphFromFile(exampleQT, "datasets/zachary.txt");
@@ -93,13 +93,13 @@ public class fun<V> extends JApplet {
 		//exampleQT = gen.houseStruct();
 		
 		
-//		exampleQT = new UndirectedSparseGraph<Integer, Pair<Integer>>();
-//		fillGraphFromFile(exampleQT, "datasets/grass_web.pairs");
+		exampleQT = new UndirectedSparseGraph<Integer, Pair<Integer>>();
+		fillGraphFromFile(exampleQT, "datasets/grass_web.pairs");
 ////		
 ////		
-//		exampleQT = gen.treeRandom(50);
+		exampleQT = gen.treeRandom(50);
 		
-		//Graph<String, Pair<String>> fb = gen.facebookGraph("datasets/fbFriends.txt");
+		//exampleQT = gen.facebookGraph("datasets/fbFriends.txt");
 		
 		Graph<Integer, Pair<Integer>> cln = clone.deepClone(exampleQT);
 
@@ -172,10 +172,14 @@ public class fun<V> extends JApplet {
 		r2C = new commonC4Reduction<Integer>(all);
 		all.addReduction(r2C);
 		
+		
+//		rC = new c4p4Reduction<Integer>(all);
+//		all.addReduction(rC);
+		
 		rC = new c4p4Reduction<Integer>(all2);
 		all2.addReduction(rC);
-		//rC = new biconnectedReduction<Integer>(all2);
-		//all2.addReduction(rC);
+		rC = new biconnectedReduction<Integer>(all2);
+		all2.addReduction(rC);
 //		
 		Reduction<Integer> rNo = new edgeBoundReduction<Integer>(branchNoHP);
 		branchNoHP.addReduction(rNo);
@@ -339,27 +343,23 @@ public class fun<V> extends JApplet {
 ////		
 //		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
 //		
+		
+		c.setbStruct(all);
+		System.out.println("\nAll structures (old reductions): ");
+		start = System.currentTimeMillis();
+		c.branchStart(exampleQT, 11);
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		
+		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
 //		
+		c.setbStruct(all2);
+		System.out.println("\nAll structures (new reductions): ");
+		start = System.currentTimeMillis();
+		System.out.println(yan.search(c.branchStart(exampleQT, 11).getG()));
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		
+		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
 ////		
-//		c.setbStruct(all2);
-//		System.out.println("\nAll structures (Single reduction): ");
-//		start = System.currentTimeMillis();
-//		System.out.println(yan.search(c.branchStart(exampleQT, 16).getG()));
-//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
-//		
-//		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
-//		
-		
-		
-//		c.setbStruct(all);
-//		System.out.println("\nAll structures: ");
-//		start = System.currentTimeMillis();
-//		c.branchStart(exampleQT, 16);
-//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
-//		
-//		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
-//		
-		
 //		Graph<Integer, Pair<Integer>> cln9 = clone.deepClone(exampleQT);
 //		visualize(cln9);
 		
@@ -391,9 +391,9 @@ public class fun<V> extends JApplet {
 //		visualize(cln2);
 //	
 		c.setbStruct(branchC);
-		System.out.println("\nConnected component: ");
+		System.out.println("\nConnected component (new reductions): ");
 		start = System.currentTimeMillis();
-		System.out.println(yan.search(c.branchStart(exampleQT, 17).getG()));
+		System.out.println(yan.search(c.branchStart(exampleQT, 11).getG()));
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		
@@ -408,37 +408,7 @@ public class fun<V> extends JApplet {
 		
 		visualize(exampleQT);
 	}
-	
-	public static void fbTest()
-	{
-		qtGenerate<String> gen = new qtGenerate<String>();
-		
-		Graph<String, Pair<String>> fb = gen.facebookGraph("datasets/fbFriends.txt");
-		
-		Controller<String> c = new Controller<String>(null, true);
-		
-		qtAllStruct<String> all = new qtAllStruct<String>(c);
-		
-		qtBranchComponents<String> branchC = new qtBranchComponents<String>(c);
-		
-		long start;
-		
-		//visualize(fb);
-		
-		c.setbStruct(branchC);
-		System.out.println("\nConnected component: ");
-		start = System.currentTimeMillis();
-		c.branchStart(fb, 17);
-		System.out.println((System.currentTimeMillis()-start) / 1000.0);
-		
-		c.setbStruct(all);
-		System.out.println("\nAll structures: ");
-		start = System.currentTimeMillis();
-		c.branchStart(fb, 17);
-		System.out.println((System.currentTimeMillis()-start) / 1000.0);
-		
-		
-	}
+
 	
 	public static void visualize(Graph<Integer, Pair<Integer>> fb){
 		JFrame jf = new JFrame();
