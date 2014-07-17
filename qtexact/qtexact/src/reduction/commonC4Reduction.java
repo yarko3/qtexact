@@ -46,7 +46,7 @@ public class commonC4Reduction<V> extends Reduction<V>
 			max = vertices.size() - 1;
 		
 		outer:
-		for (int i = 1; i < max; i++)
+		for (int i = 0; i < max; i++)
 		{
 			V v0 = vertices.get(i);
 			
@@ -77,8 +77,9 @@ public class commonC4Reduction<V> extends Reduction<V>
 					{
 						V temp = common.remove(k);
 						boolean flag = true;
-						for (V n : common)
+						for (int l = k; l < common.size(); l++)
 						{
+							V n = common.get(l);
 							if (!s.getG().isNeighbor(temp, n))
 								flag = false;
 						}

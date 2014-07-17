@@ -1,9 +1,12 @@
 package branch;
 
+import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Set;
+
+import javax.swing.JFrame;
 
 import qtUtils.branchingReturnC;
 import qtUtils.lexReturnC;
@@ -14,8 +17,13 @@ import search.qtLBFSComponents;
 import abstractClasses.Branch;
 import abstractClasses.SearchResult;
 import controller.Controller;
+import edu.uci.ics.jung.algorithms.layout.FRLayout;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Pair;
+import edu.uci.ics.jung.visualization.VisualizationViewer;
+import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
+
+
 /**
  * class used for editing to quasi threshold using connected components
  * @author Yaroslav Senyuta
@@ -119,7 +127,6 @@ public class qtBranchComponents<V> extends qtAllStruct<V>
 			}
 			
 			//sort connected components in increasing size
-			outer:
 			for (int i = 0; i < cGraphs.size(); i++)
 			{
 				for (int j = 0; j < i; j++)
@@ -127,7 +134,7 @@ public class qtBranchComponents<V> extends qtAllStruct<V>
 					if (cGraphs.get(i).getVertexCount() < cGraphs.get(j).getVertexCount())
 					{
 						cGraphs.add(j, cGraphs.remove(i));
-						continue outer;
+						continue;
 					}
 				}
 			}
@@ -142,6 +149,8 @@ public class qtBranchComponents<V> extends qtAllStruct<V>
 					//if more moves are allowed
 					if (bound >= 0)
 					{
+						//visualize(g);
+						
 						//fill new minMoves with bounded edge set of component
 						min = new branchingReturnC<V>(g, ((qtLBFS<V>) search).degSequenceOrder(g));
 						min.setChanges(fillMinMoves(s, bound + s.getChanges().size()));
@@ -150,6 +159,11 @@ public class qtBranchComponents<V> extends qtAllStruct<V>
 						t = new branchingReturnC<V>(g, min.getDeg(), clone.deepClone(s.getChanges()), min);
 						//set new percent
 						t.setPercent(s.getPercent() / count);
+						
+						
+//						controller.branchStart(g, bound);
+//						System.out.println(g);
+//						
 						
 						results.addFirst(controller.branch(t));
 						//update bound
@@ -193,5 +207,27 @@ public class qtBranchComponents<V> extends qtAllStruct<V>
 			
 			return s;
 		}
+		
+	}
+	public void visualize(Graph<V, Pair<V>> fb){
+		JFrame jf = new JFrame();
+		jf.setSize(1900, 1000);
+
+		FRLayout frl = new FRLayout(fb);
+
+		frl.setAttractionMultiplier(3);
+		frl.setRepulsionMultiplier(1.1);
+		
+		frl.setMaxIterations(1000);
+		//frl.lock(true);
+		VisualizationViewer vv = new VisualizationViewer(frl, new Dimension(
+				1900, 1000));
+		
+		vv.getRenderContext().setVertexLabelTransformer(new ToStringLabeller());
+		
+		jf.getContentPane().add(vv);
+		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		jf.pack();
+		jf.setVisible(true);
 	}
 }

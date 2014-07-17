@@ -53,11 +53,16 @@ public class biconnectedReduction<V> extends Reduction<V> {
 			}
 		}
 		
+		//organize cut edges in order of smallest component size difference
+		
+		
+		
+		
 		//find P4 with cut edges
 		for (Pair<V> edge : cutEdges)
 		{
 			//if the edge endpoints contain more than one vertex, a P4 exists
-			if (s.getG().getNeighborCount(edge.getFirst()) > bound-count && s.getG().getNeighborCount(edge.getSecond()) > bound-count)
+			if (s.getG().getNeighborCount(edge.getFirst()) > (bound-count)+1 && s.getG().getNeighborCount(edge.getSecond()) > (bound-count)+1)
 			{
 				//remove edge
 				s = bStruct.deleteResult(s, edge.getFirst(), edge.getSecond());

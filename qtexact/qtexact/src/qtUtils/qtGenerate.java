@@ -745,11 +745,11 @@ public class qtGenerate<V>
 		
 	}
 	
-	public Graph<Integer, Pair<Integer>> treeRandom(int n)
+	public Graph<Integer, Pair<Integer>> treeRandom(int n, long seed)
 	{
 		Graph<myVertex, Pair<myVertex>> init = new SparseGraph<myVertex, Pair<myVertex>>();
 		Random rand = new Random();
-		rand.setSeed(10);
+		rand.setSeed(seed);
 		
 		//generate first vertex
 		myVertex root = new myVertex(0, null, 0);
@@ -853,6 +853,45 @@ public class qtGenerate<V>
 //		
 		rtn.removeVertex(0);
 	
+		
+		rtn.removeVertex(19);
+		rtn.removeVertex(6);
+		rtn.removeVertex(32);
+		rtn.removeVertex(4);
+		rtn.removeVertex(22);
+		rtn.removeVertex(12);
+		rtn.removeVertex(26);
+		rtn.removeVertex(33);
+		rtn.removeVertex(23);
+		rtn.removeVertex(24);
+		rtn.removeVertex(15);
+		rtn.removeVertex(34);
+		rtn.removeVertex(37);
+		rtn.removeVertex(25);
+		rtn.removeVertex(20);
+		rtn.removeVertex(27);
+		
+		rtn.removeVertex(8);
+	//	rtn.removeVertex(13);
+//		rtn.removeVertex(7);
+//		rtn.removeVertex(14);
+//		rtn.removeVertex(3);
+//		rtn.removeVertex(5);
+//		rtn.removeVertex(2);
+//		rtn.removeVertex(1);
+		rtn.removeVertex(28);
+//		rtn.removeVertex(9);
+//		rtn.removeVertex(38);
+		
+		//rtn.removeVertex(11);
+		rtn.removeVertex(18);
+		rtn.removeVertex(30);
+		rtn.removeVertex(10);
+		rtn.removeVertex(17);
+		rtn.removeVertex(21);
+		
+		
+		
 		
 		return rtn;
 	}

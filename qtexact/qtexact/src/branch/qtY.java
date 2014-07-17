@@ -28,15 +28,13 @@ public class qtY<V> extends qtBranchNoHeuristic<V>
 		
 		this.findStructures(s, searchResult);
 		
-		if (searchResult.getCertificate().getFlag() != -6)
-			searchResult = old;
-		
 		
 		//check if fork is present
 		if (certificate.getFlag() == -6)
 		{
 			ArrayList<V> lexResult = certificate.getVertices();
 			double oldPercent = s.getPercent();
+			int rules = 5;
 			
 			//delete 2 edges first
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true))
@@ -45,7 +43,7 @@ public class qtY<V> extends qtBranchNoHeuristic<V>
 				if (output)
 				{
 					//change progress percent
-					s.setPercent(oldPercent / 4);
+					s.setPercent(oldPercent / rules);
 				}
 				
 				controller.branch(delete2Result(s, lexResult.get(2), lexResult.get(3), lexResult.get(2), lexResult.get(4)));
@@ -61,7 +59,34 @@ public class qtY<V> extends qtBranchNoHeuristic<V>
 			}
 			else
 				if (output)
-					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 4);
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / rules);
+			
+			
+			//add 2 edges
+			
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false))
+					&& !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(4)), false)))
+			{
+				if (output)
+				{
+					//change progress percent
+					s.setPercent(oldPercent / rules);
+				}
+				
+				controller.branch(add2Result(s, lexResult.get(1), lexResult.get(3), lexResult.get(1), lexResult.get(4)));
+				
+				//revert changes
+				revert2(s);		
+				
+				if (output)
+				{
+					//revert percent
+					s.setPercent(oldPercent);
+				}
+			}
+			else
+				if (output)
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / rules);
 			
 			
 			//delete one edge (2 options)
@@ -70,7 +95,7 @@ public class qtY<V> extends qtBranchNoHeuristic<V>
 				if (output)
 				{
 					//change progress percent
-					s.setPercent(oldPercent / 4);
+					s.setPercent(oldPercent / rules);
 				}
 				
 				controller.branch(deleteResult(s, lexResult.get(0), lexResult.get(1)));
@@ -86,7 +111,7 @@ public class qtY<V> extends qtBranchNoHeuristic<V>
 			}
 			else
 				if (output)
-					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 4);
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / rules);
 			
 			//second option
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)))
@@ -94,7 +119,7 @@ public class qtY<V> extends qtBranchNoHeuristic<V>
 				if (output)
 				{
 					//change progress percent
-					s.setPercent(oldPercent / 4);
+					s.setPercent(oldPercent / rules);
 				}
 				
 				controller.branch(deleteResult(s, lexResult.get(1), lexResult.get(2)));
@@ -110,7 +135,7 @@ public class qtY<V> extends qtBranchNoHeuristic<V>
 			}
 			else
 				if (output)
-					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 4);
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / rules);
 			
 			
 			//add one edge
@@ -119,7 +144,7 @@ public class qtY<V> extends qtBranchNoHeuristic<V>
 				if (output)
 				{
 					//change progress percent
-					s.setPercent(oldPercent / 4);
+					s.setPercent(oldPercent / rules);
 				}
 				
 				controller.branch(addResult(s, lexResult.get(0), lexResult.get(2)));
@@ -135,7 +160,7 @@ public class qtY<V> extends qtBranchNoHeuristic<V>
 			}
 			else
 				if (output)
-					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 4);
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / rules);
 			
 	
 			return s;

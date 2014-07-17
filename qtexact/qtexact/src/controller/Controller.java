@@ -180,7 +180,7 @@ public class Controller<V>
 //		System.out.println("Moves made: " + s.getChanges().size());
 //		System.out.println("Min moves: " + s.getMinMoves().getChanges().size());
 //		System.out.println("Size of graph: " + s.getG().getVertexCount());
-		
+//
 //		
 //		if (s.getMinMoves().getChanges().size() > globalBound)
 //		{

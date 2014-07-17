@@ -7,7 +7,9 @@ import java.awt.Dimension;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
@@ -15,12 +17,15 @@ import java.util.Set;
 import javax.swing.JApplet;
 import javax.swing.JFrame;
 
+import qtUtils.branchingReturnC;
 import qtUtils.qtGenerate;
 import reduction.biconnectedReduction;
 import reduction.c4p4Reduction;
 import reduction.commonC4Reduction;
 import reduction.edgeBoundReduction;
 import search.YanSearch;
+import search.qtLBFSNoHeuristic;
+import abstractClasses.Branch;
 import abstractClasses.Reduction;
 import branch.qtAllStruct;
 import branch.qtBranchComponents;
@@ -58,6 +63,7 @@ public class fun<V> extends JApplet {
 	{
 		//fbTest();
 		editTest();
+		//comparisonTest();
 	}
 	
 	public static void editTest() 
@@ -97,7 +103,7 @@ public class fun<V> extends JApplet {
 		fillGraphFromFile(exampleQT, "datasets/grass_web.pairs");
 ////		
 ////		
-		exampleQT = gen.treeRandom(50);
+		exampleQT = gen.treeRandom(39, 9);
 		
 		//exampleQT = gen.facebookGraph("datasets/fbFriends.txt");
 		
@@ -109,7 +115,7 @@ public class fun<V> extends JApplet {
 		
 		//visualize(exampleQT);
 		
-		Controller<Integer> c = new Controller<Integer>(null, true);
+		Controller<Integer> c = new Controller<Integer>(null, false);
 		
 		
 		qtBranchNoHeuristic<Integer> branchNoHP = new qtBranchNoHeuristic<Integer>(c);
@@ -180,11 +186,17 @@ public class fun<V> extends JApplet {
 		all2.addReduction(rC);
 		rC = new biconnectedReduction<Integer>(all2);
 		all2.addReduction(rC);
-//		
-		Reduction<Integer> rNo = new edgeBoundReduction<Integer>(branchNoHP);
-		branchNoHP.addReduction(rNo);
-		Reduction<Integer> r2No = new commonC4Reduction<Integer>(branchNoHP);
-		branchNoHP.addReduction(r2No);
+		
+//		Reduction<Integer> rNo = new edgeBoundReduction<Integer>(branchNoHP);
+//		branchNoHP.addReduction(rNo);
+//		Reduction<Integer> r2No = new commonC4Reduction<Integer>(branchNoHP);
+//		branchNoHP.addReduction(r2No);
+		
+		rC = new c4p4Reduction<Integer>(branchNoHP);
+		branchNoHP.addReduction(rC);
+		rC = new biconnectedReduction<Integer>(branchNoHP);
+		branchNoHP.addReduction(rC);
+		
 //		
 		
 		YanSearch<Integer> yan = new YanSearch<Integer>();
@@ -278,7 +290,7 @@ public class fun<V> extends JApplet {
 //		c.setbStruct(C5);
 //		System.out.println("\nC5: ");
 //		start = System.currentTimeMillis();
-//		c.branchStart(exampleQT, 10);
+//		c.branchStart(exampleQT, 8);
 //		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 //		
 //		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
@@ -289,7 +301,7 @@ public class fun<V> extends JApplet {
 //		c.setbStruct(house);
 //		System.out.println("\nHouse: ");
 //		start = System.currentTimeMillis();
-//		c.branchStart(exampleQT, 10);
+//		c.branchStart(exampleQT, 8);
 //		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 //		
 //		
@@ -302,7 +314,7 @@ public class fun<V> extends JApplet {
 //		c.setbStruct(kite);
 //		System.out.println("\nKite: ");
 //		start = System.currentTimeMillis();
-//		c.branchStart(exampleQT, 10);
+//		c.branchStart(exampleQT, 8);
 //		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 //		
 //		
@@ -314,18 +326,18 @@ public class fun<V> extends JApplet {
 //		c.setbStruct(P5);
 //		System.out.println("\nP5: ");
 //		start = System.currentTimeMillis();
-//		c.branchStart(exampleQT, 10);
+//		c.branchStart(exampleQT, 8);
 //		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 //		
 //		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
-		
+//		
 //		Graph<Integer, Pair<Integer>> cln7 = clone.deepClone(exampleQT);
 //		visualize(cln7);
 		
 //		c.setbStruct(y);
 //		System.out.println("\nY: ");
 //		start = System.currentTimeMillis();
-//		c.branchStart(exampleQT, 10);
+//		c.branchStart(exampleQT, 8);
 //		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 //		
 //		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
@@ -344,21 +356,21 @@ public class fun<V> extends JApplet {
 //		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
 //		
 		
-		c.setbStruct(all);
-		System.out.println("\nAll structures (old reductions): ");
-		start = System.currentTimeMillis();
-		c.branchStart(exampleQT, 11);
-		System.out.println((System.currentTimeMillis()-start) / 1000.0);
-		
-		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
+//		c.setbStruct(all);
+//		System.out.println("\nAll structures (old reductions): ");
+//		start = System.currentTimeMillis();
+//		c.branchStart(exampleQT, 5);
+//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 //		
-		c.setbStruct(all2);
-		System.out.println("\nAll structures (new reductions): ");
-		start = System.currentTimeMillis();
-		System.out.println(yan.search(c.branchStart(exampleQT, 11).getG()));
-		System.out.println((System.currentTimeMillis()-start) / 1000.0);
-		
-		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
+//		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
+////		
+//		c.setbStruct(all2);
+//		System.out.println("\nAll structures (new reductions): ");
+//		start = System.currentTimeMillis();
+//		System.out.println(yan.search(c.branchStart(exampleQT, 5).getG()));
+//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+//		
+//		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
 ////		
 //		Graph<Integer, Pair<Integer>> cln9 = clone.deepClone(exampleQT);
 //		visualize(cln9);
@@ -369,7 +381,7 @@ public class fun<V> extends JApplet {
 //		c.setbStruct(branchNoHP);
 //		System.out.println("\nNo Heuristic: ");
 //		start = System.currentTimeMillis();
-//		c.branchStart(exampleQT, 10);
+//		c.branchStart(exampleQT, 8);
 //		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 //		
 //		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
@@ -381,7 +393,7 @@ public class fun<V> extends JApplet {
 //		c.setbStruct(pan);
 //		System.out.println("\npan: ");
 //		start = System.currentTimeMillis();
-//		c.branchStart(exampleQT, 10);
+//		c.branchStart(exampleQT, 8);
 //		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 //		
 //		
@@ -393,7 +405,7 @@ public class fun<V> extends JApplet {
 		c.setbStruct(branchC);
 		System.out.println("\nConnected component (new reductions): ");
 		start = System.currentTimeMillis();
-		System.out.println(yan.search(c.branchStart(exampleQT, 11).getG()));
+		System.out.println(yan.search(c.branchStart(exampleQT, 4).getG()));
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		
@@ -491,6 +503,109 @@ public class fun<V> extends JApplet {
 		} catch (IOException e) {
 			System.out.println("File " + filename + " could not be found.");
 			e.printStackTrace();
+		}
+	}
+	
+	
+	private static void comparisonTest()
+	{
+		//run the same graph as a test over multiple traversal methods
+		qtLBFSNoHeuristic<Integer> search = new qtLBFSNoHeuristic<Integer>();
+		qtGenerate<Integer> gen = new qtGenerate<Integer>();
+		Cloner clone = new Cloner();
+		
+		//load all test branching methods
+		Controller<Integer> c = new Controller<Integer>(null, false);
+		qtAllStruct<Integer> all = new qtAllStruct<Integer>(c);
+		qtAllStruct<Integer> all2 = new qtAllStruct<Integer>(c);
+		qtBranchComponents<Integer> branchC = new qtBranchComponents<Integer>(c);
+		
+		Reduction<Integer> rC = new edgeBoundReduction<Integer>(all);
+		all.addReduction(rC);
+		rC = new commonC4Reduction<Integer>(all);
+		all.addReduction(rC);
+		
+		rC = new c4p4Reduction<Integer>(all2);
+		all2.addReduction(rC);
+		rC = new biconnectedReduction<Integer>(all2);
+		all2.addReduction(rC);
+		
+		rC = new c4p4Reduction<Integer>(branchC);
+		branchC.addReduction(rC);
+		rC = new biconnectedReduction<Integer>(branchC);
+		branchC.addReduction(rC);
+		
+		
+		//store branching types
+		LinkedList<Branch<Integer>> b = new LinkedList<Branch<Integer>>();
+		HashSet<Integer> moves;
+		HashSet<Boolean> success;
+		
+		Graph<Integer, Pair<Integer>> graph;
+		
+		b.add(all);
+		b.add(all2);
+		b.add(branchC);
+		
+		int size = 1;
+		
+		outer:
+		while (size < 66)
+		{
+			int seed = 0;
+			seedloop:
+			while (seed < 20)
+			{
+				//create graph
+				graph = gen.treeRandom(size, seed);
+				Graph<Integer, Pair<Integer>> og = clone.deepClone(graph);
+				int bound = 0;
+				
+				
+				while (bound < 17)
+				{
+					moves = new HashSet<Integer>();
+					success = new HashSet<Boolean>();
+					for (Branch<Integer> temp : b)
+					{
+						c.setbStruct(temp);
+						branchingReturnC<Integer> ans = c.branchStart(graph, bound);
+						boolean s = search.isQT(ans.getG());
+						
+						if (!gen.graphEquals(og, graph))
+						{
+							System.out.println("Graph modified at size " + size + ", seed " + seed + ", bound " + bound);
+							break outer;
+						}
+						
+						
+						if (!moves.isEmpty() && moves.add(ans.getMinMoves().getChanges().size()))
+						{
+							System.out.println("Different solutions at size " + size + ", seed " + seed + ", bound " + bound);
+							break outer;
+						}
+						else if (moves.isEmpty())
+							moves.add(ans.getMinMoves().getChanges().size());
+						
+						if (!success.isEmpty() && success.add(search.isQT(ans.getG())))
+						{
+							System.out.println("Different success in solving at size " + size + ", seed " + seed + ", bound " + bound);
+							break outer;
+						}
+						else if (success.isEmpty())
+							success.add(search.isQT(ans.getG()));
+						
+					}
+//					if (!success.iterator().next())
+//					{
+//						seed++;
+//						break seedloop;
+//					}
+					bound++;
+				}
+				seed++;
+			}
+			size++;
 		}
 	}
 }
