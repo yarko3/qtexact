@@ -38,6 +38,9 @@ public class qtAllStruct<V> extends qtBranchNoHeuristic<V>
 		int flag = searchResult.getCertificate().getFlag();
 		all++;
 		
+//		System.out.println("Branch on a " + flag);
+//		System.out.println("On " + searchResult.getCertificate().getVertices());
+		
 		switch (flag)
 		{
 		//a C4 was found

@@ -39,7 +39,7 @@ public class c4p4Reduction<V> extends Reduction<V>
 		
 		ArrayList<V> vertices = bStruct.getSearch().orderVerticesNonDecreasingDegree(s.getG());
 		//number of nodes to be checked
-		int max = s.getG().getVertexCount() / 5;
+		int max = s.getG().getVertexCount();
 		
 		max = s.getG().getVertexCount() / bound;
 		

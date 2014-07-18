@@ -35,6 +35,7 @@ public class biconnectedReduction<V> extends Reduction<V> {
 		
 		//get the clusters
 		Set<Set<V>> components = cluster.transform((UndirectedGraph<V, Pair<V>>) s.getG());
+			
 		//number of edges deleted as a result of the reduction
 		int count = 0;
 		//number of allowed moves

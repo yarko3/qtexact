@@ -104,9 +104,9 @@ public class qtBranchComponents<V> extends qtAllStruct<V>
 			{
 				cGraphs.add(connectedCFromVertexSet(s.getG(), l));
 			}
-			//branch on known forbidden structure
 			
-			//fill new minMoves with entire edge set
+			
+			//create future minMoves
 			branchingReturnC<V> min = null;
 			
 			branchingReturnC<V> t;

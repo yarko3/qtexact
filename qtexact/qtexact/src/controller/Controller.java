@@ -174,7 +174,10 @@ public class Controller<V>
 		//increment the number of times this controller has branched
 		timesRun++;
 		
+		if (s.getChanges().toString().equals("[Delete: <5, 2>, Delete: <5, 3>, Add: <38, 14>, Add: <14, 9>]"))
+			System.out.println();
 		
+		//System.out.println(s.getChanges());
 //		System.out.println("Times run: " + timesRun);
 //		System.out.println("Bound: " + bound);
 //		System.out.println("Moves made: " + s.getChanges().size());
