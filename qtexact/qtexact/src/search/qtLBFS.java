@@ -7,6 +7,7 @@ package search;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 
@@ -159,6 +160,7 @@ public abstract class qtLBFS<V> extends LBFS<V>
 				max = G.degree(i);
 		}
 		
+		//initialize LinkedList for each degree
 		for (int i = 0; i <= max; i++)
 		{
 			deg.add(new LinkedList<V>());
@@ -168,15 +170,17 @@ public abstract class qtLBFS<V> extends LBFS<V>
 		for (V i : G.getVertices())
 		{
 			int iDeg = G.degree(i);
-			if (deg.get(iDeg) == null)
-			{
-				deg.add(iDeg, new LinkedList<V>());
-			}
+//			if (deg.get(iDeg) == null)
+//			{
+//				deg.add(iDeg, new LinkedList<V>());
+//			}
 			
 			deg.get(iDeg).add(i);
 		}
 		
-		deg.trimToSize();
+		
+		
+		//deg.trimToSize();
 		return deg;
 	}
 	/**
@@ -229,6 +233,7 @@ public abstract class qtLBFS<V> extends LBFS<V>
 			
 			deg.get(iDeg).add(i);
 		}
+		
 		
 		deg.trimToSize();
 		return deg;

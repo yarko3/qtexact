@@ -153,7 +153,7 @@ public class qtBranchComponents<V> extends qtAllStruct<V>
 						
 						//fill new minMoves with bounded edge set of component
 						min = new branchingReturnC<V>(g, ((qtLBFS<V>) search).degSequenceOrder(g));
-						min.setChanges(fillMinMoves(s, bound + s.getChanges().size()));
+						min.setChanges(fillMinMoves(min, bound + s.getChanges().size()));
 						min.setMinMoves(min);
 						
 						t = new branchingReturnC<V>(g, min.getDeg(), clone.deepClone(s.getChanges()), min);

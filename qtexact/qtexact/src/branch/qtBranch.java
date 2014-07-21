@@ -456,12 +456,12 @@ public abstract class qtBranch<V> extends Branch<V>
 				}
 		}
 //		
-//		if (count < bound)
-//			while (count < bound)
-//			{
-//				l.add(l.getLast());
-//				count++;
-//			}
+		if (count < bound)
+			while (count < bound)
+			{
+				l.add(l.getLast());
+				count++;
+			}
 		return l;
 	}
 	

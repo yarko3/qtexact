@@ -45,42 +45,60 @@ public class qtAllStruct<V> extends qtBranchNoHeuristic<V>
 		{
 		//a C4 was found
 		case (-1):
-			//System.out.println("Found a C4.");
+			System.out.println("Found a C4.");
 			fail++;
-			return super.branchingRules(s, searchResult);
+			super.branchingRules(s, searchResult);
+			System.out.println("end of C4.");
+			return s;
 		//a P4 was found
 		case (-2):
-			//System.out.println("Found a P4.");
+			System.out.println("Found a P4.");
 			fail++;
-			return super.branchingRules(s, searchResult);
+			super.branchingRules(s, searchResult);
+			System.out.println("end of P4.");
+			return s;
 		//a 4 pan was found
 		case (-3):
-			//System.out.println("Found a 4 pan.");
-			return pan.branchingRules(s, searchResult);
+			System.out.println("Found a 4 pan.");
+			pan.branchingRules(s, searchResult);
+			System.out.println("end of 4 pan.");
+			return s;
 		//a house was found
 		case (-4):
-			//System.out.println("Found a house.");
-			return house.branchingRules(s, searchResult);
+			System.out.println("Found a house.");
+			house.branchingRules(s, searchResult);
+			System.out.println("end of house.");
+			return s;
 		//a P5 was found
 		case (-5):
-			//System.out.println("Found a P5.");
-			return P5.branchingRules(s, searchResult);
+			System.out.println("Found a P5.");
+			P5.branchingRules(s, searchResult);
+			System.out.println("end of P5.");
+			return s;
 		//a fork was found 
 		case (-6):
-			//System.out.println("Found a fork.");
-			return y.branchingRules(s, searchResult);
+			System.out.println("Found a fork.");
+			y.branchingRules(s, searchResult);
+			System.out.println("end of fork.");
+			return s;
 		//a 3 pan with an extra was found
 		case (-7):
-			//System.out.println("Found a 3 pan.");
-			return y.branchingRules(s, searchResult);
+			System.out.println("Found a 3 pan.");
+			y.branchingRules(s, searchResult);
+			System.out.println("end of 3 pan.");
+			return s;
 		//a C5 was found
 		case (-8):
-			//System.out.println("Found a C5.");
-			return C5.branchingRules(s, searchResult);
+			System.out.println("Found a C5.");
+			C5.branchingRules(s, searchResult);
+			System.out.println("end of C5.");
+			return s;
 		//a kite was found
 		case (-9):
-			//System.out.println("Found a kite.");
-			return kite.branchingRules(s, searchResult);
+			System.out.println("Found a kite.");
+			kite.branchingRules(s, searchResult);
+			System.out.println("end of kite.");
+			return s;
 		default:
 			return super.branchingRules(s, searchResult);
 		}

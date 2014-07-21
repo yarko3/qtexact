@@ -103,7 +103,7 @@ public class fun<V> extends JApplet {
 		//fillGraphFromFile(exampleQT, "datasets/grass_web.pairs");
 ////		
 ////		
-		exampleQT = gen.treeRandom(56, 5);
+		exampleQT = gen.treeRandom(39, 9);
 		
 		//exampleQT = gen.facebookGraph("datasets/fbFriends.txt");
 		
@@ -359,19 +359,19 @@ public class fun<V> extends JApplet {
 //		c.setbStruct(all);
 //		System.out.println("\nAll structures (old reductions): ");
 //		start = System.currentTimeMillis();
-//		c.branchStart(exampleQT, 17);
+//		c.branchStart(exampleQT, 4);
 //		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 //		
 //		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
-////		
+//		
 //		c.setbStruct(all2);
 //		System.out.println("\nAll structures (new reductions): ");
 //		start = System.currentTimeMillis();
-//		System.out.println(yan.search(c.branchStart(exampleQT, 17).getG()));
+//		System.out.println(yan.search(c.branchStart(exampleQT, 4).getG()));
 //		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 //		
 //		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
-////		
+//		
 //		Graph<Integer, Pair<Integer>> cln9 = clone.deepClone(exampleQT);
 //		visualize(cln9);
 		
@@ -405,7 +405,7 @@ public class fun<V> extends JApplet {
 		c.setbStruct(branchC);
 		System.out.println("\nConnected component (new reductions): ");
 		start = System.currentTimeMillis();
-		System.out.println(yan.search(c.branchStart(exampleQT, 17).getG()));
+		System.out.println(yan.search(c.branchStart(exampleQT, 4).getG()));
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		
