@@ -45,80 +45,9 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 			ArrayList<V> lexResult = searchResult.getCertificate().getVertices();
 			double oldPercent = s.getPercent();
 			
-			//delete 2 edges
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(3), lexResult.get(4)), true)))
-			{
-				if (output)
-				{
-					//change progress percent
-					s.setPercent(oldPercent / 16);
-				}
-				controller.branch(delete2Result(s, lexResult.get(1), lexResult.get(2), lexResult.get(3), lexResult.get(4)));
-				
-				//revert changes
-				revert2(s);		
-				
-				if (output)
-				{
-					//revert percent
-					s.setPercent(oldPercent);
-				}
-			}
-			else
-				if (output)
-					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 16);
 			
 			
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
-			{
-				if (output)
-				{
-					//change progress percent
-					s.setPercent(oldPercent / 16);
-				}
-				
-				controller.branch(delete2Result(s, lexResult.get(1), lexResult.get(2), lexResult.get(2), lexResult.get(3)));
-				
-				//revert changes
-				revert2(s);		
-				
-				if (output)
-				{
-					//revert percent
-					s.setPercent(oldPercent);
-				}
-			}
-			else
-				if (output)
-					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 16);
-			
-			
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(3), lexResult.get(4)), true)))
-			{
-				if (output)
-				{
-					//change progress percent
-					s.setPercent(oldPercent / 16);
-				}
-				
-				controller.branch(delete2Result(s, lexResult.get(2), lexResult.get(3), lexResult.get(3), lexResult.get(4)));
-				
-				//revert changes
-				revert2(s);		
-				
-				if (output)
-				{
-					//revert percent
-					s.setPercent(oldPercent);
-				}
-			}
-			else
-				if (output)
-					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 16);
-			
-			
-			
-			//delete 3
+//delete 3
 			
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)) 
 					&& !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true))
@@ -224,17 +153,15 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 16);
 			
 			
-			//add 2 edges
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false)) 
-					&& !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(4)), false)))
+			//delete 2 edges
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(3), lexResult.get(4)), true)))
 			{
 				if (output)
 				{
 					//change progress percent
 					s.setPercent(oldPercent / 16);
 				}
-				
-				controller.branch(add2Result(s, lexResult.get(1), lexResult.get(3), lexResult.get(2), lexResult.get(4)));
+				controller.branch(delete2Result(s, lexResult.get(1), lexResult.get(2), lexResult.get(3), lexResult.get(4)));
 				
 				//revert changes
 				revert2(s);		
@@ -250,8 +177,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 16);
 			
 			
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false)) 
-					&& !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(3), lexResult.get(0)), false)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
 			{
 				if (output)
 				{
@@ -259,7 +185,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 					s.setPercent(oldPercent / 16);
 				}
 				
-				controller.branch(add2Result(s, lexResult.get(1), lexResult.get(3), lexResult.get(3), lexResult.get(0)));
+				controller.branch(delete2Result(s, lexResult.get(1), lexResult.get(2), lexResult.get(2), lexResult.get(3)));
 				
 				//revert changes
 				revert2(s);		
@@ -274,8 +200,8 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 				if (output)
 					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 16);
 			
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(4)), false)) 
-					&& !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(2)), false)))
+			
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(3), lexResult.get(4)), true)))
 			{
 				if (output)
 				{
@@ -283,7 +209,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 					s.setPercent(oldPercent / 16);
 				}
 				
-				controller.branch(add2Result(s, lexResult.get(2), lexResult.get(4), lexResult.get(0), lexResult.get(2)));
+				controller.branch(delete2Result(s, lexResult.get(2), lexResult.get(3), lexResult.get(3), lexResult.get(4)));
 				
 				//revert changes
 				revert2(s);		
@@ -297,7 +223,6 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 			else
 				if (output)
 					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 16);
-			
 			
 			
 			//add one, remove one
@@ -435,6 +360,82 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 				}
 				
 				controller.branch(addRemoveResult(s, lexResult.get(2), lexResult.get(4), lexResult.get(0), lexResult.get(1)));
+				
+				//revert changes
+				revert2(s);		
+				
+				if (output)
+				{
+					//revert percent
+					s.setPercent(oldPercent);
+				}
+			}
+			else
+				if (output)
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 16);
+			
+			
+			
+			//add 2 edges
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false)) 
+					&& !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(4)), false)))
+			{
+				if (output)
+				{
+					//change progress percent
+					s.setPercent(oldPercent / 16);
+				}
+				
+				controller.branch(add2Result(s, lexResult.get(1), lexResult.get(3), lexResult.get(2), lexResult.get(4)));
+				
+				//revert changes
+				revert2(s);		
+				
+				if (output)
+				{
+					//revert percent
+					s.setPercent(oldPercent);
+				}
+			}
+			else
+				if (output)
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 16);
+			
+			
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false)) 
+					&& !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(3), lexResult.get(0)), false)))
+			{
+				if (output)
+				{
+					//change progress percent
+					s.setPercent(oldPercent / 16);
+				}
+				
+				controller.branch(add2Result(s, lexResult.get(1), lexResult.get(3), lexResult.get(3), lexResult.get(0)));
+				
+				//revert changes
+				revert2(s);		
+				
+				if (output)
+				{
+					//revert percent
+					s.setPercent(oldPercent);
+				}
+			}
+			else
+				if (output)
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 16);
+			
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(4)), false)) 
+					&& !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(2)), false)))
+			{
+				if (output)
+				{
+					//change progress percent
+					s.setPercent(oldPercent / 16);
+				}
+				
+				controller.branch(add2Result(s, lexResult.get(2), lexResult.get(4), lexResult.get(0), lexResult.get(2)));
 				
 				//revert changes
 				revert2(s);		

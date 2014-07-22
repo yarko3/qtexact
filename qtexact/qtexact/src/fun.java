@@ -167,16 +167,16 @@ public class fun<V> extends JApplet {
 		Reduction<Integer> r2C = new commonC4Reduction<Integer>(branchC);
 		//branchC.addReduction(r2C);
 		
-		rC = new c4p4Reduction<Integer>(branchC);
-		branchC.addReduction(rC);
+//		rC = new c4p4Reduction<Integer>(branchC);
+//		branchC.addReduction(rC);
 		
 		rC = new biconnectedReduction<Integer>(branchC);
 		//branchC.addReduction(rC);
 		
-		rC = new edgeBoundReduction<Integer>(all);
-		all.addReduction(rC);
-		r2C = new commonC4Reduction<Integer>(all);
-		all.addReduction(r2C);
+//		rC = new edgeBoundReduction<Integer>(all);
+//		all.addReduction(rC);
+//		r2C = new commonC4Reduction<Integer>(all);
+//		all.addReduction(r2C);
 		
 		
 //		rC = new c4p4Reduction<Integer>(all);
@@ -356,13 +356,13 @@ public class fun<V> extends JApplet {
 //		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
 //		
 //		
-//		c.setbStruct(all);
-//		System.out.println("\nAll structures (old reductions): ");
-//		start = System.currentTimeMillis();
-//		c.branchStart(exampleQT, 4);
-//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
-//		
-//		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
+		c.setbStruct(all);
+		System.out.println("\nAll structures (old reductions): ");
+		start = System.currentTimeMillis();
+		c.branchStart(exampleQT, 4);
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		
+		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
 //		
 //		c.setbStruct(all2);
 //		System.out.println("\nAll structures (new reductions): ");

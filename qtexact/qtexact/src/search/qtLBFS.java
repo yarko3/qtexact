@@ -179,6 +179,21 @@ public abstract class qtLBFS<V> extends LBFS<V>
 		}
 		
 		
+		//TODO fix if works, throw all into priority queue and order
+		PriorityQueue<V> queue;
+		
+		for (LinkedList<V> l : deg)
+		{
+			queue = new PriorityQueue<V>();
+			
+			queue.addAll(l);
+			l.clear();
+			
+			while (!queue.isEmpty())
+			{
+				l.add(queue.remove());
+			}
+		}
 		
 		//deg.trimToSize();
 		return deg;

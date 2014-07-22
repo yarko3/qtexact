@@ -42,55 +42,6 @@ public class qtP5<V> extends qtBranchNoHeuristic<V>
 			
 			int ruleCount = 9;
 			
-			//delete an edge
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)))
-			{
-				if (output)
-				{
-					//change progress percent
-					s.setPercent(oldPercent / ruleCount);
-				}
-				
-				controller.branch(deleteResult(s, lexResult.get(1), lexResult.get(2)));
-				
-				//revert changes
-				revert(s);		
-				
-				if (output)
-				{
-					//revert percent
-					s.setPercent(oldPercent);
-				}
-			}
-			else
-				if (output)
-					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
-			
-			//delete edge
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
-			{
-				if (output)
-				{
-					//change progress percent
-					s.setPercent(oldPercent / ruleCount);
-				}
-				
-				controller.branch(deleteResult(s, lexResult.get(2), lexResult.get(3)));
-				
-				//revert changes
-				revert(s);		
-				
-				if (output)
-				{
-					//revert percent
-					s.setPercent(oldPercent);
-				}
-			}
-			else
-				if (output)
-					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
-			
-			
 			//add one, delete one
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(4)), false))
 					 && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)))
@@ -266,6 +217,56 @@ public class qtP5<V> extends qtBranchNoHeuristic<V>
 			else
 				if (output)
 					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
+			
+			//delete an edge
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)))
+			{
+				if (output)
+				{
+					//change progress percent
+					s.setPercent(oldPercent / ruleCount);
+				}
+				
+				controller.branch(deleteResult(s, lexResult.get(1), lexResult.get(2)));
+				
+				//revert changes
+				revert(s);		
+				
+				if (output)
+				{
+					//revert percent
+					s.setPercent(oldPercent);
+				}
+			}
+			else
+				if (output)
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
+			
+			//delete edge
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
+			{
+				if (output)
+				{
+					//change progress percent
+					s.setPercent(oldPercent / ruleCount);
+				}
+				
+				controller.branch(deleteResult(s, lexResult.get(2), lexResult.get(3)));
+				
+				//revert changes
+				revert(s);		
+				
+				if (output)
+				{
+					//revert percent
+					s.setPercent(oldPercent);
+				}
+			}
+			else
+				if (output)
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
+			
+			
 			
 			
 			return s;

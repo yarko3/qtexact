@@ -174,8 +174,8 @@ public class Controller<V>
 		//increment the number of times this controller has branched
 		timesRun++;
 		
-		if (s.getChanges().toString().equals("[Delete: <38, 1>]"))
-			System.out.println();
+//		if (s.getChanges().toString().equals("[Delete: <38, 1>]"))
+//			System.out.println();
 		
 		System.out.println(s.getChanges());
 //		System.out.println("Times run: " + timesRun);

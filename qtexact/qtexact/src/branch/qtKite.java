@@ -38,8 +38,11 @@ public class qtKite<V> extends  qtBranchNoHeuristic<V>
 			
 			int ruleCount = 8;
 			
-			//add edge
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false)))
+			
+			//add 1, remove 2
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(2)), false)) &&
+					!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(3), lexResult.get(4)), true)) &&
+					!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(4)), true)))
 			{
 				if (output)
 				{
@@ -47,10 +50,10 @@ public class qtKite<V> extends  qtBranchNoHeuristic<V>
 					s.setPercent(oldPercent / ruleCount);
 				}
 				
-				controller.branch(addResult(s, lexResult.get(1), lexResult.get(3)));
+				controller.branch(addRemove2Result(s, lexResult.get(0), lexResult.get(2), lexResult.get(3), lexResult.get(4), lexResult.get(1), lexResult.get(4)));
 				
 				//revert changes
-				revert(s);		
+				revert3(s);		
 				
 				if (output)
 				{
@@ -62,8 +65,10 @@ public class qtKite<V> extends  qtBranchNoHeuristic<V>
 				if (output)
 					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
 			
-			//delete an edge
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)))
+			//add 1, remove 2
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(4)), false)) &&
+					!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)) &&
+					!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
 			{
 				if (output)
 				{
@@ -71,10 +76,10 @@ public class qtKite<V> extends  qtBranchNoHeuristic<V>
 					s.setPercent(oldPercent / ruleCount);
 				}
 				
-				controller.branch(deleteResult(s, lexResult.get(0), lexResult.get(1)));
+				controller.branch(addRemove2Result(s, lexResult.get(0), lexResult.get(4), lexResult.get(1), lexResult.get(2), lexResult.get(2), lexResult.get(3)));
 				
 				//revert changes
-				revert(s);		
+				revert3(s);		
 				
 				if (output)
 				{
@@ -85,6 +90,7 @@ public class qtKite<V> extends  qtBranchNoHeuristic<V>
 			else
 				if (output)
 					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
+			
 			
 			//delete 2 edges
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)) &&
@@ -188,10 +194,8 @@ public class qtKite<V> extends  qtBranchNoHeuristic<V>
 					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
 			
 			
-			//add 1, remove 2
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(2)), false)) &&
-					!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(3), lexResult.get(4)), true)) &&
-					!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(4)), true)))
+			//delete an edge
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)))
 			{
 				if (output)
 				{
@@ -199,10 +203,10 @@ public class qtKite<V> extends  qtBranchNoHeuristic<V>
 					s.setPercent(oldPercent / ruleCount);
 				}
 				
-				controller.branch(addRemove2Result(s, lexResult.get(0), lexResult.get(2), lexResult.get(3), lexResult.get(4), lexResult.get(1), lexResult.get(4)));
+				controller.branch(deleteResult(s, lexResult.get(0), lexResult.get(1)));
 				
 				//revert changes
-				revert3(s);		
+				revert(s);		
 				
 				if (output)
 				{
@@ -214,10 +218,8 @@ public class qtKite<V> extends  qtBranchNoHeuristic<V>
 				if (output)
 					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
 			
-			//add 1, remove 2
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(4)), false)) &&
-					!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)) &&
-					!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
+			//add edge
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false)))
 			{
 				if (output)
 				{
@@ -225,10 +227,10 @@ public class qtKite<V> extends  qtBranchNoHeuristic<V>
 					s.setPercent(oldPercent / ruleCount);
 				}
 				
-				controller.branch(addRemove2Result(s, lexResult.get(0), lexResult.get(4), lexResult.get(1), lexResult.get(2), lexResult.get(2), lexResult.get(3)));
+				controller.branch(addResult(s, lexResult.get(1), lexResult.get(3)));
 				
 				//revert changes
-				revert3(s);		
+				revert(s);		
 				
 				if (output)
 				{
@@ -239,6 +241,8 @@ public class qtKite<V> extends  qtBranchNoHeuristic<V>
 			else
 				if (output)
 					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
+			
+			
 			
 			return s;
 		}
