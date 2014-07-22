@@ -191,10 +191,13 @@ public abstract class qtBranch<V> extends Branch<V>
 	 */
 	public branchingReturnC<V> deleteResult(branchingReturnC<V> s, V v0, V v1)
 	{
+		//use original edge in edit set
+		s.getChanges().addLast(new myEdge<V>(s.getG().findEdge(v0, v1), false));
+		
+		
 		//update degree sequence (first edge)
 		removeEdge(s.getG(), s.getDeg(), v0, v1);
 		
-		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v0, v1), false));
 		return s;
 		
 	}
@@ -450,18 +453,24 @@ public abstract class qtBranch<V> extends Branch<V>
 					{	
 						l.add(new myEdge<V>(e, false));
 						count++;
-						if (count >= bound)
+						if (count == bound)
 							break;
 					}
 				}
 		}
+		
 //		
-		if (count < bound)
+		
+		if (count < bound && s.getG().getVertexCount() > 0)
+		{
+			V v0 = s.getG().getVertices().iterator().next();
 			while (count < bound)
 			{
-				l.add(l.getLast());
+				//add a self edge
+				l.add(new myEdge<V>(new Pair<V>(v0, v0), false));
 				count++;
 			}
+		}
 		return l;
 	}
 	
@@ -628,7 +637,6 @@ public abstract class qtBranch<V> extends Branch<V>
 					{
 						//a fork has been found
 						
-						//TODO check where to add on extra node
 						if (s.getG().isNeighbor(vertices.get(2), n))
 							vertices.add(n);
 						else
@@ -669,8 +677,7 @@ public abstract class qtBranch<V> extends Branch<V>
 							Collections.reverse(vertices);
 						}
 						vertices.add(n);
-						//this structure has the same branching rules as a fork
-						obstruction.setFlag(-6);
+						obstruction.setFlag(-7);
 						return searchResult;
 					}
 				}

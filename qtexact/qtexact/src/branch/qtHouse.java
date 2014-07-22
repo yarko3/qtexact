@@ -47,7 +47,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 			
 			
 			
-//delete 3
+			//delete 3
 			
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)) 
 					&& !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true))

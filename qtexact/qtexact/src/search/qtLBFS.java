@@ -64,6 +64,9 @@ public abstract class qtLBFS<V> extends LBFS<V>
 			ordered.add(pQueue.remove().getVertex());
 		}
 		
+		
+		//return flattenAndReverseDeg(degSequenceOrder(G, G.getNeighbors(neighbour)));
+		
 		return ordered;
 	}
 	
@@ -109,7 +112,11 @@ public abstract class qtLBFS<V> extends LBFS<V>
 			{
 				S.add(v);
 			}
+			
+			
 			Collection<V> vertices = G.getVertices();
+			
+			//Collection<V> vertices = flattenAndReverseDeg(degSequenceOrder(G));
 			for (V w : S)
 			{
 				for (V z : vertices)
@@ -170,29 +177,7 @@ public abstract class qtLBFS<V> extends LBFS<V>
 		for (V i : G.getVertices())
 		{
 			int iDeg = G.degree(i);
-//			if (deg.get(iDeg) == null)
-//			{
-//				deg.add(iDeg, new LinkedList<V>());
-//			}
-			
 			deg.get(iDeg).add(i);
-		}
-		
-		
-		//TODO fix if works, throw all into priority queue and order
-		PriorityQueue<V> queue;
-		
-		for (LinkedList<V> l : deg)
-		{
-			queue = new PriorityQueue<V>();
-			
-			queue.addAll(l);
-			l.clear();
-			
-			while (!queue.isEmpty())
-			{
-				l.add(queue.remove());
-			}
 		}
 		
 		//deg.trimToSize();
@@ -221,7 +206,7 @@ public abstract class qtLBFS<V> extends LBFS<V>
 	
 	
 	
-	public ArrayList<LinkedList<V>> degSequenceOrder(Graph<V, Pair<V>> G, LinkedList<V> vertexList)
+	public ArrayList<LinkedList<V>> degSequenceOrder(Graph<V, Pair<V>> G, Collection<V> vertexList)
 	{
 		//store vertices of same degree in LinkedList<V> at the index of their degree in ArrayList
 		ArrayList<LinkedList<V>> deg = new ArrayList<LinkedList<V>>();
@@ -241,10 +226,10 @@ public abstract class qtLBFS<V> extends LBFS<V>
 		for (V i : vertexList)
 		{
 			int iDeg = G.degree(i);
-			if (deg.get(iDeg) == null)
-			{
-				deg.add(iDeg, new LinkedList<V>());
-			}
+//			if (deg.get(iDeg) == null)
+//			{
+//				deg.add(iDeg, new LinkedList<V>());
+//			}
 			
 			deg.get(iDeg).add(i);
 		}

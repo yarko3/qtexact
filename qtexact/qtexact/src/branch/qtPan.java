@@ -38,6 +38,9 @@ public class qtPan<V> extends qtBranchNoHeuristic<V>
 			ArrayList<V> lexResult = searchResult.getCertificate().getVertices();
 			double oldPercent = s.getPercent();
 			
+			
+			int rules = 6;
+			
 			//Pan branching
 			
 			
@@ -48,7 +51,7 @@ public class qtPan<V> extends qtBranchNoHeuristic<V>
 				if (output)
 				{
 					//change progress percent
-					s.setPercent(oldPercent / 6.0);
+					s.setPercent(oldPercent / rules);
 				}
 				controller.branch(delete2Result(s, lexResult.get(2), lexResult.get(3), lexResult.get(3), lexResult.get(4)));
 				
@@ -63,7 +66,7 @@ public class qtPan<V> extends qtBranchNoHeuristic<V>
 			}
 			else
 				if (output)
-					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 6);
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / rules);
 			
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)) 
 					&& !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(4), lexResult.get(1)), true)))
@@ -71,7 +74,7 @@ public class qtPan<V> extends qtBranchNoHeuristic<V>
 				if (output)
 				{
 					//change progress percent
-					s.setPercent(oldPercent / 6.0);
+					s.setPercent(oldPercent / rules);
 				}
 				controller.branch(delete2Result(s, lexResult.get(2), lexResult.get(3), lexResult.get(4), lexResult.get(1)));
 				
@@ -86,7 +89,7 @@ public class qtPan<V> extends qtBranchNoHeuristic<V>
 			}
 			else
 				if (output)
-					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 6);
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / rules);
 			
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)) 
 					&& !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(3), lexResult.get(4)), true)))
@@ -94,7 +97,7 @@ public class qtPan<V> extends qtBranchNoHeuristic<V>
 				if (output)
 				{
 					//change progress percent
-					s.setPercent(oldPercent / 6.0);
+					s.setPercent(oldPercent / rules);
 				}
 				controller.branch(delete2Result(s, lexResult.get(1), lexResult.get(2), lexResult.get(3), lexResult.get(4)));
 				
@@ -109,7 +112,7 @@ public class qtPan<V> extends qtBranchNoHeuristic<V>
 			}
 			else
 				if (output)
-					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 6);
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / rules);
 			
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)) 
 					&& !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(4), lexResult.get(1)), true)))
@@ -117,7 +120,7 @@ public class qtPan<V> extends qtBranchNoHeuristic<V>
 				if (output)
 				{
 					//change progress percent
-					s.setPercent(oldPercent / 6.0);
+					s.setPercent(oldPercent / rules);
 				}
 				controller.branch(delete2Result(s, lexResult.get(1), lexResult.get(2), lexResult.get(4), lexResult.get(1)));
 				
@@ -132,7 +135,7 @@ public class qtPan<V> extends qtBranchNoHeuristic<V>
 			}
 			else
 				if (output)
-					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 6);
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / rules);
 			
 			//add one, remove one
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)) 
@@ -141,7 +144,7 @@ public class qtPan<V> extends qtBranchNoHeuristic<V>
 				if (output)
 				{
 					//change progress percent
-					s.setPercent(oldPercent / 6.0);
+					s.setPercent(oldPercent / rules);
 				}
 				
 				
@@ -158,7 +161,8 @@ public class qtPan<V> extends qtBranchNoHeuristic<V>
 			}
 			else
 				if (output)
-					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 6);
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / rules);
+			
 			
 			
 			//add one edge on C4
@@ -167,7 +171,7 @@ public class qtPan<V> extends qtBranchNoHeuristic<V>
 				if (output)
 				{
 					//change progress percent
-					s.setPercent(oldPercent / 6.0);
+					s.setPercent(oldPercent / rules);
 				}
 				controller.branch(addResult(s, lexResult.get(1), lexResult.get(3)));
 				
@@ -182,7 +186,7 @@ public class qtPan<V> extends qtBranchNoHeuristic<V>
 			}
 			else
 				if (output)
-					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 6);
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / rules);
 			
 			
 			return s;

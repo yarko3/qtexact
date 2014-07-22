@@ -43,7 +43,7 @@ public class c4p4Reduction<V> extends Reduction<V>
 		
 		max = s.getG().getVertexCount() / bound;
 		
-		max = bound;
+		max = (s.getG().getVertexCount() < bound) ? s.getG().getVertexCount() : bound;
 		
 		//max = s.getG().getVertexCount();
 		

@@ -165,11 +165,11 @@ public class Controller<V>
 		int bound = s.getMinMoves().getChanges().size() - s.getChanges().size();
 		
 		//check if bound allows any more moves (does not matter if current graph state is at target)
-		if (bound < 0)
-		{
-			updatePercent(s);
-			return s;
-		}
+//		if (bound < 0)
+//		{
+//			updatePercent(s);
+//			return s;
+//		}
 		
 		//increment the number of times this controller has branched
 		timesRun++;
@@ -177,7 +177,7 @@ public class Controller<V>
 //		if (s.getChanges().toString().equals("[Delete: <38, 1>]"))
 //			System.out.println();
 		
-		System.out.println(s.getChanges());
+		//System.out.println(s.getChanges());
 //		System.out.println("Times run: " + timesRun);
 //		System.out.println("Bound: " + bound);
 //		System.out.println("Moves made: " + s.getChanges().size());
@@ -241,6 +241,7 @@ public class Controller<V>
 			
 			if (reduced)
 				bStruct.reduceRevert(s);
+		
 			
 			return s;
 		}

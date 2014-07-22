@@ -53,9 +53,10 @@ public class qtLBFSNoHeuristic<V> extends qtLBFS<V>
 			{
 				//new partition to be inserted into L
 				ArrayList<V> pp = new ArrayList<V>(0);
-				for (int k = 0; k < hood.size(); k++)
+				
+				
+				for (V h : hood)
 				{
-					V h = hood.get(k);
 					if (L.get(j).contains(h))
 					{
 						//remove element from L and add to pp

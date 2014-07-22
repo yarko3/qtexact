@@ -539,7 +539,7 @@ public class qtGenerate<V>
 	
 	public Graph<Integer, Pair<Integer>> fromBipartiteFile(String filename)
 	{
-		Graph<Integer, Pair<Integer>> initial = new SparseGraph<Integer, Pair<Integer>>();
+		Graph<Integer, Pair<Integer>> initial = new UndirectedSparseGraph<Integer, Pair<Integer>>();
 		
 		FileReader file = null;
 		try {
@@ -569,7 +569,7 @@ public class qtGenerate<V>
 			e.printStackTrace();
 		}
 		
-		Graph<Integer, Pair<Integer>> g = new SparseGraph<Integer, Pair<Integer>>();
+		Graph<Integer, Pair<Integer>> g = new UndirectedSparseGraph<Integer, Pair<Integer>>();
 		
 		//build new graph
 		
@@ -613,15 +613,41 @@ public class qtGenerate<V>
 	{
 		Graph<Integer, Pair<Integer>> g = new SparseGraph<Integer, Pair<Integer>>();
 		
+		//house
+//		g.addEdge(new Pair<Integer>(0, 1), 0, 1);
+//		g.addEdge(new Pair<Integer>(1, 2), 1, 2);
+//		g.addEdge(new Pair<Integer>(2, 3), 2, 3);
+//		g.addEdge(new Pair<Integer>(3, 4), 3, 4);
+//		g.addEdge(new Pair<Integer>(4, 0), 4, 0);
+//		g.addEdge(new Pair<Integer>(4, 1), 4, 1);
+
+//		g.addEdge(new Pair<Integer>(0, 2), 0, 2);
+//		g.addEdge(new Pair<Integer>(0, 3), 0, 3);
+		
+		
+		//P5
+//		g.addEdge(new Pair<Integer>(0, 1), 0, 1);
+//		g.addEdge(new Pair<Integer>(1, 2), 1, 2);
+//		g.addEdge(new Pair<Integer>(2, 3), 2, 3);
+//		g.addEdge(new Pair<Integer>(3, 4), 3, 4);
+		
+		
+		//fork
+//		g.addEdge(new Pair<Integer>(0, 1), 0, 1);
+//		g.addEdge(new Pair<Integer>(1, 2), 1, 2);
+//		g.addEdge(new Pair<Integer>(2, 3), 2, 3);
+//		g.addEdge(new Pair<Integer>(2, 4), 2, 4);
+		
+		//4 pan
 		g.addEdge(new Pair<Integer>(0, 1), 0, 1);
 		g.addEdge(new Pair<Integer>(1, 2), 1, 2);
 		g.addEdge(new Pair<Integer>(2, 3), 2, 3);
 		g.addEdge(new Pair<Integer>(3, 4), 3, 4);
-		g.addEdge(new Pair<Integer>(4, 0), 4, 0);
 		g.addEdge(new Pair<Integer>(4, 1), 4, 1);
+	
+		
+		
 
-//		g.addEdge(new Pair<Integer>(0, 2), 0, 2);
-//		g.addEdge(new Pair<Integer>(0, 3), 0, 3);
 		
 		return g;
 	}
@@ -762,6 +788,7 @@ public class qtGenerate<V>
 		HashMap<Integer, myVertex> vertices = new HashMap<Integer, myVertex>();
 		vertices.put(0, root);
 		
+		
 		//store vertices at their depths as well
 		HashMap<Integer, LinkedList<myVertex>> depthVert = new HashMap<Integer, LinkedList<myVertex>>();
 		
@@ -852,46 +879,7 @@ public class qtGenerate<V>
 //		
 //		
 		rtn.removeVertex(0);
-	
-		
-		rtn.removeVertex(19);
-		rtn.removeVertex(6);
-		rtn.removeVertex(32);
-		rtn.removeVertex(4);
-		rtn.removeVertex(22);
-		rtn.removeVertex(12);
-		rtn.removeVertex(26);
-		rtn.removeVertex(33);
-		rtn.removeVertex(23);
-		rtn.removeVertex(24);
-		rtn.removeVertex(15);
-		rtn.removeVertex(34);
-		rtn.removeVertex(37);
-		rtn.removeVertex(25);
-		rtn.removeVertex(20);
-		rtn.removeVertex(27);
-		
-		rtn.removeVertex(8);
-	//	rtn.removeVertex(13);
-//		rtn.removeVertex(7);
-//		rtn.removeVertex(14);
-//		rtn.removeVertex(3);
-//		rtn.removeVertex(5);
-//		rtn.removeVertex(2);
-//		rtn.removeVertex(1);
-		rtn.removeVertex(28);
-//		rtn.removeVertex(9);
-//		rtn.removeVertex(38);
-		
-		//rtn.removeVertex(11);
-		rtn.removeVertex(18);
-		rtn.removeVertex(30);
-		rtn.removeVertex(10);
-		rtn.removeVertex(17);
-		rtn.removeVertex(21);
-//		
-//		
-		
+
 		
 		return rtn;
 	}

@@ -62,8 +62,8 @@ public class fun<V> extends JApplet {
 	public static void main(String[] args)
 	{
 		//fbTest();
-		editTest();
-		//comparisonTest();
+		//editTest();
+		comparisonTest();
 	}
 	
 	public static void editTest() 
@@ -105,17 +105,21 @@ public class fun<V> extends JApplet {
 ////		
 		exampleQT = gen.treeRandom(39, 9);
 		
+		//exampleQT = gen.houseStruct();
+		
+		//exampleQT = gen.treeRandom(27, 13);
+		
 		//exampleQT = gen.facebookGraph("datasets/fbFriends.txt");
 		
 		Graph<Integer, Pair<Integer>> cln = clone.deepClone(exampleQT);
 
 
-		visualize(cln);
+		//visualize(exampleQT);
 		
 		
 		//visualize(exampleQT);
 		
-		Controller<Integer> c = new Controller<Integer>(null, false);
+		Controller<Integer> c = new Controller<Integer>(null, true);
 		
 		
 		qtBranchNoHeuristic<Integer> branchNoHP = new qtBranchNoHeuristic<Integer>(c);
@@ -167,16 +171,16 @@ public class fun<V> extends JApplet {
 		Reduction<Integer> r2C = new commonC4Reduction<Integer>(branchC);
 		//branchC.addReduction(r2C);
 		
-//		rC = new c4p4Reduction<Integer>(branchC);
-//		branchC.addReduction(rC);
+		rC = new c4p4Reduction<Integer>(branchC);
+		branchC.addReduction(rC);
 		
 		rC = new biconnectedReduction<Integer>(branchC);
-		//branchC.addReduction(rC);
+		branchC.addReduction(rC);
 		
-//		rC = new edgeBoundReduction<Integer>(all);
-//		all.addReduction(rC);
-//		r2C = new commonC4Reduction<Integer>(all);
-//		all.addReduction(r2C);
+		rC = new edgeBoundReduction<Integer>(all);
+		all.addReduction(rC);
+		r2C = new commonC4Reduction<Integer>(all);
+		all.addReduction(r2C);
 		
 		
 //		rC = new c4p4Reduction<Integer>(all);
@@ -193,9 +197,9 @@ public class fun<V> extends JApplet {
 //		branchNoHP.addReduction(r2No);
 		
 		rC = new c4p4Reduction<Integer>(branchNoHP);
-		branchNoHP.addReduction(rC);
+		//branchNoHP.addReduction(rC);
 		rC = new biconnectedReduction<Integer>(branchNoHP);
-		branchNoHP.addReduction(rC);
+		//branchNoHP.addReduction(rC);
 		
 //		
 		
@@ -359,19 +363,19 @@ public class fun<V> extends JApplet {
 		c.setbStruct(all);
 		System.out.println("\nAll structures (old reductions): ");
 		start = System.currentTimeMillis();
-		c.branchStart(exampleQT, 4);
+		c.branchStart(exampleQT, 20);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
-//		
-//		c.setbStruct(all2);
-//		System.out.println("\nAll structures (new reductions): ");
-//		start = System.currentTimeMillis();
-//		System.out.println(yan.search(c.branchStart(exampleQT, 4).getG()));
-//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
-//		
-//		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
-//		
+////		
+		c.setbStruct(all2);
+		System.out.println("\nAll structures (new reductions): ");
+		start = System.currentTimeMillis();
+		System.out.println(yan.search(c.branchStart(exampleQT, 20).getG()));
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		
+		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
+////		
 //		Graph<Integer, Pair<Integer>> cln9 = clone.deepClone(exampleQT);
 //		visualize(cln9);
 		
@@ -405,13 +409,12 @@ public class fun<V> extends JApplet {
 		c.setbStruct(branchC);
 		System.out.println("\nConnected component (new reductions): ");
 		start = System.currentTimeMillis();
-		System.out.println(yan.search(c.branchStart(exampleQT, 4).getG()));
+		System.out.println(yan.search(c.branchStart(exampleQT, 20).getG()));
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		
 		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
-		
-		
+
 		
 		start = System.currentTimeMillis();
 		System.out.println(yan.search(exampleQT));
@@ -547,7 +550,7 @@ public class fun<V> extends JApplet {
 		b.add(all2);
 		b.add(branchC);
 		
-		int size = 1;
+		int size = 2;
 		
 		outer:
 		while (size < 66)
