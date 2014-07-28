@@ -202,6 +202,28 @@ public abstract class qtBranch<V> extends Branch<V>
 		
 	}
 	
+	/**
+	 * remove one vertex and all edges connected to it
+	 * @param s
+	 * @param v0
+	 * @return
+	 */
+	public branchingReturnC<V> removeVertex(branchingReturnC<V> s, V v0)
+	{
+		//get all edges connecting v0
+		Collection<Pair<V>> edges = clone.deepClone(s.getG().getIncidentEdges(v0));
+		//delete all incident edges
+		for (Pair<V> e : edges)
+		{
+			removeEdge(s.getG(), s.getDeg(), e.getFirst(), e.getSecond());
+		}
+		
+		//remove vertex from graph and degree sequence
+		removeVertex(s.getG(), s.getDeg(), v0);
+		
+		return s;
+	}
+	
 	
 	/**
 	 * roll back one edit
@@ -238,6 +260,27 @@ public abstract class qtBranch<V> extends Branch<V>
 		revert(s);
 	}
 	
+	public void removeVertex(Graph<V, Pair<V>> G, ArrayList<LinkedList<V>> deg, V v0)
+	{
+		if (G.containsVertex(v0))
+		{
+			int v0Deg = G.degree(v0);
+			deg.get(v0Deg).removeFirstOccurrence(v0);
+			
+			if (deg.get(v0Deg).isEmpty() && v0Deg+1 == deg.size())
+			{
+				deg.remove(v0Deg);
+			}
+			
+			G.removeVertex(v0);
+		}
+		else
+		{
+			System.out.println("Tried to delete vertex "  + v0 + " but does not exist.");
+		}
+	}
+	
+	
 	
 	/**
 	 * Remove edge between v0 and v1 from graph G and update degree order deg
@@ -246,7 +289,7 @@ public abstract class qtBranch<V> extends Branch<V>
 	 * @param v0 endpoint of edge to be deleted
 	 * @param v1 endpoint of edge to be deleted
 	 */
-	protected void removeEdge(Graph<V, Pair<V>> G, ArrayList<LinkedList<V>> deg, V v0, V v1)
+	public void removeEdge(Graph<V, Pair<V>> G, ArrayList<LinkedList<V>> deg, V v0, V v1)
 	{
 		
 		if (G.isNeighbor(v0, v1))
@@ -278,13 +321,41 @@ public abstract class qtBranch<V> extends Branch<V>
 	}
 	
 	/**
+	 * add a vertex to graph and degree sequence
+	 * @param G
+	 * @param deg
+	 * @param v0
+	 */
+	public void addVertex(Graph<V, Pair<V>> G, ArrayList<LinkedList<V>> deg, V v0)
+	{
+		if (G.containsVertex(v0))
+		{
+			System.out.println("Tried to add vertex " + v0 + ", already exists");
+		}
+		else
+		{
+			//add vertex to graph
+			G.addVertex(v0);
+			
+			//add vertex to deg
+			
+			//if index does not exist in deg
+			if (deg.size() < 1)
+				deg.add(0, new LinkedList<V>());
+			
+			deg.get(0).add(v0);
+		}
+	}
+	
+	
+	/**
 	 * Add an edge to graph G between vertices v0 and v1 and update the degree order deg
 	 * @param G graph to be modified
 	 * @param deg degree order to be updated
 	 * @param v0 first endpoint of new edge
 	 * @param v1 second endpoint of new edge
 	 */
-	private void addEdge(Graph<V, Pair<V>> G, ArrayList<LinkedList<V>> deg, V v0, V v1)
+	public void addEdge(Graph<V, Pair<V>> G, ArrayList<LinkedList<V>> deg, V v0, V v1)
 	{
 		//if the edge already doesn't exist
 		if (!G.isNeighbor(v0, v1))

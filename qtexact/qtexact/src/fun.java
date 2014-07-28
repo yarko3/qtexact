@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -21,6 +22,7 @@ import qtUtils.branchingReturnC;
 import qtUtils.qtGenerate;
 import reduction.biconnectedReduction;
 import reduction.c4p4Reduction;
+import reduction.centralNodeReduction;
 import reduction.commonC4Reduction;
 import reduction.edgeBoundReduction;
 import search.YanSearch;
@@ -59,14 +61,14 @@ public class fun<V> extends JApplet {
 	static Graph<Integer, String> graph;
 	static Cloner clone = new Cloner();
 	
-	public static void main(String[] args)
+	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException
 	{
 		//fbTest();
-		//editTest();
-		comparisonTest();
+		editTest();
+		//comparisonTest();
 	}
 	
-	public static void editTest() 
+	public static void editTest() throws FileNotFoundException, UnsupportedEncodingException 
 	{
 		Graph<Integer, Pair<Integer>> exampleQT;
 		qtGenerate<Integer> gen = new qtGenerate<Integer>();
@@ -89,8 +91,12 @@ public class fun<V> extends JApplet {
 		
 		//exampleQT = gen.ER(18, 0.);
 		
-		exampleQT = new UndirectedSparseGraph<Integer, Pair<Integer>>();
-		fillGraphFromFile(exampleQT, "datasets/zachary.txt");
+		//fillGraphFromFile(exampleQT, "datasets/zachary.txt");
+		
+		Graph<String, Pair<String>>wine = fillGraphFromFile("datasets/wineryEdgeSet.txt");
+		
+		
+		//Graph<String, Pair<String>> wine = gen.fromBipartiteFile("datasets/edgeSet.txt");
 		
 		//exampleQT = gen.fromBipartiteFile("datasets/southernwomen");
 	
@@ -103,7 +109,7 @@ public class fun<V> extends JApplet {
 		//fillGraphFromFile(exampleQT, "datasets/grass_web.pairs");
 ////		
 ////		
-		exampleQT = gen.treeRandom(39, 9);
+		//exampleQT = gen.treeRandom(200, 11);
 		
 		//exampleQT = gen.houseStruct();
 		
@@ -114,92 +120,64 @@ public class fun<V> extends JApplet {
 		Graph<Integer, Pair<Integer>> cln = clone.deepClone(exampleQT);
 
 
-		//visualize(exampleQT);
 		
+		visualize(wine);
 		
-		//visualize(exampleQT);
+		Controller<String> c = new Controller<String>(null, true);
 		
-		Controller<Integer> c = new Controller<Integer>(null, true);
-		
-		
-		qtBranchNoHeuristic<Integer> branchNoHP = new qtBranchNoHeuristic<Integer>(c);
-		//c.setbStruct(branchNoHP);
-		
-		
-		//qtHouse<Integer> house = new qtHouse<Integer>(c);
-		//c.setbStruct(house);
-		
-		qtPan<Integer> pan = new qtPan<Integer>(c);
-		
-		qtAllStruct<Integer> all = new qtAllStruct<Integer>(c);
-		
-		qtAllStruct<Integer> all2 = new qtAllStruct<Integer>(c);
-		
-		
-		qtBranchComponents<Integer> branchC = new qtBranchComponents<Integer>(c);
-		//c.setbStruct(branchC);
-		
-		qtC5<Integer> C5 = new qtC5<Integer>(c);
-		
-		qtHouse<Integer> house = new qtHouse<Integer>(c);
-		
-		qtKite<Integer> kite = new qtKite<Integer>(c);
-		
-		qtP5<Integer> P5 = new qtP5<Integer>(c);
-		
-		qtY<Integer> y = new qtY<Integer>(c);
-		
-		
-		qtSimple<Integer> simple = new qtSimple<Integer>(c);
-		
-		qtRandom<Integer> random = new qtRandom<Integer>(c);
-		
-		
-//		Reduction<Integer> rHouse = new edgeBoundReduction<Integer>(house);
-//		house.addReduction(rHouse);
-//		Reduction<Integer> r2House = new commonC4Reduction<Integer>(house);
-//		house.addReduction(r2House);
+
 //		
-		Reduction<Integer> rpan = new edgeBoundReduction<Integer>(pan);
-		pan.addReduction(rpan);
-		Reduction<Integer> r2pan = new commonC4Reduction<Integer>(pan);
-		pan.addReduction(r2pan);
+//		qtAllStruct<Integer> all = new qtAllStruct<Integer>(c);
+//		
+//		qtAllStruct<Integer> all2 = new qtAllStruct<Integer>(c);
 		
 		
-		Reduction<Integer> rC = new edgeBoundReduction<Integer>(branchC);
-		//branchC.addReduction(rC);
-		Reduction<Integer> r2C = new commonC4Reduction<Integer>(branchC);
-		//branchC.addReduction(r2C);
+		qtBranchComponents<String> branchC = new qtBranchComponents<String>(c);
 		
-		rC = new c4p4Reduction<Integer>(branchC);
+		
+		
+		//qtBranchComponents<Integer> branchC2 = new qtBranchComponents<Integer>(c);
+		
+//		qtSimple<Integer> simple = new qtSimple<Integer>(c);
+//		
+//		qtRandom<Integer> random = new qtRandom<Integer>(c);
+		
+
+		
+		
+		Reduction<String> rC = new c4p4Reduction<String>(branchC);
 		branchC.addReduction(rC);
 		
-		rC = new biconnectedReduction<Integer>(branchC);
+		rC = new biconnectedReduction<String>(branchC);
 		branchC.addReduction(rC);
 		
-		rC = new edgeBoundReduction<Integer>(all);
-		all.addReduction(rC);
-		r2C = new commonC4Reduction<Integer>(all);
-		all.addReduction(r2C);
+//		rC = new c4p4Reduction<Integer>(branchC2);
+//		branchC2.addReduction(rC);
+//		rC = new biconnectedReduction<Integer>(branchC2);
+//		branchC2.addReduction(rC);
+//		rC = new centralNodeReduction<Integer>(branchC2);
+//		branchC2.addReduction(rC);
+//		
+//		
+//		rC = new edgeBoundReduction<Integer>(all);
+//		all.addReduction(rC);
+//		r2C = new commonC4Reduction<Integer>(all);
+//		all.addReduction(r2C);
 		
 		
 //		rC = new c4p4Reduction<Integer>(all);
 //		all.addReduction(rC);
 		
-		rC = new c4p4Reduction<Integer>(all2);
-		all2.addReduction(rC);
-		rC = new biconnectedReduction<Integer>(all2);
-		all2.addReduction(rC);
+//		rC = new c4p4Reduction<Integer>(all2);
+//		all2.addReduction(rC);
+//		rC = new biconnectedReduction<Integer>(all2);
+//		all2.addReduction(rC);
 		
 //		Reduction<Integer> rNo = new edgeBoundReduction<Integer>(branchNoHP);
 //		branchNoHP.addReduction(rNo);
 //		Reduction<Integer> r2No = new commonC4Reduction<Integer>(branchNoHP);
 //		branchNoHP.addReduction(r2No);
 		
-		rC = new c4p4Reduction<Integer>(branchNoHP);
-		//branchNoHP.addReduction(rC);
-		rC = new biconnectedReduction<Integer>(branchNoHP);
-		//branchNoHP.addReduction(rC);
 		
 //		
 		
@@ -210,42 +188,16 @@ public class fun<V> extends JApplet {
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		
-		rC = new edgeBoundReduction<Integer>(C5);
-		C5.addReduction(rC);
-		r2C = new commonC4Reduction<Integer>(C5);
-		C5.addReduction(r2C);
 		
-		rC = new edgeBoundReduction<Integer>(house);
-		house.addReduction(rC);
-		r2C = new commonC4Reduction<Integer>(house);
-		house.addReduction(r2C);
-		
-		
-		rC = new edgeBoundReduction<Integer>(kite);
-		kite.addReduction(rC);
-		r2C = new commonC4Reduction<Integer>(kite);
-		kite.addReduction(r2C);
-		
-		rC = new edgeBoundReduction<Integer>(P5);
-		P5.addReduction(rC);
-		r2C = new commonC4Reduction<Integer>(P5);
-		P5.addReduction(r2C);
-		
-		rC = new edgeBoundReduction<Integer>(y);
-		y.addReduction(rC);
-		r2C = new commonC4Reduction<Integer>(y);
-		y.addReduction(r2C);
-		
-		
-		rC = new edgeBoundReduction<Integer>(simple);
-		simple.addReduction(rC);
-		r2C = new commonC4Reduction<Integer>(simple);
-		simple.addReduction(r2C);
-		
-		rC = new edgeBoundReduction<Integer>(random);
-		random.addReduction(rC);
-		r2C = new commonC4Reduction<Integer>(random);
-		random.addReduction(r2C);
+//		rC = new edgeBoundReduction<Integer>(simple);
+//		simple.addReduction(rC);
+//		r2C = new commonC4Reduction<Integer>(simple);
+//		simple.addReduction(r2C);
+//		
+//		rC = new edgeBoundReduction<Integer>(random);
+//		random.addReduction(rC);
+//		r2C = new commonC4Reduction<Integer>(random);
+//		random.addReduction(r2C);
 		
 		
 //		
@@ -360,21 +312,21 @@ public class fun<V> extends JApplet {
 //		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
 //		
 //		
-		c.setbStruct(all);
-		System.out.println("\nAll structures (old reductions): ");
-		start = System.currentTimeMillis();
-		c.branchStart(exampleQT, 20);
-		System.out.println((System.currentTimeMillis()-start) / 1000.0);
-		
-		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
+//		c.setbStruct(all);
+//		System.out.println("\nAll structures (old reductions): ");
+//		start = System.currentTimeMillis();
+//		c.branchStart(exampleQT, 20);
+//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+//		
+//		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
 ////		
-		c.setbStruct(all2);
-		System.out.println("\nAll structures (new reductions): ");
-		start = System.currentTimeMillis();
-		System.out.println(yan.search(c.branchStart(exampleQT, 20).getG()));
-		System.out.println((System.currentTimeMillis()-start) / 1000.0);
-		
-		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
+//		c.setbStruct(all2);
+//		System.out.println("\nAll structures (new reductions): ");
+//		start = System.currentTimeMillis();
+//		System.out.println(yan.search(c.branchStart(exampleQT, 20).getG()));
+//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+//		
+//		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
 ////		
 //		Graph<Integer, Pair<Integer>> cln9 = clone.deepClone(exampleQT);
 //		visualize(cln9);
@@ -407,13 +359,23 @@ public class fun<V> extends JApplet {
 //		visualize(cln2);
 //	
 		c.setbStruct(branchC);
-		System.out.println("\nConnected component (new reductions): ");
+		System.out.println("\nConnected component: ");
 		start = System.currentTimeMillis();
-		System.out.println(yan.search(c.branchStart(exampleQT, 20).getG()));
+		c.branchStart(wine, 16).getG();
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		
 		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
+		
+		
+//		c.setbStruct(branchC2);
+//		System.out.println("\nConnected component: (with centralReduction) ");
+//		start = System.currentTimeMillis();
+//		System.out.println(yan.search(c.branchStart(wine, 17).getG()));
+//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+//		
+//		
+//		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
 
 		
 		start = System.currentTimeMillis();
@@ -421,15 +383,15 @@ public class fun<V> extends JApplet {
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		
-		visualize(exampleQT);
+		//visualize(exampleQT);
 	}
 
 	
-	public static void visualize(Graph<Integer, Pair<Integer>> fb){
+	public static void visualize(Graph<String, Pair<String>> wine){
 		JFrame jf = new JFrame();
 		jf.setSize(1900, 1000);
 
-		FRLayout frl = new FRLayout(fb);
+		FRLayout frl = new FRLayout(wine);
 
 		frl.setAttractionMultiplier(3);
 		frl.setRepulsionMultiplier(1.1);
@@ -437,7 +399,7 @@ public class fun<V> extends JApplet {
 		frl.setMaxIterations(1000);
 		//frl.lock(true);
 		VisualizationViewer vv = new VisualizationViewer(frl, new Dimension(
-				1900, 1000));
+				1800, 900));
 		
 		vv.getRenderContext().setVertexLabelTransformer(new ToStringLabeller());
 		
@@ -476,10 +438,13 @@ public class fun<V> extends JApplet {
 	 * 
 	 * @param Graph graph
 	 * @param String filename
+	 * @return 
 	 */
-	private static void fillGraphFromFile(Graph<Integer, Pair<Integer>> graph,
+	private static Graph<String, Pair<String>> fillGraphFromFile(
 			String filename) 
 	{
+		
+		Graph<String, Pair<String>> graph = new UndirectedSparseGraph<String, Pair<String>>();
 		FileReader file = null;
 		try {
 			file = new FileReader(filename);
@@ -491,13 +456,13 @@ public class fun<V> extends JApplet {
 		Scanner scan = new Scanner(file);
 
 		while (scan.hasNext()) {
-			Integer a = scan.nextInt();
-			Integer b = scan.nextInt();
+			String a = scan.next();
+			String b = scan.next();
 			//Integer weight = scan.nextInt();
 
 			// for (int i = 0; i < weight; i++)
 			// {
-			graph.addEdge(new Pair<Integer>(a, b), a, b);
+			graph.addEdge(new Pair<String>(a, b), a, b);
 			// }
 		}
 		try {
@@ -507,6 +472,8 @@ public class fun<V> extends JApplet {
 			System.out.println("File " + filename + " could not be found.");
 			e.printStackTrace();
 		}
+		
+		return graph;
 	}
 	
 	

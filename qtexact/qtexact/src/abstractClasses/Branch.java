@@ -33,6 +33,9 @@ public abstract class Branch<V>
 	 */
 	protected Controller<V> controller;
 	
+	/**
+	 * cloner
+	 */
 	public static Cloner clone = new Cloner();
 	
 	/**
