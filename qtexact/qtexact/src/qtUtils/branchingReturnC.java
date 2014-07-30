@@ -24,6 +24,7 @@ public class branchingReturnC<V> implements Comparable<branchingReturnC<V>>
 	ArrayList<LinkedList<V>> deg;
 	LinkedList<myEdge<V>> changes;
 	branchingReturnC<V>	minMoves;
+	LinkedList<Pair<V>> knownBadEdges;
 	double percent;
 	
 	public branchingReturnC(Graph<V, Pair<V>> graph, ArrayList<LinkedList<V>> d, LinkedList<myEdge<V>> c, branchingReturnC<V> m)
@@ -32,12 +33,14 @@ public class branchingReturnC<V> implements Comparable<branchingReturnC<V>>
 		changes = c;
 		deg = d;
 		minMoves = m;
+		knownBadEdges = new LinkedList<Pair<V>>();
 	}
 	public branchingReturnC(Graph<V, Pair<V>> graph, ArrayList<LinkedList<V>> d, LinkedList<myEdge<V>> c)
 	{
 		G = graph;
 		changes = c;
 		deg = d;
+		knownBadEdges = new LinkedList<Pair<V>>();
 	}
 	public branchingReturnC(Graph<V, Pair<V>> graph, ArrayList<LinkedList<V>> d, branchingReturnC<V> m)
 	{
@@ -45,12 +48,14 @@ public class branchingReturnC<V> implements Comparable<branchingReturnC<V>>
 		deg = d;
 		changes = new LinkedList<myEdge<V>>();
 		minMoves = m;
+		knownBadEdges = new LinkedList<Pair<V>>();
 	}
 	public branchingReturnC(Graph<V, Pair<V>> graph, ArrayList<LinkedList<V>> d)
 	{
 		G = graph;
 		deg = d;
 		changes = new LinkedList<myEdge<V>>();
+		knownBadEdges = new LinkedList<Pair<V>>();
 	}
 
 	@Override
@@ -101,4 +106,16 @@ public class branchingReturnC<V> implements Comparable<branchingReturnC<V>>
 	{
 		return percent;
 	}
+	
+	public boolean hasBadEdges()
+	{
+		return !knownBadEdges.isEmpty();
+	}
+	public LinkedList<Pair<V>> getKnownBadEdges() {
+		return knownBadEdges;
+	}
+	public void setKnownBadEdges(LinkedList<Pair<V>> knownBadEdges) {
+		this.knownBadEdges = knownBadEdges;
+	}
+	
 }

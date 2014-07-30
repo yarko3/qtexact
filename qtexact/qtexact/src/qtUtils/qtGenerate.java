@@ -475,11 +475,11 @@ public class qtGenerate<V>
 		return g;
 	}
 	
-	public static Graph<Integer, Pair<Integer>> ER(int vertices, double p)
+	public static Graph<Integer, Pair<Integer>> ER(int vertices, double p, long seed)
 	{
-		Random rand = new Random();
+		Random rand = new Random(seed);
 		
-		Graph<Integer, Pair<Integer>> graph = new SparseGraph<Integer, Pair<Integer>>();
+		Graph<Integer, Pair<Integer>> graph = new UndirectedSparseGraph<Integer, Pair<Integer>>();
 		
 		for (int i = 0; i < vertices; i++)
 		{
@@ -505,7 +505,7 @@ public class qtGenerate<V>
 	{
 		Random rand = new Random();
 		
-		Graph<Integer, Pair<Integer>> graph = new SparseGraph<Integer, Pair<Integer>>();
+		Graph<Integer, Pair<Integer>> graph = new UndirectedSparseGraph<Integer, Pair<Integer>>();
 		
 		for (int i = start; i < vertices+start; i++)
 		{
@@ -827,7 +827,7 @@ public class qtGenerate<V>
 	public Graph<Integer, Pair<Integer>> erJoins(int n0, int n1, int n2, double p0, double p1, double p2)
 	{
 		//generate graphs
-		Graph<Integer, Pair<Integer>> g0 = ER(n0, p0);
+		Graph<Integer, Pair<Integer>> g0 = ER(n0, p0, 0);
 		Graph<Integer, Pair<Integer>> g1 = ER(n1, p1, n0);
 		Graph<Integer, Pair<Integer>> g2 = ER(n2, p2, n0+n1);
 		

@@ -37,7 +37,8 @@ public abstract class qtLBFS<V> extends LBFS<V>
 		return isQT(g);
 	}
 	
-	public lexReturnC<V> searchPrep(branchingReturnC<V> s)
+	@Override
+	protected lexReturnC<V> searchPrep(branchingReturnC<V> s)
 	{
 		ArrayList<V> t = flattenAndReverseDeg(s.getDeg());
 		return search(s.getG(), t);

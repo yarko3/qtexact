@@ -131,14 +131,18 @@ public class qtBranchComponents<V> extends qtAllStruct<V>
 				cGraphs.removeFirst();
 			}
 			
-			count = cGraphs.size();
+			//count = cGraphs.size();
 			
 			//check which components need editing to be qt
-			LinkedList<Boolean> needEdit = new LinkedList<Boolean>();
+			LinkedList<Integer> needEdit = new LinkedList<Integer>();
 			
 			for (int i  = 0; i < cGraphs.size(); i++)
 			{
-				needEdit.add(!search.isTarget(cGraphs.get(i)));
+				Integer temp = lowerBound(cGraphs.get(i));
+				
+				if (temp != 0)
+					count++;
+				needEdit.addLast(temp);
 			}
 			
 			
@@ -146,20 +150,17 @@ public class qtBranchComponents<V> extends qtAllStruct<V>
 			for (int i = 0; i < cGraphs.size(); i++)
 			{
 				Graph<V, Pair<V>> g = cGraphs.get(i);
+				//find the minimum number of moves still required
+				int need = 0;
+				for (int j = i+1; j < cGraphs.size(); j++)
+				{
+					need += needEdit.get(j);
+				}
+				
 				
 				//does this component need editing and are more moves allowed?
-				if (needEdit.get(i) && bound >= 0)
+				if (needEdit.get(i) > 0 && bound >= 0 && bound >= need)
 				{
-					//how many more components need editing?
-					int need = 0;
-					for (int j = i+1; j < cGraphs.size(); j++)
-					{
-						if (needEdit.get(j))
-							need++;
-					}
-					
-					
-					//visualize(g);
 					
 					//fill new minMoves with bounded edge set of component
 					min = new branchingReturnC<V>(g, ((qtLBFS<V>) search).degSequenceOrder(g));
@@ -230,5 +231,37 @@ public class qtBranchComponents<V> extends qtAllStruct<V>
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jf.pack();
 		jf.setVisible(true);
+	}
+	
+	/**
+	 * returns the minimum number of edits required for a component
+	 * @param graph
+	 * @return
+	 */
+	public Integer lowerBound(Graph<V, Pair<V>> graph)
+	{
+		Graph<V, Pair<V>> temp = clone.deepClone(graph);
+		branchingReturnC<V> s = new branchingReturnC<V>(temp, ((qtLBFS<V>) search).degSequenceOrder(temp));
+		SearchResult<V> result = search.search(s);
+		
+		int count = 0;
+		
+		while (!result.isTarget())
+		{
+			//at least one more move needs to be done
+			count++;
+			
+			//remove all vertices of current obstruction from graph
+			for (V v0 : result.getCertificate().getVertices())
+			{
+				removeVertex(s, v0);
+			}
+			//update search result
+			result = search.search(s);
+		}
+		
+		return count;
+		
+		
 	}
 }

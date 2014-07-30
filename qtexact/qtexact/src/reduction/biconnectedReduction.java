@@ -75,6 +75,9 @@ public class biconnectedReduction<V> extends Reduction<V> {
 					break;
 				}
 			}
+			//store edge to be 
+			else
+				s.getKnownBadEdges().add(edge);
 		}
 		
 		stack.push(count);

@@ -108,6 +108,9 @@ public class c4p4Reduction<V> extends Reduction<V>
 						if (count >= bound)
 							break outer;
 					}
+					//add edge to list of known bad edges
+					else
+						s.getKnownBadEdges().add(new Pair<V>(v0, v1));
 				}
 				
 				//use P4 reduction

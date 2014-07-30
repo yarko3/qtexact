@@ -29,12 +29,12 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 		//searchResult = findStructures(s, searchResult);
 		
 		
-		SearchResult<V> old = clone.deepClone(searchResult);
-		
-		this.findStructures(s, searchResult);
-		
-		if (searchResult.getCertificate().getFlag() != -4)
-			searchResult = old;
+//		SearchResult<V> old = clone.deepClone(searchResult);
+//		
+//		this.findStructures(s, searchResult);
+//		
+//		if (searchResult.getCertificate().getFlag() != -4)
+//			searchResult = old;
 		
 		
 		
@@ -45,7 +45,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 			ArrayList<V> lexResult = searchResult.getCertificate().getVertices();
 			double oldPercent = s.getPercent();
 			
-			
+			int ruleCount = 16;
 			
 			//delete 3
 			
@@ -56,7 +56,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 				if (output)
 				{
 					//change progress percent
-					s.setPercent(oldPercent / 16);
+					s.setPercent(oldPercent / ruleCount);
 				}
 				
 				controller.branch(delete3Result(s, lexResult.get(0), lexResult.get(1), lexResult.get(2), lexResult.get(3), lexResult.get(1), lexResult.get(4)));
@@ -72,7 +72,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 			}
 			else
 				if (output)
-					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 16);
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
 			
 
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(4)), true)) 
@@ -82,7 +82,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 				if (output)
 				{
 					//change progress percent
-					s.setPercent(oldPercent / 16);
+					s.setPercent(oldPercent / ruleCount);
 				}
 				
 				controller.branch(delete3Result(s, lexResult.get(0), lexResult.get(4), lexResult.get(2), lexResult.get(3), lexResult.get(1), lexResult.get(4)));
@@ -98,7 +98,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 			}
 			else
 				if (output)
-					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 16);
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
 			
 
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)) 
@@ -108,7 +108,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 				if (output)
 				{
 					//change progress percent
-					s.setPercent(oldPercent / 16);
+					s.setPercent(oldPercent / ruleCount);
 				}
 				
 				controller.branch(delete3Result(s, lexResult.get(0), lexResult.get(1), lexResult.get(3), lexResult.get(4), lexResult.get(1), lexResult.get(4)));
@@ -124,7 +124,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 			}
 			else
 				if (output)
-					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 16);
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
 			
 			
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(4)), true)) 
@@ -134,7 +134,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 				if (output)
 				{
 					//change progress percent
-					s.setPercent(oldPercent / 16);
+					s.setPercent(oldPercent / ruleCount);
 				}
 				
 				controller.branch(delete3Result(s, lexResult.get(0), lexResult.get(4), lexResult.get(1), lexResult.get(2), lexResult.get(1), lexResult.get(4)));
@@ -150,7 +150,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 			}
 			else
 				if (output)
-					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 16);
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
 			
 			
 			//delete 2 edges
@@ -159,7 +159,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 				if (output)
 				{
 					//change progress percent
-					s.setPercent(oldPercent / 16);
+					s.setPercent(oldPercent / ruleCount);
 				}
 				controller.branch(delete2Result(s, lexResult.get(1), lexResult.get(2), lexResult.get(3), lexResult.get(4)));
 				
@@ -174,7 +174,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 			}
 			else
 				if (output)
-					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 16);
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
 			
 			
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
@@ -182,7 +182,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 				if (output)
 				{
 					//change progress percent
-					s.setPercent(oldPercent / 16);
+					s.setPercent(oldPercent / ruleCount);
 				}
 				
 				controller.branch(delete2Result(s, lexResult.get(1), lexResult.get(2), lexResult.get(2), lexResult.get(3)));
@@ -198,7 +198,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 			}
 			else
 				if (output)
-					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 16);
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
 			
 			
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(3), lexResult.get(4)), true)))
@@ -206,7 +206,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 				if (output)
 				{
 					//change progress percent
-					s.setPercent(oldPercent / 16);
+					s.setPercent(oldPercent / ruleCount);
 				}
 				
 				controller.branch(delete2Result(s, lexResult.get(2), lexResult.get(3), lexResult.get(3), lexResult.get(4)));
@@ -222,7 +222,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 			}
 			else
 				if (output)
-					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 16);
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
 			
 			
 			//add one, remove one
@@ -232,7 +232,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 				if (output)
 				{
 					//change progress percent
-					s.setPercent(oldPercent / 16);
+					s.setPercent(oldPercent / ruleCount);
 				}
 				
 				controller.branch(addRemoveResult(s, lexResult.get(1), lexResult.get(3), lexResult.get(3), lexResult.get(4)));
@@ -248,7 +248,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 			}
 			else
 				if (output)
-					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 16);
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
 			
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false)) 
 					&& !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(4)), true)))
@@ -256,7 +256,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 				if (output)
 				{
 					//change progress percent
-					s.setPercent(oldPercent / 16);
+					s.setPercent(oldPercent / ruleCount);
 				}
 				
 				controller.branch(addRemoveResult(s, lexResult.get(1), lexResult.get(3), lexResult.get(0), lexResult.get(4)));
@@ -272,7 +272,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 			}
 			else
 				if (output)
-					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 16);
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
 			
 			
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false)) 
@@ -281,7 +281,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 				if (output)
 				{
 					//change progress percent
-					s.setPercent(oldPercent / 16);
+					s.setPercent(oldPercent / ruleCount);
 				}
 				
 				controller.branch(addRemoveResult(s, lexResult.get(1), lexResult.get(3), lexResult.get(2), lexResult.get(3)));
@@ -297,7 +297,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 			}
 			else
 				if (output)
-					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 16);
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
 			
 			
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(4)), false)) 
@@ -306,7 +306,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 				if (output)
 				{
 					//change progress percent
-					s.setPercent(oldPercent / 16);
+					s.setPercent(oldPercent / ruleCount);
 				}
 				
 				controller.branch(addRemoveResult(s, lexResult.get(2), lexResult.get(4), lexResult.get(1), lexResult.get(2)));
@@ -322,7 +322,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 			}
 			else
 				if (output)
-					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 16);
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
 			
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(4)), false)) 
 					&& !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
@@ -330,7 +330,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 				if (output)
 				{
 					//change progress percent
-					s.setPercent(oldPercent / 16);
+					s.setPercent(oldPercent / ruleCount);
 				}
 				
 				controller.branch(addRemoveResult(s, lexResult.get(2), lexResult.get(4), lexResult.get(2), lexResult.get(3)));
@@ -347,7 +347,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 			}
 			else
 				if (output)
-					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 16);
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
 			
 			
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(4)), false)) 
@@ -356,7 +356,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 				if (output)
 				{
 					//change progress percent
-					s.setPercent(oldPercent / 16);
+					s.setPercent(oldPercent / ruleCount);
 				}
 				
 				controller.branch(addRemoveResult(s, lexResult.get(2), lexResult.get(4), lexResult.get(0), lexResult.get(1)));
@@ -372,7 +372,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 			}
 			else
 				if (output)
-					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 16);
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
 			
 			
 			
@@ -383,7 +383,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 				if (output)
 				{
 					//change progress percent
-					s.setPercent(oldPercent / 16);
+					s.setPercent(oldPercent / ruleCount);
 				}
 				
 				controller.branch(add2Result(s, lexResult.get(1), lexResult.get(3), lexResult.get(2), lexResult.get(4)));
@@ -399,7 +399,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 			}
 			else
 				if (output)
-					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 16);
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
 			
 			
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false)) 
@@ -408,7 +408,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 				if (output)
 				{
 					//change progress percent
-					s.setPercent(oldPercent / 16);
+					s.setPercent(oldPercent / ruleCount);
 				}
 				
 				controller.branch(add2Result(s, lexResult.get(1), lexResult.get(3), lexResult.get(3), lexResult.get(0)));
@@ -424,7 +424,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 			}
 			else
 				if (output)
-					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 16);
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
 			
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(4)), false)) 
 					&& !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(2)), false)))
@@ -432,7 +432,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 				if (output)
 				{
 					//change progress percent
-					s.setPercent(oldPercent / 16);
+					s.setPercent(oldPercent / ruleCount);
 				}
 				
 				controller.branch(add2Result(s, lexResult.get(2), lexResult.get(4), lexResult.get(0), lexResult.get(2)));
@@ -448,7 +448,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 			}
 			else
 				if (output)
-					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 16);
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
 			
 			
 			return s;

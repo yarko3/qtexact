@@ -64,8 +64,8 @@ public class fun<V> extends JApplet {
 	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException
 	{
 		//fbTest();
-		//editTest();
-		comparisonTest();
+		editTest();
+		//comparisonTest();
 	}
 	
 	public static void editTest() throws FileNotFoundException, UnsupportedEncodingException 
@@ -89,7 +89,7 @@ public class fun<V> extends JApplet {
 		//random graph join
 		//exampleQT = gen.erJoins(8, 8, 5, .86, .86, .9);
 		
-		//exampleQT = gen.ER(18, 0.);
+		exampleQT = gen.ER(11, 0.07, (long) 2);
 		
 		//fillGraphFromFile(exampleQT, "datasets/zachary.txt");
 		
@@ -105,15 +105,15 @@ public class fun<V> extends JApplet {
 		//exampleQT = gen.houseStruct();
 		
 		
-		//exampleQT = new UndirectedSparseGraph<Integer, Pair<Integer>>();
-		//fillGraphFromFile(exampleQT, "datasets/grass_web.pairs");
+		
+		//exampleQT = fillGraphFromFile("datasets/grass_web.pairs");
 ////		
 ////		
-		exampleQT = gen.treeRandom(50, 11);
+		exampleQT = gen.treeRandom(72, 4);
 		
 		//exampleQT = gen.houseStruct();
 		
-		//exampleQT = gen.treeRandom(27, 13);
+
 		
 		//exampleQT = gen.facebookGraph("datasets/fbFriends.txt");
 		
@@ -121,7 +121,7 @@ public class fun<V> extends JApplet {
 
 
 		
-		visualize(exampleQT);
+		visualize(cln);
 		
 		Controller<Integer> c = new Controller<Integer>(null, true);
 		
@@ -129,7 +129,7 @@ public class fun<V> extends JApplet {
 //		
 //		qtAllStruct<Integer> all = new qtAllStruct<Integer>(c);
 //		
-//		qtAllStruct<Integer> all2 = new qtAllStruct<Integer>(c);
+		qtAllStruct<Integer> all2 = new qtAllStruct<Integer>(c);
 		
 		
 		qtBranchComponents<Integer> branchC = new qtBranchComponents<Integer>(c);
@@ -145,11 +145,15 @@ public class fun<V> extends JApplet {
 
 		
 		
-		Reduction<Integer> rC = new c4p4Reduction<Integer>(branchC);
-		branchC.addReduction(rC);
+//		Reduction<Integer> rC = new c4p4Reduction<Integer>(branchC);
+//		branchC.addReduction(rC);
+//		
+//		rC = new biconnectedReduction<Integer>(branchC);
+//		branchC.addReduction(rC);
+//		
+//		rC = new centralNodeReduction<Integer>(branchC);
+//		branchC.addReduction(rC);
 		
-		rC = new biconnectedReduction<Integer>(branchC);
-		branchC.addReduction(rC);
 		
 //		rC = new c4p4Reduction<Integer>(branchC2);
 //		branchC2.addReduction(rC);
@@ -323,7 +327,7 @@ public class fun<V> extends JApplet {
 //		c.setbStruct(all2);
 //		System.out.println("\nAll structures (new reductions): ");
 //		start = System.currentTimeMillis();
-//		System.out.println(yan.search(c.branchStart(exampleQT, 20).getG()));
+//		System.out.println(yan.search(c.branchStart(exampleQT, 18).getG()));
 //		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 //		
 //		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
@@ -361,7 +365,7 @@ public class fun<V> extends JApplet {
 		c.setbStruct(branchC);
 		System.out.println("\nConnected component: ");
 		start = System.currentTimeMillis();
-		c.branchStart(exampleQT, 16).getG();
+		System.out.println(yan.search(c.branchStart(exampleQT, 17).getG()));
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		
@@ -410,28 +414,6 @@ public class fun<V> extends JApplet {
 	}
 	
 
-	/**
-	 * find edge betweenness clustering of graph with num edge deletions
-	 * 
-	 * @param Graph graph
-	 * @param Integer num
-	 */
-	private static void findEdgeBetweennessClustering(
-			Graph<Integer, String> graph, int num) {
-		EdgeBetweennessClusterer<Integer, String> EBC = new EdgeBetweennessClusterer<Integer, String>(
-				num);
-
-		Set<Set<Integer>> edgeBetweennessCluster = EBC.transform(graph);
-		List<String> listDeletedEdges = EBC.getEdgesRemoved();
-		Iterator<Set<Integer>> iterator = edgeBetweennessCluster.iterator();
-		while (iterator.hasNext()) {
-			System.out.println(iterator.next());
-		}
-		// remove deleted edges from graph
-		for (String s : listDeletedEdges) {
-			graph.removeEdge(s);
-		}
-	}
 
 	/**
 	 * fill graph with given file
@@ -440,11 +422,11 @@ public class fun<V> extends JApplet {
 	 * @param String filename
 	 * @return 
 	 */
-	private static Graph<String, Pair<String>> fillGraphFromFile(
+	private static Graph<Integer, Pair<Integer>> fillGraphFromFile(
 			String filename) 
 	{
 		
-		Graph<String, Pair<String>> graph = new UndirectedSparseGraph<String, Pair<String>>();
+		Graph<Integer, Pair<Integer>> graph = new UndirectedSparseGraph<Integer, Pair<Integer>>();
 		FileReader file = null;
 		try {
 			file = new FileReader(filename);
@@ -456,13 +438,13 @@ public class fun<V> extends JApplet {
 		Scanner scan = new Scanner(file);
 
 		while (scan.hasNext()) {
-			String a = scan.next();
-			String b = scan.next();
+			Integer a = scan.nextInt();
+			Integer b = scan.nextInt();
 			//Integer weight = scan.nextInt();
 
 			// for (int i = 0; i < weight; i++)
 			// {
-			graph.addEdge(new Pair<String>(a, b), a, b);
+			graph.addEdge(new Pair<Integer>(a, b), a, b);
 			// }
 		}
 		try {

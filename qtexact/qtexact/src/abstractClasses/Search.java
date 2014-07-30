@@ -23,7 +23,7 @@ public abstract class Search<V>
 	 * @param s
 	 * @return
 	 */
-	public abstract SearchResult<V> searchPrep(branchingReturnC<V> s);
+	protected abstract SearchResult<V> searchPrep(branchingReturnC<V> s);
 	
 	public abstract SearchResult<V> search(branchingReturnC<V> s);
 
