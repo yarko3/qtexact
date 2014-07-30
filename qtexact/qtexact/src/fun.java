@@ -7,13 +7,11 @@ import java.awt.Dimension;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Scanner;
-import java.util.Set;
 
 import javax.swing.JApplet;
 import javax.swing.JFrame;
@@ -22,7 +20,6 @@ import qtUtils.branchingReturnC;
 import qtUtils.qtGenerate;
 import reduction.biconnectedReduction;
 import reduction.c4p4Reduction;
-import reduction.centralNodeReduction;
 import reduction.commonC4Reduction;
 import reduction.edgeBoundReduction;
 import search.YanSearch;
@@ -31,20 +28,10 @@ import abstractClasses.Branch;
 import abstractClasses.Reduction;
 import branch.qtAllStruct;
 import branch.qtBranchComponents;
-import branch.qtBranchNoHeuristic;
-import branch.qtC5;
-import branch.qtHouse;
-import branch.qtKite;
-import branch.qtP5;
-import branch.qtPan;
-import branch.qtRandom;
-import branch.qtSimple;
-import branch.qtY;
 
 import com.rits.cloning.Cloner;
 
 import controller.Controller;
-import edu.uci.ics.jung.algorithms.cluster.EdgeBetweennessClusterer;
 import edu.uci.ics.jung.algorithms.layout.FRLayout;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.UndirectedSparseGraph;
@@ -64,8 +51,9 @@ public class fun<V> extends JApplet {
 	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException
 	{
 		//fbTest();
-		editTest();
+		//editTest();
 		//comparisonTest();
+		wineTest();
 	}
 	
 	public static void editTest() throws FileNotFoundException, UnsupportedEncodingException 
@@ -145,11 +133,11 @@ public class fun<V> extends JApplet {
 
 		
 		
-//		Reduction<Integer> rC = new c4p4Reduction<Integer>(branchC);
-//		branchC.addReduction(rC);
-//		
-//		rC = new biconnectedReduction<Integer>(branchC);
-//		branchC.addReduction(rC);
+		Reduction<Integer> rC = new c4p4Reduction<Integer>(branchC);
+		branchC.addReduction(rC);
+		
+		rC = new biconnectedReduction<Integer>(branchC);
+		branchC.addReduction(rC);
 //		
 //		rC = new centralNodeReduction<Integer>(branchC);
 //		branchC.addReduction(rC);
@@ -413,6 +401,28 @@ public class fun<V> extends JApplet {
 		jf.setVisible(true);
 	}
 	
+	public static void visualizeString(Graph<String, Pair<String>> exampleQT){
+		JFrame jf = new JFrame();
+		jf.setSize(1900, 1000);
+
+		FRLayout frl = new FRLayout(exampleQT);
+
+		frl.setAttractionMultiplier(3);
+		frl.setRepulsionMultiplier(1.1);
+		
+		frl.setMaxIterations(1000);
+		//frl.lock(true);
+		VisualizationViewer vv = new VisualizationViewer(frl, new Dimension(
+				1800, 900));
+		
+		vv.getRenderContext().setVertexLabelTransformer(new ToStringLabeller());
+		
+		jf.getContentPane().add(vv);
+		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		jf.pack();
+		jf.setVisible(true);
+	}
+	
 
 
 	/**
@@ -445,6 +455,42 @@ public class fun<V> extends JApplet {
 			// for (int i = 0; i < weight; i++)
 			// {
 			graph.addEdge(new Pair<Integer>(a, b), a, b);
+			// }
+		}
+		try {
+			scan.close();
+			file.close();
+		} catch (IOException e) {
+			System.out.println("File " + filename + " could not be found.");
+			e.printStackTrace();
+		}
+		
+		return graph;
+	}
+	
+	private static Graph<String, Pair<String>> fillGraphFromFileWithStrings(
+			String filename) 
+	{
+		
+		Graph<String, Pair<String>> graph = new UndirectedSparseGraph<String, Pair<String>>();
+		FileReader file = null;
+		try {
+			file = new FileReader(filename);
+		} catch (FileNotFoundException e) {
+			System.out.println("File " + filename + " could not be found.");
+			e.printStackTrace();
+		}
+
+		Scanner scan = new Scanner(file);
+
+		while (scan.hasNext()) {
+			String a = scan.next();
+			String b = scan.next();
+			//Integer weight = scan.nextInt();
+
+			// for (int i = 0; i < weight; i++)
+			// {
+			graph.addEdge(new Pair<String>(a, b), a, b);
 			// }
 		}
 		try {
@@ -560,5 +606,47 @@ public class fun<V> extends JApplet {
 			}
 			size++;
 		}
+	}
+	
+	private static void wineTest() throws FileNotFoundException, UnsupportedEncodingException
+	{
+		
+		Graph<String, Pair<String>> wine = fillGraphFromFileWithStrings("datasets/wine/k5edgeSet.txt");
+		
+		
+		Controller<String> c = new Controller<String>(null, true);
+		
+		
+		qtBranchComponents<String> branchC = new qtBranchComponents<String>(c);
+		
+		Reduction<String> rC = new c4p4Reduction<String>(branchC);
+		branchC.addReduction(rC);
+		
+		rC = new biconnectedReduction<String>(branchC);
+		branchC.addReduction(rC);
+		
+		visualizeString(wine);
+		
+		c.setbStruct(branchC);
+		System.out.println("\nConnected component: ");
+		long start = System.currentTimeMillis();
+		branchingReturnC<String> rtn = c.branchStart(wine, 20);
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		
+		
+		if (branchC.getSearch().search(rtn).isTarget())
+		{
+			//print network to file
+			PrintWriter writer = new PrintWriter("datasets/wine/wineSolutionEdgeSet.tgf", "UTF-8");
+			
+			writer.println("#");
+			for (Pair<String> edge : rtn.getG().getEdges())
+			{
+				writer.println(edge.getFirst() + " " + edge.getSecond());
+			}
+			
+			writer.close();
+		}
+		
 	}
 }
