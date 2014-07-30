@@ -639,12 +639,16 @@ public class qtGenerate<V>
 		PrintWriter writer = new PrintWriter("datasets/bipartiteEdgeSet.txt", "UTF-8");
 		
 		//must be bipartite for this to work
+		
+		//k is the number of common neighbours needed to make an edge
+		int k = 10;
+		
 		for (String i : rightVertices)
 		{
 			if (initial.containsVertex(i))
 			{
 				Collection<String> neighbours = initial.getNeighbors(i);
-			
+
 				for (String n : neighbours)
 				{
 					//no self edges
@@ -655,8 +659,28 @@ public class qtGenerate<V>
 						{
 							if (!i.equals(friend) && !leftVertices.contains(friend))
 							{
-								g.addEdge(new Pair<String>(i , friend), i, friend);
-								writer.println(i + " " + friend);
+								int count = 0;
+								Collection<String> friendN = initial.getNeighbors(friend);
+								
+								//check for number of common neighbours
+								for (String temp0 : neighbours)
+								{
+									for (String temp1 : friendN)
+									{
+										if (temp0.equals(temp1))
+										{
+											count++;
+										}
+									}
+								}
+								if (count > k)
+								{
+									if (!(g.containsVertex(friend) && g.containsVertex(i) && g.isNeighbor(friend, i)))
+									{
+										g.addEdge(new Pair<String>(i , friend), i, friend);
+										writer.println(i + " " + friend);
+									}
+								}
 							}
 						}
 					}
@@ -664,6 +688,8 @@ public class qtGenerate<V>
 			}
 			
 		}
+		
+		
 		
 		writer.close();
 		

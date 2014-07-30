@@ -113,19 +113,6 @@ public class qtBranchComponents<V> extends qtAllStruct<V>
 			//number of components larger than 3 nodes
 			int count = 0;
 			
-			//get number of graphs we need to keep track of for percent
-			if (output)
-			{
-				for (Graph<V, Pair<V>> g : cGraphs)
-				{
-					//if component is large enough to care
-					if (g.getVertexCount() > 3)
-					{
-						count++;
-					}
-				}
-			}
-			
 			//sort connected components in increasing size
 			for (int i = 0; i < cGraphs.size(); i++)
 			{
@@ -138,47 +125,61 @@ public class qtBranchComponents<V> extends qtAllStruct<V>
 					}
 				}
 			}
+			//remove all trivial components
+			while (cGraphs.getFirst().getVertexCount() < 4)
+			{
+				cGraphs.removeFirst();
+			}
+			
+			count = cGraphs.size();
+			
+			//check which components need editing to be qt
+			LinkedList<Boolean> needEdit = new LinkedList<Boolean>();
+			
+			for (int i  = 0; i < cGraphs.size(); i++)
+			{
+				needEdit.add(!search.isTarget(cGraphs.get(i)));
+			}
 			
 			
 			//branch on the rest of the graphs
-			for (Graph<V, Pair<V>> g : cGraphs)
+			for (int i = 0; i < cGraphs.size(); i++)
 			{
-				//if component is large enough to care
-				if (g.getVertexCount() > 3)
+				Graph<V, Pair<V>> g = cGraphs.get(i);
+				
+				//does this component need editing and are more moves allowed?
+				if (needEdit.get(i) && bound >= 0)
 				{
-					//if more moves are allowed
-					if (bound >= 0)
+					//how many more components need editing?
+					int need = 0;
+					for (int j = i+1; j < cGraphs.size(); j++)
 					{
-						//visualize(g);
-						
-						//fill new minMoves with bounded edge set of component
-						min = new branchingReturnC<V>(g, ((qtLBFS<V>) search).degSequenceOrder(g));
-						min.setChanges(fillMinMoves(min, bound + s.getChanges().size()));
-						min.setMinMoves(min);
-						
-						t = new branchingReturnC<V>(g, min.getDeg(), clone.deepClone(s.getChanges()), min);
-						//set new percent
-						t.setPercent(s.getPercent() / count);
-						
-						
+						if (needEdit.get(j))
+							need++;
+					}
+					
+					
+					//visualize(g);
+					
+					//fill new minMoves with bounded edge set of component
+					min = new branchingReturnC<V>(g, ((qtLBFS<V>) search).degSequenceOrder(g));
+					//construct minMoves from bound and number of moves done - number of moves needed for other components
+					min.setChanges(fillMinMoves(min, bound + s.getChanges().size() - need));
+					min.setMinMoves(min);
+					
+					t = new branchingReturnC<V>(g, min.getDeg(), clone.deepClone(s.getChanges()), min);
+					//set new percent
+					t.setPercent(s.getPercent() / count);
+					
+					
 //						controller.branchStart(g, bound);
 //						System.out.println(g);
 //						
-						
-						results.addFirst(controller.branch(t));
-						//update bound
-						bound -= (t.getMinMoves().getChanges().size() - s.getChanges().size());
-					}
 					
-				}
-//				//don't care about branching on this but still need it to build up the solution later
-//				else
-//				{
-//					//empty minMoves 
-//					min = new branchingReturnC<V>(g, s.getDeg());
-//					min.setMinMoves(min);
-//					results.add(new branchingReturnC<V>(g, ((qtLBFS<V>)search).degSequenceOrder(g), min));
-//				}		
+					results.addFirst(controller.branch(t));
+					//update bound
+					bound -= (t.getMinMoves().getChanges().size() - s.getChanges().size());
+				}				
 			}
 			
 			
@@ -197,7 +198,7 @@ public class qtBranchComponents<V> extends qtAllStruct<V>
 			
 			min.getChanges().addAll(temp);
 			
-			//if this solution is better than current one
+			//if new solution is better than current one
 			Graph<V, Pair<V>> rtn = gen.applyMoves(Branch.clone.deepClone(s.getG()), min.getChanges());
 			
 			if (s.getMinMoves().getChanges().size() >= min.getChanges().size() && getSearch().isTarget(rtn))

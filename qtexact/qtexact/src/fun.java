@@ -64,8 +64,8 @@ public class fun<V> extends JApplet {
 	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException
 	{
 		//fbTest();
-		editTest();
-		//comparisonTest();
+		//editTest();
+		comparisonTest();
 	}
 	
 	public static void editTest() throws FileNotFoundException, UnsupportedEncodingException 
@@ -93,7 +93,7 @@ public class fun<V> extends JApplet {
 		
 		//fillGraphFromFile(exampleQT, "datasets/zachary.txt");
 		
-		Graph<String, Pair<String>>wine = fillGraphFromFile("datasets/wineryEdgeSet.txt");
+		//Graph<String, Pair<String>>wine = fillGraphFromFile("datasets/wineryEdgeSet.txt");
 		
 		
 		//Graph<String, Pair<String>> wine = gen.fromBipartiteFile("datasets/edgeSet.txt");
@@ -109,7 +109,7 @@ public class fun<V> extends JApplet {
 		//fillGraphFromFile(exampleQT, "datasets/grass_web.pairs");
 ////		
 ////		
-		//exampleQT = gen.treeRandom(200, 11);
+		exampleQT = gen.treeRandom(50, 11);
 		
 		//exampleQT = gen.houseStruct();
 		
@@ -121,9 +121,9 @@ public class fun<V> extends JApplet {
 
 
 		
-		visualize(wine);
+		visualize(exampleQT);
 		
-		Controller<String> c = new Controller<String>(null, true);
+		Controller<Integer> c = new Controller<Integer>(null, true);
 		
 
 //		
@@ -132,7 +132,7 @@ public class fun<V> extends JApplet {
 //		qtAllStruct<Integer> all2 = new qtAllStruct<Integer>(c);
 		
 		
-		qtBranchComponents<String> branchC = new qtBranchComponents<String>(c);
+		qtBranchComponents<Integer> branchC = new qtBranchComponents<Integer>(c);
 		
 		
 		
@@ -145,10 +145,10 @@ public class fun<V> extends JApplet {
 
 		
 		
-		Reduction<String> rC = new c4p4Reduction<String>(branchC);
+		Reduction<Integer> rC = new c4p4Reduction<Integer>(branchC);
 		branchC.addReduction(rC);
 		
-		rC = new biconnectedReduction<String>(branchC);
+		rC = new biconnectedReduction<Integer>(branchC);
 		branchC.addReduction(rC);
 		
 //		rC = new c4p4Reduction<Integer>(branchC2);
@@ -361,7 +361,7 @@ public class fun<V> extends JApplet {
 		c.setbStruct(branchC);
 		System.out.println("\nConnected component: ");
 		start = System.currentTimeMillis();
-		c.branchStart(wine, 16).getG();
+		c.branchStart(exampleQT, 16).getG();
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		
@@ -387,11 +387,11 @@ public class fun<V> extends JApplet {
 	}
 
 	
-	public static void visualize(Graph<String, Pair<String>> wine){
+	public static void visualize(Graph<Integer, Pair<Integer>> exampleQT){
 		JFrame jf = new JFrame();
 		jf.setSize(1900, 1000);
 
-		FRLayout frl = new FRLayout(wine);
+		FRLayout frl = new FRLayout(exampleQT);
 
 		frl.setAttractionMultiplier(3);
 		frl.setRepulsionMultiplier(1.1);
@@ -531,7 +531,7 @@ public class fun<V> extends JApplet {
 				Graph<Integer, Pair<Integer>> og = clone.deepClone(graph);
 				int bound = 0;
 				
-				
+				boundloop:
 				while (bound < 17)
 				{
 					moves = new HashSet<Integer>();
@@ -565,12 +565,13 @@ public class fun<V> extends JApplet {
 						else if (success.isEmpty())
 							success.add(search.isQT(ans.getG()));
 						
+						if (success.iterator().next())
+						{
+							break boundloop;
+						}
+						
 					}
-//					if (!success.iterator().next())
-//					{
-//						seed++;
-//						break seedloop;
-//					}
+
 					bound++;
 				}
 				seed++;
