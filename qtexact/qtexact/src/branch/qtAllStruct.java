@@ -16,6 +16,8 @@ public class qtAllStruct<V> extends qtBranchNoHeuristic<V>
 	private int all;
 	private int fail;
 	private qtCo4Pan<V> co4pan;
+	private qtDiamondC4<V> diamondC4;
+	private qtDoubleC4<V> doubleC4;
 	
 	public qtAllStruct(Controller<V> controller) {
 		super(controller);
@@ -26,6 +28,8 @@ public class qtAllStruct<V> extends qtBranchNoHeuristic<V>
 		y = new qtY<V>(controller);
 		pan = new qtPan<V>(controller);
 		co4pan = new qtCo4Pan<V>(controller);
+		diamondC4 = new qtDiamondC4<V>(controller);
+		doubleC4 = new qtDoubleC4<V>(controller);
 	}
 	
 	/**
@@ -100,6 +104,12 @@ public class qtAllStruct<V> extends qtBranchNoHeuristic<V>
 			//System.out.println("Found a kite.");
 			kite.branchingRules(s, searchResult);
 			//System.out.println("end of kite.");
+			return s;
+		case (-10):
+			doubleC4.branchingRules(s, searchResult);
+			return s;
+		case (-11):
+			diamondC4.branchingRules(s, searchResult);
 			return s;
 		default:
 			return super.branchingRules(s, searchResult);

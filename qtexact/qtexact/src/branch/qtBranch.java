@@ -101,6 +101,23 @@ public abstract class qtBranch<V> extends Branch<V>
 		return s;
 	}
 	
+	public branchingReturnC<V> add3Result(branchingReturnC<V> s, V v0, V v1, V v2, V v3, V v4, V v5)
+	{
+		
+		//update degree sequence 
+		addEdge(s.getG(), s.getDeg(), v0, v1);
+		addEdge(s.getG(), s.getDeg(), v2, v3);
+		addEdge(s.getG(), s.getDeg(), v4, v5);
+		
+		
+		
+		//add edge to changes 
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v0, v1), true));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v2, v3), true));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v4, v5), true));
+		
+		return s;
+	}
 	
 	public branchingReturnC<V> addRemoveResult(branchingReturnC<V> s, V v0, V v1, V v2, V v3)
 	{
@@ -132,6 +149,26 @@ public abstract class qtBranch<V> extends Branch<V>
 		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v0, v1), true));
 		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v2, v3), false));
 		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v4, v5), false));
+		
+		return s;
+	}
+	
+	public branchingReturnC<V> add2Remove2Result(branchingReturnC<V> s, V v0, V v1, V v2, V v3, V v4, V v5, V v6, V v7)
+	{
+		
+		//update degree sequence 
+		addEdge(s.getG(), s.getDeg(), v0, v1);
+		addEdge(s.getG(), s.getDeg(), v2, v3);
+		removeEdge(s.getG(), s.getDeg(), v4, v5);
+		removeEdge(s.getG(), s.getDeg(), v6, v7);
+		
+		
+		
+		//add edge to changes 
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v0, v1), true));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v2, v3), true));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v4, v5), false));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v6, v7), false));
 		
 		return s;
 	}
@@ -181,6 +218,32 @@ public abstract class qtBranch<V> extends Branch<V>
 		return s;
 		
 	}
+	
+	protected branchingReturnC<V> delete4Result(branchingReturnC<V> s, V v0, V v1, V v2, V v3, V v4, V v5, V v6, V v7)
+	{	
+		//update degree sequence (first edge)
+		removeEdge(s.getG(), s.getDeg(), v0, v1);
+		
+		//update degree sequence (second edge)
+		removeEdge(s.getG(), s.getDeg(), v2, v3);
+		
+		//update degree sequence (third edge)
+		removeEdge(s.getG(), s.getDeg(), v4, v5);
+		//last edge
+		removeEdge(s.getG(), s.getDeg(), v6, v7);
+		
+		//add edge deletions to changes
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v0, v1), false));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v2, v3), false));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v4, v5), false));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v6, v7), false));
+		
+		return s;
+		
+	}
+	
+	
+	
 	
 	/**
 	 * edit a P4 by removing an edge
@@ -260,6 +323,12 @@ public abstract class qtBranch<V> extends Branch<V>
 		revert(s);
 	}
 	
+	protected void revert4(branchingReturnC<V> s)
+	{
+		revert2(s);
+		revert2(s);
+	}
+	
 	public void removeVertex(Graph<V, Pair<V>> G, ArrayList<LinkedList<V>> deg, V v0)
 	{
 		if (G.containsVertex(v0))
@@ -317,6 +386,7 @@ public abstract class qtBranch<V> extends Branch<V>
 		else
 		{
 			System.out.println("Tried to delete edge between " + v0 + " and " + v1 + ". No such edge");
+			throw new NullPointerException();
 		}
 	}
 	
@@ -331,6 +401,7 @@ public abstract class qtBranch<V> extends Branch<V>
 		if (G.containsVertex(v0))
 		{
 			System.out.println("Tried to add vertex " + v0 + ", already exists");
+			throw new NullPointerException();
 		}
 		else
 		{
@@ -684,6 +755,47 @@ public abstract class qtBranch<V> extends Branch<V>
 							}
 						}
 					}
+					
+					//a house has not been found, so a double C4 is present
+					V nonNeighbour = null;
+					for (V v : vertices)
+					{
+						if (!s.getG().getNeighbors(n).contains(v))
+						{
+							nonNeighbour = v;
+							break;
+						}
+					}
+					//rotate into shape
+					while (!vertices.get(0).equals(nonNeighbour))
+						vertices.add(0, vertices.remove(3));
+					
+					//add 5th vertex
+					vertices.add(n);
+					obstruction.setFlag(-10);
+					return searchResult;
+					
+				}
+				else if (nVal == 3)
+				{
+					//find diamond C4
+					V nonNeighbour = null;
+					for (V v : vertices)
+					{
+						if (!s.getG().getNeighbors(n).contains(v))
+						{
+							nonNeighbour = v;
+							break;
+						}
+					}
+					//rotate into shape
+					while (!vertices.get(0).equals(nonNeighbour))
+						vertices.add(0, vertices.remove(3));
+					
+					//add 5th vertex
+					vertices.add(n);
+					obstruction.setFlag(-11);
+					return searchResult;
 				}
 			}
 			

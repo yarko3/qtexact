@@ -747,10 +747,10 @@ public class qtGenerate<V>
 		
 		
 		//P5
-//		g.addEdge(new Pair<Integer>(0, 1), 0, 1);
-//		g.addEdge(new Pair<Integer>(1, 2), 1, 2);
-//		g.addEdge(new Pair<Integer>(2, 3), 2, 3);
-//		g.addEdge(new Pair<Integer>(3, 4), 3, 4);
+		g.addEdge(new Pair<Integer>(0, 1), 0, 1);
+		g.addEdge(new Pair<Integer>(1, 2), 1, 2);
+		g.addEdge(new Pair<Integer>(2, 3), 2, 3);
+		g.addEdge(new Pair<Integer>(3, 4), 3, 4);
 		
 		
 		//fork
@@ -760,12 +760,21 @@ public class qtGenerate<V>
 //		g.addEdge(new Pair<Integer>(2, 4), 2, 4);
 		
 		//4 pan
-		g.addEdge(new Pair<Integer>(0, 1), 0, 1);
-		g.addEdge(new Pair<Integer>(1, 2), 1, 2);
-		g.addEdge(new Pair<Integer>(2, 3), 2, 3);
-		g.addEdge(new Pair<Integer>(3, 4), 3, 4);
-		g.addEdge(new Pair<Integer>(4, 1), 4, 1);
+//		g.addEdge(new Pair<Integer>(0, 1), 0, 1);
+//		g.addEdge(new Pair<Integer>(1, 2), 1, 2);
+//		g.addEdge(new Pair<Integer>(2, 3), 2, 3);
+//		g.addEdge(new Pair<Integer>(3, 4), 3, 4);
+//		g.addEdge(new Pair<Integer>(4, 1), 4, 1);
 	
+		//double C4
+//		g.addEdge(new Pair<Integer>(0, 1), 0, 1);
+//		g.addEdge(new Pair<Integer>(1, 2), 1, 2);
+//		g.addEdge(new Pair<Integer>(2, 3), 2, 3);
+//		g.addEdge(new Pair<Integer>(3, 4), 3, 4);
+//		g.addEdge(new Pair<Integer>(4, 1), 4, 1);
+//		g.addEdge(new Pair<Integer>(0, 3), 0, 3);
+//		
+//		g.addEdge(new Pair<Integer>(4, 2), 4, 2);
 		
 		
 

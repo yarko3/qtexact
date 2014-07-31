@@ -104,6 +104,8 @@ public class Controller<V>
 		return goal;
 	}
 	
+	
+	
 	/**
 	 * start of edit
 	 * @param G graph to be edited
@@ -118,7 +120,6 @@ public class Controller<V>
 		timesRun = 0;
 
 		
-		
 		//set up branching
 		branchingReturnC<V> goal = bStruct.setup(G, bound);
 		
@@ -130,6 +131,7 @@ public class Controller<V>
 		
 		
 		Graph<V, Pair<V>> rtn = gen.applyMoves(Branch.clone.deepClone(goal.getG()), goal.getMinMoves().getChanges());
+		
 		
 		System.out.println("Branching run: " + timesRun);
 		
@@ -239,8 +241,6 @@ public class Controller<V>
 				s.setMinMoves(newMin);
 			}
 			
-			if (reduced)
-				bStruct.reduceRevert(s);
 		
 			
 			return s;
