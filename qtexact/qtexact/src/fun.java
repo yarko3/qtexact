@@ -80,7 +80,7 @@ public class fun<V> extends JApplet {
 		
 		//exampleQT = gen.ER(11, 0.07, (long) 2);
 		
-		//fillGraphFromFile(exampleQT, "datasets/zachary.txt");
+		exampleQT = fillGraphFromFile("datasets/zachary.txt");
 		
 		//Graph<String, Pair<String>>wine = fillGraphFromFile("datasets/wineryEdgeSet.txt");
 		
@@ -98,7 +98,7 @@ public class fun<V> extends JApplet {
 		//exampleQT = fillGraphFromFile("datasets/grass_web.pairs");
 ////		
 ////		
-		exampleQT = gen.treeRandom(50, 8);
+		//exampleQT = gen.treeRandom(50, 5);
 		
 		//exampleQT = gen.houseStruct();
 		
@@ -287,7 +287,7 @@ public class fun<V> extends JApplet {
 		c.setbStruct(branchC);
 		System.out.println("\nConnected component: ");
 		start = System.currentTimeMillis();
-		System.out.println(yan.search(c.branchStart(exampleQT, 17).getG()));
+		System.out.println(yan.search(c.branchStart(exampleQT, 12).getG()));
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		
@@ -543,7 +543,7 @@ public class fun<V> extends JApplet {
 	private static void wineTest() throws FileNotFoundException, UnsupportedEncodingException
 	{
 		
-		Graph<String, Pair<String>> wine = fillGraphFromFileWithStrings("datasets/wine/k5edgeSet.txt");
+		Graph<String, Pair<String>> wine = fillGraphFromFileWithStrings("datasets/wine/wineryEdgeSet.txt");
 		
 		
 		Controller<String> c = new Controller<String>(null, true);
@@ -562,7 +562,7 @@ public class fun<V> extends JApplet {
 		c.setbStruct(branchC);
 		System.out.println("\nConnected component: ");
 		long start = System.currentTimeMillis();
-		branchingReturnC<String> rtn = c.branchStart(wine, 18);
+		branchingReturnC<String> rtn = c.branchStart(wine, 15);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		
