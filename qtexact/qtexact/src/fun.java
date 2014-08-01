@@ -98,7 +98,7 @@ public class fun<V> extends JApplet {
 		//exampleQT = fillGraphFromFile("datasets/grass_web.pairs");
 ////		
 ////		
-		exampleQT = gen.treeRandom(72, 5);
+		exampleQT = gen.treeRandom(50, 8);
 		
 		//exampleQT = gen.houseStruct();
 		
@@ -260,11 +260,11 @@ public class fun<V> extends JApplet {
 //		c.setbStruct(all2);
 //		System.out.println("\nAll structures (new reductions): ");
 //		start = System.currentTimeMillis();
-//		System.out.println(yan.search(c.branchStart(exampleQT, 18).getG()));
+//		System.out.println(yan.search(c.branchStart(exampleQT, 17).getG()));
 //		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 //		
 //		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
-////		
+//		
 //		Graph<Integer, Pair<Integer>> cln9 = clone.deepClone(exampleQT);
 //		visualize(cln9);
 		
@@ -274,7 +274,7 @@ public class fun<V> extends JApplet {
 //		c.setbStruct(nothing);
 //		System.out.println("\nNo Heuristic: ");
 //		start = System.currentTimeMillis();
-//		c.branchStart(exampleQT, 3);
+//		c.branchStart(exampleQT, 15);
 //		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 //		
 //		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
@@ -283,18 +283,7 @@ public class fun<V> extends JApplet {
 //		Graph<Integer, Pair<Integer>> cln3 = clone.deepClone(exampleQT);
 //		visualize(cln3);
 //		
-//		c.setbStruct(pan);
-//		System.out.println("\npan: ");
-//		start = System.currentTimeMillis();
-//		c.branchStart(exampleQT, 8);
-//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
-//		
-//		
-//		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
-////		
-//		Graph<Integer, Pair<Integer>> cln2 = clone.deepClone(exampleQT);
-//		visualize(cln2);
-//	
+
 		c.setbStruct(branchC);
 		System.out.println("\nConnected component: ");
 		start = System.currentTimeMillis();
@@ -305,14 +294,6 @@ public class fun<V> extends JApplet {
 		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
 		
 		
-//		c.setbStruct(branchC2);
-//		System.out.println("\nConnected component: (with centralReduction) ");
-//		start = System.currentTimeMillis();
-//		System.out.println(yan.search(c.branchStart(wine, 17).getG()));
-//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
-//		
-//		
-//		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
 
 		
 		start = System.currentTimeMillis();
@@ -545,11 +526,10 @@ public class fun<V> extends JApplet {
 						else if (success.isEmpty())
 							success.add(search.isQT(ans.getG()));
 						
-						if (success.iterator().next())
-						{
-							break boundloop;
-						}
-						
+					}
+					if (success.iterator().next())
+					{
+						break boundloop;
 					}
 
 					bound++;

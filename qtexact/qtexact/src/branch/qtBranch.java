@@ -153,6 +153,46 @@ public abstract class qtBranch<V> extends Branch<V>
 		return s;
 	}
 	
+	
+	public branchingReturnC<V> addRemove3Result(branchingReturnC<V> s, V v0, V v1, V v2, V v3, V v4, V v5, V v6, V v7)
+	{
+		
+		//update degree sequence 
+		addEdge(s.getG(), s.getDeg(), v0, v1);
+		removeEdge(s.getG(), s.getDeg(), v2, v3);
+		removeEdge(s.getG(), s.getDeg(), v4, v5);
+		removeEdge(s.getG(), s.getDeg(), v6, v7);
+		
+		
+		
+		//add edge to changes 
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v0, v1), true));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v2, v3), false));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v4, v5), false));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v6, v7), false));
+		
+		return s;
+	}
+	
+	
+	public branchingReturnC<V> add2RemoveResult(branchingReturnC<V> s, V v0, V v1, V v2, V v3, V v4, V v5)
+	{
+		
+		//update degree sequence 
+		addEdge(s.getG(), s.getDeg(), v0, v1);
+		addEdge(s.getG(), s.getDeg(), v2, v3);
+		removeEdge(s.getG(), s.getDeg(), v4, v5);
+		
+		
+		
+		//add edge to changes 
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v0, v1), true));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v2, v3), true));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v4, v5), false));
+		
+		return s;
+	}
+	
 	public branchingReturnC<V> add2Remove2Result(branchingReturnC<V> s, V v0, V v1, V v2, V v3, V v4, V v5, V v6, V v7)
 	{
 		
@@ -469,6 +509,7 @@ public abstract class qtBranch<V> extends Branch<V>
 		else
 		{
 			System.out.println("Tried to add edge between " + v0 + " and " + v1 + ". Edge already exists.");
+			throw new NullPointerException();
 		}
 	}
 	

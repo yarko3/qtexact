@@ -40,7 +40,7 @@ public class qtP5<V> extends qtBranchNoHeuristic<V>
 			ArrayList<V> lexResult = certificate.getVertices();
 			double oldPercent = s.getPercent();
 			
-			int ruleCount = 11;
+			int ruleCount = 10;
 			
 			
 			//delete 2
@@ -53,7 +53,7 @@ public class qtP5<V> extends qtBranchNoHeuristic<V>
 					s.setPercent(oldPercent / ruleCount);
 				}
 				
-				controller.branch(delete2Result(s, lexResult.get(3), lexResult.get(4), lexResult.get(0), lexResult.get(1)));
+				controller.branch(delete2Result(s, lexResult.get(0), lexResult.get(1), lexResult.get(3), lexResult.get(4)));
 				
 				//revert changes
 				revert2(s);		
@@ -67,32 +67,6 @@ public class qtP5<V> extends qtBranchNoHeuristic<V>
 			else
 				if (output)
 					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
-			
-			//delete 2
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true))
-					 && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)))
-			{
-				if (output)
-				{
-					//change progress percent
-					s.setPercent(oldPercent / ruleCount);
-				}
-				
-				controller.branch(delete2Result(s, lexResult.get(0), lexResult.get(1), lexResult.get(1), lexResult.get(2)));
-				
-				//revert changes
-				revert2(s);		
-				
-				if (output)
-				{
-					//revert percent
-					s.setPercent(oldPercent);
-				}
-			}
-			else
-				if (output)
-					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
-			
 			
 			
 			//add one, delete one

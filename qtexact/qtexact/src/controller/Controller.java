@@ -1,6 +1,9 @@
 package controller;
 
+import java.util.LinkedList;
+
 import qtUtils.branchingReturnC;
+import qtUtils.myEdge;
 import qtUtils.qtGenerate;
 import abstractClasses.Branch;
 import abstractClasses.SearchResult;
@@ -104,6 +107,7 @@ public class Controller<V>
 		return goal;
 	}
 	
+	LinkedList<LinkedList<myEdge<V>>> solutions = new LinkedList<LinkedList<myEdge<V>>>();
 	
 	
 	/**
@@ -125,12 +129,19 @@ public class Controller<V>
 		
 		goal = branch(goal);
 		
+		
+//		System.out.println("Solutions: ");
+//		for (LinkedList<myEdge<V>> l : solutions)
+//			System.out.println(l);
+		
+		
 		System.out.println("Completed after moves: " + goal.getMinMoves().getChanges().size());
 		
 		qtGenerate<V> gen = new qtGenerate<V>();
 		
 		
 		Graph<V, Pair<V>> rtn = gen.applyMoves(Branch.clone.deepClone(goal.getG()), goal.getMinMoves().getChanges());
+		
 		
 		
 		System.out.println("Branching run: " + timesRun);
@@ -167,26 +178,32 @@ public class Controller<V>
 		int bound = s.getMinMoves().getChanges().size() - s.getChanges().size();
 		
 		//check if bound allows any more moves (does not matter if current graph state is at target)
-//		if (bound < 0)
-//		{
-//			updatePercent(s);
-//			return s;
-//		}
+		if (bound < 0)
+		{
+			updatePercent(s);
+			return s;
+		}
 		
 		//increment the number of times this controller has branched
 		timesRun++;
 		
+//		if (timesRun == 127)
+//		{
+//			@SuppressWarnings("unused")
+//			int i = 0;
+//		}
+//		
 //		if (s.getChanges().toString().equals("[Delete: <38, 1>]"))
 //			System.out.println();
 		
-		//System.out.println(s.getChanges());
+//		System.out.println(s.getChanges());
 //		System.out.println("Times run: " + timesRun);
 //		System.out.println("Bound: " + bound);
 //		System.out.println("Moves made: " + s.getChanges().size());
 //		System.out.println("Min moves: " + s.getMinMoves().getChanges().size());
 //		System.out.println("Size of graph: " + s.getG().getVertexCount());
-//
-//		
+
+		
 //		if (s.getMinMoves().getChanges().size() > globalBound)
 //		{
 //			System.out.println("\n\nWhoa: global bound " + globalBound);
@@ -241,7 +258,49 @@ public class Controller<V>
 				s.setMinMoves(newMin);
 			}
 			
-		
+			//revert reduction
+			if (reduced)
+			{
+				bStruct.reduceRevert(s);
+			}
+			
+			
+			//USED FOR GETTING BRANCHING RULES
+//			boolean flag = false;
+//			
+//			for (int i = 0; i < solutions.size(); i++)
+//			{
+//				LinkedList<myEdge<V>> l = solutions.get(i);
+//				
+//				//solution has already been found
+//				if (s.getChanges().containsAll(l))
+//				{
+//					flag = true;
+//					break;
+//				}
+//				
+//				if (l.containsAll(s.getChanges()))
+//				{
+//					solutions.remove(i);
+//					if (flag == false)
+//					{
+//						flag = true;
+//						solutions.add(i, bStruct.clone.deepClone(s.getChanges()));
+//					}
+//				}
+//			}
+//			
+//			
+//			
+//			
+//			if (solutions.isEmpty() || flag == false)
+//			{
+//				solutions.add(bStruct.clone.deepClone(s.getChanges()));
+//			}
+//			
+//			
+			
+			
 			
 			return s;
 		}
