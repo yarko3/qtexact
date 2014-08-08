@@ -114,50 +114,68 @@ public class Controller<V>
 	
 	public branchingReturnC<V> greedyEdit(Graph<V, Pair<V>> G)
 	{
+		//initialize greedy class
 		maxObsGreedy<V> greedy = new maxObsGreedy<V>((qtBranch<V>) bStruct);
-		
+		//setup the branchingReturnC with an empty MinMoves
 		branchingReturnC<V> s = bStruct.setup(G);
-		
+		//run greedy approach
 		greedy.greedyEdit(s);
-		int oldC = 0;
+		
+		System.out.println("Greedy terminated after " + s.getChanges().size() + " moves.");
+		System.out.println("Greedy solution was " + ((bStruct.getSearch().isTarget(s.getG())) ? "" : " not ") + "successful");
+		
+		//initialize old solution count & new solution count
+		int oldC = s.getMinMoves().getChanges().size();
 		int newC = 0;
-		branchingReturnC<V> goal;
 		//store original greedy count
 		int ogCount = s.getChanges().size();
 		
 		
-		System.out.println("Greedy finished in: " + s.getChanges().size());
+		//save old moves as best solution so far
+		s.getMinMoves().setChanges(bStruct.clone.deepClone(s.getChanges()));
+		
+		
 		do
 		{
-			oldC = s.getChanges().size();
-			newC = oldC;
+			//reset controller variables
+			globalPercent = 0;
+			percent = 0;
+			timesRun = 0;
 			
-			//save old moves as best solution so far
-			s.getMinMoves().setChanges(bStruct.clone.deepClone(s.getChanges()));
+			
+			//store old solution count
+			oldC = s.getMinMoves().getChanges().size();
 			
 			//how many moves to undo
 			int numRevert;
-			if (ogCount - 10 >= 0)
-				numRevert = 10;
+			if (ogCount - 11 >= 0)
+				numRevert = 11;
 			else
 			{
 				numRevert = ogCount;
 			}
-			
+			//update the number of initial greedy choices still left in s
 			ogCount -= numRevert;
-			
+			//revert the number of moves to be tried by exact algorithm
 			((qtBranch<V>) bStruct).revert(s, numRevert);
 			
-			goal = branch(s);
+			//branch with exact algorithm with a bound of numRevert
+			branch(s);
 			
+			//new solution size
 			newC = s.getMinMoves().getChanges().size();
 			
+			System.out.println("Current best solution: " + s.getMinMoves().getChanges().size());
+			
+			
+			//repeat until exact algorithm does not provide a better answer
 		}while (oldC > newC);
 		
 		//undo all moves
 		((qtBranch<V>) bStruct).revert(s, ogCount);
 		
-		Graph<V, Pair<V>> rtn = gen.applyMoves(Branch.clone.deepClone(goal.getG()), goal.getMinMoves().getChanges());
+		//check for solution correctness
+		Graph<V, Pair<V>> rtn = gen.applyMoves(Branch.clone.deepClone(s.getG()), s.getMinMoves().getChanges());
 		
 		
 		
@@ -169,16 +187,16 @@ public class Controller<V>
 		if (bStruct.getSearch().isTarget(rtn))
 		{
 			System.out.println("Solution found. ");
-			System.out.println(goal.getMinMoves().getChanges());
-			goal.setGraph(rtn);
-			return goal;
+			System.out.println(s.getMinMoves().getChanges());
+			s.setGraph(rtn);
+			return s;
 		}
 		else
 		{
 			//otherwise return original graph
 			System.out.println("Solution not found. ");
 			//goal.setGraph(null);
-			return goal;
+			return s;
 		}
 		
 		

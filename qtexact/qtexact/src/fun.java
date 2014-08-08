@@ -95,10 +95,10 @@ public class fun<V> extends JApplet {
 		
 		
 		
-		exampleQT = fillGraphFromFile("datasets/grass_web.pairs");
-////		
-////		
-		//exampleQT = gen.treeRandom(120, 5);
+		//exampleQT = fillGraphFromFile("datasets/grass_web.pairs");
+
+		
+		exampleQT = gen.treeRandom(120, 8);
 		
 		//exampleQT = gen.houseStruct();
 		

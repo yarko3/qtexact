@@ -47,27 +47,33 @@ public class maxObsGreedy<V> extends GreedyEdit<V>
 					//if an edge between v0 and v1 exists, remove it and count the number of obstructions
 					if (s.getG().isNeighbor(v0, v1))
 					{
-						bStruct.deleteResult(s, v0, v1);
-						newObs = getObstructionCount(s.getG());
-						if (newObs < best && !s.getChanges().contains(new myEdge<V>(new Pair<V>(v0, v1), true)))
+						if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(v0, v1), true)))
 						{
-							best = newObs;
-							move = new myEdge<V>(new Pair<V>(v0, v1), false);
+							bStruct.deleteResult(s, v0, v1);
+							newObs = getObstructionCount(s.getG());
+							if (newObs < best)
+							{
+								best = newObs;
+								move = new myEdge<V>(new Pair<V>(v0, v1), false);
+							}
+							bStruct.revert(s);
 						}
-						bStruct.revert(s);
 							
 					}
 					//add an edge
 					else
 					{
-						bStruct.addResult(s, v0, v1);
-						newObs = getObstructionCount(s.getG());
-						if (newObs < best && !s.getChanges().contains(new myEdge<V>(new Pair<V>(v0, v1), false)))
+						if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(v0, v1), false)))
 						{
-							best = newObs;
-							move = new myEdge<V>(new Pair<V>(v0, v1), true);
+							bStruct.addResult(s, v0, v1);
+							newObs = getObstructionCount(s.getG());
+							if (newObs < best)
+							{
+								best = newObs;
+								move = new myEdge<V>(new Pair<V>(v0, v1), true);
+							}
+							bStruct.revert(s);
 						}
-						bStruct.revert(s);
 					}
 				}
 			}
