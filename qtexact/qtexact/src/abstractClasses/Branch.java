@@ -61,6 +61,10 @@ public abstract class Branch<V>
 	 */
 	public abstract branchingReturnC<V> setup(Graph<V, Pair<V>> G, int bound);
 	
+	
+	public abstract branchingReturnC<V> setup(Graph<V, Pair<V>> G);
+	
+	
 	/**
 	 * the branching rules, given an obstruction in SearchResult
 	 * @param s

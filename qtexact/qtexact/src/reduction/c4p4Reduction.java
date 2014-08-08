@@ -37,15 +37,17 @@ public class c4p4Reduction<V> extends Reduction<V>
 		
 		//look through first few two non-neighbours
 		
-		ArrayList<V> vertices = bStruct.getSearch().orderVerticesNonDecreasingDegree(s.getG());
+		ArrayList<V> vertices = bStruct.getSearch().flattenAndReverseDeg(bStruct.getSearch().degSequenceOrder((s.getG())));
+		
 		//number of nodes to be checked
-		int max = s.getG().getVertexCount();
+		int max = s.getG().getVertexCount() / 7;
 		
-		max = s.getG().getVertexCount() / bound;
 		
-		max = (s.getG().getVertexCount() < bound) ? s.getG().getVertexCount() : bound;
+		//max = (s.getG().getVertexCount() < bound) ? s.getG().getVertexCount() : bound;
 		
-		//max = s.getG().getVertexCount();
+		
+		max = s.getG().getVertexCount();
+		
 		
 		//for each most connected vertex, check other most connected vertices
 		outer:
@@ -97,7 +99,8 @@ public class c4p4Reduction<V> extends Reduction<V>
 					}
 					
 					//if number of induced C4s is greater than the allowed number of moves, add an edge
-					if (common.size() > s.getMinMoves().getChanges().size() - s.getChanges().size())
+					if (common.size() > s.getMinMoves().getChanges().size() - s.getChanges().size() 
+							&& !s.getChanges().contains(new myEdge<V>(new Pair<V>(v0, v1), false)))
 					{
 						
 						//toApply.addLast(new myEdge<V>(new Pair<V>(v0, v1), true));
@@ -105,12 +108,15 @@ public class c4p4Reduction<V> extends Reduction<V>
 						s = bStruct.addResult(s, v0, v1);
 						count++;
 						
-						if (count >= bound)
+						if (count > bound)
 							break outer;
 					}
 					//add edge to list of known bad edges
 					else
-						s.getKnownBadEdges().add(new Pair<V>(v0, v1));
+					{
+						if (common.size() > 1)
+							s.getKnownBadEdges().add(new Pair<V>(v0, v1));
+					}
 				}
 				
 				//use P4 reduction
@@ -119,15 +125,24 @@ public class c4p4Reduction<V> extends Reduction<V>
 					//edge to be checked
 					Pair<V> e = new Pair<V>(v0, v1);
 					//if leaving the edge is out of bounds, remove this edge
-					if (!s.getChanges().contains(new myEdge<V>(e, true)) && getObstructionCount(e, s.getG()) > s.getMinMoves().getChanges().size() - s.getChanges().size())
+					int obstructions = getObstructionCount(e, s.getG());
+					if (!s.getChanges().contains(new myEdge<V>(e, true)) && obstructions > s.getMinMoves().getChanges().size() - s.getChanges().size())
 					{
 						//remove edge
 						s = bStruct.deleteResult(s, v0, v1);
 						count++;
 						
-						if (count >= bound)
+						if (count > bound)
 							break outer;
 						
+					}
+					else
+					{
+						//obstructions exist on this edge, so add it to known bad edges
+						if (obstructions > 0)
+						{
+							s.getKnownBadEdges().add(e);
+						}
 					}
 				}
 			}

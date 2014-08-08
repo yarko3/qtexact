@@ -5,10 +5,13 @@ import java.util.LinkedList;
 import qtUtils.branchingReturnC;
 import qtUtils.myEdge;
 import qtUtils.qtGenerate;
+import search.qtLBFS;
 import abstractClasses.Branch;
 import abstractClasses.SearchResult;
+import branch.qtBranch;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Pair;
+import greedy.maxObsGreedy;
 
 /**
  * an abstract class responsible for the recursive control of branching
@@ -23,7 +26,7 @@ public class Controller<V>
 	private double globalPercent;
 	private double percent;
 	private boolean output;
-	
+	qtGenerate<V> gen = new qtGenerate<V>();
 	
 	/**
 	 * branching structure used by the controller
@@ -109,6 +112,78 @@ public class Controller<V>
 	
 	LinkedList<LinkedList<myEdge<V>>> solutions = new LinkedList<LinkedList<myEdge<V>>>();
 	
+	public branchingReturnC<V> greedyEdit(Graph<V, Pair<V>> G)
+	{
+		maxObsGreedy<V> greedy = new maxObsGreedy<V>((qtBranch<V>) bStruct);
+		
+		branchingReturnC<V> s = bStruct.setup(G);
+		
+		greedy.greedyEdit(s);
+		int oldC = 0;
+		int newC = 0;
+		branchingReturnC<V> goal;
+		//store original greedy count
+		int ogCount = s.getChanges().size();
+		
+		
+		System.out.println("Greedy finished in: " + s.getChanges().size());
+		do
+		{
+			oldC = s.getChanges().size();
+			newC = oldC;
+			
+			//save old moves as best solution so far
+			s.getMinMoves().setChanges(bStruct.clone.deepClone(s.getChanges()));
+			
+			//how many moves to undo
+			int numRevert;
+			if (ogCount - 10 >= 0)
+				numRevert = 10;
+			else
+			{
+				numRevert = ogCount;
+			}
+			
+			ogCount -= numRevert;
+			
+			((qtBranch<V>) bStruct).revert(s, numRevert);
+			
+			goal = branch(s);
+			
+			newC = s.getMinMoves().getChanges().size();
+			
+		}while (oldC > newC);
+		
+		//undo all moves
+		((qtBranch<V>) bStruct).revert(s, ogCount);
+		
+		Graph<V, Pair<V>> rtn = gen.applyMoves(Branch.clone.deepClone(goal.getG()), goal.getMinMoves().getChanges());
+		
+		
+		
+		System.out.println("Branching run: " + timesRun);
+		
+		
+		
+		//return QT graph if edit succeeds
+		if (bStruct.getSearch().isTarget(rtn))
+		{
+			System.out.println("Solution found. ");
+			System.out.println(goal.getMinMoves().getChanges());
+			goal.setGraph(rtn);
+			return goal;
+		}
+		else
+		{
+			//otherwise return original graph
+			System.out.println("Solution not found. ");
+			//goal.setGraph(null);
+			return goal;
+		}
+		
+		
+	}
+	
 	
 	/**
 	 * start of edit
@@ -137,7 +212,6 @@ public class Controller<V>
 		
 		System.out.println("Completed after moves: " + goal.getMinMoves().getChanges().size());
 		
-		qtGenerate<V> gen = new qtGenerate<V>();
 		
 		
 		Graph<V, Pair<V>> rtn = gen.applyMoves(Branch.clone.deepClone(goal.getG()), goal.getMinMoves().getChanges());
@@ -218,11 +292,11 @@ public class Controller<V>
 		boolean reduced = false;
 		
 		//if branch has a reduction and bound allows more moves, reduce
-		if (bStruct.getReductions() != null && bound > 0)
+		if (bStruct.getReductions() != null)
 		{
 			//run reduction	
 			reduced = true;
-			s = bStruct.reduce(s);
+			bStruct.reduce(s);
 			//update bound
 			bound = s.getMinMoves().getChanges().size() - s.getChanges().size();
 			
@@ -240,9 +314,32 @@ public class Controller<V>
 			}
 		}
 		
-		//check if graph is target
-		SearchResult<V> searchResult =  bStruct.getSearch().search(s);
-		
+		SearchResult<V> searchResult = null;
+		if (!s.getKnownBadEdges().isEmpty())
+		{
+			//find an obstruction on a bad edge and do connected component check
+			while (searchResult == null && !s.getKnownBadEdges().isEmpty())
+			{
+				//get a bad edge from HashSet
+				Pair<V> badEdge = s.getKnownBadEdges().iterator().next();
+				//remove bad edge from HashSet
+				s.getKnownBadEdges().remove(badEdge);
+				//get search results from badEdge
+				searchResult = ((qtLBFS<V>) (bStruct.getSearch())).searchResultFromBadEdge(s, badEdge);
+			}
+			
+			//s.getKnownBadEdges().clear();
+			
+			if (searchResult == null)
+			{
+				searchResult = bStruct.getSearch().search(s);
+			}
+		}
+		else
+		{
+			//check if graph is target
+			searchResult =  bStruct.getSearch().search(s);
+		}
 		
 		//target graph has been found
 		if (searchResult.isTarget())

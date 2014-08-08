@@ -207,6 +207,10 @@ public class qtBranchComponents<V> extends qtAllStruct<V>
 				s.setMinMoves(min);
 			}
 			
+			//run garbage collection
+			//System.gc();
+			
+			
 			return s;
 		}
 		
@@ -259,6 +263,10 @@ public class qtBranchComponents<V> extends qtAllStruct<V>
 			//update search result
 			result = search.search(s);
 		}
+		//free memory
+		temp = null;
+		s = null;
+		result = null;
 		
 		return count;
 		

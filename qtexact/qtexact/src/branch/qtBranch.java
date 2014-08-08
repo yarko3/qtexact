@@ -369,6 +369,14 @@ public abstract class qtBranch<V> extends Branch<V>
 		revert2(s);
 	}
 	
+	public void revert(branchingReturnC<V> s, int n)
+	{
+		for (int i = 0; i < n; i++)
+		{
+			revert(s);
+		}
+	}
+	
 	public void removeVertex(Graph<V, Pair<V>> G, ArrayList<LinkedList<V>> deg, V v0)
 	{
 		if (G.containsVertex(v0))
@@ -754,199 +762,231 @@ public abstract class qtBranch<V> extends Branch<V>
 			hash.remove(v);
 		
 		
-		for (V n : hash.keySet())
-		{
-			//number of neighbours of n in obstruction
-			int nVal = hash.get(n);
-			
-			
-			//if C4 was found
-			if (obstruction.getFlag() == -1)
-			{	
-				if (nVal == 1)
-				{
-					//a 4 pan has been found
-					searchResult.setCertificate(construct4Pan(s, searchResult, n));
-					return searchResult;
-				}
-				
-				
-				else if (nVal == 2)
-				{
-					//look for a house
-					for (int i = 0; i < vertices.size(); i++)
-					{
-						V v = vertices.get(i);
-						if (s.getG().isNeighbor(v, n))
-						{
-							V next = vertices.get((i + 1) % 4);
-							//check next vertex for adjacency
-							if (s.getG().isNeighbor(n, next))
-							{
-								//a house has been found, rotate it into shape
-								vertices.add(0, n);
-								while (vertices.get(1) != next)
-								{
-									vertices.add(1, obstruction.getVertices().remove(4));
-								}
-								
-								obstruction.setFlag(-4);
-								return searchResult;
-								
-							}
-						}
-					}
-					
-					//a house has not been found, so a double C4 is present
-					V nonNeighbour = null;
-					for (V v : vertices)
-					{
-						if (!s.getG().getNeighbors(n).contains(v))
-						{
-							nonNeighbour = v;
-							break;
-						}
-					}
-					//rotate into shape
-					while (!vertices.get(0).equals(nonNeighbour))
-						vertices.add(0, vertices.remove(3));
-					
-					//add 5th vertex
-					vertices.add(n);
-					obstruction.setFlag(-10);
-					return searchResult;
-					
-				}
-				else if (nVal == 3)
-				{
-					//find diamond C4
-					V nonNeighbour = null;
-					for (V v : vertices)
-					{
-						if (!s.getG().getNeighbors(n).contains(v))
-						{
-							nonNeighbour = v;
-							break;
-						}
-					}
-					//rotate into shape
-					while (!vertices.get(0).equals(nonNeighbour))
-						vertices.add(0, vertices.remove(3));
-					
-					//add 5th vertex
-					vertices.add(n);
-					obstruction.setFlag(-11);
-					return searchResult;
-				}
-			}
-			
-			//if P4 was found
-			if (obstruction.getFlag() == -2)
+//		//order vertices in decreasing degree
+//		HashMap<Integer, LinkedList<V>> degHash = new HashMap<Integer, LinkedList<V>>();
+//		
+//		for (V n : hash.keySet())
+//		{
+//			int degree = hash.get(n);
+//			
+//			if (!degHash.containsKey(degree))
+//    		{
+//    			degHash.put(degree, new LinkedList<V>());
+//    		}
+//			
+//			degHash.get(degree).add(n);
+//		}
+//		
+//		PriorityQueue<Integer> pQueue = new PriorityQueue<Integer>(Collections.reverseOrder());
+//		pQueue.addAll(degHash.keySet());
+//		
+//		
+//		
+//		//get the most connected vertices first
+//		while (!pQueue.isEmpty())
+//		{
+//			int degree = pQueue.remove();
+//			
+//			if (degree == 4)
+//				continue;
+//			
+//			LinkedList<V> nextList = degHash.get(degree);
+//			
+//			for (V n : nextList)
+			for (V n : hash.keySet())
 			{
-				if (nVal == 1)
-				{
-					//either a P5 or a fork has been found
-					if (s.getG().isNeighbor(vertices.get(0), n) || s.getG().isNeighbor(vertices.get(3), n))
+				//number of neighbours of n in obstruction
+				int nVal = hash.get(n);
+				
+				//if C4 was found
+				if (obstruction.getFlag() == -1)
+				{	
+					if (nVal == 1)
 					{
-						//a P5 has been found
-						if (s.getG().isNeighbor(vertices.get(0), n))
-							vertices.add(0, n);
-						else
-							vertices.add(n);
-						obstruction.setFlag(-5);
-						
-						return searchResult;
-					}
-					else
-					{
-						//a fork has been found
-						
-						if (s.getG().isNeighbor(vertices.get(2), n))
-							vertices.add(n);
-						else
-						{
-							//reverse order of P4
-							Collections.reverse(vertices);
-							vertices.add(n);
-						}
-						obstruction.setFlag(-6);
-						
-						return searchResult;
-					}
-				}
-				else if (nVal == 2)
-				{
-					//look for 4 pan
-					if ((s.getG().isNeighbor(vertices.get(0), n) && s.getG().isNeighbor(vertices.get(2), n)) ||
-							(s.getG().isNeighbor(vertices.get(1), n) && s.getG().isNeighbor(vertices.get(3), n)))
-					{
+						//a 4 pan has been found
 						searchResult.setCertificate(construct4Pan(s, searchResult, n));
 						return searchResult;
 					}
 					
-					//look for a C5
-					if ((s.getG().isNeighbor(vertices.get(0), n) && s.getG().isNeighbor(vertices.get(3), n)))
-					{
-						vertices.add(n);
-						obstruction.setFlag(-8);
-						return searchResult;
-					}
 					
-					//look for a 3 pan with extra node on handle
-					if ((s.getG().isNeighbor(vertices.get(0), n) && s.getG().isNeighbor(vertices.get(1), n)) ||
-							(s.getG().isNeighbor(vertices.get(2), n) && s.getG().isNeighbor(vertices.get(3), n)))
+					else if (nVal == 2)
 					{
-						if (s.getG().isNeighbor(vertices.get(0), n))
+						//look for a house
+						for (int i = 0; i < vertices.size(); i++)
 						{
-							Collections.reverse(vertices);
+							V v = vertices.get(i);
+							if (s.getG().isNeighbor(v, n))
+							{
+								V next = vertices.get((i + 1) % 4);
+								//check next vertex for adjacency
+								if (s.getG().isNeighbor(n, next))
+								{
+									//a house has been found, rotate it into shape
+									vertices.add(0, n);
+									while (vertices.get(1) != next)
+									{
+										vertices.add(1, obstruction.getVertices().remove(4));
+									}
+									
+									obstruction.setFlag(-4);
+									return searchResult;
+									
+								}
+							}
 						}
+						
+						//a house has not been found, so a double C4 is present
+						V nonNeighbour = null;
+						for (V v : vertices)
+						{
+							if (!s.getG().getNeighbors(n).contains(v))
+							{
+								nonNeighbour = v;
+								break;
+							}
+						}
+						//rotate into shape
+						while (!vertices.get(0).equals(nonNeighbour))
+							vertices.add(0, vertices.remove(3));
+						
+						//add 5th vertex
 						vertices.add(n);
-						obstruction.setFlag(-7);
+						obstruction.setFlag(-10);
+						return searchResult;
+						
+					}
+					else if (nVal == 3)
+					{
+						//find diamond C4
+						V nonNeighbour = null;
+						for (V v : vertices)
+						{
+							if (!s.getG().getNeighbors(n).contains(v))
+							{
+								nonNeighbour = v;
+								break;
+							}
+						}
+						//rotate into shape
+						while (!vertices.get(0).equals(nonNeighbour))
+							vertices.add(0, vertices.remove(3));
+						
+						//add 5th vertex
+						vertices.add(n);
+						obstruction.setFlag(-11);
 						return searchResult;
 					}
 				}
-				else if (nVal == 3)
+				
+				//if P4 was found
+				if (obstruction.getFlag() == -2)
 				{
-					//look for a kite
-					if (!s.getG().isNeighbor(vertices.get(0), n) || !s.getG().isNeighbor(vertices.get(3), n))
+					if (nVal == 1)
 					{
-						if (!s.getG().isNeighbor(vertices.get(0), n))
+						//either a P5 or a fork has been found
+						if (s.getG().isNeighbor(vertices.get(0), n) || s.getG().isNeighbor(vertices.get(3), n))
 						{
-							vertices.add(n);
+							//a P5 has been found
+							if (s.getG().isNeighbor(vertices.get(0), n))
+								vertices.add(0, n);
+							else
+								vertices.add(n);
+							obstruction.setFlag(-5);
 							
-							obstruction.setFlag(-9);
 							return searchResult;
 						}
 						else
 						{
-							Collections.reverse(vertices);
-							vertices.add(n);
-							obstruction.setFlag(-9);
-							return searchResult;
+							//a fork has been found
 							
+							if (s.getG().isNeighbor(vertices.get(2), n))
+								vertices.add(n);
+							else
+							{
+								//reverse order of P4
+								Collections.reverse(vertices);
+								vertices.add(n);
+							}
+							obstruction.setFlag(-6);
+							
+							return searchResult;
 						}
 					}
-					//a house is found
-					else
+					else if (nVal == 2)
 					{
-						if (s.getG().isNeighbor(vertices.get(1), n))
+						//look for 4 pan
+						if ((s.getG().isNeighbor(vertices.get(0), n) && s.getG().isNeighbor(vertices.get(2), n)) ||
+								(s.getG().isNeighbor(vertices.get(1), n) && s.getG().isNeighbor(vertices.get(3), n)))
 						{
-							vertices.add(n);
-							obstruction.setFlag(-4);
+							searchResult.setCertificate(construct4Pan(s, searchResult, n));
 							return searchResult;
 						}
+						
+						//look for a C5
+						if ((s.getG().isNeighbor(vertices.get(0), n) && s.getG().isNeighbor(vertices.get(3), n)))
+						{
+							vertices.add(n);
+							obstruction.setFlag(-8);
+							return searchResult;
+						}
+						
+						//look for a 3 pan with extra node on handle
+						if ((s.getG().isNeighbor(vertices.get(0), n) && s.getG().isNeighbor(vertices.get(1), n)) ||
+								(s.getG().isNeighbor(vertices.get(2), n) && s.getG().isNeighbor(vertices.get(3), n)))
+						{
+							if (s.getG().isNeighbor(vertices.get(0), n))
+							{
+								Collections.reverse(vertices);
+							}
+							vertices.add(n);
+							obstruction.setFlag(-7);
+							return searchResult;
+						}
+					}
+					else if (nVal == 3)
+					{
+						//look for a kite
+						if (!s.getG().isNeighbor(vertices.get(0), n) || !s.getG().isNeighbor(vertices.get(3), n))
+						{
+							if (!s.getG().isNeighbor(vertices.get(0), n))
+							{
+								vertices.add(n);
+								
+								obstruction.setFlag(-9);
+								return searchResult;
+							}
+							else
+							{
+								Collections.reverse(vertices);
+								vertices.add(n);
+								obstruction.setFlag(-9);
+								return searchResult;
+								
+							}
+						}
+						//a house is found
 						else
 						{
-							Collections.reverse(vertices);
-							vertices.add(n);
-							obstruction.setFlag(-4);
-							return searchResult;
+							if (s.getG().isNeighbor(vertices.get(1), n))
+							{
+								vertices.add(n);
+								obstruction.setFlag(-4);
+								return searchResult;
+							}
+							else
+							{
+								Collections.reverse(vertices);
+								vertices.add(n);
+								obstruction.setFlag(-4);
+								return searchResult;
+							}
 						}
+						
 					}
-					
 				}
 			}
-		}
+			
+//		}
 		//no better structures found
 		return searchResult;
 		

@@ -11,6 +11,8 @@ import java.util.ArrayList;
  */
 public abstract class Certificate<V> 
 {
+
+
 	/**
 	 * vertices which induce obstruction
 	 */
@@ -49,5 +51,23 @@ public abstract class Certificate<V>
 		return "Vertices: " + vertices + ", flag: " + flag;
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Certificate<V> other = (Certificate<V>) obj;
+		if (flag != other.flag)
+			return false;
+		if (vertices == null) {
+			if (other.vertices != null)
+				return false;
+		} else if (!vertices.containsAll(other.vertices) && !other.vertices.containsAll(vertices))
+			return false;
+		return true;
+	}
 
 }

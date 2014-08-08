@@ -65,6 +65,27 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 		
 		return goal;
 	}
+	public branchingReturnC<V> setup(Graph<V, Pair<V>> G) {
+		
+		//keep proper degree order as an ArrayList<LinkedList<vertex>>
+		ArrayList<LinkedList<V>> deg = ((qtLBFS<V>) search).degSequenceOrder(G);
+		
+		//start with a full minMoves
+		branchingReturnC<V> minMoves = new branchingReturnC<V>(G, deg);
+		minMoves.setChanges(fillMinMoves(minMoves, 0));
+		minMoves.setMinMoves(minMoves);
+		branchingReturnC<V> goal = new branchingReturnC<V>(G, deg, minMoves);
+		
+		//output flags
+		if (output)
+		{
+			goal.setPercent(1);
+			controller.setGlobalPercent(0);
+		}
+		
+		return goal;
+	}
+	
 
 	
 	/**

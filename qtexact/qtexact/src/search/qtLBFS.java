@@ -10,6 +10,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
+import java.util.Set;
 
 import qtUtils.branchingReturnC;
 import qtUtils.lexReturnC;
@@ -18,6 +19,7 @@ import certificate.qtCertificateC;
 
 import com.rits.cloning.Cloner;
 
+import edu.uci.ics.jung.algorithms.cluster.WeakComponentClusterer;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Pair;
 
@@ -31,7 +33,7 @@ import edu.uci.ics.jung.graph.util.Pair;
 public abstract class qtLBFS<V> extends LBFS<V> 
 {
 	public static Cloner clone = new Cloner();
-
+	private WeakComponentClusterer<V, Pair<V>> cluster =  new WeakComponentClusterer<V, Pair<V>>();
 	@Override
 	public boolean isTarget(Graph<V, Pair<V>> g) {
 		return isQT(g);
@@ -149,7 +151,8 @@ public abstract class qtLBFS<V> extends LBFS<V>
 			}
 		}
 		System.out.println("Certificate failed ");
-		return null;
+		throw new NullPointerException();
+		
 		
 	}
 	/**
@@ -267,6 +270,63 @@ public abstract class qtLBFS<V> extends LBFS<V>
 			return true;
 		else
 			return false;
+	}
+	
+	public lexReturnC<V> searchResultFromBadEdge(branchingReturnC<V> s, Pair<V> edge)
+	{
+		//check if edge exists
+		if (!s.getG().isNeighbor(edge.getFirst(), edge.getSecond()))
+			return null;
+		
+		//get obstruction
+		ArrayList<V> obstruction = new ArrayList<V>();
+		qtCertificateC<V> cert = null;
+		
+		outer:
+		for (V n0 : s.getG().getNeighbors(edge.getFirst()))
+		{
+			for (V n1 : s.getG().getNeighbors(edge.getSecond()))
+			{
+				//no need to check for C4 or these neighbours being the same if coming from biconnected reduction
+				
+				//cannot be the same node
+				if (n0.equals(n1) || n0.equals(edge.getSecond()) || n1.equals(edge.getFirst()) || s.getG().isNeighbor(n0, edge.getSecond())
+						|| s.getG().isNeighbor(edge.getFirst(), n1))
+					continue;
+				
+				obstruction.add(n0);
+				obstruction.add(edge.getFirst());
+				obstruction.add(edge.getSecond());
+				obstruction.add(n1);
+				
+				//check for P4
+				
+				if (!s.getG().isNeighbor(n0, n1))
+				{	
+					cert = new qtCertificateC<V>(obstruction, -2);
+					break outer;
+				}
+				else
+				{
+					cert = new qtCertificateC<V>(obstruction, -1);
+					break outer;
+				}
+			}
+		}
+		
+		//check for connectedness
+		Set<Set<V>> cComponents = cluster.transform(s.getG());
+		
+		//generate return type
+		lexReturnC<V> rtn = new lexReturnC<V>(null, cert, false, cComponents.size() == 1, cComponents);
+		
+		if (cert == null)
+		{
+			return null;
+		}
+		
+		return rtn;
+		
 	}
 	
 }

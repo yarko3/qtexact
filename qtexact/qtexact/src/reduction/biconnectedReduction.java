@@ -70,14 +70,17 @@ public class biconnectedReduction<V> extends Reduction<V> {
 				count++;
 				
 				//if all the moves allowed have been made, break
-				if (count == bound)
+				if (count > bound)
 				{
 					break;
 				}
 			}
-			//store edge to be 
+			//store edge to be edited later
 			else
-				s.getKnownBadEdges().add(edge);
+			{
+				if (s.getG().getNeighborCount(edge.getFirst()) > 1 && s.getG().getNeighborCount(edge.getSecond()) > 1)
+					s.getKnownBadEdges().add(edge);
+			}
 		}
 		
 		stack.push(count);
