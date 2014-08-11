@@ -127,9 +127,6 @@ public class Controller<V>
 		//initialize old solution count & new solution count
 		int oldC = s.getMinMoves().getChanges().size();
 		int newC = 0;
-		//store original greedy count
-		int ogCount = s.getChanges().size();
-		
 		
 		//save old moves as best solution so far
 		s.getMinMoves().setChanges(bStruct.clone.deepClone(s.getChanges()));
@@ -142,20 +139,21 @@ public class Controller<V>
 			percent = 0;
 			timesRun = 0;
 			
+			//clear bad edges
+			s.getKnownBadEdges().clear();
 			
 			//store old solution count
 			oldC = s.getMinMoves().getChanges().size();
 			
 			//how many moves to undo
 			int numRevert;
-			if (ogCount - 11 >= 0)
-				numRevert = 11;
+			if (s.getChanges().size() - 16 >= 0)
+				numRevert = 16;
 			else
 			{
-				numRevert = ogCount;
+				numRevert = s.getChanges().size();
 			}
-			//update the number of initial greedy choices still left in s
-			ogCount -= numRevert;
+			
 			//revert the number of moves to be tried by exact algorithm
 			((qtBranch<V>) bStruct).revert(s, numRevert);
 			
@@ -167,12 +165,19 @@ public class Controller<V>
 			
 			System.out.println("Current best solution: " + s.getMinMoves().getChanges().size());
 			
+			//if needed, apply new moves to graph
+			if (oldC > newC)
+			{
+				((qtBranch<V>) bStruct).revertAll(s);
+				((qtBranch<V>) bStruct).applyMoves(s, s.getMinMoves().getChanges());
+			}
+			
 			
 			//repeat until exact algorithm does not provide a better answer
 		}while (oldC > newC);
 		
 		//undo all moves
-		((qtBranch<V>) bStruct).revert(s, ogCount);
+		((qtBranch<V>) bStruct).revertAll(s);
 		
 		//check for solution correctness
 		Graph<V, Pair<V>> rtn = gen.applyMoves(Branch.clone.deepClone(s.getG()), s.getMinMoves().getChanges());

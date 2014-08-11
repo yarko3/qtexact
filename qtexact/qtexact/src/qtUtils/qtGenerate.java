@@ -540,6 +540,7 @@ public class qtGenerate<V>
 		return graph;
 	}
 	
+	
 	public Graph<String, Pair<String>> fromBipartiteFile(String filename) throws FileNotFoundException, UnsupportedEncodingException
 	{
 		Graph<String, Pair<String>> initial = new UndirectedSparseGraph<String, Pair<String>>();

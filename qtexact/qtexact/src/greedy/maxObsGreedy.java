@@ -82,10 +82,12 @@ public class maxObsGreedy<V> extends GreedyEdit<V>
 			if (move != null && move.isFlag() && best < og)
 			{
 				bStruct.addResult(s, move.getEdge().getFirst(), move.getEdge().getSecond());
+				System.out.println("Greedy solution: " + s.getChanges().size());
 			}
 			else if (move != null && !move.isFlag() && best < og)
 			{
 				bStruct.deleteResult(s, move.getEdge().getFirst(), move.getEdge().getSecond());
+				System.out.println("Greedy solution: " + s.getChanges().size());
 			}
 		}while (best < og);
 		

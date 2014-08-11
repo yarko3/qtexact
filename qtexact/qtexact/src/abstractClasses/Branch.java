@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.Stack;
 
 import qtUtils.branchingReturnC;
+import qtUtils.myEdge;
 
 import com.rits.cloning.Cloner;
 
@@ -82,7 +83,7 @@ public abstract class Branch<V>
 	 * @param s initial edit state
 	 * @return reduced edit state
 	 */
-	public branchingReturnC<V> reduce(branchingReturnC<V> s)
+	public void reduce(branchingReturnC<V> s)
 	{
 		//get number of moves done. Run reductions until no further changes are made.
 		//push number of changes onto stack.
@@ -109,10 +110,9 @@ public abstract class Branch<V>
 			
 			reductionStack.push(count);
 		}
-		return s;
 	}
 	
-	public branchingReturnC<V> reduceRevert(branchingReturnC<V> s)
+	public void reduceRevert(branchingReturnC<V> s)
 	{
 		if (reductions != null)
 		{
@@ -126,7 +126,6 @@ public abstract class Branch<V>
 				}
 			}
 		}
-		return s;
 	}
 	
 	/**
@@ -146,4 +145,6 @@ public abstract class Branch<V>
 	{
 		return reductions;
 	}
+	
+	
 }
