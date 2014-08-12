@@ -1,6 +1,9 @@
 package controller;
 
+import java.util.LinkedList;
+
 import qtUtils.branchingReturnC;
+import qtUtils.myEdge;
 import qtUtils.qtGenerate;
 import search.qtLBFS;
 import abstractClasses.Branch;
@@ -19,25 +22,27 @@ import edu.uci.ics.jung.graph.util.Pair;
  */
 public class Controller<V> 
 {
-	protected int timesRun;
-	private double globalPercent;
-	private double percent;
-	private boolean output;
-	private qtGenerate<V> gen = new qtGenerate<V>();
-	private GreedyEdit<V> greedy;
-	
-	
-	public GreedyEdit<V> getGreedy() {
-		return greedy;
-	}
-	public void setGreedy(GreedyEdit<V> greedy) {
-		this.greedy = greedy;
-	}
-
 	/**
 	 * branching structure used by the controller
 	 */
 	protected Branch<V> bStruct;
+	protected int timesRun;
+	private double globalPercent;
+	private double percent;
+	private boolean output;
+	private boolean useGreedy;
+	private int ogGraphSize;
+	
+	private qtGenerate<V> gen = new qtGenerate<V>();
+	private GreedyEdit<V> greedy;
+	private LinkedList<myEdge<V>>bestGreedySol;
+	public void setUseGreedy(boolean useGreedy) {
+		this.useGreedy = useGreedy;
+	}
+	
+	
+
+	
 	
 	/**
 	 * constructor
@@ -75,6 +80,16 @@ public class Controller<V>
 		greedy.setbStruct(bStruct);
 	}
 	
+	public boolean getUseGreedy()
+	{
+		return useGreedy;
+	}
+	public GreedyEdit<V> getGreedy() {
+		return greedy;
+	}
+	public void setGreedy(GreedyEdit<V> greedy) {
+		this.greedy = greedy;
+	}
 	public void setGlobalPercent(double p)
 	{
 		globalPercent = p;
@@ -131,7 +146,7 @@ public class Controller<V>
 	
 	//LinkedList<LinkedList<myEdge<V>>> solutions = new LinkedList<LinkedList<myEdge<V>>>();
 	
-	public branchingReturnC<V> greedyEdit(Graph<V, Pair<V>> G)
+	public branchingReturnC<V> greedyAtStartEdit(Graph<V, Pair<V>> G)
 	{
 		//setup the branchingReturnC with an empty MinMoves
 		branchingReturnC<V> s = bStruct.setup(G);
@@ -164,8 +179,8 @@ public class Controller<V>
 			
 			//how many moves to undo
 			int numRevert;
-			if (s.getChanges().size() - 13 >= 0)
-				numRevert = 13;
+			if (s.getChanges().size() - 14 >= 0)
+				numRevert = 14;
 			else
 			{
 				numRevert = s.getChanges().size();
@@ -237,7 +252,9 @@ public class Controller<V>
 		globalPercent = 0;
 		percent = 0;
 		timesRun = 0;
-
+		
+		ogGraphSize = G.getVertexCount();
+		
 		
 		//set up branching
 		branchingReturnC<V> goal = bStruct.setup(G, bound);
@@ -260,6 +277,12 @@ public class Controller<V>
 		
 		System.out.println("Branching run: " + timesRun);
 		
+		
+		//see if a greedy solution is available
+		if (useGreedy && bestGreedySol != null)
+		{
+			System.out.println("Best greedy solution found: " + bestGreedySol.size());
+		}
 		
 		
 		//return QT graph if edit succeeds
@@ -294,6 +317,10 @@ public class Controller<V>
 		//check if bound allows any more moves (does not matter if current graph state is at target)
 		if (bound < 0)
 		{
+			if (useGreedy)
+			{
+				greedyDive(s);
+			}
 			updatePercent(s);
 			return s;
 		}
@@ -344,6 +371,12 @@ public class Controller<V>
 			if (bound < 0)
 			{
 				updatePercent(s);
+				
+				if (useGreedy)
+				{
+					greedyDive(s);
+				}
+				
 				
 				if (reduced)
 				{
@@ -457,9 +490,15 @@ public class Controller<V>
 				
 				return rtn;
 			}	
-			//min moves is a better solution
+			//bound does not permit more moves
 			else
 			{
+				//use greedy algorithm to finish editing, if allowed
+				if (useGreedy)
+				{
+					greedyDive(s);
+				}
+				
 				updatePercent(s);
 				
 				if (reduced)
@@ -485,5 +524,41 @@ public class Controller<V>
 			}
 		}
 	}
-
+	
+	/**
+	 * after search bottoms out, use greedy to dive and find a solution
+	 * @param s
+	 */
+	public void greedyDive(branchingReturnC<V> s)
+	{
+		if (ogGraphSize == s.getG().getVertexCount())
+		{
+			int branchDepth = s.getChanges().size();
+			if (bestGreedySol == null)
+				greedy.greedyEdit(s);
+			else
+				greedy.greedyEdit(s, bestGreedySol.size());
+			
+			//update minMoves if solution found is good
+			if (getbStruct().getSearch().isTarget(s.getG()))
+			{
+				if (bestGreedySol != null && bestGreedySol.size() > s.getChanges().size())
+				{
+					bestGreedySol = Branch.clone.deepClone(s.getChanges());
+					System.out.println("Best greedy so far: " + bestGreedySol.size());
+				}
+				else if (bestGreedySol == null)
+				{
+					bestGreedySol = Branch.clone.deepClone(s.getChanges());
+					System.out.println("Best greedy so far: " + bestGreedySol.size());
+				}
+				
+			}
+			
+			//revert greedy moves
+			bStruct.revert(s, s.getChanges().size() - branchDepth);
+			
+		}
+		
+	}
 }

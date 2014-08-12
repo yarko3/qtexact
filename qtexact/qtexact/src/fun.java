@@ -80,9 +80,9 @@ public class fun<V> extends JApplet {
 		//random graph join
 		//exampleQT = gen.erJoins(8, 8, 5, .86, .86, .9);
 		
-		//exampleQT = gen.ER(33, 0.5, (long) 3);
+		exampleQT = gen.ER(16, 0.5, (long) 3);
 		
-		//exampleQT = fillGraphFromFile("datasets/zacharyGreedySolution.txt");
+		exampleQT = fillGraphFromFile("datasets/zachary.txt");
 		
 		//Graph<String, Pair<String>>wine = fillGraphFromFile("datasets/wineryEdgeSet.txt");
 		
@@ -100,7 +100,7 @@ public class fun<V> extends JApplet {
 		//exampleQT = fillGraphFromFile("datasets/grass_web.pairs");
 
 		
-		exampleQT = gen.treeRandom(60, 8);
+		//exampleQT = gen.treeRandom(150, 8);
 		
 		//exampleQT = gen.houseStruct();
 		
@@ -289,10 +289,21 @@ public class fun<V> extends JApplet {
 //		visualize(cln3);
 //		
 //
+//		c.setbStruct(branchC);
+//		System.out.println("\nConnected component: ");
+//		start = System.currentTimeMillis();
+//		System.out.println(yan.search(c.branchStart(exampleQT, 14).getG()));
+//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+//		
+//		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
+		
 		c.setbStruct(branchC);
-		System.out.println("\nConnected component: ");
+		greedy.setbStruct(branchC);
+		c.setGreedy(greedy);
+		c.setUseGreedy(true);
+		System.out.println("\nConnected component with greedy diving: ");
 		start = System.currentTimeMillis();
-		System.out.println(yan.search(c.branchStart(exampleQT, 14).getG()));
+		System.out.println(yan.search(c.branchStart(exampleQT, 6).getG()));
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
@@ -303,7 +314,7 @@ public class fun<V> extends JApplet {
 		c.setGreedy(greedy);
 		System.out.println("\nGreedy Edit: ");
 		start = System.currentTimeMillis();
-		System.out.println(yan.search(c.greedyEdit(exampleQT).getG()));
+		System.out.println(yan.search(c.greedyAtStartEdit(exampleQT).getG()));
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		

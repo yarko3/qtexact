@@ -200,9 +200,13 @@ public class qtBranchComponents<V> extends qtAllStruct<V>
 			{
 				s.setMinMoves(min);
 			}
-			
-			//run garbage collection
-			//System.gc();
+			else
+			{
+				if (controller.getUseGreedy())
+				{
+					controller.greedyDive(s);
+				}
+			}
 			
 			
 			return s;

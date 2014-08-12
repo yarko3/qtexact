@@ -13,6 +13,8 @@ public abstract class GreedyEdit<V>
 	 */
 	public abstract void greedyEdit(branchingReturnC<V> s);
 	
+	public abstract void greedyEdit(branchingReturnC<V> s, int bound);
+	
 	public GreedyEdit(qtBranch<V> b)
 	{
 		bStruct = b;
