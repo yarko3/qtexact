@@ -74,6 +74,37 @@ public abstract class Branch<V>
 	 */
 	public abstract branchingReturnC<V> branchingRules(branchingReturnC<V> s, SearchResult<V> sResult);
 
+	/**
+	 * revert a move
+	 * @param s
+	 */
+	public abstract void revert(branchingReturnC<V> s);
+
+	/**
+	 * delete an edge and return the edit state
+	 * @param s
+	 * @param v0
+	 * @param v1
+	 * @return
+	 */
+	public abstract branchingReturnC<V> deleteResult(branchingReturnC<V> s, V v0, V v1);
+
+	/**
+	 * add an edge and return the edit state
+	 * @param s
+	 * @param v0
+	 * @param v1
+	 * @return
+	 */
+	public abstract branchingReturnC<V> addResult(branchingReturnC<V> s, V v0, V v1);
+
+	/**
+	 * apply moves from list to edit state
+	 * @param s
+	 * @param moves
+	 */
+	public abstract void applyMoves(branchingReturnC<V> s, LinkedList<myEdge<V>> moves);
+
 	public Search<V> getSearch() {
 		return search;
 	}
@@ -141,9 +172,31 @@ public abstract class Branch<V>
 		reductions.add(r);
 	}
 	
+	/**
+	 * return reductions stored at this branching type
+	 * @return
+	 */
 	public LinkedList<Reduction<V>> getReductions()
 	{
 		return reductions;
+	}
+	
+	
+	public void revert(branchingReturnC<V> s, int n)
+	{
+		for (int i = 0; i < n; i++)
+		{
+			revert(s);
+		}
+	}
+	
+	
+	public void revertAll(branchingReturnC<V> s)
+	{
+		while (!s.getChanges().isEmpty())
+		{
+			revert(s);
+		}
 	}
 	
 	

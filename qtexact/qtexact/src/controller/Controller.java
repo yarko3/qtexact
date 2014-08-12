@@ -1,17 +1,14 @@
 package controller;
 
-import java.util.LinkedList;
-
 import qtUtils.branchingReturnC;
-import qtUtils.myEdge;
 import qtUtils.qtGenerate;
 import search.qtLBFS;
 import abstractClasses.Branch;
+import abstractClasses.GreedyEdit;
 import abstractClasses.SearchResult;
 import branch.qtBranch;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Pair;
-import greedy.maxObsGreedy;
 
 /**
  * an abstract class responsible for the recursive control of branching
@@ -26,8 +23,17 @@ public class Controller<V>
 	private double globalPercent;
 	private double percent;
 	private boolean output;
-	qtGenerate<V> gen = new qtGenerate<V>();
+	private qtGenerate<V> gen = new qtGenerate<V>();
+	private GreedyEdit<V> greedy;
 	
+	
+	public GreedyEdit<V> getGreedy() {
+		return greedy;
+	}
+	public void setGreedy(GreedyEdit<V> greedy) {
+		this.greedy = greedy;
+	}
+
 	/**
 	 * branching structure used by the controller
 	 */
@@ -37,8 +43,9 @@ public class Controller<V>
 	 * constructor
 	 * @param bStruct Branch object
 	 */
-	public Controller(Branch<V> bStruct) {
+	public Controller(Branch<V> b) {
 		super();
+		bStruct = b;
 		globalPercent = 0;
 		percent = 0;
 		timesRun = 0;
@@ -49,11 +56,23 @@ public class Controller<V>
 	 * @param bStruct
 	 * @param o
 	 */
-	public Controller(Branch<V> bStruct, boolean o) {
+	public Controller(Branch<V> b, boolean o) {
 		super();
+		bStruct = b;
 		globalPercent = 0;
 		timesRun = 0;
 		output = o;
+	}
+	
+	public Controller(Branch<V> b, boolean o, GreedyEdit<V> g)
+	{
+		super();
+		bStruct = b;
+		globalPercent = 0;
+		timesRun = 0;
+		output = o;
+		greedy = g;
+		greedy.setbStruct(bStruct);
 	}
 	
 	public void setGlobalPercent(double p)
@@ -110,12 +129,10 @@ public class Controller<V>
 		return goal;
 	}
 	
-	LinkedList<LinkedList<myEdge<V>>> solutions = new LinkedList<LinkedList<myEdge<V>>>();
+	//LinkedList<LinkedList<myEdge<V>>> solutions = new LinkedList<LinkedList<myEdge<V>>>();
 	
 	public branchingReturnC<V> greedyEdit(Graph<V, Pair<V>> G)
 	{
-		//initialize greedy class
-		maxObsGreedy<V> greedy = new maxObsGreedy<V>((qtBranch<V>) bStruct);
 		//setup the branchingReturnC with an empty MinMoves
 		branchingReturnC<V> s = bStruct.setup(G);
 		//run greedy approach
@@ -129,7 +146,7 @@ public class Controller<V>
 		int newC = 0;
 		
 		//save old moves as best solution so far
-		s.getMinMoves().setChanges(bStruct.clone.deepClone(s.getChanges()));
+		s.getMinMoves().setChanges(Branch.clone.deepClone(s.getChanges()));
 		
 		
 		do
@@ -147,15 +164,15 @@ public class Controller<V>
 			
 			//how many moves to undo
 			int numRevert;
-			if (s.getChanges().size() - 16 >= 0)
-				numRevert = 16;
+			if (s.getChanges().size() - 13 >= 0)
+				numRevert = 13;
 			else
 			{
 				numRevert = s.getChanges().size();
 			}
 			
 			//revert the number of moves to be tried by exact algorithm
-			((qtBranch<V>) bStruct).revert(s, numRevert);
+			bStruct.revert(s, numRevert);
 			
 			//branch with exact algorithm with a bound of numRevert
 			branch(s);
@@ -168,8 +185,8 @@ public class Controller<V>
 			//if needed, apply new moves to graph
 			if (oldC > newC)
 			{
-				((qtBranch<V>) bStruct).revertAll(s);
-				((qtBranch<V>) bStruct).applyMoves(s, s.getMinMoves().getChanges());
+				bStruct.revertAll(s);
+				bStruct.applyMoves(s, s.getMinMoves().getChanges());
 			}
 			
 			

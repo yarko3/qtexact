@@ -27,6 +27,7 @@ import search.qtLBFSNoHeuristic;
 import abstractClasses.Branch;
 import abstractClasses.Reduction;
 import branch.qtAllStruct;
+import branch.qtBranch;
 import branch.qtBranchComponents;
 import branch.qtBranchNoHeuristic;
 
@@ -39,6 +40,7 @@ import edu.uci.ics.jung.graph.UndirectedSparseGraph;
 import edu.uci.ics.jung.graph.util.Pair;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
+import greedy.maxObsGreedy;
 
 @SuppressWarnings("serial")
 public class fun<V> extends JApplet {
@@ -95,10 +97,10 @@ public class fun<V> extends JApplet {
 		
 		
 		
-		exampleQT = fillGraphFromFile("datasets/grass_web.pairs");
+		//exampleQT = fillGraphFromFile("datasets/grass_web.pairs");
 
 		
-		//exampleQT = gen.treeRandom(120, 8);
+		exampleQT = gen.treeRandom(60, 8);
 		
 		//exampleQT = gen.houseStruct();
 		
@@ -113,6 +115,9 @@ public class fun<V> extends JApplet {
 		//visualize(exampleQT);
 		
 		Controller<Integer> c = new Controller<Integer>(null, true);
+		
+		
+		maxObsGreedy<Integer> greedy = new maxObsGreedy<Integer>(null);
 		
 
 //		
@@ -284,14 +289,18 @@ public class fun<V> extends JApplet {
 //		visualize(cln3);
 //		
 //
-//		c.setbStruct(branchC);
-//		System.out.println("\nConnected component: ");
-//		start = System.currentTimeMillis();
-//		System.out.println(yan.search(c.branchStart(exampleQT, 13).getG()));
-//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		c.setbStruct(branchC);
+		System.out.println("\nConnected component: ");
+		start = System.currentTimeMillis();
+		System.out.println(yan.search(c.branchStart(exampleQT, 14).getG()));
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		
+		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
 		
 		
 		c.setbStruct(branchC);
+		greedy.setbStruct(branchC);
+		c.setGreedy(greedy);
 		System.out.println("\nGreedy Edit: ");
 		start = System.currentTimeMillis();
 		System.out.println(yan.search(c.greedyEdit(exampleQT).getG()));

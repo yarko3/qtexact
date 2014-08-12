@@ -59,6 +59,7 @@ public abstract class Certificate<V>
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
+		@SuppressWarnings("unchecked")
 		Certificate<V> other = (Certificate<V>) obj;
 		if (flag != other.flag)
 			return false;

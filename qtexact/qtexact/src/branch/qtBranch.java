@@ -45,6 +45,43 @@ public abstract class qtBranch<V> extends Branch<V>
 		this.search = search;
 	}
 	
+	
+	/**
+	 * edit a P4 by removing an edge
+	 * @param s search state
+	 * @param v0 vertex
+	 * @param v1 vertex
+	 */
+	public branchingReturnC<V> deleteResult(branchingReturnC<V> s, V v0, V v1)
+	{
+		//use original edge in edit set
+		s.getChanges().addLast(new myEdge<V>(s.getG().findEdge(v0, v1), false));
+		
+		
+		//update degree sequence (first edge)
+		removeEdge(s.getG(), s.getDeg(), v0, v1);
+		
+		return s;
+	}
+	
+	/**
+	 * edit the graph by adding an edge between v0 and v1
+	 * @param s search state
+	 * @param v0 vertex
+	 * @param v1 vertex
+	 */
+	public branchingReturnC<V> addResult(branchingReturnC<V> s, V v0, V v1)
+	{
+		
+		//update degree sequence (first edge)
+		addEdge(s.getG(), s.getDeg(), v0, v1);
+		
+		//add edge to changes 
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v0, v1), true));
+		
+		return s;
+	}
+	
 	/**
 	 * given a move list, apply moves to graph
 	 * @param s search state
@@ -63,25 +100,6 @@ public abstract class qtBranch<V> extends Branch<V>
 				//remove edge
 				deleteResult(s, edit.getEdge().getFirst(), edit.getEdge().getSecond());
 		}
-	}
-	
-	/**
-	 * edit the graph by adding an edge between v0 and v1
-	 * @param s search state
-	 * @param v0 vertex
-	 * @param v1 vertex
-	 * @return edited search state
-	 */
-	public branchingReturnC<V> addResult(branchingReturnC<V> s, V v0, V v1)
-	{
-		
-		//update degree sequence (first edge)
-		addEdge(s.getG(), s.getDeg(), v0, v1);
-		
-		//add edge to changes 
-		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v0, v1), true));
-		
-		return s;
 	}
 	
 	
@@ -283,28 +301,6 @@ public abstract class qtBranch<V> extends Branch<V>
 	}
 	
 	
-	
-	
-	/**
-	 * edit a P4 by removing an edge
-	 * @param s search state
-	 * @param v0 vertex
-	 * @param v1 vertex
-	 * @return search state
-	 */
-	public branchingReturnC<V> deleteResult(branchingReturnC<V> s, V v0, V v1)
-	{
-		//use original edge in edit set
-		s.getChanges().addLast(new myEdge<V>(s.getG().findEdge(v0, v1), false));
-		
-		
-		//update degree sequence (first edge)
-		removeEdge(s.getG(), s.getDeg(), v0, v1);
-		
-		return s;
-		
-	}
-	
 	/**
 	 * remove one vertex and all edges connected to it
 	 * @param s
@@ -326,7 +322,6 @@ public abstract class qtBranch<V> extends Branch<V>
 		
 		return s;
 	}
-	
 	
 	/**
 	 * roll back one edit
@@ -356,8 +351,6 @@ public abstract class qtBranch<V> extends Branch<V>
 	}
 	
 	
-	
-	
 	/**
 	 * roll back two moves
 	 * @param s search state
@@ -380,21 +373,7 @@ public abstract class qtBranch<V> extends Branch<V>
 		revert2(s);
 	}
 	
-	public void revert(branchingReturnC<V> s, int n)
-	{
-		for (int i = 0; i < n; i++)
-		{
-			revert(s);
-		}
-	}
 	
-	public void revertAll(branchingReturnC<V> s)
-	{
-		while (!s.getChanges().isEmpty())
-		{
-			revert(s);
-		}
-	}
 	
 	public void removeVertex(Graph<V, Pair<V>> G, ArrayList<LinkedList<V>> deg, V v0)
 	{

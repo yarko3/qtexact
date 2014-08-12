@@ -1,12 +1,9 @@
 package branch;
 
-import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Set;
-
-import javax.swing.JFrame;
 
 import qtUtils.branchingReturnC;
 import qtUtils.lexReturnC;
@@ -17,11 +14,8 @@ import search.qtLBFSComponents;
 import abstractClasses.Branch;
 import abstractClasses.SearchResult;
 import controller.Controller;
-import edu.uci.ics.jung.algorithms.layout.FRLayout;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Pair;
-import edu.uci.ics.jung.visualization.VisualizationViewer;
-import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
 
 
 /**
@@ -215,27 +209,7 @@ public class qtBranchComponents<V> extends qtAllStruct<V>
 		}
 		
 	}
-	public void visualize(Graph<V, Pair<V>> fb){
-		JFrame jf = new JFrame();
-		jf.setSize(1900, 1000);
-
-		FRLayout frl = new FRLayout(fb);
-
-		frl.setAttractionMultiplier(3);
-		frl.setRepulsionMultiplier(1.1);
-		
-		frl.setMaxIterations(1000);
-		//frl.lock(true);
-		VisualizationViewer vv = new VisualizationViewer(frl, new Dimension(
-				1900, 1000));
-		
-		vv.getRenderContext().setVertexLabelTransformer(new ToStringLabeller());
-		
-		jf.getContentPane().add(vv);
-		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		jf.pack();
-		jf.setVisible(true);
-	}
+	
 	
 	/**
 	 * returns the minimum number of edits required for a component
