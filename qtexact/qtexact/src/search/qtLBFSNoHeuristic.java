@@ -1,6 +1,7 @@
 package search;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import qtUtils.lexReturnC;
 import edu.uci.ics.jung.graph.Graph;
@@ -45,9 +46,12 @@ public class qtLBFSNoHeuristic<V> extends qtLBFS<V>
 			
 			//neighbours of x
 			
-			ArrayList<V> hood = orderNeighbour(G, x);
+			//Collection<V> hood = orderNeighbour(G, x);
+			
+			Collection<V> hood = G.getNeighbors(x);
 			
 			int j = 0;
+			
 			
 			while (j < L.size())
 			{
@@ -55,14 +59,28 @@ public class qtLBFSNoHeuristic<V> extends qtLBFS<V>
 				ArrayList<V> pp = new ArrayList<V>(0);
 				
 				
-				for (V h : hood)
+				
+				//fill pp with neighbours in the original order given
+				for (int k = 0; k < L.get(j).size(); k++)
 				{
-					if (L.get(j).contains(h))
+					V h = L.get(j).get(k);
+					if (hood.contains(h))
 					{
-						//remove element from L and add to pp
-						pp.add(L.get(j).remove(L.get(j).indexOf(h)));
+						pp.add(L.get(j).remove(k));
+						k--;
 					}
+					
 				}
+				
+				
+//				for (V h : hood)
+//				{
+//					if (L.get(j).contains(h))
+//					{
+//						//remove element from L and add to pp
+//						pp.add(L.get(j).remove(L.get(j).indexOf(h)));
+//					}
+//				}
 				//quasi-threshold check (should return C4 or P4)
 				if (j != 0 && !pp.isEmpty())
 				{

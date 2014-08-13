@@ -3,9 +3,8 @@ package abstractClasses;
 import qtUtils.branchingReturnC;
 import branch.qtBranch;
 
-public abstract class GreedyEdit<V> 
+public abstract class GreedyEdit<V> extends Dive<V> 
 {
-	protected Branch<V> bStruct;
 	
 	/**
 	 * edit the given graph to some sort of conclusion using a greedy approach
@@ -17,15 +16,18 @@ public abstract class GreedyEdit<V>
 	
 	public GreedyEdit(qtBranch<V> b)
 	{
-		bStruct = b;
+		super(b);
 	}
 
-	public Branch<V> getbStruct() {
-		return bStruct;
-	}
-
-	public void setbStruct(Branch<V> bStruct2) {
-		this.bStruct = bStruct2;
+	
+	
+	public void dive(branchingReturnC<V> s)
+	{
+		greedyEdit(s);
 	}
 	
+	public void dive(branchingReturnC<V> s, int bound)
+	{
+		greedyEdit(s, bound);
+	}
 }

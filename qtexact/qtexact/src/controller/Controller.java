@@ -7,6 +7,7 @@ import qtUtils.myEdge;
 import qtUtils.qtGenerate;
 import search.qtLBFS;
 import abstractClasses.Branch;
+import abstractClasses.Dive;
 import abstractClasses.GreedyEdit;
 import abstractClasses.SearchResult;
 import branch.qtBranch;
@@ -30,14 +31,14 @@ public class Controller<V>
 	private double globalPercent;
 	private double percent;
 	private boolean output;
-	private boolean useGreedy;
+	private boolean useDive;
 	private int ogGraphSize;
 	
 	private qtGenerate<V> gen = new qtGenerate<V>();
-	private GreedyEdit<V> greedy;
-	private LinkedList<myEdge<V>>bestGreedySol;
-	public void setUseGreedy(boolean useGreedy) {
-		this.useGreedy = useGreedy;
+	private Dive<V> dive;
+	private LinkedList<myEdge<V>>bestDiveSol;
+	public void setUseGreedy(boolean useDive) {
+		this.useDive = useDive;
 	}
 	
 	
@@ -69,26 +70,26 @@ public class Controller<V>
 		output = o;
 	}
 	
-	public Controller(Branch<V> b, boolean o, GreedyEdit<V> g)
+	public Controller(Branch<V> b, boolean o, Dive<V> g)
 	{
 		super();
 		bStruct = b;
 		globalPercent = 0;
 		timesRun = 0;
 		output = o;
-		greedy = g;
-		greedy.setbStruct(bStruct);
+		dive = g;
+		dive.setbStruct(bStruct);
 	}
 	
-	public boolean getUseGreedy()
+	public boolean getUseDive()
 	{
-		return useGreedy;
+		return useDive;
 	}
-	public GreedyEdit<V> getGreedy() {
-		return greedy;
+	public Dive<V> getDive() {
+		return dive;
 	}
-	public void setGreedy(GreedyEdit<V> greedy) {
-		this.greedy = greedy;
+	public void setDive(Dive<V> d) {
+		this.dive =d;
 	}
 	public void setGlobalPercent(double p)
 	{
@@ -146,15 +147,16 @@ public class Controller<V>
 	
 	//LinkedList<LinkedList<myEdge<V>>> solutions = new LinkedList<LinkedList<myEdge<V>>>();
 	
-	public branchingReturnC<V> greedyAtStartEdit(Graph<V, Pair<V>> G)
+	public branchingReturnC<V> diveAtStartEdit(Graph<V, Pair<V>> G)
 	{
 		//setup the branchingReturnC with an empty MinMoves
 		branchingReturnC<V> s = bStruct.setup(G);
-		//run greedy approach
-		greedy.greedyEdit(s);
 		
-		System.out.println("Greedy terminated after " + s.getChanges().size() + " moves.");
-		System.out.println("Greedy solution was " + ((bStruct.getSearch().isTarget(s.getG())) ? "" : " not ") + "successful");
+		//run dive approach
+		dive.dive(s);
+		
+		System.out.println("Dive terminated after " + s.getChanges().size() + " moves.");
+		System.out.println("Dive solution was " + ((bStruct.getSearch().isTarget(s.getG())) ? "" : " not ") + "successful");
 		
 		//initialize old solution count & new solution count
 		int oldC = s.getMinMoves().getChanges().size();
@@ -279,9 +281,9 @@ public class Controller<V>
 		
 		
 		//see if a greedy solution is available
-		if (useGreedy && bestGreedySol != null)
+		if (useDive && bestDiveSol != null)
 		{
-			System.out.println("Best greedy solution found: " + bestGreedySol.size());
+			System.out.println("Best greedy solution found: " + bestDiveSol.size());
 		}
 		
 		
@@ -317,9 +319,9 @@ public class Controller<V>
 		//check if bound allows any more moves (does not matter if current graph state is at target)
 		if (bound < 0)
 		{
-			if (useGreedy)
+			if (useDive)
 			{
-				greedyDive(s);
+				dive(s);
 			}
 			updatePercent(s);
 			return s;
@@ -372,9 +374,9 @@ public class Controller<V>
 			{
 				updatePercent(s);
 				
-				if (useGreedy)
+				if (useDive)
 				{
-					greedyDive(s);
+					dive(s);
 				}
 				
 				
@@ -494,9 +496,9 @@ public class Controller<V>
 			else
 			{
 				//use greedy algorithm to finish editing, if allowed
-				if (useGreedy)
+				if (useDive)
 				{
-					greedyDive(s);
+					dive(s);
 				}
 				
 				updatePercent(s);
@@ -529,28 +531,28 @@ public class Controller<V>
 	 * after search bottoms out, use greedy to dive and find a solution
 	 * @param s
 	 */
-	public void greedyDive(branchingReturnC<V> s)
+	public void dive(branchingReturnC<V> s)
 	{
 		if (ogGraphSize == s.getG().getVertexCount())
 		{
 			int branchDepth = s.getChanges().size();
-			if (bestGreedySol == null)
-				greedy.greedyEdit(s);
+			if (bestDiveSol == null)
+				dive.dive(s);
 			else
-				greedy.greedyEdit(s, bestGreedySol.size());
+				dive.dive(s, bestDiveSol.size());
 			
 			//update minMoves if solution found is good
 			if (getbStruct().getSearch().isTarget(s.getG()))
 			{
-				if (bestGreedySol != null && bestGreedySol.size() > s.getChanges().size())
+				if (bestDiveSol != null && bestDiveSol.size() > s.getChanges().size())
 				{
-					bestGreedySol = Branch.clone.deepClone(s.getChanges());
-					System.out.println("Best greedy so far: " + bestGreedySol.size());
+					bestDiveSol = Branch.clone.deepClone(s.getChanges());
+					System.out.println("Best greedy so far: " + bestDiveSol.size());
 				}
-				else if (bestGreedySol == null)
+				else if (bestDiveSol == null)
 				{
-					bestGreedySol = Branch.clone.deepClone(s.getChanges());
-					System.out.println("Best greedy so far: " + bestGreedySol.size());
+					bestDiveSol = Branch.clone.deepClone(s.getChanges());
+					System.out.println("Best dive so far: " + bestDiveSol.size());
 				}
 				
 			}

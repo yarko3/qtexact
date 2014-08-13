@@ -199,5 +199,7 @@ public abstract class Branch<V>
 		}
 	}
 	
+	public abstract branchingReturnC<V> delete2Result(branchingReturnC<V> s, V v0, V v1, V v2, V v3);
+	
 	
 }

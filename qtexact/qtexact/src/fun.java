@@ -25,15 +25,16 @@ import reduction.edgeBoundReduction;
 import search.YanSearch;
 import search.qtLBFSNoHeuristic;
 import abstractClasses.Branch;
+import abstractClasses.Dive;
 import abstractClasses.Reduction;
 import branch.qtAllStruct;
-import branch.qtBranch;
 import branch.qtBranchComponents;
 import branch.qtBranchNoHeuristic;
 
 import com.rits.cloning.Cloner;
 
 import controller.Controller;
+import dive.randomDive;
 import edu.uci.ics.jung.algorithms.layout.FRLayout;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.UndirectedSparseGraph;
@@ -100,7 +101,7 @@ public class fun<V> extends JApplet {
 		//exampleQT = fillGraphFromFile("datasets/grass_web.pairs");
 
 		
-		//exampleQT = gen.treeRandom(150, 8);
+		exampleQT = gen.treeRandom(50, 5);
 		
 		//exampleQT = gen.houseStruct();
 		
@@ -117,8 +118,9 @@ public class fun<V> extends JApplet {
 		Controller<Integer> c = new Controller<Integer>(null, true);
 		
 		
-		maxObsGreedy<Integer> greedy = new maxObsGreedy<Integer>(null);
+		Dive<Integer> dive = new maxObsGreedy<Integer>(null);
 		
+		//dive = new randomDive<Integer>(null);
 
 //		
 		qtAllStruct<Integer> all = new qtAllStruct<Integer>(c);
@@ -289,33 +291,33 @@ public class fun<V> extends JApplet {
 //		visualize(cln3);
 //		
 //
-//		c.setbStruct(branchC);
-//		System.out.println("\nConnected component: ");
-//		start = System.currentTimeMillis();
-//		System.out.println(yan.search(c.branchStart(exampleQT, 14).getG()));
-//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
-//		
-//		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
-		
 		c.setbStruct(branchC);
-		greedy.setbStruct(branchC);
-		c.setGreedy(greedy);
-		c.setUseGreedy(true);
-		System.out.println("\nConnected component with greedy diving: ");
+		System.out.println("\nConnected component: ");
 		start = System.currentTimeMillis();
-		System.out.println(yan.search(c.branchStart(exampleQT, 6).getG()));
+		System.out.println(yan.search(c.branchStart(exampleQT, 14).getG()));
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
 		
+//		c.setbStruct(branchC);
+//		dive.setbStruct(branchC);
+//		c.setDive(dive);
+//		c.setUseGreedy(true);
+//		System.out.println("\nConnected component with greedy diving: ");
+//		start = System.currentTimeMillis();
+//		System.out.println(yan.search(c.branchStart(exampleQT, 10).getG()));
+//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+//		
+//		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
 		
-		c.setbStruct(branchC);
-		greedy.setbStruct(branchC);
-		c.setGreedy(greedy);
-		System.out.println("\nGreedy Edit: ");
-		start = System.currentTimeMillis();
-		System.out.println(yan.search(c.greedyAtStartEdit(exampleQT).getG()));
-		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		
+//		c.setbStruct(branchC);
+//		dive.setbStruct(branchC);
+//		c.setDive(dive);
+//		System.out.println("\nGreedy Edit: ");
+//		start = System.currentTimeMillis();
+//		System.out.println(yan.search(c.diveAtStartEdit(exampleQT).getG()));
+//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		
 		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));

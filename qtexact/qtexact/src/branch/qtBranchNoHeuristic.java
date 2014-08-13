@@ -20,12 +20,7 @@ import edu.uci.ics.jung.graph.util.Pair;
  */
 public class qtBranchNoHeuristic<V> extends qtBranch<V> 
 {
-	/**
-	 * output flag
-	 */
-	boolean output;
-	
-	
+		
 	/**
 	 * constructor
 	 * @param controller

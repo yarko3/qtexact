@@ -28,6 +28,13 @@ import edu.uci.ics.jung.graph.util.Pair;
  */
 public abstract class qtBranch<V> extends Branch<V> 
 {
+	
+	/**
+	 * output flag
+	 */
+	boolean output;
+	
+	
 	/**
 	 * constructor
 	 * @param controller controller for qt branching
@@ -44,6 +51,53 @@ public abstract class qtBranch<V> extends Branch<V>
 	public void setSearch(qtLBFS<V> search) {
 		this.search = search;
 	}
+	
+	
+	/**
+	 * setup for quasi threshold editing with no heuristic
+	 */
+	public branchingReturnC<V> setup(Graph<V, Pair<V>> G, int bound) {
+		
+		//keep proper degree order as an ArrayList<LinkedList<vertex>>
+		ArrayList<LinkedList<V>> deg = ((qtLBFS<V>) search).degSequenceOrder(G);
+		
+		//start with a full minMoves
+		branchingReturnC<V> minMoves = new branchingReturnC<V>(G, deg);
+		minMoves.setChanges(fillMinMoves(minMoves, bound));
+		minMoves.setMinMoves(minMoves);
+		branchingReturnC<V> goal = new branchingReturnC<V>(G, deg, minMoves);
+		
+		//output flags
+		if (output)
+		{
+			goal.setPercent(1);
+			controller.setGlobalPercent(0);
+		}
+		
+		return goal;
+	}
+	public branchingReturnC<V> setup(Graph<V, Pair<V>> G) {
+		
+		//keep proper degree order as an ArrayList<LinkedList<vertex>>
+		ArrayList<LinkedList<V>> deg = ((qtLBFS<V>) search).degSequenceOrder(G);
+		
+		//start with a full minMoves
+		branchingReturnC<V> minMoves = new branchingReturnC<V>(G, deg);
+		minMoves.setChanges(fillMinMoves(minMoves, 0));
+		minMoves.setMinMoves(minMoves);
+		branchingReturnC<V> goal = new branchingReturnC<V>(G, deg, minMoves);
+		
+		//output flags
+		if (output)
+		{
+			goal.setPercent(1);
+			controller.setGlobalPercent(0);
+		}
+		
+		return goal;
+	}
+	
+	
 	
 	
 	/**
@@ -241,7 +295,7 @@ public abstract class qtBranch<V> extends Branch<V>
 	 * @param v3 vertex
 	 * @return search state
 	 */
-	protected branchingReturnC<V> delete2Result(branchingReturnC<V> s, V v0, V v1, V v2, V v3)
+	public branchingReturnC<V> delete2Result(branchingReturnC<V> s, V v0, V v1, V v2, V v3)
 	{	
 		//update degree sequence (first edge)
 		removeEdge(s.getG(), s.getDeg(), v0, v1);

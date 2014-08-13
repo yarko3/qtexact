@@ -202,9 +202,9 @@ public class qtBranchComponents<V> extends qtAllStruct<V>
 			}
 			else
 			{
-				if (controller.getUseGreedy())
+				if (controller.getUseDive())
 				{
-					controller.greedyDive(s);
+					controller.dive(s);
 				}
 			}
 			

@@ -1,6 +1,5 @@
 package greedy;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 
 import qtUtils.branchingReturnC;
@@ -8,7 +7,6 @@ import qtUtils.myEdge;
 import abstractClasses.Certificate;
 import abstractClasses.GreedyEdit;
 import branch.qtBranch;
-import certificate.qtCertificateC;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Pair;
 
@@ -106,6 +104,8 @@ public class maxObsGreedy<V> extends GreedyEdit<V>
 			
 		}while (best < og && best > 0);
 		
+		@SuppressWarnings("unused")
+		int i = 0;
 		
 		
 		
