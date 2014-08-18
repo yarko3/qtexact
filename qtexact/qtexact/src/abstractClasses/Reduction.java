@@ -13,8 +13,8 @@ public abstract class Reduction<V>
 
 	/**
 	 * revert reduction (for backing up on a traversal)
-	 * @param s
-	 * @return
+	 * @param s reduced edit state
+	 * @return reverted edit state
 	 */
 	public abstract branchingReturnC<V> revertReduce(branchingReturnC<V> s);
 }

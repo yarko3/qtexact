@@ -11,6 +11,10 @@ import edu.uci.ics.jung.graph.util.Pair;
 
 public class qtY<V> extends qtBranchNoHeuristic<V> 
 {
+	/**
+	 * constructor
+	 * @param controller
+	 */
 	public qtY(Controller<V> controller) 
 	{
 		super(controller);

@@ -62,7 +62,7 @@ public class biconnectedReduction<V> extends Reduction<V> {
 		//find P4 with cut edges
 		for (Pair<V> edge : cutEdges)
 		{
-			//if the edge endpoints contain more than one vertex, a P4 exists
+			//if the edge endpoints neighbour more than one vertex, a P4 exists
 			if (s.getG().getNeighborCount(edge.getFirst()) > (bound-count)+1 && s.getG().getNeighborCount(edge.getSecond()) > (bound-count)+1)
 			{
 				//remove edge

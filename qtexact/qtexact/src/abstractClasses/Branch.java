@@ -56,21 +56,25 @@ public abstract class Branch<V>
 
 	/**
 	 * set up the search environment (minMoves, etc.)
-	 * @param G
-	 * @param bound
-	 * @return
+	 * @param G graph
+	 * @param bound allowed moves
+	 * @return branching return structure
 	 */
 	public abstract branchingReturnC<V> setup(Graph<V, Pair<V>> G, int bound);
 	
-	
+	/**
+	 * set up search environment without bound
+	 * @param G graph
+	 * @return branching return structure
+	 */
 	public abstract branchingReturnC<V> setup(Graph<V, Pair<V>> G);
 	
 	
 	/**
 	 * the branching rules, given an obstruction in SearchResult
-	 * @param s
+	 * @param s edit state
 	 * @param sResult
-	 * @return
+	 * @return traversed edit state
 	 */
 	public abstract branchingReturnC<V> branchingRules(branchingReturnC<V> s, SearchResult<V> sResult);
 
@@ -82,29 +86,33 @@ public abstract class Branch<V>
 
 	/**
 	 * delete an edge and return the edit state
-	 * @param s
-	 * @param v0
-	 * @param v1
-	 * @return
+	 * @param s edit state
+	 * @param v0 vertex
+	 * @param v1 vertex
+	 * @return modified edit state
 	 */
 	public abstract branchingReturnC<V> deleteResult(branchingReturnC<V> s, V v0, V v1);
 
 	/**
 	 * add an edge and return the edit state
-	 * @param s
-	 * @param v0
-	 * @param v1
-	 * @return
+	 * @param s edit state
+	 * @param v0 vertex
+	 * @param v1 vertex
+	 * @return modified edit state
 	 */
 	public abstract branchingReturnC<V> addResult(branchingReturnC<V> s, V v0, V v1);
 
 	/**
 	 * apply moves from list to edit state
-	 * @param s
+	 * @param s edit state
 	 * @param moves
 	 */
 	public abstract void applyMoves(branchingReturnC<V> s, LinkedList<myEdge<V>> moves);
 
+	/**
+	 * search tied to this branching strategy
+	 * @return search 
+	 */
 	public Search<V> getSearch() {
 		return search;
 	}
@@ -112,7 +120,6 @@ public abstract class Branch<V>
 	/**
 	 * reduction step prior to performing a search
 	 * @param s initial edit state
-	 * @return reduced edit state
 	 */
 	public void reduce(branchingReturnC<V> s)
 	{
@@ -120,7 +127,7 @@ public abstract class Branch<V>
 		//push number of changes onto stack.
 		int bound = s.getMinMoves().getChanges().size() - s.getChanges().size();
 		int oldMoves = s.getChanges().size();
-		int newMoves = s.getChanges().size();
+		int newMoves = oldMoves;
 		int count = 0;
 		
 		if (reductions != null)
@@ -129,6 +136,7 @@ public abstract class Branch<V>
 			{
 				oldMoves = newMoves;
 				count++;
+				//try to reduce with every reduction available
 				for (int i = 0; i < reductions.size(); i++)
 				{
 					s = reductions.get(i).reduce(s);
@@ -143,6 +151,10 @@ public abstract class Branch<V>
 		}
 	}
 	
+	/**
+	 * revert the reduction moved done
+	 * @param s reverted edit state
+	 */
 	public void reduceRevert(branchingReturnC<V> s)
 	{
 		if (reductions != null)
@@ -151,6 +163,7 @@ public abstract class Branch<V>
 			int count = reductionStack.pop();
 			for (int j = 0; j < count; j++)
 			{
+				//every reduction rule must revert its changes
 				for (int i = reductions.size() - 1; i >= 0; i--)
 				{
 					s = reductions.get(i).revertReduce(s);
@@ -174,14 +187,18 @@ public abstract class Branch<V>
 	
 	/**
 	 * return reductions stored at this branching type
-	 * @return
+	 * @return reduction list
 	 */
 	public LinkedList<Reduction<V>> getReductions()
 	{
 		return reductions;
 	}
 	
-	
+	/**
+	 * revert n number of changes from edit state
+	 * @param s edit state
+	 * @param n number of moves to revert
+	 */
 	public void revert(branchingReturnC<V> s, int n)
 	{
 		for (int i = 0; i < n; i++)
@@ -190,7 +207,10 @@ public abstract class Branch<V>
 		}
 	}
 	
-	
+	/**
+	 * revert all moves in edit state
+	 * @param s edit state
+	 */
 	public void revertAll(branchingReturnC<V> s)
 	{
 		while (!s.getChanges().isEmpty())
@@ -199,6 +219,15 @@ public abstract class Branch<V>
 		}
 	}
 	
+	/**
+	 * delete 2 edges at the same time 
+	 * @param s edit state
+	 * @param v0 vertex
+	 * @param v1 vertex
+	 * @param v2 vertex
+	 * @param v3 vertex
+	 * @return modified edit state
+	 */
 	public abstract branchingReturnC<V> delete2Result(branchingReturnC<V> s, V v0, V v1, V v2, V v3);
 	
 	

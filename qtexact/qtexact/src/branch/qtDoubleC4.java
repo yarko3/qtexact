@@ -11,6 +11,10 @@ import edu.uci.ics.jung.graph.util.Pair;
 
 public class qtDoubleC4<V> extends qtBranchNoHeuristic<V> {
 
+	/**
+	 * constructor
+	 * @param controller
+	 */
 	public qtDoubleC4(Controller<V> controller) {
 		super(controller);
 	}

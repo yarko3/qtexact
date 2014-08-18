@@ -101,7 +101,7 @@ public class fun<V> extends JApplet {
 		//exampleQT = fillGraphFromFile("datasets/grass_web.pairs");
 
 		
-		exampleQT = gen.treeRandom(50, 5);
+		//exampleQT = gen.treeRandom(50, 5);
 		
 		//exampleQT = gen.houseStruct();
 		
@@ -118,7 +118,7 @@ public class fun<V> extends JApplet {
 		Controller<Integer> c = new Controller<Integer>(null, true);
 		
 		
-		Dive<Integer> dive = new maxObsGreedy<Integer>(null);
+		//Dive<Integer> dive = new maxObsGreedy<Integer>(null);
 		
 		//dive = new randomDive<Integer>(null);
 
@@ -145,9 +145,9 @@ public class fun<V> extends JApplet {
 		Reduction<Integer> rC = new c4p4Reduction<Integer>(branchC);
 		branchC.addReduction(rC);
 		
-		rC = new biconnectedReduction<Integer>(branchC);
-		branchC.addReduction(rC);
-//		
+//		Reduction<Integer> rC = new biconnectedReduction<Integer>(branchC);
+//		branchC.addReduction(rC);
+////		
 //		rC = new centralNodeReduction<Integer>(branchC);
 //		branchC.addReduction(rC);
 		
@@ -320,7 +320,7 @@ public class fun<V> extends JApplet {
 //		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		
-		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
+//		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
 //		
 		
 
@@ -366,6 +366,7 @@ public class fun<V> extends JApplet {
 		frl.setRepulsionMultiplier(1.1);
 		
 		frl.setMaxIterations(1000);
+	
 		//frl.lock(true);
 		VisualizationViewer vv = new VisualizationViewer(frl, new Dimension(
 				1800, 900));
@@ -376,6 +377,7 @@ public class fun<V> extends JApplet {
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jf.pack();
 		jf.setVisible(true);
+		
 	}
 	
 

@@ -17,9 +17,9 @@ import edu.uci.ics.jung.graph.util.Pair;
 /**
  * an abstract class responsible for the recursive control of branching
  * a controller is paired with a Branch for editing
- * @author ssd
+ * @author Yarko Senyuta
  *
- * @param <V>
+ * @param <V> vertex
  */
 public class Controller<V> 
 {
@@ -27,22 +27,49 @@ public class Controller<V>
 	 * branching structure used by the controller
 	 */
 	protected Branch<V> bStruct;
+	/**
+	 * number of times branching was run
+	 */
 	protected int timesRun;
+	/**
+	 * global percent counter (exact)
+	 */
 	private double globalPercent;
+	/**
+	 * printed percent counter (approximate)
+	 */
 	private double percent;
+	/**
+	 * output progress to console?
+	 */
 	private boolean output;
+	/**
+	 * use diving method after search bottoms out?
+	 */
 	private boolean useDive;
+	/**
+	 * original graph size (before connected component split)
+	 */
 	private int ogGraphSize;
-	
+	/**
+	 * qt generate tools
+	 */
 	private qtGenerate<V> gen = new qtGenerate<V>();
+	/**
+	 * diving strategy
+	 */
 	private Dive<V> dive;
+	/**
+	 * best diving solution
+	 */
 	private LinkedList<myEdge<V>>bestDiveSol;
-	public void setUseGreedy(boolean useDive) {
+	/**
+	 * set useDive
+	 * @param useDive whether to use diving strategy
+	 */
+	public void setUseDive(boolean useDive) {
 		this.useDive = useDive;
 	}
-	
-	
-
 	
 	
 	/**
@@ -59,8 +86,8 @@ public class Controller<V>
 	}
 	/**
 	 * set output flag with constructor
-	 * @param bStruct
-	 * @param o
+	 * @param bStruct branching structure
+	 * @param o output
 	 */
 	public Controller(Branch<V> b, boolean o) {
 		super();
@@ -70,6 +97,12 @@ public class Controller<V>
 		output = o;
 	}
 	
+	/**
+	 * constructor with dive
+	 * @param b branching structure
+	 * @param o output flag
+	 * @param g diving strategy
+	 */
 	public Controller(Branch<V> b, boolean o, Dive<V> g)
 	{
 		super();
@@ -81,34 +114,64 @@ public class Controller<V>
 		dive.setbStruct(bStruct);
 	}
 	
+	/**
+	 * return dive flag
+	 * @return dive flag
+	 */
 	public boolean getUseDive()
 	{
 		return useDive;
 	}
+	/**
+	 * get diving strategy
+	 * @return diving strategy
+	 */
 	public Dive<V> getDive() {
 		return dive;
 	}
+	/**
+	 * set diving strategy
+	 * @param d diving strategy
+	 */
 	public void setDive(Dive<V> d) {
 		this.dive =d;
 	}
+	/**
+	 * set global percent 
+	 * @param p global percent
+	 */
 	public void setGlobalPercent(double p)
 	{
 		globalPercent = p;
 	}
-	
+	/**
+	 * get global percent
+	 * @return global percent
+	 */
 	public double getGlobalPercent()
 	{
 		return globalPercent;
 	}
-	
+	/**
+	 * return branching structure
+	 * @return branching structure
+	 */
 	public Branch<V> getbStruct() {
 		return bStruct;
 	}
 
+	/**
+	 * set branching structure
+	 * @param bStruct branching structure
+	 */
 	public void setbStruct(Branch<V> bStruct) {
 		this.bStruct = bStruct;
 	}
 	
+	/**
+	 * get output flag
+	 * @return output flag
+	 */
 	public boolean getOutputFlag()
 	{
 		return output;
@@ -145,8 +208,11 @@ public class Controller<V>
 		return goal;
 	}
 	
-	//LinkedList<LinkedList<myEdge<V>>> solutions = new LinkedList<LinkedList<myEdge<V>>>();
-	
+	/**
+	 * edit strategy where a dive is done first and when a solution is found, exact solution tries to improve it
+	 * @param G graph
+	 * @return edit state
+	 */
 	public branchingReturnC<V> diveAtStartEdit(Graph<V, Pair<V>> G)
 	{
 		//setup the branchingReturnC with an empty MinMoves
@@ -308,8 +374,8 @@ public class Controller<V>
 	
 	/**
 	 * the branching structure 
-	 * @param s
-	 * @return
+	 * @param s edit state
+	 * @return edit state
 	 */
 	public branchingReturnC<V> branch(branchingReturnC<V> s)
 	{
@@ -528,8 +594,8 @@ public class Controller<V>
 	}
 	
 	/**
-	 * after search bottoms out, use greedy to dive and find a solution
-	 * @param s
+	 * after search bottoms out, dive and find a solution
+	 * @param s edit state
 	 */
 	public void dive(branchingReturnC<V> s)
 	{

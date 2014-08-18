@@ -12,6 +12,10 @@ import edu.uci.ics.jung.graph.util.Pair;
 public class qtCo4Pan<V> extends qtBranchNoHeuristic<V> 
 {
 
+	/**
+	 * constructor
+	 * @param controller
+	 */
 	public qtCo4Pan(Controller<V> controller) {
 		super(controller);
 	}

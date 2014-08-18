@@ -24,7 +24,7 @@ import edu.uci.ics.jung.graph.util.Pair;
  * class used to hold many helper functions required for quasi threshold editing
  * @author Yaroslav Senyuta
  *
- * @param <V>
+ * @param <V> vertex
  */
 public abstract class qtBranch<V> extends Branch<V> 
 {
@@ -76,6 +76,10 @@ public abstract class qtBranch<V> extends Branch<V>
 		
 		return goal;
 	}
+	
+	/**
+	 * setup for qusi threshold editing with no heuristic and no bound
+	 */
 	public branchingReturnC<V> setup(Graph<V, Pair<V>> G) {
 		
 		//keep proper degree order as an ArrayList<LinkedList<vertex>>
@@ -105,6 +109,7 @@ public abstract class qtBranch<V> extends Branch<V>
 	 * @param s search state
 	 * @param v0 vertex
 	 * @param v1 vertex
+	 * @return edit state
 	 */
 	public branchingReturnC<V> deleteResult(branchingReturnC<V> s, V v0, V v1)
 	{
@@ -123,6 +128,7 @@ public abstract class qtBranch<V> extends Branch<V>
 	 * @param s search state
 	 * @param v0 vertex
 	 * @param v1 vertex
+	 * @return edit state
 	 */
 	public branchingReturnC<V> addResult(branchingReturnC<V> s, V v0, V v1)
 	{
@@ -140,6 +146,7 @@ public abstract class qtBranch<V> extends Branch<V>
 	 * given a move list, apply moves to graph
 	 * @param s search state
 	 * @param list list of myEdge objects that provide an addition or deletion flag
+	 * @return edit state
 	 */
 	public void applyMoves(branchingReturnC<V> s, LinkedList<myEdge<V>> list)
 	{
@@ -156,7 +163,15 @@ public abstract class qtBranch<V> extends Branch<V>
 		}
 	}
 	
-	
+	/**
+	 * add 2 edges to graph
+	 * @param s edit state
+	 * @param v0 vertex
+	 * @param v1 vertex
+	 * @param v2 vertex
+	 * @param v3 vertex
+	 * @return modified edit state
+	 */
 	public branchingReturnC<V> add2Result(branchingReturnC<V> s, V v0, V v1, V v2, V v3)
 	{
 		
@@ -173,6 +188,17 @@ public abstract class qtBranch<V> extends Branch<V>
 		return s;
 	}
 	
+	/**
+	 * add 3 edges to graph
+	 * @param s initial edit state
+	 * @param v0 vertex
+	 * @param v1 vertex
+	 * @param v2 vertex
+	 * @param v3 vertex
+	 * @param v4 vertex
+	 * @param v5 vertex
+	 * @return modified edit state
+	 */
 	public branchingReturnC<V> add3Result(branchingReturnC<V> s, V v0, V v1, V v2, V v3, V v4, V v5)
 	{
 		
@@ -191,6 +217,15 @@ public abstract class qtBranch<V> extends Branch<V>
 		return s;
 	}
 	
+	/**
+	 * add an edge and remove an edge
+	 * @param s initial edit state
+	 * @param v0 vertex
+	 * @param v1 vertex
+	 * @param v2 vertex
+	 * @param v3 vertex
+	 * @return modified edit state
+	 */
 	public branchingReturnC<V> addRemoveResult(branchingReturnC<V> s, V v0, V v1, V v2, V v3)
 	{
 		
@@ -207,6 +242,17 @@ public abstract class qtBranch<V> extends Branch<V>
 		return s;
 	}
 	
+	/**
+	 * add an edge and remove 2 edges
+	 * @param s initial edit state
+	 * @param v0 vertex
+	 * @param v1 vertex
+	 * @param v2 vertex
+	 * @param v3 vertex
+	 * @param v4 vertex
+	 * @param v5 vertex
+	 * @return modified edit state
+	 */
 	public branchingReturnC<V> addRemove2Result(branchingReturnC<V> s, V v0, V v1, V v2, V v3, V v4, V v5)
 	{
 		
@@ -225,7 +271,19 @@ public abstract class qtBranch<V> extends Branch<V>
 		return s;
 	}
 	
-	
+	/**
+	 * add an edge and remove 2 edges
+	 * @param s initial edit state
+	 * @param v0 vertex
+	 * @param v1 vertex
+	 * @param v2 vertex
+	 * @param v3 vertex
+	 * @param v4 vertex
+	 * @param v5 vertex
+	 * @param v6 vertex
+	 * @param v7 vertex
+	 * @return modified edit state
+	 */
 	public branchingReturnC<V> addRemove3Result(branchingReturnC<V> s, V v0, V v1, V v2, V v3, V v4, V v5, V v6, V v7)
 	{
 		
@@ -246,7 +304,17 @@ public abstract class qtBranch<V> extends Branch<V>
 		return s;
 	}
 	
-	
+	/**
+	 * add 2 edges and remove one edge
+	 * @param s initial edit state
+	 * @param v0 vertex
+	 * @param v1 vertex
+	 * @param v2 vertex
+	 * @param v3 vertex
+	 * @param v4 vertex
+	 * @param v5 vertex
+	 * @return modified edit state
+	 */
 	public branchingReturnC<V> add2RemoveResult(branchingReturnC<V> s, V v0, V v1, V v2, V v3, V v4, V v5)
 	{
 		
@@ -265,6 +333,19 @@ public abstract class qtBranch<V> extends Branch<V>
 		return s;
 	}
 	
+	/**
+	 * add 2 edges and remove 2 edges
+	 * @param s initial edit state
+	 * @param v0 vertex
+	 * @param v1 vertex
+	 * @param v2 vertex
+	 * @param v3 vertex
+	 * @param v4 vertex
+	 * @param v5 vertex
+	 * @param v6 vertex
+	 * @param v7 vertex
+	 * @return modified edit state
+	 */
 	public branchingReturnC<V> add2Remove2Result(branchingReturnC<V> s, V v0, V v1, V v2, V v3, V v4, V v5, V v6, V v7)
 	{
 		
@@ -293,7 +374,7 @@ public abstract class qtBranch<V> extends Branch<V>
 	 * @param v1 vertex
 	 * @param v2 vertex
 	 * @param v3 vertex
-	 * @return search state
+	 * @return modified edit state
 	 */
 	public branchingReturnC<V> delete2Result(branchingReturnC<V> s, V v0, V v1, V v2, V v3)
 	{	
@@ -311,6 +392,17 @@ public abstract class qtBranch<V> extends Branch<V>
 		
 	}
 	
+	/**
+	 * delete 3 edges
+	 * @param s initial edit state
+	 * @param v0 vertex
+	 * @param v1 vertex
+	 * @param v2 vertex
+	 * @param v3 vertex
+	 * @param v4 vertex
+	 * @param v5 vertex
+	 * @return modified edit state
+	 */
 	protected branchingReturnC<V> delete3Result(branchingReturnC<V> s, V v0, V v1, V v2, V v3, V v4, V v5)
 	{	
 		//update degree sequence (first edge)
@@ -331,6 +423,19 @@ public abstract class qtBranch<V> extends Branch<V>
 		
 	}
 	
+	/**
+	 * delete 4 edges
+	 * @param s initial edit state
+	 * @param v0 vertex
+	 * @param v1 vertex
+	 * @param v2 vertex
+	 * @param v3 vertex
+	 * @param v4 vertex
+	 * @param v5 vertex
+	 * @param v6 vertex
+	 * @param v7 vertex
+	 * @return modified edit state
+	 */
 	protected branchingReturnC<V> delete4Result(branchingReturnC<V> s, V v0, V v1, V v2, V v3, V v4, V v5, V v6, V v7)
 	{	
 		//update degree sequence (first edge)
@@ -357,9 +462,9 @@ public abstract class qtBranch<V> extends Branch<V>
 	
 	/**
 	 * remove one vertex and all edges connected to it
-	 * @param s
-	 * @param v0
-	 * @return
+	 * @param s edit state
+	 * @param v0 vertex to be deleted
+	 * @return modified edit state
 	 */
 	public branchingReturnC<V> removeVertex(branchingReturnC<V> s, V v0)
 	{
@@ -380,7 +485,7 @@ public abstract class qtBranch<V> extends Branch<V>
 	/**
 	 * roll back one edit
 	 * 
-	 * @param s search state
+	 * @param s edit state
 	 */
 	public void revert(branchingReturnC<V> s)
 	{
@@ -407,7 +512,7 @@ public abstract class qtBranch<V> extends Branch<V>
 	
 	/**
 	 * roll back two moves
-	 * @param s search state
+	 * @param s edit state
 	 */
 	protected void revert2(branchingReturnC<V> s)
 	{
@@ -415,20 +520,32 @@ public abstract class qtBranch<V> extends Branch<V>
 		revert(s);
 	}
 	
+	/**
+	 * roll back 3 moves
+	 * @param s edit state
+	 */
 	protected void revert3(branchingReturnC<V> s)
 	{
 		revert2(s);
 		revert(s);
 	}
 	
+	/**
+	 * roll back 4 moves
+	 * @param s edit state
+	 */
 	protected void revert4(branchingReturnC<V> s)
 	{
 		revert2(s);
 		revert2(s);
 	}
 	
-	
-	
+	/**
+	 * remove vertex and update degree array
+	 * @param G graph
+	 * @param deg degree array
+	 * @param v0 vertex to be deleted
+	 */
 	public void removeVertex(Graph<V, Pair<V>> G, ArrayList<LinkedList<V>> deg, V v0)
 	{
 		if (G.containsVertex(v0))
@@ -477,9 +594,6 @@ public abstract class qtBranch<V> extends Branch<V>
 			{
 				deg.remove(v1Deg);
 			}
-			//find the edge to remove
-//			if (!G.removeEdge(new Pair<V>(v0, v1)))
-//				G.removeEdge(new Pair<V>(v1, v0));	
 			
 			G.removeEdge(G.findEdge(v0, v1));
 		}
@@ -492,9 +606,9 @@ public abstract class qtBranch<V> extends Branch<V>
 	
 	/**
 	 * add a vertex to graph and degree sequence
-	 * @param G
-	 * @param deg
-	 * @param v0
+	 * @param G graph
+	 * @param deg degree sequence
+	 * @param v0 vertex
 	 */
 	public void addVertex(Graph<V, Pair<V>> G, ArrayList<LinkedList<V>> deg, V v0)
 	{
@@ -608,6 +722,12 @@ public abstract class qtBranch<V> extends Branch<V>
 		return c;
 	}
 	
+	/**
+	 * connected component from vertex set
+	 * @param G graph
+	 * @param l vertex set
+	 * @return subgraph constructed from vertex set
+	 */
 	protected Graph<V, Pair<V>> connectedCFromVertexSet(Graph<V, Pair<V>> G, Set<V> l)
 	{
 		Graph<V, Pair<V>> c = new UndirectedSparseGraph<V, Pair<V>>();
@@ -629,55 +749,9 @@ public abstract class qtBranch<V> extends Branch<V>
 	
 	
 	/**
-	 * Create a graph, the degree order, and changes from connected component graphs
-	 * @param rGraph
-	 * @param rDeg
-	 * @param rChanges
-	 * @param tempChanges
-	 * @param results
-	 */
-	protected void graphFromComponentGraphs(Graph<V, Pair<V>> rGraph,
-			ArrayList<LinkedList<V>> rDeg, LinkedList<myEdge<V>> rChanges,
-			HashSet<myEdge<V>> tempChanges, LinkedList<branchingReturnC<V>> results) {
-		//build graph from connected components
-		for (branchingReturnC<V> r : results)
-		{
-			//update total number of changes made
-			tempChanges.addAll(r.getChanges());
-			
-			//add all the edges
-			for (V v : r.getG().getVertices())
-			{
-				rGraph.addVertex(v);
-			}
-			//add all the vertices
-			for (Pair<V> a : r.getG().getEdges())
-			{
-				rGraph.addEdge(clone.deepClone(a), a.getFirst(), a.getSecond());
-			}
-			
-			//add to degree sequence
-			for (int i = 0; i < r.getDeg().size(); i ++)
-			{
-				try
-				{
-					rDeg.get(i).addAll(r.getDeg().get(i));
-				}
-				catch (IndexOutOfBoundsException e)
-				{
-					rDeg.add(i, new LinkedList<V>());
-					rDeg.get(i).addAll(r.getDeg().get(i));
-				}
-			}	
-		}
-		rChanges.addAll(tempChanges);
-		
-	}
-	
-	/**
 	 * fill a linked list with a myEdge LinkedList for the minMoves set
-	 * @param G
-	 * @return
+	 * @param G graph
+	 * @return minimum move set
 	 */
 	protected LinkedList<myEdge<V>> fillMinMoves(branchingReturnC<V> s, int bound)
 	{
@@ -719,10 +793,10 @@ public abstract class qtBranch<V> extends Branch<V>
 	
 	/**
 	 * update percent complete and give status of current search
-	 * @param s
+	 * @param s edit state
 	 * @param percentDone
 	 * @param branching
-	 * @return
+	 * @return updated percent
 	 */
 	protected double updatePercent(branchingReturnC<V> s, double percentDone, int branching)
 	{
@@ -735,10 +809,10 @@ public abstract class qtBranch<V> extends Branch<V>
 	
 	/**
 	 * return a HashSet of common neighbours to both vertices given
-	 * @param s
-	 * @param v0
-	 * @param v1
-	 * @return
+	 * @param s edit state
+	 * @param v0 vertex
+	 * @param v1 vertex
+	 * @return hashset of common neighbours
 	 */
 	public HashSet<V> commonNeighbours(branchingReturnC<V> s, V v0, V v1)
 	{
@@ -756,6 +830,14 @@ public abstract class qtBranch<V> extends Branch<V>
 		return common;
 	}
 	
+	/**
+	 * find common neighbours to three vertices
+	 * @param s edit state
+	 * @param v0 vertex
+	 * @param v1 vertex
+	 * @param v2 vertex
+	 * @return set of common neighbours
+	 */
 	public HashSet<V> commonNeighbours(branchingReturnC<V> s, V v0, V v1, V v2)
 	{
 		HashSet<V> all = commonNeighbours(s, v0, v1);
@@ -786,9 +868,9 @@ public abstract class qtBranch<V> extends Branch<V>
 	 * -8 C5
 	 * -9 kite
 	 * 
-	 * @param s
-	 * @param searchResult
-	 * @return
+	 * @param s edit state
+	 * @param searchResult initial search results
+	 * @return updated search results
 	 */
 	public SearchResult<V> findStructures(branchingReturnC<V> s, SearchResult<V> searchResult)
 	{
@@ -1044,6 +1126,13 @@ public abstract class qtBranch<V> extends Branch<V>
 		
 	}
 	
+	/**
+	 * construct a 4-pan 
+	 * @param s edit state
+	 * @param searchResult initial search result
+	 * @param n node for handle of 4-pan
+	 * @return certificate
+	 */
 	private Certificate<V> construct4Pan(branchingReturnC<V> s, SearchResult<V> searchResult, V n)
 	{
 		Certificate<V> obstruction = searchResult.getCertificate();

@@ -18,7 +18,11 @@ import abstractClasses.Certificate;
  */
 public class qtCertificateC<V> extends Certificate<V>
 {
-	//everything is inherited from superclass
+	/**
+	 * everything is inherited from superclass
+	 * @param v
+	 * @param f
+	 */
 	public qtCertificateC(ArrayList<V> v, int f) {
 		super(v, f);
 	}

@@ -60,6 +60,7 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 		
 		return goal;
 	}
+	
 	public branchingReturnC<V> setup(Graph<V, Pair<V>> G) {
 		
 		//keep proper degree order as an ArrayList<LinkedList<vertex>>

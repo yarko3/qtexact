@@ -33,19 +33,39 @@ public abstract class Certificate<V>
 		setFlag(f);
 	}
 	
+
+	
+	/**
+	 * @return the vertices
+	 */
 	public ArrayList<V> getVertices() {
 		return vertices;
 	}
+
+	/**
+	 * @param vertices the vertices to set
+	 */
 	public void setVertices(ArrayList<V> vertices) {
 		this.vertices = vertices;
 	}
+
+
+	/**
+	 * @return the flag
+	 */
 	public int getFlag() {
 		return flag;
 	}
+
+
+	/**
+	 * @param flag the flag to set
+	 */
 	public void setFlag(int flag) {
 		this.flag = flag;
 	}
-	
+
+
 	public String toString()
 	{
 		return "Vertices: " + vertices + ", flag: " + flag;

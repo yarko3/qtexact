@@ -12,6 +12,10 @@ import edu.uci.ics.jung.graph.util.Pair;
 public class qtKite<V> extends  qtBranchNoHeuristic<V>
 {
 
+	/**
+	 * constructor
+	 * @param controller
+	 */
 	public qtKite(Controller<V> controller) {
 		super(controller);
 	}

@@ -11,6 +11,10 @@ import edu.uci.ics.jung.graph.util.Pair;
 public class qtSimple<V> extends qtBranchNoHeuristic<V> 
 {
 
+	/**
+	 * constructor
+	 * @param controller
+	 */
 	public qtSimple(Controller<V> controller) {
 		super(controller);
 	}

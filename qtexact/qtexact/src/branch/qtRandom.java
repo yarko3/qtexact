@@ -13,6 +13,10 @@ public class qtRandom<V> extends qtBranchNoHeuristic<V>
 {
 	public static Random rand = new Random();
 	
+	/**
+	 * constructor
+	 * @param controller
+	 */
 	public qtRandom(Controller<V> controller) {
 		super(controller);
 	}

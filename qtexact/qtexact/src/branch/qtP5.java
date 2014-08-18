@@ -12,6 +12,10 @@ import edu.uci.ics.jung.graph.util.Pair;
 public class qtP5<V> extends qtBranchNoHeuristic<V>
 {
 
+	/**
+	 * constructor
+	 * @param controller
+	 */
 	public qtP5(Controller<V> controller) {
 		super(controller);
 	}

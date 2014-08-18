@@ -20,6 +20,10 @@ import edu.uci.ics.jung.graph.util.Pair;
 public class qtPan<V> extends qtBranchNoHeuristic<V> 
 {
 
+	/**
+	 * constructor
+	 * @param controller
+	 */
 	public qtPan(Controller<V> controller) {
 		super(controller);
 	}
@@ -28,9 +32,6 @@ public class qtPan<V> extends qtBranchNoHeuristic<V>
 	@Override
 	public branchingReturnC<V> branchingRules(branchingReturnC<V> s, SearchResult<V> searchResult)
 	{
-		//update certificate
-		if (searchResult.getCertificate().getFlag() != -3)
-			searchResult.setCertificate(hasPan(s, searchResult));
 		
 		//if a Pan has been found, use new branching rules
 		if (searchResult.getCertificate().getFlag() == -3)

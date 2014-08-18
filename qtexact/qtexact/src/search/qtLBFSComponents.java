@@ -37,19 +37,16 @@ public class qtLBFSComponents<V> extends qtLBFSNoHeuristic<V>
 	@Override
 	public lexReturnC<V> search(branchingReturnC<V> s)
 	{
-		//look for connected components if last move was a deletion
-		if (true || !s.getChanges().isEmpty() && !s.getChanges().getLast().isFlag())
-		{
-			//split into connected components
-			Set<Set<V>> cComponents = cluster.transform(s.getG());
-			
-			lexReturnC<V> rtn = searchPrep(s);
-			rtn.setcComponents(cComponents);
-			rtn.setConnected(cComponents.size() == 1);
-			return rtn;
-		}
-		else
-			return searchPrep(s);
+		//look for connected components
+		
+		//split into connected components
+		Set<Set<V>> cComponents = cluster.transform(s.getG());
+		
+		lexReturnC<V> rtn = searchPrep(s);
+		rtn.setcComponents(cComponents);
+		rtn.setConnected(cComponents.size() == 1);
+		return rtn;
+		
 	}
 
 }

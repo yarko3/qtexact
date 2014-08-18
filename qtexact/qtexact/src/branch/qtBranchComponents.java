@@ -218,7 +218,7 @@ public class qtBranchComponents<V> extends qtAllStruct<V>
 	/**
 	 * returns the minimum number of edits required for a component
 	 * @param graph
-	 * @return
+	 * @return lower bound for connected component
 	 */
 	public Integer lowerBound(Graph<V, Pair<V>> graph)
 	{

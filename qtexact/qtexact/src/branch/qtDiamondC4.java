@@ -11,6 +11,10 @@ import edu.uci.ics.jung.graph.util.Pair;
 
 public class qtDiamondC4 <V> extends qtBranchNoHeuristic<V> {
 
+	/**
+	 * constructor
+	 * @param controller
+	 */
 	public qtDiamondC4(Controller<V> controller) {
 		super(controller);
 	}

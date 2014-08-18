@@ -14,6 +14,10 @@ import edu.uci.ics.jung.graph.util.Pair;
 public class qtHouse<V> extends qtBranchNoHeuristic<V> 
 {
 
+	/**
+	 * constructor
+	 * @param controller
+	 */
 	public qtHouse(Controller<V> controller) {
 		super(controller);
 	}
@@ -22,22 +26,6 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 	@Override
 	public branchingReturnC<V> branchingRules(branchingReturnC<V> s, SearchResult<V> searchResult)
 	{
-		//update certificate if a house is not found
-//		if (searchResult.getCertificate().getFlag() != -4)
-//			searchResult.setCertificate(hasHouse(s, searchResult));
-		
-		//searchResult = findStructures(s, searchResult);
-		
-		
-//		SearchResult<V> old = clone.deepClone(searchResult);
-//		
-//		this.findStructures(s, searchResult);
-//		
-//		if (searchResult.getCertificate().getFlag() != -4)
-//			searchResult = old;
-		
-		
-		
 		
 		//if a house was found, apply house rules
 		if (searchResult.getCertificate().getFlag() == -4)

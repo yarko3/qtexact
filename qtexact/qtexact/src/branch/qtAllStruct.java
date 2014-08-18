@@ -4,6 +4,12 @@ import qtUtils.branchingReturnC;
 import abstractClasses.SearchResult;
 import controller.Controller;
 
+/**
+ * branching strategy for all usable 5 vertex obstructions
+ * @author Yaroslav Senyuta
+ *
+ * @param <V> vertex
+ */
 public class qtAllStruct<V> extends qtBranchNoHeuristic<V> 
 {
 
@@ -33,7 +39,7 @@ public class qtAllStruct<V> extends qtBranchNoHeuristic<V>
 	}
 	
 	/**
-	 * look for all induced forbidden structures on 5 vertices 
+	 * look for all induced forbidden structures on 5 vertex obstructions 
 	 */
 	@Override
 	public branchingReturnC<V> branchingRules(branchingReturnC<V> s, SearchResult<V> searchResult)
