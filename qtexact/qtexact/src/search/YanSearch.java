@@ -10,7 +10,10 @@ import java.util.Collection;
 import java.util.Hashtable;
 import java.util.PriorityQueue;
 
+import qtUtils.branchingReturnC;
 import qtUtils.vertexIn;
+import abstractClasses.Search;
+import abstractClasses.SearchResult;
 import edu.uci.ics.jung.graph.DelegateForest;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Pair;
@@ -22,7 +25,7 @@ import edu.uci.ics.jung.graph.util.Pair;
  *
  * @param <V> vertex
  */
-public class YanSearch<V>
+public class YanSearch<V> extends Search<V>
 {
 	/**
 	 * returns true if graph given is quasi threshold, false otherwise
@@ -107,6 +110,21 @@ public class YanSearch<V>
 			return true;
 		else
 			return false;
+	}
+
+	@Override
+	public boolean isTarget(Graph<V, Pair<V>> g) {
+		return search(g);
+	}
+
+	@Override
+	protected SearchResult<V> searchPrep(branchingReturnC<V> s) {
+		return search(s);
+	}
+
+	@Override
+	public SearchResult<V> search(branchingReturnC<V> s) {
+		return new SearchResult<V>(search(s.getG()), null);
 	}
 }
 	

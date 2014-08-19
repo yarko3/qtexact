@@ -1,9 +1,9 @@
-/controller
-/greedy
-/branch
 /abstractClasses
-/qtUtils
-/reduction
-/dive
-/search
+/branch
 /certificate
+/controller
+/dive
+/greedy
+/jimsFiles
+/qtUtils
+/search

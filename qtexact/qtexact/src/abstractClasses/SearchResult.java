@@ -7,13 +7,17 @@ package abstractClasses;
  *
  * @param <V>
  */
-public abstract class SearchResult<V>
+public class SearchResult<V>
 {
 	//is at goal state
 	private boolean isTarget;
 	private Certificate<V> certificate;
 	
-	
+	public SearchResult(boolean isT, Certificate<V> cert )
+	{
+		isTarget = isT;
+		certificate = cert;
+	}
 	public boolean isTarget() {
 		return isTarget;
 	}

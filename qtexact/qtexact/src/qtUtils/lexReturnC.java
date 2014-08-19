@@ -36,11 +36,10 @@ public class lexReturnC<V> extends SearchResult<V>
 	 */
 	public lexReturnC(ArrayList<V> l, qtCertificateC<V> cert, boolean qt, boolean c, Set<Set<V>> cComp)
 	{
+		super(qt, cert);
 		setList(l);
-		setTarget(qt);
 		setConnected(c);
 		setcComponents(cComp);
-		setCertificate(cert);
 	}
 
 	/**
