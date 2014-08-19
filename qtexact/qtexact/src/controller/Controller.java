@@ -74,7 +74,7 @@ public class Controller<V>
 	
 	/**
 	 * constructor
-	 * @param bStruct Branch object
+	 * @param b Branch object
 	 */
 	public Controller(Branch<V> b) {
 		super();
@@ -86,7 +86,7 @@ public class Controller<V>
 	}
 	/**
 	 * set output flag with constructor
-	 * @param bStruct branching structure
+	 * @param b branching structure
 	 * @param o output
 	 */
 	public Controller(Branch<V> b, boolean o) {

@@ -146,7 +146,6 @@ public abstract class qtBranch<V> extends Branch<V>
 	 * given a move list, apply moves to graph
 	 * @param s search state
 	 * @param list list of myEdge objects that provide an addition or deletion flag
-	 * @return edit state
 	 */
 	public void applyMoves(branchingReturnC<V> s, LinkedList<myEdge<V>> list)
 	{

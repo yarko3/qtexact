@@ -11,7 +11,7 @@ import edu.uci.ics.jung.graph.util.Pair;
  * an abstract class used as the backbone of further LBFS searches
  * @author Yaroslav Senyuta
  *
- * @param <V>
+ * @param <V> vertex
  */
 public abstract class LBFS<V> extends Search<V>
 {
@@ -24,6 +24,12 @@ public abstract class LBFS<V> extends Search<V>
 	public abstract lexReturnC<V> search(Graph<V, Pair<V>> G, ArrayList<V> t);
 	
 	
+	/**
+	 * lexBFS+ traversal
+	 * @param G graph
+	 * @param t initial vertex ordering
+	 * @return lexBFS result
+	 */
 	public lexReturnC<V> LexBFSplus(Graph<V, Pair<V>> G, ArrayList<V> t)
 	{
 		//new ordering
@@ -88,6 +94,12 @@ public abstract class LBFS<V> extends Search<V>
 		return new lexReturnC<V>(s, null, true, true, null);
 	}
 	
+	/**
+	 * lexBFS- traversal
+	 * @param G graph
+	 * @param t initial vertex ordering
+	 * @return search result
+	 */
 	public lexReturnC<V> LexBFSminus(Graph<V, Pair<V>> G, ArrayList<V> t)
 	{
 		//new ordering

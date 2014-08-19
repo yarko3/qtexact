@@ -11,11 +11,13 @@ import edu.uci.ics.jung.graph.util.Pair;
  * a lexBFS search for quasi threshold graphs
  * @author Yaroslav Senyuta
  *
- * @param <V>
+ * @param <V> vertex
  */
 public class qtLBFSNoHeuristic<V> extends qtLBFS<V> 
 {
-	
+	/**
+	 * perform lexBFS search for qt recognition
+	 */
 	public lexReturnC<V> search(Graph<V, Pair<V>> G, ArrayList<V> t)
 	{
 		//new ordering

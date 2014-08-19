@@ -13,12 +13,16 @@ import edu.uci.ics.jung.graph.util.Pair;
 public class maxObsGreedy<V> extends GreedyEdit<V> 
 {
 
+	/**
+	 * constructor
+	 * @param bStruct branching structure
+	 */
 	public maxObsGreedy(qtBranch<V> bStruct) {
 		super(bStruct);
 	}
 
 	/**
-	 * Greedily edit the graph until no more benefitial moves can be made
+	 * Greedily edit the graph until no more beneficial moves can be made
 	 */
 	@Override
 	public void greedyEdit(branchingReturnC<V> s) 
@@ -111,6 +115,11 @@ public class maxObsGreedy<V> extends GreedyEdit<V>
 		
 	}
 	
+	/**
+	 * number of p4s and c4s in the given graph
+	 * @param g graph
+	 * @return number of obstructions
+	 */
 	public int getObstructionCount(Graph<V, Pair<V>> g)
 	{
 		HashSet<Certificate<V>> cert = new HashSet<Certificate<V>>();
@@ -159,6 +168,9 @@ public class maxObsGreedy<V> extends GreedyEdit<V>
 		return count;
 	}
 
+	/**
+	 * edit graph greedily
+	 */
 	@Override
 	public void greedyEdit(branchingReturnC<V> s, int bound) {
 		//get original number of obstructions

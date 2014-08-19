@@ -3,9 +3,9 @@ package qtUtils;
 import edu.uci.ics.jung.graph.util.Pair;
 /**
  * class used for storing an edge of an edit set
- * @author ssd
+ * @author Yaroslav Senyuta
  *
- * @param <V>
+ * @param <V> vertex
  */
 public class myEdge<V> implements Comparable<myEdge<V>>
 {
@@ -14,24 +14,45 @@ public class myEdge<V> implements Comparable<myEdge<V>>
 	//change flag (false for deletion; true for addition)
 	private boolean flag;
 	
+	/**
+	 * constructor
+	 * @param e edge
+	 * @param f flag
+	 */
 	public myEdge(Pair<V> e, boolean f)
 	{
 		setEdge(e);
 		setFlag(f);
 	}
 
+	/**
+	 * get the stored edge
+	 * @return edge
+	 */
 	public Pair<V> getEdge() {
 		return edge;
 	}
 
+	/**
+	 * set the edge stored
+	 * @param edge stored edge
+	 */
 	public void setEdge(Pair<V> edge) {
 		this.edge = edge;
 	}
 
+	/**
+	 * returns false for deletion, true for addition
+	 * @return false for deletion, true for addition
+	 */
 	public boolean isFlag() {
 		return flag;
 	}
 
+	/**
+	 * set flag of this edit
+	 * @param flag set true for addition, false for deletion
+	 */
 	public void setFlag(boolean flag) {
 		this.flag = flag;
 	}

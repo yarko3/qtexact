@@ -14,11 +14,13 @@ import edu.uci.ics.jung.graph.util.Pair;
  * 
  * @author Yaroslav Senyuta
  *
- * @param <V>
+ * @param <V> vertex
  */
 public class qtLBFSComponents<V> extends qtLBFSNoHeuristic<V> 
 {
-	
+	/**
+	 * connected component clusterer
+	 */
 	private WeakComponentClusterer<V, Pair<V>> cluster =  new WeakComponentClusterer<V, Pair<V>>();
 	
 	/** LexBFS search 

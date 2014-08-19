@@ -7,19 +7,32 @@ import java.util.Stack;
 
 import qtUtils.branchingReturnC;
 import qtUtils.myEdge;
-import qtUtils.qtGenerate;
 import abstractClasses.Reduction;
 import branch.qtBranch;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Pair;
 
+/**
+ * A reduction based on the number of obstructions found on a single edge
+ * @author Yaroslav Senyuta
+ *
+ * @param <V> vertex
+ */
 public class edgeBoundReduction<V> extends Reduction<V> 
 {
+	/**
+	 * branching structure
+	 */
 	qtBranch<V> bStruct;
+	/**
+	 * stack of number of deletions made as a result of each iteration of reduction
+	 */
 	Stack<Integer> stack;
 	
-	qtGenerate<V> gen = new qtGenerate<V>();
-	
+	/**
+	 * constructor
+	 * @param b branching strategy
+	 */
 	public edgeBoundReduction(qtBranch<V> b)
 	{
 		super();

@@ -34,7 +34,6 @@ import edu.uci.ics.jung.graph.util.Pair;
  * @author Yarko Senyuta
  *
  * @param <V> vertex
- * @param 
  */
 public class qtGenerate<V>
 {

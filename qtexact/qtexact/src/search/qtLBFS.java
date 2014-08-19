@@ -28,11 +28,18 @@ import edu.uci.ics.jung.graph.util.Pair;
  * 
  * @author Yaroslav Senyuta
  *
- * @param <V>
+ * @param <V> vertex
  */
 public abstract class qtLBFS<V> extends LBFS<V> 
 {
+	/**
+	 * cloner
+	 */
 	public static Cloner clone = new Cloner();
+	
+	/**
+	 * connected component cluster
+	 */
 	private WeakComponentClusterer<V, Pair<V>> cluster =  new WeakComponentClusterer<V, Pair<V>>();
 	@Override
 	public boolean isTarget(Graph<V, Pair<V>> g) {
@@ -76,7 +83,7 @@ public abstract class qtLBFS<V> extends LBFS<V>
 	/**Order the vertices in non-decreasing degrees for LexBFS
 	 * 
 	 * @param G graph
-	 * @return ordered ArrayList<V> of vertices
+	 * @return ordered ArrayList of vertices
 	 */
 	public ArrayList<V> orderVerticesNonDecreasingDegree(Graph<V, Pair<V>> G)
 	{
@@ -104,7 +111,7 @@ public abstract class qtLBFS<V> extends LBFS<V>
 	 * @param x first element of partition retrieved/last element of s
 	 * @param y first element of P' 
 	 * @param s ordering until the C4 or P4 was found
-	 * @return
+	 * @return certificate
 	 */
 	protected qtCertificateC<V> qtCertificate(Graph<V, Pair<V>> G, V x, V y, ArrayList<V> s)
 	{
@@ -209,7 +216,12 @@ public abstract class qtLBFS<V> extends LBFS<V>
 	}
 	
 	
-	
+	/**
+	 * order vertices from vertexList based on degree
+	 * @param G graph
+	 * @param vertexList vertex list
+	 * @return degree sequence
+	 */
 	public ArrayList<LinkedList<V>> degSequenceOrder(Graph<V, Pair<V>> G, Collection<V> vertexList)
 	{
 		//store vertices of same degree in LinkedList<V> at the index of their degree in ArrayList
@@ -243,6 +255,10 @@ public abstract class qtLBFS<V> extends LBFS<V>
 		return deg;
 	}
 	
+	/**
+	 * flatten and reverse the order of degree sequence
+	 * @param deg degree sequence
+	 */
 	public void flattenAndReverseDegPrint(ArrayList<LinkedList<V>> deg)
 	{
 		
@@ -272,6 +288,13 @@ public abstract class qtLBFS<V> extends LBFS<V>
 			return false;
 	}
 	
+	
+	/**
+	 * generate a SearchResult from a given bad edge
+	 * @param s edit state
+	 * @param edge bad edge
+	 * @return search result
+	 */
 	public lexReturnC<V> searchResultFromBadEdge(branchingReturnC<V> s, Pair<V> edge)
 	{
 		//check if edge exists

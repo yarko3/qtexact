@@ -12,12 +12,27 @@ import qtUtils.myEdge;
 import branch.qtBranch;
 import abstractClasses.Reduction;
 
+/**
+ *  A reduction that combines both P4 and C4 reductions
+ * @author Yaroslav Senyuta
+ *
+ * @param <V> vertex
+ */
 public class c4p4Reduction<V> extends Reduction<V> 
 {
+	/**
+	 * branching structure
+	 */
 	qtBranch<V> bStruct;
+	/**
+	 * stack of reduction moves made previously
+	 */
 	Stack<Integer> stack;
 	
-	
+	/**
+	 * constructor
+	 * @param b branching strategy
+	 */
 	public c4p4Reduction(qtBranch<V> b)
 	{
 		super();

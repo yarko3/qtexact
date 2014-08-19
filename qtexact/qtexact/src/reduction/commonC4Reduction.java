@@ -12,14 +12,23 @@ import branch.qtBranch;
  * Reduction for removing induced C4s
  * @author Yaroslav Senyuta
  *
- * @param <V>
+ * @param <V> vertex
  */
 public class commonC4Reduction<V> extends Reduction<V> 
 {
+	/**
+	 * branching structure
+	 */
 	qtBranch<V> bStruct;
+	/**
+	 * number of added vertices as a result of reduction for every iteration
+	 */
 	Stack<Integer> stack;
 	
-	
+	/**
+	 * constructor
+	 * @param b
+	 */
 	public commonC4Reduction(qtBranch<V> b)
 	{
 		super();

@@ -16,11 +16,27 @@ import edu.uci.ics.jung.graph.SparseGraph;
 import edu.uci.ics.jung.graph.UndirectedGraph;
 import edu.uci.ics.jung.graph.util.Pair;
 
+/**
+ * a reduction that splits graph into connected components from biconnected components
+ * @author Yaroslav Senyuta
+ *
+ * @param <V> vertex
+ */
 public class biconnectedReduction<V> extends Reduction<V> {
 	
+	/**
+	 * branching structure
+	 */
 	qtBranch<V> bStruct;
+	/**
+	 * stack of previous reductions made
+	 */
 	Stack<Integer> stack;
 	
+	/**
+	 * constructor
+	 * @param b branching structure used
+	 */
 	public biconnectedReduction(qtBranch<V> b)
 	{
 		super();
@@ -102,30 +118,30 @@ public class biconnectedReduction<V> extends Reduction<V> {
 	}
 	
 	
-	private Set<Graph<V, Pair<V>>> graphsFromSets(branchingReturnC<V> s, Set<Set<V>> components)
-	{
-		Set<Graph<V, Pair<V>>> graphs = new HashSet<Graph<V, Pair<V>>>();
-		
-		for (Set<V> set : components)
-		{
-			SparseGraph<V, Pair<V>>	g = new SparseGraph<V, Pair<V>>();
-			
-			for (V v1 : set)
-			{
-				for (V v2 : set)
-				{
-					if (s.getG().isNeighbor(v1, v2))
-					{
-						g.addEdge(new Pair<V>(v1, v2), v1, v2);
-					}
-				}
-			}
-			
-			graphs.add(g);
-		}
-		
-		return graphs;
-	}
+//	private Set<Graph<V, Pair<V>>> graphsFromSets(branchingReturnC<V> s, Set<Set<V>> components)
+//	{
+//		Set<Graph<V, Pair<V>>> graphs = new HashSet<Graph<V, Pair<V>>>();
+//		
+//		for (Set<V> set : components)
+//		{
+//			SparseGraph<V, Pair<V>>	g = new SparseGraph<V, Pair<V>>();
+//			
+//			for (V v1 : set)
+//			{
+//				for (V v2 : set)
+//				{
+//					if (s.getG().isNeighbor(v1, v2))
+//					{
+//						g.addEdge(new Pair<V>(v1, v2), v1, v2);
+//					}
+//				}
+//			}
+//			
+//			graphs.add(g);
+//		}
+//		
+//		return graphs;
+//	}
 	
 
 }

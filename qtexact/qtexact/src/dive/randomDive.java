@@ -10,18 +10,38 @@ import abstractClasses.Dive;
 import abstractClasses.SearchResult;
 import edu.uci.ics.jung.graph.util.Pair;
 
+/**
+ * A diving strategy for choosing random moves
+ * @author Yaroslav Senyuta
+ *
+ * @param <V> vertex
+ */
 public class randomDive<V> extends Dive<V> {
 
+	/**
+	 * random generator for choosing decisions
+	 */
 	private static Random rand = new Random();
+	/**
+	 * stores how many times diving tried to make a move but was unsuccessful
+	 */
 	private int noBudge;
+	/**
+	 * constructor
+	 * @param b branching structure
+	 */
 	public randomDive(Branch<V> b)
 	{
 		super(b);
 	}
 	
+	/**
+	 * make random moves until solution found or dive gets stuck
+	 */
 	@Override
 	public void dive(branchingReturnC<V> s) {
 
+		//search result
 		SearchResult<V>  searchResult = bStruct.getSearch().search(s);
 		
 		while (!searchResult.isTarget() && noBudge < 10)
@@ -32,6 +52,9 @@ public class randomDive<V> extends Dive<V> {
 		
 	}
 
+	/**
+	 * make random moves until solution found, dive gets stuck or bound reached
+	 */
 	@Override
 	public void dive(branchingReturnC<V> s, int bound) 
 	{
@@ -46,6 +69,11 @@ public class randomDive<V> extends Dive<V> {
 		
 	}
 	
+	/**
+	 * make a random move
+	 * @param s edit state
+	 * @param searchResult search result
+	 */
 	private void randomChoice(branchingReturnC<V> s, SearchResult<V> searchResult)
 	{
 		ArrayList<V> lexResult = searchResult.getCertificate().getVertices();

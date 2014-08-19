@@ -7,11 +7,27 @@ import qtUtils.branchingReturnC;
 import abstractClasses.Reduction;
 import branch.qtBranch;
 
+/**
+ * A reduction that removes a vertex adjacent to every other vertex in graph.
+ * @author Yaroslav Senyuta
+ *
+ * @param <V> vertex
+ */
 public class centralNodeReduction<V> extends Reduction<V> 
 {
+	/**
+	 * branching structure
+	 */
 	private qtBranch<V> bStruct;
+	/**
+	 * nodes removed from each iteration of reduction
+	 */
 	private Stack<LinkedList<V>> removedVertices;
 	
+	/**
+	 * constructor
+	 * @param b
+	 */
 	public centralNodeReduction(qtBranch<V> b)
 	{
 		removedVertices = new Stack<LinkedList<V>>();

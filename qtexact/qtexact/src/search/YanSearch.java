@@ -18,15 +18,15 @@ import edu.uci.ics.jung.graph.util.Pair;
 /**
  * a class containing the search for quasi threshold graphs 
  * Yan 1995
- * @author ssd
+ * @author Yaroslav Senyuta
  *
- * @param <V>
+ * @param <V> vertex
  */
 public class YanSearch<V>
 {
 	/**
 	 * returns true if graph given is quasi threshold, false otherwise
-	 * @param G
+	 * @param G graph
 	 * @return true if QT
 	 */
 	public boolean search(Graph<V, Pair<V>> G)
