@@ -118,7 +118,6 @@ public class fun<V> extends JApplet {
 		Controller<Integer> c = new Controller<Integer>(null, true);
 		
 		
-		//Dive<Integer> dive = new maxObsGreedy<Integer>(null);
 		
 		//dive = new randomDive<Integer>(null);
 
@@ -291,13 +290,16 @@ public class fun<V> extends JApplet {
 //		visualize(cln3);
 //		
 //
-		c.setbStruct(branchC);
-		System.out.println("\nConnected component: ");
-		start = System.currentTimeMillis();
-		System.out.println(yan.search(c.branchStart(exampleQT, 14).getG()));
-		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+//		c.setbStruct(branchC);
+//		System.out.println("\nConnected component: ");
+//		start = System.currentTimeMillis();
+//		System.out.println(yan.search(c.branchStart(exampleQT, 14).getG()));
+//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+//		
+//		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
 		
-		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
+		
+		Dive<Integer> dive = new maxObsGreedy<Integer>(branchC);
 		
 //		c.setbStruct(branchC);
 //		dive.setbStruct(branchC);
@@ -311,13 +313,12 @@ public class fun<V> extends JApplet {
 //		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
 		
 		
-//		c.setbStruct(branchC);
-//		dive.setbStruct(branchC);
-//		c.setDive(dive);
-//		System.out.println("\nGreedy Edit: ");
-//		start = System.currentTimeMillis();
-//		System.out.println(yan.search(c.diveAtStartEdit(exampleQT).getG()));
-//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		c.setbStruct(branchC);
+		branchC.setDive(dive);
+		System.out.println("\nGreedy Edit: ");
+		start = System.currentTimeMillis();
+		System.out.println(yan.search(c.diveAtStartEdit(exampleQT).getG()));
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		
 //		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));

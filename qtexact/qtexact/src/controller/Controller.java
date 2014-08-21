@@ -55,10 +55,7 @@ public class Controller<V>
 	 * qt generate tools
 	 */
 	private qtGenerate<V> gen = new qtGenerate<V>();
-	/**
-	 * diving strategy
-	 */
-	private Dive<V> dive;
+
 	/**
 	 * best diving solution
 	 */
@@ -110,8 +107,6 @@ public class Controller<V>
 		globalPercent = 0;
 		timesRun = 0;
 		output = o;
-		dive = g;
-		dive.setbStruct(bStruct);
 	}
 	
 	/**
@@ -122,20 +117,7 @@ public class Controller<V>
 	{
 		return useDive;
 	}
-	/**
-	 * get diving strategy
-	 * @return diving strategy
-	 */
-	public Dive<V> getDive() {
-		return dive;
-	}
-	/**
-	 * set diving strategy
-	 * @param d diving strategy
-	 */
-	public void setDive(Dive<V> d) {
-		this.dive =d;
-	}
+	
 	/**
 	 * set global percent 
 	 * @param p global percent
@@ -219,7 +201,7 @@ public class Controller<V>
 		branchingReturnC<V> s = bStruct.setup(G);
 		
 		//run dive approach
-		dive.dive(s);
+		bStruct.getDive().dive(s);
 		
 		System.out.println("Dive terminated after " + s.getChanges().size() + " moves.");
 		System.out.println("Dive solution was " + ((bStruct.getSearch().isTarget(s.getG())) ? "" : " not ") + "successful");
@@ -603,9 +585,9 @@ public class Controller<V>
 		{
 			int branchDepth = s.getChanges().size();
 			if (bestDiveSol == null)
-				dive.dive(s);
+				bStruct.getDive().dive(s);
 			else
-				dive.dive(s, bestDiveSol.size());
+				bStruct.getDive().dive(s, bestDiveSol.size());
 			
 			//update minMoves if solution found is good
 			if (getbStruct().getSearch().isTarget(s.getG()))

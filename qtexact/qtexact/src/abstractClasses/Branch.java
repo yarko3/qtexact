@@ -26,6 +26,25 @@ public abstract class Branch<V>
 	protected LinkedList<Reduction<V>> reductions;
 	
 	/**
+	 * a diving strategy for branching
+	 */
+	protected Dive<V> dive;
+	
+	/**
+	 * @return the dive
+	 */
+	public Dive<V> getDive() {
+		return dive;
+	}
+
+	/**
+	 * @param dive the dive to set
+	 */
+	public void setDive(Dive<V> dive) {
+		this.dive = dive;
+	}
+
+	/**
 	 * a search class used for identifying a solution or a certificate to branch on 
 	 */
 	protected Search<V> search;
