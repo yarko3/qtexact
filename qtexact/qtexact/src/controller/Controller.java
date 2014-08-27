@@ -4,11 +4,9 @@ import java.util.LinkedList;
 
 import qtUtils.branchingReturnC;
 import qtUtils.myEdge;
-import qtUtils.qtGenerate;
 import search.qtLBFS;
 import abstractClasses.Branch;
 import abstractClasses.Dive;
-import abstractClasses.GreedyEdit;
 import abstractClasses.SearchResult;
 import branch.qtBranch;
 import edu.uci.ics.jung.graph.Graph;
@@ -51,11 +49,6 @@ public class Controller<V>
 	 * original graph size (before connected component split)
 	 */
 	private int ogGraphSize;
-	/**
-	 * qt generate tools
-	 */
-	private qtGenerate<V> gen = new qtGenerate<V>();
-
 	/**
 	 * best diving solution
 	 */
@@ -262,7 +255,7 @@ public class Controller<V>
 		((qtBranch<V>) bStruct).revertAll(s);
 		
 		//check for solution correctness
-		Graph<V, Pair<V>> rtn = gen.applyMoves(Branch.clone.deepClone(s.getG()), s.getMinMoves().getChanges());
+		Graph<V, Pair<V>> rtn = bStruct.applyMoves(Branch.clone.deepClone(s.getG()), s.getMinMoves().getChanges());
 		
 		
 		
@@ -321,7 +314,7 @@ public class Controller<V>
 		
 		
 		
-		Graph<V, Pair<V>> rtn = gen.applyMoves(Branch.clone.deepClone(goal.getG()), goal.getMinMoves().getChanges());
+		Graph<V, Pair<V>> rtn = bStruct.applyMoves(Branch.clone.deepClone(goal.getG()), goal.getMinMoves().getChanges());
 		
 		
 		

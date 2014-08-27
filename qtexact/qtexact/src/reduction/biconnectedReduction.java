@@ -1,6 +1,5 @@
 package reduction;
 
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -11,8 +10,6 @@ import qtUtils.branchingReturnC;
 import abstractClasses.Reduction;
 import branch.qtBranch;
 import edu.uci.ics.jung.algorithms.cluster.BicomponentClusterer;
-import edu.uci.ics.jung.graph.Graph;
-import edu.uci.ics.jung.graph.SparseGraph;
 import edu.uci.ics.jung.graph.UndirectedGraph;
 import edu.uci.ics.jung.graph.util.Pair;
 

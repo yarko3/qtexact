@@ -20,6 +20,7 @@ import qtUtils.branchingReturnC;
 import qtUtils.qtGenerate;
 import reduction.biconnectedReduction;
 import reduction.c4p4Reduction;
+import reduction.centralNodeReduction;
 import reduction.commonC4Reduction;
 import reduction.edgeBoundReduction;
 import search.YanSearch;
@@ -28,13 +29,13 @@ import abstractClasses.Branch;
 import abstractClasses.Dive;
 import abstractClasses.Reduction;
 import branch.qtAllStruct;
+import branch.qtBranch;
 import branch.qtBranchComponents;
 import branch.qtBranchNoHeuristic;
 
 import com.rits.cloning.Cloner;
 
 import controller.Controller;
-import dive.randomDive;
 import edu.uci.ics.jung.algorithms.layout.FRLayout;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.UndirectedSparseGraph;
@@ -55,10 +56,123 @@ public class fun<V> extends JApplet {
 	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException
 	{
 		//fbTest();
-		editTest();
+		//editTest();
 		//comparisonTest();
 		//wineTest();
+		userInterface();
 	}
+	
+	public static void userInterface() throws FileNotFoundException
+	{
+		Controller<Integer> c = new Controller<Integer>(null, true);
+		
+		System.out.println(
+				"Enter graph to edit to be quasi-threshold:\n"
+				+ "1 - From file\n"
+				+ "2 - Zachary's Karate Club\n"
+				+ "3 - Grass Web\n"
+				+ "4 - Erdos Renyi Graph\n"
+				+ "5 - Random QT Graph from Tree\n");
+		
+		Scanner scan = new Scanner(System.in);
+		
+		int g = scan.nextInt();
+		
+		Graph<Integer, Pair<Integer>> graph = null;
+		qtGenerate<Integer> gen = new qtGenerate<Integer>();
+		int nodes;
+		long seed;
+		switch (g)
+		{
+		case 1: 
+			System.out.println("\nEnter path of graph file (integer edge list):");
+			String path = scan.next();
+			graph = fillGraphFromFile(path);
+			break;
+		case 2:
+			graph = fillGraphFromFile("datasets/zachary.txt");
+			break;
+		case 3:
+			graph = fillGraphFromFile("datasets/grass_web.pairs");
+			break;
+		case 4:
+			System.out.println("\nEnter number of nodes in graph: ");
+			nodes = scan.nextInt();
+			System.out.println("\nEnter probability: ");
+			double probability = scan.nextDouble();
+			System.out.println("\nSet random seed: ");
+			seed = scan.nextLong();
+			
+			graph = qtGenerate.ER(nodes, probability, seed);
+			break;
+		case 5:
+			System.out.println("\nEnter number of nodes in graph: ");
+			nodes = scan.nextInt();
+			System.out.println("\nSet random seed: ");
+			seed = scan.nextLong();
+			
+			graph = gen.treeRandom(nodes, seed);
+			break;
+		}
+		
+		System.out.println("\nGraph generated successfully. Visualize graph? (true/false) ");
+		boolean v = scan.nextBoolean();
+		
+		if (v)
+			visualize(clone.deepClone(graph));
+		
+		
+		System.out.println("\nSelect branching strategy\n"
+				+ "1 - branch on P4/C4 only\n"
+				+ "2 - branch on all 5 vertex obstructions\n"
+				+ "3 - (fastest) branch on all 5 vertex obstructions with connected components\n");
+		
+		int branch = scan.nextInt();
+		
+		qtBranch<Integer> bStruct = null;
+		
+		switch (branch)
+		{
+		case 1:
+			bStruct = new qtBranchNoHeuristic<Integer>(c);
+			break;
+		case 2:
+			bStruct = new qtAllStruct<Integer>(c);
+			break;
+		case 3:
+			bStruct = new qtBranchComponents<Integer>(c);
+			break;
+		}
+		
+		System.out.println("\nAdd C4/P4 reduction (recommended)? (true/false) ");
+		boolean temp = scan.nextBoolean();
+		
+		if (temp)
+			bStruct.addReduction(new c4p4Reduction<Integer>(bStruct));
+		
+		System.out.println("\nAdd biconnected reduction? (true/false) ");
+		temp = scan.nextBoolean();
+		
+		if (temp)
+			bStruct.addReduction(new biconnectedReduction<Integer>(bStruct));
+		
+		System.out.println("\nAdd common node reduction? (true/false) ");
+		temp = scan.nextBoolean();
+		
+		if (temp)
+			bStruct.addReduction(new centralNodeReduction<Integer>(bStruct));
+		
+		
+		System.out.println("\nEnter allowed branching depth: ");
+		int depth = scan.nextInt();
+		
+		c.setbStruct(bStruct);
+		System.out.println("\nStart:");
+		long start = System.currentTimeMillis();
+		c.branchStart(graph, depth).getG();
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+	}
+	
 	
 	public static void editTest() throws FileNotFoundException, UnsupportedEncodingException 
 	{
@@ -83,7 +197,7 @@ public class fun<V> extends JApplet {
 		
 		exampleQT = gen.ER(16, 0.5, (long) 3);
 		
-		exampleQT = fillGraphFromFile("datasets/zachary.txt");
+		//exampleQT = fillGraphFromFile("datasets/zachary.txt");
 		
 		//Graph<String, Pair<String>>wine = fillGraphFromFile("datasets/wineryEdgeSet.txt");
 		
@@ -101,7 +215,7 @@ public class fun<V> extends JApplet {
 		//exampleQT = fillGraphFromFile("datasets/grass_web.pairs");
 
 		
-		//exampleQT = gen.treeRandom(50, 5);
+		exampleQT = gen.treeRandom(150, 5);
 		
 		//exampleQT = gen.houseStruct();
 		
@@ -115,7 +229,7 @@ public class fun<V> extends JApplet {
 		
 		//visualize(exampleQT);
 		
-		Controller<Integer> c = new Controller<Integer>(null, true);
+		Controller<Integer> c = new Controller<Integer>(null, false);
 		
 		
 		
@@ -140,9 +254,22 @@ public class fun<V> extends JApplet {
 		
 		qtBranchNoHeuristic<Integer> nothing = new qtBranchNoHeuristic<Integer>(c);
 		
+		Reduction<Integer> rC;
 		
-		Reduction<Integer> rC = new c4p4Reduction<Integer>(branchC);
+		
+//		rC = new c4p4Reduction<Integer>(branchC);
+//		branchC.addReduction(rC);
+//		
+		rC = new biconnectedReduction<Integer>(branchC);
 		branchC.addReduction(rC);
+		
+//		rC = new c4p4Reduction<Integer>(nothing);
+//		nothing.addReduction(rC);
+		
+		rC = new biconnectedReduction<Integer>(nothing);
+		nothing.addReduction(rC);
+		
+
 		
 //		Reduction<Integer> rC = new biconnectedReduction<Integer>(branchC);
 //		branchC.addReduction(rC);
@@ -297,9 +424,21 @@ public class fun<V> extends JApplet {
 //		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 //		
 //		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
+//		
+//		
+		c.setbStruct(branchC);
+	
+		for (int i = 5; i <= 30; i++)
+		{
+			System.out.println("Bound: " + i);
+			start = System.currentTimeMillis();
+			System.out.println(yan.search(c.branchStart(exampleQT, i).getG()));
+			System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		}
 		
 		
 		Dive<Integer> dive = new maxObsGreedy<Integer>(branchC);
+		
 		
 //		c.setbStruct(branchC);
 //		dive.setbStruct(branchC);
@@ -313,12 +452,12 @@ public class fun<V> extends JApplet {
 //		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
 		
 		
-		c.setbStruct(branchC);
-		branchC.setDive(dive);
-		System.out.println("\nGreedy Edit: ");
-		start = System.currentTimeMillis();
-		System.out.println(yan.search(c.diveAtStartEdit(exampleQT).getG()));
-		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+//		c.setbStruct(branchC);
+//		branchC.setDive(dive);
+//		System.out.println("\nGreedy Edit: ");
+//		start = System.currentTimeMillis();
+//		System.out.println(yan.search(c.diveAtStartEdit(exampleQT).getG()));
+//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		
 //		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));

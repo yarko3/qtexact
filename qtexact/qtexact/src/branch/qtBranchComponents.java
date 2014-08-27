@@ -194,7 +194,7 @@ public class qtBranchComponents<V> extends qtAllStruct<V>
 			min.getChanges().addAll(temp);
 			
 			//if new solution is better than current one
-			Graph<V, Pair<V>> rtn = gen.applyMoves(Branch.clone.deepClone(s.getG()), min.getChanges());
+			Graph<V, Pair<V>> rtn = applyMoves(Branch.clone.deepClone(s.getG()), min.getChanges());
 			
 			if (s.getMinMoves().getChanges().size() >= min.getChanges().size() && getSearch().isTarget(rtn))
 			{

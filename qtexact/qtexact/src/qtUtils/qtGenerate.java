@@ -525,19 +525,6 @@ public class qtGenerate<V>
 		return graph;
 	}
 	
-	public Graph<V, Pair<V>> applyMoves(Graph<V, Pair<V>> graph, LinkedList<myEdge<V>> list)
-	{
-		for (myEdge<V> m : list)
-		{
-			if (m.isFlag())
-				graph.addEdge(m.getEdge(), m.getEdge().getFirst(), m.getEdge().getSecond());
-			else
-				if (!graph.removeEdge(m.getEdge()))
-					graph.removeEdge(new Pair<V>(m.getEdge().getSecond(), m.getEdge().getFirst()));
-		}
-		
-		return graph;
-	}
 	
 	
 	public Graph<String, Pair<String>> fromBipartiteFile(String filename) throws FileNotFoundException, UnsupportedEncodingException
@@ -961,7 +948,7 @@ public class qtGenerate<V>
 			depthVert.get(parent.depth + 1).add(next);
 			
 			
-			while (parent != null && rand.nextInt(2) == 0)
+			while (parent != null /*&& rand.nextInt(2) == 0*/)
 			{
 				init.addEdge(new Pair<myVertex>(next, parent), next, parent);
 				parent = parent.parent;
@@ -1023,7 +1010,7 @@ public class qtGenerate<V>
 //		search.flattenAndReverseDegPrint(search.degSequenceOrder(rtn, list.get(12)));
 //		
 //		
-		rtn.removeVertex(0);
+		//rtn.removeVertex(0);
 
 		
 		return rtn;

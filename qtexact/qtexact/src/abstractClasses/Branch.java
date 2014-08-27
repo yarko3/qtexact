@@ -249,5 +249,25 @@ public abstract class Branch<V>
 	 */
 	public abstract branchingReturnC<V> delete2Result(branchingReturnC<V> s, V v0, V v1, V v2, V v3);
 	
+	/**
+	 * apply moves to graph
+	 * @param graph graph
+	 * @param list moves to be applied to graph
+	 * @return modified graph
+	 */
+	public Graph<V, Pair<V>> applyMoves(Graph<V, Pair<V>> graph, LinkedList<myEdge<V>> list)
+	{
+		for (myEdge<V> m : list)
+		{
+			if (m.isFlag())
+				graph.addEdge(m.getEdge(), m.getEdge().getFirst(), m.getEdge().getSecond());
+			else
+				if (!graph.removeEdge(m.getEdge()))
+					graph.removeEdge(new Pair<V>(m.getEdge().getSecond(), m.getEdge().getFirst()));
+		}
+		
+		return graph;
+	}
+	
 	
 }
