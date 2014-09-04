@@ -948,7 +948,7 @@ public class qtGenerate<V>
 			depthVert.get(parent.depth + 1).add(next);
 			
 			
-			while (parent != null /*&& rand.nextInt(2) == 0*/)
+			while (parent != null && rand.nextInt(2) == 0)
 			{
 				init.addEdge(new Pair<myVertex>(next, parent), next, parent);
 				parent = parent.parent;

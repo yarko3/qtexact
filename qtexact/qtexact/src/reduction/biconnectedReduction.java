@@ -88,12 +88,13 @@ public class biconnectedReduction<V> extends Reduction<V> {
 					break;
 				}
 			}
-			//store edge to be edited later
-			else
-			{
-				if (s.getG().getNeighborCount(edge.getFirst()) > 1 && s.getG().getNeighborCount(edge.getSecond()) > 1)
-					s.getKnownBadEdges().add(edge);
-			}
+			//store edge to be edited later 
+			//(DO NOT DO THIS BECAUSE BRANCHING WILL ADD EDGES BETWEEN BICONNECTED COMPONENTS)
+//			else
+//			{
+//				if (s.getG().getNeighborCount(edge.getFirst()) > 1 && s.getG().getNeighborCount(edge.getSecond()) > 1)
+//					s.getKnownBadEdges().add(edge);
+//			}
 		}
 		
 		stack.push(count);

@@ -5,12 +5,12 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Stack;
 
-import edu.uci.ics.jung.graph.Graph;
-import edu.uci.ics.jung.graph.util.Pair;
 import qtUtils.branchingReturnC;
 import qtUtils.myEdge;
-import branch.qtBranch;
 import abstractClasses.Reduction;
+import branch.qtBranch;
+import edu.uci.ics.jung.graph.Graph;
+import edu.uci.ics.jung.graph.util.Pair;
 
 /**
  *  A reduction that combines both P4 and C4 reductions
@@ -78,6 +78,13 @@ public class c4p4Reduction<V> extends Reduction<V>
 			{
 				V v1 = vertices.get(j);
 				
+				//stop reduction if max moves have been made
+				if (s.getChanges().size() >= s.getMinMoves().getChanges().size())
+				{
+					break outer;
+				}
+				
+				
 				//use C4 reduction
 				if (!s.getG().isNeighbor(v0, v1))
 				{
@@ -114,17 +121,25 @@ public class c4p4Reduction<V> extends Reduction<V>
 					}
 					
 					//if number of induced C4s is greater than the allowed number of moves, add an edge
-					if (common.size() > s.getMinMoves().getChanges().size() - s.getChanges().size() 
-							&& !s.getChanges().contains(new myEdge<V>(new Pair<V>(v0, v1), false)))
+					if (common.size() > s.getMinMoves().getChanges().size() - s.getChanges().size())
 					{
+						//if a move must be done but will undo previous work, stop this branching path
+						if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(v0, v1), false)))
+						{
 						
-						//toApply.addLast(new myEdge<V>(new Pair<V>(v0, v1), true));
-						
-						s = bStruct.addResult(s, v0, v1);
-						count++;
-						
-						if (count > bound)
-							break outer;
+							s = bStruct.addResult(s, v0, v1);
+							count++;
+							
+							if (count > bound)
+								break outer;
+						}
+						//a move must be made that is not allowed
+						else
+						{
+							//stop editing by filling this move list
+							count += s.getMinMoves().getChanges().size() - s.getChanges().size();
+							bStruct.fillChangeListAndApplyMoves(s);
+						}
 					}
 					//add edge to list of known bad edges
 					else
@@ -141,15 +156,26 @@ public class c4p4Reduction<V> extends Reduction<V>
 					Pair<V> e = new Pair<V>(v0, v1);
 					//if leaving the edge is out of bounds, remove this edge
 					int obstructions = getObstructionCount(e, s.getG());
-					if (!s.getChanges().contains(new myEdge<V>(e, true)) && obstructions > s.getMinMoves().getChanges().size() - s.getChanges().size())
+					if (obstructions > s.getMinMoves().getChanges().size() - s.getChanges().size())
 					{
-						//remove edge
-						s = bStruct.deleteResult(s, v0, v1);
-						count++;
-						
-						if (count > bound)
-							break outer;
-						
+						//move is allowed to be made
+						if (!s.getChanges().contains(new myEdge<V>(e, true)))
+						{
+							//remove edge
+							s = bStruct.deleteResult(s, v0, v1);
+							count++;
+							
+							if (count > bound)
+								break outer;
+							
+						}
+						//move is not allowed to be made
+						else
+						{
+							//stop editing by filling this move list
+							count += s.getMinMoves().getChanges().size() - s.getChanges().size();
+							bStruct.fillChangeListAndApplyMoves(s);
+						}
 					}
 					else
 					{
@@ -164,9 +190,8 @@ public class c4p4Reduction<V> extends Reduction<V>
 		}
 		
 	
-		
+		//push the number of moves done 
 		stack.push(count);
-		//bStruct.applyMoves(s, toApply);
 		return s;
 		
 	}

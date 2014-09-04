@@ -56,10 +56,10 @@ public class fun<V> extends JApplet {
 	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException
 	{
 		//fbTest();
-		//editTest();
+		editTest();
 		//comparisonTest();
 		//wineTest();
-		userInterface();
+		//userInterface();
 	}
 	
 	public static void userInterface() throws FileNotFoundException
@@ -195,9 +195,9 @@ public class fun<V> extends JApplet {
 		//random graph join
 		//exampleQT = gen.erJoins(8, 8, 5, .86, .86, .9);
 		
-		exampleQT = gen.ER(16, 0.5, (long) 3);
+		exampleQT = gen.ER(16, 0.1, (long) 3);
 		
-		//exampleQT = fillGraphFromFile("datasets/zachary.txt");
+		exampleQT = fillGraphFromFile("datasets/zachary.txt");
 		
 		//Graph<String, Pair<String>>wine = fillGraphFromFile("datasets/wineryEdgeSet.txt");
 		
@@ -215,7 +215,7 @@ public class fun<V> extends JApplet {
 		//exampleQT = fillGraphFromFile("datasets/grass_web.pairs");
 
 		
-		exampleQT = gen.treeRandom(150, 5);
+		//exampleQT = gen.treeRandom(150, 5);
 		
 		//exampleQT = gen.houseStruct();
 		
@@ -229,7 +229,7 @@ public class fun<V> extends JApplet {
 		
 		//visualize(exampleQT);
 		
-		Controller<Integer> c = new Controller<Integer>(null, false);
+		Controller<Integer> c = new Controller<Integer>(null, true);
 		
 		
 		
@@ -257,11 +257,11 @@ public class fun<V> extends JApplet {
 		Reduction<Integer> rC;
 		
 		
-//		rC = new c4p4Reduction<Integer>(branchC);
-//		branchC.addReduction(rC);
-//		
-		rC = new biconnectedReduction<Integer>(branchC);
+		rC = new c4p4Reduction<Integer>(branchC);
 		branchC.addReduction(rC);
+//		
+//		rC = new biconnectedReduction<Integer>(branchC);
+//		branchC.addReduction(rC);
 		
 //		rC = new c4p4Reduction<Integer>(nothing);
 //		nothing.addReduction(rC);
@@ -295,8 +295,8 @@ public class fun<V> extends JApplet {
 //		rC = new c4p4Reduction<Integer>(all);
 //		all.addReduction(rC);
 		
-		rC = new c4p4Reduction<Integer>(all2);
-		all2.addReduction(rC);
+//		rC = new c4p4Reduction<Integer>(all2);
+//		all2.addReduction(rC);
 		rC = new biconnectedReduction<Integer>(all2);
 		all2.addReduction(rC);
 		
@@ -393,7 +393,7 @@ public class fun<V> extends JApplet {
 //		c.setbStruct(all2);
 //		System.out.println("\nAll structures (new reductions): ");
 //		start = System.currentTimeMillis();
-//		System.out.println(yan.search(c.branchStart(exampleQT, 16).getG()));
+//		System.out.println(yan.search(c.branchStart(exampleQT, 12).getG()));
 //		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 //		
 //		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
@@ -417,24 +417,24 @@ public class fun<V> extends JApplet {
 //		visualize(cln3);
 //		
 //
-//		c.setbStruct(branchC);
-//		System.out.println("\nConnected component: ");
-//		start = System.currentTimeMillis();
-//		System.out.println(yan.search(c.branchStart(exampleQT, 14).getG()));
-//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		c.setbStruct(branchC);
+		System.out.println("\nConnected component: ");
+		start = System.currentTimeMillis();
+		System.out.println(yan.search(c.branchStart(exampleQT, 14).getG()));
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 //		
 //		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
 //		
 //		
-		c.setbStruct(branchC);
-	
-		for (int i = 5; i <= 30; i++)
-		{
-			System.out.println("Bound: " + i);
-			start = System.currentTimeMillis();
-			System.out.println(yan.search(c.branchStart(exampleQT, i).getG()));
-			System.out.println((System.currentTimeMillis()-start) / 1000.0);
-		}
+//		c.setbStruct(nothing);
+//	
+//		for (int i = 5; i <= 15; i++)
+//		{
+//			System.out.println("Bound: " + i);
+//			start = System.currentTimeMillis();
+//			System.out.println(yan.search(c.branchStart(exampleQT, i).getG()));
+//			System.out.println((System.currentTimeMillis()-start) / 1000.0);
+//		}
 		
 		
 		Dive<Integer> dive = new maxObsGreedy<Integer>(branchC);

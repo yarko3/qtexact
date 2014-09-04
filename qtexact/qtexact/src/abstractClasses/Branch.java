@@ -270,4 +270,36 @@ public abstract class Branch<V>
 	}
 	
 	
+	/**
+	 * fill the current changes list with random deletions up to the minMoves bound
+	 * @param s current search state
+	 */
+	public void fillChangeListAndApplyMoves(branchingReturnC<V> s)
+	{
+		int count = s.getChanges().size();
+		int bound = s.getMinMoves().getChanges().size();
+		
+		//cannot concurrently modify graph, so must create a move list to apply later
+		LinkedList<myEdge<V>> toApply = new LinkedList<myEdge<V>>();
+		
+		LinkedList<myEdge<V>> l = s.getChanges();
+		forLoop:
+		for (Pair<V> e : s.getG().getEdges())
+		{
+			//treat each edge in this set as a deletion
+			if ((!l.contains(new myEdge<V>(e, false)) || !l.contains(new myEdge<V>(e, true))) && count < bound)
+			{	
+				//make random deletions to fill move list
+				toApply.add(new myEdge<V>(e, false));
+				count++;
+				if (count >= bound)
+					break forLoop;
+			}
+		}
+		
+		//apply moves
+		applyMoves(s, toApply);
+	}
+	
+	
 }

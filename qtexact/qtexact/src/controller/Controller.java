@@ -186,9 +186,10 @@ public class Controller<V>
 	/**
 	 * edit strategy where a dive is done first and when a solution is found, exact solution tries to improve it
 	 * @param G graph
+	 * @param diveDepth maximum depth to dive to 
 	 * @return edit state
 	 */
-	public branchingReturnC<V> diveAtStartEdit(Graph<V, Pair<V>> G)
+	public branchingReturnC<V> diveAtStartEdit(Graph<V, Pair<V>> G, int diveDepth)
 	{
 		//setup the branchingReturnC with an empty MinMoves
 		branchingReturnC<V> s = bStruct.setup(G);
