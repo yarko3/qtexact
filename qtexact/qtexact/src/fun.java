@@ -56,9 +56,9 @@ public class fun<V> extends JApplet {
 	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException
 	{
 		//fbTest();
-		editTest();
+		//editTest();
 		//comparisonTest();
-		//wineTest();
+		wineTest();
 		//userInterface();
 	}
 	
@@ -705,7 +705,7 @@ public class fun<V> extends JApplet {
 	private static void wineTest() throws FileNotFoundException, UnsupportedEncodingException
 	{
 		
-		Graph<String, Pair<String>> wine = fillGraphFromFileWithStrings("datasets/wine/wineryEdgeSet.txt");
+		Graph<String, Pair<String>> wine = fillGraphFromFileWithStrings("datasets/wine/BC/wineryEdgeSet.txt");
 		
 		
 		Controller<String> c = new Controller<String>(null, true);
@@ -716,19 +716,32 @@ public class fun<V> extends JApplet {
 		Reduction<String> rC = new c4p4Reduction<String>(branchC);
 		branchC.addReduction(rC);
 		
-		rC = new biconnectedReduction<String>(branchC);
-		branchC.addReduction(rC);
+//		rC = new biconnectedReduction<String>(branchC);
+//		branchC.addReduction(rC);
 		
 		visualizeString(wine);
+		long start;
 		
+		Dive<String> dive = new maxObsGreedy<String>(branchC);
+		branchingReturnC<String> rtn;
+		
+		//greedy edit
+//		c.setbStruct(branchC);
+//		branchC.setDive(dive);
+//		System.out.println("\nGreedy Edit: ");
+//		start = System.currentTimeMillis();
+//		rtn = c.diveAtStartEdit(wine, 100);
+//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		
+		//regular edit
 		c.setbStruct(branchC);
 		System.out.println("\nConnected component: ");
-		long start = System.currentTimeMillis();
-		branchingReturnC<String> rtn = c.branchStart(wine, 15);
+		start = System.currentTimeMillis();
+		rtn = c.branchStart(wine, 17);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		
-		if (branchC.getSearch().search(rtn).isTarget())
+		if (branchC.getSearch().isTarget(rtn.getG()))
 		{
 			//print network to file
 			PrintWriter writer = new PrintWriter("datasets/wine/wineSolutionEdgeSet.tgf", "UTF-8");

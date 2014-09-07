@@ -108,8 +108,6 @@ public class maxObsGreedy<V> extends GreedyEdit<V>
 			
 		}while (best < og && best > 0);
 		
-		@SuppressWarnings("unused")
-		int i = 0;
 		
 		
 		

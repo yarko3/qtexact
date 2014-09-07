@@ -948,7 +948,7 @@ public class qtGenerate<V>
 			depthVert.get(parent.depth + 1).add(next);
 			
 			
-			while (parent != null && rand.nextInt(2) == 0)
+			while (parent != null /*&& rand.nextInt(2) == 0*/)
 			{
 				init.addEdge(new Pair<myVertex>(next, parent), next, parent);
 				parent = parent.parent;
@@ -1070,6 +1070,23 @@ public class qtGenerate<V>
 		
 		return l;
 		
+	}
+	
+	/**
+	 * generate graph using tree structure and flip a number of edges
+	 * @param n number of nodes in graph
+	 * @param flipped number of flipped edges
+	 * @param seed the seed of the random graph generated
+	 * @return
+	 */
+	public Graph<Integer, Pair<Integer>> randomTreeGraph(int n, int flipped, long seed)
+	{
+		Graph<Integer, Pair<Integer>> graph = treeRandom(n, seed);
+		
+		for (int i = 0; i < flipped; i++)
+		{
+			
+		}
 	}
 	
 }

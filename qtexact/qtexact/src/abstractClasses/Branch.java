@@ -276,12 +276,15 @@ public abstract class Branch<V>
 	 */
 	public void fillChangeListAndApplyMoves(branchingReturnC<V> s)
 	{
+		//current number of moves
 		int count = s.getChanges().size();
+		//maximum number of moves allowed
 		int bound = s.getMinMoves().getChanges().size();
 		
 		//cannot concurrently modify graph, so must create a move list to apply later
 		LinkedList<myEdge<V>> toApply = new LinkedList<myEdge<V>>();
 		
+		//current moves list
 		LinkedList<myEdge<V>> l = s.getChanges();
 		forLoop:
 		for (Pair<V> e : s.getG().getEdges())
