@@ -14,6 +14,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Random;
 import java.util.Scanner;
@@ -989,28 +990,8 @@ public class qtGenerate<V>
 			rtn.addEdge(new Pair<Integer>(e.getFirst().data, e.getSecond().data), e.getFirst().data, e.getSecond().data);
 		}
 		
-		qtLBFSNoHeuristic<Integer> search = new qtLBFSNoHeuristic<Integer>();
 		
-		//search.flattenAndReverseDegPrint(search.degSequenceOrder(rtn));
-		
-//		//depth 9
-//		System.out.println("Depth 9: ");
-//		search.flattenAndReverseDegPrint(search.degSequenceOrder(rtn, list.get(9)));
-//		
-//		//depth 10
-//		System.out.println("Depth 10: ");
-//		search.flattenAndReverseDegPrint(search.degSequenceOrder(rtn, list.get(10)));
-//		
-//		//depth 11
-//		System.out.println("Depth 11: ");
-//		search.flattenAndReverseDegPrint(search.degSequenceOrder(rtn, list.get(11)));
-//		
-//		//depth 12
-//		System.out.println("Depth 12: ");
-//		search.flattenAndReverseDegPrint(search.degSequenceOrder(rtn, list.get(12)));
-//		
-//		
-		//rtn.removeVertex(0);
+		rtn.removeVertex(0);
 
 		
 		return rtn;
@@ -1083,10 +1064,34 @@ public class qtGenerate<V>
 	{
 		Graph<Integer, Pair<Integer>> graph = treeRandom(n, seed);
 		
+		
+		Iterator<Integer> iterator = graph.getVertices().iterator();
+		
 		for (int i = 0; i < flipped; i++)
 		{
+			//if more flips are available
+			if (iterator.hasNext())
+			{
+				//get two vertices and flip their relationship 
+				Integer v0 = iterator.next();
+				Integer v1 = iterator.next();
+				
+				//remove an edge if it exists
+				if (graph.isNeighbor(v0, v1))
+				{
+					graph.removeEdge(graph.findEdge(v0, v1));
+				}
+				//add edge that does not exist
+				else
+				{
+					graph.addEdge(new Pair<Integer>(v0, v1), v0, v1);
+				}
+			}
+			
 			
 		}
+		
+		return graph;
 	}
 	
 }

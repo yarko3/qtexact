@@ -74,6 +74,11 @@ public abstract class Branch<V>
 	}
 
 	/**
+	 * an output flag
+	 */
+	protected boolean output;
+	
+	/**
 	 * set up the search environment (minMoves, etc.)
 	 * @param G graph
 	 * @param bound allowed moves
@@ -122,11 +127,24 @@ public abstract class Branch<V>
 	public abstract branchingReturnC<V> addResult(branchingReturnC<V> s, V v0, V v1);
 
 	/**
-	 * apply moves from list to edit state
-	 * @param s edit state
-	 * @param moves
+	 * given a move list, apply moves to graph
+	 * @param s search state
+	 * @param list list of myEdge objects that provide an addition or deletion flag
 	 */
-	public abstract void applyMoves(branchingReturnC<V> s, LinkedList<myEdge<V>> moves);
+	public void applyMoves(branchingReturnC<V> s, LinkedList<myEdge<V>> list)
+	{
+		for (myEdge<V> edit : list)
+		{
+			if (edit.isFlag())
+			{
+				//add edge
+				addResult(s, edit.getEdge().getFirst(), edit.getEdge().getSecond());
+			}
+			else
+				//remove edge
+				deleteResult(s, edit.getEdge().getFirst(), edit.getEdge().getSecond());
+		}
+	}
 
 	/**
 	 * search tied to this branching strategy
@@ -247,7 +265,22 @@ public abstract class Branch<V>
 	 * @param v3 vertex
 	 * @return modified edit state
 	 */
-	public abstract branchingReturnC<V> delete2Result(branchingReturnC<V> s, V v0, V v1, V v2, V v3);
+	/**
+	 * delete 2 edges to remove a C4
+	 * @param s search state
+	 * @param v0 vertex
+	 * @param v1 vertex
+	 * @param v2 vertex
+	 * @param v3 vertex
+	 * @return modified edit state
+	 */
+	public branchingReturnC<V> delete2Result(branchingReturnC<V> s, V v0, V v1, V v2, V v3)
+	{	
+		deleteResult(s, v0, v1);
+		deleteResult(s, v2, v3);
+		
+		return s;
+	}
 	
 	/**
 	 * apply moves to graph
@@ -304,5 +337,46 @@ public abstract class Branch<V>
 		applyMoves(s, toApply);
 	}
 	
+	/**
+	 * fill a linked list with a myEdge LinkedList for the minMoves set
+	 * @param G graph
+	 * @return minimum move set
+	 */
+	protected LinkedList<myEdge<V>> fillMinMoves(branchingReturnC<V> s, int bound)
+	{
+		LinkedList<myEdge<V>> l = new LinkedList<myEdge<V>>();
+		int count = 0;
+		if (bound > 0)
+		{
+			l.addAll(s.getChanges());
+			count += s.getChanges().size();
+			
+			if (count < bound)
+				for (Pair<V> e : s.getG().getEdges())
+				{
+					//treat each edge in this set as a deletion
+					if (!l.contains(new myEdge<V>(e, false)) || !l.contains(new myEdge<V>(e, true)))
+					{	
+						l.add(new myEdge<V>(e, false));
+						count++;
+						if (count == bound)
+							break;
+					}
+				}
+		}
+		
+
+		if (count < bound && s.getG().getVertexCount() > 0)
+		{
+			V v0 = s.getG().getVertices().iterator().next();
+			while (count < bound)
+			{
+				//add a self edge
+				l.add(new myEdge<V>(new Pair<V>(v0, v0), false));
+				count++;
+			}
+		}
+		return l;
+	}
 	
 }

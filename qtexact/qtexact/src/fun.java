@@ -24,10 +24,12 @@ import reduction.centralNodeReduction;
 import reduction.commonC4Reduction;
 import reduction.edgeBoundReduction;
 import search.YanSearch;
+import search.diQTSearch;
 import search.qtLBFSNoHeuristic;
 import abstractClasses.Branch;
 import abstractClasses.Dive;
 import abstractClasses.Reduction;
+import branch.diQTBranch;
 import branch.qtAllStruct;
 import branch.qtBranch;
 import branch.qtBranchComponents;
@@ -37,6 +39,8 @@ import com.rits.cloning.Cloner;
 
 import controller.Controller;
 import edu.uci.ics.jung.algorithms.layout.FRLayout;
+import edu.uci.ics.jung.graph.DirectedGraph;
+import edu.uci.ics.jung.graph.DirectedSparseGraph;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.UndirectedSparseGraph;
 import edu.uci.ics.jung.graph.util.Pair;
@@ -58,8 +62,9 @@ public class fun<V> extends JApplet {
 		//fbTest();
 		//editTest();
 		//comparisonTest();
-		wineTest();
+		//wineTest();
 		//userInterface();
+		diGraphWineryTest();
 	}
 	
 	public static void userInterface() throws FileNotFoundException
@@ -199,6 +204,9 @@ public class fun<V> extends JApplet {
 		
 		exampleQT = fillGraphFromFile("datasets/zachary.txt");
 		
+		
+		exampleQT = gen.randomTreeGraph(50, 15, 5);
+		
 		//Graph<String, Pair<String>>wine = fillGraphFromFile("datasets/wineryEdgeSet.txt");
 		
 		
@@ -227,7 +235,7 @@ public class fun<V> extends JApplet {
 
 
 		
-		//visualize(exampleQT);
+		visualize(cln);
 		
 		Controller<Integer> c = new Controller<Integer>(null, true);
 		
@@ -372,11 +380,11 @@ public class fun<V> extends JApplet {
 		
 //		
 //		
-//		c.setbStruct(branchC);
-//		System.out.println("\nConnected component: ");
-//		start = System.currentTimeMillis();
-//		System.out.println(yan.search(c.branchStart(exampleQT, 15).getG()));
-//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		c.setbStruct(branchC);
+		System.out.println("\nConnected component: ");
+		start = System.currentTimeMillis();
+		System.out.println(yan.search(c.branchStart(exampleQT, 15).getG()));
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 ////		
 ////		
 //		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
@@ -417,12 +425,7 @@ public class fun<V> extends JApplet {
 //		visualize(cln3);
 //		
 //
-		c.setbStruct(branchC);
-		System.out.println("\nConnected component: ");
-		start = System.currentTimeMillis();
-		System.out.println(yan.search(c.branchStart(exampleQT, 14).getG()));
-		System.out.println((System.currentTimeMillis()-start) / 1000.0);
-//		
+//		/
 //		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
 //		
 //		
@@ -456,7 +459,7 @@ public class fun<V> extends JApplet {
 //		branchC.setDive(dive);
 //		System.out.println("\nGreedy Edit: ");
 //		start = System.currentTimeMillis();
-//		System.out.println(yan.search(c.diveAtStartEdit(exampleQT).getG()));
+//		System.out.println(yan.search(c.diveAtStartEdit(exampleQT, 50).getG()));
 //		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		
@@ -476,7 +479,7 @@ public class fun<V> extends JApplet {
 	
 	public static void visualize(Graph<Integer, Pair<Integer>> exampleQT){
 		JFrame jf = new JFrame();
-		jf.setSize(1900, 1000);
+		jf.setSize(1200, 500);
 
 		FRLayout frl = new FRLayout(exampleQT);
 
@@ -486,7 +489,7 @@ public class fun<V> extends JApplet {
 		frl.setMaxIterations(1000);
 		//frl.lock(true);
 		VisualizationViewer vv = new VisualizationViewer(frl, new Dimension(
-				1800, 900));
+				1200, 500));
 		
 		vv.getRenderContext().setVertexLabelTransformer(new ToStringLabeller());
 		
@@ -498,7 +501,7 @@ public class fun<V> extends JApplet {
 	
 	public static void visualizeString(Graph<String, Pair<String>> exampleQT){
 		JFrame jf = new JFrame();
-		jf.setSize(1900, 1000);
+		jf.setSize(1200, 500);
 
 		FRLayout frl = new FRLayout(exampleQT);
 
@@ -509,7 +512,7 @@ public class fun<V> extends JApplet {
 	
 		//frl.lock(true);
 		VisualizationViewer vv = new VisualizationViewer(frl, new Dimension(
-				1800, 900));
+				1200, 500));
 		
 		vv.getRenderContext().setVertexLabelTransformer(new ToStringLabeller());
 		
@@ -570,6 +573,40 @@ public class fun<V> extends JApplet {
 	{
 		
 		Graph<String, Pair<String>> graph = new UndirectedSparseGraph<String, Pair<String>>();
+		FileReader file = null;
+		try {
+			file = new FileReader(filename);
+		} catch (FileNotFoundException e) {
+			System.out.println("File " + filename + " could not be found.");
+			e.printStackTrace();
+		}
+
+		Scanner scan = new Scanner(file);
+
+		while (scan.hasNext()) {
+			String a = scan.next();
+			String b = scan.next();
+			
+			
+			graph.addEdge(new Pair<String>(a, b), a, b);
+			
+		}
+		try {
+			scan.close();
+			file.close();
+		} catch (IOException e) {
+			System.out.println("File " + filename + " could not be found.");
+			e.printStackTrace();
+		}
+		
+		return graph;
+	}
+	
+	private static DirectedGraph<String, Pair<String>> fillDiGraphFromFileWithStrings(
+			String filename) 
+	{
+		
+		DirectedSparseGraph<String, Pair<String>> graph = new DirectedSparseGraph<String, Pair<String>>();
 		FileReader file = null;
 		try {
 			file = new FileReader(filename);
@@ -705,11 +742,17 @@ public class fun<V> extends JApplet {
 	private static void wineTest() throws FileNotFoundException, UnsupportedEncodingException
 	{
 		
-		Graph<String, Pair<String>> wine = fillGraphFromFileWithStrings("datasets/wine/BC/wineryEdgeSet.txt");
+		Graph<String, Pair<String>> wine = fillGraphFromFileWithStrings("datasets/wine/ON/wineryEdgeSet.txt");
 		
+		Graph<String, Pair<String>> cln = clone.deepClone(wine);
 		
 		Controller<String> c = new Controller<String>(null, true);
 		
+		qtGenerate<String> gen = new qtGenerate<String>();
+		
+		
+		//test size of graph
+		System.out.println("Graph has " + wine.getVertexCount() + " nodes and " + wine.getEdgeCount() + " edges.");
 		
 		qtBranchComponents<String> branchC = new qtBranchComponents<String>(c);
 		
@@ -730,19 +773,24 @@ public class fun<V> extends JApplet {
 //		branchC.setDive(dive);
 //		System.out.println("\nGreedy Edit: ");
 //		start = System.currentTimeMillis();
-//		rtn = c.diveAtStartEdit(wine, 100);
+//		rtn = c.diveAtStartEdit(wine, 4);
 //		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		//regular edit
 		c.setbStruct(branchC);
 		System.out.println("\nConnected component: ");
 		start = System.currentTimeMillis();
-		rtn = c.branchStart(wine, 17);
+		rtn = c.branchStart(wine, 8);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+//		
+		System.out.println("\nGraph same? " + gen.graphEquals(cln, wine));
 		
 		
 		if (branchC.getSearch().isTarget(rtn.getG()))
 		{
+			
+			System.out.println("Solution has " + rtn.getG().getVertexCount() + " nodes and " + rtn.getG().getEdgeCount() + " edges.");
+			
 			//print network to file
 			PrintWriter writer = new PrintWriter("datasets/wine/wineSolutionEdgeSet.tgf", "UTF-8");
 			
@@ -754,6 +802,52 @@ public class fun<V> extends JApplet {
 			
 			writer.close();
 		}
+		
+	}
+	
+	
+	public static void exactVsGreedy()
+	{
+		
+	}
+	
+	public static void diGraphWineryTest() throws FileNotFoundException, UnsupportedEncodingException
+	{
+		DirectedGraph<String, Pair<String>> g = fillDiGraphFromFileWithStrings("datasets/wine/ON/wineryEdgeSet.txt");
+		
+		
+		
+		diQTSearch<String> search = new diQTSearch<String>();
+		
+		//visualize(g);
+		
+		System.out.println(search.search(g));
+		
+		Controller<String> c = new Controller<String>(null, true);
+		diQTBranch<String> bStruct = new diQTBranch<String>(c);
+		
+		c.setbStruct(bStruct);
+		
+		System.out.println("\nConnected component: ");
+		long start = System.currentTimeMillis();
+		branchingReturnC<String> rtn = c.branchStart(g, 10);
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		
+		System.out.println(search.isTarget(rtn.getG()));
+		
+		visualizeString(rtn.getG());
+		
+		
+		//print network to file
+		PrintWriter writer = new PrintWriter("datasets/wine/ONWineDiSolutionEdgeSet.tgf", "UTF-8");
+		
+		writer.println("#");
+		for (Pair<String> edge : rtn.getG().getEdges())
+		{
+			writer.println(edge.getFirst() + " " + edge.getSecond());
+		}
+		
+		writer.close();
 		
 	}
 }

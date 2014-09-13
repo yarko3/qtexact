@@ -9,7 +9,7 @@ import java.util.ArrayList;
  *
  * @param <V>
  */
-public abstract class Certificate<V> 
+public class Certificate<V> 
 {
 
 

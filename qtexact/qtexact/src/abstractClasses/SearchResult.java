@@ -32,6 +32,14 @@ public class SearchResult<V>
 	public void setCertificate(Certificate<V> certificate) {
 		this.certificate = certificate;
 	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "SearchResult [isTarget=" + isTarget + ", certificate="
+				+ certificate + "]";
+	}
 	
 	
 	

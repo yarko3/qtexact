@@ -46,6 +46,24 @@ public class branchingReturnC<V> implements Comparable<branchingReturnC<V>>
 	 */
 	double percent;
 	
+	public branchingReturnC(Graph<V, Pair<V>> graph)
+	{
+		G = graph;
+		changes = new LinkedList<myEdge<V>>();
+		deg = null;
+		minMoves = null;
+		knownBadEdges = new HashSet<Pair<V>>();
+	}
+	
+	public branchingReturnC(Graph<V, Pair<V>> graph, branchingReturnC<V> min)
+	{
+		G = graph;
+		changes = new LinkedList<myEdge<V>>();
+		deg = null;
+		minMoves = min;
+		knownBadEdges = new HashSet<Pair<V>>();
+	}
+	
 	public branchingReturnC(Graph<V, Pair<V>> graph, ArrayList<LinkedList<V>> d, LinkedList<myEdge<V>> c, branchingReturnC<V> m)
 	{
 		G = graph;
