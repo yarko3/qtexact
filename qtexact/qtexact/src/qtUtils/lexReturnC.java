@@ -23,8 +23,6 @@ public class lexReturnC<V> extends SearchResult<V>
 	private ArrayList<V> list;
 	//QT check
 	private boolean isConnected;
-	private Set<Set<V>> cComponents;
-
 	
 	/**
 	 * constructor of lexReturnC

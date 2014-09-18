@@ -1,5 +1,7 @@
 package abstractClasses;
 
+import java.util.Set;
+
 /**
  * an abstract class for the return type of searches
  * 
@@ -10,14 +12,25 @@ package abstractClasses;
 public class SearchResult<V>
 {
 	//is at goal state
-	private boolean isTarget;
-	private Certificate<V> certificate;
+	protected boolean isTarget;
+	protected Certificate<V> certificate;
+	protected Set<Set<V>> cComponents;
+	protected boolean isConnected;
 	
 	public SearchResult(boolean isT, Certificate<V> cert )
 	{
 		isTarget = isT;
 		certificate = cert;
 	}
+	
+	public SearchResult(boolean isT, Certificate<V> cert, Set<Set<V>> cComp)
+	{
+		isTarget = isT;
+		certificate = cert;
+		cComponents = cComp;
+		isConnected = (cComp.size() == 1) ? true : false;
+	}
+	
 	public boolean isTarget() {
 		return isTarget;
 	}

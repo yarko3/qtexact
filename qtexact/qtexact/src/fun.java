@@ -24,6 +24,7 @@ import reduction.centralNodeReduction;
 import reduction.commonC4Reduction;
 import reduction.edgeBoundReduction;
 import search.YanSearch;
+import search.clusterSearch;
 import search.diQTSearch;
 import search.qtLBFSNoHeuristic;
 import abstractClasses.Branch;
@@ -64,7 +65,8 @@ public class fun<V> extends JApplet {
 		//comparisonTest();
 		//wineTest();
 		//userInterface();
-		diGraphWineryTest();
+		//diGraphWineryTest();
+		clusterSearchTest();
 	}
 	
 	public static void userInterface() throws FileNotFoundException
@@ -813,7 +815,7 @@ public class fun<V> extends JApplet {
 	
 	public static void diGraphWineryTest() throws FileNotFoundException, UnsupportedEncodingException
 	{
-		DirectedGraph<String, Pair<String>> g = fillDiGraphFromFileWithStrings("datasets/wine/ON/wineryEdgeSet.txt");
+		DirectedGraph<String, Pair<String>> g = fillDiGraphFromFileWithStrings("datasets/wine/BC/wineryEdgeSet.txt");
 		
 		
 		
@@ -830,7 +832,7 @@ public class fun<V> extends JApplet {
 		
 		System.out.println("\nConnected component: ");
 		long start = System.currentTimeMillis();
-		branchingReturnC<String> rtn = c.branchStart(g, 10);
+		branchingReturnC<String> rtn = c.branchStart(g, 9);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		System.out.println(search.isTarget(rtn.getG()));
@@ -849,5 +851,19 @@ public class fun<V> extends JApplet {
 		
 		writer.close();
 		
+	}
+	
+	public static void clusterSearchTest()
+	{
+		clusterSearch<Integer> search = new clusterSearch<Integer>();
+		
+		
+		Graph<Integer, Pair<Integer>> exampleQT;
+		qtGenerate<Integer> gen = new qtGenerate<Integer>();
+		exampleQT = gen.ER(10, .8, (long) 2);
+		
+		visualize(exampleQT);
+		
+		System.out.println(search.search(exampleQT));
 	}
 }
