@@ -379,4 +379,12 @@ public abstract class Branch<V>
 		return l;
 	}
 	
+	/**
+	 * remove one vertex and all edges connected to it
+	 * @param s edit state
+	 * @param v0 vertex to be deleted
+	 * @return modified edit state
+	 */
+	public abstract branchingReturnC<V> removeVertex(branchingReturnC<V> s, V v0);
+	
 }

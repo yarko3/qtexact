@@ -31,6 +31,34 @@ public class SearchResult<V>
 		isConnected = (cComp.size() == 1) ? true : false;
 	}
 	
+	/**
+	 * @return the cComponents
+	 */
+	public Set<Set<V>> getcComponents() {
+		return cComponents;
+	}
+
+	/**
+	 * @param cComponents the cComponents to set
+	 */
+	public void setcComponents(Set<Set<V>> cComponents) {
+		this.cComponents = cComponents;
+	}
+
+	/**
+	 * @return the isConnected
+	 */
+	public boolean isConnected() {
+		return isConnected;
+	}
+
+	/**
+	 * @param isConnected the isConnected to set
+	 */
+	public void setConnected(boolean isConnected) {
+		this.isConnected = isConnected;
+	}
+
 	public boolean isTarget() {
 		return isTarget;
 	}
@@ -53,6 +81,8 @@ public class SearchResult<V>
 		return "SearchResult [isTarget=" + isTarget + ", certificate="
 				+ certificate + "]";
 	}
+	
+	
 	
 	
 	

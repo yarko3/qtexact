@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
 import qtUtils.branchingReturnC;
 import abstractClasses.Certificate;
@@ -36,9 +37,13 @@ public class diQTSearch<V> extends Search<V> {
 			System.out.println("Attempting to search a non-directed graph.");
 			throw new NullPointerException();
 		}
+
 		
 		//cast as a directed graph
 		DirectedGraph<V, Pair<V>> dig = (DirectedGraph<V, Pair<V>>) g;
+		
+		//get connected components
+		Set<Set<V>> components = cluster.transform(g);
 		
 		//build a forest with the given graph
 		DirectedSparseGraph<V, Pair<V>> forest = new DirectedSparseGraph<V, Pair<V>>();
@@ -87,7 +92,7 @@ public class diQTSearch<V> extends Search<V> {
 						obstruction.add(nVertex);
 						obstruction.add(p1);
 						
-						return new SearchResult<V>(false, new Certificate<V>(obstruction, -10));
+						return new SearchResult<V>(false, new Certificate<V>(obstruction, -10), components);
 					}
 				}
 			}
@@ -144,7 +149,7 @@ public class diQTSearch<V> extends Search<V> {
 						obstruction.add(nVertex);
 						obstruction.add(c);
 						
-						return new SearchResult<V>(false, new Certificate<V>(obstruction, -11));
+						return new SearchResult<V>(false, new Certificate<V>(obstruction, -11), components);
 					}
 				}
 			}
@@ -160,7 +165,7 @@ public class diQTSearch<V> extends Search<V> {
 		
 		
 		
-		return new SearchResult<V>(true, null);
+		return new SearchResult<V>(true, null, components);
 	}
 
 	@Override

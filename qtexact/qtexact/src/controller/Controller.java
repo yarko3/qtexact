@@ -402,8 +402,8 @@ public class Controller<V>
 		//set flag for whether this node has been reduced
 		boolean reduced = false;
 		
-		//if branch has a reduction and bound allows more moves, reduce
-		if (bStruct.getReductions() != null)
+		//if bStruct has a reduction and bound allows more moves, reduce
+		if (bStruct.getReductions() != null && !bStruct.getReductions().isEmpty())
 		{
 			//run reduction	
 			reduced = true;

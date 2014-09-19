@@ -9,15 +9,11 @@ import qtUtils.branchingReturnC;
 import abstractClasses.Certificate;
 import abstractClasses.Search;
 import abstractClasses.SearchResult;
-import edu.uci.ics.jung.algorithms.cluster.WeakComponentClusterer;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Pair;
 
 public class clusterSearch<V> extends Search<V> {
 
-	//for testing connectivity
-	private WeakComponentClusterer<V, Pair<V>> cluster =  new WeakComponentClusterer<V, Pair<V>>();
-	
 	
 	@Override
 	public boolean isTarget(Graph<V, Pair<V>> g) {

@@ -249,5 +249,11 @@ public class diQTBranch<V> extends Branch<V>
 		return s;
 	}
 
+	@Override
+	public branchingReturnC<V> removeVertex(branchingReturnC<V> s, V v0) {
+		s.getG().removeVertex(v0);
+		return s;
+	}
+
 
 }

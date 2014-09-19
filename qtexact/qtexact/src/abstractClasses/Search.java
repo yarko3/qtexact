@@ -1,6 +1,7 @@
 package abstractClasses;
 
 import qtUtils.branchingReturnC;
+import edu.uci.ics.jung.algorithms.cluster.WeakComponentClusterer;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Pair;
 
@@ -12,6 +13,10 @@ import edu.uci.ics.jung.graph.util.Pair;
  */
 public abstract class Search<V> 
 {
+	
+	//for testing connectivity
+	protected WeakComponentClusterer<V, Pair<V>> cluster =  new WeakComponentClusterer<V, Pair<V>>();
+		
 	/**
 	 * is the current graph at target state
 	 * @param g graph

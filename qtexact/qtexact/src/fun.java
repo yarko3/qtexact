@@ -37,6 +37,7 @@ import branch.qtBranchComponents;
 import branch.qtBranchNoHeuristic;
 
 import com.rits.cloning.Cloner;
+import components.branchComponents;
 
 import controller.Controller;
 import edu.uci.ics.jung.algorithms.layout.FRLayout;
@@ -61,12 +62,12 @@ public class fun<V> extends JApplet {
 	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException
 	{
 		//fbTest();
-		//editTest();
+		editTest();
 		//comparisonTest();
 		//wineTest();
 		//userInterface();
 		//diGraphWineryTest();
-		clusterSearchTest();
+		//clusterSearchTest();
 	}
 	
 	public static void userInterface() throws FileNotFoundException
@@ -207,7 +208,7 @@ public class fun<V> extends JApplet {
 		exampleQT = fillGraphFromFile("datasets/zachary.txt");
 		
 		
-		exampleQT = gen.randomTreeGraph(50, 15, 5);
+		exampleQT = gen.randomTreeGraph(50, 9, 5);
 		
 		//Graph<String, Pair<String>>wine = fillGraphFromFile("datasets/wineryEdgeSet.txt");
 		
@@ -305,10 +306,10 @@ public class fun<V> extends JApplet {
 //		rC = new c4p4Reduction<Integer>(all);
 //		all.addReduction(rC);
 		
-//		rC = new c4p4Reduction<Integer>(all2);
-//		all2.addReduction(rC);
-		rC = new biconnectedReduction<Integer>(all2);
+		rC = new c4p4Reduction<Integer>(all2);
 		all2.addReduction(rC);
+//		rC = new biconnectedReduction<Integer>(all2);
+//		all2.addReduction(rC);
 		
 //		Reduction<Integer> rNo = new edgeBoundReduction<Integer>(branchNoHP);
 //		branchNoHP.addReduction(rNo);
@@ -382,12 +383,23 @@ public class fun<V> extends JApplet {
 		
 //		
 //		
+		branchComponents<Integer> comp = new branchComponents<Integer>(c, all2);
+		
+		c.setbStruct(comp);
+		System.out.println("\nConnected component (new components): ");
+		start = System.currentTimeMillis();
+		System.out.println(yan.search(c.branchStart(exampleQT, 9).getG()));
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		
+		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
+		
 		c.setbStruct(branchC);
 		System.out.println("\nConnected component: ");
 		start = System.currentTimeMillis();
-		System.out.println(yan.search(c.branchStart(exampleQT, 15).getG()));
+		System.out.println(yan.search(c.branchStart(exampleQT, 9).getG()));
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
-////		
+////	
+		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
 ////		
 //		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
 //		
@@ -828,7 +840,9 @@ public class fun<V> extends JApplet {
 		Controller<String> c = new Controller<String>(null, true);
 		diQTBranch<String> bStruct = new diQTBranch<String>(c);
 		
-		c.setbStruct(bStruct);
+		branchComponents<String> b = new branchComponents<String>(c, bStruct);
+		
+		c.setbStruct(b);
 		
 		System.out.println("\nConnected component: ");
 		long start = System.currentTimeMillis();
