@@ -23,6 +23,7 @@ import reduction.c4p4Reduction;
 import reduction.centralNodeReduction;
 import reduction.commonC4Reduction;
 import reduction.edgeBoundReduction;
+import scorer.familialGroupCentrality;
 import search.YanSearch;
 import search.clusterSearch;
 import search.diQTSearch;
@@ -41,6 +42,10 @@ import components.branchComponents;
 
 import controller.Controller;
 import edu.uci.ics.jung.algorithms.layout.FRLayout;
+import edu.uci.ics.jung.algorithms.scoring.BetweennessCentrality;
+import edu.uci.ics.jung.algorithms.scoring.ClosenessCentrality;
+import edu.uci.ics.jung.algorithms.scoring.EigenvectorCentrality;
+import edu.uci.ics.jung.algorithms.scoring.HITS;
 import edu.uci.ics.jung.graph.DirectedGraph;
 import edu.uci.ics.jung.graph.DirectedSparseGraph;
 import edu.uci.ics.jung.graph.Graph;
@@ -62,12 +67,13 @@ public class fun<V> extends JApplet {
 	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException
 	{
 		//fbTest();
-		editTest();
+		//editTest();
 		//comparisonTest();
 		//wineTest();
 		//userInterface();
-		//diGraphWineryTest();
+		diGraphWineryTest();
 		//clusterSearchTest();
+		//scoreWineryGraph();
 	}
 	
 	public static void userInterface() throws FileNotFoundException
@@ -393,6 +399,8 @@ public class fun<V> extends JApplet {
 		
 		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
 		
+		
+		
 		c.setbStruct(branchC);
 		System.out.println("\nConnected component: ");
 		start = System.currentTimeMillis();
@@ -632,7 +640,16 @@ public class fun<V> extends JApplet {
 		Scanner scan = new Scanner(file);
 
 		while (scan.hasNext()) {
+			
+			
 			String a = scan.next();
+			
+			//for .tgf edge sets
+			if (a.equals("#"))
+			{
+				continue;
+			}
+			
 			String b = scan.next();
 			
 			
@@ -827,9 +844,20 @@ public class fun<V> extends JApplet {
 	
 	public static void diGraphWineryTest() throws FileNotFoundException, UnsupportedEncodingException
 	{
-		DirectedGraph<String, Pair<String>> g = fillDiGraphFromFileWithStrings("datasets/wine/BC/wineryEdgeSet.txt");
+		DirectedGraph<String, Pair<String>> g = fillDiGraphFromFileWithStrings("datasets/wine/ON/wineryEdgeSet.txt");
 		
-		
+		//reverse edges and add to new graph
+		DirectedGraph<String, Pair<String>> reversed = new DirectedSparseGraph<String, Pair<String>>();
+		for (String v : g.getVertices())
+		{
+			reversed.addVertex(v);
+		}
+		for (Pair<String> edge : g.getEdges())
+		{
+			reversed.addEdge(new Pair<String>(edge.getSecond(), edge.getFirst()), edge.getSecond(), edge.getFirst());
+		}
+		g = reversed;
+//		
 		
 		diQTSearch<String> search = new diQTSearch<String>();
 		
@@ -846,7 +874,7 @@ public class fun<V> extends JApplet {
 		
 		System.out.println("\nConnected component: ");
 		long start = System.currentTimeMillis();
-		branchingReturnC<String> rtn = c.branchStart(g, 9);
+		branchingReturnC<String> rtn = c.branchStart(g, 20);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		System.out.println(search.isTarget(rtn.getG()));
@@ -855,7 +883,7 @@ public class fun<V> extends JApplet {
 		
 		
 		//print network to file
-		PrintWriter writer = new PrintWriter("datasets/wine/ONWineDiSolutionEdgeSet.tgf", "UTF-8");
+		PrintWriter writer = new PrintWriter("datasets/wine/ONWineDiSolutionEdgeSetREVERSED.tgf", "UTF-8");
 		
 		writer.println("#");
 		for (Pair<String> edge : rtn.getG().getEdges())
@@ -880,4 +908,29 @@ public class fun<V> extends JApplet {
 		
 		System.out.println(search.search(exampleQT));
 	}
+	
+	public static void scoreWineryGraph() throws FileNotFoundException, UnsupportedEncodingException
+	{
+		DirectedGraph<String, Pair<String>> graph = fillDiGraphFromFileWithStrings("datasets/wine/ONWineDiSolutionEdgeSet.tgf");
+		//print network to file
+		PrintWriter writer = new PrintWriter("datasets/wine/scoring/ON DiQT Winery-Winery Scoring.txt", "UTF-8");
+		BetweennessCentrality<String, Pair<String>> betweenness = new BetweennessCentrality<String, Pair<String>>(graph);
+		ClosenessCentrality<String, Pair<String>> closeness = new ClosenessCentrality<String, Pair<String>>(graph);
+		EigenvectorCentrality<String, Pair<String>> eigen = new EigenvectorCentrality<String, Pair<String>>(graph);
+		HITS<String, Pair<String>> hits = new HITS<String, Pair<String>>(graph);
+		familialGroupCentrality<String>	familial = new familialGroupCentrality<String>(graph);
+		
+		writer.println("Vertex\tBetweenness Centrality\tCloseness Centrality\tEigenvector Centrality\tHITS\tFamilial Group Centrality");
+		
+		for (String v : graph.getVertices())
+		{
+			writer.println(v + "\t" + betweenness.getVertexScore(v) + "\t" + closeness.getVertexScore(v) + "\t" + eigen.getVertexScore(v) + "\t" + hits.getVertexScore(v) + "\t" + familial.getVertexScore(v));
+		}
+		
+		
+		writer.close();
+		
+		
+	}
+	
 }

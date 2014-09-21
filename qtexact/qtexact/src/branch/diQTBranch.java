@@ -33,10 +33,10 @@ public class diQTBranch<V> extends Branch<V>
 		if (output)
 		{
 			goal.setPercent(1);
-			controller.setGlobalPercent(0);
+			//controller.setGlobalPercent(0);
 		}
 				
-				return goal;
+		return goal;
 	}
 
 	@Override

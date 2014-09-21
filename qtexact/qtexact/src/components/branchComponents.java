@@ -78,7 +78,7 @@ public class branchComponents<V> extends Branch<V> {
 			
 			branchingReturnC<V> t;
 			//number of components larger than 3 nodes
-			int count = 0;
+			int count = cGraphs.size();
 			
 			//sort connected components in increasing size
 			for (int i = 0; i < cGraphs.size(); i++)
@@ -92,25 +92,26 @@ public class branchComponents<V> extends Branch<V> {
 					}
 				}
 			}
-			//remove all trivial components
-			while (cGraphs.getFirst().getVertexCount() < 4)
-			{
-				cGraphs.removeFirst();
-			}
+//			//remove all trivial components
+//			int count = 0;
+//			while (cGraphs.getFirst().getVertexCount() < 4)
+//			{
+//				cGraphs.removeFirst();
+//			}
 			
 			//count = cGraphs.size();
 			
 			//check which components need editing to be qt
-			LinkedList<Integer> needEdit = new LinkedList<Integer>();
-			
-			for (int i  = 0; i < cGraphs.size(); i++)
-			{
-				Integer temp = lowerBound(cGraphs.get(i));
-				
-				if (temp != 0)
-					count++;
-				needEdit.addLast(temp);
-			}
+//			LinkedList<Integer> needEdit = new LinkedList<Integer>();
+//			
+//			for (int i  = 0; i < cGraphs.size(); i++)
+//			{
+//				Integer temp = lowerBound(cGraphs.get(i));
+//				
+//				if (temp != 0)
+//					count++;
+//				needEdit.addLast(temp);
+//			}
 			
 			
 			//branch on graphs
@@ -118,31 +119,28 @@ public class branchComponents<V> extends Branch<V> {
 			{
 				Graph<V, Pair<V>> g = cGraphs.get(i);
 				//find the minimum number of moves still required
-				int need = 0;
-				for (int j = i+1; j < cGraphs.size(); j++)
-				{
-					need += needEdit.get(j);
-				}
+//				int need = 0;
+//				for (int j = i+1; j < cGraphs.size(); j++)
+//				{
+//					need += needEdit.get(j);
+//				}
 				
 				
 				//does this component need editing and are more moves allowed?
-				if (needEdit.get(i) > 0 && bound >= 0 && bound >= need)
+				if (/*needEdit.get(i) > 0 &&*/ bound >= 0 /*&& bound >= need*/)
 				{
 					
 					//fill new minMoves with bounded edge set of component
 					min = bStruct.setup(g);
 					//construct minMoves from bound and number of moves done - number of moves needed for other components
-					min.setChanges(fillMinMoves(min, bound + s.getChanges().size() - need));
+					min.setChanges(fillMinMoves(min, bound + s.getChanges().size() /*- need*/));
 					min.setMinMoves(min);
 					
 					t = new branchingReturnC<V>(g, min.getDeg(), clone.deepClone(s.getChanges()), min);
+					
 					//set new percent
 					t.setPercent(s.getPercent() / count);
-					
-					
-//						controller.branchStart(g, bound);
-//						System.out.println(g);
-//						
+						
 					
 					results.addFirst(controller.branch(t));
 					//update bound

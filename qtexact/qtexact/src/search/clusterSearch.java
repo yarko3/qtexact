@@ -37,63 +37,73 @@ public class clusterSearch<V> extends Search<V> {
 		}
 		
 		
-		//set of traversed vertices that have an edge to the rest of the edgeset
+		//set of traversed vertices that have an edge to the rest of the vertex-set
 		HashSet<V> traversed = new HashSet<V>();
 		
 		//for every vertex in graph, look to make sure it has an edge to every other vertex
 		for (V v0 : graph.getVertices())
 		{	
-			for (V v1 : graph.getVertices())
+			//if v0 breaks clique
+			if (graph.degree(v0) < graph.getVertexCount() - 1)
 			{
-				if (v0.equals(v1))
-					continue;
 				
-				//not a clique
-				if (!graph.isNeighbor(v0, v1))
+				for (V v1 : graph.getVertices())
 				{
-					//generate certificate
-					//use a known maximally connected node
-					if (!traversed.isEmpty())
+					if (v0.equals(v1))
+						continue;
+					
+					//not a clique
+					if (!graph.isNeighbor(v0, v1))
 					{
-						ArrayList<V> obst = new ArrayList<V>();
-						obst.add(v0);
-						obst.add(traversed.iterator().next());
-						obst.add(v1);
-						
-						//return obstruction
-						return new SearchResult<V>(false, new Certificate<V>(obst, -13));
-					}
-					else
-					{
-						//get a vertex that is a common neighbour of both vertex and n
-						Collection<V> v0n = graph.getNeighbors(v0);
-						Collection<V> v1n = graph.getNeighbors(v1);
-						
-						HashSet<V> all = new HashSet<V>();
-						HashSet<V> common = new HashSet<V>();
-						all.addAll(v0n);
-						
-						for (V temp : v1n)
-						{
-							if (!all.add(temp))
-							{
-								common.add(temp);
-								break;
-							}
-						}
-						
-						if (!common.isEmpty())
+						//generate certificate
+						//use a known maximally connected node
+						if (!traversed.isEmpty())
 						{
 							ArrayList<V> obst = new ArrayList<V>();
 							obst.add(v0);
-							obst.add(common.iterator().next());
+							obst.add(traversed.iterator().next());
 							obst.add(v1);
 							
 							//return obstruction
 							return new SearchResult<V>(false, new Certificate<V>(obst, -13));
 						}
+						else
+						{
+							//get a vertex that is a common neighbour of both vertex and n
+							Collection<V> v0n = graph.getNeighbors(v0);
+							Collection<V> v1n = graph.getNeighbors(v1);
+							
+							HashSet<V> all = new HashSet<V>();
+							HashSet<V> common = new HashSet<V>();
+							all.addAll(v0n);
+							
+							for (V temp : v1n)
+							{
+								if (!all.add(temp))
+								{
+									common.add(temp);
+									break;
+								}
+							}
+							
+							if (!common.isEmpty())
+							{
+								ArrayList<V> obst = new ArrayList<V>();
+								obst.add(v0);
+								obst.add(common.iterator().next());
+								obst.add(v1);
+								
+								//return obstruction
+								return new SearchResult<V>(false, new Certificate<V>(obst, -13));
+							}
+						}
 					}
 				}
+			}
+			else
+			{
+				//traversed contains maximally connected vertices
+				traversed.add(v0);
 			}
 		}
 		
