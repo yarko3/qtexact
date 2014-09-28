@@ -9,12 +9,15 @@ import qtUtils.branchingReturnC;
 import abstractClasses.Certificate;
 import abstractClasses.Search;
 import abstractClasses.SearchResult;
+
+import com.rits.cloning.Cloner;
+
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Pair;
 
 public class clusterSearch<V> extends Search<V> {
 
-	
+	protected static Cloner clone = new Cloner();
 	@Override
 	public boolean isTarget(Graph<V, Pair<V>> g) {
 		return search(g).isTarget();
@@ -33,7 +36,28 @@ public class clusterSearch<V> extends Search<V> {
 		Set<Set<V>> components = cluster.transform(graph);
 		if (components.size() > 1)
 		{
-			return new SearchResult<V>(false, null, components);
+			//split each component and run test
+			Set<Graph<V, Pair<V>>> cGraphs = new HashSet<Graph<V, Pair<V>>>();
+			
+			//make connected component graphs
+			for (Set<V> s : components)
+			{
+				cGraphs.add(this.connectedCFromVertexSet(graph, s));
+			}
+			
+
+			//test each component separately
+			for (Graph<V, Pair<V>> g : cGraphs)
+			{
+				SearchResult<V> temp = this.search(g);
+				//if one component is not a clique, stop search and return obstruction
+				if (temp.isTarget() == false)
+				{
+					return new SearchResult<V>(false, temp.getCertificate(), components);
+				}
+			}
+			//search passed
+			return new SearchResult<V>(true, null, components);
 		}
 		
 		
@@ -46,7 +70,7 @@ public class clusterSearch<V> extends Search<V> {
 			//if v0 breaks clique
 			if (graph.degree(v0) < graph.getVertexCount() - 1)
 			{
-				
+				//find the missing edge
 				for (V v1 : graph.getVertices())
 				{
 					if (v0.equals(v1))
@@ -56,7 +80,7 @@ public class clusterSearch<V> extends Search<V> {
 					if (!graph.isNeighbor(v0, v1))
 					{
 						//generate certificate
-						//use a known maximally connected node
+						//use a known maximally connected node to create a P3
 						if (!traversed.isEmpty())
 						{
 							ArrayList<V> obst = new ArrayList<V>();
@@ -65,7 +89,7 @@ public class clusterSearch<V> extends Search<V> {
 							obst.add(v1);
 							
 							//return obstruction
-							return new SearchResult<V>(false, new Certificate<V>(obst, -13));
+							return new SearchResult<V>(false, new Certificate<V>(obst, -13), components);
 						}
 						else
 						{
@@ -86,6 +110,7 @@ public class clusterSearch<V> extends Search<V> {
 								}
 							}
 							
+							//if a common neighbour exists, use it
 							if (!common.isEmpty())
 							{
 								ArrayList<V> obst = new ArrayList<V>();
@@ -94,7 +119,7 @@ public class clusterSearch<V> extends Search<V> {
 								obst.add(v1);
 								
 								//return obstruction
-								return new SearchResult<V>(false, new Certificate<V>(obst, -13));
+								return new SearchResult<V>(false, new Certificate<V>(obst, -13),  components);
 							}
 						}
 					}
@@ -108,13 +133,48 @@ public class clusterSearch<V> extends Search<V> {
 		}
 		
 		//graph passed
-		return new SearchResult<V>(true, null);
+		return new SearchResult<V>(true, null, components);
 		
 	}
 
 	@Override
 	public SearchResult<V> search(branchingReturnC<V> s) {
 		return search(s.getG());
+	}
+	
+	/**
+	 * connected component from vertex set
+	 * @param G graph
+	 * @param l vertex set
+	 * @return subgraph constructed from vertex set
+	 */
+	@SuppressWarnings("unchecked")
+	protected Graph<V, Pair<V>> connectedCFromVertexSet(Graph<V, Pair<V>> G, Set<V> l)
+	{
+		Graph<V, Pair<V>> c = null;
+		try {
+			c = (Graph<V, Pair<V>>) G.getClass().newInstance();
+		} catch (InstantiationException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IllegalAccessException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		HashSet<Pair<V>> tempSet = new HashSet<Pair<V>>();
+		//throw all edges into hashset, no duplicates
+		for (V i : l)
+		{
+			tempSet.addAll(G.getIncidentEdges(i));
+			c.addVertex(i);
+		}
+		//add all edges to c
+		for (Pair<V> e : tempSet)
+		{
+			Pair<V> edge = clone.deepClone(e);
+			c.addEdge(edge, edge.getFirst(), edge.getSecond());
+		}
+		return c;
 	}
 
 }

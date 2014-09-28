@@ -106,7 +106,24 @@ public abstract class Branch<V>
 	 * revert a move
 	 * @param s
 	 */
-	public abstract void revert(branchingReturnC<V> s);
+	public void revert(branchingReturnC<V> s) {
+		
+		//check to make sure an edit to undo exists
+		if (!s.getChanges().isEmpty())
+		{
+			myEdge<V> edited = s.getChanges().removeLast();
+			
+			//update graph
+			if (edited.isFlag() == false)
+				revertEdgeDelete(s, edited.getEdge().getFirst(), edited.getEdge().getSecond());
+			else
+				revertEdgeAdd(s, edited.getEdge().getFirst(), edited.getEdge().getSecond());
+		}
+		else
+		{
+			System.out.println("No moves to revert.");
+		}
+	}
 
 	/**
 	 * delete an edge and return the edit state
@@ -386,5 +403,22 @@ public abstract class Branch<V>
 	 * @return modified edit state
 	 */
 	public abstract branchingReturnC<V> removeVertex(branchingReturnC<V> s, V v0);
+	
+	/**
+	 * revert edge deletion
+	 * @param s state of graph
+	 * @param v0 vertex
+	 * @param v1 vertex
+	 */
+	public abstract void revertEdgeDelete(branchingReturnC<V> s, V v0, V v1);
+	
+	/**
+	 * revert edge addition
+	 * @param s state of graph
+	 * @param v0 vertex
+	 * @param v1 vertex
+	 */
+	public abstract void revertEdgeAdd(branchingReturnC<V> s, V v0, V v1);
+	
 	
 }

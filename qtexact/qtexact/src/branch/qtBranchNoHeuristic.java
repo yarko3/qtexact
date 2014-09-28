@@ -373,4 +373,16 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 		return s;
 	}
 
+	@Override
+	public void revertEdgeDelete(branchingReturnC<V> s, V v0, V v1) {
+		addEdge(s.getG(), s.getDeg(), v0, v1);
+		
+	}
+
+	@Override
+	public void revertEdgeAdd(branchingReturnC<V> s, V v0, V v1) {
+		removeEdge(s.getG(), s.getDeg(), v0, v1);
+		
+	}
+
 }

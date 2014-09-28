@@ -432,34 +432,34 @@ public abstract class qtBranch<V> extends Branch<V>
 		
 		return s;
 	}
-	
-	/**
-	 * roll back one edit
-	 * 
-	 * @param s edit state
-	 */
-	public void revert(branchingReturnC<V> s)
-	{
-		//check to make sure an edit to undo exists
-		if (!s.getChanges().isEmpty())
-		{
-			myEdge<V> edited = s.getChanges().removeLast();
-			
-			V v0 = edited.getEdge().getFirst();
-			V v1 = edited.getEdge().getSecond();
-			
-			//update degree sequence
-			if (edited.isFlag() == false)
-				addEdge(s.getG(), s.getDeg(), v0, v1);
-			else
-				removeEdge(s.getG(), s.getDeg(), v0, v1);
-		}
-		else
-		{
-			System.out.println("No moves to revert.");
-		}
-	}
-	
+//	
+//	/**
+//	 * roll back one edit
+//	 * 
+//	 * @param s edit state
+//	 */
+//	public void revert(branchingReturnC<V> s)
+//	{
+//		//check to make sure an edit to undo exists
+//		if (!s.getChanges().isEmpty())
+//		{
+//			myEdge<V> edited = s.getChanges().removeLast();
+//			
+//			V v0 = edited.getEdge().getFirst();
+//			V v1 = edited.getEdge().getSecond();
+//			
+//			//update degree sequence
+//			if (edited.isFlag() == false)
+//				addEdge(s.getG(), s.getDeg(), v0, v1);
+//			else
+//				removeEdge(s.getG(), s.getDeg(), v0, v1);
+//		}
+//		else
+//		{
+//			System.out.println("No moves to revert.");
+//		}
+//	}
+//	
 	
 	/**
 	 * roll back two moves

@@ -372,16 +372,11 @@ public class Controller<V>
 		//increment the number of times this controller has branched
 		timesRun++;
 		
-//		if (timesRun == 127)
+//		if (timesRun == 11)
 //		{
-//			@SuppressWarnings("unused")
-//			int i = 0;
+//			System.out.print("a");
 //		}
-//		
-//		if (s.getChanges().toString().equals("[Delete: <38, 1>]"))
-//			System.out.println();
-		
-//		System.out.println(s.getChanges());
+//		System.out.println("\n" + s.getChanges());
 //		System.out.println("Times run: " + timesRun);
 //		System.out.println("Bound: " + bound);
 //		System.out.println("Moves made: " + s.getChanges().size());

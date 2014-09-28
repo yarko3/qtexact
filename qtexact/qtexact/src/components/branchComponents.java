@@ -275,6 +275,18 @@ public class branchComponents<V> extends Branch<V> {
 	public branchingReturnC<V> removeVertex(branchingReturnC<V> s, V v0) {
 		return bStruct.removeVertex(s, v0);
 	}
+
+	@Override
+	public void revertEdgeDelete(branchingReturnC<V> s, V v0, V v1) {
+		bStruct.revertEdgeDelete(s, v0, v1);
+		
+	}
+
+	@Override
+	public void revertEdgeAdd(branchingReturnC<V> s, V v0, V v1) {
+		bStruct.revertEdgeAdd(s, v0, v1);
+		
+	}
 	
 	
 

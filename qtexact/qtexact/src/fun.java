@@ -9,7 +9,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Scanner;
@@ -32,6 +31,7 @@ import search.qtLBFSNoHeuristic;
 import abstractClasses.Branch;
 import abstractClasses.Dive;
 import abstractClasses.Reduction;
+import branch.clusterBranch;
 import branch.diQTBranch;
 import branch.qtAllStruct;
 import branch.qtBranch;
@@ -39,8 +39,8 @@ import branch.qtBranchComponents;
 import branch.qtBranchNoHeuristic;
 
 import com.rits.cloning.Cloner;
-
 import components.branchComponents;
+
 import controller.Controller;
 import edu.uci.ics.jung.algorithms.layout.FRLayout;
 import edu.uci.ics.jung.algorithms.scoring.BetweennessCentrality;
@@ -75,8 +75,8 @@ public class fun<V> extends JApplet {
 		//wineTest();
 		//userInterface();
 		//diGraphWineryTest();
-		//clusterSearchTest();
-		scoreWineryGraph();
+		clusterTest();
+		//scoreWineryGraph();
 	}
 	
 	public static void userInterface() throws FileNotFoundException
@@ -217,7 +217,7 @@ public class fun<V> extends JApplet {
 		exampleQT = fillGraphFromFile("datasets/zachary.txt");
 		
 		
-		exampleQT = gen.randomTreeGraph(50, 9, 5);
+		exampleQT = gen.randomTreeGraph(100, 15, 6);
 		
 		//Graph<String, Pair<String>>wine = fillGraphFromFile("datasets/wineryEdgeSet.txt");
 		
@@ -397,7 +397,7 @@ public class fun<V> extends JApplet {
 		c.setbStruct(comp);
 		System.out.println("\nConnected component (new components): ");
 		start = System.currentTimeMillis();
-		System.out.println(yan.search(c.branchStart(exampleQT, 9).getG()));
+		System.out.println(yan.search(c.branchStart(exampleQT, 15).getG()));
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
@@ -407,7 +407,7 @@ public class fun<V> extends JApplet {
 		c.setbStruct(branchC);
 		System.out.println("\nConnected component: ");
 		start = System.currentTimeMillis();
-		System.out.println(yan.search(c.branchStart(exampleQT, 9).getG()));
+		System.out.println(yan.search(c.branchStart(exampleQT, 15).getG()));
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 ////	
 		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
@@ -860,16 +860,16 @@ public class fun<V> extends JApplet {
 		DirectedGraph<String, Pair<String>> g = fillDiGraphFromFileWithStrings("datasets/wine/ON/wineryEdgeSet.txt");
 		
 		//reverse edges and add to new graph
-		DirectedGraph<String, Pair<String>> reversed = new DirectedSparseGraph<String, Pair<String>>();
-		for (String v : g.getVertices())
-		{
-			reversed.addVertex(v);
-		}
-		for (Pair<String> edge : g.getEdges())
-		{
-			reversed.addEdge(new Pair<String>(edge.getSecond(), edge.getFirst()), edge.getSecond(), edge.getFirst());
-		}
-		g = reversed;
+//		DirectedGraph<String, Pair<String>> reversed = new DirectedSparseGraph<String, Pair<String>>();
+//		for (String v : g.getVertices())
+//		{
+//			reversed.addVertex(v);
+//		}
+//		for (Pair<String> edge : g.getEdges())
+//		{
+//			reversed.addEdge(new Pair<String>(edge.getSecond(), edge.getFirst()), edge.getSecond(), edge.getFirst());
+//		}
+//		g = reversed;
 //		
 		
 		diQTSearch<String> search = new diQTSearch<String>();
@@ -908,18 +908,34 @@ public class fun<V> extends JApplet {
 		
 	}
 	
-	public static void clusterSearchTest()
+	public static void clusterTest()
 	{
 		clusterSearch<Integer> search = new clusterSearch<Integer>();
-		
 		
 		Graph<Integer, Pair<Integer>> exampleQT;
 		qtGenerate<Integer> gen = new qtGenerate<Integer>();
 		exampleQT = gen.ER(10, .8, (long) 2);
+		exampleQT = gen.treeRandom(50, 2);
 		
 		visualize(exampleQT);
 		
 		System.out.println(search.search(exampleQT));
+		
+		Controller<Integer> c = new Controller<Integer>(null, true);
+		clusterBranch<Integer> bStruct = new clusterBranch<Integer>(c);
+		
+		branchComponents<Integer> b = new branchComponents<Integer>(c, bStruct);
+		
+		c.setbStruct(b);
+		
+		System.out.println("\nConnected component: ");
+		long start = System.currentTimeMillis();
+		branchingReturnC<Integer> rtn = c.branchStart(exampleQT, 40);
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		
+		System.out.println(search.isTarget(rtn.getG()));
+		
+		visualize(rtn.getG());
 	}
 	
 	public static void scoreWineryGraph() throws FileNotFoundException, UnsupportedEncodingException
@@ -1053,7 +1069,7 @@ public class fun<V> extends JApplet {
 	{
 		DirectedGraph<String, Pair<String>> graph = new DirectedSparseGraph<String, Pair<String>>();
 		
-String[] vert = new String[500];
+		String[] vert = new String[500];
 		
 		FileReader file = null;
 		try {

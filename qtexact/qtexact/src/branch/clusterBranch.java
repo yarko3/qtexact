@@ -4,19 +4,19 @@ import java.util.ArrayList;
 
 import qtUtils.branchingReturnC;
 import qtUtils.myEdge;
-import search.diQTSearch;
+import search.clusterSearch;
 import abstractClasses.Branch;
 import abstractClasses.SearchResult;
 import controller.Controller;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Pair;
 
-public class diQTBranch<V> extends Branch<V> 
-{
+public class clusterBranch<V> extends Branch<V> {
 
-	public diQTBranch(Controller<V> controller) {
+	public clusterBranch(Controller<V> controller) {
 		super(controller);
-		search = new diQTSearch<V>();
+		//set proper search
+		search = new clusterSearch<V>();
 		output = controller.getOutputFlag();
 	}
 
@@ -48,54 +48,16 @@ public class diQTBranch<V> extends Branch<V>
 	public branchingReturnC<V> branchingRules(branchingReturnC<V> s,
 			SearchResult<V> sResult) {
 		
+		
 		ArrayList<V> obst = sResult.getCertificate().getVertices();
 		double oldPercent = s.getPercent();
 		
-		//2 in 1 happened
-		if (sResult.getCertificate().getFlag() == -10)
+		//a P3 was found
+		if (sResult.getCertificate().getFlag() == -13)
 		{
-			int ruleCount = 4;
+			int ruleCount = 3;
 			
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(obst.get(0), obst.get(1)), true)))
-			{
-				if (output)
-				{
-					//change progress percent
-					s.setPercent(oldPercent / ruleCount);
-				}
-				controller.branch(deleteResult(s, obst.get(0), obst.get(1)));
-				//revert changes
-				revert(s);		
-				if (output)
-				{
-					//revert percent
-					s.setPercent(oldPercent);
-				}
-			}
-			else
-				if (output)
-					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
-			
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(obst.get(2), obst.get(1)), true)))
-			{
-				if (output)
-				{
-					//change progress percent
-					s.setPercent(oldPercent / ruleCount);
-				}
-				controller.branch(deleteResult(s, obst.get(2), obst.get(1)));
-				//revert changes
-				revert(s);		
-				if (output)
-				{
-					//revert percent
-					s.setPercent(oldPercent);
-				}
-			}
-			else
-				if (output)
-					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
-			
+			// one add
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(obst.get(0), obst.get(2)), false)))
 			{
 				if (output)
@@ -116,51 +78,8 @@ public class diQTBranch<V> extends Branch<V>
 				if (output)
 					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
 			
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(obst.get(2), obst.get(0)), false)))
-			{
-				if (output)
-				{
-					//change progress percent
-					s.setPercent(oldPercent / ruleCount);
-				}
-				controller.branch(addResult(s, obst.get(2), obst.get(0)));
-				//revert changes
-				revert(s);		
-				if (output)
-				{
-					//revert percent
-					s.setPercent(oldPercent);
-				}
-			}
-			else
-				if (output)
-					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
-		}
-		//a directed C3 happened
-		else
-		{
-			int ruleCount = 3;
 			
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(obst.get(2), obst.get(0)), true)))
-			{
-				if (output)
-				{
-					//change progress percent
-					s.setPercent(oldPercent / ruleCount);
-				}
-				controller.branch(deleteResult(s, obst.get(2), obst.get(0)));
-				//revert changes
-				revert(s);		
-				if (output)
-				{
-					//revert percent
-					s.setPercent(oldPercent);
-				}
-			}
-			else
-				if (output)
-					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
-			
+			//one delete
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(obst.get(0), obst.get(1)), true)))
 			{
 				if (output)
@@ -181,6 +100,7 @@ public class diQTBranch<V> extends Branch<V>
 				if (output)
 					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
 			
+			//one delete
 			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(obst.get(1), obst.get(2)), true)))
 			{
 				if (output)
@@ -200,31 +120,52 @@ public class diQTBranch<V> extends Branch<V>
 			else
 				if (output)
 					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
+			
 		}
-		
+		else
+		{
+			System.out.println("Tried to branch on P3, no P3 in certificate.");
+			throw new NullPointerException();
+		}
 		return s;
 		
 	}
-
 
 
 	@Override
 	public branchingReturnC<V> deleteResult(branchingReturnC<V> s, V v0, V v1) {
+		
 		Pair<V> edge = s.getG().findEdge(v0, v1);
-		s.getG().removeEdge(edge);
 		
-		s.getChanges().add(new myEdge<>(edge, false));
-		
-		return s;
+		if (edge != null)
+		{
+			//update moves made
+			s.getChanges().add(new myEdge<V>(new Pair<V>(v0, v1), false));
+			
+			s.getG().removeEdge(edge);
+			return s;
+		}
+		else
+		{
+			System.out.println("Tried to delete edge " + v0 + " and " + v1 + ". Edge does not exist.");
+			throw new NullPointerException();
+		}
 	}
 
 	@Override
 	public branchingReturnC<V> addResult(branchingReturnC<V> s, V v0, V v1) {
+		
+		if (s.getG().isNeighbor(v0, v1))
+		{
+			System.out.println("Tried to add edge " + v0 + " " + v1 + ". Edge already exists. ");
+			throw new NullPointerException();
+		}
 		Pair<V> edge = new Pair<V>(v0, v1);
+		
+		//update moves made
+		s.getChanges().add(new myEdge<V>(new Pair<V>(v0, v1), true));
+		
 		s.getG().addEdge(edge, v0, v1);
-		
-		s.getChanges().add(new myEdge<>(edge, true));
-		
 		return s;
 	}
 
@@ -242,9 +183,11 @@ public class diQTBranch<V> extends Branch<V>
 
 	@Override
 	public void revertEdgeAdd(branchingReturnC<V> s, V v0, V v1) {
-		s.getG().removeEdge(s.getG().findEdge(v0, v1));
+		if (!s.getG().removeEdge(s.getG().findEdge(v0, v1)))
+		{
+			System.out.println("Tried to remove edge " + v0 + " " + v1);
+		}
 		
 	}
-
 
 }
