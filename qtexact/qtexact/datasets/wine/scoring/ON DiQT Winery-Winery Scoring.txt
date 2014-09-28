@@ -1,72 +1,285 @@
-Vertex	Betweenness Centrality	Closeness Centrality	Eigenvector Centrality	HITS	Familial Group Centrality
-http://www.grangeofprinceedward.com	0.0	NaN	0.014084507042253521	[h:0.0141,a:0.0141]	0.0
-http://www.charlesbaker.ca	0.0	1.0	0.014084507042253521	[h:0.0141,a:0.0141]	0.5
-http://www.aleksanderestate.com	0.0	NaN	0.014084507042253521	[h:0.0141,a:0.0141]	0.0
-http://www.hilliercreekestates.com	0.0	NaN	0.014084507042253521	[h:0.0141,a:0.0141]	0.0
-http://www.blackprincewinery.com	0.0	0.45454545454545453	0.014084507042253521	[h:0.0141,a:0.0141]	0.0
-http://www.hubbscreekvineyard.ca	0.0	1.0	0.014084507042253521	[h:0.0141,a:0.0141]	0.5
-http://www.casadeaestates.com	0.0	NaN	0.014084507042253521	[h:0.0141,a:0.0141]	0.0
-http://www.harwoodestatevineyards.com	0.0	NaN	0.014084507042253521	[h:0.0141,a:0.0141]	0.0
-http://www.ridgepointwines.com	0.0	NaN	0.014084507042253521	[h:0.0141,a:0.0141]	0.0
-http://www.vieni.ca	0.0	NaN	0.014084507042253521	[h:0.0141,a:0.0141]	0.0
-http://www.vineland.com	4.0	0.8571428571428571	0.014084507042253521	[h:0.0141,a:0.0141]	6.0
-http://www.crushvqa.com	0.0	0.6	0.014084507042253521	[h:0.0141,a:0.0141]	0.0
-http://www.kingscourtwinery.ca	0.0	1.0	0.014084507042253521	[h:0.0141,a:0.0141]	0.5
-http://www.huffestates.com	0.0	NaN	0.014084507042253521	[h:0.0141,a:0.0141]	0.5
-http://www.ravinevineyard.com	0.0	NaN	0.014084507042253521	[h:0.0141,a:0.0141]	0.5
-http://www.laceyestates.com	0.0	NaN	0.014084507042253521	[h:0.0141,a:0.0141]	0.0
-http://www.tawsewinery.ca	0.0	NaN	0.014084507042253521	[h:0.0141,a:0.0141]	0.0
-http://www.longdog.ca	4.0	1.0	0.014084507042253521	[h:0.0141,a:0.0141]	4.0
-http://www.sprucewoodshores.com	0.0	NaN	0.014084507042253521	[h:0.0141,a:0.0141]	0.0
-http://www.halfmoonbayvineyardsandwinery.ca	0.0	NaN	0.014084507042253521	[h:0.0141,a:0.0141]	0.0
-http://www.sugarbushvineyards.ca	96.0	0.9166666666666667	0.014084507042253521	[h:0.0141,a:0.0141]	31.0
-http://www.hillebrand.com	0.0	NaN	0.014084507042253521	[h:0.0141,a:0.0141]	0.5
-http://www.dangelowinery.com	0.0	NaN	0.014084507042253521	[h:0.0141,a:0.0141]	0.0
-http://www.theoldthird.com	0.0	NaN	0.014084507042253521	[h:0.0141,a:0.0141]	0.0
-http://www.featherstonewinery.ca	2.0	1.0	0.014084507042253521	[h:0.0141,a:0.0141]	1.5
-http://www.countycider.com	0.0	NaN	0.014084507042253521	[h:0.0141,a:0.0141]	0.0
-http://www.33vines.com	0.0	NaN	0.014084507042253521	[h:0.0141,a:0.0141]	0.0
-http://www.thirtybench.com	0.0	1.0	0.014084507042253521	[h:0.0141,a:0.0141]	0.5
-http://www.redtailvineyard.com	0.0	NaN	0.014084507042253521	[h:0.0141,a:0.0141]	0.0
-http://www.bychadseyscairns.com	0.0	NaN	0.014084507042253521	[h:0.0141,a:0.0141]	0.0
-http://www.lighthallvineyards.com	0.0	NaN	0.014084507042253521	[h:0.0141,a:0.0141]	0.0
-http://www.bergeronestatewinery.com	0.0	NaN	0.014084507042253521	[h:0.0141,a:0.0141]	0.0
-http://www.stannersvineyard.ca	0.0	NaN	0.014084507042253521	[h:0.0141,a:0.0141]	0.0
-http://www.villanovaestatewinery.ca	0.0	NaN	0.014084507042253521	[h:0.0141,a:0.0141]	0.0
-http://www.ontario-wine.com	0.0	NaN	0.014084507042253521	[h:0.0141,a:0.0141]	0.5
-http://www.mastronardiwines.com	0.0	NaN	0.014084507042253521	[h:0.0141,a:0.0141]	0.0
-http://www.colchesterridge.com	70.0	0.5	0.014084507042253521	[h:0.0141,a:0.0141]	3.0
-http://www.fiverows.com	2.0	1.0	0.014084507042253521	[h:0.0141,a:0.0141]	4.0
-http://www.13thstreetwinery.com	0.0	NaN	0.014084507042253521	[h:0.0141,a:0.0141]	0.0
-http://www.smithandwilsonestatewines.ca	0.0	NaN	0.014084507042253521	[h:0.0141,a:0.0141]	0.0
-http://www.malivoire.com	0.0	NaN	0.014084507042253521	[h:0.0141,a:0.0141]	0.0
-http://www.peller.com	2.0	1.0	0.014084507042253521	[h:0.0141,a:0.0141]	3.0
-http://www.dovervineyards.com	0.0	1.0	0.014084507042253521	[h:0.0141,a:0.0141]	2.0
-http://www.coyotesrunwinery.com	0.0	NaN	0.014084507042253521	[h:0.0141,a:0.0141]	0.0
-http://www.exultet.ca	0.0	NaN	0.014084507042253521	[h:0.0141,a:0.0141]	0.0
-http://www.southbrook.com	0.0	NaN	0.014084507042253521	[h:0.0141,a:0.0141]	0.0
-http://www.hernder.com	0.0	1.0	0.014084507042253521	[h:0.0141,a:0.0141]	0.5
-http://www.normanhardie.com	0.0	1.0	0.014084507042253521	[h:0.0141,a:0.0141]	0.5
-http://www.theicehouse.ca	0.0	0.6666666666666666	0.014084507042253521	[h:0.0141,a:0.0141]	0.5
-http://www.peleeisland.com	0.0	NaN	0.014084507042253521	[h:0.0141,a:0.0141]	0.0
-http://www.wagnerorchards.com	0.0	NaN	0.014084507042253521	[h:0.0141,a:0.0141]	0.0
-http://www.devilswishbone.com	0.0	NaN	0.014084507042253521	[h:0.0141,a:0.0141]	0.0
-http://www.del-gattoestates.ca	4.0	0.6666666666666666	0.014084507042253521	[h:0.0141,a:0.0141]	2.0
-http://www.erieshore.ca	0.0	0.3688524590163934	0.014084507042253521	[h:0.0141,a:0.0141]	1.0
-http://www.chateaudescharmes.com	0.0	NaN	0.014084507042253521	[h:0.0141,a:0.0141]	0.0
-http://www.karloestates.com	0.0	NaN	0.014084507042253521	[h:0.0141,a:0.0141]	0.0
-http://www.burningkilnwinery.ca	0.0	NaN	0.014084507042253521	[h:0.0141,a:0.0141]	0.0
-http://www.viewpointewinery.com	7.0	0.391304347826087	0.014084507042253521	[h:0.0141,a:0.0141]	10.0
-http://www.hinterlandwine.com	0.0	NaN	0.014084507042253521	[h:0.0141,a:0.0141]	0.5
-http://www.2027cellars.ca	0.0	NaN	0.014084507042253521	[h:0.0141,a:0.0141]	0.0
-http://www.terracellowinery.com	0.0	NaN	0.014084507042253521	[h:0.0141,a:0.0141]	0.0
-http://www.sandbankswinery.com	0.0	NaN	0.014084507042253521	[h:0.0141,a:0.0141]	0.0
-http://www.fieldingwines.com	0.0	NaN	0.014084507042253521	[h:0.0141,a:0.0141]	0.0
-http://www.muscederevineyards.com	0.0	NaN	0.014084507042253521	[h:0.0141,a:0.0141]	0.0
-http://www.brokenstone.ca	0.0	1.0	0.014084507042253521	[h:0.0141,a:0.0141]	2.0
-http://www.rosehallrun.com	0.0	NaN	0.014084507042253521	[h:0.0141,a:0.0141]	0.0
-http://www.flatrockcellars.com	0.0	0.6153846153846154	0.014084507042253521	[h:0.0141,a:0.0141]	1.5
-http://www.clossonchase.com	12.0	1.0	0.014084507042253521	[h:0.0141,a:0.0141]	9.0
-http://www.stratuswines.com	0.0	NaN	0.014084507042253521	[h:0.0141,a:0.0141]	0.5
-http://www.harvestwines.com	0.0	1.0	0.014084507042253521	[h:0.0141,a:0.0141]	0.5
-http://www.waupooswinery.com	0.0	NaN	0.014084507042253521	[h:0.0141,a:0.0141]	0.0
+Vertex	Betweenness Centrality	Closeness Centrality	Eigenvector Centrality	HITS	Familial Group Centrality	Page Rank
+http://www.grangeofprinceedward.com	0.0	0.4205607476635514	0.009957217926959628	[h:0.1427,a:0.1427]	0.0	0.00955527038919524
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.charlesbaker.ca	0.0	0.31690140845070425	0.009955356012319823	[h:0.0496,a:0.0496]	0.5	0.01005210666297671
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.aleksanderestate.com	0.0	0.2830188679245283	0.005003987123426968	[h:0.0051,a:0.0051]	0.0	0.007010546044861388
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.hilliercreekestates.com	0.0	0.4054054054054054	0.004979274829392311	[h:0.1009,a:0.1009]	0.0	0.005887985114301948
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.blackprincewinery.com	0.0	0.40909090909090906	0.00995783169562107	[h:0.1287,a:0.1287]	0.0	0.009572985864988316
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.hubbscreekvineyard.ca	0.0	0.40909090909090906	0.00995814044975903	[h:0.1197,a:0.1197]	0.5	0.010239974111803014
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.casadeaestates.com	0.0	0.45454545454545453	0.0099724657019761	[h:0.1218,a:0.1218]	0.0	0.01015894147720714
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.harwoodestatevineyards.com	0.0	0.4054054054054054	0.004979274829392311	[h:0.1009,a:0.1009]	0.0	0.005887985114301948
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.ridgepointwines.com	0.0	0.47058823529411764	0.007042275489966964	[h:0.0000,a:0.0000]	0.0	0.007765316068023076
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.vieni.ca	0.0	0.47058823529411764	0.007042275489966964	[h:0.0000,a:0.0000]	0.0	0.007765316068023076
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.vineland.com	22.0	0.8	0.04225340445278163	[h:0.0000,a:0.0000]	6.0	0.03990098831775508
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.crushvqa.com	0.0	0.6	0.007042253521126826	[h:0.0000,a:0.0000]	0.0	0.00796667581342414
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.kingscourtwinery.ca	0.0	1.0	0.014084507042253521	[h:0.0000,a:0.0000]	0.5	0.01408450704225352
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.huffestates.com	0.0	0.4245283018867924	0.01493548221415562	[h:0.1693,a:0.1693]	0.5	0.013332935426760211
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.ravinevineyard.com	0.0	0.6666666666666666	0.01408450704422137	[h:0.0000,a:0.0000]	0.5	0.013723728609729698
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.laceyestates.com	0.0	0.40909090909090906	0.009958029245083091	[h:0.1228,a:0.1228]	0.0	0.00995334475960032
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.tawsewinery.ca	0.0	0.47058823529411764	0.007042275489966964	[h:0.0000,a:0.0000]	0.0	0.007765316068023076
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.longdog.ca	2.5	0.4205607476635514	0.02489379937616369	[h:0.1951,a:0.1951]	4.0	0.021416332626538824
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.sprucewoodshores.com	0.0	0.2848101265822785	0.01000482420663805	[h:0.0094,a:0.0094]	0.0	0.011604325980632577
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.halfmoonbayvineyardsandwinery.ca	0.0	0.4054054054054054	0.004979274829392311	[h:0.1009,a:0.1009]	0.0	0.005887985114301948
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.sugarbushvineyards.ca	861.0	0.6716417910447761	0.15436328035129557	[h:0.6423,a:0.6423]	31.0	0.13768774211448212
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.hillebrand.com	0.0	0.75	0.014084507042253547	[h:0.0000,a:0.0000]	0.5	0.013855088371172417
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.dangelowinery.com	0.0	0.2830188679245283	0.005003987123426968	[h:0.0051,a:0.0051]	0.0	0.007010546044861388
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.theoldthird.com	0.0	0.4205607476635514	0.009957217926959628	[h:0.1427,a:0.1427]	0.0	0.00955527038919524
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.featherstonewinery.ca	7.0	0.6153846153846154	0.021126783660852952	[h:0.0000,a:0.0000]	1.5	0.02009336052380285
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.countycider.com	0.0	0.41284403669724773	0.014936374126795939	[h:0.1594,a:0.1594]	0.0	0.013213762411483747
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.33vines.com	0.0	0.4054054054054054	0.004979274829392311	[h:0.1009,a:0.1009]	0.0	0.005887985114301948
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.thirtybench.com	0.0	0.75	0.014084507042253547	[h:0.0000,a:0.0000]	0.5	0.013855088371172417
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.redtailvineyard.com	0.0	0.4054054054054054	0.004979274829392311	[h:0.1009,a:0.1009]	0.0	0.005887985114301948
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.bychadseyscairns.com	0.0	0.40909090909090906	0.009958029245083091	[h:0.1228,a:0.1228]	0.0	0.00995334475960032
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.lighthallvineyards.com	0.0	0.40909090909090906	0.00995781726056718	[h:0.1316,a:0.1316]	0.0	0.00952876166079738
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.bergeronestatewinery.com	0.0	0.4054054054054054	0.004979274829392311	[h:0.1009,a:0.1009]	0.0	0.005887985114301948
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.stannersvineyard.ca	0.0	0.4054054054054054	0.004979274829392311	[h:0.1009,a:0.1009]	0.0	0.005887985114301948
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.villanovaestatewinery.ca	0.0	0.6666666666666666	0.014084507042253521	[h:0.0000,a:0.0000]	0.0	0.010848877329102495
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.ontario-wine.com	0.0	1.0	0.014084507042253521	[h:0.0000,a:0.0000]	0.5	0.01408450704225352
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.mastronardiwines.com	0.0	0.2830188679245283	0.005003987123426968	[h:0.0051,a:0.0051]	0.0	0.007010546044861388
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.colchesterridge.com	384.0	0.5113636363636364	0.0249640764001365	[h:0.1327,a:0.1327]	3.0	0.025123272722807434
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.fiverows.com	5.0	1.0	0.028169014074203268	[h:0.0000,a:0.0000]	4.0	0.027192790090619045
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.13thstreetwinery.com	0.0	0.34090909090909094	0.00499319087258379	[h:0.0208,a:0.0208]	0.0	0.0063836324192432185
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.smithandwilsonestatewines.ca	0.0	0.2830188679245283	0.005003987123426968	[h:0.0051,a:0.0051]	0.0	0.007010546044861388
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.malivoire.com	0.0	0.47058823529411764	0.007042275489966964	[h:0.0000,a:0.0000]	0.0	0.007765316068023076
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.peller.com	2.0	1.0	0.021126760563380094	[h:0.0000,a:0.0000]	3.0	0.020661175613245097
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.dovervineyards.com	1.0	1.0	0.014084507042253521	[h:0.0000,a:0.0000]	2.0	0.020555766468555565
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.coyotesrunwinery.com	0.0	0.5714285714285714	0.007042253524310803	[h:0.0000,a:0.0000]	0.0	0.007891143950594579
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.exultet.ca	0.0	0.40909090909090906	0.00995781726056718	[h:0.1316,a:0.1316]	0.0	0.00952876166079738
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.southbrook.com	0.0	0.3146853146853147	0.004977943097567318	[h:0.0418,a:0.0418]	0.0	0.0057799613312313185
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.hernder.com	0.0	1.0	0.014084507042253521	[h:0.0000,a:0.0000]	0.5	0.01408450704225352
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.normanhardie.com	0.0	0.4245283018867924	0.01493548221415562	[h:0.1693,a:0.1693]	0.5	0.013332935426760215
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.theicehouse.ca	0.0	0.6666666666666666	0.01408450704422137	[h:0.0000,a:0.0000]	0.5	0.013723728609729698
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.peleeisland.com	0.0	0.2830188679245283	0.005003987123426968	[h:0.0051,a:0.0051]	0.0	0.007010546044861388
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.wagnerorchards.com	0.0	0.2830188679245283	0.005003987123426968	[h:0.0051,a:0.0051]	0.0	0.007010546044861388
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.devilswishbone.com	0.0	0.4054054054054054	0.004979274829392311	[h:0.1009,a:0.1009]	0.0	0.005887985114301948
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.del-gattoestates.ca	1.0	0.4166666666666667	0.019915096080834978	[h:0.1768,a:0.1768]	2.0	0.01734118000330595
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.erieshore.ca	18.0	0.3688524590163934	0.015000373904923843	[h:0.0274,a:0.0274]	1.0	0.016213340949593702
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.chateaudescharmes.com	0.0	0.5714285714285714	0.007042253524310803	[h:0.0000,a:0.0000]	0.0	0.007891143950594579
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.karloestates.com	0.0	0.4205607476635514	0.009957217926959628	[h:0.1427,a:0.1427]	0.0	0.00955527038919524
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.burningkilnwinery.ca	0.0	0.6666666666666666	0.014084507042253521	[h:0.0000,a:0.0000]	0.0	0.010848877329102495
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.viewpointewinery.com	305.0	0.391304347826087	0.05003087068481258	[h:0.0322,a:0.0322]	10.0	0.057621999864193356
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.hinterlandwine.com	0.0	0.40909090909090906	0.00995814044975903	[h:0.1197,a:0.1197]	0.5	0.010239974111803014
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.2027cellars.ca	0.0	0.4	0.007042244822962965	[h:0.0000,a:0.0000]	0.0	0.0078057948714142815
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.terracellowinery.com	0.0	0.4054054054054054	0.004979274829392311	[h:0.1009,a:0.1009]	0.0	0.005887985114301948
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.sandbankswinery.com	0.0	0.4054054054054054	0.004979274829392311	[h:0.1009,a:0.1009]	0.0	0.005887985114301948
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.fieldingwines.com	0.0	0.4	0.007042244822962965	[h:0.0000,a:0.0000]	0.0	0.0078057948714142815
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.muscederevineyards.com	0.0	0.2830188679245283	0.005003987123426968	[h:0.0051,a:0.0051]	0.0	0.007010546044861388
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.brokenstone.ca	0.5	0.41284403669724773	0.014936889367640434	[h:0.1395,a:0.1395]	2.0	0.014348328159931381
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.rosehallrun.com	0.0	0.4205607476635514	0.009957217926959628	[h:0.1427,a:0.1427]	0.0	0.00955527038919524
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.flatrockcellars.com	7.0	0.6153846153846154	0.021126783660852952	[h:0.0000,a:0.0000]	1.5	0.02009336052380285
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.clossonchase.com	135.0	0.45454545454545453	0.04978185301776047	[h:0.2660,a:0.2660]	9.0	0.0431445326460153
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.stratuswines.com	0.0	0.31690140845070425	0.009955356012319823	[h:0.0496,a:0.0496]	0.5	0.01005210666297671
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.harvestwines.com	0.0	1.0	0.014084507042253521	[h:0.0000,a:0.0000]	0.5	0.01408450704225352
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100
+http://www.waupooswinery.com	0.0	0.4054054054054054	0.004979274829392311	[h:0.1009,a:0.1009]	0.0	0.005887985114301948
+hits iterations: 100
+eigen iterations: 100
+pageRank iterations: 100

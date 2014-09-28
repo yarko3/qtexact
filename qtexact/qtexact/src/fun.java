@@ -9,6 +9,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Scanner;
@@ -38,17 +39,19 @@ import branch.qtBranchComponents;
 import branch.qtBranchNoHeuristic;
 
 import com.rits.cloning.Cloner;
-import components.branchComponents;
 
+import components.branchComponents;
 import controller.Controller;
 import edu.uci.ics.jung.algorithms.layout.FRLayout;
 import edu.uci.ics.jung.algorithms.scoring.BetweennessCentrality;
 import edu.uci.ics.jung.algorithms.scoring.ClosenessCentrality;
 import edu.uci.ics.jung.algorithms.scoring.EigenvectorCentrality;
 import edu.uci.ics.jung.algorithms.scoring.HITS;
+import edu.uci.ics.jung.algorithms.scoring.PageRank;
 import edu.uci.ics.jung.graph.DirectedGraph;
 import edu.uci.ics.jung.graph.DirectedSparseGraph;
 import edu.uci.ics.jung.graph.Graph;
+import edu.uci.ics.jung.graph.UndirectedGraph;
 import edu.uci.ics.jung.graph.UndirectedSparseGraph;
 import edu.uci.ics.jung.graph.util.Pair;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
@@ -71,9 +74,9 @@ public class fun<V> extends JApplet {
 		//comparisonTest();
 		//wineTest();
 		//userInterface();
-		diGraphWineryTest();
+		//diGraphWineryTest();
 		//clusterSearchTest();
-		//scoreWineryGraph();
+		scoreWineryGraph();
 	}
 	
 	public static void userInterface() throws FileNotFoundException
@@ -606,7 +609,17 @@ public class fun<V> extends JApplet {
 		Scanner scan = new Scanner(file);
 
 		while (scan.hasNext()) {
+			
+			
 			String a = scan.next();
+			
+			
+			//for .tgf edge sets
+			if (a.equals("#"))
+			{
+				continue;
+			}
+			
 			String b = scan.next();
 			
 			
@@ -911,24 +924,182 @@ public class fun<V> extends JApplet {
 	
 	public static void scoreWineryGraph() throws FileNotFoundException, UnsupportedEncodingException
 	{
-		DirectedGraph<String, Pair<String>> graph = fillDiGraphFromFileWithStrings("datasets/wine/ONWineDiSolutionEdgeSet.tgf");
+		
+		String file = "datasets/wine/ON/wineryEdgeSet.txt";
+		DirectedGraph<String, Pair<String>> diGraph =  fillDiGraphFromFileWithStrings(file);
+		UndirectedGraph<String, Pair<String>> graph = (UndirectedGraph<String, Pair<String>>) fillGraphFromFileWithStrings(file);
+		
+//		DirectedGraph<String, Pair<String>> diGraph = readGeneratedDiTGF(file);
+//		UndirectedGraph<String, Pair<String>> graph = (UndirectedGraph<String, Pair<String>>) readGeneratedTGF(file);
+		
+		
+		//reverse edges and add to new graph
+		DirectedGraph<String, Pair<String>> reversed = new DirectedSparseGraph<String, Pair<String>>();
+		for (String v : diGraph.getVertices())
+		{
+			reversed.addVertex(v);
+		}
+		for (Pair<String> edge : diGraph.getEdges())
+		{
+			reversed.addEdge(new Pair<String>(edge.getSecond(), edge.getFirst()), edge.getSecond(), edge.getFirst());
+		}
+		diGraph = reversed;
+		
+		
+		
 		//print network to file
-		PrintWriter writer = new PrintWriter("datasets/wine/scoring/ON DiQT Winery-Winery Scoring.txt", "UTF-8");
+		PrintWriter writer = new PrintWriter("datasets/wine/scoring/Reversed ON Winery-Winery.txt", "UTF-8");
 		BetweennessCentrality<String, Pair<String>> betweenness = new BetweennessCentrality<String, Pair<String>>(graph);
 		ClosenessCentrality<String, Pair<String>> closeness = new ClosenessCentrality<String, Pair<String>>(graph);
-		EigenvectorCentrality<String, Pair<String>> eigen = new EigenvectorCentrality<String, Pair<String>>(graph);
-		HITS<String, Pair<String>> hits = new HITS<String, Pair<String>>(graph);
+		EigenvectorCentrality<String, Pair<String>> eigen = new EigenvectorCentrality<String, Pair<String>>(diGraph);
+		HITS<String, Pair<String>> hits = new HITS<String, Pair<String>>(diGraph);
 		familialGroupCentrality<String>	familial = new familialGroupCentrality<String>(graph);
+		PageRank<String, Pair<String>> pageRank = new PageRank<String, Pair<String>>(diGraph, 0.15);
 		
-		writer.println("Vertex\tBetweenness Centrality\tCloseness Centrality\tEigenvector Centrality\tHITS\tFamilial Group Centrality");
+		
+		eigen.acceptDisconnectedGraph(true);
+		
+		pageRank.setMaxIterations(10000);
+		pageRank.initialize();
+		pageRank.evaluate();
+		
+		hits.setMaxIterations(10000);
+		hits.initialize();
+		hits.evaluate();
+		
+
+		eigen.setMaxIterations(10000);
+		eigen.initialize();
+		eigen.evaluate();
+	
+		
+		System.out.println("is disconnected graph ok? \nhits: " + eigen.isDisconnectedGraphOK());
+		System.out.println("hits iterations: " + hits.getIterations());
+		System.out.println("eigen iterations: " + eigen.getIterations());
+		System.out.println("pageRank iterations: " + pageRank.getIterations());
+		
+		
+		writer.println("Vertex\tDegree\tIn-Degree\tOut-Degree\tBetweenness Centrality\tCloseness Centrality\tEigenvector Centrality\tHITS\tFamilial Group Centrality\tPage Rank");
+		
+		
 		
 		for (String v : graph.getVertices())
 		{
-			writer.println(v + "\t" + betweenness.getVertexScore(v) + "\t" + closeness.getVertexScore(v) + "\t" + eigen.getVertexScore(v) + "\t" + hits.getVertexScore(v) + "\t" + familial.getVertexScore(v));
+			writer.println(v + "\t" +diGraph.degree(v) + "\t" +diGraph.inDegree(v) + "\t" + diGraph.outDegree(v) + "\t"+ betweenness.getVertexScore(v) + "\t" + closeness.getVertexScore(v) + "\t" + eigen.getVertexScore(v) + "\t" + hits.getVertexScore(v) + "\t" + familial.getVertexScore(v) + "\t" + pageRank.getVertexScore(v));
+			
 		}
 		
 		
 		writer.close();
+		
+		
+	}
+	
+	
+	static Graph<String, Pair<String>> readGeneratedTGF(String filename)
+	{
+		Graph<String, Pair<String>> graph = new UndirectedSparseGraph<String, Pair<String>>();
+		
+		String[] vert = new String[500];
+		
+		FileReader file = null;
+		try {
+			file = new FileReader(filename);
+		} catch (FileNotFoundException e) {
+			System.out.println("File " + filename + " could not be found.");
+			e.printStackTrace();
+		}
+
+		Scanner scan = new Scanner(file);
+
+		boolean past = false;
+		
+		while (scan.hasNext()) {
+			
+			String next = scan.next();
+			
+			if (next.equals("#"))
+			{
+				past = true;
+				continue;
+			}
+			
+			if (past)
+			{
+				String next2 = scan.next();
+				
+				int first = Integer.parseInt(next);
+				int second = Integer.parseInt(next2);
+				
+				graph.addEdge(new Pair<String>(vert[first], vert[second]), vert[first], vert[second]);
+				
+			}
+			else
+			{
+				String next2 = scan.next();
+				
+				vert[Integer.parseInt(next)]= next2;
+			}
+			
+		}
+		scan.close();
+		
+		return graph;
+		
+		
+	}
+	
+	static DirectedGraph<String, Pair<String>> readGeneratedDiTGF(String filename)
+	{
+		DirectedGraph<String, Pair<String>> graph = new DirectedSparseGraph<String, Pair<String>>();
+		
+String[] vert = new String[500];
+		
+		FileReader file = null;
+		try {
+			file = new FileReader(filename);
+		} catch (FileNotFoundException e) {
+			System.out.println("File " + filename + " could not be found.");
+			e.printStackTrace();
+		}
+
+		Scanner scan = new Scanner(file);
+
+		boolean past = false;
+		
+		while (scan.hasNext()) {
+			
+			String next = scan.next();
+			
+			if (next.equals("#"))
+			{
+				past = true;
+				continue;
+			}
+			
+			if (past)
+			{
+				String next2 = scan.next();
+				
+				int first = Integer.parseInt(next);
+				int second = Integer.parseInt(next2);
+				
+				graph.addEdge(new Pair<String>(vert[first], vert[second]), vert[first], vert[second]);
+				
+			}
+			else
+			{
+				String next2 = scan.next();
+				
+				vert[Integer.parseInt(next)]= next2;
+			}
+			
+		}
+		scan.close();
+		
+		return graph;
+		
+		
 		
 		
 	}
