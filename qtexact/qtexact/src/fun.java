@@ -67,6 +67,9 @@ public class fun<V> extends JApplet {
 	 */
 	static Graph<Integer, String> graph;
 	static Cloner clone = new Cloner();
+	static qtGenerate<Integer> gen = new qtGenerate<Integer>();
+	static qtGenerate<String> genString = new qtGenerate<String>();
+	
 	
 	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException
 	{
@@ -195,7 +198,6 @@ public class fun<V> extends JApplet {
 	public static void editTest() throws FileNotFoundException, UnsupportedEncodingException 
 	{
 		Graph<Integer, Pair<Integer>> exampleQT;
-		qtGenerate<Integer> gen = new qtGenerate<Integer>();
 		exampleQT = gen.randomQT(50);
 		//may break it
 		exampleQT.addEdge(new Pair<Integer>(0, 6), 0, 6);
@@ -860,18 +862,20 @@ public class fun<V> extends JApplet {
 	{
 		DirectedGraph<String, Pair<String>> g = fillDiGraphFromFileWithStrings("datasets/wine/BC/wineryEdgeSet.txt");
 		
-//		//reverse edges and add to new graph
-//		DirectedGraph<String, Pair<String>> reversed = new DirectedSparseGraph<String, Pair<String>>();
-//		for (String v : g.getVertices())
-//		{
-//			reversed.addVertex(v);
-//		}
-//		for (Pair<String> edge : g.getEdges())
-//		{
-//			reversed.addEdge(new Pair<String>(edge.getSecond(), edge.getFirst()), edge.getSecond(), edge.getFirst());
-//		}
-//		g = reversed;
+		//reverse edges and add to new graph
+		DirectedGraph<String, Pair<String>> reversed = new DirectedSparseGraph<String, Pair<String>>();
+		for (String v : g.getVertices())
+		{
+			reversed.addVertex(v);
+		}
+		for (Pair<String> edge : g.getEdges())
+		{
+			reversed.addEdge(new Pair<String>(edge.getSecond(), edge.getFirst()), edge.getSecond(), edge.getFirst());
+		}
+		g = reversed;
 //		
+		Graph<String, Pair<String>> cGraph = clone.deepClone(g);
+		
 		
 		diQTSearch<String> search = new diQTSearch<String>();
 		
@@ -895,19 +899,19 @@ public class fun<V> extends JApplet {
 		long start = System.currentTimeMillis();
 		branchingReturnC<String> rtn = c.diveAtStartEdit(g, 50);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
-		
+//		
 		
 //		System.out.println("\nConnected component: ");
 //		long start = System.currentTimeMillis();
 //		//branchingReturnC<String> rtn = c.branchStart(g, 20);
 //		branchingReturnC<String> rtn = c.branchID(g, 2, 22);
-//		
 //		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		System.out.println(search.isTarget(rtn.getG()));
 		
 		visualizeString(rtn.getG());
 		
+		System.out.println("\nGraph same? " + genString.graphEquals(cGraph, g));
 		
 		//print network to file
 		PrintWriter writer = new PrintWriter("datasets/wine/ONWineDiSolutionEdgeSetREVERSED.tgf", "UTF-8");

@@ -2,6 +2,7 @@ package abstractClasses;
 
 import qtUtils.branchingReturnC;
 import qtUtils.myEdge;
+import edu.uci.ics.jung.graph.DirectedGraph;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Pair;
 
@@ -29,6 +30,9 @@ public abstract class GreedyEdit<V> extends Dive<V>
 		int newObs = 0;
 		int best;
 		myEdge<V> move = null;
+		
+		//add edges in both directions if graph is directed
+		boolean isDirected = s.getG() instanceof DirectedGraph;
 		
 		//number of greedy edits made
 		int count = 0;
@@ -68,6 +72,7 @@ public abstract class GreedyEdit<V> extends Dive<V>
 					{
 						if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(v0, v1), false)))
 						{
+							//try to add an edge in one direction
 							bStruct.addResult(s, v0, v1);
 							newObs = getObstructionCount(s.getG());
 							if (newObs < best)
@@ -76,6 +81,19 @@ public abstract class GreedyEdit<V> extends Dive<V>
 								move = new myEdge<V>(new Pair<V>(v0, v1), true);
 							}
 							bStruct.revert(s);
+							
+							//if graph is directed, try to add an edge in the other direction
+							if (isDirected)
+							{
+								bStruct.addResult(s, v1, v0);
+								newObs = getObstructionCount(s.getG());
+								if (newObs < best)
+								{
+									best = newObs;
+									move = new myEdge<V>(new Pair<V>(v1, v0), true);
+								}
+								bStruct.revert(s);
+							}
 						}
 					}
 				}
