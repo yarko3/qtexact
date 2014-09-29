@@ -27,7 +27,7 @@ public class branchComponents<V> extends Branch<V> {
 			output = controller.getOutputFlag();
 		}
 		else
-			output = false;
+			output = true;
 		
 		//use proper search function
 		search = bStruct.getSearch();

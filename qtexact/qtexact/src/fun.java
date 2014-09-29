@@ -56,6 +56,7 @@ import edu.uci.ics.jung.graph.UndirectedSparseGraph;
 import edu.uci.ics.jung.graph.util.Pair;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
+import greedy.diQTGreedy;
 import greedy.maxObsGreedy;
 
 @SuppressWarnings("serial")
@@ -74,8 +75,8 @@ public class fun<V> extends JApplet {
 		//comparisonTest();
 		//wineTest();
 		//userInterface();
-		//diGraphWineryTest();
-		clusterTest();
+		diGraphWineryTest();
+		//clusterTest();
 		//scoreWineryGraph();
 	}
 	
@@ -217,7 +218,7 @@ public class fun<V> extends JApplet {
 		exampleQT = fillGraphFromFile("datasets/zachary.txt");
 		
 		
-		exampleQT = gen.randomTreeGraph(100, 15, 6);
+		exampleQT = gen.randomTreeGraph(40, 15, 6);
 		
 		//Graph<String, Pair<String>>wine = fillGraphFromFile("datasets/wineryEdgeSet.txt");
 		
@@ -394,23 +395,23 @@ public class fun<V> extends JApplet {
 //		
 		branchComponents<Integer> comp = new branchComponents<Integer>(c, all2);
 		
-		c.setbStruct(comp);
-		System.out.println("\nConnected component (new components): ");
-		start = System.currentTimeMillis();
-		System.out.println(yan.search(c.branchStart(exampleQT, 15).getG()));
-		System.out.println((System.currentTimeMillis()-start) / 1000.0);
-		
-		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
-		
-		
-		
-		c.setbStruct(branchC);
-		System.out.println("\nConnected component: ");
-		start = System.currentTimeMillis();
-		System.out.println(yan.search(c.branchStart(exampleQT, 15).getG()));
-		System.out.println((System.currentTimeMillis()-start) / 1000.0);
-////	
-		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
+//		c.setbStruct(comp);
+//		System.out.println("\nConnected component (new components): ");
+//		start = System.currentTimeMillis();
+//		System.out.println(yan.search(c.branchStart(exampleQT, 15).getG()));
+//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+//		
+//		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
+//		
+//		
+//		
+//		c.setbStruct(branchC);
+//		System.out.println("\nConnected component: ");
+//		start = System.currentTimeMillis();
+//		System.out.println(yan.search(c.branchStart(exampleQT, 15).getG()));
+//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+//////	
+//		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
 ////		
 //		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
 //		
@@ -480,12 +481,12 @@ public class fun<V> extends JApplet {
 //		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
 		
 		
-//		c.setbStruct(branchC);
-//		branchC.setDive(dive);
-//		System.out.println("\nGreedy Edit: ");
-//		start = System.currentTimeMillis();
-//		System.out.println(yan.search(c.diveAtStartEdit(exampleQT, 50).getG()));
-//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		c.setbStruct(branchC);
+		branchC.setDive(dive);
+		System.out.println("\nGreedy Edit: ");
+		start = System.currentTimeMillis();
+		System.out.println(yan.search(c.diveAtStartEdit(exampleQT, 50).getG()));
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		
 //		System.out.println("\nGraph same? " + gen.graphEquals(cln, exampleQT));
@@ -857,9 +858,9 @@ public class fun<V> extends JApplet {
 	
 	public static void diGraphWineryTest() throws FileNotFoundException, UnsupportedEncodingException
 	{
-		DirectedGraph<String, Pair<String>> g = fillDiGraphFromFileWithStrings("datasets/wine/ON/wineryEdgeSet.txt");
+		DirectedGraph<String, Pair<String>> g = fillDiGraphFromFileWithStrings("datasets/wine/BC/wineryEdgeSet.txt");
 		
-		//reverse edges and add to new graph
+//		//reverse edges and add to new graph
 //		DirectedGraph<String, Pair<String>> reversed = new DirectedSparseGraph<String, Pair<String>>();
 //		for (String v : g.getVertices())
 //		{
@@ -885,10 +886,23 @@ public class fun<V> extends JApplet {
 		
 		c.setbStruct(b);
 		
-		System.out.println("\nConnected component: ");
+		b.setDive(new diQTGreedy<String>(b));
+		
+		
+		
+//		
+		System.out.println("\nGreedy Edit: ");
 		long start = System.currentTimeMillis();
-		branchingReturnC<String> rtn = c.branchStart(g, 20);
+		branchingReturnC<String> rtn = c.diveAtStartEdit(g, 50);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		
+		
+//		System.out.println("\nConnected component: ");
+//		long start = System.currentTimeMillis();
+//		//branchingReturnC<String> rtn = c.branchStart(g, 20);
+//		branchingReturnC<String> rtn = c.branchID(g, 2, 22);
+//		
+//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		System.out.println(search.isTarget(rtn.getG()));
 		
@@ -914,8 +928,8 @@ public class fun<V> extends JApplet {
 		
 		Graph<Integer, Pair<Integer>> exampleQT;
 		qtGenerate<Integer> gen = new qtGenerate<Integer>();
-		exampleQT = gen.ER(10, .8, (long) 2);
-		exampleQT = gen.treeRandom(50, 2);
+		exampleQT = gen.ER(50, .8, (long) 6);
+		//exampleQT = gen.treeRandom(50, 2);
 		
 		visualize(exampleQT);
 		
@@ -930,7 +944,7 @@ public class fun<V> extends JApplet {
 		
 		System.out.println("\nConnected component: ");
 		long start = System.currentTimeMillis();
-		branchingReturnC<Integer> rtn = c.branchStart(exampleQT, 40);
+		branchingReturnC<Integer> rtn = c.branchStart(exampleQT, 20);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		System.out.println(search.isTarget(rtn.getG()));

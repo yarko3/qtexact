@@ -8,7 +8,6 @@ import search.qtLBFS;
 import abstractClasses.Branch;
 import abstractClasses.Dive;
 import abstractClasses.SearchResult;
-import branch.qtBranch;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Pair;
 
@@ -160,18 +159,18 @@ public class Controller<V>
 	 * @param MAX maximum depth of edits
 	 * @return an edited graph if solution is found or the original graph
 	 */
-	public Graph<V, Pair<V>> branchID(Graph<V, Pair<V>> G, int START, int MAX)
+	public branchingReturnC<V> branchID(Graph<V, Pair<V>> G, int START, int MAX)
 	{
 		//bound to iterate down to
 		int bound = START + 1;
-		Graph<V, Pair<V>> goal = G;
+		branchingReturnC<V> goal = null;
 		
 		//while graph is not solved and the bound is less than MAX
-		while (bound <= MAX + 1)
+		while (bound <= MAX)
 		{
-			goal = branchStart(G, bound).getG();
+			goal = branchStart(G, bound);
 			//test if current graph is QT
-			if (bStruct.getSearch().isTarget(goal))
+			if (bStruct.getSearch().isTarget(goal.getG()))
 			{
 				return goal;
 			}
@@ -253,7 +252,7 @@ public class Controller<V>
 		}while (oldC > newC);
 		
 		//undo all moves
-		((qtBranch<V>) bStruct).revertAll(s);
+		bStruct.revertAll(s);
 		
 		//check for solution correctness
 		Graph<V, Pair<V>> rtn = bStruct.applyMoves(Branch.clone.deepClone(s.getG()), s.getMinMoves().getChanges());

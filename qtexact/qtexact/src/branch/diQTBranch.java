@@ -213,7 +213,7 @@ public class diQTBranch<V> extends Branch<V>
 		Pair<V> edge = s.getG().findEdge(v0, v1);
 		s.getG().removeEdge(edge);
 		
-		s.getChanges().add(new myEdge<>(edge, false));
+		s.getChanges().add(new myEdge<>(new Pair<V>(v0, v1), false));
 		
 		return s;
 	}
@@ -223,7 +223,7 @@ public class diQTBranch<V> extends Branch<V>
 		Pair<V> edge = new Pair<V>(v0, v1);
 		s.getG().addEdge(edge, v0, v1);
 		
-		s.getChanges().add(new myEdge<>(edge, true));
+		s.getChanges().add(new myEdge<>(new Pair<V>(v0, v1), true));
 		
 		return s;
 	}
