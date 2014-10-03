@@ -17,10 +17,12 @@ public class diQTGreedy<V> extends GreedyEdit<V> {
 	@Override
 	protected int getObstructionCount(Graph<V, Pair<V>> g) {
 
+		//number of obstruction 10
 		int count0 = 0;
+		//number of obstruction 11
 		int count1 = 0;
 		
-		
+		//for every vertex, look for obstructions
 		for (V v0 : g.getVertices())
 		{
 			Collection<V> v0OutNeighbours = new HashSet<V>();

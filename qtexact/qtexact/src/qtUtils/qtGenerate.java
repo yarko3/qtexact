@@ -816,20 +816,31 @@ public class qtGenerate<V>
 		}
 		
 		//check edges
-		for (Pair<V> e0 : g0.getEdges())
+		for (Pair<V> edge0 : g0.getEdges())
 		{
-			if (!g1.isNeighbor(e0.getFirst(), e0.getSecond())){
-				
-				System.out.println("\nGraph 1 does not contain edge " + e0);
-				flag = false;
-			}
-		}
-		for (Pair<V> e1 : g1.getEdges())
-		{
-			if (!g0.isNeighbor(e1.getFirst(), e1.getSecond()))
+			Collection<Pair<V>> temp = g0.findEdgeSet(edge0.getFirst(), edge0.getSecond());
+			
+			for (Pair<V> e0 : temp)
 			{
-				System.out.println("\nGraph 0 does not contain edge " + e1);
-				flag = false;
+				if (g1.findEdge(e0.getFirst(), e0.getSecond()) == null){
+					
+					System.out.println("\nGraph 1 does not contain edge " + e0);
+					flag = false;
+				}
+			}
+			
+		}
+		for (Pair<V> edge1 : g1.getEdges())
+		{
+			Collection<Pair<V>> temp = g1.findEdgeSet(edge1.getFirst(), edge1.getSecond());
+			
+			for (Pair<V> e1 : temp)
+			{
+				if (g0.findEdge(e1.getFirst(), e1.getSecond()) == null)
+				{
+					System.out.println("\nGraph 0 does not contain edge " + e1);
+					flag = false;
+				}
 			}
 		}
 		

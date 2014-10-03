@@ -211,6 +211,7 @@ public class diQTBranch<V> extends Branch<V>
 	@Override
 	public branchingReturnC<V> deleteResult(branchingReturnC<V> s, V v0, V v1) {
 		Pair<V> edge = s.getG().findEdge(v0, v1);
+		
 		s.getG().removeEdge(edge);
 		
 		s.getChanges().add(new myEdge<>(new Pair<V>(v0, v1), false));

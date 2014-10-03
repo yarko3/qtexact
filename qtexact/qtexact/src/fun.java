@@ -78,9 +78,9 @@ public class fun<V> extends JApplet {
 		//comparisonTest();
 		//wineTest();
 		//userInterface();
-		diGraphWineryTest();
+		//diGraphWineryTest();
 		//clusterTest();
-		//scoreWineryGraph();
+		scoreWineryGraph();
 	}
 	
 	public static void userInterface() throws FileNotFoundException
@@ -860,7 +860,7 @@ public class fun<V> extends JApplet {
 	
 	public static void diGraphWineryTest() throws FileNotFoundException, UnsupportedEncodingException
 	{
-		DirectedGraph<String, Pair<String>> g = fillDiGraphFromFileWithStrings("datasets/wine/BC/wineryEdgeSet.txt");
+		DirectedGraph<String, Pair<String>> g = fillDiGraphFromFileWithStrings("datasets/wine/ON/wineryEdgeSet.txt");
 		
 		//reverse edges and add to new graph
 		DirectedGraph<String, Pair<String>> reversed = new DirectedSparseGraph<String, Pair<String>>();
@@ -892,9 +892,10 @@ public class fun<V> extends JApplet {
 		
 		b.setDive(new diQTGreedy<String>(b));
 		
+		visualizeString(g);
 		
 		
-//		
+		
 		System.out.println("\nGreedy Edit: ");
 		long start = System.currentTimeMillis();
 		branchingReturnC<String> rtn = c.diveAtStartEdit(g, 50);
@@ -906,7 +907,7 @@ public class fun<V> extends JApplet {
 //		//branchingReturnC<String> rtn = c.branchStart(g, 20);
 //		branchingReturnC<String> rtn = c.branchID(g, 2, 22);
 //		System.out.println((System.currentTimeMillis()-start) / 1000.0);
-		
+//		
 		System.out.println(search.isTarget(rtn.getG()));
 		
 		visualizeString(rtn.getG());
@@ -959,7 +960,7 @@ public class fun<V> extends JApplet {
 	public static void scoreWineryGraph() throws FileNotFoundException, UnsupportedEncodingException
 	{
 		
-		String file = "datasets/wine/ON/wineryEdgeSet.txt";
+		String file = "datasets/wine/BCWineDiSolutionEdgeSetREVERSED-GREEDY.tgf";
 		DirectedGraph<String, Pair<String>> diGraph =  fillDiGraphFromFileWithStrings(file);
 		UndirectedGraph<String, Pair<String>> graph = (UndirectedGraph<String, Pair<String>>) fillGraphFromFileWithStrings(file);
 		
@@ -982,7 +983,7 @@ public class fun<V> extends JApplet {
 		
 		
 		//print network to file
-		PrintWriter writer = new PrintWriter("datasets/wine/scoring/Reversed ON Winery-Winery.txt", "UTF-8");
+		PrintWriter writer = new PrintWriter("datasets/wine/scoring/Reversed BC Winery-Winery.txt", "UTF-8");
 		BetweennessCentrality<String, Pair<String>> betweenness = new BetweennessCentrality<String, Pair<String>>(graph);
 		ClosenessCentrality<String, Pair<String>> closeness = new ClosenessCentrality<String, Pair<String>>(graph);
 		EigenvectorCentrality<String, Pair<String>> eigen = new EigenvectorCentrality<String, Pair<String>>(diGraph);
