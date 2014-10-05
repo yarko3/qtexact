@@ -23,6 +23,10 @@ public abstract class GreedyEdit<V> extends Dive<V>
 		greedyEdit(s, 1000);
 	}
 	
+	/**
+	 * is the graph edited directed?
+	 */
+	private boolean directed;
 	
 	static Cloner clone = new Cloner();
 	qtGenerate<V> gen = new qtGenerate<V>();
@@ -39,8 +43,8 @@ public abstract class GreedyEdit<V> extends Dive<V>
 		int best;
 		myEdge<V> move = null;
 		
-		//add edges in both directions if graph is directed
-		boolean isDirected = s.getG() instanceof DirectedGraph;
+//		//add edges in both directions if graph is directed
+//		boolean isDirected = s.getG() instanceof DirectedGraph;
 		
 		//number of greedy edits made
 		int count = 0;
@@ -76,7 +80,7 @@ public abstract class GreedyEdit<V> extends Dive<V>
 					//if an edge between v0 and v1 exists, remove it and count the number of obstructions
 					if (s.getG().findEdge(v0, v1) != null)
 					{
-						if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(v0, v1), true)))
+						if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(v0, v1), true, directed)))
 						{
 							bStruct.deleteResult(s, v0, v1);
 							newObs = getObstructionCount(s.getG());
@@ -86,7 +90,7 @@ public abstract class GreedyEdit<V> extends Dive<V>
 								cloneGraph1 = clone.deepClone(s.getG());
 								
 								best = newObs;
-								move = new myEdge<V>(new Pair<V>(v0, v1), false);
+								move = new myEdge<V>(new Pair<V>(v0, v1), false, directed);
 							}
 							bStruct.revert(s);
 						}
@@ -95,7 +99,7 @@ public abstract class GreedyEdit<V> extends Dive<V>
 					//add an edge
 					else
 					{
-						if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(v0, v1), false)))
+						if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(v0, v1), false, directed)))
 						{
 							//try to add an edge in one direction
 							bStruct.addResult(s, v0, v1);
@@ -103,7 +107,7 @@ public abstract class GreedyEdit<V> extends Dive<V>
 							if (newObs < best)
 							{
 								best = newObs;
-								move = new myEdge<V>(new Pair<V>(v0, v1), true);
+								move = new myEdge<V>(new Pair<V>(v0, v1), true, directed);
 							}
 							bStruct.revert(s);
 							
@@ -172,6 +176,7 @@ public abstract class GreedyEdit<V> extends Dive<V>
 	public GreedyEdit(Branch<V> b)
 	{
 		super(b);
+		directed = b.isDirected();
 	}
 
 	

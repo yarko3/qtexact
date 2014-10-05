@@ -4,6 +4,12 @@ import qtUtils.branchingReturnC;
 
 public abstract class Reduction<V> 
 {
+	
+	/**
+	 * is the graph editing directed?
+	 */
+	protected boolean directed;
+	
 	/**
 	 * method used to reduce the branching factor of an edit state
 	 * @param s initial edit state

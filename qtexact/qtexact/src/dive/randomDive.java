@@ -90,7 +90,7 @@ public class randomDive<V> extends Dive<V> {
 			
 			if (r < .2)
 			{
-				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(2)), false)))
+				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(2)), false, directed)))
 				{
 					
 					bStruct.addResult(s, lexResult.get(0), lexResult.get(2));
@@ -104,7 +104,7 @@ public class randomDive<V> extends Dive<V> {
 			if (r < 0.4 && !moveMade)
 			{
 				
-				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false)))
+				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false, directed)))
 				{
 					
 					bStruct.addResult(s, lexResult.get(1), lexResult.get(3));
@@ -116,7 +116,7 @@ public class randomDive<V> extends Dive<V> {
 				
 			if (r < .5 && !moveMade)
 			{
-				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)))
+				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true, directed)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true, directed)))
 				{
 					bStruct.delete2Result(s, lexResult.get(0), lexResult.get(1), lexResult.get(1), lexResult.get(2));
 					moveMade = true;
@@ -129,7 +129,7 @@ public class randomDive<V> extends Dive<V> {
 				
 			if (r < .6 && !moveMade)
 			{
-				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(3)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
+				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(3)), true, directed)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true, directed)))
 				{
 					bStruct.delete2Result(s, lexResult.get(0), lexResult.get(3), lexResult.get(2), lexResult.get(3));
 					moveMade = true;
@@ -142,7 +142,7 @@ public class randomDive<V> extends Dive<V> {
 				
 			if (r < .7 && !moveMade)
 			{
-				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
+				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true, directed)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true, directed)))
 				{
 					bStruct.delete2Result(s, lexResult.get(0), lexResult.get(1), lexResult.get(2), lexResult.get(3));
 					moveMade = true;
@@ -155,7 +155,7 @@ public class randomDive<V> extends Dive<V> {
 				
 			if (r < .8 && !moveMade)
 			{
-				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(3)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)))
+				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(3)), true, directed)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true, directed)))
 				{
 					bStruct.delete2Result(s, lexResult.get(0), lexResult.get(3), lexResult.get(1), lexResult.get(2));
 					moveMade = true;
@@ -167,7 +167,7 @@ public class randomDive<V> extends Dive<V> {
 				
 			if (r < 0.9 && !moveMade)
 			{
-				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
+				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true, directed)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true, directed)))
 				{
 					
 					bStruct.delete2Result(s, lexResult.get(1), lexResult.get(2), lexResult.get(2), lexResult.get(3));
@@ -179,7 +179,7 @@ public class randomDive<V> extends Dive<V> {
 			}
 			 if (r < 1 && !moveMade)
 			{
-				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(3)), true)))
+				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true, directed)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(3)), true, directed)))
 				{
 					bStruct.delete2Result(s, lexResult.get(0), lexResult.get(1), lexResult.get(0), lexResult.get(3));
 					moveMade = true;
@@ -199,7 +199,7 @@ public class randomDive<V> extends Dive<V> {
 			if (r < 0.2){
 				//remove an edge to break P4
 				//remove middle edge first
-				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)))
+				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true, directed)))
 				{
 					bStruct.deleteResult(s, lexResult.get(1), lexResult.get(2));
 					
@@ -211,7 +211,7 @@ public class randomDive<V> extends Dive<V> {
 			
 			if (r < 0.4 && !moveMade)
 			{
-				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)))
+				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true, directed)))
 				{
 					
 					bStruct.deleteResult(s, lexResult.get(0), lexResult.get(1));
@@ -224,7 +224,7 @@ public class randomDive<V> extends Dive<V> {
 			
 			if (r < .6 && !moveMade)
 			{
-				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
+				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true, directed)))
 				{
 					bStruct.deleteResult(s, lexResult.get(2), lexResult.get(3));
 					moveMade = true;
@@ -237,7 +237,7 @@ public class randomDive<V> extends Dive<V> {
 			
 			if (r < 0.8 && !moveMade)
 			{
-				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(2)), false)))
+				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(2)), false, directed)))
 				{
 					bStruct.addResult(s, lexResult.get(0), lexResult.get(2));
 					moveMade = true;
@@ -248,7 +248,7 @@ public class randomDive<V> extends Dive<V> {
 				
 			if ( r < 1 && !moveMade)
 			{
-				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false)))
+				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false, directed)))
 				{
 					bStruct.addResult(s, lexResult.get(1), lexResult.get(3));
 					moveMade = true;

@@ -18,6 +18,9 @@ public class diQTBranch<V> extends Branch<V>
 		super(controller);
 		search = new diQTSearch<V>();
 		output = controller.getOutputFlag();
+		
+		//graph must be directed
+		directed = true;
 	}
 
 	@Override
@@ -56,7 +59,7 @@ public class diQTBranch<V> extends Branch<V>
 		{
 			int ruleCount = 4;
 			
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(obst.get(0), obst.get(1)), true)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(obst.get(0), obst.get(1)), true, directed)))
 			{
 				if (output)
 				{
@@ -76,7 +79,7 @@ public class diQTBranch<V> extends Branch<V>
 				if (output)
 					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
 			
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(obst.get(2), obst.get(1)), true)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(obst.get(2), obst.get(1)), true, directed)))
 			{
 				if (output)
 				{
@@ -96,7 +99,7 @@ public class diQTBranch<V> extends Branch<V>
 				if (output)
 					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
 			
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(obst.get(0), obst.get(2)), false)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(obst.get(0), obst.get(2)), false, directed)))
 			{
 				if (output)
 				{
@@ -116,7 +119,7 @@ public class diQTBranch<V> extends Branch<V>
 				if (output)
 					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
 			
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(obst.get(2), obst.get(0)), false)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(obst.get(2), obst.get(0)), false, directed)))
 			{
 				if (output)
 				{
@@ -137,11 +140,11 @@ public class diQTBranch<V> extends Branch<V>
 					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
 		}
 		//a directed C3 happened
-		else
+		else if (sResult.getCertificate().getFlag() == -11)
 		{
 			int ruleCount = 3;
 			
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(obst.get(2), obst.get(0)), true)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(obst.get(2), obst.get(0)), true, directed)))
 			{
 				if (output)
 				{
@@ -161,7 +164,7 @@ public class diQTBranch<V> extends Branch<V>
 				if (output)
 					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
 			
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(obst.get(0), obst.get(1)), true)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(obst.get(0), obst.get(1)), true, directed)))
 			{
 				if (output)
 				{
@@ -181,7 +184,72 @@ public class diQTBranch<V> extends Branch<V>
 				if (output)
 					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
 			
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(obst.get(1), obst.get(2)), true)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(obst.get(1), obst.get(2)), true, directed)))
+			{
+				if (output)
+				{
+					//change progress percent
+					s.setPercent(oldPercent / ruleCount);
+				}
+				controller.branch(deleteResult(s, obst.get(1), obst.get(2)));
+				//revert changes
+				revert(s);		
+				if (output)
+				{
+					//revert percent
+					s.setPercent(oldPercent);
+				}
+			}
+			else
+				if (output)
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
+		}
+		//transitive property was broken
+		else
+		{
+			int ruleCount = 3;
+			
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(obst.get(0), obst.get(2)), false, directed)))
+			{
+				if (output)
+				{
+					//change progress percent
+					s.setPercent(oldPercent / ruleCount);
+				}
+				controller.branch(addResult(s, obst.get(0), obst.get(2)));
+				//revert changes
+				revert(s);		
+				if (output)
+				{
+					//revert percent
+					s.setPercent(oldPercent);
+				}
+			}
+			else
+				if (output)
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
+			
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(obst.get(0), obst.get(1)), true, directed)))
+			{
+				if (output)
+				{
+					//change progress percent
+					s.setPercent(oldPercent / ruleCount);
+				}
+				controller.branch(deleteResult(s, obst.get(0), obst.get(1)));
+				//revert changes
+				revert(s);		
+				if (output)
+				{
+					//revert percent
+					s.setPercent(oldPercent);
+				}
+			}
+			else
+				if (output)
+					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
+			
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(obst.get(1), obst.get(2)), true, directed)))
 			{
 				if (output)
 				{
@@ -214,7 +282,7 @@ public class diQTBranch<V> extends Branch<V>
 		
 		s.getG().removeEdge(edge);
 		
-		s.getChanges().add(new myEdge<>(new Pair<V>(v0, v1), false));
+		s.getChanges().add(new myEdge<>(new Pair<V>(v0, v1), false, directed));
 		
 		return s;
 	}
@@ -224,7 +292,7 @@ public class diQTBranch<V> extends Branch<V>
 		Pair<V> edge = new Pair<V>(v0, v1);
 		s.getG().addEdge(edge, v0, v1);
 		
-		s.getChanges().add(new myEdge<>(new Pair<V>(v0, v1), true));
+		s.getChanges().add(new myEdge<>(new Pair<V>(v0, v1), true, directed));
 		
 		return s;
 	}

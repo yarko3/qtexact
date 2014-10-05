@@ -78,9 +78,9 @@ public class fun<V> extends JApplet {
 		//comparisonTest();
 		//wineTest();
 		//userInterface();
-		//diGraphWineryTest();
+		diGraphWineryTest();
 		//clusterTest();
-		scoreWineryGraph();
+		//scoreWineryGraph();
 	}
 	
 	public static void userInterface() throws FileNotFoundException
@@ -900,14 +900,14 @@ public class fun<V> extends JApplet {
 		long start = System.currentTimeMillis();
 		branchingReturnC<String> rtn = c.diveAtStartEdit(g, 50);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
-//		
+////		
 		
 //		System.out.println("\nConnected component: ");
 //		long start = System.currentTimeMillis();
 //		//branchingReturnC<String> rtn = c.branchStart(g, 20);
 //		branchingReturnC<String> rtn = c.branchID(g, 2, 22);
 //		System.out.println((System.currentTimeMillis()-start) / 1000.0);
-//		
+		
 		System.out.println(search.isTarget(rtn.getG()));
 		
 		visualizeString(rtn.getG());
@@ -915,7 +915,7 @@ public class fun<V> extends JApplet {
 		System.out.println("\nGraph same? " + genString.graphEquals(cGraph, g));
 		
 		//print network to file
-		PrintWriter writer = new PrintWriter("datasets/wine/ONWineDiSolutionEdgeSetREVERSED.tgf", "UTF-8");
+		PrintWriter writer = new PrintWriter("datasets/wine/diQT/ONWineDiSolutionEdgeSetREVERSED-GREEDY.tgf", "UTF-8");
 		
 		writer.println("#");
 		for (Pair<String> edge : rtn.getG().getEdges())

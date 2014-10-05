@@ -44,9 +44,10 @@ public class diQTSearch<V> extends Search<V> {
 		Set<Set<V>> components = cluster.transform(g);
 		
 		
-		
+		//for every vertex v0,
 		for (V v0 : g.getVertices())
 		{
+			//get in and out neighbours
 			Collection<V> v0OutNeighbours = new HashSet<V>();
 			Collection<V> v0InNeighbours = new HashSet<V>();
 			
@@ -60,6 +61,7 @@ public class diQTSearch<V> extends Search<V> {
 				v0InNeighbours.add(edge.getFirst());
 			}
 			
+			//for every child,
 			for (V v1 : v0OutNeighbours)
 			{
 				//get incident vertices on v1, see if they are non-neighbours of v0
@@ -76,14 +78,17 @@ public class diQTSearch<V> extends Search<V> {
 					v1InNeighbours.add(edge.getFirst());
 				}
 				
+				//for every parent of v1,
 				for (V v2 : v1InNeighbours)
 				{
+					//make sure v0 is not being checked with v0
 					if (v0.equals(v2))
 						continue;
-					
+					//di-QT property is upheld
 					if (g.isNeighbor(v0, v2))
 						continue;
 					
+					//obstruction found, 2-into-1
 					ArrayList<V> obstruction = new ArrayList<V>();
 					obstruction.add(v0);
 					obstruction.add(v1);
@@ -92,10 +97,22 @@ public class diQTSearch<V> extends Search<V> {
 					return new SearchResult<V>(false, new Certificate<V>(obstruction, -10), components);
 				}
 				
+				//for every grandchild of v0,
 				for (V v2 : v1OutNeighbours)
 				{
+					//breaks transitive property of di-QT graphs
+					if (!v0InNeighbours.contains(v2) && !v0OutNeighbours.contains(v2))
+					{
+						ArrayList<V> obstruction = new ArrayList<V>();
+						obstruction.add(v0);
+						obstruction.add(v1);
+						obstruction.add(v2);
+						
+						return new SearchResult<V>(false, new Certificate<V>(obstruction, -12), components);
+					}
+					
 					//don't count multi-directional edges
-					if (v0InNeighbours.contains(v2) && !v0OutNeighbours.contains(v2) && !v0InNeighbours.contains(v1) && !v1InNeighbours.contains(v2))
+					if (v0InNeighbours.contains(v2) /*&& !v0OutNeighbours.contains(v2) && !v0InNeighbours.contains(v1) && !v1InNeighbours.contains(v2)*/)
 					{
 						ArrayList<V> obstruction = new ArrayList<V>();
 						obstruction.add(v0);

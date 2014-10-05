@@ -43,6 +43,26 @@ public abstract class Branch<V>
 	public void setDive(Dive<V> dive) {
 		this.dive = dive;
 	}
+	
+	/**
+	 * is the graph directed
+	 */
+	protected boolean directed;
+	
+
+	/**
+	 * @return the directed
+	 */
+	public boolean isDirected() {
+		return directed;
+	}
+
+	/**
+	 * @param directed the directed to set
+	 */
+	public void setDirected(boolean directed) {
+		this.directed = directed;
+	}
 
 	/**
 	 * a search class used for identifying a solution or a certificate to branch on 
@@ -340,10 +360,10 @@ public abstract class Branch<V>
 		for (Pair<V> e : s.getG().getEdges())
 		{
 			//treat each edge in this set as a deletion
-			if ((!l.contains(new myEdge<V>(e, false)) || !l.contains(new myEdge<V>(e, true))) && count < bound)
+			if ((!l.contains(new myEdge<V>(e, false, directed)) || !l.contains(new myEdge<V>(e, true, directed))) && count < bound)
 			{	
 				//make random deletions to fill move list
-				toApply.add(new myEdge<V>(e, false));
+				toApply.add(new myEdge<V>(e, false, directed));
 				count++;
 				if (count >= bound)
 					break forLoop;
@@ -372,9 +392,9 @@ public abstract class Branch<V>
 				for (Pair<V> e : s.getG().getEdges())
 				{
 					//treat each edge in this set as a deletion
-					if (!l.contains(new myEdge<V>(e, false)) || !l.contains(new myEdge<V>(e, true)))
+					if (!l.contains(new myEdge<V>(e, false, directed)) || !l.contains(new myEdge<V>(e, true, directed)))
 					{	
-						l.add(new myEdge<V>(e, false));
+						l.add(new myEdge<V>(e, false, directed));
 						count++;
 						if (count == bound)
 							break;
@@ -389,7 +409,7 @@ public abstract class Branch<V>
 			while (count < bound)
 			{
 				//add a self edge
-				l.add(new myEdge<V>(new Pair<V>(v0, v0), false));
+				l.add(new myEdge<V>(new Pair<V>(v0, v0), false, directed));
 				count++;
 			}
 		}

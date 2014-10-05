@@ -18,6 +18,9 @@ public class clusterBranch<V> extends Branch<V> {
 		//set proper search
 		search = new clusterSearch<V>();
 		output = controller.getOutputFlag();
+		
+		//graph editing does not care for directionality
+		directed = false;
 	}
 
 	@Override
@@ -58,7 +61,7 @@ public class clusterBranch<V> extends Branch<V> {
 			int ruleCount = 3;
 			
 			// one add
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(obst.get(0), obst.get(2)), false)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(obst.get(0), obst.get(2)), false, directed)))
 			{
 				if (output)
 				{
@@ -80,7 +83,7 @@ public class clusterBranch<V> extends Branch<V> {
 			
 			
 			//one delete
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(obst.get(0), obst.get(1)), true)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(obst.get(0), obst.get(1)), true, directed)))
 			{
 				if (output)
 				{
@@ -101,7 +104,7 @@ public class clusterBranch<V> extends Branch<V> {
 					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
 			
 			//one delete
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(obst.get(1), obst.get(2)), true)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(obst.get(1), obst.get(2)), true, directed)))
 			{
 				if (output)
 				{
@@ -140,7 +143,7 @@ public class clusterBranch<V> extends Branch<V> {
 		if (edge != null)
 		{
 			//update moves made
-			s.getChanges().add(new myEdge<V>(new Pair<V>(v0, v1), false));
+			s.getChanges().add(new myEdge<V>(new Pair<V>(v0, v1), false, directed));
 			
 			s.getG().removeEdge(edge);
 			return s;
@@ -163,7 +166,7 @@ public class clusterBranch<V> extends Branch<V> {
 		Pair<V> edge = new Pair<V>(v0, v1);
 		
 		//update moves made
-		s.getChanges().add(new myEdge<V>(new Pair<V>(v0, v1), true));
+		s.getChanges().add(new myEdge<V>(new Pair<V>(v0, v1), true, directed));
 		
 		s.getG().addEdge(edge, v0, v1);
 		return s;

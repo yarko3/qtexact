@@ -1033,32 +1033,33 @@ public class qtGenerate<V>
 	
 	public LinkedList<myEdge<Integer>> karateSolution()
 	{
+		boolean directed = false;
 		LinkedList<myEdge<Integer>> l = new LinkedList<myEdge<Integer>>();
 		//deletions
-		l.add(new myEdge<Integer>(new Pair<Integer>(19, 2), false));
-		l.add(new myEdge<Integer>(new Pair<Integer>(2, 4), false));
-		l.add(new myEdge<Integer>(new Pair<Integer>(22, 3), false));
-		l.add(new myEdge<Integer>(new Pair<Integer>(18, 22), false));
-		l.add(new myEdge<Integer>(new Pair<Integer>(11, 18), false));
-		l.add(new myEdge<Integer>(new Pair<Integer>(14, 2), false));
-		l.add(new myEdge<Integer>(new Pair<Integer>(2, 3), false));
-		l.add(new myEdge<Integer>(new Pair<Integer>(12, 10), false));
-		l.add(new myEdge<Integer>(new Pair<Integer>(11, 14), false));
-		l.add(new myEdge<Integer>(new Pair<Integer>(2, 15), false));
-		l.add(new myEdge<Integer>(new Pair<Integer>(17, 23), false));
-		l.add(new myEdge<Integer>(new Pair<Integer>(13, 16), false));
-		l.add(new myEdge<Integer>(new Pair<Integer>(12, 18), false));
-		l.add(new myEdge<Integer>(new Pair<Integer>(20, 32), false));
-		l.add(new myEdge<Integer>(new Pair<Integer>(20, 35), false));
-		l.add(new myEdge<Integer>(new Pair<Integer>(33, 26), false));
+		l.add(new myEdge<Integer>(new Pair<Integer>(19, 2), false, directed));
+		l.add(new myEdge<Integer>(new Pair<Integer>(2, 4), false, directed));
+		l.add(new myEdge<Integer>(new Pair<Integer>(22, 3), false, directed));
+		l.add(new myEdge<Integer>(new Pair<Integer>(18, 22), false, directed));
+		l.add(new myEdge<Integer>(new Pair<Integer>(11, 18), false, directed));
+		l.add(new myEdge<Integer>(new Pair<Integer>(14, 2), false, directed));
+		l.add(new myEdge<Integer>(new Pair<Integer>(2, 3), false, directed));
+		l.add(new myEdge<Integer>(new Pair<Integer>(12, 10), false, directed));
+		l.add(new myEdge<Integer>(new Pair<Integer>(11, 14), false, directed));
+		l.add(new myEdge<Integer>(new Pair<Integer>(2, 15), false, directed));
+		l.add(new myEdge<Integer>(new Pair<Integer>(17, 23), false, directed));
+		l.add(new myEdge<Integer>(new Pair<Integer>(13, 16), false, directed));
+		l.add(new myEdge<Integer>(new Pair<Integer>(12, 18), false, directed));
+		l.add(new myEdge<Integer>(new Pair<Integer>(20, 32), false, directed));
+		l.add(new myEdge<Integer>(new Pair<Integer>(20, 35), false, directed));
+		l.add(new myEdge<Integer>(new Pair<Integer>(33, 26), false, directed));
 		
 		
 		//additions
-		l.add(new myEdge<Integer>(new Pair<Integer>(19, 15), true));
-		l.add(new myEdge<Integer>(new Pair<Integer>(19, 14), true));
-		l.add(new myEdge<Integer>(new Pair<Integer>(31, 23), true));
-		l.add(new myEdge<Integer>(new Pair<Integer>(33, 22), true));
-		l.add(new myEdge<Integer>(new Pair<Integer>(29, 27), true));
+		l.add(new myEdge<Integer>(new Pair<Integer>(19, 15), true, directed));
+		l.add(new myEdge<Integer>(new Pair<Integer>(19, 14), true, directed));
+		l.add(new myEdge<Integer>(new Pair<Integer>(31, 23), true, directed));
+		l.add(new myEdge<Integer>(new Pair<Integer>(33, 22), true, directed));
+		l.add(new myEdge<Integer>(new Pair<Integer>(29, 27), true, directed));
 		
 		return l;
 		

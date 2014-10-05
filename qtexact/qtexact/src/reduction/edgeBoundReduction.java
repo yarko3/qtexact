@@ -38,6 +38,7 @@ public class edgeBoundReduction<V> extends Reduction<V>
 		super();
 		bStruct = b;
 		stack = new Stack<Integer>();
+		directed = b.isDirected();
 	}
 	
 	@Override
@@ -53,11 +54,11 @@ public class edgeBoundReduction<V> extends Reduction<V>
 		{
 			
 			//if leaving the edge is out of bounds, remove this edge
-			if (!s.getChanges().contains(new myEdge<V>(e, true)) && getObstructionCount(e, s.getG()) > s.getMinMoves().getChanges().size() - s.getChanges().size())
+			if (!s.getChanges().contains(new myEdge<V>(e, true, directed)) && getObstructionCount(e, s.getG()) > s.getMinMoves().getChanges().size() - s.getChanges().size())
 			{
 				
 				//remove edge
-				toDo.add(new myEdge<V>(e, false));
+				toDo.add(new myEdge<V>(e, false, directed));
 				
 				
 				//if no more reduction steps are allowed

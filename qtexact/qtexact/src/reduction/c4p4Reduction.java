@@ -38,6 +38,7 @@ public class c4p4Reduction<V> extends Reduction<V>
 		super();
 		bStruct = b;
 		stack = new Stack<Integer>();
+		directed = b.isDirected();
 	}
 	
 	@Override
@@ -124,7 +125,7 @@ public class c4p4Reduction<V> extends Reduction<V>
 					if (common.size() > s.getMinMoves().getChanges().size() - s.getChanges().size())
 					{
 						//if a move must be done but will undo previous work, stop this branching path
-						if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(v0, v1), false)))
+						if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(v0, v1), false, directed)))
 						{
 						
 							s = bStruct.addResult(s, v0, v1);
@@ -159,7 +160,7 @@ public class c4p4Reduction<V> extends Reduction<V>
 					if (obstructions > s.getMinMoves().getChanges().size() - s.getChanges().size())
 					{
 						//move is allowed to be made
-						if (!s.getChanges().contains(new myEdge<V>(e, true)))
+						if (!s.getChanges().contains(new myEdge<V>(e, true, directed)))
 						{
 							//remove edge
 							s = bStruct.deleteResult(s, v0, v1);

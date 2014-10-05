@@ -41,7 +41,7 @@ public class qtRandom<V> extends qtBranchNoHeuristic<V>
 			switch (r)
 			{
 			case 0:
-				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(2)), false)))
+				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(2)), false, directed)))
 				{
 					if (output)
 					{
@@ -69,7 +69,7 @@ public class qtRandom<V> extends qtBranchNoHeuristic<V>
 				break;
 			case 1:
 				
-				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false)))
+				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false, directed)))
 				{
 					if (output)
 					{
@@ -99,7 +99,7 @@ public class qtRandom<V> extends qtBranchNoHeuristic<V>
 			switch (r)
 			{
 			case 0:
-				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)))
+				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true, directed)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true, directed)))
 				{
 					if (output)
 					{
@@ -124,7 +124,7 @@ public class qtRandom<V> extends qtBranchNoHeuristic<V>
 				break;
 				
 			case 1:
-				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(3)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
+				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(3)), true, directed)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true, directed)))
 				{
 					if (output)
 					{
@@ -147,7 +147,7 @@ public class qtRandom<V> extends qtBranchNoHeuristic<V>
 				break;
 				
 			case 2:
-				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
+				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true, directed)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true, directed)))
 				{
 					if (output)
 					{
@@ -170,7 +170,7 @@ public class qtRandom<V> extends qtBranchNoHeuristic<V>
 				
 				break;
 			case 3:
-				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(3)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)))
+				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(3)), true, directed)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true, directed)))
 				{
 					if (output)
 					{
@@ -193,7 +193,7 @@ public class qtRandom<V> extends qtBranchNoHeuristic<V>
 				break;
 				
 			case 4:
-				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
+				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true, directed)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true, directed)))
 				{
 					if (output)
 						//change progress percent
@@ -213,7 +213,7 @@ public class qtRandom<V> extends qtBranchNoHeuristic<V>
 				
 				break;
 			case 5:
-				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(3)), true)))
+				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true, directed)) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(3)), true, directed)))
 				{
 					if (output)
 						//change progress percent
@@ -243,7 +243,7 @@ public class qtRandom<V> extends qtBranchNoHeuristic<V>
 			
 			//remove an edge to break P4
 			//remove middle edge first
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true, directed)))
 			{
 				if (output)
 				{
@@ -270,7 +270,7 @@ public class qtRandom<V> extends qtBranchNoHeuristic<V>
 			
 			if (index < 0.35)
 			{
-				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)))
+				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true, directed)))
 				{
 					
 					if (output)
@@ -298,7 +298,7 @@ public class qtRandom<V> extends qtBranchNoHeuristic<V>
 			
 			else if (index < .7)
 			{
-				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
+				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true, directed)))
 				{
 					if (output)
 					{
@@ -325,7 +325,7 @@ public class qtRandom<V> extends qtBranchNoHeuristic<V>
 			
 			else if (index < 0.85)
 			{
-				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(2)), false)))
+				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(2)), false, directed)))
 				{
 					if (output)
 						//change progress percent
@@ -346,7 +346,7 @@ public class qtRandom<V> extends qtBranchNoHeuristic<V>
 				
 			else
 			{
-				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false)))
+				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false, directed)))
 				{
 					if (output)
 						//change progress percent

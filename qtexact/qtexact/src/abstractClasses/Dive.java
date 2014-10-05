@@ -17,7 +17,13 @@ public abstract class Dive<V>
 	public Dive(Branch<V> b)
 	{
 		bStruct = b;
+		directed = b.isDirected();
 	}
+	
+	/**
+	 * is the graph edited directed?
+	 */
+	protected boolean directed;
 	
 	/**
 	 * branching structure

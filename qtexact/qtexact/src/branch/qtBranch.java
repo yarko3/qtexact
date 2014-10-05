@@ -36,6 +36,9 @@ public abstract class qtBranch<V> extends Branch<V>
 	 */
 	public qtBranch(Controller<V> controller) {
 		super(controller);
+		
+		//qt editing is not directed
+		directed = false;
 	}
 
 	
@@ -109,7 +112,7 @@ public abstract class qtBranch<V> extends Branch<V>
 	public branchingReturnC<V> deleteResult(branchingReturnC<V> s, V v0, V v1)
 	{
 		//use original edge in edit set
-		s.getChanges().addLast(new myEdge<V>(s.getG().findEdge(v0, v1), false));
+		s.getChanges().addLast(new myEdge<V>(s.getG().findEdge(v0, v1), false, directed));
 		
 		
 		//update degree sequence (first edge)
@@ -132,7 +135,7 @@ public abstract class qtBranch<V> extends Branch<V>
 		addEdge(s.getG(), s.getDeg(), v0, v1);
 		
 		//add edge to changes 
-		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v0, v1), true));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v0, v1), true, directed));
 		
 		return s;
 	}
@@ -157,8 +160,8 @@ public abstract class qtBranch<V> extends Branch<V>
 		
 		
 		//add edge to changes 
-		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v0, v1), true));
-		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v2, v3), true));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v0, v1), true, directed));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v2, v3), true, directed));
 		
 		return s;
 	}
@@ -185,9 +188,9 @@ public abstract class qtBranch<V> extends Branch<V>
 		
 		
 		//add edge to changes 
-		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v0, v1), true));
-		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v2, v3), true));
-		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v4, v5), true));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v0, v1), true, directed));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v2, v3), true, directed));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v4, v5), true, directed));
 		
 		return s;
 	}
@@ -211,8 +214,8 @@ public abstract class qtBranch<V> extends Branch<V>
 		
 		
 		//add edge to changes 
-		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v0, v1), true));
-		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v2, v3), false));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v0, v1), true, directed));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v2, v3), false, directed));
 		
 		return s;
 	}
@@ -239,9 +242,9 @@ public abstract class qtBranch<V> extends Branch<V>
 		
 		
 		//add edge to changes 
-		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v0, v1), true));
-		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v2, v3), false));
-		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v4, v5), false));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v0, v1), true, directed));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v2, v3), false, directed));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v4, v5), false, directed));
 		
 		return s;
 	}
@@ -271,10 +274,10 @@ public abstract class qtBranch<V> extends Branch<V>
 		
 		
 		//add edge to changes 
-		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v0, v1), true));
-		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v2, v3), false));
-		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v4, v5), false));
-		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v6, v7), false));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v0, v1), true, directed));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v2, v3), false, directed));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v4, v5), false, directed));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v6, v7), false, directed));
 		
 		return s;
 	}
@@ -301,9 +304,9 @@ public abstract class qtBranch<V> extends Branch<V>
 		
 		
 		//add edge to changes 
-		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v0, v1), true));
-		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v2, v3), true));
-		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v4, v5), false));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v0, v1), true, directed));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v2, v3), true, directed));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v4, v5), false, directed));
 		
 		return s;
 	}
@@ -333,10 +336,10 @@ public abstract class qtBranch<V> extends Branch<V>
 		
 		
 		//add edge to changes 
-		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v0, v1), true));
-		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v2, v3), true));
-		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v4, v5), false));
-		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v6, v7), false));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v0, v1), true, directed));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v2, v3), true, directed));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v4, v5), false, directed));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v6, v7), false, directed));
 		
 		return s;
 	}
@@ -366,9 +369,9 @@ public abstract class qtBranch<V> extends Branch<V>
 		removeEdge(s.getG(), s.getDeg(), v4, v5);
 		
 		//add edge deletions to changes
-		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v0, v1), false));
-		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v2, v3), false));
-		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v4, v5), false));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v0, v1), false, directed));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v2, v3), false, directed));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v4, v5), false, directed));
 		
 		return s;
 		
@@ -401,10 +404,10 @@ public abstract class qtBranch<V> extends Branch<V>
 		removeEdge(s.getG(), s.getDeg(), v6, v7);
 		
 		//add edge deletions to changes
-		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v0, v1), false));
-		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v2, v3), false));
-		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v4, v5), false));
-		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v6, v7), false));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v0, v1), false, directed));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v2, v3), false, directed));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v4, v5), false, directed));
+		s.getChanges().addLast(new myEdge<V>(new Pair<V>(v6, v7), false, directed));
 		
 		return s;
 		

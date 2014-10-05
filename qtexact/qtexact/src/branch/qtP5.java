@@ -48,8 +48,8 @@ public class qtP5<V> extends qtBranchNoHeuristic<V>
 			
 			
 			//delete 2
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true))
-					 && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(3), lexResult.get(4)), true)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true, directed))
+					 && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(3), lexResult.get(4)), true, directed)))
 			{
 				if (output)
 				{
@@ -74,8 +74,8 @@ public class qtP5<V> extends qtBranchNoHeuristic<V>
 			
 			
 			//add one, delete one
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(4)), false))
-					 && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(4)), false, directed))
+					 && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true, directed)))
 			{
 				if (output)
 				{
@@ -99,8 +99,8 @@ public class qtP5<V> extends qtBranchNoHeuristic<V>
 					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
 			
 			//add one, delete one
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false))
-					 && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false, directed))
+					 && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true, directed)))
 			{
 				if (output)
 				{
@@ -124,8 +124,8 @@ public class qtP5<V> extends qtBranchNoHeuristic<V>
 					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
 			
 			//add one, delete one
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false))
-					 && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(3), lexResult.get(4)), true)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false, directed))
+					 && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(3), lexResult.get(4)), true, directed)))
 			{
 				if (output)
 				{
@@ -149,8 +149,8 @@ public class qtP5<V> extends qtBranchNoHeuristic<V>
 					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
 			
 			//add one, delete one
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(2)), false))
-					 && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(3), lexResult.get(4)), true)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(2)), false, directed))
+					 && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(3), lexResult.get(4)), true, directed)))
 			{
 				if (output)
 				{
@@ -174,8 +174,8 @@ public class qtP5<V> extends qtBranchNoHeuristic<V>
 					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
 			
 			//add two
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(3)), false))
-					 && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(3)), false, directed))
+					 && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false, directed)))
 			{
 				if (output)
 				{
@@ -199,8 +199,8 @@ public class qtP5<V> extends qtBranchNoHeuristic<V>
 					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
 			
 			//add two
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(4)), false))
-					 && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(4)), false, directed))
+					 && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false, directed)))
 			{
 				if (output)
 				{
@@ -225,8 +225,8 @@ public class qtP5<V> extends qtBranchNoHeuristic<V>
 			
 			
 			//add two
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(2)), false))
-					 && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(4)), false)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(2)), false, directed))
+					 && !s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(4)), false, directed)))
 			{
 				if (output)
 				{
@@ -250,7 +250,7 @@ public class qtP5<V> extends qtBranchNoHeuristic<V>
 					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
 			
 			//delete an edge
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true, directed)))
 			{
 				if (output)
 				{
@@ -274,7 +274,7 @@ public class qtP5<V> extends qtBranchNoHeuristic<V>
 					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
 			
 			//delete edge
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true, directed)))
 			{
 				if (output)
 				{

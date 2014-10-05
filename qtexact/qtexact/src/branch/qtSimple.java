@@ -32,7 +32,7 @@ public class qtSimple<V> extends qtBranchNoHeuristic<V>
 		{
 			//result of adding 1 edge to break C4
 			//if we did not remove the edge that is about to be added
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(2)), false)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(2)), false, directed)))
 			{
 				if (output)
 				{
@@ -57,7 +57,7 @@ public class qtSimple<V> extends qtBranchNoHeuristic<V>
 				if (output)
 					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 2);
 			
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(3)), false, directed)))
 			{
 				if (output)
 				{
@@ -88,7 +88,7 @@ public class qtSimple<V> extends qtBranchNoHeuristic<V>
 		{	
 			//remove an edge to break P4
 			//remove middle edge first
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(1), lexResult.get(2)), true, directed)))
 			{
 				if (output)
 					//change progress percent
@@ -108,7 +108,7 @@ public class qtSimple<V> extends qtBranchNoHeuristic<V>
 			
 			
 			//try other edges later
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(0), lexResult.get(1)), true, directed)))
 			{
 				if (output)
 					//change progress percent
@@ -127,7 +127,7 @@ public class qtSimple<V> extends qtBranchNoHeuristic<V>
 					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / 3);
 			
 			
-			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true)))
+			if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(lexResult.get(2), lexResult.get(3)), true, directed)))
 			{
 				if (output)
 					//change progress percent

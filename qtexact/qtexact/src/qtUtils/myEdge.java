@@ -15,14 +15,34 @@ public class myEdge<V> implements Comparable<myEdge<V>>
 	private boolean flag;
 	
 	/**
+	 * is the graph directed?
+	 */
+	private boolean directed;
+	
+	/**
 	 * constructor
 	 * @param e edge
 	 * @param f flag
 	 */
-	public myEdge(Pair<V> e, boolean f)
+	public myEdge(Pair<V> e, boolean f, boolean d)
 	{
 		setEdge(e);
 		setFlag(f);
+		setDirected(d);
+	}
+
+	/**
+	 * @return the directed
+	 */
+	public boolean isDirected() {
+		return directed;
+	}
+
+	/**
+	 * @param directed the directed to set
+	 */
+	public void setDirected(boolean directed) {
+		this.directed = directed;
 	}
 
 	/**
@@ -68,12 +88,26 @@ public class myEdge<V> implements Comparable<myEdge<V>>
 	@Override
 	public int compareTo(myEdge<V> arg0) 
 	{
-		if ((arg0.getEdge().getFirst().equals(edge.getFirst()) && arg0.getEdge().getSecond().equals(edge.getSecond())) || (arg0.getEdge().getSecond().equals(edge.getFirst()) && arg0.getEdge().getFirst().equals(edge.getSecond())))
+		if (!directed)
 		{
-			if (arg0.isFlag() == flag)
-				return 0;
-			else
-				return -1;
+			if ((arg0.getEdge().getFirst().equals(edge.getFirst()) && arg0.getEdge().getSecond().equals(edge.getSecond())) || (arg0.getEdge().getSecond().equals(edge.getFirst()) && arg0.getEdge().getFirst().equals(edge.getSecond())))
+			{
+				if (arg0.isFlag() == flag)
+					return 0;
+				else
+					return -1;
+			}
+		}
+		//check as a directed graph
+		else
+		{
+			if ((arg0.getEdge().getFirst().equals(edge.getFirst()) && arg0.getEdge().getSecond().equals(edge.getSecond())))
+			{
+				if (arg0.isFlag() == flag)
+					return 0;
+				else
+					return -1;
+			}
 		}
 		
 		return arg0.getEdge().hashCode() - this.getEdge().hashCode();
