@@ -197,7 +197,8 @@ public class Controller<V>
 		bStruct.getDive().dive(s);
 		
 		System.out.println("Dive terminated after " + s.getChanges().size() + " moves.");
-		System.out.println("Dive solution was " + ((bStruct.getSearch().isTarget(s.getG())) ? "" : " not ") + "successful");
+		boolean success = bStruct.getSearch().isTarget(s.getG());
+		System.out.println("Dive solution was " + ((success) ? "" : " not ") + "successful");
 		
 		//initialize old solution count & new solution count
 		int oldC = s.getMinMoves().getChanges().size();
@@ -221,16 +222,26 @@ public class Controller<V>
 			oldC = s.getMinMoves().getChanges().size();
 			
 			//how many moves to undo
-			int numRevert;
-			if (s.getChanges().size() - 14 >= 0)
-				numRevert = 14;
+			int numRevert = 10;
+			if (success)
+			{
+				if (s.getChanges().size() - 10 >= 0)
+					numRevert = 10;
+				else
+				{
+					numRevert = s.getChanges().size();
+				}
+				
+				//revert the number of moves to be tried by exact algorithm
+				bStruct.revert(s, numRevert);
+			}
+			//greedy did not solve
 			else
 			{
-				numRevert = s.getChanges().size();
+				s.getMinMoves().setChanges(bStruct.fillMinMoves(s, s.getChanges().size() + numRevert));
+				oldC = s.getMinMoves().getChanges().size();
 			}
 			
-			//revert the number of moves to be tried by exact algorithm
-			bStruct.revert(s, numRevert);
 			
 			//branch with exact algorithm with a bound of numRevert
 			branch(s);
@@ -245,11 +256,13 @@ public class Controller<V>
 			{
 				bStruct.revertAll(s);
 				bStruct.applyMoves(s, s.getMinMoves().getChanges());
+				success = true;
 			}
 			
 			
+			
 			//repeat until exact algorithm does not provide a better answer
-		}while (oldC > newC);
+		}while (oldC > newC || (!success));
 		
 		//undo all moves
 		bStruct.revertAll(s);

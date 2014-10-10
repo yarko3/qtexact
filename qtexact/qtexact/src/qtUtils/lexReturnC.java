@@ -8,8 +8,8 @@ package qtUtils;
 import java.util.ArrayList;
 import java.util.Set;
 
+import abstractClasses.Certificate;
 import abstractClasses.SearchResult;
-import certificate.qtCertificateC;
 
 /**
  * return type of lexBFS search
@@ -32,7 +32,7 @@ public class lexReturnC<V> extends SearchResult<V>
 	 * @param c does the graph contain connected components
 	 * @param cComp set of sets of connected component vertices
 	 */
-	public lexReturnC(ArrayList<V> l, qtCertificateC<V> cert, boolean qt, boolean c, Set<Set<V>> cComp)
+	public lexReturnC(ArrayList<V> l, Certificate<V> cert, boolean qt, boolean c, Set<Set<V>> cComp)
 	{
 		super(qt, cert);
 		setList(l);

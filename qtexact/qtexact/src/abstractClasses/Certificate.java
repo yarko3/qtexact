@@ -1,6 +1,6 @@
 package abstractClasses;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * an abstract class for the certificate of an obstruction given by a search
@@ -16,7 +16,7 @@ public class Certificate<V>
 	/**
 	 * vertices which induce obstruction
 	 */
-	private ArrayList<V> vertices;
+	private List<V> vertices;
 	/**
 	 * flag of obstruction found
 	 */
@@ -27,7 +27,7 @@ public class Certificate<V>
 	 * @param v vertices
 	 * @param f flag
 	 */
-	public Certificate(ArrayList<V> v, int f)
+	public Certificate(List<V> v, int f)
 	{
 		setVertices(v);
 		setFlag(f);
@@ -38,14 +38,14 @@ public class Certificate<V>
 	/**
 	 * @return the vertices
 	 */
-	public ArrayList<V> getVertices() {
+	public List<V> getVertices() {
 		return vertices;
 	}
 
 	/**
 	 * @param vertices the vertices to set
 	 */
-	public void setVertices(ArrayList<V> vertices) {
+	public void setVertices(List<V> vertices) {
 		this.vertices = vertices;
 	}
 

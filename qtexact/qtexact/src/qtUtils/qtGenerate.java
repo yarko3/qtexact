@@ -528,7 +528,7 @@ public class qtGenerate<V>
 	
 	
 	
-	public Graph<String, Pair<String>> fromBipartiteFile(String filename) throws FileNotFoundException, UnsupportedEncodingException
+	public Graph<String, Pair<String>> fromBipartiteFile(String filename, int k) throws FileNotFoundException, UnsupportedEncodingException
 	{
 		Graph<String, Pair<String>> initial = new UndirectedSparseGraph<String, Pair<String>>();
 		HashSet<String> leftVertices = new HashSet<String>();
@@ -629,9 +629,8 @@ public class qtGenerate<V>
 		//must be bipartite for this to work
 		
 		//k is the number of common neighbours needed to make an edge
-		int k = 10;
 		
-		for (String i : rightVertices)
+		for (String i : leftVertices)
 		{
 			if (initial.containsVertex(i))
 			{
@@ -645,7 +644,7 @@ public class qtGenerate<V>
 						Collection<String> nn = initial.getNeighbors(n);
 						for (String friend : nn)
 						{
-							if (!i.equals(friend) && !leftVertices.contains(friend))
+							if (!i.equals(friend) && !rightVertices.contains(friend))
 							{
 								int count = 0;
 								Collection<String> friendN = initial.getNeighbors(friend);

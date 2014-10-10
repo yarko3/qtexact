@@ -1,6 +1,6 @@
 package branch;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import qtUtils.branchingReturnC;
 import qtUtils.myEdge;
@@ -36,7 +36,7 @@ public class qtC5<V> extends qtBranchNoHeuristic<V>
 		
 		if (certificate.getFlag() == -8)
 		{
-			ArrayList<V> lexResult = certificate.getVertices();
+			List<V> lexResult = certificate.getVertices();
 			double oldPercent = s.getPercent();
 			
 			int ruleCount = 35;

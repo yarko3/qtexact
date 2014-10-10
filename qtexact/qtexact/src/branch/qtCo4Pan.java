@@ -1,6 +1,6 @@
 package branch;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import qtUtils.branchingReturnC;
 import qtUtils.myEdge;
@@ -34,7 +34,7 @@ public class qtCo4Pan<V> extends qtBranchNoHeuristic<V>
 		if (certificate.getFlag() == -7)
 		{
 			
-			ArrayList<V> lexResult = certificate.getVertices();
+			List<V> lexResult = certificate.getVertices();
 			double oldPercent = s.getPercent();
 			int rules = 10;
 			

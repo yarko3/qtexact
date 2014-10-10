@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 import qtUtils.branchingReturnC;
@@ -787,7 +788,7 @@ public abstract class qtBranch<V> extends Branch<V>
 	public SearchResult<V> findStructures(branchingReturnC<V> s, SearchResult<V> searchResult)
 	{
 		Certificate<V> obstruction = searchResult.getCertificate();
-		ArrayList<V> vertices = obstruction.getVertices();
+		List<V> vertices = obstruction.getVertices();
 		
 		HashMap<V, Integer> hash = new HashMap<V, Integer>();
 		
@@ -1048,7 +1049,7 @@ public abstract class qtBranch<V> extends Branch<V>
 	private Certificate<V> construct4Pan(branchingReturnC<V> s, SearchResult<V> searchResult, V n)
 	{
 		Certificate<V> obstruction = searchResult.getCertificate();
-		ArrayList<V> vertices = obstruction.getVertices();
+		List<V> vertices = obstruction.getVertices();
 		
 		//a 4 pan found from a C4
 		if (obstruction.getFlag() == -1)

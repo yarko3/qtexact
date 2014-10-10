@@ -1,6 +1,6 @@
 package branch;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import qtUtils.branchingReturnC;
 import qtUtils.myEdge;
@@ -24,7 +24,7 @@ public class qtSimple<V> extends qtBranchNoHeuristic<V>
 	 */
 	public branchingReturnC<V> branchingRules(branchingReturnC<V> s, SearchResult<V> searchResult) 
 	{
-		ArrayList<V> lexResult = searchResult.getCertificate().getVertices();
+		List<V> lexResult = searchResult.getCertificate().getVertices();
 		double oldPercent = s.getPercent();
 		
 		//C4 has been found

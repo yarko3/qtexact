@@ -1,6 +1,6 @@
 package branch;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import qtUtils.branchingReturnC;
 import qtUtils.myEdge;
@@ -29,7 +29,7 @@ public class qtDoubleC4<V> extends qtBranchNoHeuristic<V> {
 		//check if double C4 is present
 		if (certificate.getFlag() == -10)
 		{
-			ArrayList<V> lexResult = certificate.getVertices();
+			List<V> lexResult = certificate.getVertices();
 			double oldPercent = s.getPercent();
 			
 			int ruleCount = 28;

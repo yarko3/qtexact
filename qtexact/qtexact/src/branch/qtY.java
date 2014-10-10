@@ -1,6 +1,6 @@
 package branch;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import qtUtils.branchingReturnC;
 import qtUtils.myEdge;
@@ -36,7 +36,7 @@ public class qtY<V> extends qtBranchNoHeuristic<V>
 		//check if fork is present
 		if (certificate.getFlag() == -6)
 		{
-			ArrayList<V> lexResult = certificate.getVertices();
+			List<V> lexResult = certificate.getVertices();
 			double oldPercent = s.getPercent();
 			int rules = 7;
 			

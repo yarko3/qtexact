@@ -1,6 +1,6 @@
 package branch;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import qtUtils.branchingReturnC;
 import qtUtils.myEdge;
@@ -41,7 +41,7 @@ public class qtP5<V> extends qtBranchNoHeuristic<V>
 		//check if P5 is present
 		if (certificate.getFlag() == -5)
 		{
-			ArrayList<V> lexResult = certificate.getVertices();
+			List<V> lexResult = certificate.getVertices();
 			double oldPercent = s.getPercent();
 			
 			int ruleCount = 10;

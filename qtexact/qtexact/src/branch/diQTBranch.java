@@ -1,6 +1,6 @@
 package branch;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import qtUtils.branchingReturnC;
 import qtUtils.myEdge;
@@ -51,7 +51,7 @@ public class diQTBranch<V> extends Branch<V>
 	public branchingReturnC<V> branchingRules(branchingReturnC<V> s,
 			SearchResult<V> sResult) {
 		
-		ArrayList<V> obst = sResult.getCertificate().getVertices();
+		List<V> obst = sResult.getCertificate().getVertices();
 		double oldPercent = s.getPercent();
 		
 		//2 in 1 happened

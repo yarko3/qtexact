@@ -76,9 +76,9 @@ public class fun<V> extends JApplet {
 		//fbTest();
 		//editTest();
 		//comparisonTest();
-		//wineTest();
+		wineTest();
 		//userInterface();
-		diGraphWineryTest();
+		//diGraphWineryTest();
 		//clusterTest();
 		//scoreWineryGraph();
 	}
@@ -221,6 +221,7 @@ public class fun<V> extends JApplet {
 		
 		
 		exampleQT = gen.randomTreeGraph(40, 15, 6);
+		
 		
 		//Graph<String, Pair<String>>wine = fillGraphFromFile("datasets/wineryEdgeSet.txt");
 		
@@ -789,8 +790,10 @@ public class fun<V> extends JApplet {
 	private static void wineTest() throws FileNotFoundException, UnsupportedEncodingException
 	{
 		
-		Graph<String, Pair<String>> wine = fillGraphFromFileWithStrings("datasets/wine/ON/wineryEdgeSet.txt");
+		Graph<String, Pair<String>> wine = fillGraphFromFileWithStrings("datasets/wine/BC/k5edgeSet.txt");
 		
+		int k = 9;
+		wine = genString.fromBipartiteFile("datasets/edgeSet.txt", k);
 		Graph<String, Pair<String>> cln = clone.deepClone(wine);
 		
 		Controller<String> c = new Controller<String>(null, true);
@@ -802,6 +805,7 @@ public class fun<V> extends JApplet {
 		System.out.println("Graph has " + wine.getVertexCount() + " nodes and " + wine.getEdgeCount() + " edges.");
 		
 		qtBranchComponents<String> branchC = new qtBranchComponents<String>(c);
+		
 		
 		Reduction<String> rC = new c4p4Reduction<String>(branchC);
 		branchC.addReduction(rC);
@@ -816,20 +820,20 @@ public class fun<V> extends JApplet {
 		branchingReturnC<String> rtn;
 		
 		//greedy edit
-//		c.setbStruct(branchC);
-//		branchC.setDive(dive);
-//		System.out.println("\nGreedy Edit: ");
-//		start = System.currentTimeMillis();
-//		rtn = c.diveAtStartEdit(wine, 4);
-//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		c.setbStruct(branchC);
+		branchC.setDive(dive);
+		System.out.println("\nGreedy Edit: ");
+		start = System.currentTimeMillis();
+		rtn = c.diveAtStartEdit(wine, 4);
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		//regular edit
-		c.setbStruct(branchC);
-		System.out.println("\nConnected component: ");
-		start = System.currentTimeMillis();
-		rtn = c.branchStart(wine, 8);
-		System.out.println((System.currentTimeMillis()-start) / 1000.0);
-//		
+//		c.setbStruct(branchC);
+//		System.out.println("\nConnected component: ");
+//		start = System.currentTimeMillis();
+//		rtn = c.branchStart(wine, 15);
+//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+////		
 		System.out.println("\nGraph same? " + gen.graphEquals(cln, wine));
 		
 		
@@ -839,7 +843,7 @@ public class fun<V> extends JApplet {
 			System.out.println("Solution has " + rtn.getG().getVertexCount() + " nodes and " + rtn.getG().getEdgeCount() + " edges.");
 			
 			//print network to file
-			PrintWriter writer = new PrintWriter("datasets/wine/wineSolutionEdgeSet.tgf", "UTF-8");
+			PrintWriter writer = new PrintWriter("datasets/wine/BC-k"+ k + "-SolutionEdgeSetGREEDY.tgf", "UTF-8");
 			
 			writer.println("#");
 			for (Pair<String> edge : rtn.getG().getEdges())

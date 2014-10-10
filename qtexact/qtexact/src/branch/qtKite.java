@@ -1,6 +1,6 @@
 package branch;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import qtUtils.branchingReturnC;
 import qtUtils.myEdge;
@@ -37,7 +37,7 @@ public class qtKite<V> extends  qtBranchNoHeuristic<V>
 		//check if kite is present
 		if (certificate.getFlag() == -9)
 		{
-			ArrayList<V> lexResult = certificate.getVertices();
+			List<V> lexResult = certificate.getVertices();
 			double oldPercent = s.getPercent();
 			
 			int ruleCount = 11;

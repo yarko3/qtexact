@@ -3,6 +3,7 @@ package branch;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 
 import qtUtils.branchingReturnC;
 import qtUtils.myEdge;
@@ -30,7 +31,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 		//if a house was found, apply house rules
 		if (searchResult.getCertificate().getFlag() == -4)
 		{
-			ArrayList<V> lexResult = searchResult.getCertificate().getVertices();
+			List<V> lexResult = searchResult.getCertificate().getVertices();
 			double oldPercent = s.getPercent();
 			
 			int ruleCount = 21;
@@ -609,7 +610,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 	{
 		
 		Certificate<V> obstruction = searchResult.getCertificate();
-		ArrayList<V> oVert = obstruction.getVertices();
+		List<V> oVert = obstruction.getVertices();
 		
 		//if a C4 was found
 		if (obstruction.getFlag() == -1)
@@ -699,7 +700,7 @@ public class qtHouse<V> extends qtBranchNoHeuristic<V>
 	
 	private Certificate<V> checkP4(branchingReturnC<V> s, SearchResult<V> searchResult)
 	{
-		ArrayList<V> oVert = searchResult.getCertificate().getVertices();
+		List<V> oVert = searchResult.getCertificate().getVertices();
 		Certificate<V> obstruction = searchResult.getCertificate();
 		
 		

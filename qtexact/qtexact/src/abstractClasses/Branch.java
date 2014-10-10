@@ -379,7 +379,7 @@ public abstract class Branch<V>
 	 * @param G graph
 	 * @return minimum move set
 	 */
-	protected LinkedList<myEdge<V>> fillMinMoves(branchingReturnC<V> s, int bound)
+	public LinkedList<myEdge<V>> fillMinMoves(branchingReturnC<V> s, int bound)
 	{
 		LinkedList<myEdge<V>> l = new LinkedList<myEdge<V>>();
 		int count = 0;
@@ -388,18 +388,24 @@ public abstract class Branch<V>
 			l.addAll(s.getChanges());
 			count += s.getChanges().size();
 			
-			if (count < bound)
-				for (Pair<V> e : s.getG().getEdges())
-				{
-					//treat each edge in this set as a deletion
-					if (!l.contains(new myEdge<V>(e, false, directed)) || !l.contains(new myEdge<V>(e, true, directed)))
-					{	
-						l.add(new myEdge<V>(e, false, directed));
-						count++;
-						if (count == bound)
-							break;
-					}
-				}
+//			if (count < bound)
+//				for (Pair<V> e : s.getG().getEdges())
+//				{
+//					//treat each edge in this set as a deletion
+//					if (
+//							!s.getChanges().contains(new myEdge<V>(e, false, directed)) && 
+//							!s.getMinMoves().getChanges().contains(new myEdge<V>(e, false, directed)) &&
+//							!s.getChanges().contains(new myEdge<V>(e, true, directed)) && 
+//							!s.getMinMoves().getChanges().contains(new myEdge<V>(e, true, directed)) &&
+//							!l.contains(new myEdge<V>(e, false, directed)) && 
+//							!l.contains(new myEdge<V>(e, true, directed)))
+//					{	
+//						l.add(new myEdge<V>(e, false, directed));
+//						count++;
+//						if (count == bound)
+//							break;
+//					}
+//				}
 		}
 		
 

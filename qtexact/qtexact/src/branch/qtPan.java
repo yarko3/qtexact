@@ -1,8 +1,8 @@
 package branch;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 
 import qtUtils.branchingReturnC;
 import qtUtils.myEdge;
@@ -36,7 +36,7 @@ public class qtPan<V> extends qtBranchNoHeuristic<V>
 		//if a Pan has been found, use new branching rules
 		if (searchResult.getCertificate().getFlag() == -3)
 		{
-			ArrayList<V> lexResult = searchResult.getCertificate().getVertices();
+			List<V> lexResult = searchResult.getCertificate().getVertices();
 			double oldPercent = s.getPercent();
 			
 			

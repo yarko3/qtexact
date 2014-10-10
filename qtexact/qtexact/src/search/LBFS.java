@@ -3,7 +3,9 @@ package search;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import qtUtils.branchingReturnC;
 import qtUtils.lexReturnC;
+import utils.graphUtils;
 import abstractClasses.Search;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Pair;
@@ -21,7 +23,20 @@ public abstract class LBFS<V> extends Search<V>
 	 * @param t
 	 * @return the result of search
 	 */
+	
+	/**
+	 * graph utilities for generating complement graph
+	 */
+	protected graphUtils<V> utils = new graphUtils<V>();
+	
 	public abstract lexReturnC<V> search(Graph<V, Pair<V>> G, ArrayList<V> t);
+	
+	
+	@Override
+	protected abstract lexReturnC<V> searchPrep(branchingReturnC<V> s);
+
+	@Override
+	public abstract lexReturnC<V> search(branchingReturnC<V> s);
 	
 	
 	/**
@@ -39,10 +54,10 @@ public abstract class LBFS<V> extends Search<V>
 		
 		//initial element of L has all vertices
 		L.add(t);
-		int tsize = t.size();
+
 		
 		//for every vertex, ordered by t
-		for (int i = 0; i < tsize; i++)
+		for (int i = 0; i < t.size(); i++)
 		{
 			//clean up L
 			while (L.get(0).isEmpty())
@@ -59,35 +74,44 @@ public abstract class LBFS<V> extends Search<V>
 			s.add(i, x);
 			
 			//neighbours of x
-			
 			Collection<V> hood = G.getNeighbors(x);
 			
-			int j = 0;
-			
-			while (j < L.size())
+			//for the every partition
+			for (int j = 0; j < L.size(); j++)
 			{
 				//new partition to be inserted into L
 				ArrayList<V> pp = new ArrayList<V>(0);
 				
+				//jth partition
+				ArrayList<V> Pj = L.get(j);
+				
 				
 				//fill pp with neighbours in the original order given
-				for (int k = 0; k < L.get(j).size(); k++)
+				for (int k = 0; k < Pj.size(); k++)
 				{
-					V h = L.get(j).get(k);
+					V h = Pj.get(k);
 					if (hood.contains(h))
 					{
-						pp.add(L.get(j).remove(k));
+						pp.add(Pj.remove(k));
 						k--;
-					}
-					
+					}	
 				}
 				
 				if (!pp.isEmpty())
 				{
+					//add P prime into L
 					L.add(j, pp);
-					j++;
+					
+					//remove Pj empty set if pp contains all of Pj
+					if (Pj.isEmpty())
+					{
+						L.remove(j+1);
+						
+					}
+					//skip over the traversed Pj
+					else
+						j++;
 				}
-				j++;
 			}
 		}
 		//return ordering
@@ -100,8 +124,11 @@ public abstract class LBFS<V> extends Search<V>
 	 * @param t initial vertex ordering
 	 * @return search result
 	 */
-	public lexReturnC<V> LexBFSminus(Graph<V, Pair<V>> G, ArrayList<V> t)
+	public lexReturnC<V> LexBFSminus(Graph<V, Pair<V>> graph, ArrayList<V> t)
 	{
+		//use complement graph here
+		Graph<V, Pair<V>> G = utils.complement(graph);
+		
 		//new ordering
 		ArrayList<V> s = new ArrayList<V>(t.size());
 		//list of partitions (each partition has a common label)
@@ -132,32 +159,37 @@ public abstract class LBFS<V> extends Search<V>
 			
 			Collection<V> hood = G.getNeighbors(x);
 			
-			int j = 0;
-			
-			while (j < L.size())
+			//for the every partition
+			for (int j = 0; j < L.size(); j++)
 			{
 				//new partition to be inserted into L
 				ArrayList<V> pp = new ArrayList<V>(0);
 				
+				//jth partition
+				ArrayList<V> Pj = L.get(j);
 				
 				//fill pp with neighbours in the original order given
-				for (int k = 0; k < L.get(j).size(); k++)
+				for (int k = 0; k < Pj.size(); k++)
 				{
 					V h = L.get(j).get(k);
 					if (hood.contains(h))
 					{
-						pp.add(L.get(j).remove(k));
+						pp.add(Pj.remove(k));
 						k--;
-					}
-					
+					}	
 				}
 				
 				if (!pp.isEmpty())
 				{
 					L.add(j+1, pp);
-					j++;
+					
+					//remove Pj empty set if pp contains all of Pj
+					if (Pj.isEmpty())
+					{
+						L.remove(j);
+						j--;	
+					}
 				}
-				j++;
 			}
 		}
 		//return ordering

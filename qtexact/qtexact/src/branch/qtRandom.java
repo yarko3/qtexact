@@ -1,6 +1,6 @@
 package branch;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import qtUtils.branchingReturnC;
@@ -28,7 +28,7 @@ public class qtRandom<V> extends qtBranchNoHeuristic<V>
 	@Override
 	public branchingReturnC<V> branchingRules(branchingReturnC<V> s, SearchResult<V> searchResult) 
 	{
-		ArrayList<V> lexResult = searchResult.getCertificate().getVertices();
+		List<V> lexResult = searchResult.getCertificate().getVertices();
 		double oldPercent = s.getPercent();
 		
 		//C4 has been found

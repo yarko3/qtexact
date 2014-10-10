@@ -2,13 +2,14 @@ package branch;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
-import controller.Controller;
 import qtUtils.branchingReturnC;
 import qtUtils.myEdge;
 import search.qtLBFS;
 import search.qtLBFSNoHeuristic;
 import abstractClasses.SearchResult;
+import controller.Controller;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Pair;
 
@@ -89,7 +90,7 @@ public class qtBranchNoHeuristic<V> extends qtBranch<V>
 	 */
 	public branchingReturnC<V> branchingRules(branchingReturnC<V> s, SearchResult<V> searchResult) 
 	{
-		ArrayList<V> lexResult = searchResult.getCertificate().getVertices();
+		List<V> lexResult = searchResult.getCertificate().getVertices();
 		double oldPercent = s.getPercent();
 		
 		//C4 has been found

@@ -1,6 +1,6 @@
 package branch;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import qtUtils.branchingReturnC;
 import qtUtils.myEdge;
@@ -52,7 +52,7 @@ public class clusterBranch<V> extends Branch<V> {
 			SearchResult<V> sResult) {
 		
 		
-		ArrayList<V> obst = sResult.getCertificate().getVertices();
+		List<V> obst = sResult.getCertificate().getVertices();
 		double oldPercent = s.getPercent();
 		
 		//a P3 was found
