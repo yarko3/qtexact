@@ -80,12 +80,12 @@ public class fun<V> extends JApplet {
 		//fbTest();
 		//editTest();
 		//comparisonTest();
-		//wineTest();
+		wineTest();
 		//userInterface();
 		//diGraphWineryTest();
 		//clusterTest();
 		//scoreWineryGraph();
-		distanceTest();
+		//distanceTest();
 	}
 	
 	public static void userInterface() throws FileNotFoundException
@@ -795,10 +795,12 @@ public class fun<V> extends JApplet {
 	private static void wineTest() throws FileNotFoundException, UnsupportedEncodingException
 	{
 		
-		Graph<String, Pair<String>> wine = fillGraphFromFileWithStrings("datasets/wine/BC/k10edgeSet.txt");
+		Graph<String, Pair<String>> wine = fillGraphFromFileWithStrings("datasets/wine/BC/wineryEdgeSet.txt");
 		
-		int k = 9;
-		wine = genString.fromBipartiteFile("datasets/edgeSet.txt", k);
+//		int k = 9;
+//		wine = genString.fromBipartiteFile("datasets/edgeSet.txt", k);
+		
+		
 		Graph<String, Pair<String>> cln = clone.deepClone(wine);
 		
 		Controller<String> c = new Controller<String>(null, true);
@@ -832,7 +834,7 @@ public class fun<V> extends JApplet {
 		rtn = c.diveAtStartEdit(wine, 4);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
-		//regular edit
+//		//regular edit
 //		c.setbStruct(branchC);
 //		System.out.println("\nConnected component: ");
 //		start = System.currentTimeMillis();
@@ -848,7 +850,7 @@ public class fun<V> extends JApplet {
 			System.out.println("Solution has " + rtn.getG().getVertexCount() + " nodes and " + rtn.getG().getEdgeCount() + " edges.");
 			
 			
-			stringUtils.printGMLWithWeights(rtn, "datasets/wine/weightedResults/BC/k" + k + "-Solution-GREEDY.gml");
+			stringUtils.printGMLWithAdditions(rtn, "datasets/wine/weightedResults/BC/QT Solution-GREEDY-ADDITIONS.gml");
 			
 			
 //			//print network to file
@@ -927,21 +929,21 @@ public class fun<V> extends JApplet {
 		
 		System.out.println("\nGraph same? " + genString.graphEquals(cGraph, g));
 		
-		String filename = "datasets/wine/weightedResults/ON/BCWineDiSolutionREVERSED-GREEDY";
+		String filename = "datasets/wine/weightedResults/ON/ONWineDiSolutionREVERSED-EXACT-EDITS";
 		
 		stringUtils.printGMLWithWeights(rtn, filename + ".gml");
 		
-		//print network to file
-		PrintWriter writer = new PrintWriter(filename +".tgf", "UTF-8");
-		
-		
-		writer.println("#");
-		for (Pair<String> edge : rtn.getG().getEdges())
-		{
-			writer.println(edge.getFirst() + " " + edge.getSecond());
-		}
-		
-		writer.close();
+//		//print network to file
+//		PrintWriter writer = new PrintWriter(filename +".tgf", "UTF-8");
+//		
+//		
+//		writer.println("#");
+//		for (Pair<String> edge : rtn.getG().getEdges())
+//		{
+//			writer.println(edge.getFirst() + " " + edge.getSecond());
+//		}
+//		
+//		writer.close();
 		
 	}
 	
