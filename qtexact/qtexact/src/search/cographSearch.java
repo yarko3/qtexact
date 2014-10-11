@@ -35,7 +35,7 @@ public class cographSearch<V>  extends LBFS<V>
 		
 		//do cograph check
 		LinkedList<V> NSPplus = NSP(G, firstPass.getList());
-		LinkedList<V> NSPminus = NSP(utils.complement(G), firstPass.getList());
+		LinkedList<V> NSPminus = NSP(utils.complement(G), secondPass.getList());
 		
 		
 		// get connected components
@@ -54,10 +54,13 @@ public class cographSearch<V>  extends LBFS<V>
 				Certificate<V> cert = new Certificate<V>(NSPplus, -2);
 				return new lexReturnC<V>(null, cert, false, (cComp.size() == 1), cComp);
 			}
+			else
+			{
+				Certificate<V> cert = new Certificate<V>(NSPminus, -2);
+				return new lexReturnC<V>(null, cert, false, (cComp.size() == 1), cComp);
+			}
 		}
 		
-		
-		return null;
 	}
 
 	@Override

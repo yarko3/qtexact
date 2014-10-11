@@ -1,6 +1,6 @@
 package dive;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import qtUtils.branchingReturnC;
@@ -76,7 +76,7 @@ public class randomDive<V> extends Dive<V> {
 	 */
 	private void randomChoice(branchingReturnC<V> s, SearchResult<V> searchResult)
 	{
-		ArrayList<V> lexResult = searchResult.getCertificate().getVertices();
+		List<V> lexResult = searchResult.getCertificate().getVertices();
 		boolean moveMade = false;
 		
 		//C4 has been found

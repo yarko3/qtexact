@@ -9,6 +9,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Scanner;
@@ -28,6 +29,8 @@ import search.YanSearch;
 import search.clusterSearch;
 import search.diQTSearch;
 import search.qtLBFSNoHeuristic;
+import utils.distance;
+import utils.graphUtils;
 import abstractClasses.Branch;
 import abstractClasses.Dive;
 import abstractClasses.Reduction;
@@ -70,17 +73,19 @@ public class fun<V> extends JApplet {
 	static qtGenerate<Integer> gen = new qtGenerate<Integer>();
 	static qtGenerate<String> genString = new qtGenerate<String>();
 	
+	static graphUtils<String> stringUtils = new graphUtils<String>();
 	
 	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException
 	{
 		//fbTest();
 		//editTest();
 		//comparisonTest();
-		wineTest();
+		//wineTest();
 		//userInterface();
 		//diGraphWineryTest();
 		//clusterTest();
 		//scoreWineryGraph();
+		distanceTest();
 	}
 	
 	public static void userInterface() throws FileNotFoundException
@@ -790,7 +795,7 @@ public class fun<V> extends JApplet {
 	private static void wineTest() throws FileNotFoundException, UnsupportedEncodingException
 	{
 		
-		Graph<String, Pair<String>> wine = fillGraphFromFileWithStrings("datasets/wine/BC/k5edgeSet.txt");
+		Graph<String, Pair<String>> wine = fillGraphFromFileWithStrings("datasets/wine/BC/k10edgeSet.txt");
 		
 		int k = 9;
 		wine = genString.fromBipartiteFile("datasets/edgeSet.txt", k);
@@ -842,16 +847,20 @@ public class fun<V> extends JApplet {
 			
 			System.out.println("Solution has " + rtn.getG().getVertexCount() + " nodes and " + rtn.getG().getEdgeCount() + " edges.");
 			
-			//print network to file
-			PrintWriter writer = new PrintWriter("datasets/wine/BC-k"+ k + "-SolutionEdgeSetGREEDY.tgf", "UTF-8");
 			
-			writer.println("#");
-			for (Pair<String> edge : rtn.getG().getEdges())
-			{
-				writer.println(edge.getFirst() + " " + edge.getSecond());
-			}
+			stringUtils.printGMLWithWeights(rtn, "datasets/wine/weightedResults/BC/k" + k + "-Solution-GREEDY.gml");
 			
-			writer.close();
+			
+//			//print network to file
+//			PrintWriter writer = new PrintWriter("datasets/wine/BC-k"+ k + "-SolutionEdgeSetGREEDY.tgf", "UTF-8");
+//			
+//			writer.println("#");
+//			for (Pair<String> edge : rtn.getG().getEdges())
+//			{
+//				writer.println(edge.getFirst() + " " + edge.getSecond());
+//			}
+//			
+//			writer.close();
 		}
 		
 	}
@@ -877,7 +886,7 @@ public class fun<V> extends JApplet {
 			reversed.addEdge(new Pair<String>(edge.getSecond(), edge.getFirst()), edge.getSecond(), edge.getFirst());
 		}
 		g = reversed;
-//		
+////		
 		Graph<String, Pair<String>> cGraph = clone.deepClone(g);
 		
 		
@@ -918,8 +927,13 @@ public class fun<V> extends JApplet {
 		
 		System.out.println("\nGraph same? " + genString.graphEquals(cGraph, g));
 		
+		String filename = "datasets/wine/weightedResults/ON/BCWineDiSolutionREVERSED-GREEDY";
+		
+		stringUtils.printGMLWithWeights(rtn, filename + ".gml");
+		
 		//print network to file
-		PrintWriter writer = new PrintWriter("datasets/wine/diQT/ONWineDiSolutionEdgeSetREVERSED-GREEDY.tgf", "UTF-8");
+		PrintWriter writer = new PrintWriter(filename +".tgf", "UTF-8");
+		
 		
 		writer.println("#");
 		for (Pair<String> edge : rtn.getG().getEdges())
@@ -1139,7 +1153,19 @@ public class fun<V> extends JApplet {
 		return graph;
 		
 		
+	}
+	
+	private static void distanceTest()
+	{
+		distance<String> d = new distance<String>();
+		Graph<String, Pair<String>> g = fillGraphFromFileWithStrings("datasets/wine/diQT/ON/ONWineDiSolutionEdgeSetREVERSED-GREEDY.tgf");
 		
+		HashMap<String, Pair<Double>> mapping = d.getLatLongFromFile("datasets/wine/Distance/ON/ONDistance.txt");
+		System.out.println("Average winery distance: " + d.meanDistance(g, mapping));
+		System.out.println("Average community distance: " + d.meanNeighbourDistance(g, mapping));
+		
+		System.out.println("Median winery distance: " + d.medianDistance(g, mapping));
+		System.out.println("Median community distance: " + d.medianNeighbourDistance(g, mapping));
 		
 	}
 	
