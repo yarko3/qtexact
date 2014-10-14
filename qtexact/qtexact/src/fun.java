@@ -27,6 +27,7 @@ import reduction.edgeBoundReduction;
 import scorer.familialGroupCentrality;
 import search.YanSearch;
 import search.clusterSearch;
+import search.cographSearch;
 import search.diQTSearch;
 import search.qtLBFSNoHeuristic;
 import utils.distance;
@@ -80,12 +81,13 @@ public class fun<V> extends JApplet {
 		//fbTest();
 		//editTest();
 		//comparisonTest();
-		wineTest();
+		//wineTest();
 		//userInterface();
 		//diGraphWineryTest();
 		//clusterTest();
 		//scoreWineryGraph();
 		//distanceTest();
+		cographTest();
 	}
 	
 	public static void userInterface() throws FileNotFoundException
@@ -868,11 +870,6 @@ public class fun<V> extends JApplet {
 	}
 	
 	
-	public static void exactVsGreedy()
-	{
-		
-	}
-	
 	public static void diGraphWineryTest() throws FileNotFoundException, UnsupportedEncodingException
 	{
 		DirectedGraph<String, Pair<String>> g = fillDiGraphFromFileWithStrings("datasets/wine/ON/wineryEdgeSet.txt");
@@ -931,7 +928,7 @@ public class fun<V> extends JApplet {
 		
 		String filename = "datasets/wine/weightedResults/ON/ONWineDiSolutionREVERSED-EXACT-EDITS";
 		
-		stringUtils.printGMLWithWeights(rtn, filename + ".gml");
+		stringUtils.printGMLWithEdits(rtn, filename + ".gml");
 		
 //		//print network to file
 //		PrintWriter writer = new PrintWriter(filename +".tgf", "UTF-8");
@@ -1169,6 +1166,24 @@ public class fun<V> extends JApplet {
 		System.out.println("Median winery distance: " + d.medianDistance(g, mapping));
 		System.out.println("Median community distance: " + d.medianNeighbourDistance(g, mapping));
 		
+	}
+	
+	private static void cographTest()
+	{
+		Graph<Integer, Pair<Integer>> g = new UndirectedSparseGraph<Integer, Pair<Integer>>();
+		
+		g.addEdge(new Pair<Integer>(0, 1), 0, 1);
+		g.addEdge(new Pair<Integer>(1, 2), 1, 2);
+		g.addEdge(new Pair<Integer>(2, 3), 2, 3);
+		g.addEdge(new Pair<Integer>(0, 3), 0, 3);
+		g.addEdge(new Pair<Integer>(0, 4), 0, 4);
+		
+		g = gen.randomQT(30);
+		
+		
+		cographSearch<Integer> search = new cographSearch<Integer>();
+		
+		System.out.println("Is cograph: " + search.isTarget(g));
 	}
 	
 }

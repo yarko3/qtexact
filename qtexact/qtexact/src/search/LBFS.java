@@ -55,9 +55,11 @@ public abstract class LBFS<V> extends Search<V>
 		//initial element of L has all vertices
 		L.add(t);
 
+		int tSize = t.size();
+		
 		
 		//for every vertex, ordered by t
-		for (int i = 0; i < t.size(); i++)
+		for (int i = 0; i < tSize; i++)
 		{
 			//clean up L
 			while (L.get(0).isEmpty())
@@ -124,10 +126,10 @@ public abstract class LBFS<V> extends Search<V>
 	 * @param t initial vertex ordering
 	 * @return search result
 	 */
-	public lexReturnC<V> LexBFSminus(Graph<V, Pair<V>> graph, ArrayList<V> t)
+	public lexReturnC<V> LexBFSminus(Graph<V, Pair<V>> G, ArrayList<V> t)
 	{
 		//use complement graph here
-		Graph<V, Pair<V>> G = utils.complement(graph);
+		//Graph<V, Pair<V>> G = utils.complement(graph);
 		
 		//new ordering
 		ArrayList<V> s = new ArrayList<V>(t.size());
@@ -141,8 +143,10 @@ public abstract class LBFS<V> extends Search<V>
 		//for every vertex, ordered by t
 		for (int i = 0; i < tsize; i++)
 		{
+			
+			
 			//clean up L
-			while (L.get(0).isEmpty())
+			while (!L.isEmpty() && L.get(0).isEmpty())
 			{
 				L.remove(0);
 			}
@@ -181,13 +185,12 @@ public abstract class LBFS<V> extends Search<V>
 				
 				if (!pp.isEmpty())
 				{
-					L.add(j+1, pp);
+					L.add(++j, pp);
 					
 					//remove Pj empty set if pp contains all of Pj
 					if (Pj.isEmpty())
 					{
-						L.remove(j);
-						j--;	
+						L.remove(--j);
 					}
 				}
 			}
