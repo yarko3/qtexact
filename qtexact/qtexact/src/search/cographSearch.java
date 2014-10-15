@@ -31,6 +31,7 @@ public class cographSearch<V>  extends LBFS<V>
 		//run LexBFS with t
 		lexReturnC<V> firstPass = LexBFSplus(G, t);
 		
+		
 		//run LexBFSminus with firstPass ordering
 		lexReturnC<V> secondPass = LexBFSminus(G, clone.deepClone(firstPass.getList()));
 		
@@ -125,6 +126,8 @@ public class cographSearch<V>  extends LBFS<V>
 			adjList.put(v, new LinkedList<V>());
 		}
 		
+		
+		
 		//collection for neighbours
 		Collection<V> n;
 		
@@ -139,6 +142,12 @@ public class cographSearch<V>  extends LBFS<V>
 			{
 				adjList.get(neighbour).addLast(v);
 			}
+		}
+		
+		
+		for (V v : t)
+		{
+			System.out.println(v + " slice: " + slice(v, t, adjList));
 		}
 		
 		
@@ -224,7 +233,7 @@ public class cographSearch<V>  extends LBFS<V>
 		
 		
 		//for every 
-		for (int j = 0; i < i; j++)
+		for (int j = 0; j < i; j++)
 		{
 			V temp = t.get(j);
 			
@@ -288,46 +297,71 @@ public class cographSearch<V>  extends LBFS<V>
 		//u is contained within its own slice
 		rtn.add(u);
 		
-		//get index of v
-		int uIndex = t.indexOf(u);
-		LinkedList<V> NiU;
-		LinkedList<V> NiI = new LinkedList<V>();
+		//get index of u
+		int i = t.indexOf(u);
+		LinkedList<V> NiI = nBeforeIndex(u, i, mapping, t);
 		LinkedList<V> NiJ;
 		
-		int storedI = uIndex;
-		
-		
-		//find all elements of slice before u in ordering
-		for (int i = uIndex - 1; i > -1; i--)
+		for (int j = i+1; j < t.size(); j++)
 		{
-			V temp = t.get(i);
+			V vertexJ = t.get(j);
+			NiJ = nBeforeIndex(vertexJ, i, mapping, t);
 			
-			NiU = nBeforeIndex(u, i, mapping, t);
-			NiI = nBeforeIndex(temp, i, mapping, t);
-			
-			if (NiU.containsAll(NiI) && NiI.containsAll(NiU))
+			if (NiI.containsAll(NiJ) && NiJ.containsAll(NiI))
 			{
-				//this is an element of the slice
-				rtn.addFirst(temp);
-				storedI = i;
-			}
-			//no more elements of slice exist before u
-			else
-				break;
-		}
-		
-		for (int j = uIndex + 1; j < t.size(); j++)
-		{
-			NiJ = nBeforeIndex(t.get(j), storedI, mapping, t);
-			
-			//the neighbour set before i of j matches i
-			if (NiJ.containsAll(NiI) && NiI.containsAll(NiJ))
-			{
-				rtn.add(t.get(j));
+				rtn.addLast(vertexJ);
 			}
 			else
 				break;
 		}
+		
+		
+		
+		
+//		//find all elements of slice before u in ordering
+//		for (int i = uIndex - 1; i > 0; i--)
+//		{
+//			V temp = t.get(i);
+//			
+//			NiU = nBeforeIndex(u, i, mapping, t);
+//			NiI = nBeforeIndex(temp, i, mapping, t);
+//			
+//			if (NiU.containsAll(NiI) && NiI.containsAll(NiU))
+//			{
+//				boolean flag = true;
+//				LinkedList<V> NiT;
+//				//check each previous element of slice
+//				for (V tempV : rtn)
+//				{
+//					NiT = nBeforeIndex(tempV, i, mapping, t);
+//					
+//					if (!NiT.containsAll(NiI) || !NiI.containsAll(NiT))
+//						flag = false;
+//				}
+//				if (flag)
+//				{
+//					//this is an element of the slice
+//					rtn.addFirst(temp);
+//					storedI = i;
+//				}
+//			}
+//			//no more elements of slice exist before u
+//			else
+//				break;
+//		}
+//		
+//		for (int j = uIndex + 1; j < t.size(); j++)
+//		{
+//			NiJ = nBeforeIndex(t.get(j), storedI, mapping, t);
+//			
+//			//the neighbour set before i of j matches i
+//			if (NiJ.containsAll(NiI) && NiI.containsAll(NiJ))
+//			{
+//				rtn.add(t.get(j));
+//			}
+//			else
+//				break;
+//		}
 			
 			
 		

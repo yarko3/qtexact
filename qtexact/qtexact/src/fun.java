@@ -9,6 +9,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -1170,18 +1171,65 @@ public class fun<V> extends JApplet {
 	
 	private static void cographTest()
 	{
-		Graph<Integer, Pair<Integer>> g = new UndirectedSparseGraph<Integer, Pair<Integer>>();
+		Graph<Character, Pair<Character>> g = new UndirectedSparseGraph<Character, Pair<Character>>();
 		
-		g.addEdge(new Pair<Integer>(0, 1), 0, 1);
-		g.addEdge(new Pair<Integer>(1, 2), 1, 2);
-		g.addEdge(new Pair<Integer>(2, 3), 2, 3);
-		g.addEdge(new Pair<Integer>(0, 3), 0, 3);
-		g.addEdge(new Pair<Integer>(0, 4), 0, 4);
+		g.addEdge(new Pair<Character>('b', 'd'), 'b', 'd');
+		g.addEdge(new Pair<Character>('b', 'u'), 'b', 'u');
+		g.addEdge(new Pair<Character>('b', 'v'), 'b', 'v');
+		g.addEdge(new Pair<Character>('b', 'w'), 'b', 'w');
+		g.addEdge(new Pair<Character>('b', 'y'), 'b', 'y');
+		g.addEdge(new Pair<Character>('d', 'u'), 'd', 'u');
+		g.addEdge(new Pair<Character>('d', 'v'), 'd', 'v');
+		g.addEdge(new Pair<Character>('d', 'w'), 'd', 'w');
+		g.addEdge(new Pair<Character>('d', 'y'), 'd', 'y');
+		g.addEdge(new Pair<Character>('d', 'c'), 'd', 'c');
+		g.addEdge(new Pair<Character>('c', 'u'), 'c', 'u');
+		g.addEdge(new Pair<Character>('c', 'v'), 'c', 'v');
+		g.addEdge(new Pair<Character>('c', 'w'), 'c', 'w');
+		g.addEdge(new Pair<Character>('c', 'y'), 'c', 'y');
+		g.addEdge(new Pair<Character>('a', 'u'), 'a', 'u');
+		g.addEdge(new Pair<Character>('a', 'v'), 'a', 'v');
+		g.addEdge(new Pair<Character>('a', 'w'), 'a', 'w');
+		g.addEdge(new Pair<Character>('a', 'y'), 'a', 'y');
+		g.addEdge(new Pair<Character>('a', 'Z'), 'a', 'Z');
+		g.addEdge(new Pair<Character>('Z', 'u'), 'Z', 'u');
+		g.addEdge(new Pair<Character>('Z', 'v'), 'Z', 'v');
+		g.addEdge(new Pair<Character>('Z', 'w'), 'Z', 'w');
+		g.addEdge(new Pair<Character>('Z', 'y'), 'Z', 'y');
+		g.addEdge(new Pair<Character>('X', 'Z'), 'X', 'Z');
+		g.addEdge(new Pair<Character>('X', 'u'), 'X', 'u');
+		g.addEdge(new Pair<Character>('X', 'v'), 'X', 'v');
+		g.addEdge(new Pair<Character>('X', 'w'), 'X', 'w');
+		g.addEdge(new Pair<Character>('X', 'y'), 'X', 'y');
+		g.addEdge(new Pair<Character>('u', 'v'), 'u', 'v');
+		g.addEdge(new Pair<Character>('w', 'y'), 'w', 'y');
+		g.addEdge(new Pair<Character>('e', 'u'), 'e', 'u');
+		g.addEdge(new Pair<Character>('e', 'v'), 'e', 'v');
+		g.addEdge(new Pair<Character>('e', 'w'), 'e', 'w');
+		g.addEdge(new Pair<Character>('e', 'y'), 'e', 'y');
 		
-		g = gen.randomQT(30);
+		
+		//g = gen.randomQT(30);
 		
 		
-		cographSearch<Integer> search = new cographSearch<Integer>();
+		cographSearch<Character> search = new cographSearch<Character>();
+		
+		ArrayList<Character> list = new ArrayList<Character>();
+		
+		list.add('X');
+		list.add('d');
+		list.add('y');
+		list.add('u');
+		list.add('e');
+		list.add('v');
+		list.add('w');
+		list.add('c');
+		list.add('a');
+		list.add('Z');
+		list.add('b');
+		
+		
+		search.search(g, list);
 		
 		System.out.println("Is cograph: " + search.isTarget(g));
 	}
