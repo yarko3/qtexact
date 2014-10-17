@@ -12,8 +12,10 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Scanner;
+import java.util.Set;
 
 import javax.swing.JApplet;
 import javax.swing.JFrame;
@@ -32,6 +34,7 @@ import search.cographSearch;
 import search.diQTSearch;
 import search.qtLBFSNoHeuristic;
 import utils.distance;
+import utils.graphFromEdgeSetWithCommunities;
 import utils.graphUtils;
 import abstractClasses.Branch;
 import abstractClasses.Dive;
@@ -88,7 +91,8 @@ public class fun<V> extends JApplet {
 		//clusterTest();
 		//scoreWineryGraph();
 		//distanceTest();
-		cographTest();
+		//cographTest();
+		wineryProjectionTest();
 	}
 	
 	public static void userInterface() throws FileNotFoundException
@@ -798,7 +802,7 @@ public class fun<V> extends JApplet {
 	private static void wineTest() throws FileNotFoundException, UnsupportedEncodingException
 	{
 		
-		Graph<String, Pair<String>> wine = fillGraphFromFileWithStrings("datasets/wine/BC/wineryEdgeSet.txt");
+		Graph<String, Pair<String>> wine = fillGraphFromFileWithStrings("datasets/wine/ON/wineryEdgeSet.txt");
 		
 //		int k = 9;
 //		wine = genString.fromBipartiteFile("datasets/edgeSet.txt", k);
@@ -853,7 +857,7 @@ public class fun<V> extends JApplet {
 			System.out.println("Solution has " + rtn.getG().getVertexCount() + " nodes and " + rtn.getG().getEdgeCount() + " edges.");
 			
 			
-			stringUtils.printGMLWithAdditions(rtn, "datasets/wine/weightedResults/BC/QT Solution-GREEDY-ADDITIONS.gml");
+			stringUtils.printSolutionEdgeSetWithWeightsComponents(rtn, "datasets/wine/weightedResults/ON/QT Solution-GREEDY-EDGE SET.txt");
 			
 			
 //			//print network to file
@@ -873,7 +877,7 @@ public class fun<V> extends JApplet {
 	
 	public static void diGraphWineryTest() throws FileNotFoundException, UnsupportedEncodingException
 	{
-		DirectedGraph<String, Pair<String>> g = fillDiGraphFromFileWithStrings("datasets/wine/ON/wineryEdgeSet.txt");
+		DirectedGraph<String, Pair<String>> g = fillDiGraphFromFileWithStrings("datasets/wine/BC/wineryEdgeSet.txt");
 		
 		//reverse edges and add to new graph
 		DirectedGraph<String, Pair<String>> reversed = new DirectedSparseGraph<String, Pair<String>>();
@@ -927,9 +931,9 @@ public class fun<V> extends JApplet {
 		
 		System.out.println("\nGraph same? " + genString.graphEquals(cGraph, g));
 		
-		String filename = "datasets/wine/weightedResults/ON/ONWineDiSolutionREVERSED-EXACT-EDITS";
+		String filename = "datasets/wine/weightedResults/BC/BCWineDiSolutionREVERSED-Greedy-EDGE SET";
 		
-		stringUtils.printGMLWithEdits(rtn, filename + ".gml");
+		stringUtils.printSolutionEdgeSetWithWeightsComponents(rtn, filename + ".txt");
 		
 //		//print network to file
 //		PrintWriter writer = new PrintWriter(filename +".tgf", "UTF-8");
@@ -1158,14 +1162,39 @@ public class fun<V> extends JApplet {
 	private static void distanceTest()
 	{
 		distance<String> d = new distance<String>();
-		Graph<String, Pair<String>> g = fillGraphFromFileWithStrings("datasets/wine/diQT/ON/ONWineDiSolutionEdgeSetREVERSED-GREEDY.tgf");
+		graphFromEdgeSetWithCommunities f = new graphFromEdgeSetWithCommunities("datasets/wine/ON/weightedResults/ON-k10-Solution-GREEDY-EDGE SET.txt");
 		
 		HashMap<String, Pair<Double>> mapping = d.getLatLongFromFile("datasets/wine/Distance/ON/ONDistance.txt");
-		System.out.println("Average winery distance: " + d.meanDistance(g, mapping));
-		System.out.println("Average community distance: " + d.meanNeighbourDistance(g, mapping));
 		
-		System.out.println("Median winery distance: " + d.medianDistance(g, mapping));
-		System.out.println("Median community distance: " + d.medianNeighbourDistance(g, mapping));
+		
+		Graph<String, Pair<String>> g = f.g;
+		
+		HashMap<Integer, Graph<String, Pair<String>>> components = new HashMap<Integer, Graph<String, Pair<String>>>();
+		
+		for (int cID : f.communityMap.keySet())
+		{
+			components.put(cID, stringUtils.inducedFromVertexSet(g, f.communityMap.get(cID)));
+		}
+	
+		
+		for (int cID : components.keySet())
+		{
+			
+			
+			System.out.println("\n\nComponent " + cID + "\tNumber of nodes: " + components.get(cID).getVertexCount());
+			
+			//output wineries in this community
+			for (String winery : components.get(cID).getVertices())
+			{
+				System.out.print(winery + "\t");
+			}
+			
+			System.out.println("\nMean winery-winery distance: \t" + d.meanDistance(components.get(cID), mapping));
+			System.out.println("Median winery-winery distance: \t" + d.medianDistance(components.get(cID), mapping));
+			System.out.println("Mean edge distance: \t" + d.meanNeighbourDistance(components.get(cID), mapping));
+			System.out.println("Median edge distance: \t" + d.medianNeighbourDistance(components.get(cID), mapping));
+			
+		}
 		
 	}
 	
@@ -1173,40 +1202,44 @@ public class fun<V> extends JApplet {
 	{
 		Graph<Character, Pair<Character>> g = new UndirectedSparseGraph<Character, Pair<Character>>();
 		
-		g.addEdge(new Pair<Character>('b', 'd'), 'b', 'd');
-		g.addEdge(new Pair<Character>('b', 'u'), 'b', 'u');
-		g.addEdge(new Pair<Character>('b', 'v'), 'b', 'v');
-		g.addEdge(new Pair<Character>('b', 'w'), 'b', 'w');
-		g.addEdge(new Pair<Character>('b', 'y'), 'b', 'y');
-		g.addEdge(new Pair<Character>('d', 'u'), 'd', 'u');
-		g.addEdge(new Pair<Character>('d', 'v'), 'd', 'v');
-		g.addEdge(new Pair<Character>('d', 'w'), 'd', 'w');
-		g.addEdge(new Pair<Character>('d', 'y'), 'd', 'y');
-		g.addEdge(new Pair<Character>('d', 'c'), 'd', 'c');
-		g.addEdge(new Pair<Character>('c', 'u'), 'c', 'u');
-		g.addEdge(new Pair<Character>('c', 'v'), 'c', 'v');
-		g.addEdge(new Pair<Character>('c', 'w'), 'c', 'w');
-		g.addEdge(new Pair<Character>('c', 'y'), 'c', 'y');
-		g.addEdge(new Pair<Character>('a', 'u'), 'a', 'u');
-		g.addEdge(new Pair<Character>('a', 'v'), 'a', 'v');
-		g.addEdge(new Pair<Character>('a', 'w'), 'a', 'w');
-		g.addEdge(new Pair<Character>('a', 'y'), 'a', 'y');
-		g.addEdge(new Pair<Character>('a', 'Z'), 'a', 'Z');
-		g.addEdge(new Pair<Character>('Z', 'u'), 'Z', 'u');
-		g.addEdge(new Pair<Character>('Z', 'v'), 'Z', 'v');
-		g.addEdge(new Pair<Character>('Z', 'w'), 'Z', 'w');
-		g.addEdge(new Pair<Character>('Z', 'y'), 'Z', 'y');
-		g.addEdge(new Pair<Character>('X', 'Z'), 'X', 'Z');
-		g.addEdge(new Pair<Character>('X', 'u'), 'X', 'u');
-		g.addEdge(new Pair<Character>('X', 'v'), 'X', 'v');
-		g.addEdge(new Pair<Character>('X', 'w'), 'X', 'w');
-		g.addEdge(new Pair<Character>('X', 'y'), 'X', 'y');
-		g.addEdge(new Pair<Character>('u', 'v'), 'u', 'v');
-		g.addEdge(new Pair<Character>('w', 'y'), 'w', 'y');
-		g.addEdge(new Pair<Character>('e', 'u'), 'e', 'u');
-		g.addEdge(new Pair<Character>('e', 'v'), 'e', 'v');
-		g.addEdge(new Pair<Character>('e', 'w'), 'e', 'w');
-		g.addEdge(new Pair<Character>('e', 'y'), 'e', 'y');
+//		g.addEdge(new Pair<Character>('b', 'd'), 'b', 'd');
+//		g.addEdge(new Pair<Character>('b', 'u'), 'b', 'u');
+//		g.addEdge(new Pair<Character>('b', 'v'), 'b', 'v');
+//		g.addEdge(new Pair<Character>('b', 'w'), 'b', 'w');
+//		g.addEdge(new Pair<Character>('b', 'y'), 'b', 'y');
+//		g.addEdge(new Pair<Character>('d', 'u'), 'd', 'u');
+//		g.addEdge(new Pair<Character>('d', 'v'), 'd', 'v');
+//		g.addEdge(new Pair<Character>('d', 'w'), 'd', 'w');
+//		g.addEdge(new Pair<Character>('d', 'y'), 'd', 'y');
+//		g.addEdge(new Pair<Character>('d', 'c'), 'd', 'c');
+//		g.addEdge(new Pair<Character>('c', 'u'), 'c', 'u');
+//		g.addEdge(new Pair<Character>('c', 'v'), 'c', 'v');
+//		g.addEdge(new Pair<Character>('c', 'w'), 'c', 'w');
+//		g.addEdge(new Pair<Character>('c', 'y'), 'c', 'y');
+//		g.addEdge(new Pair<Character>('a', 'u'), 'a', 'u');
+//		g.addEdge(new Pair<Character>('a', 'v'), 'a', 'v');
+//		g.addEdge(new Pair<Character>('a', 'w'), 'a', 'w');
+//		g.addEdge(new Pair<Character>('a', 'y'), 'a', 'y');
+//		g.addEdge(new Pair<Character>('a', 'Z'), 'a', 'Z');
+//		g.addEdge(new Pair<Character>('Z', 'u'), 'Z', 'u');
+//		g.addEdge(new Pair<Character>('Z', 'v'), 'Z', 'v');
+//		g.addEdge(new Pair<Character>('Z', 'w'), 'Z', 'w');
+//		g.addEdge(new Pair<Character>('Z', 'y'), 'Z', 'y');
+//		g.addEdge(new Pair<Character>('X', 'Z'), 'X', 'Z');
+//		g.addEdge(new Pair<Character>('X', 'u'), 'X', 'u');
+//		g.addEdge(new Pair<Character>('X', 'v'), 'X', 'v');
+//		g.addEdge(new Pair<Character>('X', 'w'), 'X', 'w');
+//		g.addEdge(new Pair<Character>('X', 'y'), 'X', 'y');
+//		g.addEdge(new Pair<Character>('u', 'v'), 'u', 'v');
+//		g.addEdge(new Pair<Character>('w', 'y'), 'w', 'y');
+//		g.addEdge(new Pair<Character>('e', 'u'), 'e', 'u');
+//		g.addEdge(new Pair<Character>('e', 'v'), 'e', 'v');
+//		g.addEdge(new Pair<Character>('e', 'w'), 'e', 'w');
+//		g.addEdge(new Pair<Character>('e', 'y'), 'e', 'y');
+		
+		g.addEdge(new Pair<Character>('a', 'b'), 'a', 'b');
+		g.addEdge(new Pair<Character>('b', 'c'), 'b', 'c');
+		g.addEdge(new Pair<Character>('c', 'd'), 'c', 'd');
 		
 		
 		//g = gen.randomQT(30);
@@ -1216,22 +1249,97 @@ public class fun<V> extends JApplet {
 		
 		ArrayList<Character> list = new ArrayList<Character>();
 		
-		list.add('X');
-		list.add('d');
-		list.add('y');
-		list.add('u');
-		list.add('e');
-		list.add('v');
-		list.add('w');
-		list.add('c');
-		list.add('a');
-		list.add('Z');
-		list.add('b');
+//		list.add('X');
+//		list.add('d');
+//		list.add('y');
+//		list.add('u');
+//		list.add('e');
+//		list.add('v');
+//		list.add('w');
+//		list.add('c');
+//		list.add('a');
+//		list.add('Z');
+//		list.add('b');
 		
 		
-		search.search(g, list);
+		search.isTarget(g);
 		
 		System.out.println("Is cograph: " + search.isTarget(g));
 	}
+	
+	public static void wineryProjectionTest() throws FileNotFoundException, UnsupportedEncodingException
+	{
+		String province = "QB";
+		
+		Graph<String, Pair<String>> wine = null;
+		
+		
+		
+//		int k = 9;
+		
+		for (int k = 2; k < 11; k++)
+		{
+			wine = genString.fromBipartiteFile("datasets/wine/" + province + "/edgeSet.txt", k);
+			
+			
+			Graph<String, Pair<String>> cln = clone.deepClone(wine);
+			
+			Controller<String> c = new Controller<String>(null, true);
+			
+			qtGenerate<String> gen = new qtGenerate<String>();
+			
+			
+			//test size of graph
+			System.out.println("Graph has " + wine.getVertexCount() + " nodes and " + wine.getEdgeCount() + " edges.");
+			
+			qtBranchComponents<String> branchC = new qtBranchComponents<String>(c);
+			
+			
+			Reduction<String> rC = new c4p4Reduction<String>(branchC);
+			branchC.addReduction(rC);
+			
+	//		rC = new biconnectedReduction<String>(branchC);
+	//		branchC.addReduction(rC);
+			
+			visualizeString(wine);
+			long start;
+			
+			Dive<String> dive = new maxObsGreedy<String>(branchC);
+			branchingReturnC<String> rtn;
+			
+//			//greedy edit
+//			c.setbStruct(branchC);
+//			branchC.setDive(dive);
+//			System.out.println("\nGreedy Edit: ");
+//			start = System.currentTimeMillis();
+//			rtn = c.diveAtStartEdit(wine, 4);
+//			System.out.println((System.currentTimeMillis()-start) / 1000.0);
+			
+	//		//regular edit
+	//		c.setbStruct(branchC);
+	//		System.out.println("\nConnected component: ");
+	//		start = System.currentTimeMillis();
+	//		rtn = c.branchStart(wine, 15);
+	//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+	////		
+			System.out.println("\nGraph same? " + gen.graphEquals(cln, wine));
+			
+			stringUtils.printSolutionEdgeSetWithWeightsComponents(new branchingReturnC<String>(cln), "datasets/wine/" + province + "/projections/k" + k + "edgeSet.txt");
+			
+			
+//			if (branchC.getSearch().isTarget(rtn.getG()))
+//			{
+//				
+//				System.out.println("Solution has " + rtn.getG().getVertexCount() + " nodes and " + rtn.getG().getEdgeCount() + " edges.");
+//				
+//				
+//				stringUtils.printSolutionEdgeSetWithWeightsComponents(rtn, "datasets/wine/" + province +"/weightedResults/"+ province + "-k"+k+"-Solution-GREEDY-EDGE SET.txt");
+//				
+//				
+//			}
+		}
+		
+	}
+	
 	
 }

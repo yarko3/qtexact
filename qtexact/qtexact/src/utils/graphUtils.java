@@ -1,20 +1,34 @@
 package utils;
 
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Scanner;
+import java.util.Set;
 
 import qtUtils.branchingReturnC;
 import qtUtils.myEdge;
+
+import com.rits.cloning.Cloner;
+
+import edu.uci.ics.jung.algorithms.cluster.WeakComponentClusterer;
 import edu.uci.ics.jung.graph.DirectedGraph;
+import edu.uci.ics.jung.graph.DirectedSparseGraph;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.UndirectedSparseGraph;
 import edu.uci.ics.jung.graph.util.Pair;
 
 public class graphUtils<V> 
 {
+	WeakComponentClusterer<V, Pair<V>> cluster = new WeakComponentClusterer<V, Pair<V>>();
+	
+	Cloner clone = new Cloner();
+	
 	/**
 	 * generate complement graph 
 	 * @param g input graph
@@ -219,5 +233,129 @@ public class graphUtils<V>
 		
 		writer.close();
 	}
+	
+	public Graph<V, Pair<V>> inducedFromVertexSet(Graph<V, Pair<V>> G, Set<V> l)
+	{
+		Graph<V, Pair<V>> c = null;
+		try {
+			c = (Graph<V, Pair<V>>) G.getClass().newInstance();
+		} catch (InstantiationException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IllegalAccessException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		HashSet<Pair<V>> tempSet = new HashSet<Pair<V>>();
+		//throw all edges into hashset, no duplicates
+		for (V i : l)
+		{
+			tempSet.addAll(G.getIncidentEdges(i));
+			c.addVertex(i);
+		}
+		//add all edges to c
+		for (Pair<V> e : tempSet)
+		{
+			Pair<V> edge = clone.deepClone(e);
+			c.addEdge(edge, edge.getFirst(), edge.getSecond());
+		}
+		return c;
+	}
+	
+	public void printSolutionEdgeSetWithWeights(branchingReturnC<V> s, String filename)
+	{
+		//print network to file
+		PrintWriter writer = null;
+		try {
+			writer = new PrintWriter(filename, "UTF-8");
+		} catch (FileNotFoundException | UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		for (Pair<V> e : s.getG().getEdges())
+		{
+			int weight = 1;
+			//change weight if edge was added later
+			if (s.getMinMoves().getChanges().contains(new myEdge<V>(e, true, s.getG() instanceof DirectedGraph)))
+			{
+				weight = 2;
+			}
+			writer.println(e.getFirst() + " " + e.getSecond() + " " + weight);
+			
+		}
+		
+		for (myEdge<V> e : s.getMinMoves().getChanges())
+		{
+			int weight = -1;
+			//write edge deletions
+			if (!e.isFlag())
+			{
+				writer.println(e.getEdge().getFirst() + " " + e.getEdge().getSecond() + " " + weight);
+			}
+		}
+		
+		writer.close();
+		
+		
+	}
+	
+	public void printSolutionEdgeSetWithWeightsComponents(branchingReturnC<V> s, String filename)
+	{
+		Set<Set<V>> sets = cluster.transform(s.getG());
+		
+		int componentCount = 0;
+		HashMap<V, Integer> componentLabels = new HashMap<V, Integer>();
+		
+		
+		for (Set<V> c : sets)
+		{
+			for (V v : c)
+			{
+				componentLabels.put(v, componentCount);
+			}
+			
+			componentCount++;
+		}
+		
+		//print network to file
+		PrintWriter writer = null;
+		try {
+			writer = new PrintWriter(filename, "UTF-8");
+		} catch (FileNotFoundException | UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		for (Pair<V> e : s.getG().getEdges())
+		{
+			int weight = 1;
+			//change weight if edge was added later
+			if (s.getMinMoves() != null && s.getMinMoves().getChanges().contains(new myEdge<V>(e, true, s.getG() instanceof DirectedGraph)))
+			{
+				weight = 2;
+			}
+			writer.println(e.getFirst() + " " + e.getSecond() + " " + weight + " " + componentLabels.get(e.getFirst()));
+			
+		}
+		
+		if (s.getMinMoves() != null)
+		{
+			for (myEdge<V> e : s.getMinMoves().getChanges())
+			{
+				int weight = -1;
+				//write edge deletions
+				if (!e.isFlag())
+				{
+					writer.println(e.getEdge().getFirst() + " " + e.getEdge().getSecond() + " " + weight + " " + componentLabels.get(e.getEdge().getFirst()));
+				}
+			}
+		}
+		
+		writer.close();
+		
+		
+	}
+	
 
 }

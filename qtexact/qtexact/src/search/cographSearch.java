@@ -134,6 +134,7 @@ public class cographSearch<V>  extends LBFS<V>
 		for (int i = 0; i < t.size(); i++)
 		{
 			V v = t.get(i);
+			
 			//get neighbourhood of vertex
 			n = g.getNeighbors(v);
 			
@@ -144,7 +145,7 @@ public class cographSearch<V>  extends LBFS<V>
 			}
 		}
 		
-		
+		//print slices
 		for (V v : t)
 		{
 			System.out.println(v + " slice: " + slice(v, t, adjList));
@@ -157,21 +158,24 @@ public class cographSearch<V>  extends LBFS<V>
 			//vertex being checked
 			V v = t.get(k);
 			
+			LinkedList<V> vSlice = slice(v, t, adjList);
+			
+			
 			//check if more than 1 vertex in graph 
-			if (t.size() < 2)
+			if (t.size() < 3)
 				break;
 			
 			//internal counter
-			int i = 0;
+			int i = 1;
 			
 			
-			//A <- N<(v1) UNION S^A(v)
+			//A <- N<(v1) INTERSECT S^A(v)
 			
 			//N<(v1)
 			LinkedList<V> NbeforeV = nBeforeIndex(v, i, adjList, t);
 			
 			//S^A(v)
-			Set<V> nUnionSlice = nUnionSlice(v, adjList, t);
+			Set<V> nUnionSlice = nUnionSlice(v, vSlice, adjList);
 			
 			
 			Set<V> A = new HashSet<V>();
@@ -184,14 +188,14 @@ public class cographSearch<V>  extends LBFS<V>
 			//while a next vertex exits after vi
 			while (i+1 < t.size())
 			{
-				//B <- N<(vi+1) UNION S^A(v)
+				//B <- N<(vi+1) INTERSECT S^A(v)
 				Set<V> B = new HashSet<V>();
 				
 				//N<(vi+1)
 				B.addAll(nBeforeIndex(v, i+1, adjList, t));
 				
-				//union them together
-				B.retainAll(nUnionSlice);
+				//intersect them together
+				B.retainAll(vSlice);
 				
 				//if A contains all of B,
 				if (A.containsAll(B))
@@ -263,13 +267,11 @@ public class cographSearch<V>  extends LBFS<V>
 	 * @param t ordering
 	 * @return a union of slice and neighbourhood
 	 */
-	private Set<V> nUnionSlice(V v, HashMap<V, LinkedList<V>> map, ArrayList<V> t)
+	private Set<V> nUnionSlice(V v, LinkedList<V> slice, HashMap<V, LinkedList<V>> map)
 	{
 		//retrieve neighbourhood
 		LinkedList<V> N = map.get(v);
 		
-		//get slice
-		LinkedList<V> slice = slice(v, t, map);
 		
 		//convert neighbours to a set (for set operations)
 		Set<V> set = new HashSet<V>();
@@ -386,7 +388,7 @@ public class cographSearch<V>  extends LBFS<V>
 		
 		
 		//SA(V)
-		Set<V> nUnionSlice = nUnionSlice(v, adjList, t);
+		Set<V> nUnionSlice = nUnionSlice(v, slice(v, t, adjList), adjList);
 		
 		//(Nl(vj) \ Nl(vj+1))
 		nbeforevj.removeAll(nbeforevjplus1);

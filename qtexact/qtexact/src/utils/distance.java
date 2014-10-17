@@ -135,6 +135,10 @@ public class distance<V>
 		
 		Collections.sort(temp);
 		
+		if (temp.isEmpty())
+			return Double.NaN;
+		
+		
 		return temp.get(temp.size()/2) / 1000; 
 	}
 	
@@ -171,6 +175,8 @@ public class distance<V>
 		}
 		
 		Collections.sort(temp);
+		if (temp.isEmpty())
+			return Double.NaN;
 		
 		return temp.get(temp.size()/2) / 1000; 
 	}
