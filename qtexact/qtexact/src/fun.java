@@ -91,8 +91,8 @@ public class fun<V> extends JApplet {
 		//clusterTest();
 		//scoreWineryGraph();
 		//distanceTest();
-		//cographTest();
-		wineryProjectionTest();
+		cographTest();
+		//wineryProjectionTest();
 	}
 	
 	public static void userInterface() throws FileNotFoundException
@@ -1236,10 +1236,15 @@ public class fun<V> extends JApplet {
 //		g.addEdge(new Pair<Character>('e', 'v'), 'e', 'v');
 //		g.addEdge(new Pair<Character>('e', 'w'), 'e', 'w');
 //		g.addEdge(new Pair<Character>('e', 'y'), 'e', 'y');
+//		g.addEdge(new Pair<Character>('e', 'j'), 'e', 'j');
+		
+		
 		
 		g.addEdge(new Pair<Character>('a', 'b'), 'a', 'b');
 		g.addEdge(new Pair<Character>('b', 'c'), 'b', 'c');
 		g.addEdge(new Pair<Character>('c', 'd'), 'c', 'd');
+		g.addEdge(new Pair<Character>('a', 'g'), 'a', 'g');
+		
 		
 		
 		//g = gen.randomQT(30);
@@ -1248,7 +1253,7 @@ public class fun<V> extends JApplet {
 		cographSearch<Character> search = new cographSearch<Character>();
 		
 		ArrayList<Character> list = new ArrayList<Character>();
-		
+//		
 //		list.add('X');
 //		list.add('d');
 //		list.add('y');
@@ -1260,11 +1265,13 @@ public class fun<V> extends JApplet {
 //		list.add('a');
 //		list.add('Z');
 //		list.add('b');
+//		
+//		search.search(g, list);
 		
 		
-		search.isTarget(g);
+		System.out.println(search.search(g).getCertificate());
 		
-		System.out.println("Is cograph: " + search.isTarget(g));
+		//System.out.println("Is cograph: " + search.isTarget(g));
 	}
 	
 	public static void wineryProjectionTest() throws FileNotFoundException, UnsupportedEncodingException

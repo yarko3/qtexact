@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -98,6 +99,13 @@ public class cographSearch<V>  extends LBFS<V>
 		return search(s.getG(), this.getArbitraryOrdering(s.getG()));
 	}
 	
+	public lexReturnC<V> search(Graph<V, Pair<V>> g)
+	{
+		return search(g, this.getArbitraryOrdering(g));
+	}
+	
+	
+
 	/**
 	 * check for P4s
 	 * @param g graph
@@ -153,46 +161,59 @@ public class cographSearch<V>  extends LBFS<V>
 		
 		
 		//here comes the NSP check
-		for (int k = 0; k < t.size(); k++)
+		for (int k = 0; k < t.size() - 1; k++)
 		{
 			//vertex being checked
 			V v = t.get(k);
 			
 			LinkedList<V> vSlice = slice(v, t, adjList);
 			
+			LinkedList<LinkedList<V>> subSlices = nonNeighbourSubSlices(v, t, adjList);
 			
-			//check if more than 1 vertex in graph 
-			if (t.size() < 3)
-				break;
+			
+//			//check if more than 1 vertex in graph 
+//			if (t.size() < 3)
+//				break;
 			
 			//internal counter
-			int i = 1;
+			int i = 0;
 			
 			
 			//A <- N<(v1) INTERSECT S^A(v)
 			
 			//N<(v1)
-			LinkedList<V> NbeforeV = nBeforeIndex(v, i, adjList, t);
+			LinkedList<V> NbeforeVi;
+			if (subSlices.isEmpty())
+				NbeforeVi = new LinkedList<V>();
+			else
+				NbeforeVi = nBeforeIndex(subSlices.get(i).getFirst(), 
+						vSlice.indexOf(subSlices.get(i).getFirst()), 
+								adjList, vSlice);
+			
+			//LinkedList<V> NbeforeV = nBeforeIndex(t.get(i), i, adjList, t);
 			
 			//S^A(v)
-			Set<V> nUnionSlice = nUnionSlice(v, vSlice, adjList);
+			Set<V> nINTERSECTSlice = nINTERSECTSlice(v, vSlice, adjList);
 			
 			
 			Set<V> A = new HashSet<V>();
-			A.addAll(NbeforeV);
+			A.addAll(NbeforeVi);
 			
 			
 			//union the two together
-			A.retainAll(nUnionSlice);
+			A.retainAll(nINTERSECTSlice);
 			
 			//while a next vertex exits after vi
-			while (i+1 < t.size())
+			while (i+1 < subSlices.size())
 			{
 				//B <- N<(vi+1) INTERSECT S^A(v)
 				Set<V> B = new HashSet<V>();
 				
 				//N<(vi+1)
-				B.addAll(nBeforeIndex(v, i+1, adjList, t));
+				
+				B.addAll(nBeforeIndex(subSlices.get(i+1).getFirst(), 
+						vSlice.indexOf(subSlices.get(i+1).getFirst()), 
+						adjList, vSlice));
 				
 				//intersect them together
 				B.retainAll(vSlice);
@@ -225,7 +246,7 @@ public class cographSearch<V>  extends LBFS<V>
 	 * @param t ordering
 	 * @return list of neighbours of v that appear in t before vi
 	 */
-	private LinkedList<V> nBeforeIndex(V v, int i, Map<V, LinkedList<V>> map, ArrayList<V> t)
+	private LinkedList<V> nBeforeIndex(V v, int i, Map<V, LinkedList<V>> map, List<V> t)
 	{
 		//list to be returned
 		LinkedList<V> rtn = new LinkedList<V>();
@@ -267,7 +288,7 @@ public class cographSearch<V>  extends LBFS<V>
 	 * @param t ordering
 	 * @return a union of slice and neighbourhood
 	 */
-	private Set<V> nUnionSlice(V v, LinkedList<V> slice, HashMap<V, LinkedList<V>> map)
+	private Set<V> nINTERSECTSlice(V v, LinkedList<V> slice, HashMap<V, LinkedList<V>> map)
 	{
 		//retrieve neighbourhood
 		LinkedList<V> N = map.get(v);
@@ -291,7 +312,7 @@ public class cographSearch<V>  extends LBFS<V>
 	 * @param t ordering
 	 * @return slice
 	 */
-	private LinkedList<V> slice(V u, ArrayList<V> t, Map<V, LinkedList<V>> mapping)
+	private LinkedList<V> slice(V u, List<V> t, Map<V, LinkedList<V>> mapping)
 	{
 		//list of the slice to be returned
 		LinkedList<V> rtn = new LinkedList<V>();
@@ -374,21 +395,30 @@ public class cographSearch<V>  extends LBFS<V>
 	{
 		LinkedList<V> rtn = new LinkedList<V>();
 		
+		LinkedList<LinkedList<V>> subSlices = nonNeighbourSubSlices(v, t, adjList);
+		
+		LinkedList<V> vSlice = slice(v, t, adjList);
+		
+		
 		
 		//Choose w is an element of (Nl(vj) \ Nl(vj+1)) UNION SA(v)
 		
 		//Nl(vj)
-		LinkedList<V> nbeforevj = nBeforeIndex(v, j, adjList, t);
+		LinkedList<V> nbeforevj = nBeforeIndex(subSlices.get(j).getFirst(), 
+				vSlice.indexOf(subSlices.get(j).getFirst()), 
+				adjList, t);
 		
 		LinkedList<V> nbeforevjCOPY = clone.deepClone(nbeforevj);
 		
 		//Nl(vj+1)
-		LinkedList<V> nbeforevjplus1 = nBeforeIndex(v, j+1, adjList, t);
+		LinkedList<V> nbeforevjplus1 = nBeforeIndex(subSlices.get(j+1).getFirst(), 
+				vSlice.indexOf(subSlices.get(j+1).getFirst()), 
+				adjList, t);
 		
 		
 		
 		//SA(V)
-		Set<V> nUnionSlice = nUnionSlice(v, slice(v, t, adjList), adjList);
+		Set<V> nUnionSlice = nINTERSECTSlice(v, vSlice, adjList);
 		
 		//(Nl(vj) \ Nl(vj+1))
 		nbeforevj.removeAll(nbeforevjplus1);
@@ -435,6 +465,29 @@ public class cographSearch<V>  extends LBFS<V>
 			rtn.add(t.get(j));
 			return rtn;
 		}
+	}
+	
+	LinkedList<LinkedList<V>> nonNeighbourSubSlices(V v, ArrayList<V> t, HashMap<V, LinkedList<V>> map)
+	{
+		LinkedList<LinkedList<V>> rtn = new LinkedList<LinkedList<V>>();
+		
+		//get slice to work with
+		LinkedList<V>  slice = slice(v, t, map);
+		
+		//remove neighbours of v and v from slice
+		slice.removeFirst();
+		slice.removeAll(map.get(v));
+		
+		//the rest of vertices in slice are non-neighbours of v and form their own subslices
+		while (!slice.isEmpty())
+		{
+			//add the subslice into rtn
+			LinkedList<V> subSlice = slice(slice.getFirst(), t, map);
+			slice.removeAll(subSlice);
+			rtn.addLast(subSlice);
+		}
+		
+		return rtn;
 	}
 	
 }
