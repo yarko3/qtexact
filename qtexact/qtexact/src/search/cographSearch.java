@@ -446,15 +446,15 @@ public class cographSearch<V>  extends LBFS<V>
 			rtn.add(v);
 			rtn.add(w);
 			rtn.add(y);
-			rtn.add(t.get(j+1));
+			rtn.add(subSlices.get(j+1).getFirst());
 			return rtn;
 		}
 		else if (g.isNeighbor(w, y))
 		{
-			rtn.add(t.get(j));
+			rtn.add(subSlices.get(j).getFirst());
 			rtn.add(w);
 			rtn.add(y);
-			rtn.add(t.get(j+1));
+			rtn.add(subSlices.get(j+1).getFirst());
 			return rtn;
 		}
 		else
@@ -462,7 +462,7 @@ public class cographSearch<V>  extends LBFS<V>
 			rtn.add(y);
 			rtn.add(v);
 			rtn.add(w);
-			rtn.add(t.get(j));
+			rtn.add(subSlices.get(j).getFirst());
 			return rtn;
 		}
 	}

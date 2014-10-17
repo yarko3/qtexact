@@ -1200,8 +1200,18 @@ public class fun<V> extends JApplet {
 	
 	private static void cographTest()
 	{
-		Graph<Character, Pair<Character>> g = new UndirectedSparseGraph<Character, Pair<Character>>();
 		
+		Graph<Integer, Pair<Integer>> g = new UndirectedSparseGraph<Integer, Pair<Integer>>(); // = gen.houseStruct();
+		
+		g.addEdge(new Pair<Integer>(0, 1), 0, 1);
+		g.addEdge(new Pair<Integer>(2, 1), 2, 1);
+		//g.addEdge(new Pair<Integer>(2, 3), 2, 3);
+		g.addEdge(new Pair<Integer>(0, 3), 0, 3);
+		
+		
+//		Graph<Character, Pair<Character>> g = new UndirectedSparseGraph<Character, Pair<Character>>();
+//		
+//		
 //		g.addEdge(new Pair<Character>('b', 'd'), 'b', 'd');
 //		g.addEdge(new Pair<Character>('b', 'u'), 'b', 'u');
 //		g.addEdge(new Pair<Character>('b', 'v'), 'b', 'v');
@@ -1237,37 +1247,38 @@ public class fun<V> extends JApplet {
 //		g.addEdge(new Pair<Character>('e', 'w'), 'e', 'w');
 //		g.addEdge(new Pair<Character>('e', 'y'), 'e', 'y');
 //		g.addEdge(new Pair<Character>('e', 'j'), 'e', 'j');
-		
-		
-		
-		g.addEdge(new Pair<Character>('a', 'b'), 'a', 'b');
-		g.addEdge(new Pair<Character>('b', 'c'), 'b', 'c');
-		g.addEdge(new Pair<Character>('c', 'd'), 'c', 'd');
-		g.addEdge(new Pair<Character>('a', 'g'), 'a', 'g');
-		
-		
-		
-		//g = gen.randomQT(30);
-		
-		
-		cographSearch<Character> search = new cographSearch<Character>();
-		
-		ArrayList<Character> list = new ArrayList<Character>();
 //		
-//		list.add('X');
-//		list.add('d');
-//		list.add('y');
-//		list.add('u');
-//		list.add('e');
-//		list.add('v');
-//		list.add('w');
-//		list.add('c');
-//		list.add('a');
-//		list.add('Z');
-//		list.add('b');
 //		
-//		search.search(g, list);
-		
+//		
+////		g.addEdge(new Pair<Character>('a', 'b'), 'a', 'b');
+////		g.addEdge(new Pair<Character>('b', 'c'), 'b', 'c');
+////		g.addEdge(new Pair<Character>('c', 'd'), 'c', 'd');
+////		g.addEdge(new Pair<Character>('a', 'g'), 'a', 'g');
+//		
+//		
+//		
+//		//g = gen.randomQT(30);
+//		
+//		
+//		cographSearch<Character> search = new cographSearch<Character>();
+//		
+//		ArrayList<Character> list = new ArrayList<Character>();
+////		
+////		list.add('X');
+////		list.add('d');
+////		list.add('y');
+////		list.add('u');
+////		list.add('e');
+////		list.add('v');
+////		list.add('w');
+////		list.add('c');
+////		list.add('a');
+////		list.add('Z');
+////		list.add('b');
+////		
+////		search.search(g, list);
+//		
+		cographSearch<Integer> search = new cographSearch<Integer>();
 		
 		System.out.println(search.search(g).getCertificate());
 		
