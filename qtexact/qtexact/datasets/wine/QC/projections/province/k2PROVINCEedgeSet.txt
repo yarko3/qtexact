@@ -1,0 +1,5 @@
+http://www.orpailleur.ca http://www.vignobleriviereduchene.ca 1 0
+http://www.orpailleur.ca http://www.vindeglace.com 1 0
+http://www.cepdargent.com http://www.orpailleur.ca 1 0
+http://www.cepdargent.com http://www.vignobleriviereduchene.ca 1 0
+http://www.vignobleriviereduchene.ca http://www.vergerlacroix.ca 1 0

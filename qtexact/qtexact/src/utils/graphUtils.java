@@ -357,5 +357,74 @@ public class graphUtils<V>
 		
 	}
 	
+	public static Graph<String, Pair<String>> graphFromFile(
+			String filename) 
+	{
+		
+		Graph<String, Pair<String>> graph = new UndirectedSparseGraph<String, Pair<String>>();
+		FileReader file = null;
+		try {
+			file = new FileReader(filename);
+		} catch (FileNotFoundException e) {
+			System.out.println("File " + filename + " could not be found.");
+			e.printStackTrace();
+		}
+
+		Scanner scan = new Scanner(file);
+
+		while (scan.hasNext()) {
+			
+			
+			String a = scan.next();
+			
+			
+			//for .tgf edge sets
+			if (a.equals("#"))
+			{
+				continue;
+			}
+			
+			String b = scan.next();
+			
+			
+			graph.addEdge(new Pair<String>(a, b), a, b);
+			
+		}
+		try {
+			scan.close();
+			file.close();
+		} catch (IOException e) {
+			System.out.println("File " + filename + " could not be found.");
+			e.printStackTrace();
+		}
+		
+		return graph;
+	}
+	
+	public void printEdgeSet(Graph<V, Pair<V>> g, String filename)
+	{
+		
+		//print network to file
+		PrintWriter writer = null;
+		try {
+			writer = new PrintWriter(filename, "UTF-8");
+		} catch (FileNotFoundException | UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		for (Pair<V> e :g.getEdges())
+		{
+			
+			writer.println(e.getFirst() + "\t" + e.getSecond());
+			
+		}
+		
+		
+		writer.close();
+		
+		
+	}
+	
 
 }

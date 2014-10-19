@@ -175,3 +175,14 @@ http://www.workinghorsewinery.com	49.85424	-119.929488
 http://www.aceswine.com	50.366689	-119.350102
 http://www.castorodeoro.com	49.09637	-119.562622
 http://www.mtlehmanwinery.com	49.094997	-122.381986
+http://www.honeymoonbaywinery.com	48.816429	-124.174012
+http://www.kitswine.com	49.268375	-123.156475
+http://www.lakevalleywines.com	49.880078	-119.56116
+http://www.misconductwineco.com	49.507326	-119.565275
+http://www.neckofthewoods.ca	49.05655	-122.581721
+http://www.riversbendwinery.com	49.098856	-122.7912
+http://www.sanduzwines.com	49.155479	-123.122546
+http://www.tangledvineswinery.com	49.321793	-119.555616
+http://www.willowhillwines.com	49.182326	-119.550428
+http://www.22oakswinery.ca	48.802374	-123.677195
+http://www.quaywine.com	49.199089	-122.913386

@@ -1,0 +1,1164 @@
+http://www3.sympatico.ca	Pyndus & Associates Ltd	1813 Woodhaven Heights St, Orleans, ON, Canada	accounting, finance, establishment	45.46081	-75.500565
+http://www.cardinalgolfclub.com	Cardinal Golf Club	2740 Davis Dr W, King, ON, Canada	amusement_park, establishment	44.035159	-79.568738
+http://www.i0.wp.com	Maaluwa.com	Maaluwa.com, Diyatha Uyana, Sri Jayawardenepura Kotte 10120, Sri Lanka	aquarium, point_of_interest, establishment	6.90373	79.9112302
+http://www.andrewcsafordi.com	Andrew Csafordi Studio Gallery	Wilson Rd, Bloomfield, ON, Canada	art_gallery, establishment	44.018835	-77.291157
+http://www.gibsonartgallery.com	Gibson Gallery	140 Richmond St, Amherstburg, ON, Canada	art_gallery, establishment	42.103422	-83.108359
+http://www.pinterest.com	Joseph K. Levene Fine Art, Ltd.	25 Central Park West, New York, NY, United States	art_gallery, establishment	40.770279	-73.980478
+http://www.leamingtonartscentre.com	Leamington Art Gallery	Leamington, ON, Canada	art_gallery, establishment	42.069744	-82.604435
+http://www.maddoggallery.ca	Mad Dog Gallery	525 County Road 11, Picton, ON, Canada	art_gallery, establishment	43.940703	-77.188169
+http://www.oenogallery.com	Oeno Gallery	2274 Prince Edward 1, Bloomfield, ON, Canada	art_gallery, establishment	44.015426	-77.289773
+http://www.blogger.com	Sandwichería De Rocha	Av Dardo Rocha 181, Bernal, Buenos Aires Province, Argentina	bakery, pharmacy, store, health, food, establishment	-34.719937	-58.2897
+http://www.woodlotrestaurant.com	Woodlot	293 Palmerston Ave, Toronto, ON, Canada	bakery, store, bar, restaurant, food, establishment	43.655668	-79.409878
+http://www.delaterre.ca	De La Terre	3451 King St, Lincoln, ON, Canada	bakery, store, cafe, food, establishment	43.152117	-79.395716
+http://www.oliveetgourmando.com	Olive et Gourmando	351 Rue Saint Paul Ouest, Montreal, QC, Canada	bakery, store, cafe, food, establishment	45.501205	-73.556442
+http://www.deliciaecakes.com	Deliciae Patisserie	1st Floor, Haiko Place, Hiranandani Gardens, Powai, Mumbai, Maharashtra, India	bakery, store, food, establishment	19.118859	72.906673
+http://www.lakesidebakery.com	Lakeside Bakery Deli Cafe	286 Erie St S, Leamington, ON, Canada	bakery, store, food, establishment	42.036694	-82.600637
+http://www.whittyfarms.ca	Whitty Farms	1655 Fourth Ave, St Catharines, ON, Canada	bakery, store, food, establishment	43.154666	-79.305496
+http://www.archive909.com	Archive	909 Dundas St W, Toronto, ON, Canada	bar, establishment	43.651099	-79.411674
+http://www.cestwhat.ca	C'est What	67 Front St E, Toronto, ON, Canada	bar, establishment	43.648469	-79.373402
+http://www.hawkerbar.com	Hawker Bar	164 Ossington Ave, Toronto, ON, Canada	bar, establishment	43.64792	-79.420444
+http://www.hawkerbar.ca	Hawker Bar	164 Ossington Ave, Toronto, ON, Canada	bar, establishment	43.64792	-79.420444
+http://www.ritzcarlton.com	Lumen - The Ritz-Carlton, Atlanta	181 Peachtree St NE, Atlanta, GA, United States	bar, establishment	33.758591	-84.387114
+http://www.theblackhoof.com	Rhum Corner	926 Dundas St W, Toronto, ON, Canada	bar, establishment	43.650972	-79.413184
+http://www.thedampub.ca	The Dam Pub	53 Bruce St S, Thornbury, ON, Canada	bar, establishment	44.560505	-80.454348
+http://www.thehuronclub.ca	The Huron Club	94 Pine St, Collingwood, ON, Canada	bar, establishment	44.500692	-80.218368
+http://www.theloosemoose.ca	The Loose Moose	146 Front St W, Toronto, ON, Canada	bar, establishment	43.645068	-79.384099
+http://www.theoxley.com	The Queen & Beaver Public House	35 Elm St, Toronto, ON, Canada	bar, establishment	43.65743	-79.383328
+http://www.treasureislandmarina.com	Treasure Island Marina	1753 Kingston 2, Kingston, ON, Canada	bar, establishment	44.266653	-76.373151
+http://www.thewellingtongastropub.com	Wellington Gastropub (The)	1325 Wellington St W, Ottawa, ON, Canada	bar, establishment	45.398821	-75.736927
+http://www.magnumwineandspirits.com	Magnum's Cigar Wine and Spirits	Magnum's Cigar Wine and Spirits, 731 E Union Hills Dr, Phoenix, AZ 85024, USA	bar, point_of_interest, establishment	33.6536577	-112.0650779
+http://www.10fourteenbar.com	10Fourteen	1014 Wellington St W, Ottawa, ON, Canada	bar, restaurant, food, establishment	45.404593	-75.723838
+http://www.actinoliterestaurant.com	Actinolite Restaurant	971 Ossington Ave, Toronto, ON, Canada	bar, restaurant, food, establishment	43.667836	-79.427959
+http://www.allens.to	Allen & Associates	143 Danforth Ave, Toronto, ON, Canada	bar, restaurant, food, establishment	43.676377	-79.3573
+http://www.alphornrestaurant.com	Alphorn Restaurant The	Ontario 26, Collingwood, ON, Canada	bar, restaurant, food, establishment	44.501287	-80.233275
+http://www.amsterdambeer.com	Amsterdam Brewing Company	45 Esandar Dr, Toronto, ON, Canada	bar, restaurant, food, establishment	43.70661	-79.35681
+http://www.atelierrestaurant.ca	Atelier Inc	540 Rochester St, Ottawa, ON, Canada	bar, restaurant, food, establishment	45.399573	-75.706426
+http://www.barisabel.com	Bar Isabel	797 College St, Toronto, ON, Canada	bar, restaurant, food, establishment	43.654678	-79.420818
+http://www.barmercurio.com	Bar Mercurio	270 Bloor St W, Toronto, ON, Canada	bar, restaurant, food, establishment	43.66752	-79.400418
+http://www.thebeaconsfield.com	Beaconsfield	1154 Queen St W, Toronto, ON, Canada	bar, restaurant, food, establishment	43.643016	-79.424932
+http://www.bluebirdcafeandgrill.com	Bluebird Café & Grill	100 Broadway, Orangeville, ON, Canada	bar, restaurant, food, establishment	43.919757	-80.094709
+http://www.brucewinebar.ca	Bruce Wine Bar	8 Bruce St S, Thornbury, ON, Canada	bar, restaurant, food, establishment	44.56172	-80.453235
+http://www.caribourestaurant.com	Caribou Restaurant & Wine Bar	727 Hewitson St, Thunder Bay, ON, Canada	bar, restaurant, food, establishment	48.404929	-89.256632
+http://www.cellarrestaurant.com	Cellar	78 Main St S, Halton Hills, ON, Canada	bar, restaurant, food, establishment	43.649452	-79.926281
+http://www.thechateaurestaurant.co.uk	Chateau	Coombe Ln, Croydon, Surrey, United Kingdom	bar, restaurant, food, establishment	51.36249	-0.067351
+http://www.crushwinebar.com	Crush Wine Bar	455 King St W, Toronto, ON, Canada	bar, restaurant, food, establishment	43.645094	-79.396048
+http://www.danisbistro.com	Dani's Bistro & VQA Wine Bar	174 St Paul Street East, St Catharines, ON, Canada	bar, restaurant, food, establishment	43.157678	-79.244313
+http://www.dimmibar.com	Dimmi Trattoria And Bar Inc	140 Cumberland St, Toronto, ON, Canada	bar, restaurant, food, establishment	43.669987	-79.392813
+http://www.billysbestbottles.com	Down the Street Bar & Restaurant	30 Ontario St, Stratford, ON, Canada	bar, restaurant, food, establishment	43.371582	-80.98353
+http://www.farmhousetavern.tumblr.com 	FARMHOUSE tavern	1627 Dupont St, Toronto, ON, Canada	bar, restaurant, food, establishment	43.664841	-79.4554
+http://www.farmhousetavern.tumblr.com	FARMHOUSE tavern	1627 Dupont St, Toronto, ON, Canada	bar, restaurant, food, establishment	43.664841	-79.4554
+http://www.opentable.com	Fleming's Prime Steakhouse & Wine Bar	25 E Ohio St, Chicago, IL, United States	bar, restaurant, food, establishment	41.892253	-87.627082
+http://www.frescoseurogrille.ca	Fresco's Restaurant & Bar	100 4th Avenue, St Catharines, ON, Canada	bar, restaurant, food, establishment	43.155068	-79.264625
+http://www.gatorteds.com	Gator Ted's Tap & Grill	1505 Guelph Line, Burlington, ON, Canada	bar, restaurant, food, establishment	43.364385	-79.819343
+http://www.glowfreshgrill.ca	Glow Fresh Grill & Wine Bar	7 Marie Labatte Rd, Toronto, ON, Canada	bar, restaurant, food, establishment	43.734068	-79.34553
+http://www.grecos.ca	Grecos	167 Princess St, Kingston, ON, Canada	bar, restaurant, food, establishment	44.232002	-76.484644
+http://www.grillonking.ca	Grill On King	233 King St, Niagara-on-the-Lake, ON, Canada	bar, restaurant, food, establishment	43.254192	-79.071562
+http://www.jacksdining.com	Jacks	31 Division St S, Kingsville, ON, Canada	bar, restaurant, food, establishment	42.036704	-82.739607
+http://www.jacksgastropub.com	Jacks	31 Division St S, Kingsville, ON, Canada	bar, restaurant, food, establishment	42.036704	-82.739607
+http://www.jacobssteakhouse.com	Jacobs & Co Steakhouse	12 Brant St, Toronto, ON, Canada	bar, restaurant, food, establishment	43.645476	-79.397976
+http://www.johnnyfarina.com	Johnny Farina Restaurant	216 Elgin St, Ottawa, ON, Canada	bar, restaurant, food, establishment	45.41903	-75.691501
+http://www.juniperdining.ca	Juniper Kitchen & Wine Bar, Ottawa restaurant	245 Richmond Rd, Ottawa, ON, Canada	bar, restaurant, food, establishment	45.394043	-75.749795
+http://www.kijapanese.com	KI MODERN JAPANESE + BAR	181 Bay St, Toronto, ON, Canada	bar, restaurant, food, establishment	43.647239	-79.379417
+http://www.kiwicambridge.com	Kiwi	47 Dickson St, Cambridge, ON, Canada	bar, restaurant, food, establishment	43.359778	-80.312597
+http://www.joebeef.ca	Liverpool House	2501 Notre-Dame St W, Montreal, QC, Canada	bar, restaurant, food, establishment	45.48298	-73.575451
+http://www.lolitasrestaurant.ca	Lolita's Restaurant & Bar	513 Danforth Ave, Toronto, ON, Canada	bar, restaurant, food, establishment	43.678052	-79.348662
+http://www.themiller.ca	Miller Tavern	3885 Yonge St, Toronto, ON, Canada	bar, restaurant, food, establishment	43.740785	-79.405729
+http://www.momofuku.com	momofuku ssäm bar	207 2nd Ave, New York, NY, United States	bar, restaurant, food, establishment	40.73177	-73.985958
+http://www.mongoliangrill.com	Mongolian Grill	13780 NE 175th St #108, Woodinville, WA, United States	bar, restaurant, food, establishment	47.754667	-122.155605
+http://www.mustwinebar.ca	Must	41 William St, Ottawa, ON, Canada	bar, restaurant, food, establishment	45.427885	-75.692174
+http://www.notabenerestaurant.com	Nota Bene Restaurant	180 Queen St W, Toronto, ON, Canada	bar, restaurant, food, establishment	43.650762	-79.388149
+http://www.ogradysoncollege.com	O'Grady's Tap & Grill on College	171 College St, Toronto, ON, Canada	bar, restaurant, food, establishment	43.659126	-79.393775
+http://www.goo.gl	offer make??????	No. 26, ???150?, Xitun District, Taichung City, Taiwan	bar, restaurant, food, establishment	24.183115	120.646803
+http://www.thepilothouse.ca	Pilot House	70 Grafton St, Charlottetown, PE, Canada	bar, restaurant, food, establishment	46.233936	-63.128701
+http://www.plankrestobar.ca	Plank Restobar	67 Bronte Rd, Oakville, ON, Canada	bar, restaurant, food, establishment	43.394025	-79.711057
+http://www.politica.ca	Politica Resto Bar	127 Strachan Ave, Toronto, ON, Canada	bar, restaurant, food, establishment	43.643249	-79.412248
+http://www.restaurantcommunion.com	Restaurant + Bar Communion	135 Rue de la Commune Ouest, Montreal, QC, Canada	bar, restaurant, food, establishment	45.503644	-73.554159
+http://www.sarcoa.ca	Sarcoa Restaurant and Bar	57 Discovery Dr, Hamilton, ON, Canada	bar, restaurant, food, establishment	43.277072	-79.858777
+http://www.shortysonline.com	Shorty's Classic Grill	967 3rd Ave E, Owen Sound, ON, Canada	bar, restaurant, food, establishment	44.567458	-80.940782
+http://www.sidedoorrestaurant.com	Sidedoor Contemporary Kitchen & Bar	18 York St, Ottawa, ON, Canada	bar, restaurant, food, establishment	45.427498	-75.694154
+http://www.skinandbonesto.com	Skin + Bones	980 Queen St E, Toronto, ON, Canada	bar, restaurant, food, establishment	43.661286	-79.339667
+http://www.splendido.ca	Splendido Bar & Grill	88 Harbord St, Toronto, ON, Canada	bar, restaurant, food, establishment	43.662975	-79.402945
+http://www.spuntini.ca	Spuntini Restaurant & Bar	116 Avenue Rd, Toronto, ON, Canada	bar, restaurant, food, establishment	43.673679	-79.396298
+http://www.stonehillgrille.com	StoneHill Grille & Taps	3904 Victoria Ave, Vineland, ON, Canada	bar, restaurant, food, establishment	43.15142	-79.39296
+http://www.table17.ca	Table 17	782 Queen St E, Toronto, ON, Canada	bar, restaurant, food, establishment	43.659552	-79.347285
+http://www.taylorsgenuine.ca	Taylor's Genuine Food And Wine Bar	1091 Bank St, Ottawa, ON, Canada	bar, restaurant, food, establishment	45.394103	-75.683154
+http://www.theacousticgrill.com	The Acoustic Grill	172 Picton Main St, Prince Edward, ON, Canada	bar, restaurant, food, establishment	44.006392	-77.142984
+http://www.thewhippoorwill.com	The Whippoorwill Restaurant & Tavern	1285 Bloor St W, Toronto, ON, Canada	bar, restaurant, food, establishment	43.658319	-79.442506
+http://www.turflounge.com	Turf Lounge	330 Bay St, Toronto, ON, Canada	bar, restaurant, food, establishment	43.650108	-79.380984
+http://www.verticalrestaurant.ca	Vertical	100 King St W, Toronto, ON, Canada	bar, restaurant, food, establishment	43.648582	-79.381053
+http://www.9church.com	Wine Bar	9 Church St, Toronto, ON, Canada	bar, restaurant, food, establishment	43.647855	-79.373285
+http://www.kettlecreekinn.com	Kettle Creek Inn & Restaurant	216 Joseph St, Port Stanley, ON, Canada	bar, restaurant, lodging, food, establishment	42.66584	-81.211663
+http://www.theoceansandshotel.ie	Ocean Sands Hotel	Main St, Enniscrone, Sligo, Ireland	bar, restaurant, lodging, food, establishment	54.212596	-9.094095
+http://www.woodlawninn.com	The Woodlawn Inn	420 Division St, Cobourg, ON, Canada	bar, restaurant, lodging, food, establishment	43.964871	-78.167044
+http://www.beautyworksdayspa.com	Beauty Works Day Spa	615 Sidney St, Belleville, ON, Canada	beauty_salon, hair_care, establishment	44.181054	-77.407723
+http://www.pictonbookstore.com	Books And Company Ltd	289 Picton Main St, Picton, ON, Canada	book_store, store, establishment	44.00848	-77.139579
+http://www.dukeofmarysburgh.com	The Duke Of Marysburgh Pub	2470 County Road 8, Prince Edward, ON, Canada	cafe, bar, food, establishment	44.00188	-76.999952
+http://www.themillcafe.com	Mill Cafe The	12 Bridge St, Thornbury, ON, Canada	cafe, bar, restaurant, food, establishment	44.561696	-80.452025
+http://www.cafebelong.ca	Cafe Belong	550 Bayview Avenue, Toronto, ON, Canada	cafe, food, establishment	43.684503	-79.365953
+http://www.cafedomestique.com	Domestique-Café Cyclo Sportif	12 Miller's Ln, Dundas, ON, Canada	cafe, food, establishment	43.265689	-79.956107
+http://www.partywithus.ca	Sarah's Café & Bar	1426 Danforth Ave, Toronto, ON, Canada	cafe, food, establishment	43.682741	-79.326998
+http://www.rockyraccooncafe.com	Rocky Raccoon Cafe	Rocky Raccoon Cafe, 941 2nd Ave E, Owen Sound, ON N4K 1S3, Canada	cafe, food, point_of_interest, establishment	44.5666522	-80.9428505
+http://www.frasercafe.ca	Fraser Cafe	7 Springfield Rd, Ottawa, ON, Canada	cafe, restaurant, food, establishment	45.440201	-75.676319
+http://www.groundedkitchencoffee.com	Grounded Kitchen and CoffeeHouse	100 Gloucester St, Ottawa, ON, Canada	cafe, restaurant, food, establishment	45.418946	-75.6959
+http://www.epicurean.ca	The Epicurean	84 Queen St, Niagara-on-the-Lake, ON, Canada	cafe, restaurant, food, establishment	43.255937	-79.072873
+http://www.costco.ca	Costco Wholesale Canada Ltd	605 Expo Boulevard, Vancouver, BC, Canada	car_repair, department_store, store, establishment	49.278601	-123.109832
+http://www.globaltvbc.com	Campagna Auto Services Ltd	1616 Renfrew St, Vancouver, BC, Canada	car_repair, establishment	49.270244	-123.044101
+http://www.hfmgv.org	Roy Nacewicz Enterprises Ltd	12555 Fessner Rd, Carleton, MI, United States	car_repair, establishment	42.057952	-83.370606
+http://www.caesarswindsor.com	Caesars Windsor	377 Riverside Dr E, Windsor, ON, Canada	casino, establishment	42.320119	-83.034292
+http://www.casinoniagara.com	Casino Niagara	5705 Falls Avenue, Niagara Falls, ON, Canada	casino, establishment	43.091537	-79.071895
+http://www.wordpress.com	REVISTA CATOLICISMO - ESTEJA ATUALIZADO	REVISTA CATOLICISMO - ESTEJA ATUALIZADO - R. Dom Meinrado, 374 - Jardim Monjôlo, SP - São Paulo, 02961-140, Brazil	church, place_of_worship, point_of_interest, establishment	-23.4935529	-46.6999722
+http://www.centralcounties.ca	Aurora Town Hall	100 John W Way, Aurora, ON, Canada	city_hall, local_government_office, locality, political, establishment	44.006468	-79.450923
+http://www.portcolborne.ca	City Of Pt Colborne	66 Charlotte St, Port Colborne, ON, Canada	city_hall, local_government_office, locality, political, establishment	42.884999	-79.251965
+http://www.citywindsor.ca	Windsor City Hall	400 City Hall Sq E, Windsor, ON, Canada	city_hall, local_government_office, locality, political, establishment	42.3175	-83.035
+http://www.angelinesrestaurantinn.com	Angeline's Inn and The Hubb Eatery	433 Bloomfield Main St, Prince Edward, ON, Canada	clothing_store, store, bar, restaurant, lodging, food, establishment	43.985995	-77.237368
+http://www.angelines.ca	Angeline's Inn and The Hubb Eatery	433 Bloomfield Main St, Prince Edward, ON, Canada	clothing_store, store, bar, restaurant, lodging, food, establishment	43.985995	-77.237368
+http://www.mailchimp.com	Amplifier	800 Interchange Blvd #102, Austin, TX, United States	clothing_store, store, establishment	30.251598	-97.686632
+http://www.anavets.ca	Army Navy & Airforce Veterans	187 Front St, Belleville, ON, Canada	clothing_store, store, establishment	44.163244	-77.383885
+http://www.ft.com	F T Com	Av. Pereira Teixeira, 210, Barbacena - MG, Brasil	clothing_store, store, establishment	-21.221386	-43.774426
+http://www.bit.ly	?Couple Beauty	Beverley Commercial Centre, 87-105 Chatham Rd S, Hong Kong	clothing_store, store, establishment	22.301405	114.175892
+http://www.harbourhousehotel.ca	Harbour House Hotel	85 Melville St, Niagara-on-the-Lake, ON, Canada	clothing_store, store, lodging, establishment	43.255088	-79.064687
+http://www.foursquare.com	Lüleburgaz Kayali Petrol	Dere Mahallesi, Edirne Caddesi, No:4, Lüleburgaz, (Kapali Spor Salonu karsisi), Kirklareli, Turkey	convenience_store, food, store, car_wash, car_repair, gas_station, establishment	41.408456	27.343747
+http://www.en.wikipedia.org	Dr. Neil A. Ahner, MD	10333 N Military Trail, Palm Beach Gardens, FL, United States	doctor, health, establishment	26.827273	-80.105897
+http://www.saugeenshores.ca	Saugeen Shores Medical Building	36 Grey St N, Southampton, ON, Canada	doctor, health, establishment	44.494381	-81.364768
+http://www.adobe.com	Adobe Systems Inc	801 N 34th St, Seattle, WA, United States	electronics_store, store, establishment	47.648218	-122.34902
+http://www.tinyurl.com	Sonos Inc	25 First St #300, Cambridge, MA, United States	electronics_store, store, establishment	42.369678	-71.077744
+http://www.cig-jp.com	(?)?????????????	???? 2F, 4 Chome-2-6 Tanimachi, OsakaChuo Ward, Osaka Prefecture, Japan	establishment	34.680643	135.518155
+http://www.onepercentfortheplanet.org	1% for the Planet	45 Bridge St, Waitsfield, VT, United States	establishment	44.189801	-72.823617
+http://www.kingstonshows.com	2020 Show Productions Inc	1397 Traditional Tr, Belle River, ON, Canada	establishment	42.290844	-82.742129
+http://www.indies.ca	4 by 5 Studios and Imaging	16 Woodrush Ave, Welland, ON, Canada	establishment	43.016316	-79.275861
+http://www.networkadvertising.org	4INFO	155 Bovet Rd, San Mateo, CA, United States	establishment	37.549727	-122.31667
+http://www.905it.com	905 Information Technology (905IT)	13 Wanda Rd, St Catharines, ON, Canada	establishment	43.13223	-79.204682
+http://www.amsoundsdj.com	A&M Sounds Disc Jockey Service	St Thomas, ON, Canada	establishment	42.776385	-81.08617
+http://www.plus.google.com	Adana Stor ve Zebra Perde Tamir, Montaj Servisi	Süleyman Demirel Blv, Adana, Turkey	establishment	37.054374	35.28839
+http://www.addthis.com	AddThis	1595 Spring Hill Rd #300, Vienna, VA, United States	establishment	38.926172	-77.245195
+http://www.equiterre.org	Agence de l'efficacité énergétique	5700 4e Av Ouest, Quebec City, QC, Canada	establishment	46.847035	-71.26349
+http://www.ontariocoachway.com	Airport Shuttle Services by Ontario Coachway	97 Church St S, Belleville, ON, Canada	establishment	44.159985	-77.379009
+http://www.albanyclub.ca	Albany Club	91 King St E, Toronto, ON, Canada	establishment	43.6497	-79.374954
+http://www.allrecipes.com	ALLRECIPES.COM	413 Pine St, Seattle, WA, United States	establishment	47.611196	-122.33663
+http://www.allstreamcentre.com	Allstream Centre	105 Princes' Blvd, Toronto, ON, Canada	establishment	43.63417	-79.410736
+http://www.angusglen.com	Angus Glen Golf Club	10080 Kennedy Rd, Markham, ON, Canada	establishment	43.902188	-79.325004
+http://www.geocities.com	Architected Solutions Inc	Stateline, NV, United States	establishment	38.962408	-119.939903
+http://www.zhibit.org	Art School	210 Main St, Fort Lee, NJ, United States	establishment	40.851025	-73.970441
+http://www.python.org	Atbrox AS	Abels gate 5, Trondheim, Norway	establishment	63.415988	10.39537
+http://www.aucklandweddingphotography.com	Auckland Wedding Photography	30 Holmes Dr S, Massey, Auckland, New Zealand	establishment	-36.82995	174.619378
+http://www.barcovangolf.com	Barcovan Golf Club	1412 County Road 64, Carrying Place, ON, Canada	establishment	44.037327	-77.656694
+http://www.secure.campaigner.com	Bark Technologies Inc	30300 Bruce Industrial Pkwy, Solon, OH, United States	establishment	41.376878	-81.465994
+http://www.bayshorebroadcasting.ca	Bayshore Broadcasting Corporation	270 9th St E, Owen Sound, ON, Canada	establishment	44.565937	-80.941453
+http://www.bellevilleclub.com	Belleville Club Ltd	210 Pinnacle St, Belleville, ON, Canada	establishment	44.164964	-77.383007
+http://www.vinitaly.com	Best Logistics Srl	61 Via Sommacampagna, Verona, VR 37137, Italia	establishment	45.41786	10.92747
+http://www.bizbash.com	Biz Bash Toronto	1 Thorncliffe Park Dr, East York, ON, Canada	establishment	43.70543	-79.351441
+http://www.blacktrike.com	Black Trike - Business Optimization	126 Hurontario St #204, Collingwood, ON, Canada	establishment	44.499306	-80.216451
+http://www.boston.com	Boston.Com	135 William T Morrissey Blvd, Boston, MA, United States	establishment	42.315845	-71.048642
+http://www.royalfair.org	Bracebridge Agricultural Society	331 Fraserburg Rd, Bracebridge, ON, Canada	establishment	45.033913	-79.298527
+http://www.shelleymcvittie.com	Branching Out Artistree	4509 Colonel Talbot Rd, London, ON, Canada	establishment	42.90384	-81.297314
+http://www.tpsgc-pwgsc.gc.ca	Breitkreuz Garry MP	19 1 Ave N, Yorkton, SK, Canada	establishment	51.210952	-102.462669
+http://www.brentporter.ca	Brent Porter Design	14 Henrietta St, St Catharines, ON, Canada	establishment	43.150923	-79.248968
+http://www.puddicombecider.com	Brent Porter Design	14 Henrietta St, St Catharines, ON, Canada	establishment	43.150923	-79.248968
+http://www.brocku.ca	Brock University	1842 King St E, Hamilton, ON, Canada	establishment	43.232094	-79.810172
+http://www.brockvilletourism.com	Brockville Tourism Office	10 Market St W, Brockville, ON, Canada	establishment	44.589569	-75.682366
+http://www.brookstreet.ca	Brookstreet Hotel	525 Legget Dr, Ottawa, ON, Canada	establishment	45.348046	-75.917545
+http://www.buckhorncanada.ca	Buckhorn District Tourist Association	1993 Regional Road 37, Buckhorn, ON, Canada	establishment	44.556702	-78.349685
+http://www.bullfrogpower.com	Bullfrog Power Inc.	366 Adelaide St W #701, Toronto, ON, Canada	establishment	43.646932	-79.395348
+http://www.1cmp.com	Burlington Wedding Photographers - Captured Memories PhotoVideo	4100 Bianca Forest Dr, Burlington, ON, Canada	establishment	43.377357	-79.795372
+http://www.caledonchamber.com	Caledon Chamber of Commerce	12500 50 Hwy, Caledon, ON, Canada	establishment	43.858201	-79.708676
+http://www.campgooddays.org	Camp Good Days & Special Times	1332 Pittsford Mendon Rd, Mendon, NY, United States	establishment	43.001691	-77.506736
+http://www.cbc.ca	Canadian Broadcasting Corporation	529 14th St NW # 500, Washington, DC, United States	establishment	38.897042	-77.030872
+http://www.cdss.ca	Canadian Down Syndrome Society	14 St NW, Calgary, AB, Canada	establishment	51.069087	-114.094651
+http://www.houseandhome.com	Canadian Home Publishers	511 King St W, Toronto, ON, Canada	establishment	43.644739	-79.397835
+http://www.theex.com	Canadian National Exhibition	210 Princes' Blvd, Toronto, ON, Canada	establishment	43.633056	-79.422608
+http://www.cpaws.org	Canadian Parks And Wilderness Society	250 City Centre Ave, Ottawa, ON, Canada	establishment	45.408982	-75.717892
+http://www.canadianvintners.com	Canadian Vintners Association	440 Laurier Ave W, Ottawa, ON, Canada	establishment	45.416738	-75.702989
+http://www.evasion.tv	Canal Evasion	6 Boulevard Desaulniers, Saint-Lambert, QC, Canada	establishment	45.503093	-73.513363
+http://www.canningperennials.com	Canning Perennials	Canning Rd, Paris, ON, Canada	establishment	43.191521	-80.468989
+http://www.canoefm.com	Canoe FM Radio	739 Mountain St, Dysart and Others, ON, Canada	establishment	45.046007	-78.50606
+http://www.top100golfcourses.co.uk	Carne Golf Links	Carne, Belmullet, Mayo, Ireland	establishment	54.223797	-10.033822
+http://www.carolinian.org	Carolinian Canada	1017 Western Rd, London, ON, Canada	establishment	42.996597	-81.274855
+http://www.catch22grill.com	Catch 22 Fresh Market Grill	962 Mosley St, Wasaga Beach, ON, Canada	establishment	44.497815	-80.044157
+http://www.cayennecreative.ca	Cayenne Creative	1343 Labrie Ave, Ottawa, ON, Canada	establishment	45.420502	-75.623183
+http://www.youtu.be	Centre Civic les Basses	Carrer del Teide, 20, Barcelona, Spain	establishment	41.430903	2.168688
+http://www2.macleans.ca	Century21 Real Estate Broker	103 Russell Court, Clarksburg, ON, Canada	establishment	44.551105	-80.463813
+http://www.pichonlongueville.com	Château Pichon Longueville Baron	D2, Pauillac, France	establishment	45.176168	-0.75236
+http://www.chch.com	CHCH	163 Jackson St W, Hamilton, ON, Canada	establishment	43.255595	-79.87726
+http://www.google.ca	Cheap SEO Services in Guntur	D-No: 4-22-53/A, Goutham Nagar 2nd Line,Koretipadu, Guntur, Andhra Pradesh, India	establishment	16.318093	80.432236
+http://www.checksite.ca	CheckSite Websites & SEO	81 Vine St S, St Catharines, ON, Canada	establishment	43.163423	-79.253498
+http://www.childrenshospitalsask.ca	Children's Hospital Foundation Of Saskatchewan	345 3 Ave S #1, Saskatoon, SK, Canada	establishment	52.12448	-106.664175
+http://www.chimpmybrand.com	Chimpanzee	275 Madison Ave, New York, NY, United States	establishment	40.751226	-73.979988
+http://www.collingwooddowntown.com	Chs Productions	Simcoe County Road 124, Collingwood, ON, Canada	establishment	44.483389	-80.213247
+http://www.thecigarchief.com	Cigar Chief	Airport Rd, Tyendinaga Mohawk Territory, ON, Canada	establishment	44.178749	-77.106503
+http://www.stcatharines.ca	City Of St Catharines	50 Church, St Catharines, ON, Canada	establishment	43.159413	-79.247121
+http://www.ckwstv.com	CKWS Television	170 Queen St, Kingston, ON, Canada	establishment	44.232957	-76.486104
+http://www.clarington-tourism.ca	Clarington Tourism	181 Liberty St S, Bowmanville, ON, Canada	establishment	43.898506	-78.674914
+http://www.agw.ca	Claude G Pearson Buses Ltd	395 Tecumseh Rd W, Windsor, ON, Canada	establishment	42.295526	-83.029417
+http://www.clossonchase.com	Closson Chase Vineyards Inc	629 Closson Road, Hillier, ON, Canada	establishment	43.999098	-77.39361
+http://www.clovermead.com	Clovermead Apiaries	11302 Imperial Rd, Aylmer, ON, Canada	establishment	42.802169	-80.981382
+http://www.cntower.ca	CN Tower	301 Front St W, Toronto, ON, Canada	establishment	43.642566	-79.387057
+http://www.cnn.com	CNN	6430 Sunset Blvd #300, Los Angeles, CA, United States	establishment	34.097726	-118.329931
+http://www.newswire.ca	CNW Group	99 Bank St, Ottawa, ON, Canada	establishment	45.420268	-75.700388
+http://www.colasanti.com	Colasanti's Tropical Gardens	1550 Road 3 E, Kingsville, ON, Canada	establishment	42.063601	-82.676556
+http://www.occ.on.ca	Comptroller of the Currency	1 Front St, San Francisco, CA, United States	establishment	37.792009	-122.398674
+http://www.inspection.gc.ca	Conception	392 Rte du Fleuve, Beaumont, QC, Canada	establishment	46.82973	-71.027068
+http://www.gravatar.com	Conseiller Habitat Sain	France	establishment	48.488781	-2.794373
+http://www.constantcontact.com	Constant Contact	85 2nd St #100, San Francisco, CA, United States	establishment	37.788266	-122.399828
+http://www.coppolas.ca	Coppola's Ristorante and Banquet Facility	203 Carlton St, St Catharines, ON, Canada	establishment	43.173581	-79.24669
+http://www.creditvalleygolf.com	Credit Valley Golf and Country Club	2500 Old Carriage Rd, Mississauga, ON, Canada	establishment	43.553503	-79.642866
+http://www.toronto.ctvnews.ca	CTV News	9 Channel Nine Ct, Scarborough, ON, Canada	establishment	43.78287	-79.256271
+http://www.ctvnews.ca	CTV News	9 Channel Nine Ct, Scarborough, ON, Canada	establishment	43.78287	-79.256271
+http://www.telegraph.co.uk	Daily Telegraph	111 Buckingham Palace Rd, London, United Kingdom	establishment	51.495095	-0.145557
+http://www.parl.gc.ca	Daryl Kramp, MP	1 Millennium Pkwy, Belleville, ON, Canada	establishment	44.190366	-77.412202
+http://www.davidfosterfoundation.com	David Foster Foundation	212 Henry St, Victoria, BC, Canada	establishment	48.432042	-123.383378
+http://www.visitwindsoressex.com	David Jacob Duke Graphic Design	4529 Tumbleweed Crescent, Windsor, ON, Canada	establishment	42.24248	-82.976331
+http://www.davidsuzuki.org	David Suzuki Foundation	2211 W 4th Ave #219, Vancouver, BC, Canada	establishment	49.268304	-123.155994
+http://www.unesco.org	Délégation Permanente de la Côte d'Ivoire Aupres de l'Unesco	1 Rue Miollis, Paris, France	establishment	48.84578	2.306146
+http://www.climate.gov	Department of Climate Change and Energy Efficiency	Phillip Law St, Canberra ACT, Australia	establishment	-35.284903	149.122935
+http://www.experiencedmg.com	Douglas Marketing Group	4960 Walker Rd #2, Windsor, ON, Canada	establishment	42.244337	-82.962525
+http://www.perfectring.ie	DPFOC Online Marketing Dublin	Q House, Furze Rd, Sandyford Industrial Estate, Dublin 18, Dublin, Ireland	establishment	53.27388	-6.215165
+http://www.dropbox.com	Dropbox Inc	185 Berry Street, 400, San Francisco, CA, United States	establishment	37.776534	-122.392107
+http://www.durhamtourism.ca	Durham Region Tourism	1615 Dundas St E, Whitby, ON, Canada	establishment	43.886667	-78.911387
+http://www.freewebs.com	DZNE inc www freewebs com dzne	13 Kemps Dr, London, United Kingdom	establishment	51.510507	-0.02274
+http://www.ecentricarts.com	ecentricarts inc.	317 Adelaide St W #300, Toronto, ON, Canada	establishment	43.647052	-79.392286
+http://www.ecojustice.ca	Ecojustice Canada	131 Water St, Vancouver, BC, Canada	establishment	49.284058	-123.107418
+http://www.edibletoronto.com	Edible Toronto	19 Dewbourne Ave, Toronto, ON, Canada	establishment	43.699194	-79.422229
+http://www.environmentaldefence.ca	Environmental Defence	116 Spadina Ave, Toronto, ON, Canada	establishment	43.647139	-79.395962
+http://www.ecfa.ca	Essex County Federation Of Agriculture	360 Fairview Ave W, Essex, ON, Canada	establishment	42.161937	-82.826303
+http://www.erca.org	Essex Region Conservation Authority	360 Fairview Ave W, Essex, ON, Canada	establishment	42.161937	-82.826303
+http://www.evergreen.ca	Evergreen	1381 Lakeshore Rd E, Mississauga, ON, Canada	establishment	43.584716	-79.550514
+http://www.examiner.com	Examiner.Com	555 17th St # 700, Denver, CO, United States	establishment	39.745411	-104.989599
+http://www.executrans.ca	Executrans	1138 Len Birchall Way, Kingston, ON, Canada	establishment	44.217699	-76.598167
+http://www.brantfordexpositor.ca	Expositor	195 Henry St, Brantford, ON N3S 5C9, Canada	establishment	43.155641	-80.240672
+http://www.etcweb.com	Extreme Technology	210 Martindale Rd, St Catharines, ON, Canada	establishment	43.172523	-79.273246
+http://www.farmwebdesign.com	FarmWebDesign	940 Barbara Ann Ln, Ellisville, MO, United States	establishment	38.586637	-90.570209
+http://www.festivalplayers.ca	Festival Players of Prince Edward County	289 Picton Main St, Picton, ON, Canada	establishment	44.008509	-77.139561
+http://www.floating-point.com	Floating-Point	365 North Front Street #206B, Belleville, ON, Canada	establishment	44.187433	-77.395527
+http://www.jigsaw.w3.org	FNSOFTWARE	Av de Cordoba, 5, Don Benito, Spain	establishment	38.960455	-5.852423
+http://www.foodserviceworld.com	Foodservice and Hospitality Magazine	Suite 101, 23 Lesmill Rd, Toronto, ON, Canada	establishment	43.756724	-79.352876
+http://www.forthenry.com	Fort Henry	Kingston, Ontario, ON, Canada	establishment	44.231025	-76.459415
+http://www.fourseasons.com	Four Seasons:Sales Office	110 E 59th St #24, New York, NY, United States	establishment	40.762456	-73.969224
+http://www.foxnews.com	Fox News	1211 Avenue of the Americas, New York, NY, United States	establishment	40.758612	-73.982261
+http://www.pointdecontact.net	Fredi Fondation Pour la Recherche d'enfants Dispar	Route de la Rosière 32, Belfaux, Suisse	establishment	46.825225	7.096432
+http://www.freshsqueezedideas.com	Fresh Squeezed Ideas	219 Dufferin St #2a, Toronto, ON, Canada	establishment	43.636846	-79.4262
+http://www.greenbelt.ca	Friends of the Greenbelt Foundation	661 Yonge St # 500, Toronto, ON, Canada	establishment	43.668328	-79.385731
+http://www.ourgreenbelt.ca	Friends of the Greenbelt Foundation	661 Yonge St # 500, Toronto, ON, Canada	establishment	43.668328	-79.385731
+http://www.fromthefarm.ca	From the Farm Cooking School	618 Burr Rd, Ameliasburgh, ON, Canada	establishment	44.053235	-77.341947
+http://www.itunes.apple.com	Fuerza / Strength Rekords	2090 Sussex Rd, Winter Park, FL, United States	establishment	28.619167	-81.319207
+http://www.vcita.com	FullScope IT, Inc.	839 Bestgate Rd #400, Annapolis, MD, United States	establishment	38.992434	-76.542107
+http://www.tourismniagara.com	Gateway Niagara	424 S Service Rd, Grimsby, ON, Canada	establishment	43.206337	-79.598176
+http://www.wordpress.org	Gaveltek	301 Clematis St, West Palm Beach, FL, United States	establishment	26.713411	-80.05215
+http://www.geminiproductions.com	Gemini Productions	2316 Guildstone Crescent, Oakville, ON, Canada	establishment	43.448443	-79.746928
+http://www.visitsouthgeorgianbay.ca	Georgian Triangle Tourist Assn	45 St. Paul Street, Collingwood, ON, Canada	establishment	44.502752	-80.214216
+http://www.freeprivacypolicy.com	Gerald Smith Associates Recruitment	1725 Graceland Cove, Memphis, TN, United States	establishment	35.041011	-90.006394
+http://www.github.com	GitHub Inc	548 4th St, San Francisco, CA, United States	establishment	37.778912	-122.3976
+http://www.givex.com	Givex Canada Corporation	366 Adelaide St W, Toronto, ON, Canada	establishment	43.647113	-79.394327
+http://www.gladstonehotel.com	Gladstone Hotel	1214 Queen St West, Toronto, ON, Canada	establishment	43.64255	-79.42686
+http://www.ow.ly	Glucône	Rue Jean-Baptiste Mosselmans 14, Brussels, Belgium	establishment	50.870528	4.397398
+http://www.travelinggolfer.net	Golf South Inc	31 Donald Ave, Nottawa, ON, Canada	establishment	44.457887	-80.202399
+http://www.gotchacovered.ca	Gotcha Covered	871 Niagara St, Welland, ON, Canada	establishment	43.019038	-79.25053
+http://www.cottagesincanada.com	Grand Beach Cabin Rentals	Grand Beach Rd, Grand Marais, MB, Canada	establishment	50.552707	-96.629605
+http://www.tourniagarawineries.com	Grape Escape Wine Tours	215 King St, Niagara-on-the-Lake, ON, Canada	establishment	43.254643	-79.071292
+http://www.greenpeace.org	Greenpeace Inc	702 H St NW #300, Washington, DC, United States	establishment	38.899622	-77.022282
+http://www.groupon.com	Groupon Malaysia	Petaling Jaya, Selangor, Malaysia	establishment	3.117395	101.629087
+http://www.fromtheboscfamily.com	GTA Parent	3030 Bloor St W, Toronto, ON, Canada	establishment	43.647316	-79.512281
+http://www.guestserve.com	GuestServe Inc.	St Catharines, ON, Canada	establishment	43.157101	-79.245814
+http://www.haliburtonchamber.com	Haliburton Highlands Chamber of Commerce	Lower level, 195 Highland St, Haliburton, ON, Canada	establishment	45.04613	-78.509702
+http://www.parcscanada.pch.gc.ca	Halifax Citadel National Historic Site	5425 Sackville St, Halifax, NS, Canada	establishment	44.646993	-63.580699
+http://www.hgcc.ca	Hamilton Golf and Country Club	232 Golf Links Rd, Ancaster, ON, Canada	establishment	43.221353	-79.977185
+http://www2.canada.com	Harbour City Star - News	2575 McCullough Rd, Nanaimo, BC, Canada	establishment	49.19663	-123.982953
+http://www.mapquest.com	Harris Township Jr Baseball	52005 Currant Rd, Granger, IN, United States	establishment	41.738933	-86.129733
+http://www.hernder.com	Hernder Estate Wines	1607 Eighth Avenue Louth, St Catharines, ON, Canada	establishment	43.11793	-79.303293
+http://www.jboyweb.com	Home Cooked Website Solutions Inc.	80 Fourth St, Midland, ON, Canada	establishment	44.753289	-79.89561
+http://www.http	http. net Internet GmbH	Kantstraße 13, Berlin, Germany	establishment	52.505696	13.327586
+http://www.hubspot.com	HubSpot	25 First St, Cambridge, MA, United States	establishment	42.369722	-71.078021
+http://www.huffingtonpost.com	Huffington Post	1704 R St NW, Washington, DC, United States	establishment	38.912475	-77.038846
+http://www.vimeo.com	Hungry Man	1-2 Herbal Hill, London, United Kingdom	establishment	51.522262	-0.108348
+http://www.buzz.yahoo.com	Hyderabad SEO Expert - Hyderabad SEO Services Company India	1-8-566, RTC Cross Rd, Zamistanpur, Hyderabad, Telangana, India	establishment	17.406666	78.495222
+http://www.infolinkweb.ca	InfoLink Web Site Development	7 Elizabeth St, Picton, ON, Canada	establishment	44.006502	-77.142353
+http://www.innerkiphighlands.com	Innerkip Highlands Golf Club	805940 Oxford Road 29, Innerkip, ON, Canada	establishment	43.214773	-80.687486
+http://www.golfinnisbrook.com	Innisbrook Golf Course?	Innisfil, ON, Canada	establishment	44.324468	-79.662841
+http://www.insitedesign.ca	Insite Production & Design	1455 Lakeshore Rd, Burlington, ON, Canada	establishment	43.324038	-79.797035
+http://www.jaysaiseng.com	Jay Saiseng	4508 Ivy Gardens Crescent, Beamsville, ON, Canada	establishment	43.176002	-79.478878
+http://www.joedrouin.com	Joe Drouin Entreprises Ltd	36 Rue de Varennes, Gatineau, QC, Canada	establishment	45.494666	-75.709088
+http://www.mapleblues.ca	JW-Jones	Lille Grensen 7 / Arbeidergata, Oslo, Norge	establishment	59.913864	10.740638
+http://www.doodle.com	Katholische Jugend Altenburg	Frauengasse 24, Altenburg, Deutschland	establishment	50.986645	12.439603
+http://www.kettlecreekweddings.com	Kettle Creek Weddings	41 McKeough Ave, Chatham, ON, Canada	establishment	42.408684	-82.194342
+http://www.kingtours.ca	King Tours & Limousine Service	296 Jarvis St, Toronto, ON, Canada	establishment	43.661171	-79.376187
+http://www.kingsvillebia.com	Kingsville BIA	28 Division St S, Kingsville, ON, Canada	establishment	42.036739	-82.739847
+http://www.kx947.fm	KX94.7 (CHKX-FM) Radio	589 Upper Wellington St, Hamilton, ON, Canada	establishment	43.237997	-79.866858
+http://www.leaf.ca	L E a F	34 Roslyn Cres, Winnipeg, MB, Canada	establishment	49.880664	-97.151306
+http://www.lapresse.ca	La Presse	7 Rue Saint-Jacques, Montreal, QC, Canada	establishment	45.506319	-73.556543
+http://www.leamingtonchamber.com	Leamington Chamber Of Commerce	318 Erie St S, Leamington, ON, Canada	establishment	42.053241	-82.599215
+http://www.instagram.com	Lensa Lebar	53, Jalan 5/76b, Desa Pandan, Kuala Lumpur, Federal Territory of Kuala Lumpur, Malaysia	establishment	3.146275	101.738142
+http://www.llscanada.org	Leukemia & Lymphoma Society of Canada	Suite 1502, 480 University Ave, Toronto, ON, Canada	establishment	43.655068	-79.388885
+http://www.lighthousetheatre.com	Lighthouse Festival Theatre Corp	247 Main St, Port Dover, ON, Canada	establishment	42.786014	-80.203061
+http://www.lchs.ca	Lincoln County Humane Society	160 Fourth Avenue, St Catharines, ON, Canada	establishment	43.155007	-79.266178
+http://www.thepeterboroughexaminer.com	Lindsay Daily Post	17 William St S, Lindsay, ON, Canada	establishment	44.355342	-78.737298
+http://www.alberta-liquor-guide.com	Liquor Connection	13248 137 Ave NW, Edmonton, AB, Canada	establishment	53.600262	-113.550131
+http://www.listowelgolfclub.ca	Listowel Golf Club	8380 Fairlane Rd, Listowel, ON, Canada	establishment	43.746711	-80.94839
+http://www.thelondonarms.com	London Arms / Kahunaville	221 Glendale Ave, St Catharines, ON, Canada	establishment	43.133588	-79.224276
+http://www.londoncc.com	London Convention Centre	300 York St, London, ON, Canada	establishment	42.982916	-81.243285
+http://www.lpfun.ca	Long Point Eco Adventures	1730 Front Rd, St Williams, ON, Canada	establishment	42.687482	-80.347266
+http://www.luxury.to	Luxury Coach	131 Saramia Crescent, Concord, ON, Canada	establishment	43.815162	-79.523531
+http://www.tastetrail.ca	M' Wine Education & Consulting	Encinitas, CA, United States	establishment	33.049896	-117.257923
+http://www.magnagolf.com	Magna Golf Club	14780 Leslie St, Aurora, ON, Canada	establishment	43.996316	-79.415715
+http://www.ontariomaple.com	Mapleton House	Ontario 28, Palmer Rapids, ON, Canada	establishment	45.206745	-77.429537
+http://www.flickr.com	Märchenhafte Keramik	Unterneuses 22, Burgebrach, Deutschland	establishment	49.824919	10.780355
+http://www.stumbleupon.com	Marketing/Consulting	3607 Marriottsville Rd, Randallstown, MD, United States	establishment	39.375881	-76.829049
+http://www.marthastewart.com	Martha Stewart Living Omnimedia	601 West 26th St #900, New York, United States	establishment	40.751672	-74.0066
+http://www.mcnultyprinting.com	McNulty Printing	12 Stewart Rd, Collingwood, ON, Canada	establishment	44.49412	-80.235245
+http://www.mealexchange.ca	Meal Exchange	401 Richmond St W, Toronto, ON, Canada	establishment	43.647884	-79.394823
+http://www.mediaduo.com	Mediaduo Inc	3337 Walker Rd, Windsor, ON, Canada	establishment	42.27752	-82.978473
+http://www.mediaglue.com	mediaglue	39 Strathmore St, Kerdon QLD, Australia	establishment	-27.403476	153.02937
+http://www.metronews.ca	Metro News	120 Sinnott Rd, Toronto, ON, Canada	establishment	43.725877	-79.27988
+http://www.metroland.com	Metroland Media Group Ltd	3125 Wolfedale Rd, Mississauga, ON, Canada	establishment	43.565536	-79.639601
+http://www.mnsi.net	MNSi Internet	3363 Tecumseh Rd E, Windsor, ON, Canada	establishment	42.304464	-82.982483
+http://www.monde-selection.com	Monde Sélection	Chaussée de Tubize 242, Wauthier-Braine, Belgium	establishment	50.689023	4.316627
+http://www.mouthmedia.com	Mouth Media	1266 Queen St W, Toronto, ON, Canada	establishment	43.642106	-79.429611
+http://www.mozilla.com	Mozilla San Francisco	2 Harrison St, San Francisco, CA, United States	establishment	37.789297	-122.38929
+http://www.mysql.com	MySQL Inc	2510 Fairview Ave E, Seattle, WA, United States	establishment	47.64266	-122.328829
+http://www.nac-cna.ca	National Arts Centre	53 Elgin St, Ottawa, ON, Canada	establishment	45.423403	-75.693515
+http://www.nationalpost.com	National Post	231 SAINT-JACQUES, Montréal, Québec, Canada	establishment	45.503716	-73.558642
+http://www.naturecanada.ca	Nature Canada	75 Albert St, Ottawa, ON, Canada	establishment	45.422308	-75.695345
+http://www.nesda.ca	Nesda Technologies Ltd	3 Dundas St E, Belleville, ON, Canada	establishment	44.160864	-77.382335
+http://www.newstalk1010.com	Newstalk 1010	2 St Clair Ave W, Toronto, ON, Canada	establishment	43.688292	-79.394592
+http://www.nextenergysolutions.com	NextEnergy Inc	35 Earl Martin Dr, Elmira, ON, Canada	establishment	43.577147	-80.561492
+http://www.niagaracollege.ca	Niagara College	5881 Dunn St, Niagara Falls, ON, Canada	establishment	43.079483	-79.090532
+http://www.niagarafallstourism.com	Niagara Falls Tourism	5400 Robinson St, Niagara Falls, ON, Canada	establishment	43.086119	-79.08213
+http://www.icewinefestival.com	Niagara Grape & Wine Festival	8 Church St, St Catharines, ON, Canada	establishment	43.157437	-79.249254
+http://www.newvintagefestival.com	Niagara Grape & Wine Festival	8 Church St, St Catharines, ON, Canada	establishment	43.157437	-79.249254
+http://www.niagarawinefestival.com	Niagara Grape & Wine Festival	8 Church St, St Catharines, ON, Canada	establishment	43.157437	-79.249254
+http://www.newvintagefestival.com.	Niagara Grape & Wine Festival	8 Church St, St Catharines, ON, Canada	establishment	43.157437	-79.249254
+http://www.npca.ca	Niagara Peninsula Conservation Area	250 Thorold Rd, Welland, ON, Canada	establishment	43.003734	-79.269306
+http://www.niagarathisweek.com	Niagara This Week	3300 Merrittville Hwy, Thorold, ON, Canada	establishment	43.112851	-79.242519
+http://www.niagaravintagewinetours.com	Niagara Vintage Wine Tours	2205 Mewburn Rd, Niagara Falls, ON, Canada	establishment	43.139332	-79.133008
+http://www.niagaraworldwinetours.com	Niagara Wine Tours International	92 Picton St, Niagara-on-the-Lake, ON, Canada	establishment	43.253225	-79.067898
+http://www.gotyoulooking.com	Ninety Ninth Monkey The	51 Baldwin St, Whitby, ON, Canada	establishment	43.956835	-78.960693
+http://www.nomadimporters.com	Nomad Importers	Ågatan 24, Borgå, Finland	establishment	60.395564	25.657182
+http://www.norfolktourism.ca	Norfolk County Tourism	30 Peel St, Simcoe, ON, Canada	establishment	42.835928	-80.304605
+http://www.moxies.ca	Northland Properties Corporation	1755 W Broadway #310, Vancouver, BC, Canada	establishment	49.263849	-123.144658
+http://www.golflink.com	Nowata Country Club	507 W Delaware Ave, Nowata, OK, United States	establishment	36.701566	-95.643137
+http://www.thewinefestivals.com	Okanagan Wine Festivals	1527 Ellis St, Kelowna, BC, Canada	establishment	49.885798	-119.493476
+http://www.onthebaymagazine.com	On The Bay Magazine Inc	186 Hurontario St, Collingwood, ON, Canada	establishment	44.498348	-80.216266
+http://www.ontariobee.com	Ontario Beekeepers' Association	8560 Tremaine Rd, Milton, ON, Canada	establishment	43.520355	-79.933174
+http://www.opim.ca	Opimian Society	5165 Sherbrooke Rue O, Montreal, QC, Canada	establishment	45.475688	-73.607409
+http://www.gnu.org	OPTICA VENUS MEXICO	Canal de Castera Mz.1 Lt 27 Local 3, Unidad Morelos 2da. Seccion, Tultitlán, State of Mexico, Mexico	establishment	19.679808	-99.082378
+http://www.freemygrapes.ca	Orchard and Vine Magazine	1576 W Kelowna Rd, West Kelowna, BC, Canada	establishment	49.891178	-119.556975
+http://www.orilliapacket.com	Orillia Packet & Times Newspaper	425 West Street N, Orillia, ON, Canada	establishment	44.622766	-79.434269
+http://www.ottawacitizen.com	Ottawa Citizen	1101 Baxter Rd, Ottawa, ON, Canada	establishment	45.352624	-75.783006
+http://www.oxleybeachgolf.com	Oxley Beach Golf Course	Essex, Ontario, Canada	establishment	42.0319	-82.9151
+http://www.panache.com	Panache Partners	1424 Gables Ct, Plano, TX, United States	establishment	33.018756	-96.752652
+http://www.hugedomains.com	Pastry Girls, Inc.	714 Timothy Ct, East Dundee, IL, United States	establishment	42.094053	-88.262698
+http://www.yelp.ca	Payless Disposal Inc.	24 Fallswater Crescent NE, Calgary, AB, Canada	establishment	51.098461	-113.942037
+http://www.pembina.org	Pembina Institute	219 19 St NW, Calgary, AB, Canada	establishment	51.054189	-114.10576
+http://www.ptbogolf.com	Peterborough Golf and Country Club	Peterborough, ON, Canada	establishment	44.332037	-78.305268
+http://www.cbp.gov	Pharr Border Station	9901 S Cage Blvd, Pharr, TX, United States	establishment	26.087972	-98.200111
+http://www.portstanleytheatre.ca	Port Stanley Festival Theatre	302 Bridge St, Port Stanley, ON, Canada	establishment	42.665706	-81.213138
+http://www.pecweb.ca	Prince Edward County Web Design and Internet Services	Prince Edward, ON, Canada	establishment	44.010546	-77.142113
+http://www.discoverwellington.ca	Prince Edward County Web Design and Internet Services	Prince Edward, ON, Canada	establishment	44.010546	-77.142113
+http://www.prince-edward-county.com	Prince Edward Fuels	55 King St, Picton, ON, Canada	establishment	44.008126	-77.14333
+http://www.pec.on.ca	Project Engineering Consultants	285 E Warm Springs Rd, Las Vegas, NV, United States	establishment	36.0564	-115.159549
+http://www.purolator.ca	Purolator	9201 Rue de l'Innovation, Anjou, QC, Canada	establishment	45.620752	-73.561079
+http://www.issuu.com	Qlift	Hoorne 7, Uitgeest, Nederland	establishment	52.52969	4.715806
+http://www.quench.me	Quench Me Uk Ltd	Hemel Hempstead, United Kingdom	establishment	51.739898	-0.478472
+http://www.rackspace.com	Rackspace Hosting	1 Fanatical Pl, Windcrest, TX, United States	establishment	29.507681	-98.393486
+http://www.raymondsrestaurant.com	Raymonds Restaurant	95 Water St, St John's, NL, Canada	establishment	47.568269	-52.702294
+http://www.php.net	Re-Akcja	aleja Wilanowska 301A, Warsaw, Poland	establishment	52.177384	21.031097
+http://www.readersdigest.ca	Reader's Digest Association (Canada Ltd)	1100 René-Lévesque Blvd W, Montreal, QC, Canada	establishment	45.498443	-73.570899
+http://www.indianweddingcard.com	Readiprint Group	Kalwara Road, Ajmer Rd, Mahapura, Rajasthan, India	establishment	26.839906	75.662155
+http://www.reddit.com	reddit	520 3rd St, San Francisco, CA, United States	establishment	37.781033	-122.395972
+http://www.hs.facebook.com	Redegeld ICT	Tarantellastraat 39, Almere, Netherlands	establishment	52.364803	5.253127
+http://www.debian.org	REVOLSYS INTERACTIVE	26 Boulevard Clemenceau, Strasbourg, France	establishment	48.591123	7.748123
+http://www.riverlights.ca	River Lights	268 Dalhousie St, Amherstburg, ON, Canada	establishment	42.101724	-83.112596
+http://www.wunderground.com	Rockys weather place	360 Colony Ln, Bowling Green, OH, United States	establishment	41.353762	-83.654532
+http://www.expressionengine.com	Rolf Johansson Web Design	2019 Windy Oaks Dr, Burlington, ON, Canada	establishment	43.373832	-79.81321
+http://www.legion.ca	Royal Canadian Legion Building	359 Kent St, Ottawa, ON, Canada	establishment	45.413952	-75.698219
+http://www.weatheroffice.gc.ca	Salmon and Halibut Sportfishing	Ucluelet West Government Wharf, Ucluelets inner Boat Basin off Hemlock st., Main Finger, Ucluelet, BC, Canada	establishment	48.946032	-125.552176
+http://www.seaforthgolf.com	Seaforth Golf & Country Club	1 Doig Dr, Seaforth, ON, Canada	establishment	43.553435	-81.393405
+http://www.shawfest.com	Shaw Festival Theatre	10 Queen's Parade, Niagara-on-the-Lake, ON, Canada	establishment	43.250918	-79.065648
+http://www.pickyourown.org	Shuqualak Blueberry Farm	232 Shuqualak Farms Rd, Frierson, LA, United States	establishment	32.2396	-93.692044
+http://www.sierraclub.ca	Sierra Club of Canada	1 Nicholas St, Ottawa, ON, Canada	establishment	45.426179	-75.689985
+http://www.sistering.org	Sistering a Woman's Place	220 Cowan Ave, Toronto, ON, Canada	establishment	43.64061	-79.433277
+http://www.sitedudes.com	Site Dudes USA, Inc.	4980 NE 11th Avenue Suite G, Oakland Park, FL, United States	establishment	26.188621	-80.132753
+http://www.thedrakehotel.ca	Sky Yard	The Drake Hotel, Queen St W, Toronto, ON, Canada	establishment	43.643117	-79.424558
+http://www.addtoany.com	SN Engineering Ltd	Brunel Court, Quedgeley, Gloucester, United Kingdom	establishment	51.812218	-2.265839
+http://www.snap360.ca	Snap Design	1 First Ave, Toronto, ON, Canada	establishment	43.648699	-79.380898
+http://www.cancer.ca	Société Canadienne du Cancer (La)	418 Rue Saint Georges, Saint-Jérôme, QC, Canada	establishment	45.77915	-74.002622
+http://www.sohohousetoronto.com	Soho House	192 Adelaide St W, Toronto, ON, Canada	establishment	43.649031	-79.386102
+http://www.blues.org	Southland Blues Magazine	6475 E Pacific Coast Hwy, Long Beach, CA, United States	establishment	33.757714	-118.10845
+http://www.twitter.com	Specialty Boards	610 Canal Dr, Carolina Beach, NC, United States	establishment	34.041619	-77.889755
+http://www.splashinteractive.com	Splash Interactive	33 Bloor St E #1103, Toronto, ON, Canada	establishment	43.670314	-79.38555
+http://www.stthomascanvasandawning.com	St Thomas Canvas & Awning Inc	70 Progress Dr, St Thomas, ON, Canada	establishment	42.79022	-81.154235
+http://www.stclaircollege.ca	St. Clair College of Applied Arts and Technology	2000 Talbot Road West, Windsor, ON, Canada	establishment	42.248432	-83.020362
+http://www.stgeorges.org	St. George's Golf and Country Club	1668 Islington Ave, Toronto, ON, Canada	establishment	43.674199	-79.537069
+http://www.stthomastimesjournal.com	St. Thomas Times Journal	16 Hincks St, St Thomas, ON, Canada	establishment	42.7781	-81.197305
+http://www.jquery.com	Stanford Software Systems	574 Sims Rd, Santa Cruz, CA, United States	establishment	37.011979	-122.033562
+http://www.starcoachservices.ca	Star Coach Services	480 Lake Shore Blvd E, Toronto, ON, Canada	establishment	43.648334	-79.354411
+http://www.stevencarpenter.com	stevencarpenter.com	Milton, ON, Canada	establishment	43.529183	-79.835774
+http://www.stratfordfestival.ca	Stratford Festival	55 Queen Street, Stratford, ON, Canada	establishment	43.374578	-80.969367
+http://www.welcometostratford.com	Stratford Tourism Alliance	47 Downie St, Stratford, ON, Canada	establishment	43.370262	-80.98179
+http://www.500px.com	StudioDA	Rietvinklaan 52, Leidschendam, Nederland	establishment	52.086772	4.40408
+http://www.star-telegram.com	Suddenly Sewing	3529 Heritage Trace Pkwy, Fort Worth, TX, United States	establishment	32.914837	-97.305661
+http://www.superkul.ca	Superkul Architect	2208 Dundas St W, Toronto, ON, Canada	establishment	43.653776	-79.45148
+http://www.surveymonkey.com	SurveyMonkey	101 Lytton Ave, Palo Alto, CA, United States	establishment	37.44399	-122.164156
+http://www.tasteofhome.com	Taste of Home	233 N Michigan Ave, Chicago, IL, United States	establishment	41.886879	-87.623858
+http://www.foodnetwork.com	Television Food Network	1180 Avenue of the Americas, New York, NY, United States	establishment	40.757418	-73.981606
+http://www.childrenswish.ca	The Children's Wish Foundation Of Canada Ontario Chapter	725 Westney Rd S, Ajax, ON, Canada	establishment	43.829409	-79.026246
+http://www.crookedcue.ca	The Crooked Cue	75 Lakeshore Rd E, Mississauga, ON, Canada	establishment	43.55264	-79.58433
+http://www.theenterprisebulletin.com	The Enterprise Bulletin Newspaper	77 Simcoe St, Collingwood, ON, Canada	establishment	44.501119	-80.215249
+http://www.montrealgazette.com	The Gazette	Suite 200, 1010 St Catherine St W, Montreal, QC, Canada	establishment	45.500297	-73.572426
+http://www.theglobeandmail.com	The Globe and Mail	444 Front St W, Toronto, ON, Canada	establishment	43.642588	-79.395395
+http://www.intelligencer.ca	The Intelligencer	45 Bridge St E, Belleville, ON, Canada	establishment	44.16388	-77.382777
+http://www.mississauguagolf.com	The Mississaugua Golf and Country Club	1725 Mississauga Rd, Mississauga, ON, Canada	establishment	43.550969	-79.622769
+http://www.thenationalclub.com	The National Club	303 Bay St, Toronto, ON, Canada	establishment	43.64942	-79.380558
+http://www.therecord.com	The Record	160 King St E, Kitchener, ON, Canada	establishment	43.448897	-80.486203
+http://www.sterlingniagara.com	The Spa at Sterling Inn	5195 Magdalen St, Niagara Falls, ON, Canada	establishment	43.091276	-79.080223
+http://www.thespokeclub.com	The Spoke Club	600 King St W, Toronto, ON, Canada	establishment	43.64457	-79.399944
+http://www.thestthomasblog.com	The St. Thomas Blog	5 Ermatinger St, St Thomas, ON, Canada	establishment	42.766715	-81.180004
+http://www.stcatharinesstandard.ca	The Standard	1401 Dupont St, Toronto, ON, Canada	establishment	43.666646	-79.446634
+http://www.thestonecellar.com	The Stone Cellar	71 Gore St E, Perth, ON, Canada	establishment	44.899452	-76.248931
+http://www.owensoundsuntimes.com	The Sun Times	290 9th St E, Owen Sound, ON, Canada	establishment	44.566018	-80.940774
+http://www.theweathernetwork.com	The Weather Network	2655 Bristol Circle, Oakville, ON, Canada	establishment	43.511698	-79.689269
+http://www.tastethecounty.ca	Tip of the Bay Marina	35 Bridge St, Picton, ON, Canada	establishment	44.008841	-77.135526
+http://www.tonup.ca	Ton-Up Creative	ON, Canada	establishment	43.967095	-77.034418
+http://www.ladiesgolfclub.com	Toronto Ladies Golf Course	Markham, ON, Canada	establishment	43.818613	-79.421614
+http://www.torontolawn.com	Toronto Lawn Tennis Club	44 Price St, Toronto, ON, Canada	establishment	43.680318	-79.388927
+http://www.torontosun.com	Toronto Sun	333 King St E, Toronto, ON, Canada	establishment	43.651642	-79.365948
+http://www.pelee.org	Township of Pelee	1045 W Shore Rd, Pelee Island, ON, Canada	establishment	41.765628	-82.688662
+http://www.trentonian.ca	Trentonian	5 Creswell Dr, Trenton, ON, Canada	establishment	44.098089	-77.576095
+http://www.tsunamiglassworks.com	Tsunami Glasswork Inc	1167 Mercer St, Windsor, ON, Canada	establishment	42.308336	-83.026171
+http://www.tumblr.com	Tumblr Inc.	35 East 21st Street, 6th Floor, E 21st St, Flatiron District, NY, United States	establishment	40.739309	-73.988617
+http://www.tvcogeco.com	TV Cogeco	4141 Boulevard Saint-Jean, Trois-Rivieres, QC, Canada	establishment	46.341766	-72.623048
+http://www.twentyvalley.com	Twenty Valley Golf & Country Club	3814 Yonge Street, Vineland, ON, Canada	establishment	43.120924	-79.413776
+http://www.hospices-de-beaune.com	Vente aux enchères des vins des Hospices de Beaune	Rue de l'hôtel Dieu - La Halle, Beaune, France	establishment	47.022598	4.837155
+http://www.viarail.ca	Via Rail Canada Inc	3 Place Ville Marie, Montreal, QC, Canada	establishment	45.502348	-73.568403
+http://www.vickisveggies.com	Vicki's Veggies	81 Morrison Point Road, RR#2, Milford, ON, Canada	establishment	43.969098	-77.029608
+http://www.viewmag.com	View Magazine	22 Wilson St, Hamilton, ON, Canada	establishment	43.259136	-79.867429
+http://www.vinexpo.com	Vinexpo	2 Cours du 30 Juillet, Bordeaux, France	establishment	44.843174	-0.574273
+http://www.vinoteca.com	Vinoteca	Calzada Del Valle Ote. No. 1, Del Valle, San Pedro Garza García, Nuevo Leon, Mexico	establishment	25.657353	-100.369511
+http://www.vintageinns.com	Vintage Hotels Corporate Office	48 John Street West, Niagara-on-the-Lake, ON, Canada	establishment	43.248883	-79.077804
+http://www.vintage-hotels.com	Vintage Hotels Corporate Office	48 John Street West, Niagara-on-the-Lake, ON, Canada	establishment	43.248883	-79.077804
+http://www.myvirtualpaper.com	Virtual Paper	1010 de Serigny #202, Longueuil, QC, Canada	establishment	45.523522	-73.522884
+http://www.mapleinthecounty.ca	Volunteer and Information Quinte	199 Front St, Belleville, ON, Canada	establishment	44.163594	-77.384044
+http://www.volusion.com	Volusion Inc	1835 Kramer Lane, Suite A100, Austin, United States	establishment	30.386673	-97.708156
+http://www.docs.google.com	Web Designer	Rushin M. Parmar, 18-Kasturba Soc., Nr. Suryanagar Soc.,, Opp. Ashram Post Office, Gandhi Ashram Road, Vadaj,, Ahmedabad, Gujarat, India	establishment	23.062874	72.578805
+http://www.webervations.com	Webervations	96 E Main St, Logan, OH, United States	establishment	39.540059	-82.406957
+http://www.play.google.com	WEBkomplex.sk | Web design | SEO | Tvorba www stránok	Bojnická cesta 419/31, Prievidza, Slovensko	establishment	48.774861	18.609729
+http://www.weddingcompanyniagara.com	Wedding Company of Niagara (The)	6053 Franklin Ave, Niagara Falls, ON, Canada	establishment	43.086874	-79.104156
+http://www.weebly.com	Weebly, Inc	564 Pacific Ave, San Francisco, CA, United States	establishment	37.79744	-122.404749
+http://www.golfwellington.ca	Wellington On the Lake Course	157 Prince Edward Dr, Wellington, ON, Canada	establishment	43.954409	-77.37032
+http://www.wellingtontimes.ca	Wellington Times The	269 Main St, Wellington, ON, Canada	establishment	43.951744	-77.349024
+http://www.wcel.org	West Coast Environmental Law	2006 W 10th Ave #200, Vancouver, BC, Canada	establishment	49.262651	-123.150815
+http://www.westvillage.ca	West Village Communications	28 Morgan Ave, Etobicoke, ON, Canada	establishment	43.625207	-79.50118
+http://www.westernfairdistrict.com	Western Fair	316 Rectory Street, London, ON, Canada	establishment	42.986918	-81.222809
+http://www.windsorcrossing.com	Windsor Crossing Plaza	1555 Talbot Rd, LaSalle, ON, Canada	establishment	42.240353	-83.014227
+http://www.wetrolley.com	Windsor Essex Trolley Tours	44 Sinasac St. W, Harrow, ON, Canada	establishment	42.035392	-82.918297
+http://www.soerc.com	Windsor Essex Trolley Tours	44 Sinasac St. W, Harrow, ON, Canada	establishment	42.035392	-82.918297
+http://www.windsoryachtclub.com	Windsor Yacht Club	9000 Riverside Dr E, Windsor, ON, Canada	establishment	42.340128	-82.933285
+http://www.erobertparker.com	Wine Advocate	1000 Hillside View Rd, Parkton, MD, United States	establishment	39.608849	-76.683006
+http://www.winecountrycooking.com	Wine Country Cooking School	1339 Lakeshore Rd, Niagara-on-the-Lake, ON, Canada	establishment	43.25273	-79.124971
+http://www.winespectator.com	Wine Spectator	387 Park Ave S #8, New York, NY, United States	establishment	40.742668	-73.983998
+http://www.winebow.com	Winebow Inc	75 Chestnut Ridge Rd, Montvale, NJ, United States	establishment	41.051945	-74.067548
+http://www.wix.com	Wix	Nemal Tel Aviv St 40, Israel	establishment	32.097824	34.77412
+http://www.woodstockmeadows.com	Woodstock Meadows Golf Center	745314 Oxford Road 17, Woodstock, ON, Canada	establishment	43.170397	-80.730843
+http://www.woothemes.com	WooThemes	Unit 1, Canal Edge One, Entrance B, Tyger Waterfront, Bellville, Cape Town, South Africa	establishment	-33.878187	18.630827
+http://www.worldwildlife.com	World Wildlife Fund	1250 24th St NW, Washington, DC, United States	establishment	38.906443	-77.051638
+http://www.wwf.ca	WWF-Canada St John's Office	140 Water St, St John's, NL, Canada	establishment	47.566005	-52.705264
+http://www.kevinoleary.com	www.KevinOLeary.com	2808 Stantonsburg Rd, Greenville, NC, United States	establishment	35.607963	-77.428993
+http://www.t	www.t-shirt.co.th	74/82 ?.4 ?.????? 11 ??????????? ?.???????? ?.????? ??????? ???	establishment	13.856705	100.511737
+http://www.t.co	www.t-shirt.co.th	74/82 ?.4 ?.????? 11 ??????????? ?.???????? ?.????? ??????? ???	establishment	13.856705	100.511737
+http://www.content.yudu.com	Yudu Media	Primrose Studio/Primrose Rd, Clitheroe, United Kingdom	establishment	53.861927	-2.40034
+http://www.yuliaphotography.com.au	Yulia Photography	114 Spit Road, Mosman NSW, Australia	establishment	-33.819858	151.243435
+http://www.macromedia.com	?????????	818-220 Danggam 3(sam)-dong, Busanjin-gu, Busan, South Korea	establishment	35.162278	129.036673
+http://www.iandf.com	I and F Design	1552 Tecumseh Rd E, Windsor, ON, Canada	florist, store, establishment	42.300672	-83.003188
+http://www.tosuityourfancy.com	To Suit Your Fancy	140 Front St N, Sarnia, ON, Canada	florist, store, establishment	42.971926	-82.408353
+http://www.pullman-mtl.com	Pullman	3424 Park Ave, Montreal, QC, Canada	food, bar, establishment	45.508571	-73.572062
+http://www.redswinetavern.com	REDS WINE TAVERN	77 Adelaide St W, Toronto, ON, Canada	food, bar, establishment	43.649402	-79.382489
+http://www.13thstreetwinery.com	13th Street Winery	1776 Fourth Ave, St Catharines, ON, Canada	food, establishment	43.15372	-79.312928
+http://www.aiselections.com	A I Selections	4558 Vernon Blvd, Long Island City, NY, United States	food, establishment	40.747006	-73.952795
+http://www.aleksanderestate.com	Aleksander Estate Winery	1542 County Road 34, Ruthven, ON, Canada	food, establishment	42.07042	-82.669573
+http://www.andrewpeller.com	Andrew Peller Limited	697 South Service Road, Grimsby, ON, Canada	food, establishment	43.212171	-79.621739
+http://www.bonvidawines.com	Az. Agr. Uccelliera Di Cortonesi Andrea	45 Localita' Pod. Uccelliera, Castelnuovo Dell'abate, Si 53024, Siena, Italy	food, establishment	42.992916	11.514718
+http://www.bacchusgroup.ca	Bacchus Group The	13560 Maycrest Way #1120, Richmond, BC, Canada	food, establishment	49.180181	-123.07149
+http://www.biancas.net	Bianca's	171 Water St, St John's, NL, Canada	food, establishment	47.564866	-52.706125
+http://www.conquercancer.ca	Black Oak Brewing Co. Ltd	75 Horner Ave #1, Etobicoke, ON, Canada	food, establishment	43.613214	-79.515534
+http://www.bock-ws.com	Bock Wine and Spirits	Pier 26, San Francisco, CA, United States	food, establishment	37.788844	-122.387534
+http://www.bonnieheathlavender.com	Bonnieheath Estate Lavender & Winery	410 Concession 12 Townsend, Waterford, ON, Canada	food, establishment	42.890647	-80.261924
+http://www.winebc.com	British Columbia Wine Institute	1726 Dolphin Ave #1, Kelowna, BC, Canada	food, establishment	49.879316	-119.458343
+http://www.brokenstone.ca	Broken Stone Winery	Closson Rd, Hillier, ON, Canada	food, establishment	43.989056	-77.415191
+http://www.bychadseyscairns.com	By Chadsey's Cairns Winery & Vineyard	17432 Loyalist Pkwy, Hillier, ON, Canada	food, establishment	43.937134	-77.403452
+http://www.canadistributors.com	Cana Distributors LLC	24617 Halsted Rd, Farmington Hills, MI, United States	food, establishment	42.474034	-83.416096
+http://www.canadasouthwinetours.com	Canada South Wine Tours	125 Tecumseh Rd W, Windsor, ON, Canada	food, establishment	42.296064	-83.026808
+http://www.casaflora.com.br	Casa Flora Ltda	Rua Santa Rosa, 197 - Brás, São Paulo - SP, Brazil	food, establishment	-23.541303	-46.627014
+http://www.caterhire.com	Cater Hire Limerick	Unit 7, Delta Retail Park, Ballysimon Rd, Limerick, Ireland	food, establishment	52.647073	-8.587403
+http://www.winecurrent.com	Cattail Creek Estate Winery	1156 Concession 6,Niagara-on-the-Lake,ON,L0S 1J0, Canada	food, establishment	43.20089	-79.136674
+http://www.chateaudescharmes.com	Chateau Des Charmes Wines	407 Laurier Ave W, Ottawa, ON, Canada	food, establishment	45.417326	-75.702331
+http://www.churchillcellars.com	Churchill Cellars Ltd.	350 Sheppard Ave. East, Second Floor, Toronto, ON, Canada	food, establishment	43.765233	-79.395095
+http://www.coliowines.com	Colio Estate Winery	1 Colio Dr, Harrow, ON, Canada	food, establishment	42.041247	-82.917717
+http://www.allaboutapples.com	Collegeville Orchards	15517 Fruit Farm Rd, St Joseph, MN, United States	food, establishment	45.577873	-94.430213
+http://www.countycider.com	County Cider Company	657 Bongards Crossroad, Waupoos, ON, Canada	food, establishment	44.021053	-76.963881
+http://www.countyfarmcentre.com	County Farm Centre	552 Ashley St, Belleville, ON, Canada	food, establishment	44.249881	-77.43607
+http://www.coyotesrunwinery.com	Coyote's Run Estate Winery	Concession 5 Rd, Niagara-on-the-Lake, ON, Canada	food, establishment	43.180319	-79.122652
+http://www.colchesterridge.com	CREW - Colchester Ridge Estate Winery	108 County Road 50, Essex, ON, Canada	food, establishment	41.985083	-82.92296
+http://www.dangelowinery.com	D'Angelo Vineyards Estate Winery	5141 Concession Road 5 N, Amherstburg, ON, Canada	food, establishment	42.117937	-83.038008
+http://www.christinelomasphotography.com	Del-Gatto Estate Ltd	3633 County Road 7, Picton, ON, Canada	food, establishment	44.091279	-76.890572
+http://www.del-gattoestates.ca	Del-Gatto Estate Ltd	3633 County Road 7, Picton, ON, Canada	food, establishment	44.091279	-76.890572
+http://www.dishcatering.ca	Dish Catering	119 Ross Ave, Ottawa, ON, Canada	food, establishment	45.398863	-75.737407
+http://www.jancisrobinson.com	Domaine Economou - Winery Economou	opposite the church St George., Ziros (plateau Ziros), Sitia, Greece	food, establishment	35.074938	26.138309
+http://www.duncanscafe.ca	Duncan's Cafe & Catering	60 Hurontario St, Collingwood, ON, Canada	food, establishment	44.501265	-80.216821
+http://www.erieshore.ca	Erie Shore Vineyard	410 County Road 50 W, Harrow, ON, Canada	food, establishment	42.006512	-82.966427
+http://www.featherstonewinery.ca	Featherstone Winery & Vineyard	3678 Victoria Ave, Lincoln, ON, Canada	food, establishment	43.140023	-79.39466
+http://www.fellinikoolini.com	Fellini Koolini's Italian Cuisini	155 Albert St, London, ON, Canada	food, establishment	42.988591	-81.252684
+http://www.fieldingwines.com	Fielding Estate Winery	4020 Locust Ln, Lincoln, ON, Canada	food, establishment	43.152082	-79.495061
+http://www.youtube.com	Foods To Lose Weight: http://www.youtube.com/watch?v=h7CjDKAZX1Q	Las Vegas, NV, United States	food, establishment	36.123734	-115.190998
+http://www.geraldosatlasalle.com	Geraldo's At Lasalle Park	50 North Shore Blvd W, Burlington, ON, Canada	food, establishment	43.304027	-79.846971
+http://www.gourmandissimo.com	Gourmandissimo Specialty Fine Foods	16023 Airport Rd, Caledon East, ON, Canada	food, establishment	43.87068	-79.867561
+http://www.grapeandwinetours.com	Grape & Wine Tours Niagara	758 Niagara Stone Rd, Niagara-on-the-Lake, ON, Canada	food, establishment	43.195741	-79.156867
+http://www.littlefatwino.com	Great River Vineyard Nursery	35680 U.S. 61, Lake City, MN, United States	food, establishment	44.499924	-92.320157
+http://www.hewwine.com	Harbour Estates Winery	4362 Jordan Rd, Lincoln, ON, Canada	food, establishment	43.173776	-79.361112
+http://www.harvestwines.com	Harvest Estate Wines	1179 Fourth Ave, St Catharines, ON, Canada	food, establishment	43.155012	-79.284146
+http://www.ewinerysolutions.com	Hazlitt 1852 Vineyards	5712 New York 414, Hector, NY, United States	food, establishment	42.51059	-76.876035
+http://www.hilliercreekestates.com	Hillier Creek Estates	46 Stapleton Rd, Hillier, ON, Canada	food, establishment	43.971243	-77.462562
+http://www.hintonburgpublichouse.ca	Hintonburg Public House	1020 Wellington St W, Ottawa, ON, Canada	food, establishment	45.404593	-75.723838
+http://www.mastersofwine.org	Institute Of Masters Of Wine Ltd	24 Fitzroy St, London, United Kingdom	food, establishment	51.522987	-0.140781
+http://www.karloestates.com	Karlo Estates	561 Danforth Rd, Wellington, ON, Canada	food, establishment	43.967295	-77.371725
+http://www.niagaraonthelake.com	Konzelmann Estate Winery	1096 Lakeshore Rd, Niagara-on-the-Lake, ON, Canada	food, establishment	43.250161	-79.140581
+http://www.laceyestates.com	Lacey Estates Vineyard & Winery	804 Closson Rd, Hillier, ON, Canada	food, establishment	43.996178	-77.402478
+http://www.lifthauswinery.ca	Lift Haus Winery	805 Closson Rd, Wellington, ON, Canada	food, establishment	43.996045	-77.402529
+http://www.longdog.ca	Long Dog Vineyard and Winery	104 Brewers Rd, Prince Edward, ON, Canada	food, establishment	43.904757	-77.070637
+http://www.malivoire.com	Malivoire Wine Company	4260 King St, Lincoln, ON, Canada	food, establishment	43.157835	-79.438518
+http://www.mastronardiwines.com	Mastronardi Estate Winery	1193 Road 3 E, Kingsville, ON, Canada	food, establishment	42.063162	-82.693381
+http://www.melegpyofruit.com	Meleg's Lakeview Orchard & Cider Mill	158 Arner Townline, Kingsville, ON, Canada	food, establishment	42.002066	-82.8253
+http://www.monfortedairy.com	Monforte Dairy Company Ltd	49 Griffith Rd, Stratford, ON, Canada	food, establishment	43.35165	-80.983937
+http://www.nataliemaclean.com	Murray Estate Wines	Lot 2 Barooga Road, Mulwala NSW, Australia	food, establishment	-35.952511	145.943927
+http://www.muscederevineyards.com	Muscedere Vineyards	7457 County Road 18, Harrow, ON, Canada	food, establishment	42.08866	-82.925253
+http://www.hinterlandwine.com	Muscedere Vineyards	7457 County Road 18, Harrow, ON, Canada	food, establishment	42.08866	-82.925253
+http://www.niagaracollegewine.ca	Niagara College Teaching Winery	135 Taylor Rd, Niagara-on-the-Lake, ON, Canada	food, establishment	43.152154	-79.168017
+http://www.niagaravinegar.com	Niagara Vinegars	1607 Eighth Avenue Louth, St Catharines, ON, Canada	food, establishment	43.117534	-79.302966
+http://www.normanhardie.com	Norman Hardie Vineyard And Winery	1152 Greer Rd, Wellington, ON, Canada	food, establishment	43.954014	-77.440777
+http://www.palatinehillsestatewinery.com	Palatine Hills Estate Winery	911 Lakeshore Rd, Niagara-on-the-Lake, ON, Canada	food, establishment	43.245055	-79.151099
+http://www.panchancho.com	Pan Chancho Bakery & Café	44 Princess St, Kingston, ON, Canada	food, establishment	44.231113	-76.480497
+http://www.peleeisland.com	Pelee Island Winery	455 Seacliff Dr, Kingsville, ON, Canada	food, establishment	42.037374	-82.718259
+http://www.peller.com	Peller Estates Winery	290 John Street East, Niagara-on-the-Lake, ON, Canada	food, establishment	43.23862	-79.067024
+http://www.philarmonica.it	Philarmonica S.P.A.	Via Cefalonia, 70, Brescia, Italy	food, establishment	45.525004	10.216386
+http://www.pecwinetours.com	Prince Edward County Wine & Culinary Tours	288 Bloomfield Main St, Bloomfield, ON, Canada	food, establishment	43.987205	-77.228877
+http://www.profilewinegroup.com	Profile Wine Group	156 Duncan Mill Rd #23, Toronto, ON, Canada	food, establishment	43.762823	-79.357531
+http://www.quehlsrestaurant.com	Quehl's	33 Woodstock St S, Tavistock, ON, Canada	food, establishment	43.320262	-80.83675
+http://www.ravinevineyard.com	Ravine Vineyard Estate Winery	1366 York Rd, St Davids, ON, Canada	food, establishment	43.160669	-79.103853
+http://www.redtailvineyard.com	Redtail Vineyard	422 Partridge Hollow Rd, Consecon, ON, Canada	food, establishment	43.973634	-77.526343
+http://www.ridgepointwines.com	Ridgepoint Wines	3900 Cherry Ave, Vineland, ON, Canada	food, establishment	43.147943	-79.41581
+http://www.rockway.net	Rockway Glen Golf Course & Winery	3290 Ninth St, St Catharines, ON, Canada	food, establishment	43.124215	-79.319139
+http://www.rosehallrun.com	Rosehall Run Vineyards Inc	1243 Greer Rd, Wellington, ON, Canada	food, establishment	43.951583	-77.448549
+http://www.extremetracking.com	Servsafe Stars Solutions	11901 International Dr, Orlando, FL, United States	food, establishment	28.390789	-81.467552
+http://www.sixthirtynine.com	Sixthirtynine	639 Peel St, Woodstock, ON N4S 1K9, Canada	food, establishment	43.130191	-80.74978
+http://www.snooth.com	Snooth Inc	162 Madison Ave, New York, NY, United States	food, establishment	40.746892	-73.983917
+http://www.southbrook.com	Southbrook Vineyards	581 Niagara Stone Rd, Niagara-on-the-Lake, ON, Canada	food, establishment	43.189949	-79.162015
+http://www.sprucewoodshores.com	Sprucewood Shores Estate Winery	7258 County Road 50, Amherstburg, ON, Canada	food, establishment	42.025346	-83.005705
+http://www.stannersvineyard.ca	Stanners Vineyard	76 Station Rd, Hillier, ON, Canada	food, establishment	43.974634	-77.451317
+http://www.stratuswines.com	Stratus Vineyards	2059 Niagara Stone Rd, Niagara-on-the-Lake, ON, Canada	food, establishment	43.241369	-79.097482
+http://www.tawsewinery.ca	Tawse Winery Inc.	3955 Cherry Ave, Vineland, ON, Canada	food, establishment	43.151509	-79.411738
+http://www.terracellowinery.com	TerraCello Winery	2436 Prince Edward 1, Prince Edward, ON, Canada	food, establishment	44.014664	-77.298284
+http://www.foreignaffairwinery.com	The Foreign Affair Winery	4890 Victoria Ave N, Vineland, ON, Canada	food, establishment	43.192234	-79.395161
+http://www.thefruitwagon.com	The Fruit Wagon	793 County Road 50, Harrow, ON, Canada	food, establishment	41.996614	-82.862087
+http://www.grangeofprinceedward.com	The Grange of Prince Edward Vineyards and Estate Winery	990 Closson Rd, Hillier, ON, Canada	food, establishment	43.991324	-77.411792
+http://www.theoldthird.com	The Old Third Vineyard	Closson Rd, Hillier, ON, Canada	food, establishment	43.989056	-77.415191
+http://www.smithandwilsonestatewines.ca	The Old Warehouse	8328 Talbot Trail, Chatham-Kent, ON, Canada	food, establishment	42.266872	-82.039875
+http://www.thewinesyndicate.ca	The Wine Syndicate	321 Water St, Vancouver, BC, Canada	food, establishment	49.284503	-123.109277
+http://www.thirtybench.com	Thirty Bench Wines	4281 Mountainview Rd, Beamsville, ON, Canada	food, establishment	43.165487	-79.49706
+http://www.tbfm.ca	Trinity Bellwoods Farmers Market	241-257 Shaw St, Toronto, ON, Canada	food, establishment	43.649255	-79.41752
+http://www.viewpointewinery.com	Viewpointe Estate Winery	151 County Road 50, Harrow, ON, Canada	food, establishment	41.985353	-82.917593
+http://www.villanovaestatewinery.ca	Villa Nova Estate Winery	1449 Concession 13, Townsend, ON, Canada	food, establishment	42.889669	-80.185365
+http://www.realontariowine.ca	Villa Nova Estate Winery	1449 Concession 13, Townsend, ON, Canada	food, establishment	42.889669	-80.185365
+http://www.ontariosouthcoastwine.com	Villa Nova Estate Winery	1449 Concession 13, Townsend, ON, Canada	food, establishment	42.889669	-80.185365
+http://www.wagnerorchards.com	Wagner Orchards & Estate Winery	1222 Lakeview Ave, Windsor, ON, Canada	food, establishment	42.326618	-82.896093
+http://www.waupooswinery.com	Waupoos Estates Winery	3016 County Road 8, Picton, ON, Canada	food, establishment	44.01501	-76.972272
+http://www.hoehn-zimmermann.de	Hotel Gutshof Weingut Höhn-Zimmermann	Naheweinstraße 195, Langenlonsheim, Deutschland	food, lodging, establishment	49.900378	7.898574
+http://www.riverbendinn.ca	Riverbend Inn & Vineyard	16104 Niagara River Parkway, Niagara Pkwy, Niagara-on-the-Lake, ON, Canada	food, lodging, establishment	43.239456	-79.062408
+http://www.thecoffeeoffice.com	The Coffee Office	1361 Ouellette Ave, Windsor, ON, Canada	food, real_estate_agency, establishment	42.302925	-83.029798
+http://www.lvwo-weinsberg.de	Staatliche Lehr- und Versuchsanstalt für Wein- und Obstbau	Traubenplatz 5, Weinsberg, Deutschland	food, school, establishment	49.150967	9.289224
+http://www.bestbaa.com	Best Baa Farm	820 Gartshore St, Fergus, ON, Canada	food, store, establishment	43.719347	-80.379936
+http://www.blackrivercheese.com	Black River Cheese	913 County Road 13, Milford, ON, Canada	food, store, establishment	43.966777	-77.033924
+http://www.thecheesegallery.ca	Cheese Gallery The	11 Bruce St S, Thornbury, ON, Canada	food, store, establishment	44.561586	-80.453191
+http://www.thecheesegallery.com	Cheese Gallery The	11 Bruce St S, Thornbury, ON, Canada	food, store, establishment	44.561586	-80.453191
+http://www.winebusiness.com	Fall Bright Wine Makers Shoppe	10110 Hyatt Hill Rd, Dundee, NY, United States	food, store, establishment	42.488353	-77.113868
+http://www.fifthtown.ca	Fifth Town Artisan Cheese Co.	County Road 8, Picton, ON, Canada	food, store, establishment	44.001846	-77.102918
+http://www.fromagerieelgin.ca	Fromagerie Elgin	5 Cedar St, Greater Sudbury, ON, Canada	food, store, establishment	46.492084	-80.996232
+http://www.savourelgin.ca	Harbourtown Fudge	288 Bridge St, Port Stanley, ON, Canada	food, store, establishment	42.665712	-81.212343
+http://www.klassenblueberries.com	Klassen Blueberries	957 County Rd 50 E RR 1, Harrow, ON, Canada	food, store, establishment	41.998929	-82.835981
+http://www.mercurychocolates.com	Mercury Chocolates	24 John St, Port Hope, ON, Canada	food, store, establishment	43.951241	-78.294769
+http://www.rowefarms.ca	Rowe Farms - Roncy	105 Roncesvalles Ave, Toronto, ON, Canada	food, store, establishment	43.642271	-79.447389
+http://www.uppercanadacheesecompany.com	Upper Canada Cheese Company	4159 Jordan Rd, Lincoln, ON, Canada	food, store, establishment	43.163989	-79.359748
+http://www.dynadot.com	???? ???????? ???????? ???????? Alzaytona Alshamalia co. ltd	Al Amir Fahd Ibn Sultan Rd, Tabuk Saudi Arabia	food, store, health, establishment	28.431732	36.635348
+http://www.marilyn.ca	Captain's Treasures Antiques West	1424 Queen St W, Toronto, ON, Canada	furniture_store, general_contractor, home_goods_store, store, establishment	43.641075	-79.435107
+http://www.sustainablybuilt.com	Sustainably Built, LLC	1720 15th St, Boulder, CO, United States	general_contractor, establishment	40.015169	-105.274728
+http://www.dagsandwillow.ca	Dags & Willow Fine Cheese and Gourmet Shop	25 Second Street, Collingwood, ON, Canada	grocery_or_supermarket, food, store, establishment	44.500847	-80.217868
+http://www.foodtv.ca	Lady York Foods	2939 Dufferin St, North York, ON, Canada	grocery_or_supermarket, food, store, establishment	43.709705	-79.453755
+http://www.fairprice.com.sg	Ntuc Fairprice	43 Cambridge Rd, Singapore	grocery_or_supermarket, food, store, establishment	1.315514	103.84936
+http://www.dailymotion.com	Dailymotion Inc	811 Hamilton St, Redwood City, CA, United States	gym, health, establishment	37.486053	-122.229889
+http://www.yell.com	Hair by Lorna	14 Lime Vale, Ince-in-Makerfield, Wigan, United Kingdom	hair_care, establishment	53.52844	-2.608679
+http://www.allseasonsweddings.com	All Seasons Wedding Ceremonies	18 Callaghan Rd, Riverview, NB, Canada	health, establishment	46.043692	-64.808896
+http://www.amnesty.ca	Amnesty International	W Pender St, Vancouver, BC, Canada	health, establishment	49.285916	-123.116836
+http://www.ai50.ca	Amnesty International	W Pender St, Vancouver, BC, Canada	health, establishment	49.285916	-123.116836
+http://www.bdsra.org	Batten Disease Support	166 Humphries Dr, Reynoldsburg, OH, United States	health, establishment	39.953905	-82.736177
+http://www.chatelaine.com	Bearspaw Chiropractic & Massage	1935 105 St NW, Edmonton, AB, Canada	health, establishment	53.448919	-113.500509
+http://www.bereavedfamilies.net	Bereaved Families Of Ontario Peterborough Region	403 McDonnel St, Peterborough, ON, Canada	health, establishment	44.309131	-78.331178
+http://www.cysticfibrosis.ca	Cystic Fibrosis Chapter of KW	528 Park St, Kitchener, ON, Canada	health, establishment	43.456339	-80.515159
+http://www.foodlink.ca	Foodlink Waterloo Region Inc	7 Albert St E, St Jacobs, ON, Canada	health, establishment	43.539541	-80.553463
+http://www.redcross.org.nz	New Zealand Red Cross	Red Cross House 59 Parkers Rd, Tahunanui, New Zealand	health, establishment	-41.289904	173.241199
+http://www.citeboomers.com	Productions Boomers	2280 Rue Laurier, Longueuil, QC J4J 5A7, Canada	health, establishment	45.532628	-73.470508
+http://www.thestop.org	Stop Community Food Centre (The)	1884 Davenport Rd, Toronto, ON, Canada	health, establishment	43.670858	-79.453829
+http://www.nlm.nih.gov	Stop Smoking and Weight Loss Center International Laser therapy	2140 Peachtree Rd NE #330, Atlanta, GA, United States	health, establishment	33.81272	-84.393535
+http://www.amazon.ca	Sutherland Heather MA Psychology	1258 Heron Rd, Ottawa, ON, Canada	health, establishment	45.378737	-75.664643
+http://www.star-imports.com	Golden Star Imports	4809 Alcoa Ave, Vernon, CA, United States	home_goods_store, store, establishment	33.999958	-118.209174
+http://www.markelliotson.com	Gresham House Furniture	3250 Ridgeway Dr, Mississauga, ON, Canada	home_goods_store, store, establishment	43.519824	-79.699365
+http://www.whistlinggardens.ca	Whistling Gardens	698 Concession 3 Townsend Rd, Wilsonville, ON, Canada	home_goods_store, store, establishment	42.998694	-80.298396
+http://www.bcchildrens.ca	BC Children's Hospital	4480 Oak Street, Vancouver, BC, Canada	hospital, establishment	49.244396	-123.125539
+http://www.bcwomens.ca	Children's & Women's Health Centre Of British Columbia	4480 Oak St, Vancouver, BC, Canada	hospital, establishment	49.244524	-123.12558
+http://www.iwkfoundation.org	IWK Health Centre	5850/5980 University Avenue, Halifax, NS, Canada	hospital, establishment	44.637383	-63.582697
+http://www.theprincessmargaret.ca	Princess Margaret Cancer Centre	610 University Ave, Toronto, ON, Canada	hospital, establishment	43.658219	-79.390613
+http://www.wellspring.ca	Wellspring Downtown	4 Charles St E, Toronto, ON, Canada	hospital, establishment	43.668772	-79.385835
+http://www.camh.net	Centre for Addiction and Mental Health	250 College St, Toronto, ON, Canada	hospital, health, establishment	43.658456	-79.39904
+http://www.mistura.com	Mistura Timepieces	13350 Dallas Pkwy #1905, Dallas, TX, United States	jewelry_store, store, establishment	32.931608	-96.820052
+http://www.eepurl.com	PALEOLOCHIC	Vilafranca, 26, Barcelona, Spain	jewelry_store, store, establishment	41.407317	2.156684
+http://www.bayfieldimporting.com	Bayfield Importing Ltd.	51-02 21st St, Long Island City, NY, United States	lawyer, establishment	40.740811	-73.949959
+http://www.maps.google.ca	Horlick Levitt	100 Sheppard Ave E, North York, ON, Canada	lawyer, establishment	43.763231	-79.405424
+http://www.travel.state.gov	LaFountain & Wollman, P.C.	507 Mt Auburn St, Watertown, MA, United States	lawyer, establishment	42.370452	-71.162677
+http://www.sandbankswinery.com	Sandbanks Estate Winery	17598 Loyalist Pkwy, Wellington, ON, Canada	liquor_store, food, art_gallery, jewelry_store, store, establishment	43.937585	-77.416019
+http://www.decanter.com	Decanter Vinhos Finos	Avenida Brasil, 630 - Ponta Aguda, Blumenau - SC, Brasil	liquor_store, food, store, bar, establishment	-26.915386	-49.064971
+http://www.silversmithbrewing.com	Silversmith Brewing Company	1523 Niagara Stone Rd, Niagara-on-the-Lake, ON, Canada	liquor_store, food, store, bar, establishment	43.222249	-79.121357
+http://www.ahriise.com	A. H. Riise Mall	37 Main St, St Thomas, U.S. Virgin Islands	liquor_store, food, store, establishment	18.340852	-64.931504
+http://www.thedrinksbusiness.com	A&S Wines	Online & Business Sales Office, 63, Abbotsbury Court, Kings Road, Horsham, United Kingdom	liquor_store, food, store, establishment	51.069994	-0.312947
+http://www.cbrands.com	Constellation Brands Inc	207 High Point Dr Bldg 100, Victor, NY, United States	liquor_store, food, store, establishment	43.029708	-77.435198
+http://www.buerklin-wolf.de	Dr. Bürklin-Wolf'sche Gutsverwaltung GmbH	Weinstraße 65, Wachenheim an der Weinstraße, Deutschland	liquor_store, food, store, establishment	49.44034	8.18045
+http://www.winemerchantsasia.com	Ginsberg+Chan Wine Merchants Asia	50 Queen's Road Central, Hong Kong	liquor_store, food, store, establishment	22.269878	114.184818
+http://www.harperwells.com	HarperWells Wine Merchant	30-32 Eaton St, Norwich, United Kingdom	liquor_store, food, store, establishment	52.608383	1.25104
+http://www.harwoodestatevineyards.com	Harwood Estate Vineyards	18908 Loyalist Pkwy, Hillier, ON, Canada	liquor_store, food, store, establishment	43.970278	-77.470033
+http://www.heavenlyvines.com	Heavenly Vines - Distinctive Canadian Wines	2 Chome-29-5 Ebisuminami, Shibuya, Tokyo, Japan	liquor_store, food, store, establishment	35.642227	139.711192
+http://www.laithwaites.co.uk	Laithwaites Wine Hersham	63-65 Molesey Rd, Hersham, Walton-on-Thames, United Kingdom	liquor_store, food, store, establishment	51.367948	-0.397032
+http://www.lcbo.com	LCBO	10 Scrivener Square, Toronto, ON, Canada	liquor_store, food, store, establishment	43.680828	-79.390469
+http://www.lcbo.ca	LCBO	337 Spadina Ave, Toronto, ON, Canada	liquor_store, food, store, establishment	43.654746	-79.398495
+http://www.wineanorak.com	Majestic Wine Cobham	20 Anyards Rd, Cobham, United Kingdom	liquor_store, food, store, establishment	51.329712	-0.411065
+http://www.majestic.co.uk	Majestic Wine Guildford	18-19 Woodbridge Rd, Guildford, United Kingdom	liquor_store, food, store, establishment	51.245278	-0.576802
+http://www.tagvodka.com	Maverick Distillery	2140 Winston Park Dr, Oakville, ON, Canada	liquor_store, food, store, establishment	43.50922	-79.672797
+http://www.noteworthywines.ca	Noteworthy Wines	London, ON, Canada	liquor_store, food, store, establishment	43.003991	-81.255096
+http://www.novovino.com	Novovino Wine Co	225 W Ohio St, Chicago, IL, United States	liquor_store, food, store, establishment	41.892123	-87.635243
+http://www.princeedwardcountywineries.com	Prince Edward County Wineries	12421 Loyalist Pkwy, Picton, ON, Canada	liquor_store, food, store, establishment	44.026544	-77.119155
+http://www.theis-vine.dk	Theis Vine	Mileparken 18, Skovlunde, Danmark	liquor_store, food, store, establishment	55.715084	12.422882
+http://www.uncorked.com	Uncorked Ltd	Exchange Arcade, Broadgate, London, United Kingdom	liquor_store, food, store, establishment	51.519259	-0.079829
+http://www.watsonswine.com	Watson's Wine	Shop G11A2, G/F, Discovery Bay Plaza, Discovery Bay, Lantau Island, Hong Kong	liquor_store, food, store, establishment	22.29524	114.016558
+http://www.wineemporiumny.com	Wine Emporium	209 N 11th St, Brooklyn, NY, United States	liquor_store, food, store, establishment	40.718972	-73.953312
+http://www.wineontherocks.tv	WINE ON THE ROCKS Tasting Room	Lindwurmstraße 135, Munich, Germany	liquor_store, food, store, establishment	48.126682	11.553679
+http://www.wine-searcher.com	Wine-Searcher Ltd	3 Totara Ave, New Lynn, Auckland, New Zealand	liquor_store, food, store, establishment	-36.909579	174.680904
+http://www.winedelight.de	WINEDELIGHT, Inh. Evelyn Wenderoth	Wilhelm-Busch-Straße 5, Kirchheim bei München, Deutschland	liquor_store, food, store, establishment	48.16618	11.76692
+http://www.vieni.ca	Vieni Estates Inc	4553 Fly Rd, Beamsville, ON, Canada	liquor_store, food, store, lodging, establishment	43.134736	-79.449859
+http://www.blackprincewinery.com	Black Prince Winery	13370 Loyalist Pkwy, Picton, ON, Canada	liquor_store, food, store, real_estate_agency, travel_agency, bar, establishment	43.99868	-77.165404
+http://www.triuswines.com	Trius Winery at Hillebrand	1249 Niagara Stone Rd, Niagara-on-the-Lake, ON, Canada	liquor_store, store, bar, restaurant, food, establishment	43.212028	-79.134806
+http://www.hillebrand.com	Trius Winery at Hillebrand	1249 Niagara Stone Rd, Niagara-on-the-Lake, ON, Canada	liquor_store, store, bar, restaurant, food, establishment	43.212028	-79.134806
+http://www.nbliquor.com	Alcool NB Liquor Dieppe	513 Rue Regis, Dieppe, NB, Canada	liquor_store, store, establishment	46.098004	-64.756497
+http://www.barleydaysbrewery.com	Barley Days Brewery	13730 Loyalist Pkwy, Picton, ON, Canada	liquor_store, store, establishment	43.99298	-77.184244
+http://www.bcliquorstores.com	BC Liquor Stores	768 Bute St, Vancouver, BC, Canada	liquor_store, store, establishment	49.28639	-123.125811
+http://www.decanter.com.do	Decanter Wine & Spirits	Luis Lembert St 1, Santo Domingo de Guzman, Dominican Republic	liquor_store, store, establishment	18.479497	-69.924701
+http://www.digennaro-wines.nl	Di Gennaro Wines	Donau 34, Amstelveen, Nederland	liquor_store, store, establishment	52.287598	4.868168
+http://www.diamondestates.ca	Diamond Estates Wines & Spirits	29 Connell Ct, Etobicoke, ON, Canada	liquor_store, store, establishment	43.613973	-79.519518
+http://www.hobbswines.com	Hobbs & Co. Wine Merchants Inc.	736 Dundas St E #607, Toronto, ON, Canada	liquor_store, store, establishment	43.661437	-79.357556
+http://www.iwsc.net	International Wine & Spirit Competition	17 Dunsfold Pk/Stovolds Hill, Cranleigh, United Kingdom	liquor_store, store, establishment	51.120049	-0.532078
+http://www.mdv.ca	Le Marchand De Vin	4920 Boulevard de Maisonneuve Ouest, Westmount, QC, Canada	liquor_store, store, establishment	45.476807	-73.601134
+http://www.nfliquor.com	Liquor Store	470 Topsail Rd, St John's, NL, Canada	liquor_store, store, establishment	47.532753	-52.751693
+http://www.nlliquor.com	Liquor Store	470 Topsail Rd, St John's, NL, Canada	liquor_store, store, establishment	47.532753	-52.751693
+http://www.marquis-wines.com	Marquis Wines & Spirits	29 Birch Hill Rd, Locust Valley, NY, United States	liquor_store, store, establishment	40.875648	-73.597273
+http://www.liquormarts.ca	MLCC	1146 Waverley St, Winnipeg, MB, Canada	liquor_store, store, establishment	49.83514	-97.174584
+http://www.liquormartsonline.com	MLCC	1146 Waverley St, Winnipeg, MB, Canada	liquor_store, store, establishment	49.83514	-97.174584
+http://www.mlcc.mb.ca	MLCC	1146 Waverley St, Winnipeg, MB, Canada	liquor_store, store, establishment	49.83514	-97.174584
+http://www.mynslc.com	NSLC	119 Commercial St, Dominion, NS, Canada	liquor_store, store, establishment	46.2102	-60.024281
+http://www.pacificwineandspirits.com	Pacific Wine & Spirits Ltd	1281 91 St SW, Edmonton, AB, Canada	liquor_store, store, establishment	53.421135	-113.476032
+http://www.pmacanada.com	Peter Mielzynski Agencies	32 Ave NE, Calgary, AB, Canada	liquor_store, store, establishment	51.081438	-113.995918
+http://www.peilcc.ca	Prince Edward Island Liquor Control Commission	355 University Ave, Charlottetown, PE, Canada	liquor_store, store, establishment	46.242887	-63.134413
+http://www.saq.com	SAQ	Rue Molson, Montreal, QC, Canada	liquor_store, store, establishment	45.542307	-73.571448
+http://www.saskliquor.com	Saskatchewan Liquor and Gaming Authority	503 Nelson Rd, Saskatoon, SK, Canada	liquor_store, store, establishment	52.150836	-106.569266
+http://www.sdvf.ca	Société De Vins Fins Ltée	208 Rue Labelle, Saint-Jerome, QC, Canada	liquor_store, store, establishment	45.773881	-74.003068
+http://www.tonyaspler.com	Tony Aspler Enterprises Ltd	900 Mt Pleasant Rd, Toronto, ON, Canada	liquor_store, store, establishment	43.711782	-79.39164
+http://www.vqaontario.com	V Q a Ontario	1 Yonge St #1601, Toronto, ON, Canada	liquor_store, store, establishment	43.642212	-79.374426
+http://www.vqaontario.ca	V Q a Ontario	1 Yonge St #1601, Toronto, ON, Canada	liquor_store, store, establishment	43.642212	-79.374426
+http://www.vendemmia.ca	Vendemmia International Wines Inc	8001 21 St NE, Calgary, AB, Canada	liquor_store, store, establishment	51.12486	-114.009719
+http://www.thewineshops.com	Vineyards Estate Wines	955 Westney Rd S, Ajax, ON, Canada	liquor_store, store, establishment	43.830804	-79.016563
+http://www.vineyardsestatewines.com	Vineyards Estate Wines	1460 Merivale Rd, Nepean, ON, Canada	liquor_store, store, establishment	45.361824	-75.73467
+http://www.aisle43.com	Vineyards Estate Wines	1460 Merivale Rd, Nepean, ON, Canada	liquor_store, store, establishment	45.361824	-75.73467
+http://www.winerack.com	Wine Rack	4111 Thickson Rd, Whitby, ON, Canada	liquor_store, store, establishment	43.923211	-78.926845
+http://www.winewire.ca	Wine Wire	920 Yonge St, Toronto, ON, Canada	liquor_store, store, establishment	43.674088	-79.388559
+http://www.winerytohome.com	Winerytohome.Com	150 Consumers Rd, North York, ON, Canada	liquor_store, store, establishment	43.773437	-79.331185
+http://www.woodenbearlwinery.com	Wooden Bear L Winery	801 Norfolk St S, Simcoe, ON, Canada	liquor_store, store, establishment	42.819738	-80.297313
+http://www.woodmanwinesandspirits.com	Woodman Wines & Spirits	365 Evans Ave #603, Toronto, ON, Canada	liquor_store, store, establishment	43.615674	-79.523053
+http://www.ylc.yk.ca	Yukon Liquor Corporation	2190 2nd Ave, Whitehorse, YT, Canada	liquor_store, store, establishment	60.725768	-135.058322
+http://www.canadian-health.ca	Health Canada	220 4e Ave SE #674, Calgary, AB, Canada	local_government_office, health, establishment	51.04959	-114.058277
+http://www.eleggatt.com	Leggatt	Leggatt, ON L0N, Canada	locality, political	43.967028	-80.354787
+http://www.adamsgoldenacres.com	Adams Golden Acres Motel	438 Main St W, Kingsville, ON, Canada	lodging, establishment	42.036972	-82.718571
+http://www.almostheavenbb.com	Almost Heaven Bed & Breakfast	1940 Deer Run Rd, Leamington, ON, Canada	lodging, establishment	42.058493	-82.502785
+http://www.appletreebb.ca	Apple Tree Historic Bed & Breakfast	263 Regent St, Niagara-on-the-Lake, ON, Canada	lodging, establishment	43.254419	-79.073588
+http://www.arcthehotel.com	Arc the Hotel Ottawa	140 Slater St, Ottawa, ON, Canada	lodging, establishment	45.42045	-75.697012
+http://www.aubergegodefroy.com	Auberge Godefroy Hôtel-Spa-Golf	17575 Boulevard Bécancour, Bécancour, QC, Canada	lodging, establishment	46.301273	-72.542746
+http://www.goeliche.ca	Auberge La Goéliche	22 Rue du Quai, Sainte-Pétronille, QC, Canada	lodging, establishment	46.8453	-71.131725
+http://www.balabayinn.com	Bala Bay Inn	3063 Muskoka Road, Bala, ON, Canada	lodging, establishment	44.995362	-79.696997
+http://www.beildhouse.com	Beild House Country Inn & Spa	64 Third St, Collingwood, ON, Canada	lodging, establishment	44.498734	-80.218045
+http://www.book.bestwestern.com	Best Western Hotel Hengfeng	1428 Licheng S Ave, Chengxiang, Putian, Fujian, China	lodging, establishment	25.42179	118.997935
+http://www.lamplighterinn.ca	BEST WESTERN PLUS Lamplighter Inn & Conference Centre	591 Wellington Rd, London, ON, Canada	lodging, establishment	42.953511	-81.230407
+http://www.blackwalnutmanor.com	Black Walnut Manor	4225 Victoria Ave, Lincoln, ON, Canada	lodging, establishment	43.168165	-79.393414
+http://www.bluemountain.ca	Blue Mountain Resort	108 Jozo Weider Blvd, Blue Mountains, ON, Canada	lodging, establishment	44.499099	-80.317049
+http://www.brockamour.com	Brockamour Manor	433 King St, Niagara-on-the-Lake, ON, Canada	lodging, establishment	43.249409	-79.076195
+http://www.burgundyeye.com	Burgundy Eye	Beaune, France	lodging, establishment	47.02603	4.840004
+http://www.choicehotels.ca	Choice Hotels Canada	5090 Explorer Dr #500, Mississauga, ON, Canada	lodging, establishment	43.661124	-79.596474
+http://www.cottagebythelake.com	Cottage the Lake Beamsville	5463 Blezard, Lincoln, ON, Canada	lodging, establishment	43.19638	-79.500916
+http://www.clrm.ca	CottageLINK Rental Management	#79 FR 11, Havelock, ON, Canada	lodging, establishment	44.510829	-77.798309
+http://www.coveinn.com	Cove Country Inn (The)	2 Bedford St, Westport, ON, Canada	lodging, establishment	44.679695	-76.395246
+http://www.thecranberryresort.com	Cranberry Golf Resort	19 Keith Avenue, Collingwood, ON, Canada	lodging, establishment	44.5124	-80.2574
+http://www.crmr.com	Deer Lodge	109 Lake Louise Drive, Lake Louise, AB, Canada	lodging, establishment	51.417128	-116.209006
+http://www.bbduckpond.com	Duckpond bed and breakfast cottage	901 Mersea Road 7, ???, ON, Canada	lodging, establishment	42.109389	-82.578738
+http://www.coolniagarafalls.com	Dunn Street Inn Bed and Breakfast	6257 Dunn St, Niagara Falls, ON, Canada	lodging, establishment	43.078723	-79.0982
+http://www.elmhurstinn.com	Elm Hurst Inn & Spa	415 Harris Street, Ingersoll, ON, Canada	lodging, establishment	43.029844	-80.85516
+http://www.fairmont.com	Fairmont	805 3rd Ave, New York, United States	lodging, establishment	40.755368	-73.970481
+http://www.fallsviewcasinoresort.com	Fallsview Casino Resort	6380 Fallsview Blvd, Niagara Falls, ON, Canada	lodging, establishment	43.082455	-79.0813
+http://www.fogoislandinn.ca	Fogo Island Inn	Joe Batt's Arm, NL, Canada	lodging, establishment	49.730749	-54.17676
+http://www.bbcanada.com	Gables Bed and Breakfast	207 Point St, Stayner, ON, Canada	lodging, establishment	44.417495	-80.094143
+http://www.grandvictorian.ca	Grand Victorian	15618 Niagara Pkwy, Niagara-on-the-Lake, ON, Canada	lodging, establishment	43.217716	-79.05996
+http://www.guesthousegetaway.com	Guesthouse Getaway!	8331 Middle Side Rd, Mcgregor, ON, Canada	lodging, establishment	42.139838	-82.980243
+http://www.hillndalebb.com	Hill'n Dale Bed & Breakfast	138 Division St N, Kingsville, ON, Canada	lodging, establishment	42.042826	-82.739364
+http://www3.hilton.com	Hilton	13602 Chelonia Pkwy, Orlando, FL, United States	lodging, establishment	28.358884	-81.52733
+http://www.hockley.com	Hockley Valley Resort	793522 Mono 3rd Line, Mono, ON, Canada	lodging, establishment	43.977548	-80.046672
+http://www.hollycottage.ca	Holly Cottage Bed & Breakfast	618185 Grey Road #18, RR 8, Owen Sound, ON, Canada	lodging, establishment	44.592857	-80.741181
+http://www.google.com	Hotel Las Rampas	Av. Adolfo López Mateos 20, Las Playas, Acapulco de Juárez, Guerrero, México	lodging, establishment	16.841251	-99.914034
+http://www.idlewyldinn.com	Idlewyld Inn	36 Grand Ave, London, ON, Canada	lodging, establishment	42.972051	-81.245726
+http://www.innontheharbour.ca	INN ON THE HARBOUR	202 Main St, Port Stanley, ON, Canada	lodging, establishment	42.664533	-81.212309
+http://www.innonthetwenty.com	Inn On The Twenty	3836 Main St, Jordan, ON, Canada	lodging, establishment	43.14953	-79.369722
+http://www.irishmountain.net	Irish Mountain Bed and Breakfast	RR 1 Stn Main, Meaford, ON, Canada	lodging, establishment	44.590186	-80.665984
+http://www.isaiahtubbs.com	Isaiah Tubbs Resort & Conference Centre	1642 County Road 12, Picton, ON, Canada	lodging, establishment	43.929597	-77.256826
+http://www.jacksonsfalls.com	Jackson's Falls Country Inn	1768 Prince Edward County Road 17, Milford, ON, Canada	lodging, establishment	43.947443	-77.068239
+http://www.jordanhouse.ca	Jordan House	3845 Main St, Jordan, ON, Canada	lodging, establishment	43.14499	-79.369057
+http://www.keefermansion.com	Keefer Mansion Inn	14 St. David's St W, Thorold, ON, Canada	lodging, establishment	43.129746	-79.201595
+http://www.kingshotel.ca	Kings Hotel Inn & Suites	12 Main St E, Kingsville, ON, Canada	lodging, establishment	42.037895	-82.739066
+http://www.kingswoodinn.com	Kingswood Inn	101 Mill St W, Kingsville, ON, Canada	lodging, establishment	42.036178	-82.743866
+http://www.langdonhall.ca	Langdon Hall Country House Hotel & Spa	1 Langdon Dr, Cambridge, ON, Canada	lodging, establishment	43.381503	-80.372059
+http://www.littleinn.com	Little Inn Of Bayfield	26 Main St N, Bayfield, ON, Canada	lodging, establishment	43.565262	-81.701677
+http://www.manoirhovey.com	Manoir Hovey	575 Rue Hovey, North Hatley, QC, Canada	lodging, establishment	45.268117	-71.990774
+http://www.themanse.ca	Manse The	10 Chapel St, Picton, ON, Canada	lodging, establishment	44.005357	-77.143459
+http://www.mckinnonsbb.com	McKinnon's Lakeside Bed and Breakfast	389 Lakeside Dr, Amherstburg, ON, Canada	lodging, establishment	42.027612	-83.02834
+http://www.merrillinn.com	Merrill Inn	343 Picton Main St, Picton, ON, Canada	lodging, establishment	44.010615	-77.138574
+http://www.millfallshouse.com	Millfalls House B&B	745 Crowes Rd, Prince Edward, ON, Canada	lodging, establishment	43.936808	-77.1034
+http://www.millhollow.ca	Millhollow B&B	212 Miller St, Meaford, ON, Canada	lodging, establishment	44.603648	-80.597994
+http://www.ontarioferries.com	Mindemoya Motel	6375 Hwy 542, Mindemoya, ON, Canada	lodging, establishment	45.732357	-82.160602
+http://www.marriott.com	New Orleans Marriott	555 Canal St, New Orleans, LA, United States	lodging, establishment	29.95269	-90.067396
+http://www.oldfarmhouse.com	Old Farmhouse Bed & Breakfast (The)	1389 Seacliff Dr, Gosfield South, ON, Canada	lodging, establishment	42.038855	-82.68103
+http://www.ontariosfinestinns.com	Ontario's Finest Inns	435 Turnberry St, Brussels, ON, Canada	lodging, establishment	43.743878	-81.249932
+http://www.parktoronto.hyatt.com	Park Hyatt Toronto	4 Avenue Rd, Toronto, ON, Canada	lodging, establishment	43.669685	-79.394675
+http://www.abbbe.com	Pedulla's Mountainside B&B	109 Carmichael Crescent, The Blue Mountains, ON, Canada	lodging, establishment	44.499788	-80.308644
+http://www.peleedaysinn.com	Pelee Motor Inn & Conference Ctre - Leamington	566 Bevel Line Rd, Leamington, ON, Canada	lodging, establishment	42.031848	-82.58489
+http://www.prettyriverinn.com	Pretty River Valley Country Inn	529742 Osprey-The Blue Mountains Tline, Nottawa, ON, Canada	lodging, establishment	44.409916	-80.287636
+http://www.pecchamber.com	Prince Edward County Chamber of Tourism & Commerce	116 Picton Main St E, Picton, ON, Canada	lodging, establishment	44.00541	-77.145436
+http://www.radisson.com	Radisson Hotel-Utica Centre	200 Genesee St, Utica, NY, United States	lodging, establishment	43.101222	-75.23241
+http://www.seacliffeinn.com	Seacliffe Inn (The)	388 Erie St S, Leamington, ON, Canada	lodging, establishment	42.029453	-82.60127
+http://www.shawclub.com	Shaw Club Hotel & Spa, An Ontario's Finest Inn	92 Picton St, Niagara-on-the-Lake, ON, Canada	lodging, establishment	43.253158	-79.068088
+http://www.tabooresort.com	Taboo Resort, Golf and Spa	1209 Muskoka Beach Rd, Gravenhurst, ON, Canada	lodging, establishment	44.963827	-79.368839
+http://www.thebellhouse.ca	The Bell House Bed & Breakfast	528 County Road 50, Essex, ON, Canada	lodging, establishment	41.993556	-82.885814
+http://www.wineriesofniagaraonthelake.com	The Brass Bell Bed & Breakfast	1891 Lakeshore Road, R. R. #3, NiagarA, ON, Canada	lodging, establishment	43.254535	-79.090406
+http://www.theduchessofwellington.com	The Duchess of Wellington	320 Wellington St W, Chatham, ON, Canada	lodging, establishment	42.401493	-82.190001
+http://www.innatbayfortune.com	The Inn at Bay Fortune	758 Route 310, Bay Fortune, PE, Canada	lodging, establishment	46.329902	-62.362851
+http://www.obaninn.ca	The Oban Inn	160 Front St, Niagara-on-the-Lake, ON, Canada	lodging, establishment	43.259362	-79.073747
+http://www.viniferainn.ca	Vinifera, The Inn on Winery Row	245 Main St E, Grimsby, ON, Canada	lodging, establishment	43.185345	-79.530015
+http://www.wenzlerslanding.com	Wenzler's Landing Bed & Breakfast	2310 Hickson Rd, Wheatley, ON, Canada	lodging, establishment	42.080465	-82.477067
+http://www.windsorinnontheriver.com	Windsor Inn On The River	3857 Riverside Dr E, Windsor, ON, Canada	lodging, establishment	42.326673	-82.991369
+http://www.holidayinn.com	??????	No. 678, ?????, North District, Tainan City, Taiwan	lodging, establishment	23.012932	120.200727
+http://www.couplesresort.ca	Couples Resort	139 Galeairy Lake Rd, Whitney, ON, Canada	lodging, spa, health, establishment	45.487497	-78.245209
+http://www.wakefieldmill.com	Wakefield Mill Inn & Spa	60 Chemin Mill, La Pêche, QC, Canada	lodging, spa, health, establishment	45.634938	-75.936099
+http://www.paeseristorante.com	PAESE Ristorante	3827 Bathurst St, Toronto, ON, Canada	meal_takeaway, restaurant, food, establishment	43.739689	-79.434289
+http://www.roythomson.com	Roy Thomson Hall	60 Simcoe St, Toronto, ON, Canada	movie_theater, establishment	43.646596	-79.386413
+http://www.ago.net	Art Gallery of Ontario	317 Dundas St W, Toronto, ON, Canada	museum, establishment	43.653607	-79.392512
+http://www.ctmhv.com	Canadian Transportation Museum	Essex, ON, Canada	museum, establishment	42.079306	-82.823163
+http://www.pc.gc.ca	Fort St. James National Historic Site of Canada	280 Kwah Rd W, Fort St James, BC, Canada	museum, establishment	54.439247	-124.256853
+http://www.maps.google.com	Smithsonian National Air and Space Museum	600 Independence Ave SW, Washington, DC, United States	museum, establishment	38.88816	-77.019868
+http://www.216.147.78.50	www.makarska-apartments-premeru.com	www.makarska-apartments-premeru.com, Ulica Kralja Petra Krešimira IV 50, 21300, Makarska, Croatia	museum, point_of_interest, establishment	43.3000824	17.0138993
+http://www.waterfronttrail.org	Waterfront Trail	185 Third St, Cobourg, ON, Canada	natural_feature, establishment	43.958535	-78.167945
+http://www.yuruquan.com	Yuri-to	Yuri-to, 694502	natural_feature, establishment	43.4213889	146.0766667
+http://www.thefifth.com	The Fifth Social Club	225 Richmond St W, Toronto, ON, Canada	night_club, bar, establishment	43.649433	-79.389686
+http://www.tripadvisor.co.uk	Restaurang Kvarnen	Tjärhovsgatan 4, Stockholm, Sweden	night_club, bar, restaurant, food, establishment	59.31486	18.0742
+http://www.sterlingrestaurant.com	Sterling	835 Rue Jacques-Cartier, Gatineau, QC, Canada	night_club, bar, restaurant, food, establishment	45.456189	-75.697438
+http://www.libertygroup.com	Phoenix Concert Theatre	410 Sherbourne St, Toronto, ON, Canada	night_club, establishment	43.664605	-79.373874
+http://www.theyorkclub.org	The York Club	135 St George St, Toronto, ON, Canada	night_club, establishment	43.668006	-79.399494
+http://www.553church.com	Smith	553 Church St, Toronto, ON, Canada	night_club, restaurant, food, establishment	43.666992	-79.381329
+http://www.ontarioparks.com	Algonquin Provincial Park	Ontario 60, ON, Canada	park, establishment	45.837159	-78.379124
+http://www.niagaragreenbelt.com	Charles Daley Park	Jordan Station, ON, Canada	park, establishment	43.181501	-79.323671
+http://www.naturestuff.net	Nature Stuff	23 Sprague Rd, Demorestville, ON, Canada	park, establishment	44.122961	-77.213024
+http://www.visitgrey.ca	Sawmill Ski Trail	719533 Hwy 6, Georgian Bluffs, ON, Canada	park, establishment	44.632049	-81.11547
+http://www.sheridannurseries.com	Sheridan Nurseries Limited	2827 Yonge St, Toronto, ON, Canada	park, establishment	43.718786	-79.400894
+http://www.friendsofshorthillspark.ca	Short Hills Provincial Park	Thorold, ON, Canada	park, establishment	43.098159	-79.281759
+http://www.thebluffsgolfclub.com	The Bluffs Golf Club	35593 Lake Line Rd, Port Stanley, ON, Canada	park, establishment	42.663306	-81.278132
+http://www.withrowpark.ca	Withrow Park	Toronto, ON, Canada	park, establishment	43.674944	-79.34726
+http://www.couchconservancy.ca	Couchiching Conservancy	1485 Division Rd W, Orillia, ON, Canada	park, general_contractor, establishment	44.635777	-79.475862
+http://www.yongestreetmedia.ca	Yonge Street	Yonge St, ON, Canada	parking, establishment	43.675601	-79.388951
+http://www.trumphotelcollection.com	Trump International Hotel & Tower Toronto	325 Bay St, Toronto, ON, Canada	parking, lodging, spa, establishment	43.649822	-79.380394
+http://www.altec515.com	Altec Patio Builders & Designers	Altec Patio Builders & Designers, 4 Staple St, Seventeen Mile Rocks QLD 4073, Australia	point_of_interest, establishment	-27.5448076	152.9539643
+http://www.northshoreinnbedandbreakfast.com	Avenue Inn Bed and Breakfast	Avenue Inn Bed and Breakfast, 4125 St Charles Ave, New Orleans, LA 70115, USA	point_of_interest, establishment	29.927243	-90.0993079
+http://www.chocolatesbybernardcallebaut.com	Chocolates by Bernard Callebaut	Chocolates by Bernard Callebaut, 6320 50 Ave, Red Deer, AB T4N, Canada	point_of_interest, establishment	52.284625	-113.814673
+http://www.sue-annstaff.com	GEICO Staff Counsel: Eckell Sue Ann	GEICO Staff Counsel: Eckell Sue Ann, 1500 John F Kennedy Blvd Ste 810, Philadelphia, PA 19102, USA	point_of_interest, establishment	39.9534799	-75.1656053
+http://www.essexrailwaystation.com	Historic Essex Railway Station	Historic Essex Railway Station, 87 Station St, Essex, ON N8M, Canada	point_of_interest, establishment	42.1762632	-82.8211721
+http://www.maggiefraser.com	Maggie Benston Centre	Maggie Benston Centre, Simon Fraser University, Burnaby, BC V5A 1S6, Canada	point_of_interest, establishment	49.2800647	-122.9216576
+http://www.thefairviewbandb.com	Nelson Lakeside Panoramic B&B	Nelson Lakeside Panoramic B&B, 705 Sproat Dr, Nelson, BC V1L 7B6, Canada	point_of_interest, establishment	49.5097176	-117.2760498
+http://www.vinocanada.com	Vino Volo	Vino Volo, Vancouver International Airport, 3211 Grant McConachie Way, Richmond, BC V7B 0A4, Canada	point_of_interest, establishment	49.1951875	-123.177887
+http://www.vintagegoose.com	Vintage Goose Inn & Spa (The)	Vintage Goose Inn & Spa (The), 31 Division St S, Kingsville, ON N9Y, Canada	point_of_interest, establishment	42.0367308	-82.7396047
+http://www.66.147.244.75	www.rentinparis4.com	www.rentinparis4.com, 71 Rue Saint-Martin, 75004 Paris, France	point_of_interest, establishment	48.8593028	2.3505466
+http://www.chelseaspa.com	Chelsea	Chelsea, 1629 Mahan Center Blvd, Tallahassee, FL 32308, USA	point_of_interest, spa, establishment	30.4591179	-84.2355268
+http://www.aglc.ca	Alberta Gaming and Liquor Commission	50 Corriveau Ave, St Albert, AB, Canada	police, establishment	53.642448	-113.569226
+http://www.cbsa-asfc.gc.ca	CBSA Hereford Road	1871 RTE 141, Hereford, QC, Canada	police, establishment	45.013008	-71.560378
+http://www.canadapost.ca	Canada Post	2701 Riverside Drive, Ottawa, ON, Canada	post_office, finance, establishment	45.376047	-75.690253
+http://www.devonshire.shopping.ca	Bower Place	Bower Place, 4900 Molly Banister Dr, Bower Place Shopping Centre, Red Deer, AB T4R 1N9, Canada	premise	52.2429746	-113.8087181
+http://www.thegazebohouse.com	Gazebo House	Gazebo House, Roslin Rd, London W3 8DH, UK	premise	51.5009864	-0.2742866
+http://www.deantudor.com	Tudor Cottage	Tudor Cottage, Bulley Ln, Gloucester, Gloucestershire GL2 8AS, UK	premise	51.870635	-2.3738085
+http://www.myspace.com	www.thelanddepot.net	712 Winters St, West Palm Beach, FL, United States	real_estate_agency, dentist, health, establishment	26.654219	-80.061106
+http://www.simcoecountyfarmfresh.ca	Collingwood Real Estate Broker- Heather Stitt	67 First St, Collingwood, ON, Canada	real_estate_agency, establishment	44.502725	-80.219868
+http://www.vrbo.com	No. 12 at Mauna Kai	3920 Wyllie Rd, Princeville, HI, United States	real_estate_agency, establishment	22.220618	-159.470182
+http://www.retirehere.ca	Windsor-Essex County Association	3020 Deziel Drive, Windsor, ON, Canada	real_estate_agency, establishment	42.282606	-82.972259
+http://www.sandbanksvacations.com	Sandbanks Vacations & Tours	57 Bloomfield Main St, Bloomfield, ON, Canada	real_estate_agency, travel_agency, establishment	43.988306	-77.213587
+http://www.25liberty.ca	25 Liberty	25 Liberty St, Toronto, ON, Canada	restaurant, food, establishment	43.638157	-79.420734
+http://www.416snackbar.com	416 Snack Bar	181 Bathurst St, Toronto, ON, Canada	restaurant, food, establishment	43.64755	-79.404013
+http://www.416snackbar.wordpress.com	416 Snack Bar	181 Bathurst St, Toronto, ON, Canada	restaurant, food, establishment	43.64755	-79.404013
+http://www.5thelementt.com	5th Element	506 Queen St W, Toronto, ON, Canada	restaurant, food, establishment	43.647883	-79.401427
+http://www.abruzzi.ca	Abruzzi	119 King St, London, ON, Canada	restaurant, food, establishment	42.981946	-81.250626
+http://www.absinthecafe.ca	Absinthe	1208 Wellington St W, Ottawa, ON, Canada	restaurant, food, establishment	45.400162	-75.730545
+http://www.agcuisine.com	AG Inspired Cuisine	5195 Magdalen St, Niagara Falls, ON, Canada	restaurant, food, establishment	43.091223	-79.080295
+http://www.aldenterestaurant.com	Al Dente Italian Restaurant and Banquet Hall	1305 Pickering Pkwy, Pickering, ON, Canada	restaurant, food, establishment	43.833695	-79.088324
+http://www.ancasteroldmill.com	Ancaster Mill	548 Old Dundas Rd, Ancaster, ON, Canada	restaurant, food, establishment	43.233688	-79.974219
+http://www.aquaterrabyclark.com	AquaTerra by Clark Restaubistro	1 Johnson St, Kingston, ON, Canada	restaurant, food, establishment	44.227878	-76.479923
+http://www.ariaristorante.ca	Aria Ristorante	25 York St, Toronto, ON, Canada	restaurant, food, establishment	43.643393	-79.380678
+http://www.armandospizza.com	Armando's Pizza	326 Cabana Rd E, Windsor, ON, Canada	restaurant, food, establishment	42.258288	-82.998012
+http://www.fginternationalcorp.com	Aroma Mediterranean Restaurant	717 Richmond St, London, ON, Canada	restaurant, food, establishment	42.994194	-81.253075
+http://www.ascarienoteca.ca	Ascari Enoteca	1111 Queen St E, Toronto, ON, Canada	restaurant, food, establishment	43.661992	-79.335396
+http://www.atomica.ca	Atomica Gourmet Pizza & Wine Bar	71 Brock St, Kingston, ON, Canada	restaurant, food, establishment	44.230688	-76.482144
+http://www.auguste-restaurant.com	Auguste Restaurant	82 Rue Wellington Nord, Sherbrooke, QC, Canada	restaurant, food, establishment	45.402769	-71.89102
+http://www.avecbistro.com	AVEC Bistro	105, 550 11 Ave SW, Calgary, AB, Canada	restaurant, food, establishment	51.042872	-114.073836
+http://www.azzurra.ca	Azzurra Trattoria	100 Pine St, Collingwood, ON, Canada	restaurant, food, establishment	44.500328	-80.21862
+http://www.bacalaocuisine.ca	Bacalao Nouvelle Newfoundland Cuisine	65 Lemarchant Rd, St John's, NL, Canada	restaurant, food, establishment	47.561689	-52.716878
+http://www.backlanecafe.com	Back Lane Café	1087 Wellington St W, Ottawa, ON, Canada	restaurant, food, establishment	45.403121	-75.725506
+http://www.barque.ca	Barque Smokehouse	299 Roncesvalles Avenue, Toronto, ON, Canada	restaurant, food, establishment	43.64801	-79.449655
+http://www.bb33.ca	Bb33 Bistro and Brasserie	33 Gerrard St W, Toronto, ON, Canada	restaurant, food, establishment	43.658716	-79.383086
+http://www.thebeastrestaurant.com	Beast Restaurant	96 Tecumseth St, Toronto, ON, Canada	restaurant, food, establishment	43.644084	-79.405678
+http://www.beckta.com	Beckta Dining & Wine	226 Nepean St, Ottawa, ON, Canada	restaurant, food, establishment	45.416732	-75.699081
+http://www.bellabistro.ca	Bella Bistro	4050 Bath Rd, Kingston, ON, Canada	restaurant, food, establishment	44.241364	-76.609857
+http://www.bijourestaurant.com	Bijou Restaurant	105 Erie St, Stratford, ON, Canada	restaurant, food, establishment	43.369794	-80.984045
+http://www.bistro4saisons.com	Bistro 4 Saisons	4940 Chemin du Parc, Orford, QC, Canada	restaurant, food, establishment	45.311095	-72.206341
+http://www.tripadvisor.com	Bistro cafe bar G	Šetalište Marka Marojice 21, 20207 Mlini, Dubrovnik/Mlini, Hrvatska	restaurant, food, establishment	42.622796	18.20309
+http://www.bistrostefan.com	Bistro Stefan	1217 Princess St, Kingston, ON, Canada	restaurant, food, establishment	44.246488	-76.522812
+http://www.blackangussteakhouse.ca	Black Angus Steakhouse	3277 Bloor St W, Etobicoke, ON, Canada	restaurant, food, establishment	43.646057	-79.517186
+http://www.blackcatbistro.ca	Black Cat Bistro	428 Preston St, Ottawa, ON, Canada	restaurant, food, establishment	45.399985	-75.709375
+http://www.bluewatercafe.net	Blue Water Cafe + Raw Bar	1095 Hamilton St, Vancouver, BC, Canada	restaurant, food, establishment	49.276162	-123.121091
+http://www.blumengardenbistro.com	Blumen Garden Bistro	647 County Road 49, Picton, ON, Canada	restaurant, food, establishment	44.020641	-77.13553
+http://www.bo-coq.com	Bo-Coq Produits (Les)	765 Rue Nobel, St Jerome, QC, Canada	restaurant, food, establishment	45.757114	-73.9934
+http://www.boehmer.ca	Böhmer	93 Ossington Ave, Toronto, ON, Canada	restaurant, food, establishment	43.646255	-79.419474
+http://www.bolandsopenkitchen.com	Boland's Open Kitchen & Wine Bar	575 Mt Pleasant Rd, Toronto, ON, Canada	restaurant, food, establishment	43.70346	-79.387981
+http://www.restaurantbonaparte.ca	Bonaparte Restaurant	443 St Francois Xavier St, Montreal, QC, Canada	restaurant, food, establishment	45.503275	-73.556089
+http://www.foodnetwork.ca	Boon Burger Cafe	79 Sherbrook St, Winnipeg, MB, Canada	restaurant, food, establishment	49.881015	-97.159446
+http://www.brassaii.com	Brassaii	461 King St W, Toronto, ON, Canada	restaurant, food, establishment	43.644978	-79.396269
+http://www.bravi.ca	Bravi Ristorante	40 Wellington St E, Toronto, ON, Canada	restaurant, food, establishment	43.648532	-79.374965
+http://www.brusselsbistro.ca	Brussels Bistro	1975 Queen St E, Toronto, ON, Canada	restaurant, food, establishment	43.669563	-79.300668
+http://www.burntbutter.ca	Burnt Butter Italian Kitchen	1100 Wellington St W, Ottawa, ON, Canada	restaurant, food, establishment	45.402669	-75.725734
+http://www.bymark.mcewangroup.ca	Bymark	66 Wellington St W, Toronto, ON, Canada	restaurant, food, establishment	43.647361	-79.381122
+http://www.cabottos.com	Cabotto's Restaurant	5816 Hazeldean Rd, Ottawa, ON, Canada	restaurant, food, establishment	45.280213	-75.916302
+http://www.cafechartreuse.com	Café Chartreuse	70 Hurontario St, Collingwood, ON, Canada	restaurant, food, establishment	44.500988	-80.21717
+http://www.calabriarestaurant.com	Calabria Restaurant	588 S Livingston Ave, Livingston, NJ, United States	restaurant, food, establishment	40.773435	-74.326037
+http://www.cambridgemill.com	Cambridge Mill	130 Water St N, Cambridge, ON, Canada	restaurant, food, establishment	43.363461	-80.316155
+http://www.campagnolotoronto.com	Campagnolo	832 Dundas St W, Toronto, ON, Canada	restaurant, food, establishment	43.651753	-79.40951
+http://www.canalritz.com	Canal Ritz	375 Queen Elizabeth Dr, Ottawa, ON, Canada	restaurant, food, establishment	45.403091	-75.681421
+http://www.canyoncreekchophouse.com	Canyon Creek Chophouse	156 Front St W, Toronto, ON, Canada	restaurant, food, establishment	43.64506	-79.384136
+http://www.capers.ca	Capers' Ritchie Room	272 Front St, Belleville, ON, Canada	restaurant, food, establishment	44.165616	-77.3851
+http://www.carenswineandcheese.com	Carens Wine and Cheese Bar	158 Cumberland St, Toronto, ON, Canada	restaurant, food, establishment	43.669923	-79.393424
+http://www.ottawawineandfoodshow.com	Carnival Of Culture	1385 Triole St, Gloucester, ON, Canada	restaurant, food, establishment	45.415553	-75.630846
+http://www.bloomfieldcarriagehouse.com	Carriage House Restaurant	260 Bloomfield Main St, Bloomfield, ON, Canada	restaurant, food, establishment	43.987635	-77.227401
+http://www.thecarriagehouse.ca	Carriage House Restaurant The	2101 Old Lakeshore Rd, Burlington, ON, Canada	restaurant, food, establishment	43.326305	-79.791527
+http://www.casadomenico.com	Casa Domenico	35 Brock St, Kingston, ON, Canada	restaurant, food, establishment	44.230487	-76.480834
+http://www.casamiaristorante.com	Casa Mia Ristorante	3518 Portage Rd, Niagara Falls, ON, Canada	restaurant, food, establishment	43.121968	-79.099509
+http://www.casadeaestates.com	Casa-Dea Estates Winery	Greer Rd, Wellington, ON, Canada	restaurant, food, establishment	43.954658	-77.437821
+http://www.catchit.ca	Catch Restaurant	744 St Clair Ave W, Toronto, ON, Canada	restaurant, food, establishment	43.68135	-79.427775
+http://www.cavarestaurant.ca	Cava Restaurant	1560 Yonge St, Toronto, Ontario, Canada	restaurant, food, establishment	43.689845	-79.39499
+http://www.restaurantchantecler.ca	Chantecler	1320 Queen St W, Toronto, ON, Canada	restaurant, food, establishment	43.641805	-79.431218
+http://www.chezpiggy.com	Chez Piggy Restaurant & Bar	68 Princess St, Kingston, ON, Canada	restaurant, food, establishment	44.231245	-76.481436
+http://www.cobblebeach.com	Cobble Beach Golf Links	221 McLeese Drive, Kemble, ON, Canada	restaurant, food, establishment	44.673225	-80.92822
+http://www.eloracork.com	Cork Restaurant	146 Metcalfe St, Elora, ON, Canada	restaurant, food, establishment	43.683079	-80.430736
+http://www.wilsonsmagicdynasty.com	Cravings Restaurant	51117 Ron McNeil Line, Springfield, ON, Canada	restaurant, food, establishment	42.829256	-80.937187
+http://www.czehoski.com	Czehoski	678 Queen Street West, Toronto, ON, Canada	restaurant, food, establishment	43.646643	-79.407419
+http://www.davidsportdover.com	David's Restaurant	168 New Lake Shore Rd, Port Dover, ON, Canada	restaurant, food, establishment	42.788433	-80.174006
+http://www.daysonfront.com	Days on Front	730 Front Rd, Kingston, ON, Canada	restaurant, food, establishment	44.218783	-76.571054
+http://www.deluxrestaurant.ca	Delux Restaurant	92 Ossington Ave, Toronto, ON, Canada	restaurant, food, establishment	43.646198	-79.419811
+http://www.dinemagazine.ca	DINE Magazine	164 Cumberland St #703, Toronto, ON, Canada	restaurant, food, establishment	43.669871	-79.393675
+http://www.domuscafe.ca	Domus Cafe	85 Murray St, Ottawa, ON, Canada	restaurant, food, establishment	45.429802	-75.693684
+http://www.drakeonefifty.ca	Drake One Fifty	150 York St, Toronto, ON, Canada	restaurant, food, establishment	43.649552	-79.384831
+http://www.bbcgoodfood.com	Dulce Mareas	Las Penitas, Nicaragua	restaurant, food, establishment	12.359132	-87.019497
+http://www.e11even.ca	e11even	15 York St, Toronto, ON, Canada	restaurant, food, establishment	43.642782	-79.38107
+http://www.eastandmain.ca	East and Main Bistro	270 Main St, Wellington, ON, Canada	restaurant, food, establishment	43.951773	-77.349026
+http://www.thecountywines.com	East and Main Bistro	270 Main St, Wellington, ON, Canada	restaurant, food, establishment	43.951773	-77.349026
+http://www.chezedgar.ca	Edgar	60 Rue Bégin, Gatineau, QC, Canada	restaurant, food, establishment	45.420733	-75.745241
+http://www.urbanspoon.com	Eldorado Mexican Restaurant	102 2nd Ave, Coralville, IA, United States	restaurant, food, establishment	41.668761	-91.569111
+http://www.empiregrill.com	Empire Grill	47 Clarence St, Ottawa, ON, Canada	restaurant, food, establishment	45.428912	-75.693768
+http://www.sociale.ca	Enoteca sociale	1288 Dundas St W, Toronto, ON, Canada	restaurant, food, establishment	43.649588	-79.425621
+http://www.enversofmorriston.ca	Envers Restaurant	42 Queen St, Morriston, ON, Canada	restaurant, food, establishment	43.447935	-80.116694
+http://www.epicrestaurant.ca	Epic Restaurant	100 Front St W, Toronto, ON, Canada	restaurant, food, establishment	43.645585	-79.381924
+http://www.volos.ca	Estiatorio VOLOS	133 Richmond St W, Toronto, ON, Canada	restaurant, food, establishment	43.650318	-79.384781
+http://www.theexplorerscafe.com	Explorers Cafe The	347 King St, Midland, ON, Canada	restaurant, food, establishment	44.747799	-79.883583
+http://www.fabbrica.ca	Fabbrica	49 Karl Fraser Rd, Toronto, ON, Canada	restaurant, food, establishment	43.736639	-79.344802
+http://www.farnienterestaurant.com	Far Niente	187 Bay St, Toronto, ON, Canada	restaurant, food, establishment	43.647442	-79.379592
+http://www.feastivities.ca	Feastivities Events & Catering	162 Hagar St, Welland, ON, Canada	restaurant, food, establishment	42.988027	-79.237328
+http://www.ferrobarcafe.ca	Ferro Bar Café	769 St Clair Ave W, Toronto, ON, Canada	restaurant, food, establishment	43.680931	-79.428619
+http://www.fivedoorsnorth.com	Five Doors North	2088 Yonge St, Toronto, ON, Canada	restaurant, food, establishment	43.702192	-79.39755
+http://www.fourtoronto.com	Four	187 Bay St, Toronto, ON, Canada	restaurant, food, establishment	43.647577	-79.379469
+http://www.franos.com	Frano's Pizzeria And Trattoria	5812 Main St, Whitchurch-Stouffville, ON, Canada	restaurant, food, establishment	43.968043	-79.262109
+http://www.freddys.ca	Freddy's Park Stop	655 Point Pelee Dr, Leamington, ON, Canada	restaurant, food, establishment	42.006974	-82.568731
+http://www.fusiongrill.mb.ca	Fusion Grill	550 Academy Rd, Winnipeg, MB, Canada	restaurant, food, establishment	49.874223	-97.197404
+http://www.garlicsoflondon.com	Garlic's Of London	481 Richmond St, London, ON, Canada	restaurant, food, establishment	42.986171	-81.250756
+http://www.georgeonqueen.com	George Restaurant	111 Queen St E, Toronto, ON, Canada	restaurant, food, establishment	43.653246	-79.374266
+http://www.gezelligdining.ca	gezellig	337 Richmond Rd, Ottawa, ON, Canada	restaurant, food, establishment	45.392176	-75.753996
+http://www.jamiekennedy.ca	Gilead Café & Wine Bar	4 Gilead Pl, Toronto, ON, Canada	restaurant, food, establishment	43.653586	-79.360882
+http://www.glaswinebar.com	Glas Wine Bar	1118 Queen St E, Toronto, ON, Canada	restaurant, food, establishment	43.66212	-79.335268
+http://www.globebistro.com	Globe Bistro	124 Danforth Ave, Toronto, ON, Canada	restaurant, food, establishment	43.676507	-79.358071
+http://www.grano.ca	grano	2035 Yonge St, Toronto, ON, Canada	restaurant, food, establishment	43.70168	-79.397131
+http://www.haisairestaurantbakery.com	Haisai	Simcoe County Road 124, Singhampton, ON, Canada	restaurant, food, establishment	44.328773	-80.246232
+http://www.harboursixty.com	Harbour Sixty Steakhouse	60 Harbour St, Toronto, ON, Canada	restaurant, food, establishment	43.64201	-79.378467
+http://www.harbourstreetbrasserie.com	Harbour Street Brasserie	217 Harbour St, Kincardine, ON, Canada	restaurant, food, establishment	44.177672	-81.638351
+http://www.harpersburgerbar.com	Harper's Burger Bar	93 Princess St, Kingston, ON, Canada	restaurant, food, establishment	44.231619	-76.482182
+http://www.hawksworthrestaurant.com	Hawksworth Restaurant	801 W Georgia St, Vancouver, BC, Canada	restaurant, food, establishment	49.283197	-123.11913
+http://www.elmhirst.ca	Hearthside Room, Elmhirst's Resort	ON, Canada	restaurant, food, establishment	44.249902	-78.107815
+http://www.hopgoodsfoodliner.com	Hopgood's Foodliner	325 Roncesvalles Ave, Toronto, ON, Canada	restaurant, food, establishment	43.648775	-79.449867
+http://www.hyssteakhouse.com	Hy's Steakhouse & Cocktail Bar	637 Hornby St, Vancouver, BC, Canada	restaurant, food, establishment	49.284593	-123.119148
+http://www.ilfornaro.com	Il Fornaro	1954 Avenue Rd, North York, ON, Canada	restaurant, food, establishment	43.734148	-79.419942
+http://www.tripadvisor.ca	Jack's Place	2020 Country Club Way, Langford, BC, Canada	restaurant, food, establishment	48.476944	-123.531578
+http://www.joeys-only.com	Joey's Seafood Restaurants Kitchener	12 - 370 Highland Road W, Kitchener, ON, Canada	restaurant, food, establishment	43.438703	-80.511847
+http://www.jonathansofoakville.com	Jonathans Restaurant Of Oakville	120 Thomas St, Oakville, ON, Canada	restaurant, food, establishment	43.445177	-79.669814
+http://www.kalays.com	Kalays Seafood Restaurant	393 Sidney St, Belleville, ON, Canada	restaurant, food, establishment	44.169411	-77.402389
+http://www.kingsvillegolf.com	Kingsville Golf & Country Club	640 County Road 20, Kingsville, ON, Canada	restaurant, food, establishment	42.031594	-82.766468
+http://www.kitchengalerie.com	Kitchen Galerie	60 Jean Talon St E, Montreal, QC, Canada	restaurant, food, establishment	45.535356	-73.617056
+http://www.aubergesaint-gabriel.com	L'Auberge Saint-Gabriel	426 St Gabriel St, Montreal, QC, Canada	restaurant, food, establishment	45.506462	-73.554089
+http://www.lavenuebistro.com	L'Avenue	1568 Bayview Ave, Toronto, ON, Canada	restaurant, food, establishment	43.705471	-79.375084
+http://www.restaurantlexpress.ca	L'Express	3927 St Denis St, Montreal, QC, Canada	restaurant, food, establishment	45.520238	-73.574437
+http://www.oreeduboisrestaurant.com	L'Orée Du Bois	Chelsea, QC, Canada	restaurant, food, establishment	45.546364	-75.829757
+http://www.lunita.ca	L'Unità	134 Avenue Rd, Toronto, ON, Canada	restaurant, food, establishment	43.674224	-79.396522
+http://www.lacachette.com	La Cachette	1339 Lakeshore Rd, Niagara-on-the-Lake, ON, Canada	restaurant, food, establishment	43.253086	-79.125835
+http://www.lapalette.ca	La Palette	492 Queen St W, Toronto, ON, Canada	restaurant, food, establishment	43.647902	-79.400957
+http://www.lasociete.ca	La Société	131 Bloor St W #211, Toronto, ON, Canada	restaurant, food, establishment	43.668833	-79.392668
+http://www.lakeaffect.com	Lake Affect Comfort Food & Music Lounge	1 Port St E, Mississauga, ON, Canada	restaurant, food, establishment	43.551511	-79.583035
+http://www.lazyflamingo.com	Lazy Flamingo 3	16501 Stringfellow Rd, Bokeelia, FL, United States	restaurant, food, establishment	26.700908	-82.155482
+http://www.lechiennoir.com	Le Chien Noir Bistro	69 Brock St, Kingston, ON, Canada	restaurant, food, establishment	44.23067	-76.482014
+http://www.petitonneau.com	Le Petit Tonneau Toranomon	??????1F, 2-1-1 Toranomon, Minato, Tokyo, Japan	restaurant, food, establishment	35.669869	139.746916
+http://www.saint-amour.com	Le Saint Amour	48 Rue Sainte-Ursule, Quebec City, QC, Canada	restaurant, food, establishment	46.811254	-71.210297
+http://www.leselect.com	Le Sélect Bistro	432 Wellington St W, Toronto, ON, Canada	restaurant, food, establishment	43.643637	-79.39675
+http://www.lesconsservent.com	Les Cons Servent	5064 Avenue Papineau, Montreal, QC, Canada	restaurant, food, establishment	45.535571	-73.580612
+http://www.loirerestaurant.ca	Loire	119 Harbord St, Toronto, ON, Canada	restaurant, food, establishment	43.662452	-79.404599
+http://www.londonclub.com	London Club	177 Queens Ave, London, ON, Canada	restaurant, food, establishment	42.985089	-81.249949
+http://www.luxebistro.com	LUXE - Ottawa Steakhouse & Restaurant	47 York St, Ottawa, ON, Canada	restaurant, food, establishment	45.428214	-75.693393
+http://www.msurmasson.com	M sur Masson	2876 Rue Masson, Montreal, QC, Canada	restaurant, food, establishment	45.547823	-73.574954
+http://www.magnumandsteins.ca	Magnum & Steins	329 Duckworth St, St John's, NL, Canada	restaurant, food, establishment	47.565666	-52.706769
+http://www.mamamias.ca	Mama Mia's Italian Restaurant	5719 Victoria Ave, Niagara Falls, ON, Canada	restaurant, food, establishment	43.092259	-79.07598
+http://www.marbenrestaurant.com	Marben	488 Wellington St W, Toronto, ON, Canada	restaurant, food, establishment	43.64322	-79.398513
+http://www.marisolrestaurante.ca	Marisol	30 Ontario St S, Kitchener, ON, Canada	restaurant, food, establishment	43.449755	-80.491102
+http://www.meadowsbythelake.ca	Meadows By The Lake	County 20 Rd, Harrow, ON, Canada	restaurant, food, establishment	42.036061	-82.928093
+http://www.memphisfirebbq.com	Memphis Fire Barbeque Company	Hwy 8, Winona, ON, Canada	restaurant, food, establishment	43.209187	-79.666521
+http://www.metropolitainbrasserie.com	Metropolitain Brasserie	700 Sussex Dr, Ottawa, ON, Canada	restaurant, food, establishment	45.425926	-75.694256
+http://www.windsorsymphony.com	Mezzo Ristorante	804 Erie St E, Windsor, ON, Canada	restaurant, food, establishment	42.312904	-83.022689
+http://www.mideastroyorkville.com	Mideastro Yorkville	27 Yorkville Ave., Toronto, ON, Canada	restaurant, food, establishment	43.67147	-79.388826
+http://www.templekitchen.com	Mildred's Temple Kitchen	85 Hanna Ave, Toronto, ON, Canada	restaurant, food, establishment	43.640034	-79.420065
+http://www.milestonesrestaurants.com	Milestones	1708 99 St NW, Edmonton, AB, Canada	restaurant, food, establishment	53.446185	-113.485217
+http://www.milfordbistro.com	Milford Bistro	3048 County Road 10, Prince Edward, ON, Canada	restaurant, food, establishment	43.934774	-77.090844
+http://www.themillincobourg.com	Mill Restaurant And Pub The	990 Ontario St, Cobourg, ON, Canada	restaurant, food, establishment	43.97532	-78.183197
+http://www.modusristorante.com	Modus Ristorante	145 King St W, Toronto, ON, Canada	restaurant, food, establishment	43.647482	-79.384257
+http://www.murraystreet.ca	Murray Street	110 Murray St, Ottawa, ON, Canada	restaurant, food, establishment	45.430239	-75.692383
+http://www.navarrarestaurant.com	Navarra Restaurant	93 Murray St, Ottawa, ON, Canada	restaurant, food, establishment	45.429809	-75.69339
+http://www.newsarum.com	New Sarum Diner	46230 New Sarum Line, Central Elgin, ON, Canada	restaurant, food, establishment	42.776548	-81.081361
+http://www.nonnasoven.com	Nonna's Oven	1285 Elgin Mills Rd E #8, Richmond Hill, ON, Canada	restaurant, food, establishment	43.896786	-79.402045
+http://www.olivea.ca	Olivea	39 Brock St, Kingston, ON, Canada	restaurant, food, establishment	44.230492	-76.480941
+http://www.oliverbonacini.com	Oliver & Bonacini Restaurants	2323 Yonge St #303, Toronto, ON, Canada	restaurant, food, establishment	43.708349	-79.398304
+http://www.onefiftyfive.ca	One Fifty Five	155 Manitoba St, Bracebridge, ON, Canada	restaurant, food, establishment	45.043466	-79.315023
+http://www.north44restaurant.com	One Restaurant	116 Yorkville Ave, Toronto, ON, Canada	restaurant, food, establishment	43.670825	-79.393254
+http://www.onehazelton.com	One Restaurant	116 Yorkville Ave, Toronto, ON, Canada	restaurant, food, establishment	43.670825	-79.393254
+http://www.opusrestaurant.com	Opus Restaurant	37 Prince Arthur Ave, Toronto, ON, Canada	restaurant, food, establishment	43.669322	-79.397234
+http://www.organicmeadow.com	Organic Meadow Inc	5653 Hwy 6, Guelph, ON, Canada	restaurant, food, establishment	43.601701	-80.307358
+http://www.origintoronto.com	Origin Restaurant	107 King St E, Toronto, ON, Canada	restaurant, food, establishment	43.649877	-79.374105
+http://www.ororestaurant.com	ORO	45 Elm St, Toronto, ON, Canada	restaurant, food, establishment	43.657295	-79.383803
+http://www.littledrunkbird.com	Ortolan	1211 Bloor St W, Toronto, ON, Canada	restaurant, food, establishment	43.658858	-79.440005
+http://www.oysterboy.ca	Oyster Boy	872 Queen St W, Toronto, ON, Canada	restaurant, food, establishment	43.645214	-79.414366
+http://www.paintboxbistro.ca	Paintbox Catering and Bistro	555 Dundas St E, Toronto, ON, Canada	restaurant, food, establishment	43.660088	-79.362925
+http://www.pangaearestaurant.com	Pangaea Restaurant	1221 Bay Street, Toronto, ON, Canada	restaurant, food, establishment	43.670233	-79.389504
+http://www.paradisorestaurant.com	Paradiso	125 Lakeshore Rd E, Oakville, ON, Canada	restaurant, food, establishment	43.44412	-79.669976
+http://www.parkhillonhunter.com	Parkhill On Hunter	180 Hunter St W, Peterborough, ON, Canada	restaurant, food, establishment	44.30593	-78.321175
+http://www.pazzo.ca	Pazzo Ristorante Bar and Pizzeria	70 Ontario St, Stratford, ON, Canada	restaurant, food, establishment	43.371645	-80.982466
+http://www.petitbillsbistro.com	Petit Bill's Bistro	1293 Wellington St W, Ottawa, ON, Canada	restaurant, food, establishment	45.399044	-75.735484
+http://www.pinecroft.ca	Pinecroft Green Frog Tea Room	8122 Rogers Rd, Aylmer, ON, Canada	restaurant, food, establishment	42.745239	-81.008723
+http://www.pizzeriadefina.com	Pizzeria Defina	321 Roncesvalles Ave, Toronto, ON, Canada	restaurant, food, establishment	43.648706	-79.449783
+http://www.pizzerialibretto.com	Pizzeria Libretto	550 Danforth Ave, Toronto, ON, Canada	restaurant, food, establishment	43.678499	-79.347622
+http://www.playfood.ca	Play food & wine	1 York St, Ottawa, ON, Canada	restaurant, food, establishment	45.427638	-75.694773
+http://www.pomodoro.com	Pomod´Oro	A 22, Entrada A La CL134 # 9, Bogotá, Bogotá, D.C., Colombia	restaurant, food, establishment	4.713377	-74.034073
+http://www.pomodoropec.ca	Pomodoro	280 Wellington Main, Wellington, ON, Canada	restaurant, food, establishment	43.951755	-77.349498
+http://www.portrestaurant.ca	Port Restaurant	1289 Wharf St, Pickering, ON, Canada	restaurant, food, establishment	43.815091	-79.083189
+http://www.portabellaonmain.com	Portabella	265 Picton Main St, Picton, ON, Canada	restaurant, food, establishment	44.008267	-77.1402
+http://www.quatrefoilrestaurant.com	Quatrefoil Restaurant	16 Sydenham St, Dundas, ON, Canada	restaurant, food, establishment	43.267264	-79.956835
+http://www.quincetoronto.com	Quince Bistro	2110 Yonge St, Toronto, ON, Canada	restaurant, food, establishment	43.702789	-79.397702
+http://www.vintages.com	Quince Bistro	2110 Yonge St, Toronto, ON, Canada	restaurant, food, establishment	43.702789	-79.397702
+http://www.realsports.ca	Real Sports Bar & Grill	15 York St, Toronto, ON, Canada	restaurant, food, establishment	43.642175	-79.380933
+http://www.redcanoebistro.com	Red Canoe Bistro	398 John Street, Burlington, ON, Canada	restaurant, food, establishment	43.325026	-79.795728
+http://www.restaurant18.com	Restaurant 18	18 York St, Ottawa, ON, Canada	restaurant, food, establishment	45.427498	-75.694155
+http://www.restaurantinternational.ca	Restaurant International	1385 Woodroffe Ave, Ottawa, ON, Canada	restaurant, food, establishment	45.34995	-75.756784
+http://www.laurieraphael.com	Restaurant Laurie Raphael Inc	117 Rue Dalhousie, Quebec City, QC, Canada	restaurant, food, establishment	46.81707	-71.202618
+http://www.fougeres.ca	Restaurant Les Fougères	783 Route 105, Chelsea, ON, Canada	restaurant, food, establishment	45.525287	-75.800847
+http://www.richmondstation.ca	Richmond Station	1 Richmond St W, Toronto, ON, Canada	restaurant, food, establishment	43.651558	-79.379135
+http://www.juliasristorante.com	Ristorante Julia	312 Lakeshore Rd E, Oakville, ON, Canada	restaurant, food, establishment	43.447911	-79.665386
+http://www.rivermill.ca	River Mill Restaurant	2 Cataraqui St, Kingston, ON, Canada	restaurant, food, establishment	44.242199	-76.48025
+http://www.riverhousecompany.com	Riverhouse Company Restaurant	36 Bridge St, Selwyn, ON, Canada	restaurant, food, establishment	44.421175	-78.275365
+http://www.rodneysoysterhouse.com	Rodney's Oyster House	469 King St W, Toronto, ON, Canada	restaurant, food, establishment	43.644995	-79.396767
+http://www.roguesrestaurant.com	Rogues Restaurant	1900 Dundas St W, Mississauga, ON, Canada	restaurant, food, establishment	43.539928	-79.662557
+http://www.rowanmoonbistro	Rowan Moon Bistro	109 Garafraxa St S, Durham, ON, Canada	restaurant, food, establishment	44.176188	-80.818355
+http://www.rubywatchco.ca	Ruby Watchco	730 Queen St E, Toronto, ON, Canada	restaurant, food, establishment	43.659152	-79.349125
+http://www.rundlesrestaurant.com	Rundles Restaurant	9 Cobourg St, Stratford, ON, Canada	restaurant, food, establishment	43.372271	-80.981596
+http://www.sansonestatewinery.com	Sanson Estate Winery	9238 COUNTY 11 Rd, COLCHESTER NORTH, Ontario, Canada	restaurant, food, establishment	42.146817	-82.967196
+http://www.sarparestaurant.com	Sarpa Trattoria	13311 Yonge St, Richmond Hill, ON, Canada	restaurant, food, establishment	43.952188	-79.455797
+http://www.sassafraz.ca	Sassafraz Restaurant	100 Cumberland St, Toronto, ON, Canada	restaurant, food, establishment	43.670336	-79.391308
+http://www.sauceondanforth.com	Sauce	1376 Danforth Ave, Toronto, ON, Canada	restaurant, food, establishment	43.682631	-79.328241
+http://www.scaramoucherestaurant.com	Scaramouche	1 Benvenuto Pl, Toronto, ON, Canada	restaurant, food, establishment	43.681467	-79.399803
+http://www.sevennumbers.com	Seven Numbers Restaurant	516 Eglinton Ave W, Toronto, ON, Canada	restaurant, food, establishment	43.70364	-79.413613
+http://www.torontotemperancesociety.com	Sidecar	577 College St, Toronto, ON, Canada	restaurant, food, establishment	43.655273	-79.413086
+http://www.simplebistro.com	Simple Bistro	619 Mt Pleasant Rd, Toronto, ON, Canada	restaurant, food, establishment	43.704192	-79.388323
+http://www.simplicitybistro.com	Simplicity Bistro	81 King St E, Thornbury, ON, Canada	restaurant, food, establishment	44.56017	-80.447557
+http://www.simscorner.ca	Sims Corner	86 Queen St, Charlottetown, PE, Canada	restaurant, food, establishment	46.233256	-63.126316
+http://www.sisitrattoria.com	Sisi trattoria	27 Bruce St S, Thornbury, ON, Canada	restaurant, food, establishment	44.561292	-80.453396
+http://www.smokenspice.com	Smoke & Spice Southern Barbeque	7470 Tecumseh Rd E, Windsor, ON, Canada	restaurant, food, establishment	42.313374	-82.93684
+http://www.sorrelrestaurant.ca	Sorrel Restaurant	84 Yorkville Ave, Toronto, ON, Canada	restaurant, food, establishment	43.671145	-79.391548
+http://www.sottosotto.ca	Sotto Sotto Restaurant	116 Avenue Rd, Toronto, ON, Canada	restaurant, food, establishment	43.673679	-79.396298
+http://www.thesoutherncross.ca	Southern Cross Grill On Queen	404 Queen St, Ottawa, ON, Canada	restaurant, food, establishment	45.417818	-75.706615
+http://www.spartahouse.com	Spartahouse Tea Room	46342 Sparta Line, Sparta, ON, Canada	restaurant, food, establishment	42.70257	-81.079048
+http://www.spencers.ca	Spencer's At The Waterfront	1340 Lakeshore Rd, Burlington, ON, Canada	restaurant, food, establishment	43.320377	-79.800173
+http://www.starfishoysterbed.com	STARFISH OYSTER BED & GRILL	100 Adelaide St E, Toronto, ON, Canada	restaurant, food, establishment	43.651533	-79.373832
+http://www.starsofthegame.net	Stars Of The Game	2055 Sandwich W Pkwy, Windsor, ON, Canada	restaurant, food, establishment	42.238466	-83.018046
+http://www.torontolife.com	Swish By Han	38 Wellington St E, Toronto, ON, Canada	restaurant, food, establishment	43.647387	-79.37958
+http://www.syndicaterestaurant.ca	Syndicate Restaurant & Brewery	6863 Lundy's Ln, Niagara Falls, ON, Canada	restaurant, food, establishment	43.089547	-79.109849
+http://www.syndicatebrewery.ca	Syndicate Restaurant & Brewery	6863 Lundy's Ln, Niagara Falls, ON, Canada	restaurant, food, establishment	43.089547	-79.109849
+http://www.tallpoppycafe.ca	Tall Poppy Cafe	296 Wellington Main, Wellington, ON, Canada	restaurant, food, establishment	43.951701	-77.350519
+http://www.tappo.ca	Tappo	2 Trinity St, Toronto, ON, Canada	restaurant, food, establishment	43.649828	-79.359637
+http://www.terranovapub.ca	Terra Nova Public House	667294 Side Road 20, Honeywood, ON, Canada	restaurant, food, establishment	44.20958	-80.115864
+http://www.thechasetoronto.com	The Chase Toronto	10 Temperance St, Toronto, ON, Canada	restaurant, food, establishment	43.65103	-79.379328
+http://www.churchrestaurant.com	The Church Restaurant	70 Brunswick St, Stratford, ON, Canada	restaurant, food, establishment	43.369851	-80.979412
+http://www.thecitygrillwindsor.com	The City Grill - Windsor	375 Ouellette Ave, Windsor, ON, Canada	restaurant, food, establishment	42.316464	-83.038518
+http://www.thecountygeneral.ca	The County General	936 Queen St W, Toronto, ON, Canada	restaurant, food, establishment	43.644807	-79.416263
+http://www.thegrizzlygrill.ca	The Grizzly Grill	395 Princess St, Kingston, ON, Canada	restaurant, food, establishment	44.233154	-76.491938
+http://www.thegroveto.com	The Grove	1214 Dundas St W, Toronto, ON, Canada	restaurant, food, establishment	43.649439	-79.423064
+http://www.theharbordroom.com	The Harbord Room	89 Harbord St, Toronto, ON, Canada	restaurant, food, establishment	43.662626	-79.403375
+http://www.thelibraryrestaurant.ca	The Library Restaurant	526 Hugel Ave, Midland, ON, Canada	restaurant, food, establishment	44.749655	-79.886743
+http://www.thelighthouseinn.ca	The Lighthouse Inn	Lakeside Dr., Lighthouse Cove, ON, Canada	restaurant, food, establishment	42.318574	-82.456684
+http://www.oldfirehall.com	The Old Firehall Restaurant	268 Four Mile Creek Rd, Niagara-on-the-Lake, ON, Canada	restaurant, food, establishment	43.158886	-79.102124
+http://www.theoldwineryrestaurant.com	The Old Winery Restaurant	2228 Niagara Stone Rd, Niagara-on-the-Lake, ON, Canada	restaurant, food, establishment	43.247997	-79.089347
+http://www.thepearlcafe.ca	The Pearl Cafe	7792 Cavendish Rd, North Rustico, PE, Canada	restaurant, food, establishment	46.482444	-63.33559
+http://www.thepearsonpub.ca	The Pearson Pub	101 Mary St W #100, Whitby, ON, Canada	restaurant, food, establishment	43.881682	-78.942913
+http://www.portbistropub.com	The Port Bistro Pub	21 Front St, Trenton, ON, Canada	restaurant, food, establishment	44.10221	-77.575797
+http://www.theprune.com	The Prune	151 Albert St, Stratford, ON, Canada	restaurant, food, establishment	43.370243	-80.977185
+http://www.savoybrasserie.com	The Savoy Brasserie	334 Richmond Rd, Ottawa, ON, Canada	restaurant, food, establishment	45.392127	-75.753585
+http://www.theshoreclub.ca	The Shore Club	155 Wellington St W, Toronto, ON, Canada	restaurant, food, establishment	43.645702	-79.386885
+http://www.thesmokinbuddha.com	The Smokin Buddha	265 King St, Port Colborne, ON, Canada	restaurant, food, establishment	42.887092	-79.251332
+http://www.thespringsrestaurant.com	The Springs Restaurant	310 Springbank Dr, London, ON, Canada	restaurant, food, establishment	42.970791	-81.278083
+http://www.stuffedpeasant.com	The Stuffed Peasant	206 Hurontario St, Collingwood, ON, Canada	restaurant, food, establishment	44.498027	-80.216202
+http://www.thetwistedapron.com	The Twisted Apron	1833 Wyandotte St E, Windsor, ON, Canada	restaurant, food, establishment	42.322396	-83.01371
+http://www.theurbanpear.com	The Urban Pear	151 Second Ave, Ottawa, ON, Canada	restaurant, food, establishment	45.403761	-75.688956
+http://www.waringhouse.com	The Waring House Restaurant & Inn	395 Sandy Hook Rd, Picton, ON, Canada	restaurant, food, establishment	43.99371	-77.178333
+http://www.waterfrontbistro.com	The Waterfront Bistro Restaurant	590 Liverpool Rd, Pickering, ON, Canada	restaurant, food, establishment	43.81383	-79.081105
+http://www.thewhalesbone.com	The Whalesbone Oyster House	430 Bank St, Ottawa, ON, Canada	restaurant, food, establishment	45.41232	-75.693824
+http://www.thymeristorante.com	Thyme Ristorante	347 Lakeshore Rd E, Mississauga, ON, Canada	restaurant, food, establishment	43.562771	-79.57389
+http://www.restaurant-toque.com	Toqué!	900 Place Jean-Paul-Riopelle, Montreal, QC, Canada	restaurant, food, establishment	45.502932	-73.561149
+http://www.thestar.com	Toronto Star The	100 Queen St W, Toronto, ON, Canada	restaurant, food, establishment	43.651818	-79.382484
+http://www.toscanawindsor.com	Toscana Restaurant	3891 Dougall Ave, Windsor, ON, Canada	restaurant, food, establishment	42.255998	-83.002964
+http://www.townlovesyou.ca	town.	296 Elgin St, Ottawa, ON, Canada	restaurant, food, establishment	45.416603	-75.689579
+http://www.trattoriagusto.ca	Trattoria Gusto	1 Walton St, Port Hope, ON, Canada	restaurant, food, establishment	43.950764	-78.291731
+http://www.trattoriamercatto.ca	Trattoria Mercatto	220 Yonge St, Toronto, ON, Canada	restaurant, food, establishment	43.654067	-79.380082
+http://www.eatnervosa.com	Trattoria Nervosa	75 Yorkville Ave, Toronto, ON, Canada	restaurant, food, establishment	43.671057	-79.391144
+http://www.treadwellcuisine.com	Treadwell Farm to Table Cuisine	114 Queen St, Niagara-on-the-Lake, ON, Canada	restaurant, food, establishment	43.25628	-79.074417
+http://www.20valley.ca	Twenty Valley Tourism Association	4890 Victoria Ave, Vineland Station, ON, Canada	restaurant, food, establishment	43.184566	-79.394772
+http://www.twentyvalley.ca	Twenty Valley Tourism Association	4890 Victoria Ave, Vineland Station, ON, Canada	restaurant, food, establishment	43.184566	-79.394772
+http://www.union72.ca	Union	72 Ossington Ave, Toronto, ON, Canada	restaurant, food, establishment	43.645814	-79.419572
+http://www.universalgrill.ca	Universal Grill	1071 Shaw St, Toronto, ON, Canada	restaurant, food, establishment	43.670507	-79.426448
+http://www.vagabondo.ca	Vagabondo Italian Ristorante+Lounge	32 Wellington St E, Toronto, ON, Canada	restaurant, food, establishment	43.648398	-79.375326
+http://www.viaallegroristorante.com	Via Allegro Ristorante	1750 The Queensway W, Toronto, ON, Canada	restaurant, food, establishment	43.615122	-79.557442
+http://www.viewthevibe.com	View the Vibe	374 Wellington St W, Toronto, ON, Canada	restaurant, food, establishment	43.644181	-79.395191
+http://www.vittoriatrattoria.com	Vittoria Trattoria	35 William St, Ottawa, ON, Canada	restaurant, food, establishment	45.428011	-75.692284
+http://www.weinco.at	WEIN & CO Wien Mariahilfer Straße	Mariahilfer Straße 36, Vienna, Austria	restaurant, food, establishment	48.199993	16.354307
+http://www.wellington-court.com	Wellington Court Restaurant	11 Wellington St, St. Catherines, ON, Canada	restaurant, food, establishment	43.159461	-79.24891
+http://www.westrestaurant.com	West	2881 Granville St, Vancouver, BC, Canada	restaurant, food, establishment	49.260008	-123.138848
+http://www.windowsbyjamiekennedy.com	Windows by Jamie Kennedy	5875 Falls Ave, Niagara Falls, ON, Canada	restaurant, food, establishment	43.090722	-79.072782
+http://www.woodenheads.ca	Woodenheads Gourmet Pizza	192 Ontario St, Kingston, ON, Canada	restaurant, food, establishment	44.229002	-76.481083
+http://www.yours-truly.ca	Yours Truly	229 Ossington Ave, Toronto, ON, Canada	restaurant, food, establishment	43.649079	-79.420536
+http://www.zees.ca	Zees Grill	92 Picton St, Niagara-on-the-Lake, ON, Canada	restaurant, food, establishment	43.253181	-79.067991
+http://www.zenkitchen.ca	ZenKitchen	634 Somerset St W, Ottawa, ON, Canada	restaurant, food, establishment	45.411827	-75.70449
+http://www.facebook.com	?????https://www.facebook.com/hotjingbao	No. 100, ?????, Tanzi District, Taichung City, Taiwan	restaurant, food, establishment	24.211716	120.701824
+http://www.thecuvee.com	Cuvée	Cuvée, 1650 Soscol Ave, Napa, CA 94559, USA	restaurant, food, point_of_interest, establishment	38.3052694	-122.2844732
+http://www.eastandmainbistro.com	Le Bistro	Le Bistro, 119 N Main Ave, Fallbrook, CA 92028, USA	restaurant, food, point_of_interest, establishment	33.3824527	-117.2511779
+http://www.almonteriverside.com	Almonte Riverside Inn & Kitchen	81 Queen St, Almonte, ON, Canada	restaurant, lodging, food, establishment	45.227674	-76.193114
+http://www.athloneinn.ca	Athlone Inn (The)	250 King St W, Gananoque, ON, Canada	restaurant, lodging, food, establishment	44.326082	-76.168916
+http://www.bestwestern.com	Best Western Hotel Brussels	E40 Brussels - Ostend, Bijgaarden, Belgium	restaurant, lodging, food, establishment	50.881783	4.254312
+http://www.blueonwater.com	Blue On Water	319 Water St, St John's, NL, Canada	restaurant, lodging, food, establishment	47.561318	-52.710255
+http://www.essexcountywineries.ca	Essex County Wineries	71 Division St N, Kingsville, ON, Canada	restaurant, lodging, food, establishment	42.040289	-82.739238
+http://www.hessenland.com	Hessenland Restaurant & Hotel	72981 Bluewater Hwy, Zurich, ON, Canada	restaurant, lodging, food, establishment	43.421348	-81.706046
+http://www.lakeonthemountain.com	Lake On The Mountain Resort	286 County Rd 7, Picton, ON, Canada	restaurant, lodging, food, establishment	44.039956	-77.05726
+http://www.paintedboat.com	Painted Boat Resort Marina and Spa	Lagoon Rd, Madeira Park, BC, Canada	restaurant, lodging, food, establishment	49.61873	-124.026636
+http://www.charlesinn.ca	The Charles Inn	209 Queen St, Niagara-on-the-Lake, ON, Canada	restaurant, lodging, food, establishment	43.258234	-79.077412
+http://www.theparlour.ca	The Parlour Restaurant	101 Wellington St, Stratford, ON, Canada	restaurant, lodging, food, establishment	43.368768	-80.98359
+http://www.thewindjammerinn.com	Windjammer Bed & Breakfast Inn	324 Smith St, Port Stanley, ON, Canada	restaurant, lodging, food, establishment	42.663206	-81.216248
+http://www.claramountinn.com	Claramount Inn	97 Bridge St, Picton, ON, Canada	restaurant, lodging, food, spa, establishment	44.01092	-77.131674
+http://www.shangri-la.com	Shangri-La Hotel, Bangkok	Charoen Krung Rd, Bang Rak, Bangkok, Thailand	restaurant, lodging, food, spa, establishment	13.72089	100.513999
+http://www.thefallsinn.com	The Falls Inn & Spa	Front St, Walters Falls, ON, Canada	restaurant, lodging, food, spa, establishment	44.48964	-80.712175
+http://www.dhtml-menu-builder.com	Sentry Pro Roofing, LLC	21815 Katy Fwy #120, Katy, TX, United States	roofing_contractor, establishment	29.783342	-95.7476
+http://www.geraldinetoronto.com	Geraldine Ct	Geraldine Ct, North York, ON M3A, Canada	route	43.7463177	-79.3309675
+http://www.cshgreenwich.org	Convent of the Sacred Heart	1177 King St, Greenwich, CT, United States	school, establishment	41.066486	-73.694574
+http://www.gnag.ca	Glebe Neighborhood Activities Group	175 Third Ave, Ottawa, ON, Canada	school, establishment	45.401959	-75.691103
+http://www.linkedin.com	http://www.linkedin.com/in/zztwp	703 S Throckmorton St, Sherman, TX, United States	school, establishment	33.632211	-96.599269
+http://www.localendar.com	Musquodoboit Rural High School	NS, Canada	school, establishment	45.052302	-63.133729
+http://www.perimeterinstitute.ca	Perimeter Institute for Theoretical Physics	31 Caroline St N, Waterloo, ON, Canada	school, establishment	43.465426	-80.528111
+http://www.stratfordchef.com	Stratford Chefs School	68 Nile St, Stratford, ON, Canada	school, establishment	43.370241	-80.976846
+http://www.hamptoninn.com	Colorado Mills	14500 W Colfax Ave, Lakewood, CO, United States	shopping_mall, establishment	39.731673	-105.158599
+http://www.mycollingwood.ca	The Collingwood Centre	55 Mountain Rd, Collingwood, ON, Canada	shopping_mall, establishment	44.503416	-80.23782
+http://www.n	www.shop-n-saveonline.com	Dallas, TX, United States	shopping_mall, establishment	32.7835	-96.8001
+http://www.fromthemeadow.com	From The Meadow	Avon Dr, Belmont, ON, Canada	spa, establishment	42.888035	-81.06218
+http://www.scandinave.com	Scandinave Spa - Blue Mountain	152 Grey Road 21, Blue Mountain, ON, Canada	spa, health, establishment	44.50183	-80.286025
+http://www.canadiantirecentre.com	Canadian Tire Centre	1000 Palladium Dr, Ottawa, ON, Canada	stadium, establishment	45.296915	-75.926823
+http://www.enable-javascript.com	Owlerton Greyhound Stadium	Penistone Rd, Sheffield, United Kingdom	stadium, establishment	53.406043	-1.493195
+http://www.northsheds.ca	Northsheds.ca	21626 Ontario 48, Mt Albert, ON, Canada	storage, establishment	44.193045	-79.335005
+http://www.coldstorage.com.sg	Paragon Market Place	290 Orchard Rd, Singapore	storage, grocery_or_supermarket, food, store, establishment	1.303811	103.835945
+http://www.heritagelineherbs.com	Heritage Line Herbs	53443 Heritage Line, Aylmer, ON, Canada	store, cafe, food, establishment	42.767894	-80.854642
+http://www.eventbrite.ca	Destination Atl	Beal Pkwy NE, Fort Walton Beach, FL, United States	store, establishment	30.444712	-86.638428
+http://www.detourcoffee.com	Detour Coffee Roasters	2234 Harold Rd #2, Burlington, ON, Canada	store, establishment	43.347994	-79.81598
+http://www.garagewine.ru	Garage	Ligovsky Ave, 83, St Petersburg, Russia	store, establishment	59.924626	30.356483
+http://www.indianweddingcard.in	Indian Wedding Card	Readiprint Arvind Marg, M. I. Road Jaipur., Jaipur, Rajasthan, India	store, establishment	26.91247	75.787273
+http://www.giftbasketskingston.com	Kingston Gift Baskets	Kingston, ON, Canada	store, establishment	61.670954	-91.18284
+http://www.ontariotravel.net	Ontario Travel Information Centre	110 Park St E, Windsor, ON, Canada	store, establishment	42.317181	-83.03622
+http://www.perfectday.ca	Perfect Day Experiences	255 Newport Dr, Port Moody, BC, Canada	store, establishment	49.282958	-122.826065
+http://www.peclavender.com	Prince Edward County Lavender	732 Closson Rd, Hillier, ON, Canada	store, establishment	43.997877	-77.398445
+http://www.shatteredpec.com	Shattered Gallery/Studio	1244 County Rd. 2 (6 km north of Wellington), Prince Edward County, Hillier, ON, Canada	store, establishment	44.007987	-77.364134
+http://www.shopify.com	Shopify	126 York St, Ottawa, ON, Canada	store, establishment	45.429228	-75.690019
+http://www.shopify.ca	Shopify	126 York St, Ottawa, ON, Canada	store, establishment	45.429228	-75.690019
+http://www.spartacandles.com	Sparta Country Candles	46361 Sparta Line, Sparta, ON, Canada	store, establishment	42.702555	-81.07822
+http://www.123forever.com	Studio 123 Tattoo	331 St. Paul St, St Catharines, ON, Canada	store, establishment	43.159933	-79.241887
+http://www.arkells.ca	Studio Number Nineteen	75 Nassau St, Toronto, ON, Canada	store, establishment	43.655022	-79.402918
+http://www.summiteventrentals.com	Summit Event Rentals	536 W 100 S, Salt Lake City, UT, United States	store, establishment	40.767342	-111.906433
+http://www.thymeandagain.ca	Thyme & Again Creative Catering and Take Home Food Shop	1255 Wellington St W, Ottawa, ON, Canada	store, establishment	45.399525	-75.733133
+http://www.simcoe.com	Top Dog K9 Services	366 Huronia Rd, Barrie, ON, Canada	store, establishment	44.353989	-79.665342
+http://www.toyclosetfilms.com	Toy Closet Films LLC	30 E 20th St # 306, New York, NY, United States	store, establishment	40.73849	-73.988894
+http://www.woodstockqualityhotel.com	Walters Dinner Theatre	836074 Hubbard Rd, Bright, ON, Canada	store, establishment	43.246755	-80.625253
+http://www.webplanet.ca	Webplanet.ca	12201 Tecumseh Rd E, Windsor, ON, Canada	store, establishment	42.311711	-82.887567
+http://www.winter-wheat.com	Winter Wheat Ltd	5277 Quaker Rd, Sparta, ON, Canada	store, establishment	42.683118	-81.078725
+http://www.giftsonline4u.com	www.GiftsOnline4U.com	109 Six House Bank, West Pinchbeck, Spalding, United Kingdom	store, establishment	52.814339	-0.224831
+http://www.bbqfeast.com	BBQ Feast Catering	236354 23rd Line, London, ON, Canada	store, food, establishment	43.178545	-81.031551
+http://www.uppercanadasoap.com	Upper Canada Soap	1510A Caterpillar Rd, Mississauga, ON L4X 2Y1, Canada	store, food, establishment	43.605833	-79.574534
+http://www.frommers.com	Baldinos Giant Jersey Subs	5697 Buford Hwy NE, Doraville, GA, United States	store, meal_takeaway, restaurant, food, establishment	33.906146	-84.269444
+http://www.burningkilnwinery.ca	Burning Kiln Winery	1709 Front Rd, St.Williams, ON, Canada	store, restaurant, food, establishment	42.685743	-80.354407
+http://www.santerestaurant.com	Santé Restaurant	45 Rideau St, Ottawa, ON, Canada	store, restaurant, food, establishment	45.425705	-75.693075
+http://www.winetrailtraveler.com	Agence de voyages In Vino Veritas Travel agency	2960 Rue Huguette, Wentworth-Nord, QC, Canada	travel_agency, establishment	45.870017	-74.451406
+http://www.air44helicopters.com	Air 44 Helicopters	1997 Concession 6N., Collingwood, ON, Canada	travel_agency, establishment	44.44998	-80.167944
+http://www.airlinktours.ca	Airlink Tours	119 Millstone Dr, Brampton, ON, Canada	travel_agency, establishment	43.648327	-79.751599
+http://www.borntoridebicycle.com	Born to Ride Bicycle	205 Lakeshore Dr, Barrie, ON, Canada	travel_agency, establishment	44.373985	-79.68028
+http://www.ppt.gc.ca	Canada's Travel News	Calgary, AB, Canada	travel_agency, establishment	49.828912	-97.180128
+http://www.essexcountytours.com	Essex County Tours	1053 Windermere Rd, Windsor, ON, Canada	travel_agency, establishment	42.316209	-83.011346
+http://www.funbuscanada.com	FUN TIME TRAVEL COMPANY LIMITED	8 Midtown Dr, Oshawa, ON, Canada	travel_agency, establishment	43.895702	-78.869358
+http://www.greatestatesokanagan.com	Monashee Adventure Tours	1591 Highland Dr N, Kelowna, BC, Canada	travel_agency, establishment	49.891024	-119.463012
+http://www.niagarahelicopters.com	Niagara Helicopters Limited	3731 Victoria Ave, Niagara Falls, ON, Canada	travel_agency, establishment	43.118777	-79.074779
+http://www.sambadays.com	Samba Days	7025 Tomken Rd #26, Mississauga, ON, Canada	travel_agency, establishment	43.666163	-79.685374
+http://www.gosojourn.com	Sojourn Bicycling Vacations	939 Ferry Rd, Charlotte, VT, United States	travel_agency, establishment	44.308765	-73.265732
+http://www.magicbuscompany.com	The Magic Bus Company	520 Lake Shore Blvd E, Toronto, ON, Canada	travel_agency, establishment	43.649156	-79.352534
+http://www.yoursoutdoors.ca	Yours Outdoors	Barry Line Rd, Haliburton, ON, Canada	travel_agency, establishment	45.122966	-78.64445
+http://www.hollandcollege.com	Holland College	140 Weymouth St, Charlottetown, PE, Canada	university, establishment	46.238718	-63.122448
+http://www.queensu.ca	Queen's University	99 University Ave, Kingston, ON, Canada	university, establishment	44.22528	-76.495141
+http://www.uwindsor.ca	University of Windsor	401 Sunset Avenue, Windsor, ON, Canada	university, establishment	42.305133	-83.067483
+http://www.vicu.utoronto.ca	Victoria University	73 Queens Park Crescent E, Toronto, ON, Canada	university, establishment	43.667327	-79.392578
+http://www.e2.ma	http://www.recredible.com	http://www.recredible.com, Boston, MA 02163, USA	university, point_of_interest, establishment	42.3660157	-71.1199292
+http://www.essexanimalhospital.ca	Essex Animal Hospital	Talbot St N, Essex, ON, Canada	veterinary_care, establishment	42.182494	-82.831591

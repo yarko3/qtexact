@@ -90,11 +90,13 @@ public class fun<V> extends JApplet {
 		//diGraphWineryTest();
 		//clusterTest();
 		//scoreWineryGraph();
-		//distanceTest();
-		cographTest();
+		distanceTest();
+		//cographTest();
 		//wineryProjectionTest();
+		//getProvinceSpecificExternalsEdgeList();
 	}
 	
+
 	public static void userInterface() throws FileNotFoundException
 	{
 		Controller<Integer> c = new Controller<Integer>(null, true);
@@ -880,16 +882,16 @@ public class fun<V> extends JApplet {
 		DirectedGraph<String, Pair<String>> g = fillDiGraphFromFileWithStrings("datasets/wine/BC/wineryEdgeSet.txt");
 		
 		//reverse edges and add to new graph
-		DirectedGraph<String, Pair<String>> reversed = new DirectedSparseGraph<String, Pair<String>>();
-		for (String v : g.getVertices())
-		{
-			reversed.addVertex(v);
-		}
-		for (Pair<String> edge : g.getEdges())
-		{
-			reversed.addEdge(new Pair<String>(edge.getSecond(), edge.getFirst()), edge.getSecond(), edge.getFirst());
-		}
-		g = reversed;
+//		DirectedGraph<String, Pair<String>> reversed = new DirectedSparseGraph<String, Pair<String>>();
+//		for (String v : g.getVertices())
+//		{
+//			reversed.addVertex(v);
+//		}
+//		for (Pair<String> edge : g.getEdges())
+//		{
+//			reversed.addEdge(new Pair<String>(edge.getSecond(), edge.getFirst()), edge.getSecond(), edge.getFirst());
+//		}
+//		g = reversed;
 ////		
 		Graph<String, Pair<String>> cGraph = clone.deepClone(g);
 		
@@ -913,10 +915,10 @@ public class fun<V> extends JApplet {
 		
 		
 		
-		System.out.println("\nGreedy Edit: ");
-		long start = System.currentTimeMillis();
-		branchingReturnC<String> rtn = c.diveAtStartEdit(g, 50);
-		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+//		System.out.println("\nGreedy Edit: ");
+//		long start = System.currentTimeMillis();
+//		branchingReturnC<String> rtn = c.diveAtStartEdit(g, 50);
+//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 ////		
 		
 //		System.out.println("\nConnected component: ");
@@ -925,13 +927,15 @@ public class fun<V> extends JApplet {
 //		branchingReturnC<String> rtn = c.branchID(g, 2, 22);
 //		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
+		branchingReturnC<String> rtn = new branchingReturnC<String>(g);
+		
 		System.out.println(search.isTarget(rtn.getG()));
 		
 		visualizeString(rtn.getG());
 		
 		System.out.println("\nGraph same? " + genString.graphEquals(cGraph, g));
 		
-		String filename = "datasets/wine/weightedResults/BC/BCWineDiSolutionREVERSED-Greedy-EDGE SET";
+		String filename = "datasets/wine/BC/weightedResults/BCunedited";
 		
 		stringUtils.printSolutionEdgeSetWithWeightsComponents(rtn, filename + ".txt");
 		
@@ -1162,12 +1166,20 @@ public class fun<V> extends JApplet {
 	private static void distanceTest()
 	{
 		distance<String> d = new distance<String>();
-		graphFromEdgeSetWithCommunities f = new graphFromEdgeSetWithCommunities("datasets/wine/ON/weightedResults/ON-k10-Solution-GREEDY-EDGE SET.txt");
+		graphFromEdgeSetWithCommunities f = new graphFromEdgeSetWithCommunities("datasets/wine/QC/projections/province/k10PROVINCEedgeSet.txt");
 		
-		HashMap<String, Pair<Double>> mapping = d.getLatLongFromFile("datasets/wine/Distance/ON/ONDistance.txt");
+		HashMap<String, Pair<Double>> mapping = d.getLatLongFromFile("datasets/wine/Distance/QC/QCDistance.txt");
 		
 		
 		Graph<String, Pair<String>> g = f.g;
+		
+		System.out.println("Overall: ");
+		System.out.println("Mean winery-winery distance: \t" + d.meanDistance(g, mapping));
+		System.out.println("Median winery-winery distance: \t" + d.medianDistance(g, mapping));
+		System.out.println("Mean edge distance: \t" + d.meanNeighbourDistance(g, mapping));
+		System.out.println("Median edge distance: \t" + d.medianNeighbourDistance(g, mapping));
+		
+		
 		
 		HashMap<Integer, Graph<String, Pair<String>>> components = new HashMap<Integer, Graph<String, Pair<String>>>();
 		
@@ -1287,7 +1299,7 @@ public class fun<V> extends JApplet {
 	
 	public static void wineryProjectionTest() throws FileNotFoundException, UnsupportedEncodingException
 	{
-		String province = "QB";
+		String province = "QC";
 		
 		Graph<String, Pair<String>> wine = null;
 		
@@ -1297,7 +1309,7 @@ public class fun<V> extends JApplet {
 		
 		for (int k = 2; k < 11; k++)
 		{
-			wine = genString.fromBipartiteFile("datasets/wine/" + province + "/edgeSet.txt", k);
+			wine = genString.fromBipartiteFile("datasets/wine/" + province + "/ProvinceSpecificEdgeList.txt", k);
 			
 			
 			Graph<String, Pair<String>> cln = clone.deepClone(wine);
@@ -1342,7 +1354,7 @@ public class fun<V> extends JApplet {
 	////		
 			System.out.println("\nGraph same? " + gen.graphEquals(cln, wine));
 			
-			stringUtils.printSolutionEdgeSetWithWeightsComponents(new branchingReturnC<String>(cln), "datasets/wine/" + province + "/projections/k" + k + "edgeSet.txt");
+			stringUtils.printSolutionEdgeSetWithWeightsComponents(new branchingReturnC<String>(cln), "datasets/wine/" + province + "/projections/province/k" + k + "PROVINCEedgeSet.txt");
 			
 			
 //			if (branchC.getSearch().isTarget(rtn.getG()))
@@ -1356,6 +1368,13 @@ public class fun<V> extends JApplet {
 //				
 //			}
 		}
+		
+	}
+	
+	private static void getProvinceSpecificExternalsEdgeList() {
+		
+		String province = "ON";
+		distance.provinceSpecificExternalsEdgeList("datasets/wine/"+province+ "/edgeSet.txt", "datasets/wine/Distance/"+province+"/"+province +"ExternalAddress.txt", province, "datasets/wine/"+province+"/ProvinceSpecificEdgeList.txt");
 		
 	}
 	
