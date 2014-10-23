@@ -1,0 +1,37 @@
+Overall: 
+Mean winery-winery distance: 	234.5891907528892
+Median winery-winery distance: 	205.32335634265303
+Mean edge distance: 	85.23512228739538
+Median edge distance: 	12.94995361626752
+
+
+Component 0	Number of nodes: 2
+http://www.georgianhillsvineyards.ca	http://www.coffinridge.ca	
+Mean winery-winery distance: 	33.234898710245226
+Median winery-winery distance: 	33.234898710245226
+Mean edge distance: 	33.234898710245226
+Median edge distance: 	33.234898710245226
+
+
+Component 1	Number of nodes: 12
+http://www.henryofpelham.com	http://www.grangeofprinceedward.com	http://www.coyotesrunwinery.com	http://www.rosehallrun.com	http://www.keint-he.ca	http://www.13thstreetwinery.com	http://www.flatrockcellars.com	http://www.clossonchase.com	http://www.pillitteri.com	http://www.huffestates.com	http://www.creeksidewine.com	http://www.hinterlandwine.com	
+Mean winery-winery distance: 	151.38697387358417
+Median winery-winery distance: 	172.2300188460194
+Mean edge distance: 	103.32133098415022
+Median edge distance: 	12.94995361626752
+
+
+Component 2	Number of nodes: 2
+http://www.quaiduvin.com	http://www.rushcreekwines.com	
+Mean winery-winery distance: 	8.890149099922985
+Median winery-winery distance: 	8.89014909992306
+Mean edge distance: 	8.890149099922985
+Median edge distance: 	8.89014909992306
+
+
+Component 5	Number of nodes: 5
+http://www.peleeisland.com	http://www.mastronardiwines.com	http://www.colchesterridge.com	http://www.erieshore.ca	http://www.viewpointewinery.com	
+Mean winery-winery distance: 	13.40740978460473
+Median winery-winery distance: 	17.923793678338594
+Mean edge distance: 	13.325721472210557
+Median edge distance: 	20.837730130296066

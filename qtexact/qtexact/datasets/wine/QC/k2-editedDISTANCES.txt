@@ -1,0 +1,13 @@
+Overall: 
+Mean winery-winery distance: 	90.24677164636488
+Median winery-winery distance: 	100.99186022398676
+Mean edge distance: 	78.86180661174095
+Median edge distance: 	100.99186022398676
+
+
+Component 0	Number of nodes: 5
+http://www.cepdargent.com	http://www.orpailleur.ca	http://www.vindeglace.com	http://www.vignobleriviereduchene.ca	http://www.vergerlacroix.ca	
+Mean winery-winery distance: 	90.24677164636488
+Median winery-winery distance: 	100.99186022398676
+Mean edge distance: 	78.86180661174095
+Median edge distance: 	100.99186022398676

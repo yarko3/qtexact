@@ -1,0 +1,21 @@
+Overall: 
+Mean winery-winery distance: 	88.75145349444779
+Median winery-winery distance: 	73.96159706764188
+Mean edge distance: 	101.15019155653721
+Median edge distance: 	85.79226896288773
+
+
+Component 0	Number of nodes: 17
+http://www.labauge.com	http://www.cepdargent.com	http://www.orpailleur.ca	http://www.vignobleriviereduchene.ca	http://www.leduc-piedimonte.com	http://www.cassismonna.com	http://www.lesvergerslafrance.com	http://www.passiondoree.com	http://www.domaineduridge.com	http://www.vergerlacroix.ca	http://www.artisansduterroir.ca	http://www.fermeguyrivest.com	http://www.vindeglace.com	http://www.cotesdardoise.com	http://www.laromanceduvin.ca	http://www.negondos.com	http://www.domainest-jacques.ca	
+Mean winery-winery distance: 	92.73160322222556
+Median winery-winery distance: 	83.44982726959843
+Mean edge distance: 	102.83080230097542
+Median edge distance: 	94.98930742617097
+
+
+Component 1	Number of nodes: 2
+http://www.vergerboutin.com	http://www.duminot.com	
+Mean winery-winery distance: 	54.09309071226683
+Median winery-winery distance: 	54.09309071226685
+Mean edge distance: 	54.09309071226683
+Median edge distance: 	54.09309071226685

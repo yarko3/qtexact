@@ -186,3 +186,4 @@ http://www.tangledvineswinery.com	49.321793	-119.555616
 http://www.willowhillwines.com	49.182326	-119.550428
 http://www.22oakswinery.ca	48.802374	-123.677195
 http://www.quaywine.com	49.199089	-122.913386
+http://www.tastevibrantvines.com	49.86305	-119.411881

@@ -90,10 +90,11 @@ public class fun<V> extends JApplet {
 		//diGraphWineryTest();
 		//clusterTest();
 		//scoreWineryGraph();
-		distanceTest();
+		//distanceTest();
 		//cographTest();
 		//wineryProjectionTest();
 		//getProvinceSpecificExternalsEdgeList();
+		projectionAnalysis();
 	}
 	
 
@@ -1376,6 +1377,68 @@ public class fun<V> extends JApplet {
 		String province = "ON";
 		distance.provinceSpecificExternalsEdgeList("datasets/wine/"+province+ "/edgeSet.txt", "datasets/wine/Distance/"+province+"/"+province +"ExternalAddress.txt", province, "datasets/wine/"+province+"/ProvinceSpecificEdgeList.txt");
 		
+	}
+	
+	private static void projectionAnalysis()
+	{
+		//String province = "BC";
+		LinkedList<String> provinces = new LinkedList<String>();
+		provinces.add("ON");
+		provinces.add("QC");
+		
+		for (String province : provinces)
+		{
+			String distanceFile = "datasets/wine/Distance/"+province +"/"+province+"Distance.txt";
+			
+			
+			Graph<String, Pair<String>> wine = null;
+			
+			
+			Controller<String> c = new Controller<String>(null, true);
+			
+			qtGenerate<String> gen = new qtGenerate<String>();
+			
+			qtBranchComponents<String> branchC = new qtBranchComponents<String>(c);
+			Dive<String> dive = new maxObsGreedy<String>(branchC);
+			
+			Reduction<String> rC = new c4p4Reduction<String>(branchC);
+			branchC.addReduction(rC);
+			
+			branchingReturnC<String> rtn;
+			
+			for (int k = 1; k < 11; k++)
+			{
+			
+				try {
+					wine = genString.fromBipartiteFile("datasets/wine/" + province + "/ProvinceSpecificEdgeList.txt", k);
+				} catch (FileNotFoundException | UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				
+				//dump original graph to file
+				String originalFile = "datasets/wine/"+province+"/k"+k+"-unedited.txt";
+				stringUtils.printSolutionEdgeSetWithWeightsComponents(new branchingReturnC<String>(wine), originalFile);
+				
+				distance.outputDistanceMeasurements(originalFile, distanceFile, "datasets/wine/"+province+"/k"+k+"-uneditedDISTANCES.txt");
+				
+				//edit graph
+				//greedy edit
+				c.setbStruct(branchC);
+				branchC.setDive(dive);
+				System.out.println("\nGreedy Edit: ");
+				rtn = c.diveAtStartEdit(wine, 4);
+				
+				//dump edited graph to file
+				String editedFile = "datasets/wine/"+province+"/k"+k+"-edited.txt";
+				stringUtils.printSolutionEdgeSetWithWeightsComponents(rtn, editedFile);
+				
+				//output distance measurements for each
+				distance.outputDistanceMeasurements(editedFile, distanceFile, "datasets/wine/"+province+"/k"+k+"-editedDISTANCES.txt");
+				
+			}
+		}
 	}
 	
 	

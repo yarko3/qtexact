@@ -1,0 +1,29 @@
+Overall: 
+Mean winery-winery distance: 	182.39307057962358
+Median winery-winery distance: 	179.26064143605902
+Mean edge distance: 	75.81929850293204
+Median edge distance: 	15.28733707719656
+
+
+Component 0	Number of nodes: 2
+http://www.quaiduvin.com	http://www.rushcreekwines.com	
+Mean winery-winery distance: 	8.890149099922985
+Median winery-winery distance: 	8.89014909992306
+Mean edge distance: 	8.890149099922985
+Median edge distance: 	8.89014909992306
+
+
+Component 1	Number of nodes: 41
+http://www.henryofpelham.com	http://www.cavespring.ca	http://www.mastronardiwines.com	http://www.grangeofprinceedward.com	http://www.colchesterridge.com	http://www.hilliercreekestates.com	http://www.fiverows.com	http://www.angelsgatewinery.com	http://www.aleksanderestate.com	http://www.13thstreetwinery.com	http://www.gretzkyestateswines.com	http://www.rennieestatewinery.com	http://www.malivoire.com	http://www.peller.com	http://www.coyotesrunwinery.com	http://www.keint-he.ca	http://www.vineland.com	http://www.huffestates.com	http://www.laceyestates.com	http://www.greenlanewinery.com	http://www.peleeisland.com	http://www.georgianhillsvineyards.ca	http://www.strewnwinery.com	http://www.pillitteri.com	http://www.sugarbushvineyards.ca	http://www.del-gattoestates.ca	http://www.erieshore.ca	http://www.burningkilnwinery.ca	http://www.viewpointewinery.com	http://www.fieldingwines.com	http://www.hinterlandwine.com	http://www.featherstonewinery.ca	http://www.33vines.com	http://www.thirtybench.com	http://www.alvento.ca	http://www.brokenstone.ca	http://www.rosehallrun.com	http://www.flatrockcellars.com	http://www.clossonchase.com	http://www.coffinridge.ca	http://www.creeksidewine.com	
+Mean winery-winery distance: 	186.54923704925267
+Median winery-winery distance: 	184.51342611067648
+Mean edge distance: 	77.3599945166294
+Median edge distance: 	15.682849508599324
+
+
+Component 2	Number of nodes: 2
+http://www.inniskillin.com	http://www.jacksontriggswinery.com	
+Mean winery-winery distance: 	4.08580667317801
+Median winery-winery distance: 	4.085806673178022
+Mean edge distance: 	4.08580667317801
+Median edge distance: 	4.085806673178022

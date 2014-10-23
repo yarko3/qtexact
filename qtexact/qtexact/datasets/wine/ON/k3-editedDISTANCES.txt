@@ -1,0 +1,53 @@
+Overall: 
+Mean winery-winery distance: 	206.40583065465344
+Median winery-winery distance: 	184.9084089298336
+Mean edge distance: 	61.105275280706955
+Median edge distance: 	11.394056961496817
+
+
+Component 1	Number of nodes: 2
+http://www.georgianhillsvineyards.ca	http://www.coffinridge.ca	
+Mean winery-winery distance: 	33.234898710245226
+Median winery-winery distance: 	33.234898710245226
+Mean edge distance: 	33.234898710245226
+Median edge distance: 	33.234898710245226
+
+
+Component 2	Number of nodes: 2
+http://www.quaiduvin.com	http://www.rushcreekwines.com	
+Mean winery-winery distance: 	8.890149099922985
+Median winery-winery distance: 	8.89014909992306
+Mean edge distance: 	8.890149099922985
+Median edge distance: 	8.89014909992306
+
+
+Component 4	Number of nodes: 6
+http://www.mastronardiwines.com	http://www.peleeisland.com	http://www.colchesterridge.com	http://www.aleksanderestate.com	http://www.erieshore.ca	http://www.viewpointewinery.com	
+Mean winery-winery distance: 	14.191531950715742
+Median winery-winery distance: 	17.9237936783387
+Mean edge distance: 	15.777423337443484
+Median edge distance: 	20.837730130296126
+
+
+Component 5	Number of nodes: 17
+http://www.henryofpelham.com	http://www.cavespring.ca	http://www.grangeofprinceedward.com	http://www.angelsgatewinery.com	http://www.13thstreetwinery.com	http://www.pillitteri.com	http://www.fieldingwines.com	http://www.hinterlandwine.com	http://www.featherstonewinery.ca	http://www.coyotesrunwinery.com	http://www.keint-he.ca	http://www.rosehallrun.com	http://www.vineland.com	http://www.flatrockcellars.com	http://www.clossonchase.com	http://www.huffestates.com	http://www.creeksidewine.com	
+Mean winery-winery distance: 	123.43941989277481
+Median winery-winery distance: 	161.35348747265968
+Mean edge distance: 	73.38564698548007
+Median edge distance: 	12.233107041474183
+
+
+Component 6	Number of nodes: 2
+http://www.hilliercreekestates.com	http://www.sugarbushvineyards.ca	
+Mean winery-winery distance: 	9.483946894587683
+Median winery-winery distance: 	9.48394689458772
+Mean edge distance: 	9.483946894587683
+Median edge distance: 	9.48394689458772
+
+
+Component 7	Number of nodes: 2
+http://www.gretzkyestateswines.com	http://www.peller.com	
+Mean winery-winery distance: 	1.9187281721027571
+Median winery-winery distance: 	1.9187281721029625
+Mean edge distance: 	1.9187281721027571
+Median edge distance: 	1.9187281721029625

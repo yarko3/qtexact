@@ -3,16 +3,19 @@ package utils;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 import org.gavaghan.geodesy.Ellipsoid;
 import org.gavaghan.geodesy.GeodeticCalculator;
 import org.gavaghan.geodesy.GlobalPosition;
 
-import qtUtils.branchingReturnC;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.UndirectedSparseGraph;
 import edu.uci.ics.jung.graph.util.Pair;
@@ -188,7 +191,7 @@ public class distance<V>
 		return temp.get(temp.size()/2) / 1000; 
 	}
 	
-	public HashMap<String, Pair<Double>> getLatLongFromFile(String filename)
+	public static HashMap<String, Pair<Double>> getLatLongFromFile(String filename)
 	{
 		HashMap<String, Pair<Double>> mapping = new HashMap<String, Pair<Double>>();
 		FileReader file = null;
@@ -292,6 +295,150 @@ public class distance<V>
 	}
 	
 	
+	/**
+	 * NOT FINISHED
+	 * get a mapping of our categories for externals
+	 * @param filename
+	 * @return mapping
+	 */
+	public HashMap<String, String> getCategoriesFromFile(String filename)
+	{
+		
+		HashMap<String, String> mapping = new HashMap<String, String>();
+		
+		FileReader file = null;
+		try {
+			file = new FileReader(filename);
+		} catch (FileNotFoundException e) {
+			System.out.println("File " + filename + " could not be found.");
+			e.printStackTrace();
+		}
+
+		Scanner scan = new Scanner(file).useDelimiter("\\t|\\r|\\n");
+
+		while (scan.hasNext()) {
+			
+			String v = scan.next();
+			
+			if (!v.contains("www"))
+			{
+				System.out.println("category import breaks at " + v);
+			}
+			//name
+			scan.next();
+			//address
+			scan.next();
+			
+			//scan through the rest of line
+			String cats = scan.next();
+			scan.next();
+			scan.next();
+			if (scan.hasNext())
+				scan.next();
+			
+			mapping.put(v, cats);
+			
+			
+		}
+		
+		try {
+			file.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		scan.close();
+		
+		
+		
+		
+		
+		//map our categories
+		for (String key : mapping.keySet())
+		{
+			String old = mapping.get(key);
+			
+			String[] oldCats = old.split(", ");
+			
+			Set<String> list = new HashSet<String>();
+			Collections.addAll(list, oldCats);
+			
+			
+			if (list.contains("liquor_store"))
+				mapping.put(key, "Liquor Store");
+			else if (list.contains("travel_agency"))
+				mapping.put(key, "Travel Agency");
+			
+			
+			
+		}
+		
+		return mapping;
+	}
+	
+	public static void outputDistanceMeasurements(String editFile, String distanceFile, String outputFile)
+	{
+		
+		graphFromEdgeSetWithCommunities f = new graphFromEdgeSetWithCommunities(editFile);
+		
+		
+		distance<String> d = new distance<String>();
+		graphUtils<String> stringUtils = new graphUtils<String>();
+		
+		
+		HashMap<String, Pair<Double>> mapping = distance.getLatLongFromFile(distanceFile);
+		
+		
+		Graph<String, Pair<String>> g = f.g;
+		
+		
+		//print network to file
+		PrintWriter writer = null;
+		try {
+			writer = new PrintWriter(outputFile, "UTF-8");
+		} catch (FileNotFoundException | UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		writer.println("Overall: ");
+		writer.println("Mean winery-winery distance: \t" + d.meanDistance(g, mapping));
+		writer.println("Median winery-winery distance: \t" + d.medianDistance(g, mapping));
+		writer.println("Mean edge distance: \t" + d.meanNeighbourDistance(g, mapping));
+		writer.println("Median edge distance: \t" + d.medianNeighbourDistance(g, mapping));
+		
+		
+		
+		HashMap<Integer, Graph<String, Pair<String>>> components = new HashMap<Integer, Graph<String, Pair<String>>>();
+		
+		for (int cID : f.communityMap.keySet())
+		{
+			components.put(cID, stringUtils.inducedFromVertexSet(g, f.communityMap.get(cID)));
+		}
+	
+		
+		for (int cID : components.keySet())
+		{
+			
+			
+			writer.println("\n\nComponent " + cID + "\tNumber of nodes: " + components.get(cID).getVertexCount());
+			
+			//output wineries in this community
+			for (String winery : components.get(cID).getVertices())
+			{
+				writer.print(winery + "\t");
+			}
+			
+			writer.println("\nMean winery-winery distance: \t" + d.meanDistance(components.get(cID), mapping));
+			writer.println("Median winery-winery distance: \t" + d.medianDistance(components.get(cID), mapping));
+			writer.println("Mean edge distance: \t" + d.meanNeighbourDistance(components.get(cID), mapping));
+			writer.println("Median edge distance: \t" + d.medianNeighbourDistance(components.get(cID), mapping));
+			
+		}
+		
+		writer.close();
+	}
 	
 
 }

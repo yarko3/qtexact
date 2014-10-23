@@ -1,0 +1,53 @@
+Overall: 
+Mean winery-winery distance: 	189.17033464178493
+Median winery-winery distance: 	182.85945621675523
+Mean edge distance: 	105.0895247837173
+Median edge distance: 	23.626654901717057
+
+
+Component 16	Number of nodes: 7
+http://www.grangeofprinceedward.com	http://www.hilliercreekestates.com	http://www.keint-he.ca	http://www.del-gattoestates.ca	http://www.huffestates.com	http://www.lighthallvineyards.com	http://www.33vines.com	
+Mean winery-winery distance: 	24.137865881844917
+Median winery-winery distance: 	22.708843035476207
+Mean edge distance: 	18.7402392612849
+Median edge distance: 	18.456559752716657
+
+
+Component 0	Number of nodes: 2
+http://www.quaiduvin.com	http://www.rushcreekwines.com	
+Mean winery-winery distance: 	8.890149099922985
+Median winery-winery distance: 	8.89014909992306
+Mean edge distance: 	8.890149099922985
+Median edge distance: 	8.89014909992306
+
+
+Component 17	Number of nodes: 6
+http://www.mastronardiwines.com	http://www.aleksanderestate.com	http://www.smithandwilsonestatewines.ca	http://www.erieshore.ca	http://www.hiddenbench.com	http://www.viewpointewinery.com	
+Mean winery-winery distance: 	120.33654481723012
+Median winery-winery distance: 	58.55199904564731
+Mean edge distance: 	126.34698184029257
+Median edge distance: 	81.8778119319339
+
+
+Component 5	Number of nodes: 2
+http://www.hernder.com	http://www.harvestwines.com	
+Mean winery-winery distance: 	4.404337160204567
+Median winery-winery distance: 	4.404337160204634
+Mean edge distance: 	4.404337160204567
+Median edge distance: 	4.404337160204634
+
+
+Component 6	Number of nodes: 33
+http://www.henryofpelham.com	http://www.cavespring.ca	http://www.inniskillin.com	http://www.colchesterridge.com	http://www.angelsgatewinery.com	http://www.13thstreetwinery.com	http://www.blackprincewinery.com	http://www.gretzkyestateswines.com	http://www.rennieestatewinery.com	http://www.malivoire.com	http://www.peller.com	http://www.dovervineyards.com	http://www.jacksontriggswinery.com	http://www.coyotesrunwinery.com	http://www.vineland.com	http://www.ravinevineyard.com	http://www.greenlanewinery.com	http://www.peleeisland.com	http://www.cornerstonewinery.com	http://www.georgianhillsvineyards.ca	http://www.unionwines.com	http://www.pillitteri.com	http://www.chateaudescharmes.com	http://www.burningkilnwinery.ca	http://www.fieldingwines.com	http://www.hinterlandwine.com	http://www.featherstonewinery.ca	http://www.alvento.ca	http://www.rosehallrun.com	http://www.flatrockcellars.com	http://www.coffinridge.ca	http://www.clossonchase.com	http://www.creeksidewine.com	
+Mean winery-winery distance: 	140.51387205484036
+Median winery-winery distance: 	95.47706674461394
+Mean edge distance: 	114.73674119847044
+Median edge distance: 	25.69734681875983
+
+
+Component 11	Number of nodes: 6
+http://www.brokenstone.ca	http://www.sugarbushvineyards.ca	http://www.normanhardie.com	http://www.laceyestates.com	http://www.harwoodestatevineyards.com	http://www.countycider.com	
+Mean winery-winery distance: 	15.754322859433294
+Median winery-winery distance: 	6.1364936789456825
+Mean edge distance: 	11.886783994314452
+Median edge distance: 	8.561720727849224

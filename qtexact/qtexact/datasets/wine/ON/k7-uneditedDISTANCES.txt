@@ -1,0 +1,21 @@
+Overall: 
+Mean winery-winery distance: 	268.27419329827677
+Median winery-winery distance: 	314.35302545572404
+Mean edge distance: 	132.07382648507527
+Median edge distance: 	20.837730130296066
+
+
+Component 0	Number of nodes: 3
+http://www.peleeisland.com	http://www.erieshore.ca	http://www.viewpointewinery.com	
+Mean winery-winery distance: 	14.336927562571756
+Median winery-winery distance: 	17.49383287189096
+Mean edge distance: 	12.758474907912172
+Median edge distance: 	20.837730130296066
+
+
+Component 1	Number of nodes: 7
+http://www.keint-he.ca	http://www.fiverows.com	http://www.rosehallrun.com	http://www.flatrockcellars.com	http://www.clossonchase.com	http://www.sugarbushvineyards.ca	http://www.hinterlandwine.com	
+Mean winery-winery distance: 	194.80239923895658
+Median winery-winery distance: 	169.2952946325608
+Mean edge distance: 	171.84561034412968
+Median edge distance: 	186.20845365147747

@@ -74,8 +74,6 @@ public abstract class GreedyEdit<V> extends Dive<V>
 					if (v0 == v1)
 						continue;
 					
-					if (v0.equals("http://www.granitecreek.ca") && v1.equals("http://www.celistawine.com"))
-						System.out.println();
 					
 					//if an edge between v0 and v1 exists, remove it and count the number of obstructions
 					if (s.getG().findEdge(v0, v1) != null)
