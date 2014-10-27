@@ -484,6 +484,7 @@ public class graphUtils<V>
 		
 		//remove all externals with less than 2 wineries
 		LinkedList<String> toDelete = new LinkedList<String>();
+
 		for (String key : edges.keySet())
 		{
 			if (edges.get(key).size() < 2)

@@ -1,0 +1,70 @@
+Externals:
+[http://www.oliverbonacini.com, http://www.verticalrestaurant.ca, http://www.olivea.ca, http://www.merrillinn.com, http://www.juniperdining.ca]
+Wineries:
+[http://www.rosehallrun.com, http://www.keint-he.ca, http://www.clossonchase.com, http://www.hinterlandwine.com]
+Mean winery distance: 	250.47993928001043
+Median winery distance: 	491.9320573744421
+
+Externals:
+[http://www.eastandmain.ca, http://www.verticalrestaurant.ca, http://www.jamiekennedy.ca, http://www.olivea.ca, http://www.juniperdining.ca]
+Wineries:
+[http://www.rosehallrun.com, http://www.keint-he.ca, http://www.clossonchase.com, http://www.hinterlandwine.com]
+Mean winery distance: 	250.47993928001043
+Median winery distance: 	491.9320573744421
+
+Externals:
+[http://www.eastandmain.ca, http://www.thewellingtongastropub.com, http://www.verticalrestaurant.ca, http://www.jamiekennedy.ca, http://www.merrillinn.com]
+Wineries:
+[http://www.rosehallrun.com, http://www.keint-he.ca, http://www.clossonchase.com, http://www.hinterlandwine.com]
+Mean winery distance: 	250.47993928001043
+Median winery distance: 	491.9320573744421
+
+Externals:
+[http://www.eastandmain.ca, http://www.jamiekennedy.ca, http://www.olivea.ca, http://www.merrillinn.com, http://www.capers.ca]
+Wineries:
+[http://www.rosehallrun.com, http://www.keint-he.ca, http://www.clossonchase.com, http://www.hinterlandwine.com]
+Mean winery distance: 	250.47993928001043
+Median winery distance: 	491.9320573744421
+
+Externals:
+[http://www.eastandmain.ca, http://www.oliverbonacini.com, http://www.verticalrestaurant.ca, http://www.jamiekennedy.ca, http://www.capers.ca]
+Wineries:
+[http://www.rosehallrun.com, http://www.keint-he.ca, http://www.clossonchase.com, http://www.hinterlandwine.com]
+Mean winery distance: 	250.47993928001043
+Median winery distance: 	491.9320573744421
+
+Externals:
+[http://www.eastandmain.ca, http://www.thewellingtongastropub.com, http://www.olivea.ca, http://www.merrillinn.com, http://www.capers.ca]
+Wineries:
+[http://www.rosehallrun.com, http://www.keint-he.ca, http://www.clossonchase.com, http://www.hinterlandwine.com]
+Mean winery distance: 	250.47993928001043
+Median winery distance: 	491.9320573744421
+
+Externals:
+[http://www.eastandmain.ca, http://www.oliverbonacini.com, http://www.thewellingtongastropub.com, http://www.jamiekennedy.ca, http://www.olivea.ca]
+Wineries:
+[http://www.rosehallrun.com, http://www.keint-he.ca, http://www.clossonchase.com, http://www.hinterlandwine.com]
+Mean winery distance: 	250.47993928001043
+Median winery distance: 	491.9320573744421
+
+Externals:
+[http://www.oliverbonacini.com, http://www.thewellingtongastropub.com, http://www.verticalrestaurant.ca, http://www.merrillinn.com, http://www.juniperdining.ca]
+Wineries:
+[http://www.rosehallrun.com, http://www.keint-he.ca, http://www.clossonchase.com, http://www.hinterlandwine.com]
+Mean winery distance: 	250.47993928001043
+Median winery distance: 	491.9320573744421
+
+Externals:
+[http://www.oliverbonacini.com, http://www.olivea.ca, http://www.merrillinn.com, http://www.capers.ca, http://www.juniperdining.ca]
+Wineries:
+[http://www.rosehallrun.com, http://www.keint-he.ca, http://www.clossonchase.com, http://www.hinterlandwine.com]
+Mean winery distance: 	250.47993928001043
+Median winery distance: 	491.9320573744421
+
+Externals:
+[http://www.eastandmain.ca, http://www.oliverbonacini.com, http://www.verticalrestaurant.ca, http://www.capers.ca, http://www.juniperdining.ca]
+Wineries:
+[http://www.rosehallrun.com, http://www.keint-he.ca, http://www.clossonchase.com, http://www.hinterlandwine.com]
+Mean winery distance: 	250.47993928001043
+Median winery distance: 	491.9320573744421
+

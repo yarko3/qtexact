@@ -1448,8 +1448,8 @@ public class fun<V> extends JApplet {
 	{
 		//String province = "BC";
 		LinkedList<String> provinces = new LinkedList<String>();
-		provinces.add("BC");
-		//provinces.add("ON");
+		//provinces.add("BC");
+		provinces.add("ON");
 		//provinces.add("QC");
 		
 		distance<String> d = new distance<String>();
@@ -1462,7 +1462,7 @@ public class fun<V> extends JApplet {
 			HashMap<String, Pair<Double>> mapping = distance.getLatLongFromFile(distanceFile);
 			
 			
-			for (int k = 8; k < 9; k++)
+			for (int k = 7; k < 9; k++)
 			{
 				pq = graphUtils.wineriesWithKExternals("datasets/wine/"+province+"/ProvinceSpecificEdgeList.txt", k);
 				

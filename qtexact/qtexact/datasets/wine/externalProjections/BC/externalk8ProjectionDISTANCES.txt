@@ -1,0 +1,70 @@
+Externals:
+[http://www.sipwines.ca, http://www.villagevqawines.com, http://www.mudbaywines.com, http://www.wine-emporium.com, http://www.swirlwinestore.ca, http://www.pentictonwineinfo.com, http://www.sardisparkwines.com, http://www.thewinefestivals.com]
+Wineries:
+[http://www.intriguewines.ca, http://www.littlestraw.bc.ca, http://www.township7.com]
+Mean winery distance: 	41.58582865864973
+Median winery distance: 	38.377552702107316
+
+Externals:
+[http://www.westcoastliquor.com, http://www.sipwines.ca, http://www.johnbpub.com, http://www.legacyliquorstore.com, http://www.wine-emporium.com, http://www.swirlwinestore.ca, http://www.metroliquor.com, http://www.discoverwines.com]
+Wineries:
+[http://www.tantalus.ca, http://www.intriguewines.ca, http://www.3milewinery.com]
+Mean winery distance: 	39.20431499082136
+Median winery distance: 	33.47829704787423
+
+Externals:
+[http://www.westcoastliquor.com, http://www.sipwines.ca, http://www.johnbpub.com, http://www.legacyliquorstore.com, http://www.mudbaywines.com, http://www.wine-emporium.com, http://www.metroliquor.com, http://www.discoverwines.com]
+Wineries:
+[http://www.tantalus.ca, http://www.intriguewines.ca, http://www.3milewinery.com]
+Mean winery distance: 	39.20431499082136
+Median winery distance: 	33.47829704787423
+
+Externals:
+[http://www.sipwines.ca, http://www.villagevqawines.com, http://www.mudbaywines.com, http://www.wine-emporium.com, http://www.swirlwinestore.ca, http://www.vqawineshop.ca, http://www.kensingtonsquarewines.com, http://www.discoverwines.com]
+Wineries:
+[http://www.intriguewines.ca, http://www.littlestraw.bc.ca, http://www.kalalawines.ca]
+Mean winery distance: 	19.958790374977116
+Median winery distance: 	24.573876975813825
+
+Externals:
+[http://www.sipwines.ca, http://www.villagevqawines.com, http://www.legacyliquorstore.com, http://www.mudbaywines.com, http://www.wine-emporium.com, http://www.swirlwinestore.ca, http://www.kensingtonsquarewines.com, http://www.discoverwines.com]
+Wineries:
+[http://www.tantalus.ca, http://www.intriguewines.ca, http://www.kalalawines.ca]
+Mean winery distance: 	22.64655731238547
+Median winery distance: 	25.41094328686683
+
+Externals:
+[http://www.sipwines.ca, http://www.villagevqawines.com, http://www.mudbaywines.com, http://www.wine-emporium.com, http://www.swirlwinestore.ca, http://www.vqawineshop.ca, http://www.kensingtonsquarewines.com, http://www.sardisparkwines.com]
+Wineries:
+[http://www.intriguewines.ca, http://www.littlestraw.bc.ca, http://www.kalalawines.ca]
+Mean winery distance: 	19.958790374977116
+Median winery distance: 	24.573876975813825
+
+Externals:
+[http://www.westcoastliquor.com, http://www.sipwines.ca, http://www.legacyliquorstore.com, http://www.mudbaywines.com, http://www.wine-emporium.com, http://www.swirlwinestore.ca, http://www.metroliquor.com, http://www.discoverwines.com]
+Wineries:
+[http://www.tantalus.ca, http://www.intriguewines.ca, http://www.3milewinery.com]
+Mean winery distance: 	39.20431499082136
+Median winery distance: 	33.47829704787423
+
+Externals:
+[http://www.sipwines.ca, http://www.villagevqawines.com, http://www.mudbaywines.com, http://www.wine-emporium.com, http://www.swirlwinestore.ca, http://www.vqawineshop.ca, http://www.sardisparkwines.com, http://www.discoverwines.com]
+Wineries:
+[http://www.intriguewines.ca, http://www.littlestraw.bc.ca, http://www.kalalawines.ca]
+Mean winery distance: 	19.958790374977116
+Median winery distance: 	24.573876975813825
+
+Externals:
+[http://www.westcoastliquor.com, http://www.sipwines.ca, http://www.johnbpub.com, http://www.legacyliquorstore.com, http://www.mudbaywines.com, http://www.wine-emporium.com, http://www.swirlwinestore.ca, http://www.discoverwines.com]
+Wineries:
+[http://www.tantalus.ca, http://www.intriguewines.ca, http://www.3milewinery.com]
+Mean winery distance: 	39.20431499082136
+Median winery distance: 	33.47829704787423
+
+Externals:
+[http://www.westcoastliquor.com, http://www.sipwines.ca, http://www.johnbpub.com, http://www.legacyliquorstore.com, http://www.mudbaywines.com, http://www.wine-emporium.com, http://www.swirlwinestore.ca, http://www.metroliquor.com]
+Wineries:
+[http://www.tantalus.ca, http://www.intriguewines.ca, http://www.3milewinery.com]
+Mean winery distance: 	39.20431499082136
+Median winery distance: 	33.47829704787423
+
