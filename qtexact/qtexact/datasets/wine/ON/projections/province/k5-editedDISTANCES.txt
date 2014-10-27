@@ -1,0 +1,53 @@
+Overall: 
+Mean winery-winery distance: 	229.35260537333932
+Median winery-winery distance: 	195.40171645498364
+Mean edge distance: 	104.52829208421235
+Median edge distance: 	15.682849508599324
+
+
+Component 0	Number of nodes: 2
+http://www.georgianhillsvineyards.ca	http://www.coffinridge.ca	
+Mean winery-winery distance: 	33.234898710245226
+Median winery-winery distance: 	33.234898710245226
+Mean edge distance: 	33.234898710245226
+Median edge distance: 	33.234898710245226
+
+
+Component 1	Number of nodes: 2
+http://www.quaiduvin.com	http://www.rushcreekwines.com	
+Mean winery-winery distance: 	8.890149099922985
+Median winery-winery distance: 	8.89014909992306
+Mean edge distance: 	8.890149099922985
+Median edge distance: 	8.89014909992306
+
+
+Component 2	Number of nodes: 3
+http://www.henryofpelham.com	http://www.13thstreetwinery.com	http://www.creeksidewine.com	
+Mean winery-winery distance: 	4.186393668554795
+Median winery-winery distance: 	5.1821953249692685
+Mean edge distance: 	3.4071978269915415
+Median edge distance: 	5.182195324969201
+
+
+Component 3	Number of nodes: 2
+http://www.coyotesrunwinery.com	http://www.pillitteri.com	
+Mean winery-winery distance: 	5.483217640337694
+Median winery-winery distance: 	5.483217640337758
+Mean edge distance: 	5.483217640337694
+Median edge distance: 	5.483217640337758
+
+
+Component 4	Number of nodes: 8
+http://www.rosehallrun.com	http://www.fiverows.com	http://www.keint-he.ca	http://www.flatrockcellars.com	http://www.clossonchase.com	http://www.sugarbushvineyards.ca	http://www.huffestates.com	http://www.hinterlandwine.com	
+Mean winery-winery distance: 	179.0826922277962
+Median winery-winery distance: 	169.2952946325606
+Mean edge distance: 	160.06356420185102
+Median edge distance: 	162.9095273675885
+
+
+Component 5	Number of nodes: 5
+http://www.peleeisland.com	http://www.mastronardiwines.com	http://www.colchesterridge.com	http://www.erieshore.ca	http://www.viewpointewinery.com	
+Mean winery-winery distance: 	13.40740978460473
+Median winery-winery distance: 	17.923793678338594
+Mean edge distance: 	13.325721472210557
+Median edge distance: 	20.837730130296066

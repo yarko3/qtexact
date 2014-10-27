@@ -1,0 +1,70 @@
+Externals:
+[http://www.fetedesvendanges.com, http://www.vinsduquebec.com, http://www.fetedesvins.ca]
+Wineries:
+[http://www.cepdargent.com, http://www.orpailleur.ca, http://www.vignobleriviereduchene.ca]
+Mean winery distance: 	106.79019374541443
+Median winery distance: 	100.99186022398716
+
+Externals:
+[http://www.aubergedujolivent.com, http://www.cantonsdelest.com, http://www.awb.ca]
+Wineries:
+[http://www.vindeglace.com, http://www.orpailleur.ca]
+Mean winery distance: 	23.726982352879496
+Median winery distance: 	23.72698235287951
+
+Externals:
+[http://www.easterntownships.org, http://www.cantonsdelest.com, http://www.awb.ca]
+Wineries:
+[http://www.vindeglace.com, http://www.orpailleur.ca]
+Mean winery distance: 	23.726982352879496
+Median winery distance: 	23.72698235287951
+
+Externals:
+[http://www.aubergedk.com, http://www.aubergedujolivent.com, http://www.aubergeknowlton.ca]
+Wineries:
+[http://www.vindeglace.com, http://www.orpailleur.ca]
+Mean winery distance: 	23.726982352879496
+Median winery distance: 	23.72698235287951
+
+Externals:
+[http://www.aubergedk.com, http://www.aubergedujolivent.com, http://www.montagnard.qc.ca]
+Wineries:
+[http://www.vindeglace.com, http://www.orpailleur.ca]
+Mean winery distance: 	23.726982352879496
+Median winery distance: 	23.72698235287951
+
+Externals:
+[http://www.ripplecove.com, http://www.cantonsdelest.com, http://www.aubergeknowlton.ca]
+Wineries:
+[http://www.vindeglace.com, http://www.orpailleur.ca]
+Mean winery distance: 	23.726982352879496
+Median winery distance: 	23.72698235287951
+
+Externals:
+[http://www.cantonsdelest.com, http://www.montagnard.qc.ca, http://www.lestmartinbromont.com]
+Wineries:
+[http://www.vindeglace.com, http://www.orpailleur.ca]
+Mean winery distance: 	23.726982352879496
+Median winery distance: 	23.72698235287951
+
+Externals:
+[http://www.cantonsdelest.com, http://www.aubergeknowlton.ca, http://www.lestmartinbromont.com]
+Wineries:
+[http://www.vindeglace.com, http://www.orpailleur.ca]
+Mean winery distance: 	23.726982352879496
+Median winery distance: 	23.72698235287951
+
+Externals:
+[http://www.ripplecove.com, http://www.cantonsdelest.com, http://www.montagnard.qc.ca]
+Wineries:
+[http://www.vindeglace.com, http://www.orpailleur.ca]
+Mean winery distance: 	23.726982352879496
+Median winery distance: 	23.72698235287951
+
+Externals:
+[http://www.ripplecove.com, http://www.montagnard.qc.ca, http://www.awb.ca]
+Wineries:
+[http://www.orpailleur.ca, http://www.vindeglace.com]
+Mean winery distance: 	23.726982352879496
+Median winery distance: 	23.72698235287951
+

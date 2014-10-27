@@ -111,6 +111,45 @@ public class distance<V>
 		return (temp / count) / 1000; 
 	}
 	
+	public double meanDistance(Set<V> community, HashMap<V, Pair<Double>> mapping)
+	{
+		
+		GeodeticCalculator geoCalc = new GeodeticCalculator();
+
+		Ellipsoid reference = Ellipsoid.WGS84;  
+
+		
+		int count = 0;
+		double temp = 0;
+		
+		for (V v0 : community)
+		{
+			if (!mapping.containsKey(v0))
+				continue;
+			
+			for (V v1 : community)
+			{
+				if (v0.equals(v1) || !mapping.containsKey(v1))
+					continue;
+				
+				GlobalPosition pointA = new GlobalPosition(mapping.get(v0).getFirst(), mapping.get(v0).getSecond(), 0.0); // Point A
+
+				GlobalPosition pointB = new GlobalPosition(mapping.get(v1).getFirst(), mapping.get(v1).getSecond(), 0.0); // Point B
+
+				double distance = geoCalc.calculateGeodeticCurve(reference, pointA, pointB).getEllipsoidalDistance();
+				
+				temp += distance;
+				count++;
+				
+			}
+		}
+		
+		temp /= 2;
+		count /= 2;
+		
+		return (temp / count) / 1000; 
+	}
+	
 	public double medianNeighbourDistance(Graph<V, Pair<V>> g, HashMap<V, Pair<Double>> mapping)
 	{
 		
@@ -127,6 +166,47 @@ public class distance<V>
 				continue;
 			
 			for (V v1 : g.getNeighbors(v0))
+			{
+				if (v0.equals(v1) || !mapping.containsKey(v1))
+					continue;
+				
+				GlobalPosition pointA = new GlobalPosition(mapping.get(v0).getFirst(), mapping.get(v0).getSecond(), 0.0); // Point A
+
+				GlobalPosition pointB = new GlobalPosition(mapping.get(v1).getFirst(), mapping.get(v1).getSecond(), 0.0); // Point B
+
+				double distance = geoCalc.calculateGeodeticCurve(reference, pointA, pointB).getEllipsoidalDistance();
+				
+				temp.add(distance);
+				
+				
+			}
+		}
+		
+		Collections.sort(temp);
+		
+		if (temp.isEmpty())
+			return Double.NaN;
+		
+		
+		return temp.get(temp.size()/2) / 1000; 
+	}
+	
+	public double medianDistance(Set<V> community, HashMap<V, Pair<Double>> mapping)
+	{
+		
+		GeodeticCalculator geoCalc = new GeodeticCalculator();
+
+		Ellipsoid reference = Ellipsoid.WGS84;  
+
+		
+		ArrayList<Double> temp = new ArrayList<Double>();
+		
+		for (V v0 : community)
+		{
+			if (!mapping.containsKey(v0))
+				continue;
+			
+			for (V v1 : community)
 			{
 				if (v0.equals(v1) || !mapping.containsKey(v1))
 					continue;

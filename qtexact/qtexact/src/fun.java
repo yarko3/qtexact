@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.PriorityQueue;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -47,8 +48,8 @@ import branch.qtBranchComponents;
 import branch.qtBranchNoHeuristic;
 
 import com.rits.cloning.Cloner;
-import components.branchComponents;
 
+import components.branchComponents;
 import controller.Controller;
 import edu.uci.ics.jung.algorithms.layout.FRLayout;
 import edu.uci.ics.jung.algorithms.scoring.BetweennessCentrality;
@@ -94,7 +95,9 @@ public class fun<V> extends JApplet {
 		//cographTest();
 		//wineryProjectionTest();
 		//getProvinceSpecificExternalsEdgeList();
-		projectionAnalysis();
+		//projectionAnalysis();
+		
+		winerykExternalProjections();
 	}
 	
 
@@ -1439,6 +1442,70 @@ public class fun<V> extends JApplet {
 				
 			}
 		}
+	}
+	
+	public static void winerykExternalProjections()
+	{
+		//String province = "BC";
+		LinkedList<String> provinces = new LinkedList<String>();
+		provinces.add("BC");
+		//provinces.add("ON");
+		//provinces.add("QC");
+		
+		distance<String> d = new distance<String>();
+		PriorityQueue<Pair<Set<String>>> pq;
+		
+		
+		for (String province : provinces)
+		{
+			String distanceFile = "datasets/wine/Distance/"+province +"/"+province+"Distance.txt";
+			HashMap<String, Pair<Double>> mapping = distance.getLatLongFromFile(distanceFile);
+			
+			
+			for (int k = 8; k < 9; k++)
+			{
+				pq = graphUtils.wineriesWithKExternals("datasets/wine/"+province+"/ProvinceSpecificEdgeList.txt", k);
+				
+				PrintWriter writer = null;
+				try {
+					writer = new PrintWriter("datasets/wine/externalProjections/"+province+"/externalk"+k+"ProjectionDISTANCES.txt", "UTF-8");
+				} catch (FileNotFoundException | UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				
+				for (int i = 0; i < 10; i++)
+				{
+					if (pq.isEmpty())
+						break;
+					
+					
+					Pair<Set<String>> next = pq.remove();
+					
+					
+					//output distances
+					writer.println("Externals:");
+					writer.println(next.getFirst());
+//					writer.println("Mean external distance: \t" + d.meanDistance(next.getFirst(), mapping));
+//					writer.println("Median external distance: \t" + d.medianDistance(next.getFirst(), mapping));
+					writer.println("Wineries:");
+					writer.println(next.getSecond());
+					writer.println("Mean winery distance: \t" + d.meanDistance(next.getSecond(), mapping));
+					writer.println("Median winery distance: \t" + d.medianDistance(next.getSecond(), mapping));
+					
+					writer.println();
+					
+				}
+				
+				writer.close();
+				
+				
+			}
+		}
+		
+		
+		
 	}
 	
 	

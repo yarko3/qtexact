@@ -1,0 +1,37 @@
+Overall: 
+Mean winery-winery distance: 	198.3198293617345
+Median winery-winery distance: 	181.97310677237058
+Mean edge distance: 	75.08910486397765
+Median edge distance: 	12.949953616267475
+
+
+Component 0	Number of nodes: 2
+http://www.quaiduvin.com	http://www.rushcreekwines.com	
+Mean winery-winery distance: 	8.890149099922985
+Median winery-winery distance: 	8.89014909992306
+Mean edge distance: 	8.890149099922985
+Median edge distance: 	8.89014909992306
+
+
+Component 1	Number of nodes: 23
+http://www.henryofpelham.com	http://www.greenlanewinery.com	http://www.cavespring.ca	http://www.grangeofprinceedward.com	http://www.georgianhillsvineyards.ca	http://www.fiverows.com	http://www.angelsgatewinery.com	http://www.hilliercreekestates.com	http://www.13thstreetwinery.com	http://www.sugarbushvineyards.ca	http://www.pillitteri.com	http://www.hinterlandwine.com	http://www.fieldingwines.com	http://www.featherstonewinery.ca	http://www.coyotesrunwinery.com	http://www.rosehallrun.com	http://www.keint-he.ca	http://www.vineland.com	http://www.flatrockcellars.com	http://www.clossonchase.com	http://www.coffinridge.ca	http://www.huffestates.com	http://www.creeksidewine.com	
+Mean winery-winery distance: 	136.8615377366004
+Median winery-winery distance: 	174.24698913708716
+Mean edge distance: 	85.72148876857766
+Median edge distance: 	12.94995361626752
+
+
+Component 2	Number of nodes: 6
+http://www.peleeisland.com	http://www.mastronardiwines.com	http://www.colchesterridge.com	http://www.aleksanderestate.com	http://www.erieshore.ca	http://www.viewpointewinery.com	
+Mean winery-winery distance: 	14.191531950715742
+Median winery-winery distance: 	17.9237936783387
+Mean edge distance: 	15.777423337443484
+Median edge distance: 	20.837730130296126
+
+
+Component 3	Number of nodes: 2
+http://www.gretzkyestateswines.com	http://www.peller.com	
+Mean winery-winery distance: 	1.9187281721027571
+Median winery-winery distance: 	1.9187281721029625
+Mean edge distance: 	1.9187281721027571
+Median edge distance: 	1.9187281721029625

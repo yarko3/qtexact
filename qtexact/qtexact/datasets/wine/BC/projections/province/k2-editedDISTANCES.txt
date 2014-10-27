@@ -1,0 +1,13 @@
+Overall: 
+Mean winery-winery distance: 	142.11444732201832
+Median winery-winery distance: 	70.2103054625697
+Mean edge distance: 	105.68904671996133
+Median edge distance: 	38.37755270210725
+
+
+Component 6	Number of nodes: 37
+http://www.hainle.com	http://www.levieuxpin.ca	http://www.intriguewines.ca	http://www.missionhillwinery.com	http://www.township7.com	http://www.vistadoro.com	http://www.mfvwines.com	http://www.venturischulze.com	http://www.closdusoleil.ca	http://www.wildgoosewinery.com	http://www.silkw.net	http://www.40knotswinery.com	http://www.alderlea.com	http://www.graymonk.com	http://www.sylranch.com	http://www.tantalus.ca	http://www.meadowvista.ca	http://www.sumacridge.com	http://www.foxtrotwine.com	http://www.littlestraw.bc.ca	http://www.mooncurser.com	http://www.bluemountainwinery.com	http://www.cedarcreek.bc.ca	http://www.kalalawines.ca	http://www.nichewinecompany.com	http://www.blastedchurch.com	http://www.silversidefarm.com	http://www.nicholvineyard.com	http://www.damali.ca	http://www.lastella.ca	http://www.vancouverurbanwinery.com	http://www.krazelegz.com	http://www.unsworthvineyards.com	http://www.castorodeoro.com	http://www.nobleridge.com	http://www.dragonflyhillvineyard.com	http://www.3milewinery.com	
+Mean winery-winery distance: 	142.11444732201832
+Median winery-winery distance: 	70.2103054625697
+Mean edge distance: 	105.68904671996133
+Median edge distance: 	38.37755270210725

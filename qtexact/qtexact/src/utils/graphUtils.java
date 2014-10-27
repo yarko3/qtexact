@@ -5,9 +5,15 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.PriorityQueue;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -26,7 +32,7 @@ public class graphUtils<V>
 {
 	WeakComponentClusterer<V, Pair<V>> cluster = new WeakComponentClusterer<V, Pair<V>>();
 	
-	Cloner clone = new Cloner();
+	static Cloner clone = new Cloner();
 	
 	/**
 	 * generate complement graph 
@@ -425,6 +431,197 @@ public class graphUtils<V>
 		
 	}
 	
+	public static PriorityQueue<Pair<Set<String>>> wineriesWithKExternals(String filename, int k)
+	{
+		FileReader file = null;
+		try {
+			file = new FileReader(filename);
+		} catch (FileNotFoundException e) {
+			System.out.println("File " + filename + " could not be found.");
+			e.printStackTrace();
+		}
+
+		//store externals here, based on key
+		HashMap<String, HashSet<String>> edges = new HashMap<String, HashSet<String>>();
+		HashMap<String, HashSet<String>> wineryEdges = new HashMap<String, HashSet<String>>();
+		Scanner scan = new Scanner(file);
+		String winery;
+		String external;
+		while (scan.hasNext())
+		{
+			winery = scan.next();
+			external = scan.next();
+			
+			if (!edges.containsKey(external))
+			{
+				edges.put(external, new HashSet<String>());
+			}
+			
+			if (!wineryEdges.containsKey(winery))
+				wineryEdges.put(winery, new HashSet<String>());
+			
+			wineryEdges.get(winery).add(external);
+			
+			edges.get(external).add(winery);	
+		}
 	
+		scan.close();
+		
+		//remove all wineries with less than k externals
+		for (String key : wineryEdges.keySet())
+		{
+			if (wineryEdges.get(key).size() < k)
+			{
+				for (String ex : wineryEdges.get(key))
+				{
+					edges.get(ex).remove(key);
+					if (edges.get(ex).isEmpty())
+						edges.remove(ex);
+				}
+			}
+		}
+		
+		
+		//remove all externals with less than 2 wineries
+		LinkedList<String> toDelete = new LinkedList<String>();
+		for (String key : edges.keySet())
+		{
+			if (edges.get(key).size() < 2)
+				toDelete.add(key);
+		}
+		
+		for (String key : toDelete)
+		{
+			edges.remove(key);
+		}
+	
+		HashMap<Set<String>, Set<String>> kMap = new HashMap<Set<String>, Set<String>>();
+		Set<String> temp;
+		Set<String> c;
+		
+		for (int i = 0; i < k; i++)
+		{
+			System.out.println("At k" + i);
+			if (i == 0)
+			{
+				for (String key : edges.keySet())
+				{
+					HashSet<String> keySet = new HashSet<String>();
+					keySet.add(key);
+					
+					kMap.put(keySet, clone.deepClone(edges.get(key)));
+				}
+			}
+			else
+			{
+				//make new kMap to replace with
+				HashMap<Set<String>, Set<String>> newKMap = new HashMap<Set<String>, Set<String>>();
+				
+				for (Set<String> next : kMap.keySet())
+				{
+					//get common wineries to this set of keys
+					temp = new HashSet<String>();
+					
+					for (String s0 : next)
+					{
+						if (temp.isEmpty())
+							temp.addAll(edges.get(s0));
+						else
+							temp.retainAll(edges.get(s0));
+					}
+					
+					
+					for (String key : edges.keySet())
+					{
+						if (next.contains(key))
+							continue;
+						
+						Set<String> newKey = new HashSet<String>();
+						newKey.addAll(next);
+						newKey.add(key);
+						
+						if (newKMap.containsKey(newKey))
+							continue;
+						
+						
+						c = clone.deepClone(temp);
+						c.retainAll(edges.get(key));
+						
+						if (c.size() > 1)
+						{
+							//add this key to newKMap
+							
+							newKMap.put(newKey, c);
+							//System.out.println(newKey + "\t" + c);
+						}
+					}
+				}
+				
+				kMap = newKMap;
+			}
+		}
+		
+		HashMap<Set<String>, Set<String>> permMap = kMap;
+		
+		
+		
+		
+		
+//		PrintWriter writer = null;
+//		try {
+//			writer = new PrintWriter("datasets/wine/externalk"+k+"Projection.txt", "UTF-8");
+//		} catch (FileNotFoundException | UnsupportedEncodingException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+		
+		//order them by non-increasing number of wineries
+		PriorityQueue<Pair<Set<String>>> pq = new PriorityQueue<Pair<Set<String>>>(new pairComparator());
+				
+		
+		for (Set<String> s : permMap.keySet())
+		{
+//			for (String t : s)
+//				writer.print(t + " ");
+//			writer.print("\t");
+//			for (String t : permMap.get(s))
+//				writer.print(t + " ");
+//			
+//			writer.print("\t" + permMap.get(s).size() + "\n");
+			
+			pq.add(new Pair<Set<String>>(s, permMap.get(s)));
+		}
+		
+//		writer.close();
+		
+		
+		//System.out.println(pq.remove().getSecond().size());
+		
+		return pq;
+
+		
+	}
+	
+	
+	
+	
+	static class pairComparator implements Comparator<Pair<Set<String>>>
+	{
+
+		@Override
+		public int compare(Pair<Set<String>> arg0, Pair<Set<String>> arg1) {
+			if (arg0.getSecond().size() > arg1.getSecond().size())
+				return -1;
+			else if (arg0.getSecond().size() == arg1.getSecond().size())
+				return 0;
+			else
+				return 1;
+		}
+
+
+		
+		
+	}
 
 }
