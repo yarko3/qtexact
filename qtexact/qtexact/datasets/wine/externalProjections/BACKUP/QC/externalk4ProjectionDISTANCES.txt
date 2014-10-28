@@ -1,4 +1,4 @@
-Total number of external sets with MAX winereies: 331
+Total number of external sets with >1 winereies: 331
 Externals:
 [http://www.aubergedk.com, http://www.ripplecove.com, http://www.lestmartinbromont.com, http://www.awb.ca]
 Wineries:

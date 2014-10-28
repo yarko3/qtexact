@@ -1,10 +1,4 @@
-Externals:
-[http://www.sipwines.ca, http://www.mudbaywines.com, http://www.swirlwinestore.ca]
-Wineries:
-[http://www.vistadoro.com, http://www.tantalus.ca, http://www.intriguewines.ca, http://www.littlestraw.bc.ca, http://www.3milewinery.com, http://www.kalalawines.ca, http://www.township7.com]
-Mean winery distance: 	90.38267340526374
-Median winery distance: 	36.516456329807035
-
+Total number of external sets with MAX winereies: 2
 Externals:
 [http://www.sipwines.ca, http://www.mudbaywines.com, http://www.wine-emporium.com]
 Wineries:
@@ -13,58 +7,9 @@ Mean winery distance: 	26.669285963395517
 Median winery distance: 	28.922424552785273
 
 Externals:
-[http://www.sipwines.ca, http://www.mudbaywines.com, http://www.kensingtonsquarewines.com]
+[http://www.sipwines.ca, http://www.mudbaywines.com, http://www.swirlwinestore.ca]
 Wineries:
-[http://www.vistadoro.com, http://www.tantalus.ca, http://www.intriguewines.ca, http://www.littlestraw.bc.ca, http://www.cedarcreek.bc.ca, http://www.kalalawines.ca]
-Mean winery distance: 	92.90299464108267
-Median winery distance: 	25.41094328686683
-
-Externals:
-[http://www.villagevqawines.com, http://www.sipwines.ca, http://www.mudbaywines.com]
-Wineries:
-[http://www.tantalus.ca, http://www.intriguewines.ca, http://www.littlestraw.bc.ca, http://www.cedarcreek.bc.ca, http://www.kalalawines.ca, http://www.township7.com]
-Mean winery distance: 	24.501933502957833
-Median winery distance: 	25.41094328686683
-
-Externals:
-[http://www.villagevqawines.com, http://www.mudbaywines.com, http://www.wine-emporium.com]
-Wineries:
-[http://www.tantalus.ca, http://www.intriguewines.ca, http://www.littlestraw.bc.ca, http://www.cedarcreek.bc.ca, http://www.kalalawines.ca, http://www.township7.com]
-Mean winery distance: 	24.501933502957833
-Median winery distance: 	25.41094328686683
-
-Externals:
-[http://www.sipwines.ca, http://www.wine-emporium.com, http://www.discoverwines.com]
-Wineries:
-[http://www.tantalus.ca, http://www.intriguewines.ca, http://www.littlestraw.bc.ca, http://www.cedarcreek.bc.ca, http://www.3milewinery.com, http://www.kalalawines.ca]
-Mean winery distance: 	23.46612481342702
-Median winery distance: 	25.41094328686683
-
-Externals:
-[http://www.mudbaywines.com, http://www.wine-emporium.com, http://www.discoverwines.com]
-Wineries:
-[http://www.tantalus.ca, http://www.intriguewines.ca, http://www.littlestraw.bc.ca, http://www.3milewinery.com, http://www.cedarcreek.bc.ca, http://www.kalalawines.ca]
-Mean winery distance: 	23.46612481342702
-Median winery distance: 	25.41094328686683
-
-Externals:
-[http://www.sipwines.ca, http://www.wine-emporium.com, http://www.swirlwinestore.ca]
-Wineries:
-[http://www.tantalus.ca, http://www.intriguewines.ca, http://www.littlestraw.bc.ca, http://www.3milewinery.com, http://www.kalalawines.ca, http://www.township7.com]
-Mean winery distance: 	29.68870055433165
-Median winery distance: 	33.47829704787423
-
-Externals:
-[http://www.mudbaywines.com, http://www.wine-emporium.com, http://www.swirlwinestore.ca]
-Wineries:
-[http://www.tantalus.ca, http://www.intriguewines.ca, http://www.littlestraw.bc.ca, http://www.3milewinery.com, http://www.kalalawines.ca, http://www.township7.com]
-Mean winery distance: 	29.68870055433165
-Median winery distance: 	33.47829704787423
-
-Externals:
-[http://www.sipwines.ca, http://www.mudbaywines.com, http://www.discoverwines.com]
-Wineries:
-[http://www.tantalus.ca, http://www.intriguewines.ca, http://www.littlestraw.bc.ca, http://www.3milewinery.com, http://www.cedarcreek.bc.ca, http://www.kalalawines.ca]
-Mean winery distance: 	23.46612481342702
-Median winery distance: 	25.41094328686683
+[http://www.vistadoro.com, http://www.tantalus.ca, http://www.intriguewines.ca, http://www.littlestraw.bc.ca, http://www.3milewinery.com, http://www.kalalawines.ca, http://www.township7.com]
+Mean winery distance: 	90.38267340526374
+Median winery distance: 	36.516456329807035
 

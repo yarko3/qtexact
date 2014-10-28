@@ -1,4 +1,4 @@
-Total number of external sets with MAX winereies: 37
+Total number of external sets with >1 winereies: 37
 Externals:
 [http://www.saq.com]
 Wineries:

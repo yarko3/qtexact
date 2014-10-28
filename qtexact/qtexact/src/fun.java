@@ -1448,9 +1448,9 @@ public class fun<V> extends JApplet {
 	{
 		//String province = "BC";
 		LinkedList<String> provinces = new LinkedList<String>();
-		//provinces.add("BC");
+		provinces.add("BC");
 		provinces.add("ON");
-		//provinces.add("QC");
+		provinces.add("QC");
 		
 		distance<String> d = new distance<String>();
 		PriorityQueue<Pair<Set<String>>> pq;
@@ -1462,7 +1462,7 @@ public class fun<V> extends JApplet {
 			HashMap<String, Pair<Double>> mapping = distance.getLatLongFromFile(distanceFile);
 			
 			
-			for (int k = 7; k < 9; k++)
+			for (int k = 1; k < 6; k++)
 			{
 				pq = graphUtils.wineriesWithKExternals("datasets/wine/"+province+"/ProvinceSpecificEdgeList.txt", k);
 				
@@ -1473,6 +1473,9 @@ public class fun<V> extends JApplet {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				
+				//write the total number of combinations
+				writer.println("Total number of external sets with MAX winereies: " + pq.size());
 				
 				
 				for (int i = 0; i < 10; i++)
@@ -1500,6 +1503,7 @@ public class fun<V> extends JApplet {
 				
 				writer.close();
 				
+				pq = null;
 				
 			}
 		}

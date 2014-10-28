@@ -518,17 +518,27 @@ public class graphUtils<V>
 				//make new kMap to replace with
 				HashMap<Set<String>, Set<String>> newKMap = new HashMap<Set<String>, Set<String>>();
 				
+				int max = 2;
+				
 				for (Set<String> next : kMap.keySet())
 				{
 					//get common wineries to this set of keys
-					temp = new HashSet<String>();
+					temp = null;
 					
 					for (String s0 : next)
 					{
-						if (temp.isEmpty())
+						if (temp == null)
+						{
+							temp = new HashSet<String>();
 							temp.addAll(edges.get(s0));
+						}
 						else
 							temp.retainAll(edges.get(s0));
+					}
+					
+					if (temp.isEmpty())
+					{
+						System.out.println("This set of externals has no wineries: \n" + next);
 					}
 					
 					
@@ -548,8 +558,29 @@ public class graphUtils<V>
 						c = clone.deepClone(temp);
 						c.retainAll(edges.get(key));
 						
-						if (c.size() > 1)
+						if (c.size() >= max)
 						{
+							if (c.size() > max && i == k-1)
+							{
+								//trim all those of size < c.size()
+								max = c.size();
+								
+								HashSet<Set<String>> tempDelete = new HashSet<Set<String>>();
+								for (Set<String> tempKey : newKMap.keySet())
+								{
+									if (newKMap.get(tempKey).size() < max)
+									{
+										tempDelete.add(tempKey);
+									}
+								}
+								
+								for (Set<String> tempKey : tempDelete)
+								{
+									newKMap.remove(tempKey);
+								}
+							}
+							
+							
 							//add this key to newKMap
 							
 							newKMap.put(newKey, c);

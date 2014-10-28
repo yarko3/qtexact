@@ -1,4 +1,4 @@
-Total number of external sets with MAX winereies: 226
+Total number of external sets with >1 winereies: 226
 Externals:
 [http://www.maps.google.ca]
 Wineries:

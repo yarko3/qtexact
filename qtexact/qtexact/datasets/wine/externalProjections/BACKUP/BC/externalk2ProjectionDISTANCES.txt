@@ -1,0 +1,71 @@
+Total number of external sets with >1 winereies: 2105
+Externals:
+[http://www.sipwines.ca, http://www.mudbaywines.com]
+Wineries:
+[http://www.vistadoro.com, http://www.tantalus.ca, http://www.intriguewines.ca, http://www.littlestraw.bc.ca, http://www.cedarcreek.bc.ca, http://www.3milewinery.com, http://www.kalalawines.ca, http://www.township7.com]
+Mean winery distance: 	80.51085692961786
+Median winery distance: 	34.07541098371745
+
+Externals:
+[http://www.westernlivingmagazine.com, http://www.straight.com]
+Wineries:
+[http://www.tantalus.ca, http://www.youngandwysewine.com, http://www.lastella.ca, http://www.foxtrotwine.com, http://www.bluemountainwinery.com, http://www.mooncurser.com, http://www.township7.com]
+Mean winery distance: 	43.08004059202988
+Median winery distance: 	36.516456329807035
+
+Externals:
+[http://www.sipwines.ca, http://www.swirlwinestore.ca]
+Wineries:
+[http://www.vistadoro.com, http://www.tantalus.ca, http://www.intriguewines.ca, http://www.littlestraw.bc.ca, http://www.3milewinery.com, http://www.kalalawines.ca, http://www.township7.com]
+Mean winery distance: 	90.38267340526374
+Median winery distance: 	36.516456329807035
+
+Externals:
+[http://www.mudbaywines.com, http://www.wine-emporium.com]
+Wineries:
+[http://www.tantalus.ca, http://www.intriguewines.ca, http://www.littlestraw.bc.ca, http://www.3milewinery.com, http://www.cedarcreek.bc.ca, http://www.kalalawines.ca, http://www.township7.com]
+Mean winery distance: 	26.669285963395517
+Median winery distance: 	28.922424552785273
+
+Externals:
+[http://www.thewinefestivals.com, http://www.winebc.com]
+Wineries:
+[http://www.graymonk.com, http://www.tantalus.ca, http://www.sumacridge.com, http://www.littlestraw.bc.ca, http://www.mfvwines.com, http://www.mtboucheriewinery.com, http://www.nobleridge.com]
+Mean winery distance: 	38.286123358734024
+Median winery distance: 	32.758273510957274
+
+Externals:
+[http://www.sipwines.ca, http://www.wine-emporium.com]
+Wineries:
+[http://www.tantalus.ca, http://www.intriguewines.ca, http://www.littlestraw.bc.ca, http://www.cedarcreek.bc.ca, http://www.3milewinery.com, http://www.kalalawines.ca, http://www.township7.com]
+Mean winery distance: 	26.669285963395517
+Median winery distance: 	28.922424552785273
+
+Externals:
+[http://www.vancouversun.com, http://www.thewinefestivals.com]
+Wineries:
+[http://www.sylranch.com, http://www.intriguewines.ca, http://www.road13vineyards.com, http://www.township7.com, http://www.mfvwines.com, http://www.krazelegz.com, http://www.nobleridge.com]
+Mean winery distance: 	35.071290894284836
+Median winery distance: 	21.6838710672094
+
+Externals:
+[http://www.vancouversun.com, http://www.straight.com]
+Wineries:
+[http://www.foxtrotwine.com, http://www.intriguewines.ca, http://www.bluemountainwinery.com, http://www.mooncurser.com, http://www.township7.com, http://www.closdusoleil.ca, http://www.40knotswinery.com]
+Mean winery distance: 	147.77488126611635
+Median winery distance: 	60.47296025555633
+
+Externals:
+[http://www.mudbaywines.com, http://www.swirlwinestore.ca]
+Wineries:
+[http://www.vistadoro.com, http://www.tantalus.ca, http://www.intriguewines.ca, http://www.littlestraw.bc.ca, http://www.3milewinery.com, http://www.kalalawines.ca, http://www.township7.com]
+Mean winery distance: 	90.38267340526374
+Median winery distance: 	36.516456329807035
+
+Externals:
+[http://www.mudbaywines.com, http://www.kensingtonsquarewines.com]
+Wineries:
+[http://www.vistadoro.com, http://www.tantalus.ca, http://www.intriguewines.ca, http://www.littlestraw.bc.ca, http://www.cedarcreek.bc.ca, http://www.kalalawines.ca]
+Mean winery distance: 	92.90299464108267
+Median winery distance: 	25.41094328686683
+

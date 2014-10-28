@@ -1,0 +1,71 @@
+Total number of external sets with >1 winereies: 2510
+Externals:
+[http://www.maps.google.ca, http://www.lcbo.com]
+Wineries:
+[http://www.henryofpelham.com, http://www.inniskillin.com, http://www.colchesterridge.com, http://www.13thstreetwinery.com, http://www.gretzkyestateswines.com, http://www.peller.com, http://www.jacksontriggswinery.com, http://www.coyotesrunwinery.com, http://www.peleeisland.com, http://www.georgianhillsvineyards.ca, http://www.hinterlandwine.com, http://www.alvento.ca, http://www.rosehallrun.com, http://www.coffinridge.ca, http://www.creeksidewine.com]
+Mean winery distance: 	174.988425968936
+Median winery distance: 	176.24354579900552
+
+Externals:
+[http://www.theglobeandmail.com, http://www.lcbo.com]
+Wineries:
+[http://www.alvento.ca, http://www.13thstreetwinery.com, http://www.flatrockcellars.com, http://www.clossonchase.com, http://www.pillitteri.com, http://www.burningkilnwinery.ca, http://www.hinterlandwine.com]
+Mean winery distance: 	166.17930787968362
+Median winery distance: 	163.04847419440847
+
+Externals:
+[http://www.20valley.ca, http://www.niagarawinefestival.com]
+Wineries:
+[http://www.henryofpelham.com, http://www.greenlanewinery.com, http://www.vineland.com, http://www.13thstreetwinery.com, http://www.flatrockcellars.com, http://www.malivoire.com, http://www.fieldingwines.com]
+Mean winery distance: 	7.682142974583128
+Median winery distance: 	7.361924527975752
+
+Externals:
+[http://www.vintages.com, http://www.lcbo.com]
+Wineries:
+[http://www.henryofpelham.com, http://www.angelsgatewinery.com, http://www.13thstreetwinery.com, http://www.flatrockcellars.com, http://www.clossonchase.com, http://www.creeksidewine.com]
+Mean winery distance: 	67.50327665522691
+Median winery distance: 	13.674493088715417
+
+Externals:
+[http://www.vqaontario.com, http://www.lcbo.com]
+Wineries:
+[http://www.henryofpelham.com, http://www.colchesterridge.com, http://www.angelsgatewinery.com, http://www.peller.com, http://www.pillitteri.com, http://www.clossonchase.com]
+Mean winery distance: 	177.07600438190985
+Median winery distance: 	163.04847419440847
+
+Externals:
+[http://www.maps.google.ca, http://www.niagarawinefestival.com]
+Wineries:
+[http://www.henryofpelham.com, http://www.13thstreetwinery.com, http://www.malivoire.com, http://www.coyotesrunwinery.com, http://www.greenlanewinery.com, http://www.featherstonewinery.ca]
+Mean winery distance: 	11.694491196701096
+Median winery distance: 	10.225045404720582
+
+Externals:
+[http://www.maps.google.ca, http://www.bbcanada.com]
+Wineries:
+[http://www.peleeisland.com, http://www.erieshore.ca, http://www.viewpointewinery.com, http://www.coffinridge.ca, http://www.hiddenbench.com]
+Mean winery distance: 	217.51090148078293
+Median winery distance: 	309.9206555772052
+
+Externals:
+[http://www.maps.google.ca, http://www.vintages.com]
+Wineries:
+[http://www.henryofpelham.com, http://www.13thstreetwinery.com, http://www.blackprincewinery.com, http://www.featherstonewinery.ca, http://www.creeksidewine.com]
+Mean winery distance: 	83.15871911268037
+Median winery distance: 	8.765295931790948
+
+Externals:
+[http://www.20valley.ca, http://www.vqaontario.com]
+Wineries:
+[http://www.henryofpelham.com, http://www.cavespring.ca, http://www.cornerstonewinery.com, http://www.angelsgatewinery.com, http://www.fieldingwines.com]
+Mean winery distance: 	9.432943766279232
+Median winery distance: 	10.187544872627344
+
+Externals:
+[http://www.20valley.ca, http://www.vintages.com]
+Wineries:
+[http://www.henryofpelham.com, http://www.angelsgatewinery.com, http://www.13thstreetwinery.com, http://www.flatrockcellars.com, http://www.creeksidewine.com]
+Mean winery distance: 	8.584477650639553
+Median winery distance: 	5.744785351681228
+

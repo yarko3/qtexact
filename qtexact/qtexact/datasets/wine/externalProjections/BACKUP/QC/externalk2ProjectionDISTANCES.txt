@@ -1,0 +1,71 @@
+Total number of external sets with >1 winereies: 74
+Externals:
+[http://www.saq.com, http://www.lemarchedessaveurs.com]
+Wineries:
+[http://www.leduc-piedimonte.com, http://www.cotesdardoise.com, http://www.laromanceduvin.ca, http://www.cassismonna.com]
+Mean winery distance: 	168.03210138759556
+Median winery distance: 	220.44068999839325
+
+Externals:
+[http://www.fetedesvendanges.com, http://www.fetedesvins.ca]
+Wineries:
+[http://www.cepdargent.com, http://www.orpailleur.ca, http://www.vignobleriviereduchene.ca, http://www.artisansduterroir.ca]
+Mean winery distance: 	85.5223909805885
+Median winery distance: 	85.79226896288769
+
+Externals:
+[http://www.vinsduquebec.com, http://www.fetedesvins.ca]
+Wineries:
+[http://www.labauge.com, http://www.cepdargent.com, http://www.orpailleur.ca, http://www.vignobleriviereduchene.ca]
+Mean winery distance: 	82.04016884809553
+Median winery distance: 	94.98930742617097
+
+Externals:
+[http://www.lapresse.ca, http://www.fetedesvins.ca]
+Wineries:
+[http://www.cepdargent.com, http://www.cotesdardoise.com, http://www.domainest-jacques.ca]
+Mean winery distance: 	74.39893837250453
+Median winery distance: 	65.17214539402138
+
+Externals:
+[http://www.basseslaurentides.com, http://www.laurentides.com]
+Wineries:
+[http://www.vignobleriviereduchene.ca, http://www.negondos.com, http://www.vergerlacroix.ca]
+Mean winery distance: 	10.84670494643925
+Median winery distance: 	13.95766169106242
+
+Externals:
+[http://www.fetedesvendanges.com, http://www.vinsduquebec.com]
+Wineries:
+[http://www.cepdargent.com, http://www.orpailleur.ca, http://www.vignobleriviereduchene.ca]
+Mean winery distance: 	106.79019374541443
+Median winery distance: 	100.99186022398716
+
+Externals:
+[http://www.aubergedujolivent.com, http://www.cantonsdelest.com]
+Wineries:
+[http://www.vindeglace.com, http://www.orpailleur.ca]
+Mean winery distance: 	23.726982352879496
+Median winery distance: 	23.72698235287951
+
+Externals:
+[http://www.ripplecove.com, http://www.montagnard.qc.ca]
+Wineries:
+[http://www.orpailleur.ca, http://www.vindeglace.com]
+Mean winery distance: 	23.726982352879496
+Median winery distance: 	23.72698235287951
+
+Externals:
+[http://www.aubergedk.com, http://www.montagnard.qc.ca]
+Wineries:
+[http://www.vindeglace.com, http://www.orpailleur.ca]
+Mean winery distance: 	23.726982352879496
+Median winery distance: 	23.72698235287951
+
+Externals:
+[http://www.easterntownships.org, http://www.cantonsdelest.com]
+Wineries:
+[http://www.vindeglace.com, http://www.orpailleur.ca]
+Mean winery distance: 	23.726982352879496
+Median winery distance: 	23.72698235287951
+
