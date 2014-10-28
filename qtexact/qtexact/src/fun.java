@@ -9,10 +9,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.Scanner;
@@ -40,6 +38,7 @@ import utils.graphUtils;
 import abstractClasses.Branch;
 import abstractClasses.Dive;
 import abstractClasses.Reduction;
+import abstractClasses.SearchResult;
 import branch.clusterBranch;
 import branch.diQTBranch;
 import branch.qtAllStruct;
@@ -48,8 +47,8 @@ import branch.qtBranchComponents;
 import branch.qtBranchNoHeuristic;
 
 import com.rits.cloning.Cloner;
-
 import components.branchComponents;
+
 import controller.Controller;
 import edu.uci.ics.jung.algorithms.layout.FRLayout;
 import edu.uci.ics.jung.algorithms.scoring.BetweennessCentrality;
@@ -92,12 +91,12 @@ public class fun<V> extends JApplet {
 		//clusterTest();
 		//scoreWineryGraph();
 		//distanceTest();
-		//cographTest();
+		cographTest();
 		//wineryProjectionTest();
 		//getProvinceSpecificExternalsEdgeList();
 		//projectionAnalysis();
 		
-		winerykExternalProjections();
+		//winerykExternalProjections();
 	}
 	
 
@@ -1224,79 +1223,83 @@ public class fun<V> extends JApplet {
 		//g.addEdge(new Pair<Integer>(2, 3), 2, 3);
 		g.addEdge(new Pair<Integer>(0, 3), 0, 3);
 		
+		g = gen.ER(9, 0.6, (long) 6);
 		
-//		Graph<Character, Pair<Character>> g = new UndirectedSparseGraph<Character, Pair<Character>>();
-//		
-//		
-//		g.addEdge(new Pair<Character>('b', 'd'), 'b', 'd');
-//		g.addEdge(new Pair<Character>('b', 'u'), 'b', 'u');
-//		g.addEdge(new Pair<Character>('b', 'v'), 'b', 'v');
-//		g.addEdge(new Pair<Character>('b', 'w'), 'b', 'w');
-//		g.addEdge(new Pair<Character>('b', 'y'), 'b', 'y');
-//		g.addEdge(new Pair<Character>('d', 'u'), 'd', 'u');
-//		g.addEdge(new Pair<Character>('d', 'v'), 'd', 'v');
-//		g.addEdge(new Pair<Character>('d', 'w'), 'd', 'w');
-//		g.addEdge(new Pair<Character>('d', 'y'), 'd', 'y');
-//		g.addEdge(new Pair<Character>('d', 'c'), 'd', 'c');
-//		g.addEdge(new Pair<Character>('c', 'u'), 'c', 'u');
-//		g.addEdge(new Pair<Character>('c', 'v'), 'c', 'v');
-//		g.addEdge(new Pair<Character>('c', 'w'), 'c', 'w');
-//		g.addEdge(new Pair<Character>('c', 'y'), 'c', 'y');
-//		g.addEdge(new Pair<Character>('a', 'u'), 'a', 'u');
-//		g.addEdge(new Pair<Character>('a', 'v'), 'a', 'v');
-//		g.addEdge(new Pair<Character>('a', 'w'), 'a', 'w');
-//		g.addEdge(new Pair<Character>('a', 'y'), 'a', 'y');
-//		g.addEdge(new Pair<Character>('a', 'Z'), 'a', 'Z');
-//		g.addEdge(new Pair<Character>('Z', 'u'), 'Z', 'u');
-//		g.addEdge(new Pair<Character>('Z', 'v'), 'Z', 'v');
-//		g.addEdge(new Pair<Character>('Z', 'w'), 'Z', 'w');
-//		g.addEdge(new Pair<Character>('Z', 'y'), 'Z', 'y');
-//		g.addEdge(new Pair<Character>('X', 'Z'), 'X', 'Z');
-//		g.addEdge(new Pair<Character>('X', 'u'), 'X', 'u');
-//		g.addEdge(new Pair<Character>('X', 'v'), 'X', 'v');
-//		g.addEdge(new Pair<Character>('X', 'w'), 'X', 'w');
-//		g.addEdge(new Pair<Character>('X', 'y'), 'X', 'y');
-//		g.addEdge(new Pair<Character>('u', 'v'), 'u', 'v');
-//		g.addEdge(new Pair<Character>('w', 'y'), 'w', 'y');
-//		g.addEdge(new Pair<Character>('e', 'u'), 'e', 'u');
-//		g.addEdge(new Pair<Character>('e', 'v'), 'e', 'v');
-//		g.addEdge(new Pair<Character>('e', 'w'), 'e', 'w');
-//		g.addEdge(new Pair<Character>('e', 'y'), 'e', 'y');
-//		g.addEdge(new Pair<Character>('e', 'j'), 'e', 'j');
-//		
-//		
-//		
-////		g.addEdge(new Pair<Character>('a', 'b'), 'a', 'b');
-////		g.addEdge(new Pair<Character>('b', 'c'), 'b', 'c');
-////		g.addEdge(new Pair<Character>('c', 'd'), 'c', 'd');
-////		g.addEdge(new Pair<Character>('a', 'g'), 'a', 'g');
-//		
-//		
-//		
-//		//g = gen.randomQT(30);
-//		
-//		
-//		cographSearch<Character> search = new cographSearch<Character>();
-//		
-//		ArrayList<Character> list = new ArrayList<Character>();
-////		
-////		list.add('X');
-////		list.add('d');
-////		list.add('y');
-////		list.add('u');
-////		list.add('e');
-////		list.add('v');
-////		list.add('w');
-////		list.add('c');
-////		list.add('a');
-////		list.add('Z');
-////		list.add('b');
-////		
-////		search.search(g, list);
-//		
+		
+
+		
+//		visualize(g);
+		
 		cographSearch<Integer> search = new cographSearch<Integer>();
 		
-		System.out.println(search.search(g).getCertificate());
+		int count = 0;
+		
+		//run tests up to 100 vertices
+		for (int k = 3; k < 100; k++)
+		{
+			for (long l = 0; l < 10; l++)
+			{
+				
+				
+				
+				count++;
+				
+				g = gen.ER(k, 0.54, l);
+				
+				SearchResult<Integer> result = search.search(g);
+				LinkedList<Integer> obs = new LinkedList<Integer>();
+				boolean bruteFlag = true;
+				for (Integer v0 : g.getVertices())
+				{
+					for (Integer v1 : g.getNeighbors(v0))
+					{
+						for (Integer v2 : g.getNeighbors(v1))
+						{
+							if (v2.equals(v0) || g.findEdge(v0, v2) != null)
+								continue;
+							
+							for (Integer v3 : g.getNeighbors(v2))
+							{
+								if (v3.equals(v1) || v3.equals(v0) || g.findEdge(v0, v3) != null || g.findEdge(v1, v3) != null)
+									continue;
+								
+								
+								if (obs.isEmpty())
+								{
+									obs.add(v0);
+									obs.add(v1);
+									obs.add(v2);
+									obs.add(v3);
+								}
+								bruteFlag = false;
+								
+							}
+						}
+					}
+				}
+				
+				if (result.isTarget() != bruteFlag)
+				{
+					System.out.println("Test failed at k=" + k + ", l = "+ l );
+					System.out.println("Brute force got obstruction: " + obs);
+					visualize(g);
+					throw new NullPointerException();
+				}
+				System.out.println(count);
+				if (result.isTarget())
+					System.out.println("Is cograph: " + result.isTarget());
+				
+			}
+		}
+		
+		SearchResult<Integer> result = search.search(g);
+		
+		
+		
+		if (result.isTarget())
+			System.out.println("Is Cograph");
+		else
+			System.out.println("Certificate " + result.getCertificate());
 		
 		//System.out.println("Is cograph: " + search.isTarget(g));
 	}

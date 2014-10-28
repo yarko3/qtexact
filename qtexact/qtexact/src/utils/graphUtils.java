@@ -5,14 +5,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 import java.util.Set;
@@ -239,7 +237,7 @@ public class graphUtils<V>
 		writer.close();
 	}
 	
-	public Graph<V, Pair<V>> inducedFromVertexSet(Graph<V, Pair<V>> G, Set<V> l)
+	public Graph<V, Pair<V>> inducedFromVertexSet(Graph<V, Pair<V>> G, Collection<V> l)
 	{
 		Graph<V, Pair<V>> c = null;
 		try {

@@ -40,9 +40,22 @@ public class cographSearch<V>  extends LBFS<V>
 		LinkedList<V> NSPplus = NSP(G, firstPass.getList());
 		LinkedList<V> NSPminus = NSP(utils.complement(G), secondPass.getList());
 		
+		//find complement of NSPminus, because it gives a complement P4
+		if (NSPminus != null)
+		{
+			LinkedList<V> temp = new LinkedList<V>();
+			temp.add(NSPminus.get(2));
+			temp.add(NSPminus.get(0));
+			temp.add(NSPminus.get(3));
+			temp.add(NSPminus.get(1));
+			
+			NSPminus = temp;
+		}
+		
 		
 		// get connected components
 		Set<Set<V>> cComp = cluster.transform(G);
+		
 		
 		//if success, return success
 		if (NSPplus == null && NSPminus == null)
@@ -154,10 +167,10 @@ public class cographSearch<V>  extends LBFS<V>
 		}
 		
 		//print slices
-		for (V v : t)
-		{
-			System.out.println(v + " slice: " + slice(v, t, adjList));
-		}
+//		for (V v : t)
+//		{
+//			System.out.println(v + " slice: " + slice(v, t, adjList));
+//		}
 		
 		
 		//here comes the NSP check
@@ -336,58 +349,8 @@ public class cographSearch<V>  extends LBFS<V>
 			}
 			else
 				break;
-		}
-		
-		
-		
-		
-//		//find all elements of slice before u in ordering
-//		for (int i = uIndex - 1; i > 0; i--)
-//		{
-//			V temp = t.get(i);
-//			
-//			NiU = nBeforeIndex(u, i, mapping, t);
-//			NiI = nBeforeIndex(temp, i, mapping, t);
-//			
-//			if (NiU.containsAll(NiI) && NiI.containsAll(NiU))
-//			{
-//				boolean flag = true;
-//				LinkedList<V> NiT;
-//				//check each previous element of slice
-//				for (V tempV : rtn)
-//				{
-//					NiT = nBeforeIndex(tempV, i, mapping, t);
-//					
-//					if (!NiT.containsAll(NiI) || !NiI.containsAll(NiT))
-//						flag = false;
-//				}
-//				if (flag)
-//				{
-//					//this is an element of the slice
-//					rtn.addFirst(temp);
-//					storedI = i;
-//				}
-//			}
-//			//no more elements of slice exist before u
-//			else
-//				break;
-//		}
-//		
-//		for (int j = uIndex + 1; j < t.size(); j++)
-//		{
-//			NiJ = nBeforeIndex(t.get(j), storedI, mapping, t);
-//			
-//			//the neighbour set before i of j matches i
-//			if (NiJ.containsAll(NiI) && NiI.containsAll(NiJ))
-//			{
-//				rtn.add(t.get(j));
-//			}
-//			else
-//				break;
-//		}
+		}	
 			
-			
-		
 		return rtn;
 	}
 	
@@ -406,14 +369,14 @@ public class cographSearch<V>  extends LBFS<V>
 		//Nl(vj)
 		LinkedList<V> nbeforevj = nBeforeIndex(subSlices.get(j).getFirst(), 
 				vSlice.indexOf(subSlices.get(j).getFirst()), 
-				adjList, t);
+				adjList, vSlice);
 		
 		LinkedList<V> nbeforevjCOPY = clone.deepClone(nbeforevj);
 		
 		//Nl(vj+1)
 		LinkedList<V> nbeforevjplus1 = nBeforeIndex(subSlices.get(j+1).getFirst(), 
 				vSlice.indexOf(subSlices.get(j+1).getFirst()), 
-				adjList, t);
+				adjList, vSlice);
 		
 		
 		
