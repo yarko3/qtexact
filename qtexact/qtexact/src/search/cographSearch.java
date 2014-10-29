@@ -266,26 +266,18 @@ public class cographSearch<V>  extends LBFS<V>
 		//get ordered neighbours of v
 		LinkedList<V> N = map.get(v);
 		
-		//keep track of neighbour vertices checked
-		int nIndex = 0;
-		
 		
 		//for every 
 		for (int j = 0; j < i; j++)
 		{
 			V temp = t.get(j);
 			
-			if (nIndex == N.size())
-			{
-				//reached end of traversal
-				return rtn;
-			}
 			
 			//a neighbour was found, add it to list
-			if (temp.equals(N.get(nIndex)))
+			if (N.contains(temp))
 			{
-				rtn.addLast(N.get(nIndex));
-				nIndex++;
+				rtn.addLast(temp);
+				
 			}
 			
 		}

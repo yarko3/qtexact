@@ -92,12 +92,12 @@ public class fun<V> extends JApplet {
 		//clusterTest();
 		//scoreWineryGraph();
 		//distanceTest();
-		//cographTest();
+		cographTest();
 		//wineryProjectionTest();
 		//getProvinceSpecificExternalsEdgeList();
 		//projectionAnalysis();
 		
-		winerykExternalProjections();
+		//winerykExternalProjections();
 		//externalProjectionsClique();
 	}
 	
@@ -1225,16 +1225,18 @@ public class fun<V> extends JApplet {
 		//g.addEdge(new Pair<Integer>(2, 3), 2, 3);
 		g.addEdge(new Pair<Integer>(0, 3), 0, 3);
 		
-		g = gen.ER(9, 0.6, (long) 6);
+		g = gen.ER(7, 0.67, (long) 0);
 		
 		
 
 		
-//		visualize(g);
+		//visualize(g);
 		
 		cographSearch<Integer> search = new cographSearch<Integer>();
 		
 		int count = 0;
+		int brokenCount = 0;
+		
 		
 		//run tests up to 100 vertices
 		for (int k = 3; k < 100; k++)
@@ -1242,15 +1244,14 @@ public class fun<V> extends JApplet {
 			for (long l = 0; l < 10; l++)
 			{
 				
-				
-				
 				count++;
 				
-				g = gen.ER(k, 0.54, l);
+				g = gen.ER(k, 0.95, l);
 				
 				SearchResult<Integer> result = search.search(g);
 				LinkedList<Integer> obs = new LinkedList<Integer>();
 				boolean bruteFlag = true;
+				outer:
 				for (Integer v0 : g.getVertices())
 				{
 					for (Integer v1 : g.getNeighbors(v0))
@@ -1274,6 +1275,7 @@ public class fun<V> extends JApplet {
 									obs.add(v3);
 								}
 								bruteFlag = false;
+								break outer;
 								
 							}
 						}
@@ -1285,7 +1287,13 @@ public class fun<V> extends JApplet {
 					System.out.println("Test failed at k=" + k + ", l = "+ l );
 					System.out.println("Brute force got obstruction: " + obs);
 					visualize(g);
+					
+					//run test again when debugging
+					search.search(g);
+					
+					brokenCount++;
 					throw new NullPointerException();
+					
 				}
 				System.out.println(count);
 				if (result.isTarget())
@@ -1294,7 +1302,11 @@ public class fun<V> extends JApplet {
 			}
 		}
 		
+		
+		System.out.println("Out of " + count + ", " + brokenCount + " were broken.");
+		
 		SearchResult<Integer> result = search.search(g);
+		
 		
 		
 		
