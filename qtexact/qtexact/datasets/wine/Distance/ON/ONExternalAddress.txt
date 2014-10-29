@@ -617,7 +617,6 @@ http://www.camh.net	Centre for Addiction and Mental Health	250 College St, Toron
 http://www.mistura.com	Mistura Timepieces	13350 Dallas Pkwy #1905, Dallas, TX, United States	jewelry_store, store, establishment	32.931608	-96.820052
 http://www.eepurl.com	PALEOLOCHIC	Vilafranca, 26, Barcelona, Spain	jewelry_store, store, establishment	41.407317	2.156684
 http://www.bayfieldimporting.com	Bayfield Importing Ltd.	51-02 21st St, Long Island City, NY, United States	lawyer, establishment	40.740811	-73.949959
-http://www.maps.google.ca	Horlick Levitt	100 Sheppard Ave E, North York, ON, Canada	lawyer, establishment	43.763231	-79.405424
 http://www.travel.state.gov	LaFountain & Wollman, P.C.	507 Mt Auburn St, Watertown, MA, United States	lawyer, establishment	42.370452	-71.162677
 http://www.sandbankswinery.com	Sandbanks Estate Winery	17598 Loyalist Pkwy, Wellington, ON, Canada	liquor_store, food, art_gallery, jewelry_store, store, establishment	43.937585	-77.416019
 http://www.decanter.com	Decanter Vinhos Finos	Avenida Brasil, 630 - Ponta Aguda, Blumenau - SC, Brasil	liquor_store, food, store, bar, establishment	-26.915386	-49.064971

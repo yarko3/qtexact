@@ -1,0 +1,224 @@
+Externals: (1)
+[http://www.westernlivingmagazine.com]
+Wineries: (8)
+[http://www.tantalus.ca, http://www.youngandwysewine.com, http://www.foxtrotwine.com, http://www.lastella.ca, http://www.vancouverurbanwinery.com, http://www.mooncurser.com, http://www.bluemountainwinery.com, http://www.township7.com]
+Mean winery distance: 	98.15488319252916
+Median winery distance: 	57.49456642730775
+
+Externals: (3)
+[http://www.mudbaywines.com, http://www.swirlwinestore.ca, http://www.sipwines.ca]
+Wineries: (7)
+[http://www.vistadoro.com, http://www.tantalus.ca, http://www.intriguewines.ca, http://www.littlestraw.bc.ca, http://www.3milewinery.com, http://www.kalalawines.ca, http://www.township7.com]
+Mean winery distance: 	90.38267340526374
+Median winery distance: 	36.516456329807035
+
+Externals: (1)
+[http://www.straight.com]
+Wineries: (7)
+[http://www.tantalus.ca, http://www.closdusoleil.ca, http://www.foxtrotwine.com, http://www.lastella.ca, http://www.intriguewines.ca, http://www.mooncurser.com, http://www.township7.com]
+Mean winery distance: 	55.175821994977596
+Median winery distance: 	54.073645725286134
+
+Externals: (3)
+[http://www.sipwines.ca, http://www.mudbaywines.com, http://www.wine-emporium.com]
+Wineries: (7)
+[http://www.tantalus.ca, http://www.intriguewines.ca, http://www.littlestraw.bc.ca, http://www.cedarcreek.bc.ca, http://www.3milewinery.com, http://www.kalalawines.ca, http://www.township7.com]
+Mean winery distance: 	26.669285963395517
+Median winery distance: 	28.922424552785273
+
+Externals: (1)
+[http://www.everythingwine.ca]
+Wineries: (7)
+[http://www.silversidefarm.com, http://www.nicholvineyard.com, http://www.tantalus.ca, http://www.damali.ca, http://www.alderlea.com, http://www.dragonflyhillvineyard.com, http://www.kalalawines.ca]
+Mean winery distance: 	188.40225149446795
+Median winery distance: 	307.2167308788826
+
+Externals: (1)
+[http://www.everythingwine.ca]
+Wineries: (6)
+[http://www.vistadoro.com, http://www.tantalus.ca, http://www.damali.ca, http://www.alderlea.com, http://www.dragonflyhillvineyard.com, http://www.kalalawines.ca]
+Mean winery distance: 	180.24320404330834
+Median winery distance: 	236.65741814403492
+
+Externals: (1)
+[http://www.vancouversun.com]
+Wineries: (6)
+[http://www.bailliegrohman.com, http://www.40knotswinery.com, http://www.vancouverurbanwinery.com, http://www.intriguewines.ca, http://www.mooncurser.com, http://www.township7.com]
+Mean winery distance: 	276.7388681109024
+Median winery distance: 	257.71018638610457
+
+Externals: (2)
+[http://www.villagevqawines.com, http://www.swirlwinestore.ca]
+Wineries: (6)
+[http://www.tantalus.ca, http://www.intriguewines.ca, http://www.littlestraw.bc.ca, http://www.kalalawines.ca, http://www.nichewinecompany.com, http://www.township7.com]
+Mean winery distance: 	24.720984703985
+Median winery distance: 	24.573876975813825
+
+Externals: (1)
+[http://www.bcliquorstores.com]
+Wineries: (5)
+[http://www.jacksontriggswinery.com, http://www.tantalus.ca, http://www.sylranch.com, http://www.missionhillwinery.com, http://www.township7.com]
+Mean winery distance: 	41.86224219836145
+Median winery distance: 	36.67451018514355
+
+Externals: (1)
+[http://www.vancouversun.com]
+Wineries: (5)
+[http://www.bailliegrohman.com, http://www.closdusoleil.ca, http://www.intriguewines.ca, http://www.mooncurser.com, http://www.township7.com]
+Mean winery distance: 	132.17831508819813
+Median winery distance: 	114.25394753913905
+
+Externals: (1)
+[http://www.thewinefestivals.com]
+Wineries: (5)
+[http://www.tantalus.ca, http://www.krazelegz.com, http://www.intriguewines.ca, http://www.littlestraw.bc.ca, http://www.township7.com]
+Mean winery distance: 	38.99994271594963
+Median winery distance: 	38.37755270210725
+
+Externals: (1)
+[http://www.thewinefestivals.com]
+Wineries: (5)
+[http://www.tantalus.ca, http://www.sylranch.com, http://www.intriguewines.ca, http://www.littlestraw.bc.ca, http://www.township7.com]
+Mean winery distance: 	42.192157348752964
+Median winery distance: 	38.37755270210725
+
+Externals: (1)
+[http://www.bcliquorstores.com]
+Wineries: (5)
+[http://www.inniskillin.com, http://www.jacksontriggswinery.com, http://www.tantalus.ca, http://www.sylranch.com, http://www.township7.com]
+Mean winery distance: 	36.48821712735467
+Median winery distance: 	36.67451018514355
+
+Externals: (2)
+[http://www.bcliquorstores.com, http://www.thewinefestivals.com]
+Wineries: (5)
+[http://www.inniskillin.com, http://www.tantalus.ca, http://www.meadowvista.ca, http://www.sylranch.com, http://www.township7.com]
+Mean winery distance: 	41.708466840287485
+Median winery distance: 	38.0009482574524
+
+Externals: (1)
+[http://www.winebc.com]
+Wineries: (4)
+[http://www.sumacridge.com, http://www.jacksontriggswinery.com, http://www.tantalus.ca, http://www.missionhillwinery.com]
+Mean winery distance: 	43.01073416928942
+Median winery distance: 	49.58811224590271
+
+Externals: (2)
+[http://www.thewinefestivals.com, http://www.winebc.com]
+Wineries: (4)
+[http://www.mfvwines.com, http://www.tantalus.ca, http://www.mtboucheriewinery.com, http://www.littlestraw.bc.ca]
+Mean winery distance: 	31.091987830472764
+Median winery distance: 	55.44870806599077
+
+Externals: (2)
+[http://www.bclocalnews.com, http://www.straight.com]
+Wineries: (4)
+[http://www.40knotswinery.com, http://www.gehringerwines.ca, http://www.township7.com, http://www.elephantislandwine.com]
+Mean winery distance: 	210.7560801720704
+Median winery distance: 	386.4910264339645
+
+Externals: (2)
+[http://www.thewinefestivals.com, http://www.winebc.com]
+Wineries: (4)
+[http://www.sumacridge.com, http://www.tantalus.ca, http://www.mtboucheriewinery.com, http://www.littlestraw.bc.ca]
+Mean winery distance: 	16.698387913356203
+Median winery distance: 	27.788655592912324
+
+Externals: (1)
+[http://www.thewinefestivals.com]
+Wineries: (4)
+[http://www.sumacridge.com, http://www.tantalus.ca, http://www.meadowvista.ca, http://www.mtboucheriewinery.com]
+Mean winery distance: 	18.196960962215545
+Median winery distance: 	27.938907035276326
+
+Externals: (1)
+[http://www.thewinefestivals.com]
+Wineries: (4)
+[http://www.sumacridge.com, http://www.inniskillin.com, http://www.tantalus.ca, http://www.meadowvista.ca]
+Mean winery distance: 	43.26485251604977
+Median winery distance: 	49.58811224590271
+
+Externals: (2)
+[http://www.planitbc.com, http://www.straight.com]
+Wineries: (4)
+[http://www.robinridgewinery.com, http://www.foxtrotwine.com, http://www.intriguewines.ca, http://www.township7.com]
+Mean winery distance: 	50.614460191475544
+Median winery distance: 	55.71110536609678
+
+Externals: (2)
+[http://www.thewinefestivals.com, http://www.winebc.com]
+Wineries: (4)
+[http://www.graymonk.com, http://www.tantalus.ca, http://www.mtboucheriewinery.com, http://www.littlestraw.bc.ca]
+Mean winery distance: 	14.546645634843758
+Median winery distance: 	23.35688087408403
+
+Externals: (2)
+[http://www.thewinefestivals.com, http://www.winebc.com]
+Wineries: (4)
+[http://www.tantalus.ca, http://www.mtboucheriewinery.com, http://www.littlestraw.bc.ca, http://www.nobleridge.com]
+Mean winery distance: 	32.23996829946703
+Median winery distance: 	57.70359278297996
+
+Externals: (1)
+[http://www.thewinefestivals.com]
+Wineries: (4)
+[http://www.intriguewines.ca, http://www.littlestraw.bc.ca, http://www.road13vineyards.com, http://www.township7.com]
+Mean winery distance: 	58.95282558758481
+Median winery distance: 	61.80605629802798
+
+Externals: (1)
+[http://www.thewinefestivals.com]
+Wineries: (4)
+[http://www.graymonk.com, http://www.tantalus.ca, http://www.intriguewines.ca, http://www.littlestraw.bc.ca]
+Mean winery distance: 	17.885019260405837
+Median winery distance: 	24.573876975813796
+
+Externals: (1)
+[http://www.vancouversun.com]
+Wineries: (4)
+[http://www.bailliegrohman.com, http://www.vancouverurbanwinery.com, http://www.township7.com, http://www.blastedchurch.com]
+Mean winery distance: 	244.19683527791736
+Median winery distance: 	257.46479136744915
+
+Externals: (1)
+[http://www.thewinefestivals.com]
+Wineries: (4)
+[http://www.graymonk.com, http://www.tantalus.ca, http://www.meadowvista.ca, http://www.mtboucheriewinery.com]
+Mean winery distance: 	15.56166907348512
+Median winery distance: 	23.35688087408403
+
+Externals: (1)
+[http://www.cafe-brio.com]
+Wineries: (4)
+[http://www.tantalus.ca, http://www.venturischulze.com, http://www.alderlea.com, http://www.castorodeoro.com]
+Mean winery distance: 	224.5112546405394
+Median winery distance: 	301.07816669910915
+
+Externals: (1)
+[http://www.montecristomagazine.com]
+Wineries: (3)
+[http://www.tantalus.ca, http://www.levieuxpin.ca, http://www.lastella.ca]
+Mean winery distance: 	57.93983923767779
+Median winery distance: 	75.18117818043277
+
+Externals: (1)
+[http://www.mfvwines.com]
+Wineries: (3)
+[http://www.tantalus.ca, http://www.wildgoosewinery.com, http://www.vancouverurbanwinery.com]
+Mean winery distance: 	195.04571518019898
+Median winery distance: 	257.51821938765204
+
+Externals: (1)
+[http://www.thewinefestivals.com]
+Wineries: (3)
+[http://www.graymonk.com, http://www.tantalus.ca, http://www.st-hubertus.bc.ca]
+Mean winery distance: 	20.254418235098832
+Median winery distance: 	24.644357400609003
+
+Externals: (2)
+[http://www.winebc.com, http://www.mjotours.com]
+Wineries: (2)
+[http://www.graymonk.com, http://www.granitecreek.ca]
+Mean winery distance: 	83.24602283527021
+Median winery distance: 	83.24602283527027
+

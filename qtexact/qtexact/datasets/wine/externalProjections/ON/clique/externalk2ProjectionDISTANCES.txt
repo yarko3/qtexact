@@ -1,0 +1,7 @@
+Externals: (3)
+[http://www.20valley.ca, http://www.vintages.com, http://www.lcbo.com]
+Wineries: (5)
+[http://www.henryofpelham.com, http://www.angelsgatewinery.com, http://www.13thstreetwinery.com, http://www.flatrockcellars.com, http://www.creeksidewine.com]
+Mean winery distance: 	8.584477650639553
+Median winery distance: 	5.744785351681228
+

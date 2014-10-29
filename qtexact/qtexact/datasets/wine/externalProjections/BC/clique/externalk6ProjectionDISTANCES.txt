@@ -1,0 +1,42 @@
+Externals: (6)
+[http://www.sipwines.ca, http://www.villagevqawines.com, http://www.mudbaywines.com, http://www.kensingtonsquarewines.com, http://www.discoverwines.com, http://www.wine-emporium.com]
+Wineries: (5)
+[http://www.tantalus.ca, http://www.intriguewines.ca, http://www.littlestraw.bc.ca, http://www.cedarcreek.bc.ca, http://www.kalalawines.ca]
+Mean winery distance: 	16.261904639079358
+Median winery distance: 	13.606304097504513
+
+Externals: (6)
+[http://www.sipwines.ca, http://www.legacyliquorstore.com, http://www.mudbaywines.com, http://www.swirlwinestore.ca, http://www.discoverwines.com, http://www.wine-emporium.com]
+Wineries: (4)
+[http://www.tantalus.ca, http://www.intriguewines.ca, http://www.3milewinery.com, http://www.kalalawines.ca]
+Mean winery distance: 	32.36951410107857
+Median winery distance: 	33.47829704787402
+
+Externals: (6)
+[http://www.mudbaywines.com, http://www.markjamesgroup.com, http://www.swirlwinestore.ca, http://www.everythingwine.ca, http://www.sipwines.ca, http://www.kensingtonsquarewines.com]
+Wineries: (3)
+[http://www.vistadoro.com, http://www.tantalus.ca, http://www.kalalawines.ca]
+Mean winery distance: 	166.4030794007225
+Median winery distance: 	236.65741814403492
+
+Externals: (6)
+[http://www.marinarestaurant.com, http://www.metroliquor.com, http://www.legacyliquorstore.com, http://www.salttastingroom.com, http://www.cascadialiquor.com, http://www.everythingwine.ca]
+Wineries: (3)
+[http://www.tantalus.ca, http://www.nicholvineyard.com, http://www.alderlea.com]
+Mean winery distance: 	220.79987399522184
+Median winery distance: 	309.34537660819063
+
+Externals: (7)
+[http://www.galianoinn.com, http://www.spiritmerchants.ca, http://www.metroliquor.com, http://www.cascadialiquor.com, http://www.everythingwine.ca, http://www.hillsideliquorstore.com, http://www.liquorplus.ca]
+Wineries: (3)
+[http://www.tantalus.ca, http://www.alderlea.com, http://www.dragonflyhillvineyard.com]
+Mean winery distance: 	227.17367366134886
+Median winery distance: 	322.83171072753237
+
+Externals: (7)
+[http://www.metroliquor.com, http://www.villagegreenliquorstore.com, http://www.theflyingsteamshovel.com, http://www.thewinefestivals.com, http://www.bcliquorstores.com, http://www.brewerycreekliquorstore.com, http://www.stagsheadliquorstore.com]
+Wineries: (2)
+[http://www.tantalus.ca, http://www.meadowvista.ca]
+Mean winery distance: 	3.5841013464488998
+Median winery distance: 	3.5841013464489238
+

@@ -1,21 +1,21 @@
 Total number of external sets with MAX winereies: 3
-Externals:
+Externals: (2)
 [http://www.vinsduquebec.com, http://www.fetedesvins.ca]
-Wineries:
+Wineries: (4)
 [http://www.labauge.com, http://www.cepdargent.com, http://www.orpailleur.ca, http://www.vignobleriviereduchene.ca]
 Mean winery distance: 	82.04016884809553
 Median winery distance: 	94.98930742617097
 
-Externals:
+Externals: (2)
 [http://www.fetedesvendanges.com, http://www.fetedesvins.ca]
-Wineries:
+Wineries: (4)
 [http://www.cepdargent.com, http://www.orpailleur.ca, http://www.vignobleriviereduchene.ca, http://www.artisansduterroir.ca]
 Mean winery distance: 	85.5223909805885
 Median winery distance: 	85.79226896288769
 
-Externals:
+Externals: (2)
 [http://www.saq.com, http://www.lemarchedessaveurs.com]
-Wineries:
+Wineries: (4)
 [http://www.leduc-piedimonte.com, http://www.cotesdardoise.com, http://www.laromanceduvin.ca, http://www.cassismonna.com]
 Mean winery distance: 	168.03210138759556
 Median winery distance: 	220.44068999839325

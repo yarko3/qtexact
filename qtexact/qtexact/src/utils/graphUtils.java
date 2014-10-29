@@ -23,6 +23,7 @@ import com.rits.cloning.Cloner;
 import edu.uci.ics.jung.algorithms.cluster.WeakComponentClusterer;
 import edu.uci.ics.jung.graph.DirectedGraph;
 import edu.uci.ics.jung.graph.Graph;
+import edu.uci.ics.jung.graph.UndirectedGraph;
 import edu.uci.ics.jung.graph.UndirectedSparseGraph;
 import edu.uci.ics.jung.graph.util.Pair;
 
@@ -647,11 +648,18 @@ public class graphUtils<V>
 				return 0;
 			else
 				return 1;
-		}
-
-
+		}	
+	}
+	
+	
+	
+	public Collection<Set<V>> maximalClique(UndirectedGraph<V, Pair<V>> g)
+	{
+		BronKerboschCliqueFinder<V, Pair<V>> cliqueFinder = new BronKerboschCliqueFinder<V, Pair<V>>(g);
 		
+		return cliqueFinder.getAllMaximalCliques();
 		
 	}
+	
 
 }

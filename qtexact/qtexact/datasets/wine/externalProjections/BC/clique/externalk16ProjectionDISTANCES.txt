@@ -1,0 +1,7 @@
+Externals: (29)
+[http://www.blackcombliquorstore.com, http://www.chambar.com, http://www.fireflyfinewinesandales.com, http://www.altabistro.com, http://www.marinarestaurant.com, http://www.metroliquor.com, http://www.legacyliquorstore.com, http://www.nitalakelodge.com, http://www.coalharbourliquorstore.com, http://www.joefortes.ca, http://www.johnbpub.com, http://www.bottlejockey.ca, http://www.salttastingroom.com, http://www.ediblecanada.com, http://www.arbutusclub.com, http://www.cascadialiquor.com, http://www.myliquorstore.ca, http://www.everythingwine.ca, http://www.libations.ca, http://www.vancouverclub.ca, http://www.cincin.net, http://www.royalvan.com, http://www.waterfrontrestaurant.ca, http://www.bigwhite.com, http://www.bluewatercafe.net, http://www.tcclub.com, http://www.brewerycreekliquorstore.com, http://www.pourhousevancouver.com, http://www.westcoastliquor.com]
+Wineries: (2)
+[http://www.tantalus.ca, http://www.nicholvineyard.com]
+Mean winery distance: 	27.75788060561826
+Median winery distance: 	27.757880605618276
+

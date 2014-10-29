@@ -1,0 +1,21 @@
+Externals: (3)
+[http://www.mudbaywines.com, http://www.swirlwinestore.ca, http://www.sipwines.ca]
+Wineries: (7)
+[http://www.vistadoro.com, http://www.tantalus.ca, http://www.intriguewines.ca, http://www.littlestraw.bc.ca, http://www.3milewinery.com, http://www.kalalawines.ca, http://www.township7.com]
+Mean winery distance: 	90.38267340526374
+Median winery distance: 	36.516456329807035
+
+Externals: (3)
+[http://www.sipwines.ca, http://www.mudbaywines.com, http://www.wine-emporium.com]
+Wineries: (7)
+[http://www.tantalus.ca, http://www.intriguewines.ca, http://www.littlestraw.bc.ca, http://www.cedarcreek.bc.ca, http://www.3milewinery.com, http://www.kalalawines.ca, http://www.township7.com]
+Mean winery distance: 	26.669285963395517
+Median winery distance: 	28.922424552785273
+
+Externals: (3)
+[http://www.araxi.com, http://www.bluewatercafe.net, http://www.westrestaurant.com]
+Wineries: (3)
+[http://www.tantalus.ca, http://www.hainle.com, http://www.silkw.net]
+Mean winery distance: 	25.49229272366156
+Median winery distance: 	25.344698089475294
+

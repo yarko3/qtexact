@@ -1,14 +1,2 @@
-/abstractClasses
-/branch
-/certificate
-/components
-/controller
-/dive
-/greedy
-/jimsFiles
-/qtUtils
-/reduction
-/search
 /utils
-/org
-/fun$graphFromEdgeSetWithCommunities.class
+/qtUtils

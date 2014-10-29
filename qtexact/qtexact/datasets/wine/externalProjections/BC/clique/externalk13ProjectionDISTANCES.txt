@@ -1,0 +1,7 @@
+Externals: (16)
+[http://www.westernlivingmagazine.com, http://www.pentictonramada.com, http://www.averillcreek.ca, http://www.thewinefestivals.com, http://www.lakebreeze.ca, http://www.brixvancouver.com, http://www.eauvivrewinery.ca, http://www.bluemountainwinery.com, http://www.maenam.ca, http://www.cedarcreek.bc.ca, http://www.winebc.com, http://www.howlingbluff.ca, http://www.liquiditywines.com, http://www.tourismpenticton.com, http://www.montecristomagazine.com, http://www.quailsgate.com]
+Wineries: (2)
+[http://www.mfvwines.com, http://www.tantalus.ca]
+Mean winery distance: 	55.44870806599082
+Median winery distance: 	55.448708065990886
+

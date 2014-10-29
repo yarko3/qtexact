@@ -9,6 +9,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -91,12 +92,13 @@ public class fun<V> extends JApplet {
 		//clusterTest();
 		//scoreWineryGraph();
 		//distanceTest();
-		cographTest();
+		//cographTest();
 		//wineryProjectionTest();
 		//getProvinceSpecificExternalsEdgeList();
 		//projectionAnalysis();
 		
-		//winerykExternalProjections();
+		winerykExternalProjections();
+		//externalProjectionsClique();
 	}
 	
 
@@ -1491,11 +1493,11 @@ public class fun<V> extends JApplet {
 					
 					
 					//output distances
-					writer.println("Externals:");
+					writer.println("Externals: (" + next.getFirst().size() + ")");
 					writer.println(next.getFirst());
 //					writer.println("Mean external distance: \t" + d.meanDistance(next.getFirst(), mapping));
 //					writer.println("Median external distance: \t" + d.medianDistance(next.getFirst(), mapping));
-					writer.println("Wineries:");
+					writer.println("Wineries: (" + next.getSecond().size() + ")");
 					writer.println(next.getSecond());
 					writer.println("Mean winery distance: \t" + d.meanDistance(next.getSecond(), mapping));
 					writer.println("Median winery distance: \t" + d.medianDistance(next.getSecond(), mapping));
@@ -1513,6 +1515,128 @@ public class fun<V> extends JApplet {
 		
 		
 		
+	}
+	
+	
+	public static void externalProjectionsClique()
+	{
+		//String province = "BC";
+		LinkedList<String> provinces = new LinkedList<String>();
+		distance<String> d = new distance<String>();
+		
+		
+		provinces.add("BC");
+		provinces.add("ON");
+		provinces.add("QC");
+		
+		for (String province : provinces)
+		{
+			//make a general graph for lookup
+			Graph<String, Pair<String>> overall = fillGraphFromFileWithStrings("datasets/wine/" + province + "/ProvinceSpecificEdgeList.txt");
+			
+			
+			String distanceFile = "datasets/wine/Distance/"+province +"/"+province+"Distance.txt";
+			HashMap<String, Pair<Double>> mapping = distance.getLatLongFromFile(distanceFile);
+			
+			UndirectedGraph<String, Pair<String>> wine = null;
+			
+			
+			for (int k = 1; k < 23; k++)
+			{
+			
+				try {
+					wine = genString.fromBipartiteFile("datasets/wine/" + province + "/ProvinceSpecificEdgeList.txt", k);
+				} catch (FileNotFoundException | UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				
+				//get maximal clique
+				Collection<Set<String>> cliques = stringUtils.maximalClique(wine);
+				
+				
+				PrintWriter writer = null;
+				try {
+					writer = new PrintWriter("datasets/wine/externalProjections/"+province+"/clique/externalk"+k+"ProjectionDISTANCES.txt", "UTF-8");
+				} catch (FileNotFoundException | UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				
+				//order sets in decreasing size
+				LinkedList<Set<String>> orderedSets = new LinkedList<Set<String>>();
+				
+				for (Set<String> set : cliques)
+				{
+					if (orderedSets.isEmpty())
+						orderedSets.add(set);
+					else
+					{
+						for (int i = 0; i < orderedSets.size(); i++)
+						{
+							Set<String> inList = orderedSets.get(i);
+							
+							if (set.size() > inList.size())
+							{
+								orderedSets.add(i, set);
+								break;
+							}
+						}
+					}
+				}
+				
+				
+				for (int i = 0; i < orderedSets.size(); i++)
+				{
+					Set<String> set = orderedSets.get(i);
+					//get externals from these cliques
+					Set<String> externals = new HashSet<String>();
+					
+					boolean flag = true;
+					
+					for (String w : set)
+					{
+						if (flag)
+						{
+							externals.addAll(overall.getNeighbors(w));
+							flag = false;
+						}
+						else
+						{
+							externals.retainAll(overall.getNeighbors(w));
+						}
+							
+					}
+					
+					//do we care about this clique?
+					if (externals.size() >= k)
+					{
+						//yes we do
+						
+						//do distance analysis
+						//output distances
+						writer.println("Externals: (" + externals.size() + ")");
+						
+						writer.println(externals);
+//						writer.println("Mean external distance: \t" + d.meanDistance(next.getFirst(), mapping));
+//						writer.println("Median external distance: \t" + d.medianDistance(next.getFirst(), mapping));
+						writer.println("Wineries: (" + set.size() + ")");
+						writer.println(set);
+						writer.println("Mean winery distance: \t" + d.meanDistance(set, mapping));
+						writer.println("Median winery distance: \t" + d.medianDistance(set, mapping));
+						
+						writer.println();
+						
+					}
+					
+				}
+				
+				writer.close();
+					
+			}
+		}
 	}
 	
 	

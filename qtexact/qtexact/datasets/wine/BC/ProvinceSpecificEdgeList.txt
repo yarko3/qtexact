@@ -293,7 +293,6 @@ http://www.tantalus.ca	http://www.bluewatercafe.net
 http://www.dragonflyhillvineyard.com	http://www.liquorplus.ca
 http://www.dragonflyhillvineyard.com	http://www.videoboost.ca
 http://www.nicholvineyard.com	http://www.blackcombliquorstore.com
-http://www.millstonewinery.ca	http://www.google.ca
 http://www.castorodeoro.com	http://www.walnutbeachosoyoos.com
 http://www.pacificbreezewinery.com	http://www.cloudpockets.com
 http://www.missionhillwinery.com	http://www.bouchonsbistro.com
@@ -576,7 +575,6 @@ http://www.saturnavineyards.com	http://www.hiredgunscreative.com
 http://www.meadowvista.ca	http://www.stagsheadliquorstore.com
 http://www.dragonflyhillvineyard.com	http://www.laurelpoint.com
 http://www.nicholvineyard.com	http://www.16thstreet.ca
-http://www.beaumontwinery.com	http://www.google.ca
 http://www.kalalawines.ca	http://www.bcmpliquorstore.com
 http://www.tantalus.ca	http://www.seymourgolf.com
 http://www.missionhillwinery.com	http://www.appletreebnbkelowna.com
@@ -611,7 +609,6 @@ http://www.closdusoleil.ca	http://www.atlascafe.ca
 http://www.nicholvineyard.com	http://www.scottiesliquor.com
 http://www.alderlea.com	http://www.valueonliquor.com
 http://www.prospectwinery.com	http://www.everythingwine.ca
-http://www.damali.ca	http://www.google.ca
 http://www.unsworthvineyards.com	http://www.hiredgunscreative.com
 http://www.nicholvineyard.com	http://www.stregisfinewines.com
 http://www.castorodeoro.com	http://www.bouchonsbistro.com
@@ -634,13 +631,11 @@ http://www.littletribunefarmandwinery.com	http://www.vancouverisland.com
 http://www.cedarcreek.bc.ca	http://www.kelowna.ca
 http://www.nicholvineyard.com	http://www.cedarhousechalets.com
 http://www.3milewinery.com	http://www.benoitswinebar.com
-http://www.tantalus.ca	http://www.google.ca
 http://www.camelotvineyards.ca	http://www.thewinefestivals.com
 http://www.damali.ca	http://www.timescolonist.com
 http://www.mfvwines.com	http://www.orucuisine.com
 http://www.vistadoro.com	http://www.dirtyapron.com
 http://www.tantalus.ca	http://www.chambar.com
-http://www.riversbendwinery.com	http://www.google.ca
 http://www.cedarcreek.bc.ca	http://www.kelownamuseums.ca
 http://www.3milewinery.com	http://www.blackcombliquorstore.com
 http://www.missionhillwinery.com	http://www.kgcc.bc.ca
@@ -1322,6 +1317,5 @@ http://www.dragonflyhillvineyard.com	http://www.zanzibarcafe.ca
 http://www.sylranch.com	http://www.sochamber.ca
 http://www.hainle.com	http://www.seasonal56.ca
 http://www.st-hubertus.bc.ca	http://www.lakeshorewineries.ca
-http://www.meadowvista.ca	http://www.google.ca
 http://www.3milewinery.com	http://www.discoverwines.com
 http://www.laughingstock.ca	http://www.harmonyarts.ca

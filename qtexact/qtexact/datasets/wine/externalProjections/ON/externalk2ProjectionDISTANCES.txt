@@ -1,8 +1,15 @@
-Total number of external sets with MAX winereies: 1
-Externals:
-[http://www.maps.google.ca, http://www.lcbo.com]
-Wineries:
-[http://www.henryofpelham.com, http://www.inniskillin.com, http://www.colchesterridge.com, http://www.13thstreetwinery.com, http://www.gretzkyestateswines.com, http://www.peller.com, http://www.jacksontriggswinery.com, http://www.coyotesrunwinery.com, http://www.peleeisland.com, http://www.georgianhillsvineyards.ca, http://www.hinterlandwine.com, http://www.alvento.ca, http://www.rosehallrun.com, http://www.coffinridge.ca, http://www.creeksidewine.com]
-Mean winery distance: 	174.988425968936
-Median winery distance: 	176.24354579900552
+Total number of external sets with MAX winereies: 2
+Externals: (2)
+[http://www.theglobeandmail.com, http://www.lcbo.com]
+Wineries: (7)
+[http://www.alvento.ca, http://www.13thstreetwinery.com, http://www.flatrockcellars.com, http://www.clossonchase.com, http://www.pillitteri.com, http://www.burningkilnwinery.ca, http://www.hinterlandwine.com]
+Mean winery distance: 	166.17930787968362
+Median winery distance: 	163.04847419440847
+
+Externals: (2)
+[http://www.20valley.ca, http://www.niagarawinefestival.com]
+Wineries: (7)
+[http://www.henryofpelham.com, http://www.greenlanewinery.com, http://www.vineland.com, http://www.13thstreetwinery.com, http://www.flatrockcellars.com, http://www.malivoire.com, http://www.fieldingwines.com]
+Mean winery distance: 	7.682142974583128
+Median winery distance: 	7.361924527975752
 

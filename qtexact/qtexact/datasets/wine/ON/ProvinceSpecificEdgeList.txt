@@ -14,7 +14,6 @@ http://www.hinterlandwine.com	http://www.sohohousetoronto.com
 http://www.hilliercreekestates.com	http://www.thecountywines.com
 http://www.coffinridge.ca	http://www.millhollow.ca
 http://www.rosehallrun.com	http://www.hawkerbar.com
-http://www.gretzkyestateswines.com	http://www.maps.google.ca
 http://www.brokenstone.ca	http://www.bychadseyscairns.com
 http://www.flatrockcellars.com	http://www.blackwalnutmanor.com
 http://www.keint-he.ca	http://www.torontolife.com
@@ -48,7 +47,6 @@ http://www.rosehallrun.com	http://www.restaurantinternational.ca
 http://www.pillitteri.com	http://www.keefermansion.com
 http://www.fiverows.com	http://www.oliverbonacini.com
 http://www.hinterlandwine.com	http://www.playfood.ca
-http://www.lighthallvineyards.com	http://www.maps.google.ca
 http://www.aleksanderestate.com	http://www.kingsvillegolf.com
 http://www.grangeofprinceedward.com	http://www.pizzeriadefina.com
 http://www.clossonchase.com	http://www.cpaws.org
@@ -109,12 +107,10 @@ http://www.pillitteri.com	http://www.waterfrontbistro.com
 http://www.jacksontriggswinery.com	http://www.winerack.com
 http://www.clossonchase.com	http://www.mideastroyorkville.com
 http://www.clossonchase.com	http://www.sauceondanforth.com
-http://www.milanwineries.com	http://www.maps.google.ca
 http://www.dovervineyards.com	http://www.niagarawinefestival.com
 http://www.rosehallrun.com	http://www.jamiekennedy.ca
 http://www.rosehallrun.com	http://www.nac-cna.ca
 http://www.aleksanderestate.com	http://www.wetrolley.com
-http://www.pinefarmsorchard.com	http://www.maps.google.ca
 http://www.clossonchase.com	http://www.richmondstation.ca
 http://www.greenlanewinery.com	http://www.niagarawinefestival.com
 http://www.sugarbushvineyards.ca	http://www.sandbankswinery.com
@@ -157,7 +153,6 @@ http://www.fiverows.com	http://www.zees.ca
 http://www.pillitteri.com	http://www.golfinnisbrook.com
 http://www.hilliercreekestates.com	http://www.prince-edward-county.com
 http://www.erieshore.ca	http://www.bbcanada.com
-http://www.creeksidewine.com	http://www.maps.google.ca
 http://www.erieshore.ca	http://www.kingswoodinn.com
 http://www.colchesterridge.com	http://www.thebellhouse.ca
 http://www.featherstonewinery.ca	http://www.hobbswines.com
@@ -213,7 +208,6 @@ http://www.flatrockcellars.com	http://www.newvintagefestival.com.
 http://www.coffinridge.ca	http://www.rowanmoonbistro
 http://www.aleksanderestate.com	http://www.smokenspice.com
 http://www.erieshore.ca	http://www.thebellhouse.ca
-http://www.smithandwilsonestatewines.ca	http://www.maps.google.ca
 http://www.fiverows.com	http://www.theprune.com
 http://www.flatrockcellars.com	http://www.lcbo.com
 http://www.hinterlandwine.com	http://www.theglobeandmail.com
@@ -274,7 +268,6 @@ http://www.coopershawkvineyards.com	http://www.starsofthegame.net
 http://www.laceyestates.com	http://www.pecchamber.com
 http://www.sugarbushvineyards.ca	http://www.normanhardie.com
 http://www.clossonchase.com	http://www.lcbo.com
-http://www.13thstreetwinery.com	http://www.maps.google.ca
 http://www.rennieestatewinery.com	http://www.brocku.ca
 http://www.gretzkyestateswines.com	http://www.thewineshops.com
 http://www.mikeweirwine.com	http://www.bereavedfamilies.net
@@ -282,7 +275,6 @@ http://www.vineland.com	http://www.tawsewinery.ca
 http://www.rosehallrun.com	http://www.thespokeclub.com
 http://www.countycider.com	http://www.pecweb.ca
 http://www.viewpointewinery.com	http://www.theweathernetwork.com
-http://www.thirtybench.com	http://www.maps.google.ca
 http://www.rushcreekwines.com	http://www.canadapost.ca
 http://www.pillitteri.com	http://www.ogradysoncollege.com
 http://www.clossonchase.com	http://www.georgeonqueen.com
@@ -320,7 +312,6 @@ http://www.georgianhillsvineyards.ca	http://www.terranovapub.ca
 http://www.henryofpelham.com	http://www.20valley.ca
 http://www.blackprincewinery.com	http://www.queensu.ca
 http://www.peleeisland.com	http://www.wetrolley.com
-http://www.peleeisland.com	http://www.maps.google.ca
 http://www.longdog.ca	http://www.blackrivercheese.com
 http://www.hinterlandwine.com	http://www.thewhalesbone.com
 http://www.rosehallrun.com	http://www.ferrobarcafe.ca
@@ -353,7 +344,6 @@ http://www.harwoodestatevineyards.com	http://www.angelines.ca
 http://www.keint-he.ca	http://www.burntbutter.ca
 http://www.pillitteri.com	http://www.stcatharinesstandard.ca
 http://www.henryofpelham.com	http://www.carolinian.org
-http://www.inniskillin.com	http://www.maps.google.ca
 http://www.clossonchase.com	http://www.e11even.ca
 http://www.clossonchase.com	http://www.hockley.com
 http://www.clossonchase.com	http://www.karloestates.com
@@ -376,10 +366,8 @@ http://www.dovervineyards.com	http://www.vintages.com
 http://www.pillitteri.com	http://www.ilfornaro.com
 http://www.flatrockcellars.com	http://www.thespringsrestaurant.com
 http://www.malivoire.com	http://www.niagarawinefestival.com
-http://www.georgianhillsvineyards.ca	http://www.maps.google.ca
 http://www.keint-he.ca	http://www.portabellaonmain.com
 http://www.rushcreekwines.com	http://www.edibletoronto.com
-http://www.legendsestates.com	http://www.maps.google.ca
 http://www.angelsgatewinery.com	http://www.vqaontario.com
 http://www.clossonchase.com	http://www.cntower.ca
 http://www.georgianhillsvineyards.ca	http://www.dagsandwillow.ca
@@ -405,7 +393,6 @@ http://www.rosehallrun.com	http://www.juniperdining.ca
 http://www.chateaudescharmes.com	http://www.camh.net
 http://www.theicehouse.ca	http://www.shopify.com
 http://www.del-gattoestates.ca	http://www.fifthtown.ca
-http://www.domaineperrault.ca	http://www.maps.google.ca
 http://www.pillitteri.com	http://www.wineriesofniagaraonthelake.com
 http://www.flatrockcellars.com	http://www.fieldingwines.com
 http://www.rosehallrun.com	http://www.yours-truly.ca
@@ -425,14 +412,12 @@ http://www.hinterlandwine.com	http://www.hintonburgpublichouse.ca
 http://www.strewnwinery.com	http://www.harbourhousehotel.ca
 http://www.pillitteri.com	http://www.lamplighterinn.ca
 http://www.sugarbushvineyards.ca	http://www.hinterlandwine.com
-http://www.blackprincewinery.com	http://www.maps.google.ca
 http://www.rushcreekwines.com	http://www.kettlecreekinn.com
 http://www.rosehallrun.com	http://www.lcbo.com
 http://www.burningkilnwinery.ca	http://www.orilliapacket.com
 http://www.clossonchase.com	http://www.enversofmorriston.ca
 http://www.cavespring.ca	http://www.ontariosfinestinns.com
 http://www.erieshore.ca	http://www.wenzlerslanding.com
-http://www.henryofpelham.com	http://www.maps.google.ca
 http://www.hinterlandwine.com	http://www.merrillinn.com
 http://www.13thstreetwinery.com	http://www.theglobeandmail.com
 http://www.hubbscreekvineyard.ca	http://www.eastandmain.ca
@@ -452,7 +437,6 @@ http://www.coopershawkvineyards.com	http://www.vqaontario.com
 http://www.mastronardiwines.com	http://www.jacksdining.com
 http://www.rosehallrun.com	http://www.blackrivercheese.com
 http://www.brokenstone.ca	http://www.laceyestates.com
-http://www.malivoire.com	http://www.maps.google.ca
 http://www.hinterlandwine.com	http://www.quatrefoilrestaurant.com
 http://www.sugarbushvineyards.ca	http://www.casadeaestates.com
 http://www.rosehallrun.com	http://www.sassafraz.ca
@@ -476,7 +460,6 @@ http://www.erieshore.ca	http://www.gibsonartgallery.com
 http://www.fieldingwines.com	http://www.tourismniagara.com
 http://www.clossonchase.com	http://www.langdonhall.ca
 http://www.clossonchase.com	http://www.sohohousetoronto.com
-http://www.viewpointewinery.com	http://www.maps.google.ca
 http://www.flatrockcellars.com	http://www.paradisorestaurant.com
 http://www.viewpointewinery.com	http://www.hillndalebb.com
 http://www.redtailvineyard.com	http://www.pecweb.ca
@@ -496,7 +479,6 @@ http://www.del-gattoestates.ca	http://www.tastethecounty.ca
 http://www.erieshore.ca	http://www.thecoffeeoffice.com
 http://www.quaiduvin.com	http://www.stthomascanvasandawning.com
 http://www.blackprincewinery.com	http://www.giftbasketskingston.com
-http://www.hinterlandwine.com	http://www.maps.google.ca
 http://www.rosehallrun.com	http://www.cellarrestaurant.com
 http://www.13thstreetwinery.com	http://www.newstalk1010.com
 http://www.cavespring.ca	http://www.20valley.ca
@@ -534,7 +516,6 @@ http://www.pondviewwinery.com	http://www.lcbo.com
 http://www.henryofpelham.com	http://www.stcatharinesstandard.ca
 http://www.clossonchase.com	http://www.forthenry.com
 http://www.ravinevineyard.com	http://www.viewmag.com
-http://www.greenlanewinery.com	http://www.maps.google.ca
 http://www.erieshore.ca	http://www.riverlights.ca
 http://www.coffinridge.ca	http://www.hollycottage.ca
 http://www.gretzkyestateswines.com	http://www.splashinteractive.com
@@ -648,7 +629,6 @@ http://www.viewpointewinery.com	http://www.wetrolley.com
 http://www.thirtybench.com	http://www.hillebrand.com
 http://www.clossonchase.com	http://www.drakeonefifty.ca
 http://www.hinterlandwine.com	http://www.thechasetoronto.com
-http://www.featherstonewinery.ca	http://www.maps.google.ca
 http://www.clossonchase.com	http://www.southbrook.com
 http://www.peleeisland.com	http://www.colasanti.com
 http://www.hinterlandwine.com	http://www.littledrunkbird.com
@@ -876,7 +856,6 @@ http://www.clossonchase.com	http://www.theloosemoose.ca
 http://www.birtchfarms.com	http://www.elmhurstinn.com
 http://www.keint-he.ca	http://www.ago.net
 http://www.erieshore.ca	http://www.mckinnonsbb.com
-http://www.erieshore.ca	http://www.maps.google.ca
 http://www.clossonchase.com	http://www.sistering.org
 http://www.vineland.com	http://www.featherstonewinery.ca
 http://www.mastronardiwines.com	http://www.seacliffeinn.com
@@ -964,7 +943,6 @@ http://www.clossonchase.com	http://www.parl.gc.ca
 http://www.flatrockcellars.com	http://www.detourcoffee.com
 http://www.clossonchase.com	http://www.theoldthird.com
 http://www.colchesterridge.com	http://www.vqaontario.com
-http://www.rosehallrun.com	http://www.maps.google.ca
 http://www.longdog.ca	http://www.dukeofmarysburgh.com
 http://www.hinterlandwine.com	http://www.beckta.com
 http://www.keint-he.ca	http://www.416snackbar.com
@@ -998,7 +976,6 @@ http://www.rosehallrun.com	http://www.atelierrestaurant.ca
 http://www.malivoire.com	http://www.evergreen.ca
 http://www.georgianhillsvineyards.ca	http://www.stuffedpeasant.com
 http://www.pillitteri.com	http://www.airlinktours.ca
-http://www.alvento.ca	http://www.maps.google.ca
 http://www.greenlanewinery.com	http://www.harbourstreetbrasserie.com
 http://www.longdog.ca	http://www.millfallshouse.com
 http://www.moonshadowswinery.com	http://www.ontariomaple.com
@@ -1022,7 +999,6 @@ http://www.hinterlandwine.com	http://www.416snackbar.wordpress.com
 http://www.burningkilnwinery.ca	http://www.davidsportdover.com
 http://www.hinterlandwine.com	http://www.thewellingtongastropub.com
 http://www.pillitteri.com	http://www.lcbo.com
-http://www.coyotesrunwinery.com	http://www.maps.google.ca
 http://www.burningkilnwinery.ca	http://www.thestar.com
 http://www.angelsgatewinery.com	http://www.tourismniagara.com
 http://www.clossonchase.com	http://www.elmhirst.ca
@@ -1051,12 +1027,10 @@ http://www.fiverows.com	http://www.chateaudescharmes.com
 http://www.flatrockcellars.com	http://www.winerytohome.com
 http://www.foreignaffairwine.com	http://www.foreignaffairwinery.com
 http://www.featherstonewinery.ca	http://www.vintages.com
-http://www.peller.com	http://www.maps.google.ca
 http://www.cavespring.ca	http://www.jordanhouse.ca
 http://www.rosehallrun.com	http://www.553church.com
 http://www.dovervineyards.com	http://www.lcbo.ca
 http://www.hinterlandwine.com	http://www.juniperdining.ca
-http://www.laileyvineyard.com	http://www.maps.google.ca
 http://www.keint-he.ca	http://www.theurbanpear.com
 http://www.huffestates.com	http://www.bloomfieldcarriagehouse.com
 http://www.grangeofprinceedward.com	http://www.portbistropub.com
@@ -1113,7 +1087,6 @@ http://www.nctwinery.ca	http://www.niagaracollegewine.ca
 http://www.pillitteri.com	http://www.lcbo.ca
 http://www.aleksanderestate.com	http://www.kettlecreekinn.com
 http://www.pillitteri.com	http://www.gatorteds.com
-http://www.hiddenbench.com	http://www.maps.google.ca
 http://www.strewnwinery.com	http://www.winecountrycooking.com
 http://www.archibalds-estatewinery.on.ca	http://www.centralcounties.ca
 http://www.clossonchase.com	http://www.libertygroup.com
@@ -1139,7 +1112,6 @@ http://www.angelsgatewinery.com	http://www.ontariotravel.net
 http://www.chateaudescharmes.com	http://www.organicmeadow.com
 http://www.rosehallrun.com	http://www.grano.ca
 http://www.clossonchase.com	http://www.theharbordroom.com
-http://www.colchesterridge.com	http://www.maps.google.ca
 http://www.pillitteri.com	http://www.thepearsonpub.ca
 http://www.aleksanderestate.com	http://www.essexcountywineries.ca
 http://www.peleeisland.com	http://www.kingsvillebia.com
@@ -1154,7 +1126,6 @@ http://www.erieshore.ca	http://www.ecfa.ca
 http://www.stannersvineyard.ca	http://www.westvillage.ca
 http://www.moonshadowswinery.com	http://www.haliburtonchamber.com
 http://www.clossonchase.com	http://www.brusselsbistro.ca
-http://www.hubbscreekvineyard.ca	http://www.maps.google.ca
 http://www.vineland.com	http://www.vieni.ca
 http://www.greenlanewinery.com	http://www.twentyvalley.ca
 http://www.clossonchase.com	http://www.crushwinebar.com
@@ -1170,7 +1141,6 @@ http://www.hinterlandwine.com	http://www.zenkitchen.ca
 http://www.clossonchase.com	http://www.thewellingtongastropub.com
 http://www.fieldingwines.com	http://www.blackwalnutmanor.com
 http://www.clossonchase.com	http://www.fougeres.ca
-http://www.coffinridge.ca	http://www.maps.google.ca
 http://www.normanhardie.com	http://www.evergreen.ca
 http://www.fiverows.com	http://www.ravinevineyard.com
 http://www.vintageonewines.com	http://www.yongestreetmedia.ca
@@ -1187,7 +1157,6 @@ http://www.normanhardie.com	http://www.littledrunkbird.com
 http://www.peleeisland.com	http://www.clrm.ca
 http://www.viewpointewinery.com	http://www.experiencedmg.com
 http://www.keint-he.ca	http://www.barque.ca
-http://www.33vines.com	http://www.maps.google.ca
 http://www.hinterlandwine.com	http://www.coveinn.com
 http://www.rosehallrun.com	http://www.santerestaurant.com
 http://www.erieshore.ca	http://www.leamingtonchamber.com
@@ -1205,7 +1174,6 @@ http://www.greenlanewinery.com	http://www.tourismniagara.com
 http://www.quaiduvin.com	http://www.pinecroft.ca
 http://www.peleeisland.com	http://www.freddys.ca
 http://www.keint-he.ca	http://www.bistrostefan.com
-http://www.royaldemaria.com	http://www.maps.google.ca
 http://www.rosehallrun.com	http://www.nesda.ca
 http://www.erieshore.ca	http://www.colchesterridge.com
 http://www.peleeisland.com	http://www.magicbuscompany.com
@@ -1231,7 +1199,6 @@ http://www.moonshadowswinery.com	http://www.yoursoutdoors.ca
 http://www.cavespring.ca	http://www.canadianvintners.com
 http://www.13thstreetwinery.com	http://www.twentyvalley.ca
 http://www.quaiduvin.com	http://www.spartahouse.com
-http://www.jacksontriggswinery.com	http://www.maps.google.ca
 http://www.rosehallrun.com	http://www.arcthehotel.com
 http://www.huffestates.com	http://www.eastandmain.ca
 http://www.rosehallrun.com	http://www.bluebirdcafeandgrill.com
@@ -1271,8 +1238,6 @@ http://www.rushcreekwines.com	http://www.torontolife.com
 http://www.dovervineyards.com	http://www.lighthousetheatre.com
 http://www.ravinevineyard.com	http://www.thestar.com
 http://www.peleeisland.com	http://www.couchconservancy.ca
-http://www.unionwines.com	http://www.maps.google.ca
-http://www.longdog.ca	http://www.maps.google.ca
 http://www.clossonchase.com	http://www.vqaontario.com
 http://www.wagnerorchards.com	http://www.webplanet.ca
 http://www.greenlanewinery.com	http://www.20valley.ca
@@ -1288,7 +1253,6 @@ http://www.hinterlandwine.com	http://www.bloomfieldcarriagehouse.com
 http://www.keint-he.ca	http://www.bolandsopenkitchen.com
 http://www.hinterlandwine.com	http://www.churchrestaurant.com
 http://www.fieldingwines.com	http://www.canadianvintners.com
-http://www.crownbenchestates.com	http://www.maps.google.ca
 http://www.erieshore.ca	http://www.ctmhv.com
 http://www.pondviewwinery.com	http://www.santerestaurant.com
 http://www.coyotesrunwinery.com	http://www.wineriesofniagaraonthelake.com

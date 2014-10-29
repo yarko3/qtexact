@@ -1,0 +1,7 @@
+Externals: (22)
+[http://www.aquaterrabyclark.com, http://www.portabellaonmain.com, http://www.lakeonthemountain.com, http://www.capers.ca, http://www.isaiahtubbs.com, http://www.themanse.ca, http://www.lechiennoir.com, http://www.merrillinn.com, http://www.thewellingtongastropub.com, http://www.jamiekennedy.ca, http://www.farmhousetavern.tumblr.com, http://www.crushwinebar.com, http://www.eastandmain.ca, http://www.portbistropub.com, http://www.blumengardenbistro.com, http://www.oliverbonacini.com, http://www.sevennumbers.com, http://www.bloomfieldcarriagehouse.com, http://www.olivea.ca, http://www.angelines.ca, http://www.juniperdining.ca, http://www.verticalrestaurant.ca]
+Wineries: (2)
+[http://www.keint-he.ca, http://www.rosehallrun.com]
+Mean winery distance: 	4.271706310206364
+Median winery distance: 	4.2717063102064206
+

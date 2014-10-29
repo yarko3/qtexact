@@ -1,7 +1,7 @@
 Total number of external sets with MAX winereies: 1
-Externals:
+Externals: (2)
 [http://www.sipwines.ca, http://www.mudbaywines.com]
-Wineries:
+Wineries: (8)
 [http://www.vistadoro.com, http://www.tantalus.ca, http://www.intriguewines.ca, http://www.littlestraw.bc.ca, http://www.cedarcreek.bc.ca, http://www.3milewinery.com, http://www.kalalawines.ca, http://www.township7.com]
 Mean winery distance: 	80.51085692961786
 Median winery distance: 	34.07541098371745

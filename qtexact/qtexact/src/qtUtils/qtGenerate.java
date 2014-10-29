@@ -19,12 +19,11 @@ import java.util.LinkedList;
 import java.util.Random;
 import java.util.Scanner;
 
-import search.qtLBFSNoHeuristic;
-
 import com.rits.cloning.Cloner;
 
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.SparseGraph;
+import edu.uci.ics.jung.graph.UndirectedGraph;
 import edu.uci.ics.jung.graph.UndirectedSparseGraph;
 import edu.uci.ics.jung.graph.util.Pair;
 
@@ -528,7 +527,7 @@ public class qtGenerate<V>
 	
 	
 	
-	public Graph<String, Pair<String>> fromBipartiteFile(String filename, int k) throws FileNotFoundException, UnsupportedEncodingException
+	public UndirectedGraph<String, Pair<String>> fromBipartiteFile(String filename, int k) throws FileNotFoundException, UnsupportedEncodingException
 	{
 		Graph<String, Pair<String>> initial = new UndirectedSparseGraph<String, Pair<String>>();
 		HashSet<String> leftVertices = new HashSet<String>();
@@ -568,7 +567,7 @@ public class qtGenerate<V>
 			e.printStackTrace();
 		}
 		
-		Graph<String, Pair<String>> g = new UndirectedSparseGraph<String, Pair<String>>();
+		UndirectedGraph<String, Pair<String>> g = new UndirectedSparseGraph<String, Pair<String>>();
 		
 		//build new graph
 		

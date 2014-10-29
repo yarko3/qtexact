@@ -1,0 +1,7 @@
+Externals: (7)
+[http://www.choicehotels.ca, http://www.viewpointewinery.com, http://www.wetrolley.com, http://www.wenzlerslanding.com, http://www.thebellhouse.ca, http://www.almostheavenbb.com, http://www.bbcanada.com]
+Wineries: (2)
+[http://www.mastronardiwines.com, http://www.erieshore.ca]
+Mean winery distance: 	23.468972568027954
+Median winery distance: 	23.46897256802796
+

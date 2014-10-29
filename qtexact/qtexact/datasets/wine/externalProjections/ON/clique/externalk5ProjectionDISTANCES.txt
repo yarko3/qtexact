@@ -1,0 +1,21 @@
+Externals: (5)
+[http://www.portabellaonmain.com, http://www.merrillinn.com, http://www.eastandmain.ca, http://www.blumengardenbistro.com, http://www.bloomfieldcarriagehouse.com]
+Wineries: (3)
+[http://www.keint-he.ca, http://www.rosehallrun.com, http://www.huffestates.com]
+Mean winery distance: 	10.96816981169107
+Median winery distance: 	12.94995361626752
+
+Externals: (5)
+[http://www.lechiennoir.com, http://www.jamiekennedy.ca, http://www.crushwinebar.com, http://www.treadwellcuisine.com, http://www.petitbillsbistro.com]
+Wineries: (3)
+[http://www.keint-he.ca, http://www.flatrockcellars.com, http://www.clossonchase.com]
+Mean winery distance: 	125.1354120812001
+Median winery distance: 	182.69837175004466
+
+Externals: (6)
+[http://www.winerytohome.com, http://www.stcatharinesstandard.ca, http://www.20valley.ca, http://www.niagarawinefestival.com, http://www.vintages.com, http://www.lcbo.com]
+Wineries: (2)
+[http://www.henryofpelham.com, http://www.flatrockcellars.com]
+Mean winery distance: 	5.528436833115745
+Median winery distance: 	5.5284368331158085
+
