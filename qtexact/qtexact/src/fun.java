@@ -41,6 +41,7 @@ import abstractClasses.Dive;
 import abstractClasses.Reduction;
 import abstractClasses.SearchResult;
 import branch.clusterBranch;
+import branch.cographBranch;
 import branch.diQTBranch;
 import branch.qtAllStruct;
 import branch.qtBranch;
@@ -1215,7 +1216,7 @@ public class fun<V> extends JApplet {
 		
 	}
 	
-	private static void cographTest()
+	private static void cographSearchTest()
 	{
 		
 		Graph<Integer, Pair<Integer>> g = new UndirectedSparseGraph<Integer, Pair<Integer>>(); // = gen.houseStruct();
@@ -1317,6 +1318,49 @@ public class fun<V> extends JApplet {
 		
 		//System.out.println("Is cograph: " + search.isTarget(g));
 	}
+	
+	
+	public static void cographTest()
+	{
+		cographSearch<Integer> search = new cographSearch<Integer>();
+		
+		Graph<Integer, Pair<Integer>> exampleQT;
+		qtGenerate<Integer> gen = new qtGenerate<Integer>();
+		exampleQT = gen.randomTreeGraph(20, 9, 3);
+		
+		//exampleQT = gen.treeRandom(50, 2);
+		
+		visualize(exampleQT);
+		
+		System.out.println(search.search(exampleQT));
+		
+		Controller<Integer> c = new Controller<Integer>(null, true);
+		cographBranch<Integer> bStruct = new cographBranch<Integer>(c);
+		
+		branchComponents<Integer> b = new branchComponents<Integer>(c, bStruct);
+		
+		
+		c.setbStruct(bStruct);
+		System.out.println("\nRegular cograph: ");
+		long start = System.currentTimeMillis();
+		branchingReturnC<Integer> rtn = c.branchStart(exampleQT, 10);
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		
+		System.out.println(search.isTarget(rtn.getG()));
+		
+		
+		c.setbStruct(b);
+		
+		System.out.println("\nConnected component: ");
+		start = System.currentTimeMillis();
+		rtn = c.branchStart(exampleQT, 10);
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		
+		System.out.println(search.isTarget(rtn.getG()));
+		
+		visualize(rtn.getG());
+	}
+	
 	
 	public static void wineryProjectionTest() throws FileNotFoundException, UnsupportedEncodingException
 	{

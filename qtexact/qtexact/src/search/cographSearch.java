@@ -32,7 +32,6 @@ public class cographSearch<V>  extends LBFS<V>
 		//run LexBFS with t
 		lexReturnC<V> firstPass = LexBFSplus(G, t);
 		
-		
 		//run LexBFSminus with firstPass ordering
 		lexReturnC<V> secondPass = LexBFSminus(G, clone.deepClone(firstPass.getList()));
 		
