@@ -25,6 +25,7 @@ import qtUtils.qtGenerate;
 import reduction.biconnectedReduction;
 import reduction.c4p4Reduction;
 import reduction.centralNodeReduction;
+import reduction.clusterReductionBasic;
 import reduction.commonC4Reduction;
 import reduction.edgeBoundReduction;
 import scorer.familialGroupCentrality;
@@ -38,6 +39,7 @@ import utils.graphFromEdgeSetWithCommunities;
 import utils.graphUtils;
 import abstractClasses.Branch;
 import abstractClasses.Dive;
+import abstractClasses.GreedyEdit;
 import abstractClasses.Reduction;
 import abstractClasses.SearchResult;
 import branch.clusterBranch;
@@ -66,6 +68,7 @@ import edu.uci.ics.jung.graph.UndirectedSparseGraph;
 import edu.uci.ics.jung.graph.util.Pair;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
+import greedy.clusterGreedy;
 import greedy.diQTGreedy;
 import greedy.maxObsGreedy;
 
@@ -93,13 +96,15 @@ public class fun<V> extends JApplet {
 		//clusterTest();
 		//scoreWineryGraph();
 		//distanceTest();
-		cographTest();
+		//cographTest();
 		//wineryProjectionTest();
 		//getProvinceSpecificExternalsEdgeList();
 		//projectionAnalysis();
 		
 		//winerykExternalProjections();
 		//externalProjectionsClique();
+		//outputWeightedProjection();
+		projectionClusterAnalysis();
 	}
 	
 
@@ -1505,6 +1510,65 @@ public class fun<V> extends JApplet {
 		}
 	}
 	
+	private static void projectionClusterAnalysis()
+	{
+		//String province = "BC";
+		LinkedList<String> provinces = new LinkedList<String>();
+		provinces.add("BC");
+		provinces.add("ON");
+		provinces.add("QC");
+		
+		for (String province : provinces)
+		{
+			String distanceFile = "datasets/wine/Distance/"+province +"/"+province+"Distance.txt";
+			
+			
+			Graph<String, Pair<String>> wine = null;
+			
+			
+			Controller<String> c = new Controller<String>(null, true);
+			
+			clusterBranch<String> b = new clusterBranch<String>(c);
+			//add basic reduction
+			b.addReduction(new clusterReductionBasic<String>(b));
+			
+			branchComponents<String> bStruct = new branchComponents<String>(c, b);
+			GreedyEdit<String> greedy = new clusterGreedy<String>(bStruct);
+			
+			branchingReturnC<String> rtn;
+			
+			for (int k = 5; k < 11; k++)
+			{
+			
+				try {
+					wine = genString.fromBipartiteFile("datasets/wine/" + province + "/ProvinceSpecificEdgeList.txt", k);
+				} catch (FileNotFoundException | UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				
+				//edit graph
+				//greedy edit
+				c.setbStruct(bStruct);
+				bStruct.setDive(greedy);
+				
+				System.out.println("\nGreedy Edit: " + province + " k"+k );
+				rtn = c.diveAtStartEdit(wine, 4);
+				
+				//dump edited graph to file
+				if (b.getSearch().search(rtn).isTarget())
+				{
+					String editedFile = "datasets/wine/"+province+"/clusterEdit/k"+k+"-clusterEdit.txt";
+					stringUtils.printSolutionEdgeSetWithWeightsComponents(rtn, editedFile);
+					
+					//output distance measurements for each
+					distance.outputDistanceMeasurements(editedFile, distanceFile, "datasets/wine/"+province+"/clusterEdit/k"+k+"-clusterEditDISTANCES.txt");
+				}
+			}
+		}
+	}
+	
 	public static void winerykExternalProjections()
 	{
 		//String province = "BC";
@@ -1694,6 +1758,107 @@ public class fun<V> extends JApplet {
 			}
 		}
 	}
+	
+	
+	//get an edge weight based on number of overlapping externals and output to file
+	public static void outputWeightedProjection()
+	{
+		LinkedList<String> provinces = new LinkedList<String>();
+		provinces.add("BC");
+		provinces.add("ON");
+		provinces.add("QC");
+		
+		distance<String> d = new distance<String>();
+		PriorityQueue<Pair<Set<String>>> pq;
+		
+		
+		for (String province : provinces)
+		{
+			String distanceFile = "datasets/wine/Distance/"+province +"/"+province+"Distance.txt";
+			HashMap<String, Pair<Double>> mapping = distance.getLatLongFromFile(distanceFile);
+			
+			String filename = "datasets/wine/"+province+"/provinceSpecificEdgeList.txt";
+			
+			HashMap<String, HashSet<String>> wineries = new HashMap<String, HashSet<String>>();
+			
+			//get list of wineries
+			FileReader file = null;
+			try {
+				file = new FileReader(filename);
+			} catch (FileNotFoundException e) {
+				System.out.println("File " + filename + " could not be found.");
+				e.printStackTrace();
+			}
+
+			Scanner scan = new Scanner(file);
+
+			while (scan.hasNext()) {
+				String a = scan.next();
+				String b = scan.next();
+				
+				if (!wineries.containsKey(a))
+					wineries.put(a, new HashSet<String>());
+				
+				wineries.get(a).add(b);
+				
+			}
+			try {
+				scan.close();
+				file.close();
+			} catch (IOException e) {
+				System.out.println("File " + filename + " could not be found.");
+				e.printStackTrace();
+			}
+			
+			//get a keyset to be traversed
+			LinkedList<String> keys = new LinkedList<String>();
+			keys.addAll(wineries.keySet());
+			
+			//output file for generated edge list
+			String writeFilename = "datasets/wine/"+province+"/" + province + "weightedProjection.txt";
+			PrintWriter writer = null;
+			try {
+				writer = new PrintWriter(writeFilename, "UTF-8");
+			} catch (FileNotFoundException | UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			for (int i = 0; i < keys.size(); i++)
+			{
+				String w1 = keys.get(i);
+				for (int j = i+1; j < wineries.size(); j++)
+				{
+					String w2 = keys.get(j);
+					
+					HashSet<String> w1Externals = new HashSet<String>();
+					w1Externals.addAll(wineries.get(w1));
+					
+					HashSet<String> w2Externals = new HashSet<String>();
+					w2Externals.addAll(wineries.get(w2));
+					
+					//remove all wineries from external sets
+					w1Externals.removeAll(keys);
+					w2Externals.removeAll(keys);
+					
+					
+					w1Externals.retainAll(w2Externals);
+					
+					int card = w1Externals.size();
+					
+					if (card > 0)
+						writer.println(w1 + "\t" + w2 + "\t" + card);
+					
+				}
+			}
+			
+			writer.close();
+			
+			
+		}
+	}
+	
+	
 	
 	
 }

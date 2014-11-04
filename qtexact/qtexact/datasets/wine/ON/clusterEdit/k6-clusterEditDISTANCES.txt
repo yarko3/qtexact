@@ -1,0 +1,29 @@
+Overall: 
+Mean winery-winery distance: 	275.4844350045876
+Median winery-winery distance: 	335.10122589913453
+Mean edge distance: 	51.81995296031923
+Median edge distance: 	12.949953616267475
+
+
+Component 0	Number of nodes: 4
+http://www.keint-he.ca	http://www.rosehallrun.com	http://www.clossonchase.com	http://www.huffestates.com	
+Mean winery-winery distance: 	9.33157086923188
+Median winery-winery distance: 	9.707589366351261
+Mean edge distance: 	9.33157086923188
+Median edge distance: 	9.707589366351261
+
+
+Component 3	Number of nodes: 2
+http://www.fiverows.com	http://www.hinterlandwine.com	
+Mean winery-winery distance: 	335.10122589913465
+Median winery-winery distance: 	335.1012258991347
+Mean edge distance: 	335.10122589913465
+Median edge distance: 	335.1012258991347
+
+
+Component 5	Number of nodes: 2
+http://www.mastronardiwines.com	http://www.erieshore.ca	
+Mean winery-winery distance: 	23.468972568027954
+Median winery-winery distance: 	23.46897256802796
+Mean edge distance: 	23.468972568027954
+Median edge distance: 	23.46897256802796

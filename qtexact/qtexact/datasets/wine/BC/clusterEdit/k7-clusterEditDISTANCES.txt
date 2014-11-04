@@ -1,0 +1,29 @@
+Overall: 
+Mean winery-winery distance: 	140.25092879839005
+Median winery-winery distance: 	38.37755270210725
+Mean edge distance: 	26.69416545393142
+Median edge distance: 	28.922424552785056
+
+
+Component 2	Number of nodes: 2
+http://www.nicholvineyard.com	http://www.3milewinery.com	
+Mean winery-winery distance: 	6.266598946250094
+Median winery-winery distance: 	6.266598946250126
+Mean edge distance: 	6.266598946250094
+Median edge distance: 	6.266598946250126
+
+
+Component 5	Number of nodes: 2
+http://www.alderlea.com	http://www.dragonflyhillvineyard.com	
+Mean winery-winery distance: 	33.392945484657474
+Median winery-winery distance: 	33.39294548465756
+Mean edge distance: 	33.392945484657474
+Median edge distance: 	33.39294548465756
+
+
+Component 6	Number of nodes: 5
+http://www.tantalus.ca	http://www.intriguewines.ca	http://www.littlestraw.bc.ca	http://www.kalalawines.ca	http://www.township7.com	
+Mean winery-winery distance: 	28.067044101626944
+Median winery-winery distance: 	28.922424552785056
+Mean edge distance: 	28.067044101626944
+Median edge distance: 	28.922424552785056

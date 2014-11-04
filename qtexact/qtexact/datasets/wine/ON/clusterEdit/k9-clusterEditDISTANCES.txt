@@ -1,0 +1,29 @@
+Overall: 
+Mean winery-winery distance: 	281.1070366962465
+Median winery-winery distance: 	318.3754109533074
+Mean edge distance: 	65.05312654907073
+Median edge distance: 	4.67921968552826
+
+
+Component 0	Number of nodes: 2
+http://www.erieshore.ca	http://www.viewpointewinery.com	
+Mean winery-winery distance: 	4.679219685528244
+Median winery-winery distance: 	4.67921968552826
+Mean edge distance: 	4.679219685528244
+Median edge distance: 	4.67921968552826
+
+
+Component 1	Number of nodes: 2
+http://www.flatrockcellars.com	http://www.clossonchase.com	
+Mean winery-winery distance: 	186.20845365147758
+Median winery-winery distance: 	186.20845365147767
+Mean edge distance: 	186.20845365147758
+Median edge distance: 	186.20845365147767
+
+
+Component 3	Number of nodes: 2
+http://www.keint-he.ca	http://www.rosehallrun.com	
+Mean winery-winery distance: 	4.271706310206364
+Median winery-winery distance: 	4.2717063102064206
+Mean edge distance: 	4.271706310206364
+Median edge distance: 	4.2717063102064206

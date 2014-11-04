@@ -1,0 +1,6 @@
+http://www.keint-he.ca http://www.rosehallrun.com 1 3
+http://www.sugarbushvineyards.ca http://www.clossonchase.com 1 4
+http://www.viewpointewinery.com http://www.erieshore.ca 1 0
+http://www.clossonchase.com http://www.flatrockcellars.com -1 4
+http://www.keint-he.ca http://www.hinterlandwine.com -1 3
+http://www.keint-he.ca http://www.clossonchase.com -1 3

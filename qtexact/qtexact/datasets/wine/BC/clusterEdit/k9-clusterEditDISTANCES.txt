@@ -1,0 +1,21 @@
+Overall: 
+Mean winery-winery distance: 	186.54887903235925
+Median winery-winery distance: 	308.13607063268876
+Mean edge distance: 	197.23062986314304
+Median edge distance: 	309.34537660819063
+
+
+Component 5	Number of nodes: 2
+http://www.intriguewines.ca	http://www.township7.com	
+Mean winery-winery distance: 	61.80605629802811
+Median winery-winery distance: 	61.80605629802824
+Mean edge distance: 	61.80605629802811
+Median edge distance: 	61.80605629802824
+
+
+Component 10	Number of nodes: 4
+http://www.tantalus.ca	http://www.nicholvineyard.com	http://www.alderlea.com	http://www.unsworthvineyards.com	
+Mean winery-winery distance: 	219.8013921239955
+Median winery-winery distance: 	310.7211241246146
+Mean edge distance: 	219.8013921239955
+Median edge distance: 	310.7211241246146

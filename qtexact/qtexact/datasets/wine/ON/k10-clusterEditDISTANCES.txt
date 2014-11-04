@@ -1,0 +1,21 @@
+Overall: 
+Mean winery-winery distance: 	94.38162241196946
+Median winery-winery distance: 	179.73387634612138
+Mean edge distance: 	95.24007998084197
+Median edge distance: 	186.20845365147747
+
+
+Component 0	Number of nodes: 2
+http://www.flatrockcellars.com	http://www.clossonchase.com	
+Mean winery-winery distance: 	186.20845365147758
+Median winery-winery distance: 	186.20845365147767
+Mean edge distance: 	186.20845365147758
+Median edge distance: 	186.20845365147767
+
+
+Component 2	Number of nodes: 2
+http://www.rosehallrun.com	http://www.keint-he.ca	
+Mean winery-winery distance: 	4.271706310206364
+Median winery-winery distance: 	4.2717063102064206
+Mean edge distance: 	4.271706310206364
+Median edge distance: 	4.2717063102064206

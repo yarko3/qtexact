@@ -1,0 +1,61 @@
+Overall: 
+Mean winery-winery distance: 	222.67067085050158
+Median winery-winery distance: 	191.89087408187842
+Mean edge distance: 	38.97469383051464
+Median edge distance: 	9.707589366351261
+
+
+Component 0	Number of nodes: 2
+http://www.georgianhillsvineyards.ca	http://www.coffinridge.ca	
+Mean winery-winery distance: 	33.234898710245226
+Median winery-winery distance: 	33.234898710245226
+Mean edge distance: 	33.234898710245226
+Median edge distance: 	33.234898710245226
+
+
+Component 1	Number of nodes: 4
+http://www.keint-he.ca	http://www.rosehallrun.com	http://www.clossonchase.com	http://www.huffestates.com	
+Mean winery-winery distance: 	9.33157086923188
+Median winery-winery distance: 	9.707589366351261
+Mean edge distance: 	9.33157086923188
+Median edge distance: 	9.707589366351261
+
+
+Component 3	Number of nodes: 2
+http://www.henryofpelham.com	http://www.flatrockcellars.com	
+Mean winery-winery distance: 	5.528436833115745
+Median winery-winery distance: 	5.5284368331158085
+Mean edge distance: 	5.528436833115745
+Median edge distance: 	5.5284368331158085
+
+
+Component 4	Number of nodes: 2
+http://www.quaiduvin.com	http://www.rushcreekwines.com	
+Mean winery-winery distance: 	8.890149099922985
+Median winery-winery distance: 	8.89014909992306
+Mean edge distance: 	8.890149099922985
+Median edge distance: 	8.89014909992306
+
+
+Component 6	Number of nodes: 2
+http://www.fiverows.com	http://www.hinterlandwine.com	
+Mean winery-winery distance: 	335.10122589913465
+Median winery-winery distance: 	335.1012258991347
+Mean edge distance: 	335.10122589913465
+Median edge distance: 	335.1012258991347
+
+
+Component 8	Number of nodes: 2
+http://www.mastronardiwines.com	http://www.erieshore.ca	
+Mean winery-winery distance: 	23.468972568027954
+Median winery-winery distance: 	23.46897256802796
+Mean edge distance: 	23.468972568027954
+Median edge distance: 	23.46897256802796
+
+
+Component 9	Number of nodes: 2
+http://www.coyotesrunwinery.com	http://www.pillitteri.com	
+Mean winery-winery distance: 	5.483217640337694
+Median winery-winery distance: 	5.483217640337758
+Mean edge distance: 	5.483217640337694
+Median edge distance: 	5.483217640337758
