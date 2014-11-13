@@ -94,7 +94,7 @@ public class fun<V> extends JApplet {
 		//wineTest();
 		//userInterface();
 		//diGraphWineryTest();
-		clusterTest();
+		//clusterTest();
 		//scoreWineryGraph();
 		//distanceTest();
 		//cographTest();
@@ -105,7 +105,7 @@ public class fun<V> extends JApplet {
 		//winerykExternalProjections();
 		//externalProjectionsClique();
 		//outputWeightedProjection();
-		//projectionClusterAnalysis();
+		projectionClusterAnalysis();
 		
 		//mdTest();
 	}
@@ -973,7 +973,7 @@ public class fun<V> extends JApplet {
 		
 		Graph<Integer, Pair<Integer>> exampleQT;
 		qtGenerate<Integer> gen = new qtGenerate<Integer>();
-		exampleQT = gen.ER(25, .8, (long) 6);
+		exampleQT = gen.ER(50, .5, (long) 3);
 		//exampleQT = gen.treeRandom(50, 2);
 		
 		visualize(exampleQT);
@@ -992,7 +992,7 @@ public class fun<V> extends JApplet {
 		
 		System.out.println("\nConnected component: ");
 		long start = System.currentTimeMillis();
-		branchingReturnC<Integer> rtn = c.branchStart(exampleQT, 20);
+		branchingReturnC<Integer> rtn = c.branchStart(exampleQT, 45);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		System.out.println(search.isTarget(rtn.getG()));
@@ -1543,7 +1543,7 @@ public class fun<V> extends JApplet {
 			
 			branchingReturnC<String> rtn;
 			
-			for (int k = 5; k < 11; k++)
+			for (int k = 1; k < 11; k++)
 			{
 			
 				try {
@@ -1557,10 +1557,10 @@ public class fun<V> extends JApplet {
 				//edit graph
 				//greedy edit
 				c.setbStruct(bStruct);
-				bStruct.setDive(greedy);
+				//bStruct.setDive(greedy);
 				
-				System.out.println("\nGreedy Edit: " + province + " k"+k );
-				rtn = c.diveAtStartEdit(wine, 4);
+				System.out.println("\nExact Edit: " + province + " k"+k );
+				rtn = c.branchStart(wine, 40);
 				
 				//dump edited graph to file
 				if (b.getSearch().search(rtn).isTarget())

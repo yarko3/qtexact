@@ -2,6 +2,7 @@ package reduction;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Set;
 import java.util.Stack;
 
@@ -39,12 +40,16 @@ public class clusterReductionBasic<V> extends Reduction<V> {
 		//store original move count
 		int ogCount = s.getChanges().size();
 		int bound = s.getMinMoves().getChanges().size() - ogCount;
+		LinkedList<V> vertices = new LinkedList<V>();
+		vertices.addAll(s.getG().getVertices());
 		
 		outer:
-		for (V v0 : s.getG().getVertices())
+		for (int i = 0; i < vertices.size(); i++)
 		{
-			for (V v1 : s.getG().getVertices())
+			V v0 = vertices.get(i);
+			for (int j = i+1; j < vertices.size(); j++)
 			{
+				V v1 = vertices.get(j);
 				
 				if (v0.equals(v1))
 					continue;
@@ -69,17 +74,20 @@ public class clusterReductionBasic<V> extends Reduction<V> {
 				//tempCombined now contains exclusive or neighbours
 				tempCombined.removeAll(tempRetain);
 				
+				boolean okToAdd = false;
+				boolean okToRemove = false;
+				
 				//see if we need to banish this edge
 				if (tempRetain.size() > bound)
 				{
-					
+					okToAdd = true;
 					//see if this edge is a forced addition
-//					if (s.getChanges().contains(new myEdge<V>(new Pair<V>(v0, v1), true, directed)))
-//					{
-//						//stop editing here
-//						s.setContinueEditing(false);
-//						break outer;
-//					}
+					if (s.getChanges().contains(new myEdge<V>(new Pair<V>(v0, v1), true, directed)))
+					{
+						//stop editing here
+						s.setContinueEditing(false);
+						break outer;
+					}
 					//make this edge deletion
 					if (!s.getG().isNeighbor(v0, v1) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(v0, v1), true, directed)))
 					{
@@ -87,22 +95,28 @@ public class clusterReductionBasic<V> extends Reduction<V> {
 						bound--;
 					}
 				}
-				else if (tempCombined.size() > bound)
+				if (tempCombined.size() > bound)
 				{
-					
+					okToRemove = true;
 					//see if this non-edge is a forced deletion
-//					if (s.getChanges().contains(new myEdge<V>(new Pair<V>(v0, v1), false, directed)))
-//					{
-//						//stop editing here
-//						s.setContinueEditing(false);
-//						break outer;
-//					}
+					if (s.getChanges().contains(new myEdge<V>(new Pair<V>(v0, v1), false, directed)))
+					{
+						//stop editing here
+						s.setContinueEditing(false);
+						break outer;
+					}
 					//make this edge addition
 					if (s.getG().isNeighbor(v0, v1) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(v0, v1), false, directed)))
 					{
 						bStruct.deleteResult(s, v0, v1);
 						bound--;
 					}
+				}
+				
+				if (okToAdd && okToRemove)
+				{
+					s.setContinueEditing(false);
+					break outer;
 				}
 				
 			}
