@@ -2,7 +2,7 @@ package reduction;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.LinkedList;
+import java.util.Set;
 import java.util.Stack;
 
 import qtUtils.branchingReturnC;
@@ -38,70 +38,74 @@ public class clusterReductionBasic<V> extends Reduction<V> {
 	public branchingReturnC<V> reduce(branchingReturnC<V> s) {
 		//store original move count
 		int ogCount = s.getChanges().size();
+		int bound = s.getMinMoves().getChanges().size() - ogCount;
 		
-		LinkedList<myEdge<V>> movesToMake = new LinkedList<myEdge<V>>();
-		
-		for (myEdge<V> move : s.getChanges())
+		outer:
+		for (V v0 : s.getG().getVertices())
 		{
-			//an addition was made
-			if (move.isFlag() && s.getG().containsVertex(move.getEdge().getFirst()) &&
-					s.getG().containsVertex(move.getEdge().getSecond()))
+			for (V v1 : s.getG().getVertices())
 			{
-				//add edges between all neighbours of added edge
-				HashSet<V> n = new HashSet<V>();
-				Collection<V> temp = s.getG().getNeighbors(move.getEdge().getFirst());
-				n.addAll(s.getG().getNeighbors(move.getEdge().getFirst()));
 				
-				n.retainAll(s.getG().getNeighbors(move.getEdge().getSecond()));
+				if (v0.equals(v1))
+					continue;
+				//if we cannot do any more moves, stop reduction rule
+				if (bound == 0)
+					break outer;
 				
-				HashSet<V> uncommon = new HashSet<V>();
-				uncommon.addAll(s.getG().getNeighbors(move.getEdge().getFirst()));
-				uncommon.addAll(s.getG().getNeighbors(move.getEdge().getSecond()));
+				//check for number of common neighbours (if # common neighbours > bound)
+				Collection<V> v0Neighbours = s.getG().getNeighbors(v0);
+				Collection<V> v1Neighbours = s.getG().getNeighbors(v1);
 				
-				uncommon.removeAll(n);
+				Set<V> tempRetain = new HashSet<V>();
+				Set<V> tempCombined = new HashSet<V>();
+				tempRetain.addAll(v0Neighbours);
+				tempCombined.addAll(v0Neighbours);
 				
-				//now uncommon contains all vertices that are neighbours of one vertex of forced add but not the other
+				//tempRetain now contains all intersecting neighbours
+				tempRetain.retainAll(v1Neighbours);
+				//tempCombined now contains union of neighbours
+				tempCombined.addAll(v1Neighbours);
 				
-				for (V v0 : uncommon)
+				//tempCombined now contains exclusive or neighbours
+				tempCombined.removeAll(tempRetain);
+				
+				//see if we need to banish this edge
+				if (tempRetain.size() > bound)
 				{
-					V v1;
-					if (s.getG().isNeighbor(move.getEdge().getFirst(), v0))
-						v1 = move.getEdge().getFirst();
-					else
-						v1 = move.getEdge().getSecond();
 					
-					
-					//see if addition was already made or deletion was made
-					myEdge<V> newMove = new myEdge<V>(new Pair<V>(v0, v1), true, directed);
-					
-				
-					//see if we can add the edge
-					if (
-							!s.getG().isNeighbor(v0, v1) &&
-							!s.getChanges().contains(newMove) && 
-							!movesToMake.contains(newMove) && 
-							s.getChanges().size() < s.getMinMoves().getChanges().size())
+					//see if this edge is a forced addition
+//					if (s.getChanges().contains(new myEdge<V>(new Pair<V>(v0, v1), true, directed)))
+//					{
+//						//stop editing here
+//						s.setContinueEditing(false);
+//						break outer;
+//					}
+					//make this edge deletion
+					if (!s.getG().isNeighbor(v0, v1) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(v0, v1), true, directed)))
 					{
-						movesToMake.add(newMove);
+						bStruct.addResult(s, v0, v1);
+						bound--;
 					}
-						
+				}
+				else if (tempCombined.size() > bound)
+				{
+					
+					//see if this non-edge is a forced deletion
+//					if (s.getChanges().contains(new myEdge<V>(new Pair<V>(v0, v1), false, directed)))
+//					{
+//						//stop editing here
+//						s.setContinueEditing(false);
+//						break outer;
+//					}
+					//make this edge addition
+					if (s.getG().isNeighbor(v0, v1) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(v0, v1), false, directed)))
+					{
+						bStruct.deleteResult(s, v0, v1);
+						bound--;
+					}
 				}
 				
-				
-				
 			}
-		}
-		int bound = s.getMinMoves().getChanges().size() - ogCount;
-		//make moves
-		for (myEdge<V> move : movesToMake)
-		{
-			if (bound <= 0)
-				break;
-			
-			bStruct.addResult(s, move.getEdge().getFirst(), move.getEdge().getSecond());
-			
-			bound--;
-			
 		}
 		
 	

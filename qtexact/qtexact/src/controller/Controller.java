@@ -384,27 +384,6 @@ public class Controller<V>
 		//increment the number of times this controller has branched
 		timesRun++;
 		
-//		if (timesRun == 11)
-//		{
-//			System.out.print("a");
-//		}
-//		System.out.println("\n" + s.getChanges());
-//		System.out.println("Times run: " + timesRun);
-//		System.out.println("Bound: " + bound);
-//		System.out.println("Moves made: " + s.getChanges().size());
-//		System.out.println("Min moves: " + s.getMinMoves().getChanges().size());
-//		System.out.println("Size of graph: " + s.getG().getVertexCount());
-
-		
-//		if (s.getMinMoves().getChanges().size() > globalBound)
-//		{
-//			System.out.println("\n\nWhoa: global bound " + globalBound);
-//			System.out.println("Moves made: " + s.getChanges().size());
-//			System.out.println();
-//		}
-//		
-		
-//		
 		
 		//set flag for whether this node has been reduced
 		boolean reduced = false;
@@ -529,7 +508,7 @@ public class Controller<V>
 		else
 		{	
 			//only branch if current minMoves is longer than current state of search
-			if (bound > 0)
+			if (bound > 0 && s.isContinueEditing())
 			{
 				branchingReturnC<V> rtn = bStruct.branchingRules(s, searchResult);
 				
@@ -555,6 +534,7 @@ public class Controller<V>
 				if (reduced)
 				{
 					bStruct.reduceRevert(s);
+					s.setContinueEditing(true);
 				}
 				
 				return s;

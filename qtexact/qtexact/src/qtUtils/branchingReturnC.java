@@ -45,6 +45,10 @@ public class branchingReturnC<V> implements Comparable<branchingReturnC<V>>
 	 * percent progress made at current node of editing
 	 */
 	double percent;
+	/**
+	 * check if we should continue editing
+	 */
+	boolean continueEditing;
 	
 	public branchingReturnC(Graph<V, Pair<V>> graph)
 	{
@@ -53,6 +57,7 @@ public class branchingReturnC<V> implements Comparable<branchingReturnC<V>>
 		deg = null;
 		minMoves = null;
 		knownBadEdges = new HashSet<Pair<V>>();
+		continueEditing = true;
 	}
 	
 	public branchingReturnC(Graph<V, Pair<V>> graph, branchingReturnC<V> min)
@@ -62,6 +67,7 @@ public class branchingReturnC<V> implements Comparable<branchingReturnC<V>>
 		deg = null;
 		minMoves = min;
 		knownBadEdges = new HashSet<Pair<V>>();
+		continueEditing = true;
 	}
 	
 	public branchingReturnC(Graph<V, Pair<V>> graph, ArrayList<LinkedList<V>> d, LinkedList<myEdge<V>> c, branchingReturnC<V> m)
@@ -71,6 +77,7 @@ public class branchingReturnC<V> implements Comparable<branchingReturnC<V>>
 		deg = d;
 		minMoves = m;
 		knownBadEdges = new HashSet<Pair<V>>();
+		continueEditing = true;
 	}
 	public branchingReturnC(Graph<V, Pair<V>> graph, ArrayList<LinkedList<V>> d, LinkedList<myEdge<V>> c)
 	{
@@ -78,6 +85,7 @@ public class branchingReturnC<V> implements Comparable<branchingReturnC<V>>
 		changes = c;
 		deg = d;
 		knownBadEdges = new HashSet<Pair<V>>();
+		continueEditing = true;
 	}
 	public branchingReturnC(Graph<V, Pair<V>> graph, ArrayList<LinkedList<V>> d, branchingReturnC<V> m)
 	{
@@ -86,6 +94,7 @@ public class branchingReturnC<V> implements Comparable<branchingReturnC<V>>
 		changes = new LinkedList<myEdge<V>>();
 		minMoves = m;
 		knownBadEdges = new HashSet<Pair<V>>();
+		continueEditing = true;
 	}
 	public branchingReturnC(Graph<V, Pair<V>> graph, ArrayList<LinkedList<V>> d)
 	{
@@ -93,9 +102,24 @@ public class branchingReturnC<V> implements Comparable<branchingReturnC<V>>
 		deg = d;
 		changes = new LinkedList<myEdge<V>>();
 		knownBadEdges = new HashSet<Pair<V>>();
+		continueEditing = true;
 	}
 
 	
+	/**
+	 * @return the continueEditing
+	 */
+	public boolean isContinueEditing() {
+		return continueEditing;
+	}
+
+	/**
+	 * @param continueEditing the continueEditing to set
+	 */
+	public void setContinueEditing(boolean continueEditing) {
+		this.continueEditing = continueEditing;
+	}
+
 	@Override
 	public int compareTo(branchingReturnC<V> o) {
 		return Integer.compare(minMoves.changes.size(), o.getMinMoves().changes.size());

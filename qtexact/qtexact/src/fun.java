@@ -20,6 +20,7 @@ import java.util.Set;
 import javax.swing.JApplet;
 import javax.swing.JFrame;
 
+import modularDecomposition.myGraph;
 import qtUtils.branchingReturnC;
 import qtUtils.qtGenerate;
 import reduction.biconnectedReduction;
@@ -93,7 +94,7 @@ public class fun<V> extends JApplet {
 		//wineTest();
 		//userInterface();
 		//diGraphWineryTest();
-		//clusterTest();
+		clusterTest();
 		//scoreWineryGraph();
 		//distanceTest();
 		//cographTest();
@@ -104,7 +105,9 @@ public class fun<V> extends JApplet {
 		//winerykExternalProjections();
 		//externalProjectionsClique();
 		//outputWeightedProjection();
-		projectionClusterAnalysis();
+		//projectionClusterAnalysis();
+		
+		//mdTest();
 	}
 	
 
@@ -970,7 +973,7 @@ public class fun<V> extends JApplet {
 		
 		Graph<Integer, Pair<Integer>> exampleQT;
 		qtGenerate<Integer> gen = new qtGenerate<Integer>();
-		exampleQT = gen.ER(50, .8, (long) 6);
+		exampleQT = gen.ER(25, .8, (long) 6);
 		//exampleQT = gen.treeRandom(50, 2);
 		
 		visualize(exampleQT);
@@ -979,6 +982,9 @@ public class fun<V> extends JApplet {
 		
 		Controller<Integer> c = new Controller<Integer>(null, true);
 		clusterBranch<Integer> bStruct = new clusterBranch<Integer>(c);
+		
+		bStruct.addReduction(new clusterReductionBasic<Integer>(bStruct));
+		
 		
 		branchComponents<Integer> b = new branchComponents<Integer>(c, bStruct);
 		
@@ -1858,7 +1864,14 @@ public class fun<V> extends JApplet {
 		}
 	}
 	
-	
+	public static void mdTest()
+	{
+		Graph<Integer, Pair<Integer>> g = gen.clique(10);
+		
+		myGraph<Integer> mdGraph = new myGraph<Integer>(g);
+		
+		System.out.println(mdGraph.getMDTree());
+	}
 	
 	
 }

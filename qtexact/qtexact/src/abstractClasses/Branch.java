@@ -219,7 +219,7 @@ public abstract class Branch<V>
 				
 				bound = s.getMinMoves().getChanges().size() - s.getChanges().size();
 				
-			} while(newMoves != oldMoves && bound > 0);
+			} while(newMoves != oldMoves && bound > 0 && s.isContinueEditing());
 			
 			reductionStack.push(count);
 		}
