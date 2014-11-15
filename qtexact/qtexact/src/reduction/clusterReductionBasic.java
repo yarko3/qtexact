@@ -46,7 +46,10 @@ public class clusterReductionBasic<V> extends Reduction<V> {
 		outer:
 		for (int i = 0; i < vertices.size(); i++)
 		{
+			
 			V v0 = vertices.get(i);
+			Collection<V> v0Neighbours = s.getG().getNeighbors(v0);
+			
 			for (int j = i+1; j < vertices.size(); j++)
 			{
 				V v1 = vertices.get(j);
@@ -58,7 +61,6 @@ public class clusterReductionBasic<V> extends Reduction<V> {
 					break outer;
 				
 				//check for number of common neighbours (if # common neighbours > bound)
-				Collection<V> v0Neighbours = s.getG().getNeighbors(v0);
 				Collection<V> v1Neighbours = s.getG().getNeighbors(v1);
 				
 				Set<V> tempRetain = new HashSet<V>();
@@ -88,7 +90,7 @@ public class clusterReductionBasic<V> extends Reduction<V> {
 						s.setContinueEditing(false);
 						break outer;
 					}
-					//make this edge deletion
+					//make this edge addition
 					if (!s.getG().isNeighbor(v0, v1) && !s.getChanges().contains(new myEdge<V>(new Pair<V>(v0, v1), true, directed)))
 					{
 						bStruct.addResult(s, v0, v1);
@@ -112,7 +114,7 @@ public class clusterReductionBasic<V> extends Reduction<V> {
 						bound--;
 					}
 				}
-				
+				//edge must exist and not exist for optimal solution
 				if (okToAdd && okToRemove)
 				{
 					s.setContinueEditing(false);
@@ -122,7 +124,7 @@ public class clusterReductionBasic<V> extends Reduction<V> {
 			}
 		}
 		
-	
+		//push how many modifications reduction rule made
 		stack.push(s.getChanges().size() - ogCount);
 		
 		return s;
@@ -132,7 +134,7 @@ public class clusterReductionBasic<V> extends Reduction<V> {
 
 	@Override
 	public branchingReturnC<V> revertReduce(branchingReturnC<V> s) {
-		//return the number of deletes from stack
+		//return the number of modifications from stack
 		int editCount = stack.pop();
 		
 		for (int i = 0; i < editCount; i++)

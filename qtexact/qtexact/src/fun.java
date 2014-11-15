@@ -105,9 +105,10 @@ public class fun<V> extends JApplet {
 		//winerykExternalProjections();
 		//externalProjectionsClique();
 		//outputWeightedProjection();
-		projectionClusterAnalysis();
+		//projectionClusterAnalysis();
 		
 		//mdTest();
+		getRules();
 	}
 	
 
@@ -1871,6 +1872,26 @@ public class fun<V> extends JApplet {
 		myGraph<Integer> mdGraph = new myGraph<Integer>(g);
 		
 		System.out.println(mdGraph.getMDTree());
+	}
+	
+	public static void getRules()
+	{
+		Graph<Integer, Pair<Integer>> g = new UndirectedSparseGraph<Integer, Pair<Integer>>();
+		
+		g.addEdge(new Pair<Integer>(0, 1), 0, 1);
+		g.addEdge(new Pair<Integer>(1, 2), 1, 2);
+		g.addEdge(new Pair<Integer>(2, 3), 2, 3);
+		
+		Controller<Integer> c = new Controller<Integer>(null, true);
+		
+		clusterBranch<Integer> b = new clusterBranch<Integer>(c);
+		
+		c.setbStruct(b);
+		
+		c.branchStart(g, 10);
+		
+		
+		
 	}
 	
 	
