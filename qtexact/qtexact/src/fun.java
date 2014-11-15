@@ -1881,6 +1881,7 @@ public class fun<V> extends JApplet {
 		g.addEdge(new Pair<Integer>(0, 1), 0, 1);
 		g.addEdge(new Pair<Integer>(1, 2), 1, 2);
 		g.addEdge(new Pair<Integer>(2, 3), 2, 3);
+		//g.addEdge(new Pair<Integer>(0, 3), 0, 3);
 		
 		Controller<Integer> c = new Controller<Integer>(null, true);
 		

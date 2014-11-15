@@ -379,15 +379,15 @@ public class Controller<V>
 		int bound = s.getMinMoves().getChanges().size() - s.getChanges().size();
 		
 		//check if bound allows any more moves (does not matter if current graph state is at target)
-		if (bound < 0)
-		{
-			if (useDive)
-			{
-				dive(s);
-			}
-			updatePercent(s);
-			return s;
-		}
+//		if (bound < 0)
+//		{
+//			if (useDive)
+//			{
+//				dive(s);
+//			}
+//			updatePercent(s);
+//			return s;
+//		}
 		
 		//increment the number of times this controller has branched
 		timesRun++;
@@ -508,15 +508,13 @@ public class Controller<V>
 //			
 //			
 			
-			
-			
 			return s;
 		}
 		//branch on found obstruction
 		else
 		{	
 			//only branch if current minMoves is longer than current state of search
-			if (bound > 0 && s.isContinueEditing())
+//			if (bound > 0 && s.isContinueEditing())
 			{
 				branchingReturnC<V> rtn = bStruct.branchingRules(s, searchResult);
 				
@@ -529,24 +527,24 @@ public class Controller<V>
 				return rtn;
 			}	
 			//bound does not permit more moves
-			else
-			{
-				//use greedy algorithm to finish editing, if allowed
-				if (useDive)
-				{
-					dive(s);
-				}
-				
-				updatePercent(s);
-				
-				if (reduced)
-				{
-					bStruct.reduceRevert(s);
-					s.setContinueEditing(true);
-				}
-				
-				return s;
-			}
+//			else
+//			{
+//				//use greedy algorithm to finish editing, if allowed
+//				if (useDive)
+//				{
+//					dive(s);
+//				}
+//				
+//				updatePercent(s);
+//				
+//				if (reduced)
+//				{
+//					bStruct.reduceRevert(s);
+//					s.setContinueEditing(true);
+//				}
+//				
+//				return s;
+//			}
 		}
 	}
 	
