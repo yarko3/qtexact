@@ -43,6 +43,7 @@ import abstractClasses.Dive;
 import abstractClasses.GreedyEdit;
 import abstractClasses.Reduction;
 import abstractClasses.SearchResult;
+import branch.clusterAllStruct;
 import branch.clusterBranch;
 import branch.cographBranch;
 import branch.diQTBranch;
@@ -94,7 +95,7 @@ public class fun<V> extends JApplet {
 		//wineTest();
 		//userInterface();
 		//diGraphWineryTest();
-		//clusterTest();
+		clusterTest();
 		//scoreWineryGraph();
 		//distanceTest();
 		//cographTest();
@@ -108,7 +109,7 @@ public class fun<V> extends JApplet {
 		//projectionClusterAnalysis();
 		
 		//mdTest();
-		getRules();
+		//getRules();
 	}
 	
 
@@ -974,7 +975,8 @@ public class fun<V> extends JApplet {
 		
 		Graph<Integer, Pair<Integer>> exampleQT;
 		qtGenerate<Integer> gen = new qtGenerate<Integer>();
-		exampleQT = gen.ER(50, .5, (long) 3);
+		exampleQT = gen.ER(61, .3, (long) 3);
+		exampleQT = gen.randomTreeGraph(35, 0, 10);
 		//exampleQT = gen.treeRandom(50, 2);
 		
 		visualize(exampleQT);
@@ -983,20 +985,37 @@ public class fun<V> extends JApplet {
 		
 		Controller<Integer> c = new Controller<Integer>(null, true);
 		clusterBranch<Integer> bStruct = new clusterBranch<Integer>(c);
+		clusterAllStruct<Integer> all = new clusterAllStruct<Integer>(c);
 		
-		bStruct.addReduction(new clusterReductionBasic<Integer>(bStruct));
+		//bStruct.addReduction(new clusterReductionBasic<Integer>(bStruct));
 		
+		//all.addReduction(new clusterReductionBasic<Integer>(all));
 		
 		branchComponents<Integer> b = new branchComponents<Integer>(c, bStruct);
+
+		branchComponents<Integer> bAll = new branchComponents<Integer>(c, all);
+		
+		branchingReturnC<Integer> rtn;
+		long start;
 		
 		c.setbStruct(b);
 		
-		System.out.println("\nConnected component: ");
-		long start = System.currentTimeMillis();
-		branchingReturnC<Integer> rtn = c.branchStart(exampleQT, 45);
+		System.out.println("\nConnected component (P3 rules): ");
+		start = System.currentTimeMillis();
+		rtn = c.branchStart(exampleQT, 30);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		System.out.println(search.isTarget(rtn.getG()));
+//		
+		
+		c.setbStruct(bAll);
+		System.out.println("\nConnected component (all rules): ");
+		start = System.currentTimeMillis();
+		rtn = c.branchStart(exampleQT, 30);
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		
+		System.out.println(search.isTarget(rtn.getG()));
+		
 		
 		visualize(rtn.getG());
 	}
@@ -1880,8 +1899,8 @@ public class fun<V> extends JApplet {
 		
 		g.addEdge(new Pair<Integer>(0, 1), 0, 1);
 		g.addEdge(new Pair<Integer>(1, 2), 1, 2);
+		g.addEdge(new Pair<Integer>(1, 3), 1, 3);
 		g.addEdge(new Pair<Integer>(2, 3), 2, 3);
-		//g.addEdge(new Pair<Integer>(0, 3), 0, 3);
 		
 		Controller<Integer> c = new Controller<Integer>(null, true);
 		

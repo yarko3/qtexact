@@ -1,7 +1,6 @@
 package controller;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.LinkedList;
 
 import qtUtils.branchingReturnC;
@@ -328,7 +327,8 @@ public class Controller<V>
 //		for (LinkedList<myEdge<V>> l : solutions)
 //			System.out.println(l);
 		
-		outputRules(solutions);
+		//FOR RULE GENERATION
+		//outputRules(solutions);
 		
 		
 		System.out.println("Completed after moves: " + goal.getMinMoves().getChanges().size());
@@ -379,15 +379,16 @@ public class Controller<V>
 		int bound = s.getMinMoves().getChanges().size() - s.getChanges().size();
 		
 		//check if bound allows any more moves (does not matter if current graph state is at target)
-//		if (bound < 0)
-//		{
-//			if (useDive)
-//			{
-//				dive(s);
-//			}
-//			updatePercent(s);
-//			return s;
-//		}
+		//COMMENT THIS OUT FOR RULE GENERATION
+		if (bound < 0)
+		{
+			if (useDive)
+			{
+				dive(s);
+			}
+			updatePercent(s);
+			return s;
+		}
 		
 		//increment the number of times this controller has branched
 		timesRun++;
@@ -474,37 +475,37 @@ public class Controller<V>
 			
 			
 			//USED FOR GETTING BRANCHING RULES
-			boolean flag = false;
-			
-			for (int i = 0; i < solutions.size(); i++)
-			{
-				LinkedList<myEdge<V>> l = solutions.get(i);
-				
-				//solution has already been found
-				if (s.getChanges().containsAll(l))
-				{
-					flag = true;
-					break;
-				}
-				
-				if (l.containsAll(s.getChanges()))
-				{
-					solutions.remove(i);
-					if (flag == false)
-					{
-						flag = true;
-						solutions.add(i, bStruct.clone.deepClone(s.getChanges()));
-					}
-				}
-			}
+//			boolean flag = false;
+//			
+//			for (int i = 0; i < solutions.size(); i++)
+//			{
+//				LinkedList<myEdge<V>> l = solutions.get(i);
+//				
+//				//solution has already been found
+//				if (s.getChanges().containsAll(l))
+//				{
+//					flag = true;
+//					break;
+//				}
+//				
+//				if (l.containsAll(s.getChanges()))
+//				{
+//					solutions.remove(i);
+//					if (flag == false)
+//					{
+//						flag = true;
+//						solutions.add(i, bStruct.clone.deepClone(s.getChanges()));
+//					}
+//				}
+//			}
 //			
 //			
 //			
 //			
-			if (solutions.isEmpty() || flag == false)
-			{
-				solutions.add(bStruct.clone.deepClone(s.getChanges()));
-			}
+//			if (solutions.isEmpty() || flag == false)
+//			{
+//				solutions.add(bStruct.clone.deepClone(s.getChanges()));
+//			}
 //			
 //			
 			
@@ -514,7 +515,8 @@ public class Controller<V>
 		else
 		{	
 			//only branch if current minMoves is longer than current state of search
-//			if (bound > 0 && s.isContinueEditing())
+			//COMMENT OUT THIS LINE FOR RULE GENERATION
+			if (bound > 0 && s.isContinueEditing())
 			{
 				branchingReturnC<V> rtn = bStruct.branchingRules(s, searchResult);
 				
@@ -527,24 +529,25 @@ public class Controller<V>
 				return rtn;
 			}	
 			//bound does not permit more moves
-//			else
-//			{
-//				//use greedy algorithm to finish editing, if allowed
-//				if (useDive)
-//				{
-//					dive(s);
-//				}
-//				
-//				updatePercent(s);
-//				
-//				if (reduced)
-//				{
-//					bStruct.reduceRevert(s);
-//					s.setContinueEditing(true);
-//				}
-//				
-//				return s;
-//			}
+			//COMMENT OUT FOR RULE GENERATION
+			else
+			{
+				//use greedy algorithm to finish editing, if allowed
+				if (useDive)
+				{
+					dive(s);
+				}
+				
+				updatePercent(s);
+				
+				if (reduced)
+				{
+					bStruct.reduceRevert(s);
+					s.setContinueEditing(true);
+				}
+				
+				return s;
+			}
 		}
 	}
 	
