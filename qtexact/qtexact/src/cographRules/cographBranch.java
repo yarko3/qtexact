@@ -1,4 +1,4 @@
-package branch;
+package cographRules;
 
 import java.util.List;
 
@@ -191,6 +191,8 @@ public class cographBranch<V> extends Branch<V>
 					controller.setGlobalPercent(controller.getGlobalPercent() + oldPercent / ruleCount);
 
 		}
+		else throw new NullPointerException();
+		
 		
 		
 		return s;

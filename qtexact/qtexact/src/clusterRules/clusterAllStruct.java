@@ -1,4 +1,4 @@
-package branch;
+package clusterRules;
 
 import java.util.Collections;
 import java.util.HashMap;

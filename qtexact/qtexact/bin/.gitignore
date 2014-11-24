@@ -1,9 +1,5 @@
-/abstractClasses
-/branch
-/certificate
-/components
 /controller
-/dive
-/greedy
-/jimsFiles
-/modularDecomposition
+/cographRules
+/branch
+/clusterRules
+/certificate

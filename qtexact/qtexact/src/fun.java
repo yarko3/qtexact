@@ -43,18 +43,18 @@ import abstractClasses.Dive;
 import abstractClasses.GreedyEdit;
 import abstractClasses.Reduction;
 import abstractClasses.SearchResult;
-import branch.clusterAllStruct;
-import branch.clusterBranch;
-import branch.cographBranch;
 import branch.diQTBranch;
 import branch.qtAllStruct;
 import branch.qtBranch;
 import branch.qtBranchComponents;
 import branch.qtBranchNoHeuristic;
+import clusterRules.clusterAllStruct;
+import clusterRules.clusterBranch;
+import cographRules.cographBranch;
 
 import com.rits.cloning.Cloner;
-import components.branchComponents;
 
+import components.branchComponents;
 import controller.Controller;
 import edu.uci.ics.jung.algorithms.layout.FRLayout;
 import edu.uci.ics.jung.algorithms.scoring.BetweennessCentrality;
@@ -95,10 +95,10 @@ public class fun<V> extends JApplet {
 		//wineTest();
 		//userInterface();
 		//diGraphWineryTest();
-		clusterTest();
+		//clusterTest();
 		//scoreWineryGraph();
 		//distanceTest();
-		//cographTest();
+		cographTest();
 		//wineryProjectionTest();
 		//getProvinceSpecificExternalsEdgeList();
 		//projectionAnalysis();
@@ -110,6 +110,8 @@ public class fun<V> extends JApplet {
 		
 		//mdTest();
 		//getRules();
+		
+		//clusterComparisonTest();
 	}
 	
 
@@ -998,6 +1000,7 @@ public class fun<V> extends JApplet {
 		branchingReturnC<Integer> rtn;
 		long start;
 		
+		
 		c.setbStruct(b);
 		
 		System.out.println("\nConnected component (P3 rules): ");
@@ -1357,9 +1360,20 @@ public class fun<V> extends JApplet {
 		
 		Graph<Integer, Pair<Integer>> exampleQT;
 		qtGenerate<Integer> gen = new qtGenerate<Integer>();
-		exampleQT = gen.randomTreeGraph(20, 9, 3);
+		//exampleQT = gen.randomTreeGraph(20, 9, 3);
 		
 		//exampleQT = gen.treeRandom(50, 2);
+		
+		exampleQT = new UndirectedSparseGraph<Integer, Pair<Integer>>();
+		
+		exampleQT.addEdge(new Pair<Integer>(0, 1), 0, 1);
+		exampleQT.addEdge(new Pair<Integer>(1, 2), 1, 2);
+		exampleQT.addEdge(new Pair<Integer>(2, 3), 2, 3);
+		exampleQT.addEdge(new Pair<Integer>(3, 4), 3, 4);
+		exampleQT.addEdge(new Pair<Integer>(4, 2), 4, 2);
+		//exampleQT.addEdge(new Pair<Integer>(4, 1), 4, 1);
+		
+		
 		
 		visualize(exampleQT);
 		
@@ -1380,14 +1394,14 @@ public class fun<V> extends JApplet {
 		System.out.println(search.isTarget(rtn.getG()));
 		
 		
-		c.setbStruct(b);
-		
-		System.out.println("\nConnected component: ");
-		start = System.currentTimeMillis();
-		rtn = c.branchStart(exampleQT, 10);
-		System.out.println((System.currentTimeMillis()-start) / 1000.0);
-		
-		System.out.println(search.isTarget(rtn.getG()));
+//		c.setbStruct(b);
+//		
+//		System.out.println("\nConnected component: ");
+//		start = System.currentTimeMillis();
+//		rtn = c.branchStart(exampleQT, 10);
+//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+//		
+//		System.out.println(search.isTarget(rtn.getG()));
 		
 		visualize(rtn.getG());
 	}
@@ -1912,6 +1926,96 @@ public class fun<V> extends JApplet {
 		
 		
 		
+	}
+	
+	private static void clusterComparisonTest()
+	{
+		//run the same graph as a test over multiple traversal methods
+		clusterSearch<Integer> search = new clusterSearch<Integer>();
+		qtGenerate<Integer> gen = new qtGenerate<Integer>();
+		Cloner clone = new Cloner();
+		
+		//load all test branching methods
+		Controller<Integer> c = new Controller<Integer>(null, false);
+		clusterAllStruct<Integer> allOriginal = new clusterAllStruct<Integer>(c);
+		clusterBranch<Integer> branchCOriginal = new clusterBranch<Integer>(c);
+		
+		
+		branchComponents<Integer> all = new branchComponents<Integer>(c, allOriginal);
+		branchComponents<Integer> branchC = new branchComponents<Integer>(c, branchCOriginal);
+		
+		
+		
+		//store branching types
+		LinkedList<Branch<Integer>> b = new LinkedList<Branch<Integer>>();
+		HashSet<Integer> moves;
+		HashSet<Boolean> success;
+		
+		Graph<Integer, Pair<Integer>> graph;
+		
+		b.add(all);
+		b.add(branchC);
+		
+		int size = 2;
+		
+		outer:
+		while (size < 66)
+		{
+			int seed = 0;
+			seedloop:
+			while (seed < 20)
+			{
+				//create graph
+				graph = gen.treeRandom(size, seed);
+				Graph<Integer, Pair<Integer>> og = clone.deepClone(graph);
+				int bound = 0;
+				
+				boundloop:
+				while (bound < 17)
+				{
+					moves = new HashSet<Integer>();
+					success = new HashSet<Boolean>();
+					
+					for (Branch<Integer> temp : b)
+					{
+						c.setbStruct(temp);
+						branchingReturnC<Integer> ans = c.branchStart(graph, bound);
+						
+						if (!gen.graphEquals(og, graph))
+						{
+							System.out.println("Graph modified at size " + size + ", seed " + seed + ", bound " + bound);
+							break outer;
+						}
+						
+						
+						if (!moves.isEmpty() && moves.add(ans.getMinMoves().getChanges().size()))
+						{
+							System.out.println("Different solutions at size " + size + ", seed " + seed + ", bound " + bound);
+							break outer;
+						}
+						else if (moves.isEmpty())
+							moves.add(ans.getMinMoves().getChanges().size());
+						
+						if (!success.isEmpty() && success.add(search.isTarget(ans.getG())))
+						{
+							System.out.println("Different success in solving at size " + size + ", seed " + seed + ", bound " + bound);
+							break outer;
+						}
+						else if (success.isEmpty())
+							success.add(search.isTarget(ans.getG()));
+						
+					}
+					if (success.iterator().next())
+					{
+						break boundloop;
+					}
+
+					bound++;
+				}
+				seed++;
+			}
+			size++;
+		}
 	}
 	
 	
