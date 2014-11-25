@@ -50,11 +50,12 @@ import branch.qtBranchComponents;
 import branch.qtBranchNoHeuristic;
 import clusterRules.clusterAllStruct;
 import clusterRules.clusterBranch;
+import cographRules.cographAllStruct;
 import cographRules.cographBranch;
 
 import com.rits.cloning.Cloner;
-
 import components.branchComponents;
+
 import controller.Controller;
 import edu.uci.ics.jung.algorithms.layout.FRLayout;
 import edu.uci.ics.jung.algorithms.scoring.BetweennessCentrality;
@@ -1360,17 +1361,17 @@ public class fun<V> extends JApplet {
 		
 		Graph<Integer, Pair<Integer>> exampleQT;
 		qtGenerate<Integer> gen = new qtGenerate<Integer>();
-		//exampleQT = gen.randomTreeGraph(20, 9, 3);
+		exampleQT = gen.randomTreeGraph(50, 7, 3);
 		
 		//exampleQT = gen.treeRandom(50, 2);
 		
-		exampleQT = new UndirectedSparseGraph<Integer, Pair<Integer>>();
-		
-		exampleQT.addEdge(new Pair<Integer>(0, 1), 0, 1);
-		exampleQT.addEdge(new Pair<Integer>(1, 2), 1, 2);
-		exampleQT.addEdge(new Pair<Integer>(2, 3), 2, 3);
-		exampleQT.addEdge(new Pair<Integer>(3, 4), 3, 4);
-		exampleQT.addEdge(new Pair<Integer>(4, 2), 4, 2);
+//		exampleQT = new UndirectedSparseGraph<Integer, Pair<Integer>>();
+//		
+//		exampleQT.addEdge(new Pair<Integer>(0, 1), 0, 1);
+//		exampleQT.addEdge(new Pair<Integer>(1, 2), 1, 2);
+//		exampleQT.addEdge(new Pair<Integer>(2, 3), 2, 3);
+//		exampleQT.addEdge(new Pair<Integer>(3, 4), 3, 4);
+//		exampleQT.addEdge(new Pair<Integer>(4, 2), 4, 2);
 		//exampleQT.addEdge(new Pair<Integer>(4, 1), 4, 1);
 		
 		
@@ -1381,18 +1382,32 @@ public class fun<V> extends JApplet {
 		
 		Controller<Integer> c = new Controller<Integer>(null, true);
 		cographBranch<Integer> bStruct = new cographBranch<Integer>(c);
+		cographAllStruct<Integer> all = new cographAllStruct<Integer>(c);
 		
-		branchComponents<Integer> b = new branchComponents<Integer>(c, bStruct);
+		
+		branchComponents<Integer> bStructComp = new branchComponents<Integer>(c, bStruct);
+		branchComponents<Integer> allComp = new branchComponents<Integer>(c, all);
 		
 		
-		c.setbStruct(bStruct);
-		System.out.println("\nRegular cograph: ");
+		
+		
+		c.setbStruct(allComp);
+		
+		System.out.println("\nAll structures cograph: ");
 		long start = System.currentTimeMillis();
-		branchingReturnC<Integer> rtn = c.branchStart(exampleQT, 10);
+		branchingReturnC<Integer> rtn = c.branchStart(exampleQT, 7);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		System.out.println(search.isTarget(rtn.getG()));
 		
+		c.setbStruct(bStructComp);
+		
+		System.out.println("\nRegular cograph: ");
+		start = System.currentTimeMillis();
+		rtn = c.branchStart(exampleQT, 7);
+		System.out.println((System.currentTimeMillis()-start) / 1000.0);
+		
+		System.out.println(search.isTarget(rtn.getG()));
 		
 //		c.setbStruct(b);
 //		

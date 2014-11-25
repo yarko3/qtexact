@@ -776,7 +776,7 @@ public abstract class qtBranch<V> extends Branch<V>
 	 * -3 4 pan
 	 * -4 house
 	 * -5 P5
-	 * -6 fork
+	 * -6 y
 	 * -7 3 pan (extra node on handle)
 	 * -8 C5
 	 * -9 kite
