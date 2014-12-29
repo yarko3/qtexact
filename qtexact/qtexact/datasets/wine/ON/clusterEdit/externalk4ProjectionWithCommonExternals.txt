@@ -1,0 +1,21 @@
+Externals: (3)
+[http://www.20valley.ca, http://www.vintages.com, http://www.lcbo.com]
+Wineries: (4)
+[http://www.henryofpelham.com, http://www.13thstreetwinery.com, http://www.flatrockcellars.com, http://www.creeksidewine.com]
+Mean winery distance: 	4.4819426433283445
+Median winery distance: 	5.182195324969201
+
+Externals: (5)
+[http://www.portabellaonmain.com, http://www.merrillinn.com, http://www.eastandmain.ca, http://www.blumengardenbistro.com, http://www.bloomfieldcarriagehouse.com]
+Wineries: (3)
+[http://www.keint-he.ca, http://www.rosehallrun.com, http://www.huffestates.com]
+Mean winery distance: 	10.96816981169107
+Median winery distance: 	12.94995361626752
+
+Externals: (6)
+[http://www.abbbe.com, http://www.theexplorerscafe.com, http://www.thedampub.ca, http://www.azzurra.ca, http://www.simplicitybistro.com, http://www.lcbo.com]
+Wineries: (2)
+[http://www.georgianhillsvineyards.ca, http://www.coffinridge.ca]
+Mean winery distance: 	33.234898710245226
+Median winery distance: 	33.234898710245226
+

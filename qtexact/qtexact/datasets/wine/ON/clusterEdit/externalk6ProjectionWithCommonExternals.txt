@@ -1,0 +1,7 @@
+Externals: (3)
+[http://www.jamiekennedy.ca, http://www.treadwellcuisine.com, http://www.thebeastrestaurant.com]
+Wineries: (3)
+[http://www.keint-he.ca, http://www.flatrockcellars.com, http://www.hinterlandwine.com]
+Mean winery distance: 	330.76306194548727
+Median winery distance: 	314.35302545572404
+

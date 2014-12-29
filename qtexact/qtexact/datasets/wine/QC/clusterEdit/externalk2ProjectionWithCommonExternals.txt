@@ -1,0 +1,7 @@
+Externals: (3)
+[http://www.fetedesvendanges.com, http://www.vinsduquebec.com, http://www.fetedesvins.ca]
+Wineries: (3)
+[http://www.cepdargent.com, http://www.orpailleur.ca, http://www.vignobleriviereduchene.ca]
+Mean winery distance: 	106.79019374541443
+Median winery distance: 	100.99186022398716
+

@@ -1,0 +1,7 @@
+Externals: (36)
+[http://www.bistrostefan.com, http://www.aquaterrabyclark.com, http://www.simplebistro.com, http://www.capers.ca, http://www.actinoliterestaurant.com, http://www2.macleans.ca, http://www.themanse.ca, http://www.lechiennoir.com, http://www.merrillinn.com, http://www.tonyaspler.com, http://www.plankrestobar.ca, http://www.thewellingtongastropub.com, http://www.milfordbistro.com, http://www.jamiekennedy.ca, http://www.stgeorges.org, http://www.jacobssteakhouse.com, http://www.farmhousetavern.tumblr.com, http://www.restaurant18.com, http://www.crushwinebar.com, http://www.woodlotrestaurant.com, http://www.eastandmain.ca, http://www.blumengardenbistro.com, http://www.9church.com, http://www.restaurantchantecler.ca, http://www.oliverbonacini.com, http://www.treadwellcuisine.com, http://www.perimeterinstitute.ca, http://www.allens.to, http://www.olivea.ca, http://www.chezpiggy.com, http://www.juniperdining.ca, http://www.barque.ca, http://www.verticalrestaurant.ca, http://www.petitbillsbistro.com, http://www.torontolife.com, http://www.burntbutter.ca]
+Wineries: (2)
+[http://www.keint-he.ca, http://www.clossonchase.com]
+Mean winery distance: 	6.499410842078171
+Median winery distance: 	6.499410842078342
+

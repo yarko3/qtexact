@@ -25,6 +25,8 @@ public class clusterAllStruct<V> extends clusterBranch<V>
 		c4 = new clusterC4<V>(controller);
 		claw = new clusterClaw<V>(controller);
 		paw = new clusterPaw<V>(controller);
+		
+		output = controller.getOutputFlag();
 	}
 	
 	

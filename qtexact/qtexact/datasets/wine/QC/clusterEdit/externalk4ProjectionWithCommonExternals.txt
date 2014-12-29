@@ -1,0 +1,7 @@
+Externals: (11)
+[http://www.ripplecove.com, http://www.cantonsdelest.com, http://www.easterntownships.org, http://www.lestmartinbromont.com, http://www.auberge-appalaches.com, http://www.aubergedk.com, http://www.aubergedujolivent.com, http://www.lecypres.ca, http://www.montagnard.qc.ca, http://www.aubergeknowlton.ca, http://www.awb.ca]
+Wineries: (2)
+[http://www.orpailleur.ca, http://www.vindeglace.com]
+Mean winery distance: 	23.726982352879496
+Median winery distance: 	23.72698235287951
+

@@ -1,0 +1,7 @@
+Externals: (8)
+[http://www.essexcountywineries.ca, http://www.ctmhv.com, http://www.choicehotels.ca, http://www.viewpointewinery.com, http://www.wetrolley.com, http://www.thebellhouse.ca, http://www.bbcanada.com, http://www.mckinnonsbb.com]
+Wineries: (2)
+[http://www.peleeisland.com, http://www.erieshore.ca]
+Mean winery distance: 	20.837730130296098
+Median winery distance: 	20.837730130296126
+

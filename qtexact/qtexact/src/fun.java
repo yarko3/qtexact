@@ -57,6 +57,7 @@ import com.rits.cloning.Cloner;
 import components.branchComponents;
 
 import controller.Controller;
+import edu.uci.ics.jung.algorithms.cluster.WeakComponentClusterer;
 import edu.uci.ics.jung.algorithms.layout.FRLayout;
 import edu.uci.ics.jung.algorithms.scoring.BetweennessCentrality;
 import edu.uci.ics.jung.algorithms.scoring.ClosenessCentrality;
@@ -99,7 +100,7 @@ public class fun<V> extends JApplet {
 		//clusterTest();
 		//scoreWineryGraph();
 		//distanceTest();
-		cographTest();
+		//cographTest();
 		//wineryProjectionTest();
 		//getProvinceSpecificExternalsEdgeList();
 		//projectionAnalysis();
@@ -113,7 +114,11 @@ public class fun<V> extends JApplet {
 		//getRules();
 		
 		//clusterComparisonTest();
+	
+		//clusterCommonExternals();
+		test();
 	}
+	
 	
 
 	public static void userInterface() throws FileNotFoundException
@@ -1971,7 +1976,7 @@ public class fun<V> extends JApplet {
 		b.add(all);
 		b.add(branchC);
 		
-		int size = 2;
+		int size = 30;
 		
 		outer:
 		while (size < 66)
@@ -1985,16 +1990,20 @@ public class fun<V> extends JApplet {
 				Graph<Integer, Pair<Integer>> og = clone.deepClone(graph);
 				int bound = 0;
 				
+				visualize(og);
+				
 				boundloop:
 				while (bound < 17)
 				{
 					moves = new HashSet<Integer>();
 					success = new HashSet<Boolean>();
 					
+					branchingReturnC<Integer> ans = null;
+					
 					for (Branch<Integer> temp : b)
 					{
 						c.setbStruct(temp);
-						branchingReturnC<Integer> ans = c.branchStart(graph, bound);
+						ans = c.branchStart(graph, bound);
 						
 						if (!gen.graphEquals(og, graph))
 						{
@@ -2034,4 +2043,190 @@ public class fun<V> extends JApplet {
 	}
 	
 	
+	/*
+	 * output common externals to cliques found by editing
+	 */
+	public static void clusterCommonExternals()
+	{
+		//String province = "BC";
+		LinkedList<String> provinces = new LinkedList<String>();
+		distance<String> d = new distance<String>();
+		
+		//get edited cliques
+		Controller<String> c = new Controller<String>(null, true);
+		clusterAllStruct<String> bStruct = new clusterAllStruct<String>(c);
+		
+		c.setbStruct(bStruct);
+		bStruct.setDive(new clusterGreedy<String>(bStruct));
+		
+		provinces.add("BC");
+		provinces.add("ON");
+		provinces.add("QC");
+		
+		for (String province : provinces)
+		{
+			//make a general graph for lookup
+			Graph<String, Pair<String>> overall = fillGraphFromFileWithStrings("datasets/wine/" + province + "/ProvinceSpecificEdgeList.txt");
+			
+			
+			String distanceFile = "datasets/wine/Distance/"+province +"/"+province+"Distance.txt";
+			HashMap<String, Pair<Double>> mapping = distance.getLatLongFromFile(distanceFile);
+			
+			UndirectedGraph<String, Pair<String>> wine = null;
+			
+			
+			for (int k = 2; k < 6; k++)
+			{
+			
+				try {
+					wine = genString.fromBipartiteFile("datasets/wine/" + province + "/ProvinceSpecificEdgeList.txt", k);
+				} catch (FileNotFoundException | UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				
+				
+				//run editing
+				branchingReturnC<String> result = c.diveAtStartEdit(wine, 30);
+				
+				if (!bStruct.getSearch().isTarget(result.getG()))
+					continue;
+				
+				
+				//find connected components in results (aka cliques)
+				WeakComponentClusterer<String, Pair<String>> components = new WeakComponentClusterer<String, Pair<String>>();
+				Set<Set<String>> cliques = components.transform(result.getG());
+				
+				//nothing left of graph
+				if (cliques.size() == 0)
+					break;
+				
+				PrintWriter writer = null;
+				try {
+					writer = new PrintWriter("datasets/wine/"+province+"/clusterEdit/externalk"+k+"ProjectionWithCommonExternals.txt", "UTF-8");
+				} catch (FileNotFoundException | UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				
+				//order sets in decreasing size
+				LinkedList<Set<String>> orderedSets = new LinkedList<Set<String>>();
+				
+				for (Set<String> set : cliques)
+				{
+					if (orderedSets.isEmpty())
+						orderedSets.add(set);
+					else
+					{
+						for (int i = 0; i < orderedSets.size(); i++)
+						{
+							Set<String> inList = orderedSets.get(i);
+							
+							if (set.size() > inList.size())
+							{
+								orderedSets.add(i, set);
+								break;
+							}
+						}
+					}
+				}
+				
+				
+				for (int i = 0; i < orderedSets.size(); i++)
+				{
+					Set<String> set = orderedSets.get(i);
+					//get externals from these cliques
+					Set<String> externals = new HashSet<String>();
+					
+					boolean flag = true;
+					
+					for (String w : set)
+					{
+						if (flag)
+						{
+							externals.addAll(overall.getNeighbors(w));
+							flag = false;
+						}
+						else
+						{
+							externals.retainAll(overall.getNeighbors(w));
+						}
+							
+					}
+					
+					//do we care about this clique?
+					if (set.size() > 1)
+					{
+						//yes we do
+						
+						//do distance analysis
+						//output distances
+						writer.println("Externals: (" + externals.size() + ")");
+						
+						writer.println(externals);
+//						writer.println("Mean external distance: \t" + d.meanDistance(next.getFirst(), mapping));
+//						writer.println("Median external distance: \t" + d.medianDistance(next.getFirst(), mapping));
+						writer.println("Wineries: (" + set.size() + ")");
+						writer.println(set);
+						writer.println("Mean winery distance: \t" + d.meanDistance(set, mapping));
+						writer.println("Median winery distance: \t" + d.medianDistance(set, mapping));
+						
+						writer.println();
+						
+					}
+					
+				}
+				
+				writer.close();
+					
+			}
+		}
+	}
+	
+	public static void test()
+	{
+		Graph<Integer, Pair<Integer>> graph = gen.treeRandom(30, 1);
+		
+		Controller<Integer> c = new Controller<Integer>(null, true);
+		
+		Branch<Integer> bStruct = new clusterAllStruct<Integer>(c);
+		
+		c.setbStruct(bStruct);
+		
+		bStruct.setDive(new clusterGreedy<Integer>(bStruct));
+		visualize(clone.deepClone(graph));
+		
+		branchingReturnC<Integer> rtn = c.branchStart(graph, 19);
+		
+		visualize(rtn.getG());
+		
+	}
+	
+	public static void honoursTest()
+	{
+		//----------------------------------------------------
+		//initialize editor
+		Controller<String> c = new Controller<String>(null, true);
+		
+		LinkedList<Branch<String>> bStructs = new LinkedList<Branch<String>>();
+		
+		bStructs.add(new clusterAllStruct<String>(c));
+		bStructs.add(new cographAllStruct<String>(c));
+		
+		//set up qt editor with reduction rule
+		qtBranch<String> temp = new qtAllStruct<String>(c);
+		
+		temp.addReduction(new c4p4Reduction<String>(temp));
+		
+		bStructs.add(temp);
+		
+		
+		//----------------------------------------------------
+		//set up data
+		
+		
+		
+	}
 }

@@ -27,6 +27,8 @@ public class cographAllStruct<V> extends cographBranch<V> {
 		kite = new cographKite<V>(controller);
 		y = new cographY<V>(controller);
 		p5 = new cographP5<V>(controller);
+		
+		output = controller.getOutputFlag();
 	}
 	
 	@Override

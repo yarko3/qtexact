@@ -1,0 +1,21 @@
+Externals: (1)
+[http://www.galianoinn.com]
+Wineries: (4)
+[http://www.tantalus.ca, http://www.alderlea.com, http://www.unsworthvineyards.com, http://www.dragonflyhillvineyard.com]
+Mean winery distance: 	173.98754926488823
+Median winery distance: 	322.8317107275322
+
+Externals: (9)
+[http://www.mudbaywines.com, http://www.vqawineshop.ca, http://www.sardisparkwines.com, http://www.swirlwinestore.ca, http://www.sipwines.ca, http://www.villagevqawines.com, http://www.discoverwines.com, http://www.wine-emporium.com, http://www.kensingtonsquarewines.com]
+Wineries: (3)
+[http://www.intriguewines.ca, http://www.littlestraw.bc.ca, http://www.kalalawines.ca]
+Mean winery distance: 	19.958790374977116
+Median winery distance: 	24.573876975813825
+
+Externals: (9)
+[http://www.blackcombliquorstore.com, http://www.myliquorstore.ca, http://www.metroliquor.com, http://www.legacyliquorstore.com, http://www.ohares.ca, http://www.waterfrontrestaurant.ca, http://www.johnbpub.com, http://www.westcoastliquor.com, http://www.eatsquid.com]
+Wineries: (2)
+[http://www.nicholvineyard.com, http://www.3milewinery.com]
+Mean winery distance: 	6.266598946250094
+Median winery distance: 	6.266598946250126
+

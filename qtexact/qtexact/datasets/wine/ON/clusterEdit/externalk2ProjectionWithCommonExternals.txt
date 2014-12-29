@@ -1,0 +1,77 @@
+Externals: (1)
+[http://www.20valley.ca]
+Wineries: (6)
+[http://www.henryofpelham.com, http://www.angelsgatewinery.com, http://www.13thstreetwinery.com, http://www.flatrockcellars.com, http://www.creeksidewine.com, http://www.fieldingwines.com]
+Mean winery distance: 	9.57356676445074
+Median winery distance: 	11.394056961496817
+
+Externals: (2)
+[http://www.brocku.ca, http://www.vqaontario.com]
+Wineries: (3)
+[http://www.clossonchase.com, http://www.pillitteri.com, http://www.rennieestatewinery.com]
+Mean winery distance: 	126.78240490723272
+Median winery distance: 	163.04847419440847
+
+Externals: (2)
+[http://www.oliverbonacini.com, http://www.treadwellcuisine.com]
+Wineries: (3)
+[http://www.fiverows.com, http://www.keint-he.ca, http://www.hinterlandwine.com]
+Mean winery distance: 	331.08284729913873
+Median winery distance: 	335.1012258991347
+
+Externals: (6)
+[http://www.kettlecreekinn.com, http://www.innontheharbour.ca, http://www.clovermead.com, http://www.winter-wheat.com, http://www.spartahouse.com, http://www.pinecroft.ca]
+Wineries: (2)
+[http://www.quaiduvin.com, http://www.rushcreekwines.com]
+Mean winery distance: 	8.890149099922985
+Median winery distance: 	8.89014909992306
+
+Externals: (3)
+[http://www.oliverbonacini.com, http://www.farmhousetavern.tumblr.com, http://www.lcbo.com]
+Wineries: (2)
+[http://www.georgianhillsvineyards.ca, http://www.rosehallrun.com]
+Mean winery distance: 	245.53910807420115
+Median winery distance: 	245.53910807420118
+
+Externals: (8)
+[http://www.essexcountywineries.ca, http://www.ctmhv.com, http://www.choicehotels.ca, http://www.viewpointewinery.com, http://www.wetrolley.com, http://www.thebellhouse.ca, http://www.bbcanada.com, http://www.mckinnonsbb.com]
+Wineries: (2)
+[http://www.peleeisland.com, http://www.erieshore.ca]
+Mean winery distance: 	20.837730130296098
+Median winery distance: 	20.837730130296126
+
+Externals: (3)
+[http://www.prince-edward-county.com, http://www.infolinkweb.ca, http://www.thecountywines.com]
+Wineries: (2)
+[http://www.hilliercreekestates.com, http://www.33vines.com]
+Mean winery distance: 	37.98008059103487
+Median winery distance: 	37.98008059103492
+
+Externals: (3)
+[http://www.eastandmain.ca, http://www.blumengardenbistro.com, http://www.lcbo.com]
+Wineries: (2)
+[http://www.grangeofprinceedward.com, http://www.huffestates.com]
+Mean winery distance: 	11.323080024390675
+Median winery distance: 	11.323080024390695
+
+Externals: (3)
+[http://www.wineriesofniagaraonthelake.com, http://www.niagaraonthelake.com, http://www.shawfest.com]
+Wineries: (2)
+[http://www.coyotesrunwinery.com, http://www.strewnwinery.com]
+Mean winery distance: 	8.049035155781047
+Median winery distance: 	8.049035155781176
+
+Externals: (3)
+[http://www.bychadseyscairns.com, http://www.laceyestates.com, http://www.thecountywines.com]
+Wineries: (2)
+[http://www.brokenstone.ca, http://www.sugarbushvineyards.ca]
+Mean winery distance: 	5.409761336500798
+Median winery distance: 	5.409761336500813
+
+Externals: (3)
+[http://www.splashinteractive.com, http://www.thewineshops.com, http://www.lcbo.com]
+Wineries: (2)
+[http://www.gretzkyestateswines.com, http://www.peller.com]
+Mean winery distance: 	1.9187281721027571
+Median winery distance: 	1.9187281721029625
+

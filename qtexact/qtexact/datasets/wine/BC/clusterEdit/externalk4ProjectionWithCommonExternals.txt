@@ -1,0 +1,42 @@
+Externals: (2)
+[http://www.mudbaywines.com, http://www.sipwines.ca]
+Wineries: (7)
+[http://www.vistadoro.com, http://www.tantalus.ca, http://www.intriguewines.ca, http://www.littlestraw.bc.ca, http://www.cedarcreek.bc.ca, http://www.kalalawines.ca, http://www.township7.com]
+Mean winery distance: 	87.13484497088108
+Median winery distance: 	31.179020275261298
+
+Externals: (2)
+[http://www.marinarestaurant.com, http://www.camillesrestaurant.com]
+Wineries: (3)
+[http://www.closdusoleil.ca, http://www.unsworthvineyards.com, http://www.alderlea.com]
+Mean winery distance: 	196.17540526544838
+Median winery distance: 	284.9188527850138
+
+Externals: (6)
+[http://www.westernlivingmagazine.com, http://www.lakebreeze.ca, http://www.cedarcreek.bc.ca, http://www.blastedchurch.com, http://www.vancouversun.com, http://www.scoutmagazine.ca]
+Wineries: (2)
+[http://www.mfvwines.com, http://www.vancouverurbanwinery.com]
+Mean winery distance: 	257.9175344527371
+Median winery distance: 	257.9175344527371
+
+Externals: (6)
+[http://www.hootsuite.com, http://www.desert.org, http://www.montecristomagazine.com, http://www.enotecca.ca, http://www.mywinepal.com, http://www.cowieandfox.com]
+Wineries: (2)
+[http://www.levieuxpin.ca, http://www.lastella.ca]
+Mean winery distance: 	12.00011166697025
+Median winery distance: 	12.000111666970346
+
+Externals: (5)
+[http://www.westrestaurant.com, http://www.bluewatercafe.net, http://www.manteo.com, http://www.araxi.com, http://www.hyssteakhouse.com]
+Wineries: (2)
+[http://www.hainle.com, http://www.silkw.net]
+Mean winery distance: 	25.344698089475177
+Median winery distance: 	25.344698089475294
+
+Externals: (9)
+[http://www.blackcombliquorstore.com, http://www.myliquorstore.ca, http://www.metroliquor.com, http://www.legacyliquorstore.com, http://www.ohares.ca, http://www.waterfrontrestaurant.ca, http://www.johnbpub.com, http://www.westcoastliquor.com, http://www.eatsquid.com]
+Wineries: (2)
+[http://www.nicholvineyard.com, http://www.3milewinery.com]
+Mean winery distance: 	6.266598946250094
+Median winery distance: 	6.266598946250126
+

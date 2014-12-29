@@ -1,0 +1,56 @@
+Externals: (3)
+[http://www.20valley.ca, http://www.vintages.com, http://www.lcbo.com]
+Wineries: (4)
+[http://www.henryofpelham.com, http://www.13thstreetwinery.com, http://www.flatrockcellars.com, http://www.creeksidewine.com]
+Mean winery distance: 	4.4819426433283445
+Median winery distance: 	5.182195324969201
+
+Externals: (5)
+[http://www.portabellaonmain.com, http://www.merrillinn.com, http://www.eastandmain.ca, http://www.blumengardenbistro.com, http://www.bloomfieldcarriagehouse.com]
+Wineries: (3)
+[http://www.keint-he.ca, http://www.rosehallrun.com, http://www.huffestates.com]
+Mean winery distance: 	10.96816981169107
+Median winery distance: 	12.94995361626752
+
+Externals: (6)
+[http://www.kettlecreekinn.com, http://www.innontheharbour.ca, http://www.clovermead.com, http://www.winter-wheat.com, http://www.spartahouse.com, http://www.pinecroft.ca]
+Wineries: (2)
+[http://www.quaiduvin.com, http://www.rushcreekwines.com]
+Mean winery distance: 	8.890149099922985
+Median winery distance: 	8.89014909992306
+
+Externals: (8)
+[http://www.rubywatchco.ca, http://www.beckta.com, http://www.oliverbonacini.com, http://www.treadwellcuisine.com, http://www.brookstreet.ca, http://www.littledrunkbird.com, http://www.hockley.com, http://www.theprune.com]
+Wineries: (2)
+[http://www.fiverows.com, http://www.hinterlandwine.com]
+Mean winery distance: 	335.10122589913465
+Median winery distance: 	335.1012258991347
+
+Externals: (5)
+[http://www.lasociete.ca, http://www.theglobeandmail.com, http://www.brocku.ca, http://www.vqaontario.com, http://www.lcbo.com]
+Wineries: (2)
+[http://www.pillitteri.com, http://www.clossonchase.com]
+Mean winery distance: 	163.04847419440844
+Median winery distance: 	163.04847419440847
+
+Externals: (6)
+[http://www.abbbe.com, http://www.theexplorerscafe.com, http://www.thedampub.ca, http://www.azzurra.ca, http://www.simplicitybistro.com, http://www.lcbo.com]
+Wineries: (2)
+[http://www.georgianhillsvineyards.ca, http://www.coffinridge.ca]
+Mean winery distance: 	33.234898710245226
+Median winery distance: 	33.234898710245226
+
+Externals: (8)
+[http://www.essexcountywineries.ca, http://www.ctmhv.com, http://www.choicehotels.ca, http://www.viewpointewinery.com, http://www.wetrolley.com, http://www.thebellhouse.ca, http://www.bbcanada.com, http://www.mckinnonsbb.com]
+Wineries: (2)
+[http://www.peleeisland.com, http://www.erieshore.ca]
+Mean winery distance: 	20.837730130296098
+Median winery distance: 	20.837730130296126
+
+Externals: (4)
+[http://www.thecountywines.com, http://www.pecwinetours.com, http://www.sandbanksvacations.com, http://www.pecchamber.com]
+Wineries: (2)
+[http://www.hilliercreekestates.com, http://www.sugarbushvineyards.ca]
+Mean winery distance: 	9.483946894587683
+Median winery distance: 	9.48394689458772
+

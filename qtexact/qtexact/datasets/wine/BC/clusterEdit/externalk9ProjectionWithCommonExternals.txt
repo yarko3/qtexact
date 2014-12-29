@@ -1,0 +1,14 @@
+Externals: (1)
+[http://www.marinarestaurant.com]
+Wineries: (4)
+[http://www.tantalus.ca, http://www.nicholvineyard.com, http://www.unsworthvineyards.com, http://www.alderlea.com]
+Mean winery distance: 	219.8013921239955
+Median winery distance: 	310.7211241246146
+
+Externals: (12)
+[http://www.mudbaywines.com, http://www.swirlwinestore.ca, http://www.metroliquor.com, http://www.sipwines.ca, http://www.johnbpub.com, http://www.legacyliquorstore.com, http://www.discoverwines.com, http://www.lakecountryliquorstore.com, http://www.westcoastliquor.com, http://www.ohares.ca, http://www.ricardos.ca, http://www.wine-emporium.com]
+Wineries: (2)
+[http://www.intriguewines.ca, http://www.3milewinery.com]
+Mean winery distance: 	58.723704637723245
+Median winery distance: 	58.72370463772329
+

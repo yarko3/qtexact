@@ -1,0 +1,7 @@
+Externals: (17)
+[http://www.domuscafe.ca, http://www.almonteriverside.com, http://www.table17.ca, http://www.leselect.com, http://www.lechiennoir.com, http://www.jamiekennedy.ca, http://www.cntower.ca, http://www.zenkitchen.ca, http://www.sottosotto.ca, http://www.crushwinebar.com, http://www.treadwellcuisine.com, http://www.theglobeandmail.com, http://www.thestar.com, http://www.gezelligdining.ca, http://www.petitbillsbistro.com, http://www.vintages.com, http://www.lcbo.com]
+Wineries: (2)
+[http://www.flatrockcellars.com, http://www.clossonchase.com]
+Mean winery distance: 	186.20845365147758
+Median winery distance: 	186.20845365147767
+

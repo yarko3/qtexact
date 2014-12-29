@@ -1,0 +1,14 @@
+Externals: (4)
+[http://www.sipwines.ca, http://www.mudbaywines.com, http://www.swirlwinestore.ca, http://www.wine-emporium.com]
+Wineries: (4)
+[http://www.tantalus.ca, http://www.intriguewines.ca, http://www.3milewinery.com, http://www.township7.com]
+Mean winery distance: 	36.514772412770974
+Median winery distance: 	36.51645632980701
+
+Externals: (12)
+[http://www.pointnopointresort.com, http://www.spinnakers.com, http://www.foragevancouver.com, http://www.marinarestaurant.com, http://www.broadwaywineshop.ca, http://www.cascadialiquor.com, http://www.ilterrazzo.com, http://www.metroliquor.com, http://www.everythingwine.ca, http://www.legacyliquorstore.com, http://www.granvilleliquorstore.com, http://www.salttastingroom.com]
+Wineries: (2)
+[http://www.nicholvineyard.com, http://www.alderlea.com]
+Mean winery distance: 	309.3453766081906
+Median winery distance: 	309.34537660819063
+

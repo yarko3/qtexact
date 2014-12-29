@@ -1,0 +1,49 @@
+Externals: (2)
+[http://www.mudbaywines.com, http://www.sipwines.ca]
+Wineries: (8)
+[http://www.vistadoro.com, http://www.tantalus.ca, http://www.intriguewines.ca, http://www.littlestraw.bc.ca, http://www.cedarcreek.bc.ca, http://www.3milewinery.com, http://www.kalalawines.ca, http://www.township7.com]
+Mean winery distance: 	80.51085692961786
+Median winery distance: 	34.07541098371745
+
+Externals: (3)
+[http://www.spinnakers.com, http://www.everythingwine.ca, http://www.liquorplus.ca]
+Wineries: (3)
+[http://www.silversidefarm.com, http://www.alderlea.com, http://www.dragonflyhillvineyard.com]
+Mean winery distance: 	22.48735398153867
+Median winery distance: 	20.896993359120632
+
+Externals: (4)
+[http://www.bcliquorstores.com, http://www.kelownacapnews.com, http://www.selectyourtickets.com, http://www.tourismkelowna.com]
+Wineries: (2)
+[http://www.meadowvista.ca, http://www.missionhillwinery.com]
+Mean winery distance: 	12.949816680469782
+Median winery distance: 	12.949816680469786
+
+Externals: (6)
+[http://www.westernlivingmagazine.com, http://www.lakebreeze.ca, http://www.cedarcreek.bc.ca, http://www.blastedchurch.com, http://www.vancouversun.com, http://www.scoutmagazine.ca]
+Wineries: (2)
+[http://www.mfvwines.com, http://www.vancouverurbanwinery.com]
+Mean winery distance: 	257.9175344527371
+Median winery distance: 	257.9175344527371
+
+Externals: (6)
+[http://www.hootsuite.com, http://www.desert.org, http://www.montecristomagazine.com, http://www.enotecca.ca, http://www.mywinepal.com, http://www.cowieandfox.com]
+Wineries: (2)
+[http://www.levieuxpin.ca, http://www.lastella.ca]
+Mean winery distance: 	12.00011166697025
+Median winery distance: 	12.000111666970346
+
+Externals: (6)
+[http://www.marinarestaurant.com, http://www.hawksworthrestaurant.com, http://www.docksidevancouver.com, http://www.camillesrestaurant.com, http://www.labattoir.ca, http://www.tapandbarrel.com]
+Wineries: (2)
+[http://www.closdusoleil.ca, http://www.unsworthvineyards.com]
+Mean winery distance: 	284.9188527850138
+Median winery distance: 	284.9188527850138
+
+Externals: (5)
+[http://www.westrestaurant.com, http://www.bluewatercafe.net, http://www.manteo.com, http://www.araxi.com, http://www.hyssteakhouse.com]
+Wineries: (2)
+[http://www.hainle.com, http://www.silkw.net]
+Mean winery distance: 	25.344698089475177
+Median winery distance: 	25.344698089475294
+
