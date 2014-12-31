@@ -398,7 +398,7 @@ public class Controller<V>
 		boolean reduced = false;
 		
 		//if bStruct has a reduction and bound allows more moves, reduce
-		if (bStruct.getReductions() != null && !bStruct.getReductions().isEmpty() && timesRun != 1)
+		if (bStruct.getReductions() != null && !bStruct.getReductions().isEmpty())
 		{
 			//run reduction	
 			reduced = true;
@@ -407,7 +407,7 @@ public class Controller<V>
 			bound = s.getMinMoves().getChanges().size() - s.getChanges().size();
 			
 			//check if reductions have exceeded parameter
-			if (bound < 0)
+			if (bound < 0 || !s.isContinueEditing())
 			{
 				updatePercent(s);
 				
@@ -421,6 +421,7 @@ public class Controller<V>
 				{
 					bStruct.reduceRevert(s);
 				}
+				s.setContinueEditing(true);
 				
 				return s;
 			}
@@ -516,7 +517,7 @@ public class Controller<V>
 		{	
 			//only branch if current minMoves is longer than current state of search
 			//COMMENT OUT THIS LINE FOR RULE GENERATION
-			if (bound > 0 && s.isContinueEditing())
+			if (bound > 0)
 			{
 				branchingReturnC<V> rtn = bStruct.branchingRules(s, searchResult);
 				
@@ -543,7 +544,6 @@ public class Controller<V>
 				if (reduced)
 				{
 					bStruct.reduceRevert(s);
-					s.setContinueEditing(true);
 				}
 				
 				return s;

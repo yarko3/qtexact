@@ -9,6 +9,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -97,7 +98,7 @@ public class fun<V> extends JApplet {
 		//wineTest();
 		//userInterface();
 		//diGraphWineryTest();
-		//clusterTest();
+		clusterTest();
 		//scoreWineryGraph();
 		//distanceTest();
 		//cographTest();
@@ -116,7 +117,8 @@ public class fun<V> extends JApplet {
 		//clusterComparisonTest();
 	
 		//clusterCommonExternals();
-		test();
+		
+		//honoursTest();
 	}
 	
 	
@@ -983,9 +985,9 @@ public class fun<V> extends JApplet {
 		
 		Graph<Integer, Pair<Integer>> exampleQT;
 		qtGenerate<Integer> gen = new qtGenerate<Integer>();
-		exampleQT = gen.ER(61, .3, (long) 3);
-		exampleQT = gen.randomTreeGraph(35, 0, 10);
-		//exampleQT = gen.treeRandom(50, 2);
+		exampleQT = gen.ER(20, .8, (long) 3);
+		//exampleQT = gen.randomTreeGraph(20, 0, 10);
+		exampleQT = gen.treeRandom(30, 2);
 		
 		visualize(exampleQT);
 		
@@ -995,9 +997,9 @@ public class fun<V> extends JApplet {
 		clusterBranch<Integer> bStruct = new clusterBranch<Integer>(c);
 		clusterAllStruct<Integer> all = new clusterAllStruct<Integer>(c);
 		
-		//bStruct.addReduction(new clusterReductionBasic<Integer>(bStruct));
+		bStruct.addReduction(new clusterReductionBasic<Integer>(bStruct));
 		
-		//all.addReduction(new clusterReductionBasic<Integer>(all));
+		all.addReduction(new clusterReductionBasic<Integer>(all));
 		
 		branchComponents<Integer> b = new branchComponents<Integer>(c, bStruct);
 
@@ -1011,7 +1013,7 @@ public class fun<V> extends JApplet {
 		
 		System.out.println("\nConnected component (P3 rules): ");
 		start = System.currentTimeMillis();
-		rtn = c.branchStart(exampleQT, 30);
+		rtn = c.branchStart(exampleQT, 17);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		System.out.println(search.isTarget(rtn.getG()));
@@ -1020,7 +1022,7 @@ public class fun<V> extends JApplet {
 		c.setbStruct(bAll);
 		System.out.println("\nConnected component (all rules): ");
 		start = System.currentTimeMillis();
-		rtn = c.branchStart(exampleQT, 30);
+		rtn = c.branchStart(exampleQT, 17);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		System.out.println(search.isTarget(rtn.getG()));
@@ -2207,24 +2209,72 @@ public class fun<V> extends JApplet {
 	public static void honoursTest()
 	{
 		//----------------------------------------------------
+		//initialize distance measurements
+		distance<String> d = new distance<String>();
+		String distanceFile = "datasets/wine/Distance/BC/BCDistance.txt";
+		HashMap<String, Pair<Double>> mapping = distance.getLatLongFromFile(distanceFile);
+		
+		
+		//----------------------------------------------------
 		//initialize editor
 		Controller<String> c = new Controller<String>(null, true);
 		
-		LinkedList<Branch<String>> bStructs = new LinkedList<Branch<String>>();
+		ArrayList<Branch<String>> bStructs = new ArrayList<Branch<String>>();
 		
-		bStructs.add(new clusterAllStruct<String>(c));
-		bStructs.add(new cographAllStruct<String>(c));
+		bStructs.add(new branchComponents<String>(c, new clusterAllStruct<String>(c)));
+		bStructs.add(new branchComponents<String>(c, new cographAllStruct<String>(c)));
 		
 		//set up qt editor with reduction rule
 		qtBranch<String> temp = new qtAllStruct<String>(c);
 		
 		temp.addReduction(new c4p4Reduction<String>(temp));
 		
-		bStructs.add(temp);
+		bStructs.add(new branchComponents<String>(c, temp));
 		
 		
 		//----------------------------------------------------
 		//set up data
+		
+		Graph<String, Pair<String>> wine = fillGraphFromFileWithStrings("datasets/wine/BC/wineryEdgeSet.txt");
+		
+		Graph<String, Pair<String>> originalWineClone = clone.deepClone(wine);
+		
+		
+		
+		
+		//----------------------------------------------------
+		//perform editing
+		
+		branchingReturnC<String> goal = null;
+		
+		for (int i = 2; i < 3; i ++)
+		{
+			Branch<String> bStruct = bStructs.get(i);
+			
+			c.setbStruct(bStruct);
+			
+			//try iterative deepening
+			goal = c.branchID(wine, 2, 30);
+		
+			if (bStruct.getSearch().isTarget(goal.getG()))
+			{
+				//print results
+				String path = null;
+				if (i == 0)
+					path = "datasets/wine/Thesis/Cluster/";
+				else if (i == 1)
+					path = "datasets/wine/Thesis/Cograph/";
+				else
+					path = "datasets/wine/Thesis/QT/";
+			
+				stringUtils.printSolutionEdgeSetWithWeightsComponents(goal, path+"wineSolution.txt");
+				d.outputDistanceMeasurements(path+"wineSolution.txt", distanceFile, path+"wineDistances.txt");
+			}
+			
+			
+			
+		}
+		
 		
 		
 		
