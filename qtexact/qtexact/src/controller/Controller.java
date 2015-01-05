@@ -227,15 +227,11 @@ public class Controller<V>
 			oldC = s.getMinMoves().getChanges().size();
 			
 			//how many moves to undo
-			int numRevert = 10;
+			int numRevert = 30;
 			if (success)
 			{
-				if (s.getChanges().size() - 10 >= 0)
-					numRevert = 10;
-				else
-				{
+				if (s.getChanges().size() - numRevert < 0)
 					numRevert = s.getChanges().size();
-				}
 				
 				//revert the number of moves to be tried by exact algorithm
 				bStruct.revert(s, numRevert);

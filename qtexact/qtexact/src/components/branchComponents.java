@@ -6,6 +6,7 @@ import java.util.Set;
 import qtUtils.branchingReturnC;
 import qtUtils.myEdge;
 import abstractClasses.Branch;
+import abstractClasses.Dive;
 import abstractClasses.SearchResult;
 import controller.Controller;
 import edu.uci.ics.jung.graph.Graph;
@@ -289,5 +290,16 @@ public class branchComponents<V> extends Branch<V> {
 	}
 	
 	
+	@Override
+	public void setDive(Dive<V> d)
+	{
+		bStruct.setDive(d);
+	}
+	
+	@Override
+	public Dive<V> getDive()
+	{
+		return bStruct.getDive();
+	}
 
 }

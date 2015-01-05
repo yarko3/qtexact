@@ -98,7 +98,7 @@ public class fun<V> extends JApplet {
 		//wineTest();
 		//userInterface();
 		//diGraphWineryTest();
-		clusterTest();
+		//clusterTest();
 		//scoreWineryGraph();
 		//distanceTest();
 		//cographTest();
@@ -118,7 +118,7 @@ public class fun<V> extends JApplet {
 	
 		//clusterCommonExternals();
 		
-		//honoursTest();
+		honoursTest();
 	}
 	
 	
@@ -987,7 +987,9 @@ public class fun<V> extends JApplet {
 		qtGenerate<Integer> gen = new qtGenerate<Integer>();
 		exampleQT = gen.ER(20, .8, (long) 3);
 		//exampleQT = gen.randomTreeGraph(20, 0, 10);
-		exampleQT = gen.treeRandom(30, 2);
+		exampleQT = gen.treeRandom(25, 6);
+		
+		
 		
 		visualize(exampleQT);
 		
@@ -998,7 +1000,7 @@ public class fun<V> extends JApplet {
 		clusterAllStruct<Integer> all = new clusterAllStruct<Integer>(c);
 		
 		bStruct.addReduction(new clusterReductionBasic<Integer>(bStruct));
-		
+//		
 		all.addReduction(new clusterReductionBasic<Integer>(all));
 		
 		branchComponents<Integer> b = new branchComponents<Integer>(c, bStruct);
@@ -1013,7 +1015,7 @@ public class fun<V> extends JApplet {
 		
 		System.out.println("\nConnected component (P3 rules): ");
 		start = System.currentTimeMillis();
-		rtn = c.branchStart(exampleQT, 17);
+		rtn = c.branchStart(exampleQT, 20);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		System.out.println(search.isTarget(rtn.getG()));
@@ -1022,7 +1024,7 @@ public class fun<V> extends JApplet {
 		c.setbStruct(bAll);
 		System.out.println("\nConnected component (all rules): ");
 		start = System.currentTimeMillis();
-		rtn = c.branchStart(exampleQT, 17);
+		rtn = c.branchStart(exampleQT, 20);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		System.out.println(search.isTarget(rtn.getG()));
@@ -2221,7 +2223,17 @@ public class fun<V> extends JApplet {
 		
 		ArrayList<Branch<String>> bStructs = new ArrayList<Branch<String>>();
 		
-		bStructs.add(new branchComponents<String>(c, new clusterAllStruct<String>(c)));
+		clusterAllStruct<String> cluster = new clusterAllStruct<String>(c);
+		cluster.addReduction(new clusterReductionBasic<String>(cluster));
+		
+		cluster.setDive(new clusterGreedy<String>(cluster));
+		
+		bStructs.add(new branchComponents<String>(c, cluster));
+		
+		
+		cographAllStruct<String> cograph = new cographAllStruct<String>(c);
+		
+	
 		bStructs.add(new branchComponents<String>(c, new cographAllStruct<String>(c)));
 		
 		//set up qt editor with reduction rule
@@ -2247,25 +2259,28 @@ public class fun<V> extends JApplet {
 		
 		branchingReturnC<String> goal = null;
 		
-		for (int i = 2; i < 3; i ++)
+		for (int i = 0; i < 1; i++)
 		{
 			Branch<String> bStruct = bStructs.get(i);
 			
 			c.setbStruct(bStruct);
 			
+			//try approximate edit
+			goal = c.diveAtStartEdit(wine, 4);
+			
 			//try iterative deepening
-			goal = c.branchID(wine, 2, 30);
+			//goal = c.branchID(wine, 2, 50);
 		
 			if (bStruct.getSearch().isTarget(goal.getG()))
 			{
 				//print results
 				String path = null;
 				if (i == 0)
-					path = "datasets/wine/Thesis/Cluster/";
+					path = "datasets/wine/Thesis/Cluster/Approximate/";
 				else if (i == 1)
-					path = "datasets/wine/Thesis/Cograph/";
+					path = "datasets/wine/Thesis/Cograph/Approximate/";
 				else
-					path = "datasets/wine/Thesis/QT/";
+					path = "datasets/wine/Thesis/QT/Approximate/";
 			
 				stringUtils.printSolutionEdgeSetWithWeightsComponents(goal, path+"wineSolution.txt");
 				d.outputDistanceMeasurements(path+"wineSolution.txt", distanceFile, path+"wineDistances.txt");

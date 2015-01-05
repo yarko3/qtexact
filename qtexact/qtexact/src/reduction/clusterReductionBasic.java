@@ -1,7 +1,9 @@
 package reduction;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.Set;
 import java.util.Stack;
@@ -11,6 +13,7 @@ import qtUtils.myEdge;
 import abstractClasses.Branch;
 import abstractClasses.Reduction;
 import edu.uci.ics.jung.algorithms.cluster.WeakComponentClusterer;
+import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Pair;
 
 public class clusterReductionBasic<V> extends Reduction<V> {
@@ -57,9 +60,8 @@ public class clusterReductionBasic<V> extends Reduction<V> {
 		LinkedList<myEdge<V>> toBeMade = new LinkedList<myEdge<V>>();
 
 		//store vertices as a linked list to iterate easily
-		//TODO sort in decreasing degree
-		LinkedList<V> vertices = new LinkedList<V>();
-		vertices.addAll(s.getG().getVertices());
+		LinkedList<V> vertices = orderVerticesByDegree(s.getG());
+		
 		
 		outer:
 		for (int i = 0; i < vertices.size(); i++)
@@ -97,73 +99,115 @@ public class clusterReductionBasic<V> extends Reduction<V> {
 				//tempCombined now contains exclusive or neighbours
 				tempCombined.removeAll(tempRetain);
 				
+				//remove the vertices we are dealing with
+				tempCombined.remove(v0);
+				tempCombined.remove(v1);
+				
 				boolean okToAdd = false;
 				boolean okToRemove = false;
 				
-				//see if we need to force this edge
-				if (tempRetain.size() > bound)
+				if (tempCombined.size() > bound && s.getG().isNeighbor(v0, v1))
 				{
-					okToAdd = true;
-					//see if this edge is a forced deletion
-					if (s.getChanges().contains(new myEdge<V>(new Pair<V>(v0, v1), false, directed)))
-					{
-						//stop editing here
-						s.setContinueEditing(false);
-						break outer;
-					}
-					//make this edge addition
-					if (!s.getG().isNeighbor(v0, v1))
-					{
-						//bStruct.addResult(s, v0, v1);
-						
-						toBeMade.add(new myEdge<V>(new Pair<V>(v0, v1), true, directed));
+//					okToRemove = true;
+//					//see if this edge is a forced addition
+//					if (s.getChanges().contains(new myEdge<V>(new Pair<V>(v0, v1), true, directed)))
+//					{
+//						//stop editing here
+//						s.setContinueEditing(false);
+//						break outer;
+//					}
+//					//make this edge deletion
+//					if (s.getG().isNeighbor(v0, v1))
+//					{
+						bStruct.deleteResult(s, v0, v1);
+//						toBeMade.add(new myEdge<V>(new Pair<V>(v0, v1), false, directed));
 						bound--;
-					}
-				}
-				if (tempCombined.size() > bound)
-				{
-					okToRemove = true;
-					//see if this edge is a forced addition
-					if (s.getChanges().contains(new myEdge<V>(new Pair<V>(v0, v1), true, directed)))
-					{
-						//stop editing here
-						s.setContinueEditing(false);
-						break outer;
-					}
-					//make this edge deletion
-					if (s.getG().isNeighbor(v0, v1))
-					{
-						//bStruct.deleteResult(s, v0, v1);
-						toBeMade.add(new myEdge<V>(new Pair<V>(v0, v1), false, directed));
-						bound--;
-					}
-				}
-				//edge must exist and not exist for optimal solution
-				if (okToAdd && okToRemove)
-				{
-					s.setContinueEditing(false);
-					break outer;
+//					}
 				}
 				
+				//see if we need to force this edge
+				if (tempRetain.size() > bound && !s.getG().isNeighbor(v0, v1))
+				{
+//					okToAdd = true;
+//					//see if this edge is a forced deletion
+//					if (s.getChanges().contains(new myEdge<V>(new Pair<V>(v0, v1), false, directed)))
+//					{
+//						//stop editing here
+//						s.setContinueEditing(false);
+//						break outer;
+//					}
+					//make this edge addition
+//					if (!s.getG().isNeighbor(v0, v1))
+//					{
+						bStruct.addResult(s, v0, v1);
+						
+//						toBeMade.add(new myEdge<V>(new Pair<V>(v0, v1), true, directed));
+						bound--;
+//					}
+				}
+//				//edge must exist and not exist for optimal solution
+//				if (okToAdd && okToRemove)
+//				{
+//					s.setContinueEditing(false);
+//					break outer;
+//				}
+//				
 			}
 		}
 		
-		//if the best solution cannot be reached from here, stop editing
-		if (!s.isContinueEditing())
-		{
-			stack.push(0);
-			return s;
-		}
-		
-		//apply moves
-		applyMoves(s, toBeMade);
+//		//if the best solution cannot be reached from here, stop editing
+//		if (!s.isContinueEditing())
+//		{
+//			stack.push(0);
+//			return s;
+//		}
+//		
+//		//apply moves
+//		applyMoves(s, toBeMade);
 		
 		//push how many modifications reduction rule made
-		stack.push(toBeMade.size());
+		stack.push(s.getChanges().size() - ogCount);
 		
 		return s;
 		
 		
+	}
+
+	/**
+	 * order vertices in non-increasing degree
+	 * @param g graph
+	 * @return ordered list of vertices
+	 */
+	private LinkedList<V> orderVerticesByDegree(Graph<V, Pair<V>> g) {
+		
+		LinkedList<V> vertices = new LinkedList<V>();
+		
+		//throw all into hashtable based on degree key
+		
+		Hashtable<Integer, LinkedList<V>> hash = new Hashtable<Integer, LinkedList<V>>();
+		
+		for (V v : g.getVertices())
+		{
+			int deg = g.degree(v);
+			if (!hash.containsKey(deg))
+			{
+				hash.put(deg, new LinkedList<V>());
+			}
+			
+			hash.get(deg).add(v);
+		}
+		
+		LinkedList<Integer> keys = new LinkedList<Integer>();
+		keys.addAll(hash.keySet());
+		
+		Collections.sort(keys);
+		
+		for (int i = 0; i < keys.size(); i++)
+		{
+			vertices.addAll(hash.get(keys.get(i)));
+		}
+		
+		return vertices;
 	}
 
 	@Override
