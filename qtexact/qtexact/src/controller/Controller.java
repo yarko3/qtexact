@@ -227,7 +227,7 @@ public class Controller<V>
 			oldC = s.getMinMoves().getChanges().size();
 			
 			//how many moves to undo
-			int numRevert = 30;
+			int numRevert = 11;
 			if (success)
 			{
 				if (s.getChanges().size() - numRevert < 0)
@@ -243,6 +243,7 @@ public class Controller<V>
 				oldC = s.getMinMoves().getChanges().size();
 			}
 			
+			System.out.println("Exact with initial moves: " + s.getChanges().size() + " and bound: " + s.getMinMoves().getChanges().size());
 			
 			//branch with exact algorithm with a bound of numRevert
 			branch(s);

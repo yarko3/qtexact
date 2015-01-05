@@ -74,6 +74,7 @@ import edu.uci.ics.jung.graph.util.Pair;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
 import greedy.clusterGreedy;
+import greedy.cographGreedy;
 import greedy.diQTGreedy;
 import greedy.maxObsGreedy;
 
@@ -2221,27 +2222,30 @@ public class fun<V> extends JApplet {
 		//initialize editor
 		Controller<String> c = new Controller<String>(null, true);
 		
-		ArrayList<Branch<String>> bStructs = new ArrayList<Branch<String>>();
+		ArrayList<Branch<String>> bStructs = new ArrayList<Branch<String>>(3);
 		
 		clusterAllStruct<String> cluster = new clusterAllStruct<String>(c);
 		cluster.addReduction(new clusterReductionBasic<String>(cluster));
 		
 		cluster.setDive(new clusterGreedy<String>(cluster));
 		
-		bStructs.add(new branchComponents<String>(c, cluster));
+		bStructs.add(0, new branchComponents<String>(c, cluster));
 		
 		
 		cographAllStruct<String> cograph = new cographAllStruct<String>(c);
 		
+		cograph.setDive(new cographGreedy<String>(cograph));
 	
-		bStructs.add(new branchComponents<String>(c, new cographAllStruct<String>(c)));
+		bStructs.add(1, new branchComponents<String>(c, cograph));
 		
 		//set up qt editor with reduction rule
 		qtBranch<String> temp = new qtAllStruct<String>(c);
 		
 		temp.addReduction(new c4p4Reduction<String>(temp));
 		
-		bStructs.add(new branchComponents<String>(c, temp));
+		temp.setDive(new maxObsGreedy<String>(temp));
+		
+		bStructs.add(2, new branchComponents<String>(c, temp));
 		
 		
 		//----------------------------------------------------
@@ -2259,7 +2263,7 @@ public class fun<V> extends JApplet {
 		
 		branchingReturnC<String> goal = null;
 		
-		for (int i = 0; i < 1; i++)
+		for (int i = 0; i < 3; i++)
 		{
 			Branch<String> bStruct = bStructs.get(i);
 			

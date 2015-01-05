@@ -510,11 +510,12 @@ public class distance<V>
 				writer.print(winery + "\t");
 			}
 			
-			writer.println("\nMean winery-winery distance: \t" + d.meanDistance(components.get(cID), mapping));
+			writer.println("\n\nMean winery-winery distance: \t" + d.meanDistance(components.get(cID), mapping));
 			writer.println("Median winery-winery distance: \t" + d.medianDistance(components.get(cID), mapping));
 			writer.println("Mean edge distance: \t" + d.meanNeighbourDistance(components.get(cID), mapping));
 			writer.println("Median edge distance: \t" + d.medianNeighbourDistance(components.get(cID), mapping));
 			
+			writer.println();
 		}
 		
 		writer.close();
