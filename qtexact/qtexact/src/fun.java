@@ -28,6 +28,7 @@ import reduction.biconnectedReduction;
 import reduction.c4p4Reduction;
 import reduction.centralNodeReduction;
 import reduction.clusterReductionBasic;
+import reduction.cographReduction;
 import reduction.commonC4Reduction;
 import reduction.edgeBoundReduction;
 import scorer.familialGroupCentrality;
@@ -102,7 +103,7 @@ public class fun<V> extends JApplet {
 		//clusterTest();
 		//scoreWineryGraph();
 		//distanceTest();
-		//cographTest();
+		cographTest();
 		//wineryProjectionTest();
 		//getProvinceSpecificExternalsEdgeList();
 		//projectionAnalysis();
@@ -119,7 +120,7 @@ public class fun<V> extends JApplet {
 	
 		//clusterCommonExternals();
 		
-		honoursTest();
+		//honoursTest();
 	}
 	
 	
@@ -1371,18 +1372,26 @@ public class fun<V> extends JApplet {
 		
 		Graph<Integer, Pair<Integer>> exampleQT;
 		qtGenerate<Integer> gen = new qtGenerate<Integer>();
-		exampleQT = gen.randomTreeGraph(50, 7, 3);
+		exampleQT = gen.randomTreeGraph(50, 10, 3);
+		
+		//exampleQT = gen.ER(30, .2, (long) 0);
 		
 		//exampleQT = gen.treeRandom(50, 2);
 		
 //		exampleQT = new UndirectedSparseGraph<Integer, Pair<Integer>>();
 //		
 //		exampleQT.addEdge(new Pair<Integer>(0, 1), 0, 1);
-//		exampleQT.addEdge(new Pair<Integer>(1, 2), 1, 2);
-//		exampleQT.addEdge(new Pair<Integer>(2, 3), 2, 3);
-//		exampleQT.addEdge(new Pair<Integer>(3, 4), 3, 4);
-//		exampleQT.addEdge(new Pair<Integer>(4, 2), 4, 2);
-		//exampleQT.addEdge(new Pair<Integer>(4, 1), 4, 1);
+//		exampleQT.addEdge(new Pair<Integer>(0, 2), 0, 2);
+//		exampleQT.addEdge(new Pair<Integer>(0, 3), 0, 3);
+//		exampleQT.addEdge(new Pair<Integer>(0, 4), 0, 4);
+//		exampleQT.addEdge(new Pair<Integer>(0, 5), 0, 5);
+//		exampleQT.addEdge(new Pair<Integer>(0, 6), 0, 6);
+//		exampleQT.addEdge(new Pair<Integer>(7, 1), 7, 1);
+//		exampleQT.addEdge(new Pair<Integer>(8, 1), 8, 1);
+//		exampleQT.addEdge(new Pair<Integer>(9, 1), 9, 1);
+//		exampleQT.addEdge(new Pair<Integer>(10, 1), 10, 1);
+//		exampleQT.addEdge(new Pair<Integer>(2, 7), 2, 7);
+//		exampleQT.addEdge(new Pair<Integer>(3, 7), 3, 7);
 		
 		
 		
@@ -1395,6 +1404,10 @@ public class fun<V> extends JApplet {
 		cographAllStruct<Integer> all = new cographAllStruct<Integer>(c);
 		
 		
+//		bStruct.addReduction(new cographReduction<Integer>(bStruct));
+//		all.addReduction(new cographReduction<Integer>(all));
+		
+		
 		branchComponents<Integer> bStructComp = new branchComponents<Integer>(c, bStruct);
 		branchComponents<Integer> allComp = new branchComponents<Integer>(c, all);
 		
@@ -1405,7 +1418,7 @@ public class fun<V> extends JApplet {
 		
 		System.out.println("\nAll structures cograph: ");
 		long start = System.currentTimeMillis();
-		branchingReturnC<Integer> rtn = c.branchStart(exampleQT, 7);
+		branchingReturnC<Integer> rtn = c.branchStart(exampleQT, 10);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		System.out.println(search.isTarget(rtn.getG()));
@@ -1414,20 +1427,12 @@ public class fun<V> extends JApplet {
 		
 		System.out.println("\nRegular cograph: ");
 		start = System.currentTimeMillis();
-		rtn = c.branchStart(exampleQT, 7);
+		rtn = c.branchStart(exampleQT, 10);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		System.out.println(search.isTarget(rtn.getG()));
 		
-//		c.setbStruct(b);
-//		
-//		System.out.println("\nConnected component: ");
-//		start = System.currentTimeMillis();
-//		rtn = c.branchStart(exampleQT, 10);
-//		System.out.println((System.currentTimeMillis()-start) / 1000.0);
-//		
-//		System.out.println(search.isTarget(rtn.getG()));
-		
+
 		visualize(rtn.getG());
 	}
 	
@@ -2256,21 +2261,19 @@ public class fun<V> extends JApplet {
 		Graph<String, Pair<String>> originalWineClone = clone.deepClone(wine);
 		
 		
-		
-		
 		//----------------------------------------------------
 		//perform editing
 		
 		branchingReturnC<String> goal = null;
 		
-		for (int i = 0; i < 3; i++)
+		for (int i = 1; i < 2; i++)
 		{
 			Branch<String> bStruct = bStructs.get(i);
 			
 			c.setbStruct(bStruct);
 			
 			//try approximate edit
-			goal = c.diveAtStartEdit(wine, 4);
+			goal = c.diveAtStartEdit(wine, 10);
 			
 			//try iterative deepening
 			//goal = c.branchID(wine, 2, 50);

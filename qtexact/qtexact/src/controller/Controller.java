@@ -190,10 +190,10 @@ public class Controller<V>
 	/**
 	 * edit strategy where a dive is done first and when a solution is found, exact solution tries to improve it
 	 * @param G graph
-	 * @param diveDepth maximum depth to dive to 
+	 * @param numRevertORIGINAL the number of moves to revert when backtracking exactly
 	 * @return edit state
 	 */
-	public branchingReturnC<V> diveAtStartEdit(Graph<V, Pair<V>> G, int diveDepth)
+	public branchingReturnC<V> diveAtStartEdit(Graph<V, Pair<V>> G, int numRevertORIGINAL)
 	{
 		//setup the branchingReturnC with an empty MinMoves
 		branchingReturnC<V> s = bStruct.setup(G);
@@ -227,7 +227,7 @@ public class Controller<V>
 			oldC = s.getMinMoves().getChanges().size();
 			
 			//how many moves to undo
-			int numRevert = 11;
+			int numRevert = numRevertORIGINAL;
 			if (success)
 			{
 				if (s.getChanges().size() - numRevert < 0)

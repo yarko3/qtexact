@@ -22,7 +22,7 @@ public class cographGreedy<V> extends GreedyEdit<V> {
 			{
 				for (V v2 : g.getNeighbors(v1))
 				{
-					if (g.isNeighbor(v0, v2) || v0.equals(v1))
+					if (g.isNeighbor(v0, v2) || v0.equals(v2))
 						continue;
 					
 					for (V v3 : g.getNeighbors(v2))
