@@ -103,7 +103,7 @@ public class fun<V> extends JApplet {
 		//clusterTest();
 		//scoreWineryGraph();
 		//distanceTest();
-		cographTest();
+		//cographTest();
 		//wineryProjectionTest();
 		//getProvinceSpecificExternalsEdgeList();
 		//projectionAnalysis();
@@ -117,6 +117,7 @@ public class fun<V> extends JApplet {
 		//getRules();
 		
 		//clusterComparisonTest();
+		cographComparisonTest();
 	
 		//clusterCommonExternals();
 		
@@ -1372,7 +1373,7 @@ public class fun<V> extends JApplet {
 		
 		Graph<Integer, Pair<Integer>> exampleQT;
 		qtGenerate<Integer> gen = new qtGenerate<Integer>();
-		exampleQT = gen.randomTreeGraph(50, 10, 3);
+		exampleQT = gen.randomTreeGraph(9, 3, 18);
 		
 		//exampleQT = gen.ER(30, .2, (long) 0);
 		
@@ -1404,8 +1405,8 @@ public class fun<V> extends JApplet {
 		cographAllStruct<Integer> all = new cographAllStruct<Integer>(c);
 		
 		
-//		bStruct.addReduction(new cographReduction<Integer>(bStruct));
-//		all.addReduction(new cographReduction<Integer>(all));
+		bStruct.addReduction(new cographReduction<Integer>(bStruct));
+		all.addReduction(new cographReduction<Integer>(all));
 		
 		
 		branchComponents<Integer> bStructComp = new branchComponents<Integer>(c, bStruct);
@@ -1418,7 +1419,7 @@ public class fun<V> extends JApplet {
 		
 		System.out.println("\nAll structures cograph: ");
 		long start = System.currentTimeMillis();
-		branchingReturnC<Integer> rtn = c.branchStart(exampleQT, 10);
+		branchingReturnC<Integer> rtn = c.branchStart(exampleQT, 2);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		System.out.println(search.isTarget(rtn.getG()));
@@ -1427,7 +1428,7 @@ public class fun<V> extends JApplet {
 		
 		System.out.println("\nRegular cograph: ");
 		start = System.currentTimeMillis();
-		rtn = c.branchStart(exampleQT, 10);
+		rtn = c.branchStart(exampleQT, 4);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		System.out.println(search.isTarget(rtn.getG()));
@@ -2052,6 +2053,101 @@ public class fun<V> extends JApplet {
 		}
 	}
 	
+	private static void cographComparisonTest()
+	{
+		//run the same graph as a test over multiple traversal methods
+		cographSearch<Integer> search = new cographSearch<Integer>();
+		qtGenerate<Integer> gen = new qtGenerate<Integer>();
+		Cloner clone = new Cloner();
+		
+		//load all test branching methods
+		Controller<Integer> c = new Controller<Integer>(null, false);
+		cographAllStruct<Integer> allOriginal = new cographAllStruct<Integer>(c);
+		cographAllStruct<Integer> branchCOriginal = new cographAllStruct<Integer>(c);
+		
+		allOriginal.addReduction(new cographReduction<Integer>(allOriginal));
+		
+		branchComponents<Integer> all = new branchComponents<Integer>(c, allOriginal);
+		branchComponents<Integer> branchC = new branchComponents<Integer>(c, branchCOriginal);
+		
+		
+		
+		//store branching types
+		LinkedList<Branch<Integer>> b = new LinkedList<Branch<Integer>>();
+		HashSet<Integer> moves;
+		HashSet<Boolean> success;
+		
+		Graph<Integer, Pair<Integer>> graph;
+		
+		b.add(all);
+		b.add(branchC);
+		
+		int size = 5;
+		
+		outer:
+		while (size < 23)
+		{
+			int seed = 0;
+			seedloop:
+			while (seed < 20)
+			{
+				//create graph
+				graph = gen.randomTreeGraph(size, size/2 - 1, seed);
+				Graph<Integer, Pair<Integer>> og = clone.deepClone(graph);
+				int bound = 0;
+				
+				//visualize(og);
+				
+				boundloop:
+				while (bound < 9)
+				{
+					moves = new HashSet<Integer>();
+					success = new HashSet<Boolean>();
+					
+					branchingReturnC<Integer> ans = null;
+					
+					for (Branch<Integer> temp : b)
+					{
+						c.setbStruct(temp);
+						ans = c.branchStart(graph, bound);
+						
+						if (!gen.graphEquals(og, graph))
+						{
+							System.out.println("Graph modified at size " + size + ", seed " + seed + ", bound " + bound);
+							break outer;
+						}
+						
+						
+						if (!moves.isEmpty() && moves.add(ans.getMinMoves().getChanges().size()))
+						{
+							System.out.println("Different solutions at size " + size + ", seed " + seed + ", bound " + bound);
+							break outer;
+						}
+						else if (moves.isEmpty())
+							moves.add(ans.getMinMoves().getChanges().size());
+						
+						if (!success.isEmpty() && success.add(search.isTarget(ans.getG())))
+						{
+							System.out.println("Different success in solving at size " + size + ", seed " + seed + ", bound " + bound);
+							break outer;
+						}
+						else if (success.isEmpty())
+							success.add(search.isTarget(ans.getG()));
+						
+					}
+					if (success.iterator().next())
+					{
+						break boundloop;
+					}
+
+					bound++;
+				}
+				seed++;
+			}
+			size++;
+		}
+	}
+	
 	
 	/*
 	 * output common externals to cliques found by editing
@@ -2239,6 +2335,9 @@ public class fun<V> extends JApplet {
 		
 		cographAllStruct<String> cograph = new cographAllStruct<String>(c);
 		
+		cograph.addReduction(new cographReduction<String>(cograph));
+		
+		
 		cograph.setDive(new cographGreedy<String>(cograph));
 	
 		bStructs.add(1, new branchComponents<String>(c, cograph));
@@ -2266,17 +2365,17 @@ public class fun<V> extends JApplet {
 		
 		branchingReturnC<String> goal = null;
 		
-		for (int i = 1; i < 2; i++)
+		for (int i = 2; i < 3; i++)
 		{
 			Branch<String> bStruct = bStructs.get(i);
 			
 			c.setbStruct(bStruct);
 			
 			//try approximate edit
-			goal = c.diveAtStartEdit(wine, 10);
+			goal = c.diveAtStartEdit(wine, 13);
 			
 			//try iterative deepening
-			//goal = c.branchID(wine, 2, 50);
+			//goal = c.branchID(wine, 2, 19);
 		
 			if (bStruct.getSearch().isTarget(goal.getG()))
 			{
@@ -2290,6 +2389,7 @@ public class fun<V> extends JApplet {
 					path = "datasets/wine/Thesis/QT/Approximate/";
 			
 				stringUtils.printSolutionEdgeSetWithWeightsComponents(goal, path+"wineSolution.txt");
+				
 				d.outputDistanceMeasurements(path+"wineSolution.txt", distanceFile, path+"wineDistances.txt");
 			}
 			

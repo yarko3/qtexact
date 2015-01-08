@@ -28,10 +28,10 @@ public class cographGreedy<V> extends GreedyEdit<V> {
 					for (V v3 : g.getNeighbors(v2))
 					{
 						if (
-								g.isNeighbor(v0, v3) ||
-								g.isNeighbor(v1, v3) ||
-								v1.equals(v3) ||
-								v0.equals(v3)
+								!g.isNeighbor(v0, v3) &&
+								!g.isNeighbor(v1, v3) &&
+								!v1.equals(v3) &&
+								!v0.equals(v3)
 							)
 						{
 							count++;

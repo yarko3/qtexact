@@ -8,6 +8,9 @@ import qtUtils.branchingReturnC;
 import qtUtils.myEdge;
 import abstractClasses.Branch;
 import abstractClasses.Reduction;
+
+import com.rits.cloning.Cloner;
+
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Pair;
 
@@ -16,12 +19,16 @@ public class cographReduction<V> extends Reduction<V>
 	Branch<V> bStruct;
 	Stack<Integer> stack;
 	boolean directed;
+	
+	Cloner clone;
+	
 	public cographReduction(Branch<V> b)
 	{
 		super();
 		this.bStruct = b;
 		stack = new Stack<Integer>();
 		directed = b.isDirected();
+		clone = new Cloner();
 	}
 	
 	@Override
@@ -29,6 +36,11 @@ public class cographReduction<V> extends Reduction<V>
 		//initial number of moves allowed to be made (parameter)
 		int bound = s.getMinMoves().getChanges().size() - s.getChanges().size();
 		int originalBound = bound;
+		
+		//use clone for edge modifications
+		Graph<V, Pair<V>> cln = clone.deepClone(s.getG());
+		
+		branchingReturnC<V> clnS = new branchingReturnC<V>(cln);
 		
 		LinkedList<myEdge<V>> toDo = new LinkedList<myEdge<V>>();
 		//traverse every edge
@@ -40,13 +52,26 @@ public class cographReduction<V> extends Reduction<V>
 				break;
 			
 			//are there too many P4s on this edge?
-			if (p4Count(v0, v1, s.getG()) > bound)
+			if (p4Count(v0, v1, cln) > bound)
 			{
-				//make edge deleteion
-				if (s.getChanges().contains(new myEdge<V>(new Pair<V>(v0, v1), true, directed)))
+				//make edge deletion
+				if (!s.getChanges().contains(new myEdge<V>(new Pair<V>(v0, v1), true, directed)))
 				{
+					
+					bStruct.deleteResult(clnS, v0, v1);
+					
+					
 					toDo.add(new myEdge<V>(new Pair<V>(v0, v1), false, directed));
+					
+					int count = p4Count(v0, v1, cln);
+					
 					bound--;
+				}
+				//this branch cannot continue, move must be made but cannot
+				else
+				{
+					s.setContinueEditing(false);
+					break;
 				}
 			}
 		}
@@ -70,21 +95,19 @@ public class cographReduction<V> extends Reduction<V>
 		v0Neighbours.addAll(g.getNeighbors(v0));
 		v1Neighbours.addAll(g.getNeighbors(v1));
 		
-		v0Neighbours.removeAll(v1Neighbours);
-		v1Neighbours.removeAll(v0Neighbours);
+		v0Neighbours.removeAll(g.getNeighbors(v1));
+		v1Neighbours.removeAll(g.getNeighbors(v0));
 		
 		v0Neighbours.remove(v1);
 		v1Neighbours.remove(v0);
 		
-		
-		//count all P4s
-		int count = 0;
 		
 		int a0 = 0;
 		int a1 = 0;
 		int b0 = 0;
 		int b1 = 0;
 		
+//		
 		for (V v0N : v0Neighbours)
 		{
 			boolean flag = true;
@@ -124,10 +147,11 @@ public class cographReduction<V> extends Reduction<V>
 		}
 		
 		int temp =  Math.min(b0 + Math.min(a0, b1), b1 + Math.min(a1, b0));
-		
-
+//		
+//
 		return temp;
-	}
+		
+		}
 
 	@Override
 	public branchingReturnC<V> revertReduce(branchingReturnC<V> s) {

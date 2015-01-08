@@ -6,11 +6,11 @@ Median edge distance: 	19.48279921124425
 
 
 Component 0	Number of nodes: 5
-http://www.theviewwinery.com	http://www.tastevibrantvines.com	http://www.houseofrose.ca	http://www.spierheadwinery.com	http://www.camelotvineyards.ca	
+http://www.tastevibrantvines.com	http://www.theviewwinery.com	http://www.houseofrose.ca	http://www.spierheadwinery.com	http://www.camelotvineyards.ca	
 
-Mean winery-winery distance: 	2.856591360708452
+Mean winery-winery distance: 	2.8565913607084523
 Median winery-winery distance: 	2.9315309411725603
-Mean edge distance: 	3.5980841908555483
+Mean edge distance: 	3.5980841908555488
 Median edge distance: 	4.595253509264769
 
 
@@ -26,7 +26,7 @@ Median edge distance: 	2.595219231848188
 
 
 Component 2	Number of nodes: 15
-http://www.pacificbreezewinery.com	http://www.levieuxpin.ca	http://www.road13vineyards.com	http://www.musewinery.ca	http://www.quaywine.com	http://www.churchandstatewines.com	http://www.nicholvineyard.com	http://www.closdusoleil.ca	http://www.hestercreek.com	http://www.laughingstock.ca	http://www.vancouverurbanwinery.com	http://www.rollingdale.ca	http://www.sperlingvineyards.com	http://www.summerhill.bc.ca	http://www.deserthills.ca	
+http://www.pacificbreezewinery.com	http://www.levieuxpin.ca	http://www.road13vineyards.com	http://www.musewinery.ca	http://www.quaywine.com	http://www.churchandstatewines.com	http://www.nicholvineyard.com	http://www.closdusoleil.ca	http://www.hestercreek.com	http://www.laughingstock.ca	http://www.vancouverurbanwinery.com	http://www.rollingdale.ca	http://www.sperlingvineyards.com	http://www.deserthills.ca	http://www.summerhill.bc.ca	
 
 Mean winery-winery distance: 	152.25885526987815
 Median winery-winery distance: 	83.49621668612883
@@ -36,7 +36,7 @@ Median edge distance: 	255.87075508436035
 
 
 Component 3	Number of nodes: 17
-http://www.tantalus.ca	http://www.paintedrock.ca	http://www.eauvivrewinery.ca	http://www.bluemountainwinery.com	http://www.cedarcreek.bc.ca	http://www.averillcreek.ca	http://www.blastedchurch.com	http://www.mfvwines.com	http://www.howlingbluff.ca	http://www.lakebreeze.ca	http://www.blackhillswinery.com	http://www.wildgoosewinery.com	http://www.quailsgate.com	http://www.krazelegz.com	http://www.stagshollowwinery.com	http://www.nobleridge.com	http://www.stoneboatvineyards.com	
+http://www.tantalus.ca	http://www.paintedrock.ca	http://www.eauvivrewinery.ca	http://www.bluemountainwinery.com	http://www.cedarcreek.bc.ca	http://www.averillcreek.ca	http://www.blastedchurch.com	http://www.mfvwines.com	http://www.howlingbluff.ca	http://www.blackhillswinery.com	http://www.lakebreeze.ca	http://www.wildgoosewinery.com	http://www.quailsgate.com	http://www.krazelegz.com	http://www.stagshollowwinery.com	http://www.nobleridge.com	http://www.stoneboatvineyards.com	
 
 Mean winery-winery distance: 	63.49810602478813
 Median winery-winery distance: 	28.881608812813596
@@ -56,7 +56,7 @@ Median edge distance: 	1.9303462405731906
 
 
 Component 5	Number of nodes: 5
-http://www.sumacridge.com	http://www.inniskillin.com	http://www.jacksontriggswinery.com	http://www.sylranch.com	http://www.nkmipcellars.com	
+http://www.sumacridge.com	http://www.inniskillin.com	http://www.sylranch.com	http://www.jacksontriggswinery.com	http://www.nkmipcellars.com	
 
 Mean winery-winery distance: 	29.76068756177935
 Median winery-winery distance: 	31.377655772881248
