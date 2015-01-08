@@ -117,11 +117,11 @@ public class fun<V> extends JApplet {
 		//getRules();
 		
 		//clusterComparisonTest();
-		cographComparisonTest();
+		//cographComparisonTest();
 	
 		//clusterCommonExternals();
 		
-		//honoursTest();
+		honoursTest();
 	}
 	
 	
@@ -2365,17 +2365,21 @@ public class fun<V> extends JApplet {
 		
 		branchingReturnC<String> goal = null;
 		
-		for (int i = 2; i < 3; i++)
+		for (int i = 1; i < 2; i++)
 		{
 			Branch<String> bStruct = bStructs.get(i);
 			
 			c.setbStruct(bStruct);
 			
 			//try approximate edit
-			goal = c.diveAtStartEdit(wine, 13);
+			//goal = c.diveAtStartEdit(wine, 13);
+			
+			
+			//try regular edit
+			//goal = c.branchStart(wine, 15);
 			
 			//try iterative deepening
-			//goal = c.branchID(wine, 2, 19);
+			goal = c.branchID(wine, 2, 17);
 		
 			if (bStruct.getSearch().isTarget(goal.getG()))
 			{
