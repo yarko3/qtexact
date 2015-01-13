@@ -317,7 +317,11 @@ public class Controller<V>
 		//set up branching
 		branchingReturnC<V> goal = bStruct.setup(G, bound);
 		
+		goal.getChanges().add((myEdge<V>) new myEdge<Integer>(new Pair<Integer>(0, 1), true, bStruct.isDirected()));
+		
 		goal = branch(goal);
+		
+		
 		
 		
 //		System.out.println("Solutions: ");

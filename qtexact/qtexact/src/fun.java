@@ -103,7 +103,7 @@ public class fun<V> extends JApplet {
 		//clusterTest();
 		//scoreWineryGraph();
 		//distanceTest();
-		//cographTest();
+		cographTest();
 		//wineryProjectionTest();
 		//getProvinceSpecificExternalsEdgeList();
 		//projectionAnalysis();
@@ -121,7 +121,7 @@ public class fun<V> extends JApplet {
 	
 		//clusterCommonExternals();
 		
-		honoursTest();
+		//honoursTest();
 	}
 	
 	
@@ -1373,62 +1373,45 @@ public class fun<V> extends JApplet {
 		
 		Graph<Integer, Pair<Integer>> exampleQT;
 		qtGenerate<Integer> gen = new qtGenerate<Integer>();
-		exampleQT = gen.randomTreeGraph(9, 3, 18);
+		exampleQT = gen.randomTreeGraph(11, 4, 13);
 		
 		//exampleQT = gen.ER(30, .2, (long) 0);
 		
-		//exampleQT = gen.treeRandom(50, 2);
-		
-//		exampleQT = new UndirectedSparseGraph<Integer, Pair<Integer>>();
-//		
-//		exampleQT.addEdge(new Pair<Integer>(0, 1), 0, 1);
-//		exampleQT.addEdge(new Pair<Integer>(0, 2), 0, 2);
-//		exampleQT.addEdge(new Pair<Integer>(0, 3), 0, 3);
-//		exampleQT.addEdge(new Pair<Integer>(0, 4), 0, 4);
-//		exampleQT.addEdge(new Pair<Integer>(0, 5), 0, 5);
-//		exampleQT.addEdge(new Pair<Integer>(0, 6), 0, 6);
-//		exampleQT.addEdge(new Pair<Integer>(7, 1), 7, 1);
-//		exampleQT.addEdge(new Pair<Integer>(8, 1), 8, 1);
-//		exampleQT.addEdge(new Pair<Integer>(9, 1), 9, 1);
-//		exampleQT.addEdge(new Pair<Integer>(10, 1), 10, 1);
-//		exampleQT.addEdge(new Pair<Integer>(2, 7), 2, 7);
-//		exampleQT.addEdge(new Pair<Integer>(3, 7), 3, 7);
-		
-		
+		//exampleQT = gen.treeRandom(50, 2)
 		
 		visualize(exampleQT);
 		
 		System.out.println(search.search(exampleQT));
 		
 		Controller<Integer> c = new Controller<Integer>(null, true);
-		cographBranch<Integer> bStruct = new cographBranch<Integer>(c);
-		cographAllStruct<Integer> all = new cographAllStruct<Integer>(c);
+		cographAllStruct<Integer> allqtReduction = new cographAllStruct<Integer>(c);
+		cographAllStruct<Integer> allcReduction = new cographAllStruct<Integer>(c);
 		
 		
-		bStruct.addReduction(new cographReduction<Integer>(bStruct));
-		all.addReduction(new cographReduction<Integer>(all));
+//		allqtReduction.addReduction(new edgeBoundReduction<Integer>(allqtReduction));
+		allcReduction.addReduction(new cographReduction<Integer>(allcReduction));
+//		
+		
+		branchComponents<Integer> allqtReductionComp = new branchComponents<Integer>(c, allqtReduction);
+		branchComponents<Integer> allcReductionComp = new branchComponents<Integer>(c, allcReduction);
 		
 		
-		branchComponents<Integer> bStructComp = new branchComponents<Integer>(c, bStruct);
-		branchComponents<Integer> allComp = new branchComponents<Integer>(c, all);
 		
 		
+		c.setbStruct(allcReductionComp);
 		
-		
-		c.setbStruct(allComp);
-		
-		System.out.println("\nAll structures cograph: ");
+		System.out.println("\nCograph Reduction: ");
 		long start = System.currentTimeMillis();
-		branchingReturnC<Integer> rtn = c.branchStart(exampleQT, 2);
+		branchingReturnC<Integer> rtn = c.branchStart(exampleQT, 5);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		System.out.println(search.isTarget(rtn.getG()));
 		
-		c.setbStruct(bStructComp);
+		c.setbStruct(allqtReductionComp);
 		
-		System.out.println("\nRegular cograph: ");
+		System.out.println("\nEdgeBoundReduction: ");
 		start = System.currentTimeMillis();
-		rtn = c.branchStart(exampleQT, 4);
+		rtn = c.branchStart(exampleQT, 5);
 		System.out.println((System.currentTimeMillis()-start) / 1000.0);
 		
 		System.out.println(search.isTarget(rtn.getG()));
@@ -2066,6 +2049,7 @@ public class fun<V> extends JApplet {
 		cographAllStruct<Integer> branchCOriginal = new cographAllStruct<Integer>(c);
 		
 		allOriginal.addReduction(new cographReduction<Integer>(allOriginal));
+		//allOriginal.addReduction(new edgeBoundReduction<Integer>(allOriginal));
 		
 		branchComponents<Integer> all = new branchComponents<Integer>(c, allOriginal);
 		branchComponents<Integer> branchC = new branchComponents<Integer>(c, branchCOriginal);
@@ -2085,7 +2069,7 @@ public class fun<V> extends JApplet {
 		int size = 5;
 		
 		outer:
-		while (size < 23)
+		while (size < 40)
 		{
 			int seed = 0;
 			seedloop:
@@ -2365,21 +2349,21 @@ public class fun<V> extends JApplet {
 		
 		branchingReturnC<String> goal = null;
 		
-		for (int i = 1; i < 2; i++)
+		for (int i = 2; i < 3; i++)
 		{
 			Branch<String> bStruct = bStructs.get(i);
 			
 			c.setbStruct(bStruct);
 			
 			//try approximate edit
-			//goal = c.diveAtStartEdit(wine, 13);
+			goal = c.diveAtStartEdit(wine, 13);
 			
 			
 			//try regular edit
-			//goal = c.branchStart(wine, 15);
+			//goal = c.branchStart(wine, 17);
 			
 			//try iterative deepening
-			goal = c.branchID(wine, 2, 17);
+			//goal = c.branchID(wine, 2, 17);
 		
 			if (bStruct.getSearch().isTarget(goal.getG()))
 			{

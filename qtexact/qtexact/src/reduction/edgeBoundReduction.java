@@ -7,8 +7,8 @@ import java.util.Stack;
 
 import qtUtils.branchingReturnC;
 import qtUtils.myEdge;
+import abstractClasses.Branch;
 import abstractClasses.Reduction;
-import branch.qtBranch;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Pair;
 
@@ -23,7 +23,7 @@ public class edgeBoundReduction<V> extends Reduction<V>
 	/**
 	 * branching structure
 	 */
-	qtBranch<V> bStruct;
+	Branch<V> bStruct;
 	/**
 	 * stack of number of deletions made as a result of each iteration of reduction
 	 */
@@ -33,7 +33,7 @@ public class edgeBoundReduction<V> extends Reduction<V>
 	 * constructor
 	 * @param b branching strategy
 	 */
-	public edgeBoundReduction(qtBranch<V> b)
+	public edgeBoundReduction(Branch<V> b)
 	{
 		super();
 		bStruct = b;
