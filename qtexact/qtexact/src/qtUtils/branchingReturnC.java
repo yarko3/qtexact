@@ -50,6 +50,9 @@ public class branchingReturnC<V> implements Comparable<branchingReturnC<V>>
 	 */
 	boolean continueEditing;
 	
+	
+	public int timesRun;
+	
 	public branchingReturnC(Graph<V, Pair<V>> graph)
 	{
 		G = graph;

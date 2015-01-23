@@ -331,6 +331,18 @@ public class graphUtils<V>
 			e.printStackTrace();
 		}
 		
+		for (myEdge<V> move : s.getMinMoves().getChanges())
+		{
+			if (move.isFlag())
+			{
+				writer.println("add\t" + move.getEdge().getFirst() + "\t" + move.getEdge().getSecond());
+			}
+			else
+				writer.println("delete\t" + move.getEdge().getFirst() + "\t" + move.getEdge().getSecond());
+		}
+		
+		writer.println();
+		
 		for (Pair<V> e : s.getG().getEdges())
 		{
 			int weight = 1;

@@ -56,8 +56,8 @@ import cographRules.cographAllStruct;
 import cographRules.cographBranch;
 
 import com.rits.cloning.Cloner;
-import components.branchComponents;
 
+import components.branchComponents;
 import controller.Controller;
 import edu.uci.ics.jung.algorithms.cluster.WeakComponentClusterer;
 import edu.uci.ics.jung.algorithms.layout.FRLayout;
@@ -103,7 +103,7 @@ public class fun<V> extends JApplet {
 		//clusterTest();
 		//scoreWineryGraph();
 		//distanceTest();
-		cographTest();
+		//cographTest();
 		//wineryProjectionTest();
 		//getProvinceSpecificExternalsEdgeList();
 		//projectionAnalysis();
@@ -117,11 +117,15 @@ public class fun<V> extends JApplet {
 		//getRules();
 		
 		//clusterComparisonTest();
-		//cographComparisonTest();
+		cographComparisonTest();
 	
 		//clusterCommonExternals();
-		
+		//greedyComparisonTest();
 		//honoursTest();
+	
+		//approximateBranchingFactor();
+		
+		//lesMisTest();
 	}
 	
 	
@@ -2066,17 +2070,20 @@ public class fun<V> extends JApplet {
 		b.add(all);
 		b.add(branchC);
 		
-		int size = 5;
+		int size = 10;
+		
+		long start = System.currentTimeMillis();
 		
 		outer:
-		while (size < 40)
+		while (size < 20)
 		{
 			int seed = 0;
 			seedloop:
-			while (seed < 20)
+			while (seed < 50)
 			{
 				//create graph
-				graph = gen.randomTreeGraph(size, size/2 - 1, seed);
+				//graph = gen.randomTreeGraph(size, size/2 - 1, seed);
+				graph = gen.ER(size, 0.3, (long) seed);
 				Graph<Integer, Pair<Integer>> og = clone.deepClone(graph);
 				int bound = 0;
 				
@@ -2130,6 +2137,10 @@ public class fun<V> extends JApplet {
 			}
 			size++;
 		}
+		
+		long end = System.currentTimeMillis();
+		
+		System.out.println("Time for test: " + (end - start));
 	}
 	
 	
@@ -2275,24 +2286,6 @@ public class fun<V> extends JApplet {
 		}
 	}
 	
-	public static void test()
-	{
-		Graph<Integer, Pair<Integer>> graph = gen.treeRandom(30, 1);
-		
-		Controller<Integer> c = new Controller<Integer>(null, true);
-		
-		Branch<Integer> bStruct = new clusterAllStruct<Integer>(c);
-		
-		c.setbStruct(bStruct);
-		
-		bStruct.setDive(new clusterGreedy<Integer>(bStruct));
-		visualize(clone.deepClone(graph));
-		
-		branchingReturnC<Integer> rtn = c.branchStart(graph, 19);
-		
-		visualize(rtn.getG());
-		
-	}
 	
 	public static void honoursTest()
 	{
@@ -2319,7 +2312,7 @@ public class fun<V> extends JApplet {
 		
 		cographAllStruct<String> cograph = new cographAllStruct<String>(c);
 		
-		cograph.addReduction(new cographReduction<String>(cograph));
+		//cograph.addReduction(new cographReduction<String>(cograph));
 		
 		
 		cograph.setDive(new cographGreedy<String>(cograph));
@@ -2349,18 +2342,18 @@ public class fun<V> extends JApplet {
 		
 		branchingReturnC<String> goal = null;
 		
-		for (int i = 2; i < 3; i++)
+		for (int i = 0; i < 1; i++)
 		{
 			Branch<String> bStruct = bStructs.get(i);
 			
 			c.setbStruct(bStruct);
 			
 			//try approximate edit
-			goal = c.diveAtStartEdit(wine, 13);
+			//goal = c.diveAtStartEdit(wine, 40);
 			
 			
 			//try regular edit
-			//goal = c.branchStart(wine, 17);
+			goal = c.branchStart(wine, 50);
 			
 			//try iterative deepening
 			//goal = c.branchID(wine, 2, 17);
@@ -2386,7 +2379,226 @@ public class fun<V> extends JApplet {
 		}
 		
 		
+	}
+	
+	private static void greedyComparisonTest()
+	{
+		//run the same graph as a test over multiple traversal methods
+		cographSearch<Integer> search = new cographSearch<Integer>();
+		qtGenerate<Integer> gen = new qtGenerate<Integer>();
+		Cloner clone = new Cloner();
+		
+		//load all test branching methods
+		Controller<Integer> c = new Controller<Integer>(null, false);
+		cographAllStruct<Integer> allOriginal = new cographAllStruct<Integer>(c);
+		
+		allOriginal.setDive(new cographGreedy(allOriginal));
+		
+		branchComponents<Integer> all = new branchComponents<Integer>(c, allOriginal);
 		
 		
+		
+		//store branching types
+		LinkedList<Branch<Integer>> b = new LinkedList<Branch<Integer>>();
+		HashSet<Integer> moves;
+		HashSet<Boolean> success;
+		
+		Double percentSum = 0.0;
+		int count = 0;
+		
+		Graph<Integer, Pair<Integer>> graph;
+		
+		b.add(all);
+		
+		int size = 19;
+		
+		outer:
+		while (size < 20)
+		{
+			int seed = 0;
+			seedloop:
+			while (seed < 5)
+			{
+				//create graph
+				//graph = gen.randomTreeGraph(size, size/2 - 1, seed);
+				graph = gen.ER(size, 0.7, (long) seed);
+				Graph<Integer, Pair<Integer>> og = clone.deepClone(graph);
+				int bound = 0;
+				
+				//visualize(og);
+				
+				boundloop:
+				while (bound < 11)
+				{
+					moves = new HashSet<Integer>();
+					success = new HashSet<Boolean>();
+					
+					branchingReturnC<Integer> ansExact = null;
+					branchingReturnC<Integer> ansGreedy = null;
+					
+					for (Branch<Integer> temp : b)
+					{
+						c.setbStruct(temp);
+						ansExact = c.branchStart(graph, bound);
+						
+						if (!temp.getSearch().isTarget(ansExact.getG()))
+							continue;
+						
+						ansGreedy = c.diveAtStartEdit(graph, 5);
+						
+						percentSum += ansGreedy.getChanges().size() - ansExact.getChanges().size();
+						count++;
+						break;
+						
+						
+
+						
+					}
+
+
+					bound++;
+				}
+				seed++;
+			}
+			size++;
+		}
+		
+		System.out.println("Average number of moves over exact: " + percentSum / count);
+		System.out.println("Count: " + count);
+	}
+	
+	public static void approximateBranchingFactor()
+	{
+		Controller<Integer> c = new Controller<Integer>(null, true);
+		
+		ArrayList<Branch<Integer>> bStructs = new ArrayList<Branch<Integer>>(3);
+		
+		clusterAllStruct<Integer> cluster = new clusterAllStruct<Integer>(c);
+		cluster.addReduction(new clusterReductionBasic<Integer>(cluster));
+		
+		cluster.setDive(new clusterGreedy<Integer>(cluster));
+		
+		bStructs.add(0, new branchComponents<Integer>(c, cluster));
+		
+		
+		cographAllStruct<Integer> cograph = new cographAllStruct<Integer>(c);
+		
+		//cograph.addReduction(new cographReduction<String>(cograph));
+		
+		
+		cograph.setDive(new cographGreedy<Integer>(cograph));
+	
+		bStructs.add(1, new branchComponents<Integer>(c, cograph));
+		
+		//set up qt editor with reduction rule
+		qtBranch<Integer> temp = new qtAllStruct<Integer>(c);
+		
+		temp.addReduction(new c4p4Reduction<Integer>(temp));
+		
+		temp.setDive(new maxObsGreedy<Integer>(temp));
+		
+		bStructs.add(2, new branchComponents<Integer>(c, temp));
+		
+		
+		//----------------------------------------------------
+		//set up data
+		
+		Graph<Integer, Pair<Integer>> graph;
+		
+		double clusterFactor = 0;
+		int cographCount = 0;
+		double cographFactor = 0;
+		int clusterCount = 0;
+		double qtFactor = 0;
+		int qtCount = 0;
+		
+		double prev;
+
+		
+		//----------------------------------------------------
+		//perform editing
+		
+		branchingReturnC<Integer> goal = null;
+		
+		for (int i = 0; i < 1; i++)
+		{
+			Branch<Integer> bStruct = bStructs.get(i);
+			
+			c.setbStruct(bStruct);
+			
+			sizeLoop:
+			for (int size = 50; size < 100; size +=10)
+			{
+				
+				seedLoop:
+				for (int seed = 0; seed<5; seed++)
+				{
+					graph = gen.ER(size, 0.5, (long) seed);
+					prev = -1;
+					boundLoop:
+					for (int bound = 40; bound < 46; bound++)
+					{
+						//try regular edit
+						goal = c.branchStart(graph, bound);
+						
+						//try iterative deepening
+						//goal = c.branchID(wine, 2, 17);
+					
+						if (!bStruct.getSearch().isTarget(goal.getG()))
+						{
+							if (prev == -1)
+								prev = goal.timesRun;
+							else
+							{
+								//calculate approximate branching factor
+								if (i == 0)
+								{
+									clusterFactor += goal.timesRun / prev;
+									clusterCount++;
+								}
+								else if (i == 1)
+								{
+									cographFactor += goal.timesRun / prev;
+									cographCount++;
+								}
+								else
+								{
+									qtFactor += goal.timesRun/ prev;
+									qtCount++;
+								}
+								prev = goal.timesRun;
+							}
+						}
+						else
+							break boundLoop;
+						
+					
+					}
+				
+					
+					
+				}
+			}	
+			
+			
+		}
+		
+		System.out.println("Approximate cluster factor: " + clusterFactor / clusterCount);
+		System.out.println("Approximate cogrpah factor: " + cographFactor / cographCount);
+		System.out.println("Approximate qt factor: " + qtFactor / qtCount);
+		
+	}
+	
+	public static void lesMisTest()
+	{
+		
+		Graph<Integer, Pair<Integer>> graph = fillGraphFromFile("datasets/lesmisEdgeList.txt"); 
+		Controller<Integer> c = new Controller<Integer>(null, true);
+		qtBranch<Integer> temp = new qtAllStruct<Integer>(c);
+		temp.setDive(new maxObsGreedy<Integer>(temp));
+		
+		c.setbStruct(temp);
+		
+		c.diveAtStartEdit(graph, 12);
 	}
 }

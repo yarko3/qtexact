@@ -33,8 +33,19 @@ public class graphFromEdgeSetWithCommunities
 
 		while (scan.hasNext()) {
 			
+			
 			//source
 			String a = scan.next();
+			
+			//remove the edit set initially
+			if (a.equals("delete") || a.equals("add"))
+			{
+				scan.next();
+				scan.next();
+				continue;
+			}
+			
+			
 			//target
 			String b = scan.next();
 			

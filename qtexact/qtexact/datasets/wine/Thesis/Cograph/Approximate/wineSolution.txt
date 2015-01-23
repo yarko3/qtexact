@@ -1,3 +1,21 @@
+delete	http://www.levieuxpin.ca	http://www.bluemountainwinery.com
+add	http://www.blackhillswinery.com	http://www.mfvwines.com
+delete	http://www.vistadoro.com	http://www.quailsgate.com
+delete	http://www.tantalus.ca	http://www.bluemountainwinery.com
+delete	http://www.blastedchurch.com	http://www.sylranch.com
+delete	http://www.tinhorn.com	http://www.nobleridge.com
+delete	http://www.bluemountainwinery.com	http://www.churchandstatewines.com
+add	http://www.rusticrootswinery.com	http://www.blueheronwinery.ca
+add	http://www.quaywine.com	http://www.vancouverurbanwinery.com
+delete	http://www.blastedchurch.com	http://www.vancouverurbanwinery.com
+delete	http://www.mfvwines.com	http://www.sylranch.com
+delete	http://www.mfvwines.com	http://www.vancouverurbanwinery.com
+add	http://www.stoneboatvineyards.com	http://www.mfvwines.com
+delete	http://www.vistadoro.com	http://www.cedarcreek.bc.ca
+delete	http://www.vancouverurbanwinery.com	http://www.lakebreeze.ca
+delete	http://www.cedarcreek.bc.ca	http://www.vancouverurbanwinery.com
+delete	http://www.sylranch.com	http://www.bluemountainwinery.com
+
 http://www.bluemountainwinery.com http://www.paintedrock.ca 1 3
 http://www.coastalblack.ca http://www.40knotswinery.com 1 7
 http://www.sylranch.com http://www.inniskillin.com 1 5
@@ -77,15 +95,15 @@ http://www.tantalus.ca http://www.cedarcreek.bc.ca 1 3
 http://www.stagshollowwinery.com http://www.mfvwines.com 1 3
 http://www.howlingbluff.ca http://www.mfvwines.com 1 3
 http://www.levieuxpin.ca http://www.bluemountainwinery.com -1 2
-http://www.tantalus.ca http://www.bluemountainwinery.com -1 3
 http://www.vistadoro.com http://www.quailsgate.com -1 6
+http://www.tantalus.ca http://www.bluemountainwinery.com -1 3
 http://www.blastedchurch.com http://www.sylranch.com -1 3
+http://www.tinhorn.com http://www.nobleridge.com -1 8
+http://www.bluemountainwinery.com http://www.churchandstatewines.com -1 3
 http://www.blastedchurch.com http://www.vancouverurbanwinery.com -1 3
+http://www.mfvwines.com http://www.sylranch.com -1 3
 http://www.mfvwines.com http://www.vancouverurbanwinery.com -1 3
 http://www.vistadoro.com http://www.cedarcreek.bc.ca -1 6
-http://www.bluemountainwinery.com http://www.churchandstatewines.com -1 3
 http://www.vancouverurbanwinery.com http://www.lakebreeze.ca -1 2
-http://www.bluemountainwinery.com http://www.sylranch.com -1 3
 http://www.cedarcreek.bc.ca http://www.vancouverurbanwinery.com -1 3
-http://www.mfvwines.com http://www.sylranch.com -1 3
-http://www.tinhorn.com http://www.nobleridge.com -1 8
+http://www.sylranch.com http://www.bluemountainwinery.com -1 5
