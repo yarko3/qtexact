@@ -117,7 +117,7 @@ public class fun<V> extends JApplet {
 		//getRules();
 		
 		//clusterComparisonTest();
-		cographComparisonTest();
+		//cographComparisonTest();
 	
 		//clusterCommonExternals();
 		//greedyComparisonTest();
@@ -126,6 +126,8 @@ public class fun<V> extends JApplet {
 		//approximateBranchingFactor();
 		
 		//lesMisTest();
+		
+		//projectionOverlapDistanceAnalysis();
 	}
 	
 	
@@ -2600,5 +2602,35 @@ public class fun<V> extends JApplet {
 		c.setbStruct(temp);
 		
 		c.diveAtStartEdit(graph, 12);
+	}
+	
+	
+	private static void projectionOverlapDistanceAnalysis()
+	{
+		//String province = "BC";
+		LinkedList<String> provinces = new LinkedList<String>();
+		provinces.add("BC");
+		provinces.add("ON");
+		provinces.add("QC");
+		
+		for (String province : provinces)
+		{
+			String distanceFile = "datasets/wine/Distance/"+province +"/"+province+"Distance.txt";
+			
+			
+			Graph<String, Pair<String>> wine = null;
+			
+			int k = 1;
+			
+			try {
+				genString.fromBipartiteFileCountDistances("datasets/wine/" + province + "/edgeSet.txt", k, distanceFile, "datasets/wine/" + province + "/projections/k1WithOverlapDistances.txt");
+			} catch (FileNotFoundException | UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+	
+				
+		}
 	}
 }

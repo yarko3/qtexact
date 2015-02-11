@@ -155,6 +155,7 @@ http://www.altowinegroup.com	49.338972	-119.543789
 http://www.artisansakemaker.dreamhosters.com	49.270293	-123.134096
 http://www.blackcloud.ca	50.366689	-119.350102
 http://www.bluegrouse.ca	48.723585	-123.651144
+http://www.bluegrousevineyards.com	48.723585	-123.651144
 http://www.calliopewines.com	50.366689	-119.350102
 http://www.prospectwinery.com	50.366689	-119.350102
 http://www.garryoakswine.com	48.791408	-123.497967
@@ -163,6 +164,7 @@ http://www.haywirewinery.com	50.366689	-119.350102
 http://www.heronridgeestateswine.com	49.355807	-117.575476
 http://www.hiddenchapelwinery.com	49.223135	-119.562336
 http://www.edgeearth.ca	50.487439	-119.204963
+http://www.edgeoftheearthvineyard.com	50.487439	-119.204963
 http://www.nichewinecompany.com	49.901125	-119.592958
 http://www.thevibrantvine.com	49.86305	-119.411881
 http://www.paintedrock.ca	49.429444	-119.570004

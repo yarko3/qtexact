@@ -1,3 +1,6 @@
+/abstractClasses
+/branch
+/certificate
 /clusterRules
 /cographRules
 /components
@@ -6,10 +9,6 @@
 /greedy
 /jimsFiles
 /modularDecomposition
-/abstractClasses
-/branch
-/certificate
-/fun.class
 /org
 /qtUtils
 /reduction

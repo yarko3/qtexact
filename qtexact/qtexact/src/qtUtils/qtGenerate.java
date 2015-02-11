@@ -19,6 +19,8 @@ import java.util.LinkedList;
 import java.util.Random;
 import java.util.Scanner;
 
+import utils.distance;
+
 import com.rits.cloning.Cloner;
 
 import edu.uci.ics.jung.graph.Graph;
@@ -543,13 +545,7 @@ public class qtGenerate<V>
 		}
 		
 		Scanner scan = new Scanner(file);
-		
-		//get size of left and right sides of bipartite network
-//		int left = scan.nextInt();
-//		int right = scan.nextInt();
-		
-		
-		
+
 		while (scan.hasNext()) {
 			String a = scan.next();
 			String b = scan.next();
@@ -575,53 +571,6 @@ public class qtGenerate<V>
 		//remove common vertices from both sides
 		HashSet<Integer> all = new HashSet<Integer>();
 		HashSet<Integer> common = new HashSet<Integer>();
-		//all.addAll(leftVertices);
-		
-//		for (Integer i : rightVertices)
-//		{
-//			if (!all.add(i))
-//				common.add(i);
-//		}
-		
-//		for (Integer v : common)
-//		{
-//			initial.removeVertex(v);
-//		}
-		
-		//leftVertices.removeAll(common);
-		//rightVertices.removeAll(common);
-		
-		
-		HashSet<String> oldRight = rightVertices;
-		
-//		rightVertices = new HashSet<String>();
-//		
-//    	
-//    	FileReader wineries = null;
-//		try {
-//			wineries = new FileReader("datasets/urlLatLong.txt");
-//		} catch (FileNotFoundException e) {
-//			System.out.println("File " + " could not be found.");
-//			e.printStackTrace();
-//		}
-//
-//		scan = new Scanner(wineries);
-//
-//		while (scan.hasNextLine()) {
-//			rightVertices.add(scan.next().toLowerCase());
-//			//scan.nextDouble();
-//			//scan.nextDouble();
-//		}
-//		try {
-//			scan.close();
-//			wineries.close();
-//		} catch (IOException e) {
-//			System.out.println("File " + " could not be found.");
-//			e.printStackTrace();
-//		}
-		
-		
-		
 		
 		PrintWriter writer = new PrintWriter("datasets/bipartiteEdgeSet.txt", "UTF-8");
 		
@@ -679,26 +628,120 @@ public class qtGenerate<V>
 		
 		writer.close();
 		
-		
-//		for (int i = 1; i <= right; i++)
-//		{
-//			//get neighbours of each right node
-//			Collection<Integer> neighbourhood = initial.getNeighbors(i + left);
-//			
-//			for (Integer n : neighbourhood)
-//			{
-//				for (Integer j : neighbourhood)
-//				{
-//					if (n != j)
-//					{
-//						g.addEdge(new Pair<Integer>(n, j), n, j);
-//					}
-//				}
-//			}
-//		}
+
 		return g;
 		
 	}
+	
+	public UndirectedGraph<String, Pair<String>> fromBipartiteFileCountDistances(String filename, int k, String distFile, String output) throws FileNotFoundException, UnsupportedEncodingException
+	{
+		
+		HashMap<String, Pair<Double>> mapping = distance.getLatLongFromFile(distFile);
+		
+		
+		
+		Graph<String, Pair<String>> initial = new UndirectedSparseGraph<String, Pair<String>>();
+		HashSet<String> leftVertices = new HashSet<String>();
+		HashSet<String> rightVertices = new HashSet<String>();
+		
+		
+		FileReader file = null;
+		try {
+			file = new FileReader(filename);
+		} catch (FileNotFoundException e) {
+			System.out.println("File " + filename + " could not be found.");
+			e.printStackTrace();
+		}
+		
+		Scanner scan = new Scanner(file);
+
+		while (scan.hasNext()) {
+			String a = scan.next();
+			String b = scan.next();
+			
+			leftVertices.add(a);
+			rightVertices.add(b);
+			
+			initial.addEdge(new Pair<String>(a, b), a, b);
+		}
+		try {
+			scan.close();
+			file.close();
+		} catch (IOException e) {
+			System.out.println("File " + filename + " could not be found.");
+			e.printStackTrace();
+		}
+		
+		UndirectedGraph<String, Pair<String>> g = new UndirectedSparseGraph<String, Pair<String>>();
+		
+		//build new graph
+		
+		
+		//remove common vertices from both sides
+		HashSet<Integer> all = new HashSet<Integer>();
+		HashSet<Integer> common = new HashSet<Integer>();
+		
+		PrintWriter writer = new PrintWriter(output, "UTF-8");
+		
+		//must be bipartite for this to work
+		
+		//k is the number of common neighbours needed to make an edge
+		
+		for (String i : leftVertices)
+		{
+			if (initial.containsVertex(i))
+			{
+				Collection<String> neighbours = initial.getNeighbors(i);
+
+				for (String n : neighbours)
+				{
+					//no self edges
+					if (!n.equals(i))
+					{
+						Collection<String> nn = initial.getNeighbors(n);
+						for (String friend : nn)
+						{
+							if (!i.equals(friend) && !rightVertices.contains(friend))
+							{
+								int count = 0;
+								Collection<String> friendN = initial.getNeighbors(friend);
+								
+								//check for number of common neighbours
+								for (String temp0 : neighbours)
+								{
+									for (String temp1 : friendN)
+									{
+										if (temp0.equals(temp1))
+										{
+											count++;
+										}
+									}
+								}
+								if (count > k)
+								{
+									if (!(g.containsVertex(friend) && g.containsVertex(i) && g.isNeighbor(friend, i)))
+									{
+										g.addEdge(new Pair<String>(i , friend), i, friend);
+										writer.println(i + "\t" + friend + "\t" + count + "\t" + distance.distanceBetween(i, friend, mapping));
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			
+		}
+		
+		
+		
+		writer.close();
+		
+
+		return g;
+		
+	}
+	
 	
 	
 	public Graph<Integer, Pair<Integer>> manyInducedC4(int n)

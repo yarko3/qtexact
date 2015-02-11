@@ -25,6 +25,21 @@ public class distance<V>
 	
 	static graphUtils<String> utils = new graphUtils<String>();
 	
+	public static double distanceBetween(String v0, String v1, HashMap<String, Pair<Double>> mapping)
+	{
+		GeodeticCalculator geoCalc = new GeodeticCalculator();
+
+		Ellipsoid reference = Ellipsoid.WGS84;  
+		
+		GlobalPosition pointA = new GlobalPosition(mapping.get(v0).getFirst(), mapping.get(v0).getSecond(), 0.0); // Point A
+
+		
+		GlobalPosition pointB = new GlobalPosition(mapping.get(v1).getFirst(), mapping.get(v1).getSecond(), 0.0); // Point B
+
+		return geoCalc.calculateGeodeticCurve(reference, pointA, pointB).getEllipsoidalDistance() / 1000;
+		
+	}
+	
 	
 	/**
 	 * find the average distance between points in graph, given a lat long map
