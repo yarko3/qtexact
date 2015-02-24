@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -53,11 +54,10 @@ import branch.qtBranchNoHeuristic;
 import clusterRules.clusterAllStruct;
 import clusterRules.clusterBranch;
 import cographRules.cographAllStruct;
-import cographRules.cographBranch;
 
 import com.rits.cloning.Cloner;
-
 import components.branchComponents;
+
 import controller.Controller;
 import edu.uci.ics.jung.algorithms.cluster.WeakComponentClusterer;
 import edu.uci.ics.jung.algorithms.layout.FRLayout;
@@ -121,9 +121,10 @@ public class fun<V> extends JApplet {
 	
 		//clusterCommonExternals();
 		//greedyComparisonTest();
+		
 		//honoursTest();
 	
-		//approximateBranchingFactor();
+		approximateBranchingFactor();
 		
 		//lesMisTest();
 		
@@ -2294,7 +2295,7 @@ public class fun<V> extends JApplet {
 		//----------------------------------------------------
 		//initialize distance measurements
 		distance<String> d = new distance<String>();
-		String distanceFile = "datasets/wine/Distance/BC/BCDistance.txt";
+		String distanceFile = "datasets/wine/Distance/CANADA/CANADADistance.txt";
 		HashMap<String, Pair<Double>> mapping = distance.getLatLongFromFile(distanceFile);
 		
 		
@@ -2334,7 +2335,7 @@ public class fun<V> extends JApplet {
 		//----------------------------------------------------
 		//set up data
 		
-		Graph<String, Pair<String>> wine = fillGraphFromFileWithStrings("datasets/wine/BC/wineryEdgeSet.txt");
+		Graph<String, Pair<String>> wine = fillGraphFromFileWithStrings("datasets/wine/CANADA/wineryEdgeSet.txt");
 		
 		Graph<String, Pair<String>> originalWineClone = clone.deepClone(wine);
 		
@@ -2342,20 +2343,20 @@ public class fun<V> extends JApplet {
 		//----------------------------------------------------
 		//perform editing
 		
-		branchingReturnC<String> goal = null;
+		branchingReturnC<String> goal = new branchingReturnC<String>(wine);
 		
-		for (int i = 0; i < 1; i++)
+		for (int i = 2; i < 3; i++)
 		{
 			Branch<String> bStruct = bStructs.get(i);
 			
 			c.setbStruct(bStruct);
 			
 			//try approximate edit
-			//goal = c.diveAtStartEdit(wine, 40);
+			goal = c.diveAtStartEdit(wine, 8);
 			
 			
-			//try regular edit
-			goal = c.branchStart(wine, 50);
+//			//try regular edit
+//			goal = c.branchStart(wine, 50);
 			
 			//try iterative deepening
 			//goal = c.branchID(wine, 2, 17);
@@ -2365,17 +2366,23 @@ public class fun<V> extends JApplet {
 				//print results
 				String path = null;
 				if (i == 0)
-					path = "datasets/wine/Thesis/Cluster/Approximate/";
+					path = "datasets/wine/Thesis/QC/Cluster/Approximate/";
 				else if (i == 1)
-					path = "datasets/wine/Thesis/Cograph/Approximate/";
+					path = "datasets/wine/Thesis/QC/Cograph/Approximate/";
 				else
-					path = "datasets/wine/Thesis/QT/Approximate/";
+					path = "datasets/wine/Thesis/QC/QT/Approximate/";
 			
 				stringUtils.printSolutionEdgeSetWithWeightsComponents(goal, path+"wineSolution.txt");
 				
 				d.outputDistanceMeasurements(path+"wineSolution.txt", distanceFile, path+"wineDistances.txt");
 			}
 			
+			
+			//ONLY FOR TEST
+			String path = "datasets/wine/Thesis/QC/QT/Approximate/";
+			stringUtils.printSolutionEdgeSetWithWeightsComponents(goal, path+"wineSolution.txt");
+			
+			d.outputDistanceMeasurements(path+"wineSolution.txt", distanceFile, path+"wineDistances.txt");
 			
 			
 		}
@@ -2476,7 +2483,7 @@ public class fun<V> extends JApplet {
 		ArrayList<Branch<Integer>> bStructs = new ArrayList<Branch<Integer>>(3);
 		
 		clusterAllStruct<Integer> cluster = new clusterAllStruct<Integer>(c);
-		cluster.addReduction(new clusterReductionBasic<Integer>(cluster));
+		//cluster.addReduction(new clusterReductionBasic<Integer>(cluster));
 		
 		cluster.setDive(new clusterGreedy<Integer>(cluster));
 		
@@ -2495,7 +2502,7 @@ public class fun<V> extends JApplet {
 		//set up qt editor with reduction rule
 		qtBranch<Integer> temp = new qtAllStruct<Integer>(c);
 		
-		temp.addReduction(new c4p4Reduction<Integer>(temp));
+		//temp.addReduction(new c4p4Reduction<Integer>(temp));
 		
 		temp.setDive(new maxObsGreedy<Integer>(temp));
 		
@@ -2521,25 +2528,28 @@ public class fun<V> extends JApplet {
 		//perform editing
 		
 		branchingReturnC<Integer> goal = null;
-		
-		for (int i = 0; i < 1; i++)
+		Random rand = new Random();
+		for (int i = 0; i < 3; i++)
 		{
 			Branch<Integer> bStruct = bStructs.get(i);
 			
 			c.setbStruct(bStruct);
 			
 			sizeLoop:
-			for (int size = 50; size < 100; size +=10)
+			for (int size = 60; size < 110; size +=10)
 			{
 				
 				seedLoop:
-				for (int seed = 0; seed<5; seed++)
+				for (int seed = 0; seed<6; seed++)
 				{
-					graph = gen.ER(size, 0.5, (long) seed);
+					graph = gen.randomTreeGraph(size, (size-1)/2, seed);
 					prev = -1;
 					boundLoop:
-					for (int bound = 40; bound < 46; bound++)
+					for (int bound = 3; bound < 7; bound++)
 					{
+						if (bound == 3)
+							prev = -1;
+						
 						//try regular edit
 						goal = c.branchStart(graph, bound);
 						
@@ -2549,6 +2559,7 @@ public class fun<V> extends JApplet {
 						if (!bStruct.getSearch().isTarget(goal.getG()))
 						{
 							if (prev == -1)
+								
 								prev = goal.timesRun;
 							else
 							{
@@ -2572,7 +2583,11 @@ public class fun<V> extends JApplet {
 							}
 						}
 						else
+						{
+							prev = -1;
 							break boundLoop;
+						}
+							
 						
 					
 					}
@@ -2586,9 +2601,11 @@ public class fun<V> extends JApplet {
 		}
 		
 		System.out.println("Approximate cluster factor: " + clusterFactor / clusterCount);
+		System.out.println("Total number of cluster approximations: " + clusterCount);
 		System.out.println("Approximate cogrpah factor: " + cographFactor / cographCount);
+		System.out.println("Total number of cograph approximations: " + cographCount);
 		System.out.println("Approximate qt factor: " + qtFactor / qtCount);
-		
+		System.out.println("Total number of qt approximations: " + qtCount);
 	}
 	
 	public static void lesMisTest()

@@ -1,0 +1,221 @@
+delete	http://www.nobleridge.com	http://www.tinhorn.com
+delete	http://www.blastedchurch.com	http://www.sylranch.com
+delete	http://www.tantalus.ca	http://www.summerhill.bc.ca
+delete	http://www.clossonchase.com	http://www.stratuswines.com
+add	http://www.st-hubertus.bc.ca	http://www.mfvwines.com
+add	http://www.sugarbushvineyards.ca	http://www.southbrook.com
+delete	http://www.vineland.com	http://www.featherstonewinery.ca
+delete	http://www.vistadoro.com	http://www.quailsgate.com
+delete	http://www.colchesterridge.com	http://www.13thstreetwinery.com
+delete	http://www.vistadoro.com	http://www.cedarcreek.bc.ca
+delete	http://www.mfvwines.com	http://www.sylranch.com
+delete	http://www.vancouverurbanwinery.com	http://www.blastedchurch.com
+add	http://www.theicehouse.ca	http://www.fiverows.com
+delete	http://www.mfvwines.com	http://www.levieuxpin.ca
+add	http://www.thevibrantvine.com	http://www.houseofrose.ca
+delete	http://www.vancouverurbanwinery.com	http://www.cedarcreek.bc.ca
+delete	http://www.vancouverurbanwinery.com	http://www.lakebreeze.ca
+add	http://www.featherstonewinery.ca	http://www.fieldingwines.com
+delete	http://www.vancouverurbanwinery.com	http://www.mfvwines.com
+delete	http://www.blastedchurch.com	http://www.bluemountainwinery.com
+delete	http://www.colchesterridge.com	http://www.casadeaestates.com
+delete	http://www.del-gattoestates.ca	http://www.countycider.com
+add	http://www.vistadoro.com	http://www.blueheronwinery.ca
+
+http://www.mfvwines.com http://www.paintedrock.ca 1 1
+http://www.peller.com http://www.hillebrand.com 1 13
+http://www.winegardenestate.com http://www.richibuctoriverwineestate.com 1 9
+http://www.coastalblack.ca http://www.40knotswinery.com 1 25
+http://www.vancouverurbanwinery.com http://www.musewinery.ca 1 24
+http://www.sylranch.com http://www.inniskillin.com 1 8
+http://www.dovervineyards.com http://www.burningkilnwinery.ca 1 15
+http://www.orpailleur.ca http://www.domainepinnacle.com 1 14
+http://www.sugarbushvineyards.ca http://www.redtailvineyard.com 1 26
+http://www.orpailleur.ca http://www.cepdargent.com 1 14
+http://www.mfvwines.com http://www.bluemountainwinery.com 1 1
+http://www.artisansduterroir.ca http://www.coteau-st-paul.com 1 22
+http://www.tantalus.ca http://www.st-hubertus.bc.ca 1 1
+http://www.livingskywinery.com http://www.muwinestate.com 1 28
+http://www.vineland.com http://www.malivoire.com 1 0
+http://www.houseofrose.ca http://www.spierheadwinery.com 1 16
+http://www.viewpointewinery.com http://www.mastronardiwines.com 1 23
+http://www.viewpointewinery.com http://www.smithandwilsonestatewines.ca 1 23
+http://www.gaspereauwine.com http://www.luckettvineyards.com 1 12
+http://www.viewpointewinery.com http://www.dangelowinery.com 1 23
+http://www.mfvwines.com http://www.howlingbluff.ca 1 1
+http://www.clossonchase.com http://www.grangeofprinceedward.com 1 26
+http://www.fiverows.com http://www.ravinevineyard.com 1 20
+http://www.vancouverurbanwinery.com http://www.rollingdale.ca 1 24
+http://www.tantalus.ca http://www.averillcreek.ca 1 1
+http://www.sylranch.com http://www.sumacridge.com 1 8
+http://www.normanhardie.com http://www.huffestates.com 1 26
+http://www.intriguewines.ca http://www.graymonk.com 1 2
+http://www.winegardenestate.com http://www.fermemaury.com 1 9
+http://www.clossonchase.com http://www.normanhardie.com 1 26
+http://www.vancouverurbanwinery.com http://www.pacificbreezewinery.com 1 24
+http://www.sugarbushvineyards.ca http://www.huffestates.com 1 26
+http://www.winegardenestate.com http://www.gillisofbelleisle.com 1 9
+http://www.sugarbushvineyards.ca http://www.terracellowinery.com 1 26
+http://www.mfvwines.com http://www.quailsgate.com 1 1
+http://www.blastedchurch.com http://www.wildgoosewinery.com 1 1
+http://www.tantalus.ca http://www.quailsgate.com 1 1
+http://www.dovervineyards.com http://www.villanovaestatewinery.ca 1 15
+http://www.sugarbushvineyards.ca http://www.longdog.ca 1 26
+http://www.vancouverurbanwinery.com http://www.nicholvineyard.com 1 24
+http://www.lacadievineyards.ca http://www.st-famille.com 1 12
+http://www.sugarbushvineyards.ca http://www.devilswishbone.com 1 26
+http://www.artisansduterroir.ca http://www.cotedeslimousins.com 1 22
+http://www.blastedchurch.com http://www.paintedrock.ca 1 1
+http://www.sugarbushvineyards.ca http://www.33vines.com 1 26
+http://www.gaspereauwine.com http://www.jostwine.com 1 12
+http://www.clossonchase.com http://www.karloestates.com 1 26
+http://www.vancouverurbanwinery.com http://www.deserthills.ca 1 24
+http://www.gaspereauwine.com http://www.canada-wine.com 1 12
+http://www.viewpointewinery.com http://www.aleksanderestate.com 1 23
+http://www.vistadoro.com http://www.rusticrootswinery.com 1 10
+http://www.hubbscreekvineyard.ca http://www.hinterlandwine.com 1 26
+http://www.winegardenestate.com http://www.mottslandingvineyard.com 1 9
+http://www.sugarbushvineyards.ca http://www.brokenstone.ca 1 26
+http://www.sugarbushvineyards.ca http://www.rosehallrun.com 1 26
+http://www.vineland.com http://www.ridgepointwines.com 1 0
+http://www.sugarbushvineyards.ca http://www.bergeronestatewinery.com 1 26
+http://www.sugarbushvineyards.ca http://www.lighthallvineyards.com 1 26
+http://www.gaspereauwine.com http://www.blomidonwine.com 1 12
+http://www.littletribunefarmandwinery.com http://www.middlemountainmead.com 1 21
+http://www.sugarbushvineyards.ca http://www.stannersvineyard.ca 1 26
+http://www.erieshore.ca http://www.sprucewoodshores.com 1 23
+http://www.tantalus.ca http://www.bluemountainwinery.com 1 1
+http://www.tantalus.ca http://www.eauvivrewinery.ca 1 1
+http://www.sugarbushvineyards.ca http://www.del-gattoestates.ca 1 26
+http://www.erieshore.ca http://www.colchesterridge.com 1 23
+http://www.longdog.ca http://www.countycider.com 1 26
+http://www.fiverows.com http://www.chateaudescharmes.com 1 20
+http://www.sugarbushvineyards.ca http://www.southbrook.com 2 26
+http://www.sugarbushvineyards.ca http://www.laceyestates.com 1 26
+http://www.erieshore.ca http://www.viewpointewinery.com 1 23
+http://www.winegardenestate.com http://www.watersidewinery.ca 1 9
+http://www.sugarbushvineyards.ca http://www.hubbscreekvineyard.ca 1 26
+http://www.sugarbushvineyards.ca http://www.hilliercreekestates.com 1 26
+http://www.mfvwines.com http://www.wildgoosewinery.com 1 1
+http://www.mfvwines.com http://www.cedarcreek.bc.ca 1 1
+http://www.lacacheamaxime.com http://www.ricaneux.com 1 19
+http://www.kingscourtwinery.ca http://www.ontario-wine.com 1 6
+http://www.artisansduterroir.ca http://www.vignobleleroyer.com 1 22
+http://www.sugarbushvineyards.ca http://www.grangeofprinceedward.com 1 26
+http://www.featherstonewinery.ca http://www.fieldingwines.com 2 5
+http://www.tantalus.ca http://www.cedarcreek.bc.ca 1 1
+http://www.vancouverurbanwinery.com http://www.churchandstatewines.com 1 24
+http://www.gaspereauwine.com http://www.wine.travel 1 12
+http://www.flatrockcellars.com http://www.fieldingwines.com 1 5
+http://www.mfvwines.com http://www.blastedchurch.com 1 1
+http://www.blastedchurch.com http://www.nobleridge.com 1 1
+http://www.st-hubertus.bc.ca http://www.mfvwines.com 2 1
+http://www.sugarbushvineyards.ca http://www.harwoodestatevineyards.com 1 26
+http://www.blackprincewinery.com http://www.del-gattoestates.ca 1 26
+http://www.vancouverurbanwinery.com http://www.hestercreek.com 1 24
+http://www.lacacheamaxime.com http://www.vignoblenordet.com 1 19
+http://www.mfvwines.com http://www.eauvivrewinery.ca 1 1
+http://www.vancouverurbanwinery.com http://www.road13vineyards.com 1 24
+http://www.mfvwines.com http://www.nobleridge.com 1 1
+http://www.intriguewines.ca http://www.exnihilovineyards.com 1 2
+http://www.orpailleur.ca http://www.labauge.com 1 14
+http://www.tastevibrantvines.com http://www.thevibrantvine.com 1 16
+http://www.sugarbushvineyards.ca http://www.hinterlandwine.com 1 26
+http://www.sylranch.com http://www.nkmipcellars.com 1 8
+http://www.winegardenestate.com http://www.magnetichillwinery.com 1 9
+http://www.gaspereauwine.com http://www.lacadievineyards.ca 1 12
+http://www.flatrockcellars.com http://www.featherstonewinery.ca 1 5
+http://www.sylranch.com http://www.jacksontriggswinery.com 1 8
+http://www.sugarbushvineyards.ca http://www.karloestates.com 1 26
+http://www.charlesbaker.ca http://www.stratuswines.com 1 7
+http://www.featherstonewinery.ca http://www.2027cellars.ca 1 5
+http://www.sugarbushvineyards.ca http://www.waupooswinery.com 1 26
+http://www.sugarbushvineyards.ca http://www.clossonchase.com 1 26
+http://www.bailliegrohman.com http://www.skimmerhorn.ca 1 18
+http://www.blueheronwinery.ca http://www.thefortwineco.com 1 10
+http://www.vancouverurbanwinery.com http://www.sperlingvineyards.com 1 24
+http://www.lacadievineyards.ca http://www.luckettvineyards.com 1 12
+http://www.winegardenestate.com http://www.dunhamsrun.ca 1 9
+http://www.sugarbushvineyards.ca http://www.theoldthird.com 1 26
+http://www.sugarbushvineyards.ca http://www.bychadseyscairns.com 1 26
+http://www.intriguewines.ca http://www.ancienthillwinery.com 1 2
+http://www.sugarbushvineyards.ca http://www.sandbankswinery.com 1 26
+http://www.clossonchase.com http://www.huffestates.com 1 26
+http://www.viewpointewinery.com http://www.wagnerorchards.com 1 23
+http://www.sugarbushvineyards.ca http://www.halfmoonbayvineyardsandwinery.ca 1 26
+http://www.granitecreek.ca http://www.larchhillswinery.com 1 4
+http://www.gaspereauwine.com http://www.benjaminbridge.com 1 12
+http://www.40knotswinery.com http://www.quaywine.com 1 25
+http://www.houseofrose.ca http://www.camelotvineyards.ca 1 16
+http://www.vancouverurbanwinery.com http://www.closdusoleil.ca 1 24
+http://www.viewpointewinery.com http://www.sprucewoodshores.com 1 23
+http://www.sugarbushvineyards.ca http://www.normanhardie.com 1 26
+http://www.mfvwines.com http://www.stagshollowwinery.com 1 1
+http://www.mfvwines.com http://www.lastella.ca 1 1
+http://www.vistadoro.com http://www.blueheronwinery.ca 2 10
+http://www.blastedchurch.com http://www.krazelegz.com 1 1
+http://www.sugarbushvineyards.ca http://www.casadeaestates.com 1 26
+http://www.gaspereauwine.com http://www.st-famille.com 1 12
+http://www.vineland.com http://www.tawsewinery.ca 1 0
+http://www.intriguewines.ca http://www.arrowleafcellars.com 1 2
+http://www.vindeglace.com http://www.saragnat.com 1 11
+http://www.longdog.ca http://www.exultet.ca 1 26
+http://www.vancouverurbanwinery.com http://www.levieuxpin.ca 1 24
+http://www.livingskywinery.com http://www.cypresshillswinery.com 1 28
+http://www.mfvwines.com http://www.tantalus.ca 1 1
+http://www.sugarbushvineyards.ca http://www.exultet.ca 1 26
+http://www.houseofrose.ca http://www.tastevibrantvines.com 1 16
+http://www.thefortwineco.com http://www.vistadoro.com 1 10
+http://www.peller.com http://www.thirtybench.com 1 13
+http://www.clossonchase.com http://www.rosehallrun.com 1 26
+http://www.houseofrose.ca http://www.theviewwinery.com 1 16
+http://www.mfvwines.com http://www.lakebreeze.ca 1 1
+http://www.theicehouse.ca http://www.fiverows.com 2 20
+http://www.mfvwines.com http://www.averillcreek.ca 1 1
+http://www.tantalus.ca http://www.howlingbluff.ca 1 1
+http://www.granitecreek.ca http://www.ovinowinery.com 1 4
+http://www.fiverows.com http://www.coyotesrunwinery.com 1 20
+http://www.blastedchurch.com http://www.stagshollowwinery.com 1 1
+http://www.lacadievineyards.ca http://www.blomidonwine.com 1 12
+http://www.vancouverurbanwinery.com http://www.summerhill.bc.ca 1 24
+http://www.sugarbushvineyards.ca http://www.countycider.com 1 26
+http://www.silkw.net http://www.tinhorn.com 1 27
+http://www.winegardenestate.com http://www.appleman.ca 1 9
+http://www.gaspereauwine.com http://www.muirmurrayestatewinery.com 1 12
+http://www.thevibrantvine.com http://www.houseofrose.ca 2 16
+http://www.theicehouse.ca http://www.ravinevineyard.com 1 20
+http://www.thirtybench.com http://www.hillebrand.com 1 13
+http://www.mfvwines.com http://www.krazelegz.com 1 1
+http://www.clossonchase.com http://www.theoldthird.com 1 26
+http://www.clossonchase.com http://www.southbrook.com 1 26
+http://www.artisansduterroir.ca http://www.lespetitscailloux.com 1 22
+http://www.longdog.ca http://www.lighthallvineyards.com 1 26
+http://www.viewpointewinery.com http://www.muscederevineyards.com 1 23
+http://www.sugarbushvineyards.ca http://www.blackprincewinery.com 1 26
+http://www.hernder.com http://www.harvestwines.com 1 17
+http://www.viewpointewinery.com http://www.colchesterridge.com 1 23
+http://www.granitecreek.ca http://www.recline-ridge.bc.ca 1 4
+http://www.viewpointewinery.com http://www.peleeisland.com 1 23
+http://www.vineland.com http://www.vieni.ca 1 0
+http://www.tantalus.ca http://www.lakebreeze.ca 1 1
+http://www.vancouverurbanwinery.com http://www.laughingstock.ca 1 24
+http://www.granitecreek.ca http://www.celistawine.com 1 4
+http://www.gaspereauwine.com http://www.grandprewines.com 1 12
+http://www.crushvqa.com http://www.peller.com 1 13
+http://www.nobleridge.com http://www.tinhorn.com -1 1
+http://www.blastedchurch.com http://www.sylranch.com -1 1
+http://www.tantalus.ca http://www.summerhill.bc.ca -1 1
+http://www.clossonchase.com http://www.stratuswines.com -1 26
+http://www.vineland.com http://www.featherstonewinery.ca -1 0
+http://www.vistadoro.com http://www.quailsgate.com -1 10
+http://www.colchesterridge.com http://www.13thstreetwinery.com -1 23
+http://www.vistadoro.com http://www.cedarcreek.bc.ca -1 10
+http://www.mfvwines.com http://www.sylranch.com -1 1
+http://www.vancouverurbanwinery.com http://www.blastedchurch.com -1 24
+http://www.mfvwines.com http://www.levieuxpin.ca -1 1
+http://www.vancouverurbanwinery.com http://www.cedarcreek.bc.ca -1 24
+http://www.vancouverurbanwinery.com http://www.lakebreeze.ca -1 24
+http://www.vancouverurbanwinery.com http://www.mfvwines.com -1 24
+http://www.blastedchurch.com http://www.bluemountainwinery.com -1 1
+http://www.colchesterridge.com http://www.casadeaestates.com -1 23
+http://www.del-gattoestates.ca http://www.countycider.com -1 26

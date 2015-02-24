@@ -61,12 +61,22 @@ public class distance<V>
 		for (V v0 : g.getVertices())
 		{
 			if (!mapping.containsKey(v0))
-				continue;
+			{
+				System.out.println("Winery not found in distance file: " + v0);
+				throw new NullPointerException();
+			}
 			
 			for (V v1 : g.getNeighbors(v0))
 			{
 				if (v0.equals(v1) || !mapping.containsKey(v1))
+				{
+					if (!mapping.containsKey(v1))
+					{
+						System.out.println("Winery not found in distance file: " + v1);
+						throw new NullPointerException();
+					}
 					continue;
+				}
 				
 				GlobalPosition pointA = new GlobalPosition(mapping.get(v0).getFirst(), mapping.get(v0).getSecond(), 0.0); // Point A
 
@@ -101,13 +111,22 @@ public class distance<V>
 		for (V v0 : g.getVertices())
 		{
 			if (!mapping.containsKey(v0))
-				continue;
+			{
+				System.out.println("Winery not found in distance file: " + v0);
+				throw new NullPointerException();
+			}
 			
 			for (V v1 : g.getVertices())
 			{
 				if (v0.equals(v1) || !mapping.containsKey(v1))
+				{
+					if (!mapping.containsKey(v1))
+					{
+						System.out.println("Winery not found in distance file: " + v1);
+						throw new NullPointerException();
+					}
 					continue;
-				
+				}
 				GlobalPosition pointA = new GlobalPosition(mapping.get(v0).getFirst(), mapping.get(v0).getSecond(), 0.0); // Point A
 
 				GlobalPosition pointB = new GlobalPosition(mapping.get(v1).getFirst(), mapping.get(v1).getSecond(), 0.0); // Point B
@@ -140,7 +159,10 @@ public class distance<V>
 		for (V v0 : community)
 		{
 			if (!mapping.containsKey(v0))
-				continue;
+			{
+				System.out.println("Winery not found in distance file: " + v0);
+				throw new NullPointerException();
+			}
 			
 			for (V v1 : community)
 			{
@@ -183,7 +205,14 @@ public class distance<V>
 			for (V v1 : g.getNeighbors(v0))
 			{
 				if (v0.equals(v1) || !mapping.containsKey(v1))
+				{
+					if (!mapping.containsKey(v1))
+					{
+						System.out.println("Winery not found in distance file: " + v1);
+						throw new NullPointerException();
+					}
 					continue;
+				}
 				
 				GlobalPosition pointA = new GlobalPosition(mapping.get(v0).getFirst(), mapping.get(v0).getSecond(), 0.0); // Point A
 
@@ -224,7 +253,14 @@ public class distance<V>
 			for (V v1 : community)
 			{
 				if (v0.equals(v1) || !mapping.containsKey(v1))
+				{
+					if (!mapping.containsKey(v1))
+					{
+						System.out.println("Winery not found in distance file: " + v1);
+						throw new NullPointerException();
+					}
 					continue;
+				}
 				
 				GlobalPosition pointA = new GlobalPosition(mapping.get(v0).getFirst(), mapping.get(v0).getSecond(), 0.0); // Point A
 
@@ -265,7 +301,14 @@ public class distance<V>
 			for (V v1 : g.getVertices())
 			{
 				if (v0.equals(v1) || !mapping.containsKey(v1))
+				{
+					if (!mapping.containsKey(v1))
+					{
+						System.out.println("Winery not found in distance file: " + v1);
+						throw new NullPointerException();
+					}
 					continue;
+				}
 				
 				GlobalPosition pointA = new GlobalPosition(mapping.get(v0).getFirst(), mapping.get(v0).getSecond(), 0.0); // Point A
 

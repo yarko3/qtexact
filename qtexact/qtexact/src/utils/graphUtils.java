@@ -331,15 +331,16 @@ public class graphUtils<V>
 			e.printStackTrace();
 		}
 		
-		for (myEdge<V> move : s.getMinMoves().getChanges())
-		{
-			if (move.isFlag())
+		if (s.getMinMoves() != null)
+			for (myEdge<V> move : s.getMinMoves().getChanges())
 			{
-				writer.println("add\t" + move.getEdge().getFirst() + "\t" + move.getEdge().getSecond());
+				if (move.isFlag())
+				{
+					writer.println("add\t" + move.getEdge().getFirst() + "\t" + move.getEdge().getSecond());
+				}
+				else
+					writer.println("delete\t" + move.getEdge().getFirst() + "\t" + move.getEdge().getSecond());
 			}
-			else
-				writer.println("delete\t" + move.getEdge().getFirst() + "\t" + move.getEdge().getSecond());
-		}
 		
 		writer.println();
 		
