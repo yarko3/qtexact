@@ -2,7 +2,7 @@ package abstractClasses;
 
 import qtUtils.branchingReturnC;
 import qtUtils.myEdge;
-import qtUtils.qtGenerate;
+import utils.Generate;
 
 import com.rits.cloning.Cloner;
 
@@ -29,7 +29,7 @@ public abstract class GreedyEdit<V> extends Dive<V>
 	private boolean directed;
 	
 	static Cloner clone = new Cloner();
-	qtGenerate<V> gen = new qtGenerate<V>();
+	Generate<V> gen = new Generate<V>();
 	
 	/**
 	 * greedily edit graph until bound number of moves are performed

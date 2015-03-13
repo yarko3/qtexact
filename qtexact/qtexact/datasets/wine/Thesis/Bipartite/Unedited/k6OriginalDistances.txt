@@ -1,0 +1,18 @@
+Overall: 
+Mean winery-winery distance: 	129.6698347979974
+Median winery-winery distance: 	56.58966141307651
+Mean edge distance: 	82.53617789683652
+Median edge distance: 	33.47829704787423
+Mean community distance: 	129.66983479799737
+Median community distance: 	56.58966141307651
+
+
+Component 0	Number of nodes: 18
+http://www.tantalus.ca	http://www.meadowvista.ca	http://www.intriguewines.ca	http://www.littlestraw.bc.ca	http://www.missionhillwinery.com	http://www.cedarcreek.bc.ca	http://www.kalalawines.ca	http://www.township7.com	http://www.vistadoro.com	http://www.mfvwines.com	http://www.nicholvineyard.com	http://www.closdusoleil.ca	http://www.silkw.net	http://www.alderlea.com	http://www.unsworthvineyards.com	http://www.nobleridge.com	http://www.dragonflyhillvineyard.com	http://www.3milewinery.com	
+
+
+Mean winery-winery distance: 	129.6698347979974
+Median winery-winery distance: 	56.58966141307651
+Mean edge distance: 	82.53617789683652
+Median edge distance: 	33.47829704787423
+

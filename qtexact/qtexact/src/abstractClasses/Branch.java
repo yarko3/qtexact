@@ -91,6 +91,7 @@ public abstract class Branch<V>
 		super();
 		this.controller = controller;
 		reductionStack = new Stack<Integer>();
+		reductions = new LinkedList<Reduction<V>>();
 	}
 
 	/**

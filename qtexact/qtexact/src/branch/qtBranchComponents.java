@@ -8,9 +8,9 @@ import java.util.Set;
 import qtUtils.branchingReturnC;
 import qtUtils.lexReturnC;
 import qtUtils.myEdge;
-import qtUtils.qtGenerate;
 import search.qtLBFS;
 import search.qtLBFSComponents;
+import utils.Generate;
 import abstractClasses.Branch;
 import abstractClasses.SearchResult;
 import controller.Controller;
@@ -26,7 +26,7 @@ import edu.uci.ics.jung.graph.util.Pair;
  */
 public class qtBranchComponents<V> extends qtAllStruct<V> 
 {
-	qtGenerate<V> gen = new qtGenerate<V>();
+	Generate<V> gen = new Generate<V>();
 	
 	/**
 	 * constructor

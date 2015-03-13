@@ -1,4 +1,7 @@
+/jimsFiles
+/modularDecomposition
 /abstractClasses
+/bipartiteConvergence
 /branch
 /certificate
 /clusterRules
@@ -7,6 +10,5 @@
 /controller
 /dive
 /greedy
-/jimsFiles
-/modularDecomposition
-/org
+/utils
+/qtUtils

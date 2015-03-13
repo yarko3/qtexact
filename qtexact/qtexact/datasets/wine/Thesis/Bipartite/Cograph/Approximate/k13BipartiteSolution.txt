@@ -1,0 +1,8 @@
+
+http://www.tantalus.ca http://www.mfvwines.com 1 0
+http://www.3milewinery.com http://www.tantalus.ca 1 0
+http://www.closdusoleil.ca http://www.tantalus.ca 1 0
+http://www.alderlea.com http://www.tantalus.ca 1 0
+http://www.intriguewines.ca http://www.tantalus.ca 1 0
+http://www.nicholvineyard.com http://www.tantalus.ca 1 0
+http://www.kalalawines.ca http://www.tantalus.ca 1 0

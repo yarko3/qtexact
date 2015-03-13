@@ -1,0 +1,20 @@
+delete	http://www.tantalus.ca	http://www.closdusoleil.ca
+delete	http://www.tantalus.ca	http://www.township7.com
+delete	http://www.tantalus.ca	http://www.alderlea.com
+delete	http://www.tantalus.ca	http://www.unsworthvineyards.com
+delete	http://www.tantalus.ca	http://www.kalalawines.ca
+delete	http://www.tantalus.ca	http://www.silkw.net
+delete	http://www.tantalus.ca	http://www.3milewinery.com
+delete	http://www.tantalus.ca	http://www.nicholvineyard.com
+delete	http://www.tantalus.ca	http://www.intriguewines.ca
+
+http://www.mfvwines.com http://www.tantalus.ca 1 7
+http://www.tantalus.ca http://www.closdusoleil.ca -1 7
+http://www.tantalus.ca http://www.township7.com -1 7
+http://www.tantalus.ca http://www.alderlea.com -1 7
+http://www.tantalus.ca http://www.unsworthvineyards.com -1 7
+http://www.tantalus.ca http://www.kalalawines.ca -1 7
+http://www.tantalus.ca http://www.silkw.net -1 7
+http://www.tantalus.ca http://www.3milewinery.com -1 7
+http://www.tantalus.ca http://www.nicholvineyard.com -1 7
+http://www.tantalus.ca http://www.intriguewines.ca -1 7

@@ -1,0 +1,62 @@
+Overall: 
+Mean winery-winery distance: 	130.27253121711271
+Median winery-winery distance: 	66.86550971631202
+Mean edge distance: 	58.6780696860319
+Median edge distance: 	25.41094328686683
+Mean community distance: 	58.6780696860319
+Median community distance: 	25.41094328686683
+
+
+Component 4	Number of nodes: 6
+http://www.tantalus.ca	http://www.intriguewines.ca	http://www.littlestraw.bc.ca	http://www.cedarcreek.bc.ca	http://www.kalalawines.ca	http://www.township7.com	
+
+
+Mean winery-winery distance: 	24.501933502957833
+Median winery-winery distance: 	25.41094328686683
+Mean edge distance: 	24.501933502957833
+Median edge distance: 	25.41094328686683
+
+
+
+Component 5	Number of nodes: 2
+http://www.mfvwines.com	http://www.vancouverurbanwinery.com	
+
+
+Mean winery-winery distance: 	257.9175344527371
+Median winery-winery distance: 	257.9175344527371
+Mean edge distance: 	257.9175344527371
+Median edge distance: 	257.9175344527371
+
+
+
+Component 6	Number of nodes: 2
+http://www.lastella.ca	http://www.levieuxpin.ca	
+
+
+Mean winery-winery distance: 	12.00011166697025
+Median winery-winery distance: 	12.000111666970346
+Mean edge distance: 	12.00011166697025
+Median edge distance: 	12.000111666970346
+
+
+
+Component 11	Number of nodes: 3
+http://www.closdusoleil.ca	http://www.unsworthvineyards.com	http://www.alderlea.com	
+
+
+Mean winery-winery distance: 	196.17540526544838
+Median winery-winery distance: 	284.9188527850138
+Mean edge distance: 	196.17540526544838
+Median edge distance: 	284.9188527850138
+
+
+
+Component 12	Number of nodes: 2
+http://www.nicholvineyard.com	http://www.3milewinery.com	
+
+
+Mean winery-winery distance: 	6.266598946250094
+Median winery-winery distance: 	6.266598946250126
+Mean edge distance: 	6.266598946250094
+Median edge distance: 	6.266598946250126
+

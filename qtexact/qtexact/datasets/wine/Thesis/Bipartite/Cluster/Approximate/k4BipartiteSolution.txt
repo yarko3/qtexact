@@ -1,0 +1,96 @@
+delete	http://www.vancouverurbanwinery.com	http://www.bluemountainwinery.com
+delete	http://www.closdusoleil.ca	http://www.tantalus.ca
+delete	http://www.nicholvineyard.com	http://www.kalalawines.ca
+delete	http://www.missionhillwinery.com	http://www.tantalus.ca
+delete	http://www.dragonflyhillvineyard.com	http://www.intriguewines.ca
+delete	http://www.nichewinecompany.com	http://www.township7.com
+add	http://www.nicholvineyard.com	http://www.closdusoleil.ca
+add	http://www.township7.com	http://www.3milewinery.com
+delete	http://www.dragonflyhillvineyard.com	http://www.alderlea.com
+add	http://www.vistadoro.com	http://www.3milewinery.com
+add	http://www.cedarcreek.bc.ca	http://www.vistadoro.com
+delete	http://www.tantalus.ca	http://www.meadowvista.ca
+delete	http://www.blastedchurch.com	http://www.tantalus.ca
+delete	http://www.alderlea.com	http://www.tantalus.ca
+delete	http://www.nicholvineyard.com	http://www.3milewinery.com
+delete	http://www.dragonflyhillvineyard.com	http://www.tantalus.ca
+delete	http://www.intriguewines.ca	http://www.meadowvista.ca
+delete	http://www.silversidefarm.com	http://www.alderlea.com
+delete	http://www.hainle.com	http://www.tantalus.ca
+delete	http://www.tantalus.ca	http://www.silkw.net
+add	http://www.cedarcreek.bc.ca	http://www.3milewinery.com
+delete	http://www.tantalus.ca	http://www.sylranch.com
+add	http://www.vistadoro.com	http://www.township7.com
+delete	http://www.tantalus.ca	http://www.unsworthvineyards.com
+delete	http://www.mfvwines.com	http://www.tantalus.ca
+delete	http://www.sumacridge.com	http://www.littlestraw.bc.ca
+delete	http://www.alderlea.com	http://www.intriguewines.ca
+delete	http://www.nobleridge.com	http://www.tantalus.ca
+delete	http://www.tantalus.ca	http://www.castorodeoro.com
+delete	http://www.nicholvineyard.com	http://www.intriguewines.ca
+delete	http://www.nicholvineyard.com	http://www.tantalus.ca
+delete	http://www.mfvwines.com	http://www.township7.com
+
+http://www.kalalawines.ca http://www.intriguewines.ca 1 5
+http://www.township7.com http://www.intriguewines.ca 1 5
+http://www.lastella.ca http://www.levieuxpin.ca 1 4
+http://www.vistadoro.com http://www.3milewinery.com 2 5
+http://www.littlestraw.bc.ca http://www.tantalus.ca 1 5
+http://www.kalalawines.ca http://www.township7.com 1 5
+http://www.kalalawines.ca http://www.littlestraw.bc.ca 1 5
+http://www.alderlea.com http://www.nicholvineyard.com 1 14
+http://www.township7.com http://www.3milewinery.com 2 5
+http://www.kalalawines.ca http://www.tantalus.ca 1 5
+http://www.kalalawines.ca http://www.cedarcreek.bc.ca 1 5
+http://www.tantalus.ca http://www.intriguewines.ca 1 5
+http://www.nicholvineyard.com http://www.unsworthvineyards.com 1 14
+http://www.tantalus.ca http://www.vistadoro.com 1 5
+http://www.tantalus.ca http://www.township7.com 1 5
+http://www.alderlea.com http://www.closdusoleil.ca 1 14
+http://www.cedarcreek.bc.ca http://www.tantalus.ca 1 5
+http://www.cedarcreek.bc.ca http://www.intriguewines.ca 1 5
+http://www.cedarcreek.bc.ca http://www.vistadoro.com 2 5
+http://www.cedarcreek.bc.ca http://www.township7.com 1 5
+http://www.nicholvineyard.com http://www.closdusoleil.ca 2 14
+http://www.3milewinery.com http://www.littlestraw.bc.ca 1 5
+http://www.littlestraw.bc.ca http://www.township7.com 1 5
+http://www.vancouverurbanwinery.com http://www.mfvwines.com 1 3
+http://www.kalalawines.ca http://www.vistadoro.com 1 5
+http://www.littlestraw.bc.ca http://www.intriguewines.ca 1 5
+http://www.unsworthvineyards.com http://www.closdusoleil.ca 1 14
+http://www.littlestraw.bc.ca http://www.vistadoro.com 1 5
+http://www.vistadoro.com http://www.township7.com 2 5
+http://www.unsworthvineyards.com http://www.alderlea.com 1 14
+http://www.cedarcreek.bc.ca http://www.3milewinery.com 2 5
+http://www.silkw.net http://www.hainle.com 1 9
+http://www.3milewinery.com http://www.tantalus.ca 1 5
+http://www.vistadoro.com http://www.intriguewines.ca 1 5
+http://www.cedarcreek.bc.ca http://www.littlestraw.bc.ca 1 5
+http://www.3milewinery.com http://www.intriguewines.ca 1 5
+http://www.3milewinery.com http://www.kalalawines.ca 1 5
+http://www.vancouverurbanwinery.com http://www.bluemountainwinery.com -1 3
+http://www.closdusoleil.ca http://www.tantalus.ca -1 14
+http://www.nicholvineyard.com http://www.kalalawines.ca -1 14
+http://www.missionhillwinery.com http://www.tantalus.ca -1 7
+http://www.dragonflyhillvineyard.com http://www.intriguewines.ca -1 15
+http://www.nichewinecompany.com http://www.township7.com -1 8
+http://www.dragonflyhillvineyard.com http://www.alderlea.com -1 15
+http://www.tantalus.ca http://www.meadowvista.ca -1 5
+http://www.blastedchurch.com http://www.tantalus.ca -1 10
+http://www.alderlea.com http://www.tantalus.ca -1 14
+http://www.nicholvineyard.com http://www.3milewinery.com -1 14
+http://www.dragonflyhillvineyard.com http://www.tantalus.ca -1 15
+http://www.intriguewines.ca http://www.meadowvista.ca -1 5
+http://www.silversidefarm.com http://www.alderlea.com -1 11
+http://www.hainle.com http://www.tantalus.ca -1 9
+http://www.tantalus.ca http://www.silkw.net -1 5
+http://www.tantalus.ca http://www.sylranch.com -1 5
+http://www.tantalus.ca http://www.unsworthvineyards.com -1 5
+http://www.mfvwines.com http://www.tantalus.ca -1 3
+http://www.sumacridge.com http://www.littlestraw.bc.ca -1 0
+http://www.alderlea.com http://www.intriguewines.ca -1 14
+http://www.nobleridge.com http://www.tantalus.ca -1 13
+http://www.tantalus.ca http://www.castorodeoro.com -1 5
+http://www.nicholvineyard.com http://www.intriguewines.ca -1 14
+http://www.nicholvineyard.com http://www.tantalus.ca -1 14
+http://www.mfvwines.com http://www.township7.com -1 3

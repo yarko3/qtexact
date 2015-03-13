@@ -76,7 +76,7 @@ public class Controller<V>
 		globalPercent = 0;
 		percent = 0;
 		timesRun = 0;
-		output = false;
+		output = true;
 	}
 	/**
 	 * set output flag with constructor

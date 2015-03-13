@@ -1,0 +1,37 @@
+delete	http://www.silkw.net	http://www.tantalus.ca
+delete	http://www.tantalus.ca	http://www.3milewinery.com
+delete	http://www.tantalus.ca	http://www.kalalawines.ca
+delete	http://www.intriguewines.ca	http://www.township7.com
+delete	http://www.intriguewines.ca	http://www.kalalawines.ca
+delete	http://www.missionhillwinery.com	http://www.tantalus.ca
+delete	http://www.intriguewines.ca	http://www.littlestraw.bc.ca
+delete	http://www.cedarcreek.bc.ca	http://www.tantalus.ca
+delete	http://www.tantalus.ca	http://www.township7.com
+delete	http://www.tantalus.ca	http://www.closdusoleil.ca
+delete	http://www.closdusoleil.ca	http://www.alderlea.com
+add	http://www.nicholvineyard.com	http://www.unsworthvineyards.com
+delete	http://www.mfvwines.com	http://www.tantalus.ca
+delete	http://www.alderlea.com	http://www.dragonflyhillvineyard.com
+delete	http://www.intriguewines.ca	http://www.tantalus.ca
+
+http://www.nicholvineyard.com http://www.unsworthvineyards.com 2 10
+http://www.alderlea.com http://www.unsworthvineyards.com 1 10
+http://www.unsworthvineyards.com http://www.tantalus.ca 1 10
+http://www.tantalus.ca http://www.alderlea.com 1 10
+http://www.nicholvineyard.com http://www.alderlea.com 1 10
+http://www.nicholvineyard.com http://www.tantalus.ca 1 10
+http://www.3milewinery.com http://www.intriguewines.ca 1 3
+http://www.silkw.net http://www.tantalus.ca -1 2
+http://www.tantalus.ca http://www.3milewinery.com -1 10
+http://www.tantalus.ca http://www.kalalawines.ca -1 10
+http://www.intriguewines.ca http://www.township7.com -1 3
+http://www.intriguewines.ca http://www.kalalawines.ca -1 3
+http://www.missionhillwinery.com http://www.tantalus.ca -1 5
+http://www.intriguewines.ca http://www.littlestraw.bc.ca -1 3
+http://www.cedarcreek.bc.ca http://www.tantalus.ca -1 6
+http://www.tantalus.ca http://www.township7.com -1 10
+http://www.tantalus.ca http://www.closdusoleil.ca -1 10
+http://www.closdusoleil.ca http://www.alderlea.com -1 1
+http://www.mfvwines.com http://www.tantalus.ca -1 0
+http://www.alderlea.com http://www.dragonflyhillvineyard.com -1 10
+http://www.intriguewines.ca http://www.tantalus.ca -1 3

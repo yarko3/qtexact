@@ -1,0 +1,201 @@
+delete	http://www.hainle.com	http://www.kalalawines.ca
+delete	http://www.intriguewines.ca	http://www.mooncurser.com
+delete	http://www.inniskillin.com	http://www.sylranch.com
+delete	http://www.intriguewines.ca	http://www.40knotswinery.com
+add	http://www.venturischulze.com	http://www.tantalus.ca
+delete	http://www.intriguewines.ca	http://www.mfvwines.com
+delete	http://www.levieuxpin.ca	http://www.lastella.ca
+add	http://www.graymonk.com	http://www.tantalus.ca
+delete	http://www.missionhillwinery.com	http://www.mfvwines.com
+delete	http://www.silkw.net	http://www.kalalawines.ca
+add	http://www.40knotswinery.com	http://www.tantalus.ca
+delete	http://www.mooncurser.com	http://www.foxtrotwine.com
+add	http://www.township7.com	http://www.graymonk.com
+add	http://www.mfvwines.com	http://www.mooncurser.com
+delete	http://www.foxtrotwine.com	http://www.bluemountainwinery.com
+delete	http://www.nicholvineyard.com	http://www.unsworthvineyards.com
+delete	http://www.township7.com	http://www.closdusoleil.ca
+delete	http://www.vistadoro.com	http://www.alderlea.com
+delete	http://www.intriguewines.ca	http://www.dragonflyhillvineyard.com
+delete	http://www.silkw.net	http://www.nicholvineyard.com
+delete	http://www.township7.com	http://www.youngandwysewine.com
+delete	http://www.intriguewines.ca	http://www.krazelegz.com
+delete	http://www.castorodeoro.com	http://www.venturischulze.com
+add	http://www.meadowvista.ca	http://www.littlestraw.bc.ca
+delete	http://www.township7.com	http://www.bailliegrohman.com
+delete	http://www.kalalawines.ca	http://www.nicholvineyard.com
+add	http://www.tantalus.ca	http://www.mooncurser.com
+delete	http://www.missionhillwinery.com	http://www.closdusoleil.ca
+delete	http://www.camelotvineyards.ca	http://www.littlestraw.bc.ca
+delete	http://www.theviewwinery.com	http://www.littlestraw.bc.ca
+delete	http://www.40knotswinery.com	http://www.bailliegrohman.com
+delete	http://www.intriguewines.ca	http://www.missionhillwinery.com
+delete	http://www.nicholvineyard.com	http://www.3milewinery.com
+delete	http://www.silkw.net	http://www.3milewinery.com
+add	http://www.township7.com	http://www.meadowvista.ca
+delete	http://www.vancouverurbanwinery.com	http://www.nobleridge.com
+delete	http://www.silkw.net	http://www.unsworthvineyards.com
+delete	http://www.missionhillwinery.com	http://www.graymonk.com
+delete	http://www.musewinery.ca	http://www.damali.ca
+delete	http://www.missionhillwinery.com	http://www.rollingdale.ca
+delete	http://www.township7.com	http://www.nicholvineyard.com
+delete	http://www.intriguewines.ca	http://www.closdusoleil.ca
+delete	http://www.silkw.net	http://www.closdusoleil.ca
+delete	http://www.missionhillwinery.com	http://www.meadowvista.ca
+delete	http://www.intriguewines.ca	http://www.road13vineyards.com
+delete	http://www.intriguewines.ca	http://www.alderlea.com
+delete	http://www.intriguewines.ca	http://www.nicholvineyard.com
+delete	http://www.sumacridge.com	http://www.littlestraw.bc.ca
+delete	http://www.littlestraw.bc.ca	http://www.nobleridge.com
+delete	http://www.closdusoleil.ca	http://www.3milewinery.com
+
+http://www.kalalawines.ca http://www.intriguewines.ca 1 6
+http://www.sylranch.com http://www.township7.com 1 6
+http://www.nobleridge.com http://www.missionhillwinery.com 1 6
+http://www.foxtrotwine.com http://www.township7.com 1 6
+http://www.littlestraw.bc.ca http://www.tantalus.ca 1 6
+http://www.kalalawines.ca http://www.township7.com 1 6
+http://www.unsworthvineyards.com http://www.venturischulze.com 1 6
+http://www.meadowvista.ca http://www.littlestraw.bc.ca 2 6
+http://www.mooncurser.com http://www.township7.com 1 6
+http://www.intriguewines.ca http://www.graymonk.com 1 6
+http://www.kalalawines.ca http://www.tantalus.ca 1 6
+http://www.mfvwines.com http://www.mooncurser.com 2 6
+http://www.dragonflyhillvineyard.com http://www.alderlea.com 1 6
+http://www.township7.com http://www.meadowvista.ca 2 6
+http://www.kalalawines.ca http://www.cedarcreek.bc.ca 1 6
+http://www.tantalus.ca http://www.intriguewines.ca 1 6
+http://www.sumacridge.com http://www.tantalus.ca 1 6
+http://www.littlestraw.bc.ca http://www.graymonk.com 1 6
+http://www.tantalus.ca http://www.vistadoro.com 1 6
+http://www.closdusoleil.ca http://www.venturischulze.com 1 6
+http://www.dragonflyhillvineyard.com http://www.tantalus.ca 1 6
+http://www.tantalus.ca http://www.township7.com 1 6
+http://www.40knotswinery.com http://www.tantalus.ca 2 6
+http://www.alderlea.com http://www.venturischulze.com 1 6
+http://www.silversidefarm.com http://www.alderlea.com 1 6
+http://www.tantalus.ca http://www.silkw.net 1 6
+http://www.tantalus.ca http://www.alderlea.com 1 6
+http://www.silversidefarm.com http://www.tantalus.ca 1 6
+http://www.tantalus.ca http://www.hainle.com 1 6
+http://www.3milewinery.com http://www.littlestraw.bc.ca 1 6
+http://www.tantalus.ca http://www.mooncurser.com 2 6
+http://www.littlestraw.bc.ca http://www.township7.com 1 6
+http://www.damali.ca http://www.alderlea.com 1 6
+http://www.damali.ca http://www.tantalus.ca 1 6
+http://www.vancouverurbanwinery.com http://www.mfvwines.com 1 6
+http://www.kalalawines.ca http://www.vistadoro.com 1 6
+http://www.littlestraw.bc.ca http://www.intriguewines.ca 1 6
+http://www.nicholvineyard.com http://www.alderlea.com 1 6
+http://www.nicholvineyard.com http://www.tantalus.ca 1 6
+http://www.unsworthvineyards.com http://www.closdusoleil.ca 1 6
+http://www.tantalus.ca http://www.levieuxpin.ca 1 6
+http://www.40knotswinery.com http://www.vancouverurbanwinery.com 1 6
+http://www.township7.com http://www.graymonk.com 2 6
+http://www.nichewinecompany.com http://www.intriguewines.ca 1 6
+http://www.blastedchurch.com http://www.township7.com 1 6
+http://www.silkw.net http://www.hainle.com 1 6
+http://www.intriguewines.ca http://www.vistadoro.com 1 6
+http://www.blastedchurch.com http://www.tantalus.ca 1 6
+http://www.3milewinery.com http://www.tantalus.ca 1 6
+http://www.nobleridge.com http://www.silkw.net 1 6
+http://www.3milewinery.com http://www.meadowvista.ca 1 6
+http://www.nichewinecompany.com http://www.township7.com 1 6
+http://www.lastella.ca http://www.mfvwines.com 1 6
+http://www.venturischulze.com http://www.tantalus.ca 2 6
+http://www.tantalus.ca http://www.wildgoosewinery.com 1 6
+http://www.cedarcreek.bc.ca http://www.littlestraw.bc.ca 1 6
+http://www.krazelegz.com http://www.vancouverurbanwinery.com 1 6
+http://www.nichewinecompany.com http://www.tantalus.ca 1 6
+http://www.3milewinery.com http://www.intriguewines.ca 1 6
+http://www.tantalus.ca http://www.closdusoleil.ca 1 6
+http://www.3milewinery.com http://www.township7.com 1 6
+http://www.3milewinery.com http://www.kalalawines.ca 1 6
+http://www.dragonflyhillvineyard.com http://www.damali.ca 1 6
+http://www.vancouverurbanwinery.com http://www.township7.com 1 6
+http://www.township7.com http://www.intriguewines.ca 1 6
+http://www.kalalawines.ca http://www.littlestraw.bc.ca 1 6
+http://www.littlestraw.bc.ca http://www.nichewinecompany.com 1 6
+http://www.dragonflyhillvineyard.com http://www.nicholvineyard.com 1 6
+http://www.meadowvista.ca http://www.intriguewines.ca 1 6
+http://www.silkw.net http://www.missionhillwinery.com 1 6
+http://www.mooncurser.com http://www.vancouverurbanwinery.com 1 6
+http://www.graymonk.com http://www.tantalus.ca 2 6
+http://www.bluemountainwinery.com http://www.township7.com 1 6
+http://www.krazelegz.com http://www.tantalus.ca 1 6
+http://www.meadowvista.ca http://www.tantalus.ca 1 6
+http://www.castorodeoro.com http://www.tantalus.ca 1 6
+http://www.alderlea.com http://www.closdusoleil.ca 1 6
+http://www.lastella.ca http://www.tantalus.ca 1 6
+http://www.castorodeoro.com http://www.silkw.net 1 6
+http://www.3milewinery.com http://www.cedarcreek.bc.ca 1 6
+http://www.mfvwines.com http://www.township7.com 1 6
+http://www.cedarcreek.bc.ca http://www.tantalus.ca 1 6
+http://www.cedarcreek.bc.ca http://www.intriguewines.ca 1 6
+http://www.krazelegz.com http://www.township7.com 1 6
+http://www.cedarcreek.bc.ca http://www.township7.com 1 6
+http://www.mooncurser.com http://www.40knotswinery.com 1 6
+http://www.mooncurser.com http://www.lastella.ca 1 6
+http://www.nicholvineyard.com http://www.silversidefarm.com 1 6
+http://www.lastella.ca http://www.township7.com 1 6
+http://www.dragonflyhillvineyard.com http://www.silversidefarm.com 1 6
+http://www.40knotswinery.com http://www.township7.com 1 6
+http://www.foxtrotwine.com http://www.tantalus.ca 1 6
+http://www.unsworthvineyards.com http://www.tantalus.ca 1 6
+http://www.bluemountainwinery.com http://www.tantalus.ca 1 6
+http://www.littlestraw.bc.ca http://www.vistadoro.com 1 6
+http://www.vancouverurbanwinery.com http://www.tantalus.ca 1 6
+http://www.vancouverurbanwinery.com http://www.sylranch.com 1 6
+http://www.vistadoro.com http://www.township7.com 1 6
+http://www.foxtrotwine.com http://www.intriguewines.ca 1 6
+http://www.unsworthvineyards.com http://www.alderlea.com 1 6
+http://www.sylranch.com http://www.tantalus.ca 1 6
+http://www.vancouverurbanwinery.com http://www.bluemountainwinery.com 1 6
+http://www.tantalus.ca http://www.missionhillwinery.com 1 6
+http://www.nobleridge.com http://www.tantalus.ca 1 6
+http://www.tantalus.ca http://www.mfvwines.com 1 6
+http://www.mooncurser.com http://www.bluemountainwinery.com 1 6
+http://www.vancouverurbanwinery.com http://www.lastella.ca 1 6
+http://www.3milewinery.com http://www.vistadoro.com 1 6
+http://www.hainle.com http://www.kalalawines.ca -1 6
+http://www.intriguewines.ca http://www.mooncurser.com -1 6
+http://www.inniskillin.com http://www.sylranch.com -1 3
+http://www.intriguewines.ca http://www.40knotswinery.com -1 6
+http://www.intriguewines.ca http://www.mfvwines.com -1 6
+http://www.levieuxpin.ca http://www.lastella.ca -1 6
+http://www.missionhillwinery.com http://www.mfvwines.com -1 6
+http://www.silkw.net http://www.kalalawines.ca -1 6
+http://www.mooncurser.com http://www.foxtrotwine.com -1 6
+http://www.foxtrotwine.com http://www.bluemountainwinery.com -1 6
+http://www.nicholvineyard.com http://www.unsworthvineyards.com -1 6
+http://www.township7.com http://www.closdusoleil.ca -1 6
+http://www.vistadoro.com http://www.alderlea.com -1 6
+http://www.intriguewines.ca http://www.dragonflyhillvineyard.com -1 6
+http://www.silkw.net http://www.nicholvineyard.com -1 6
+http://www.township7.com http://www.youngandwysewine.com -1 6
+http://www.intriguewines.ca http://www.krazelegz.com -1 6
+http://www.castorodeoro.com http://www.venturischulze.com -1 6
+http://www.township7.com http://www.bailliegrohman.com -1 6
+http://www.kalalawines.ca http://www.nicholvineyard.com -1 6
+http://www.missionhillwinery.com http://www.closdusoleil.ca -1 6
+http://www.camelotvineyards.ca http://www.littlestraw.bc.ca -1 1
+http://www.theviewwinery.com http://www.littlestraw.bc.ca -1 0
+http://www.40knotswinery.com http://www.bailliegrohman.com -1 6
+http://www.intriguewines.ca http://www.missionhillwinery.com -1 6
+http://www.nicholvineyard.com http://www.3milewinery.com -1 6
+http://www.silkw.net http://www.3milewinery.com -1 6
+http://www.vancouverurbanwinery.com http://www.nobleridge.com -1 6
+http://www.silkw.net http://www.unsworthvineyards.com -1 6
+http://www.missionhillwinery.com http://www.graymonk.com -1 6
+http://www.musewinery.ca http://www.damali.ca -1 8
+http://www.missionhillwinery.com http://www.rollingdale.ca -1 6
+http://www.township7.com http://www.nicholvineyard.com -1 6
+http://www.intriguewines.ca http://www.closdusoleil.ca -1 6
+http://www.silkw.net http://www.closdusoleil.ca -1 6
+http://www.missionhillwinery.com http://www.meadowvista.ca -1 6
+http://www.intriguewines.ca http://www.road13vineyards.com -1 6
+http://www.intriguewines.ca http://www.alderlea.com -1 6
+http://www.intriguewines.ca http://www.nicholvineyard.com -1 6
+http://www.sumacridge.com http://www.littlestraw.bc.ca -1 6
+http://www.littlestraw.bc.ca http://www.nobleridge.com -1 6
+http://www.closdusoleil.ca http://www.3milewinery.com -1 6

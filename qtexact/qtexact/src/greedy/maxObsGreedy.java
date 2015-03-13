@@ -1,7 +1,7 @@
 package greedy;
 
+import abstractClasses.Branch;
 import abstractClasses.GreedyEdit;
-import branch.qtBranch;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Pair;
 
@@ -12,7 +12,7 @@ public class maxObsGreedy<V> extends GreedyEdit<V>
 	 * constructor
 	 * @param bStruct branching structure
 	 */
-	public maxObsGreedy(qtBranch<V> bStruct) {
+	public maxObsGreedy(Branch<V> bStruct) {
 		super(bStruct);
 	}
 

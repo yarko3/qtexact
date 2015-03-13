@@ -1,0 +1,18 @@
+Overall: 
+Mean winery-winery distance: 	43.01050340561318
+Median winery-winery distance: 	34.07541098371785
+Mean edge distance: 	38.15781280032619
+Median edge distance: 	33.47829704787402
+Mean community distance: 	43.01050340561322
+Median community distance: 	34.07541098371785
+
+
+Component 0	Number of nodes: 7
+http://www.mfvwines.com	http://www.tantalus.ca	http://www.nicholvineyard.com	http://www.closdusoleil.ca	http://www.intriguewines.ca	http://www.3milewinery.com	http://www.kalalawines.ca	
+
+
+Mean winery-winery distance: 	43.01050340561318
+Median winery-winery distance: 	34.07541098371785
+Mean edge distance: 	38.15781280032619
+Median edge distance: 	33.47829704787402
+

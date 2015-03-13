@@ -7,8 +7,8 @@ import java.util.Stack;
 
 import qtUtils.branchingReturnC;
 import qtUtils.myEdge;
+import abstractClasses.Branch;
 import abstractClasses.Reduction;
-import branch.qtBranch;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Pair;
 
@@ -23,7 +23,7 @@ public class c4p4Reduction<V> extends Reduction<V>
 	/**
 	 * branching structure
 	 */
-	qtBranch<V> bStruct;
+	Branch<V> bStruct;
 	/**
 	 * stack of reduction moves made previously
 	 */
@@ -33,7 +33,7 @@ public class c4p4Reduction<V> extends Reduction<V>
 	 * constructor
 	 * @param b branching strategy
 	 */
-	public c4p4Reduction(qtBranch<V> b)
+	public c4p4Reduction(Branch<V> b)
 	{
 		super();
 		bStruct = b;

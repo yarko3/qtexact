@@ -1,0 +1,18 @@
+Overall: 
+Mean winery-winery distance: 	55.44870806599082
+Median winery-winery distance: 	55.448708065990886
+Mean edge distance: 	55.44870806599082
+Median edge distance: 	55.448708065990886
+Mean community distance: 	55.448708065990886
+Median community distance: 	55.448708065990886
+
+
+Component 4	Number of nodes: 2
+http://www.mfvwines.com	http://www.tantalus.ca	
+
+
+Mean winery-winery distance: 	55.44870806599082
+Median winery-winery distance: 	55.448708065990886
+Mean edge distance: 	55.44870806599082
+Median edge distance: 	55.448708065990886
+

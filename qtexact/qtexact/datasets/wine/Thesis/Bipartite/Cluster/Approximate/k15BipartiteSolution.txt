@@ -1,0 +1,12 @@
+delete	http://www.tantalus.ca	http://www.3milewinery.com
+delete	http://www.tantalus.ca	http://www.kalalawines.ca
+delete	http://www.tantalus.ca	http://www.nicholvineyard.com
+delete	http://www.tantalus.ca	http://www.closdusoleil.ca
+delete	http://www.tantalus.ca	http://www.intriguewines.ca
+
+http://www.mfvwines.com http://www.tantalus.ca 1 4
+http://www.tantalus.ca http://www.3milewinery.com -1 4
+http://www.tantalus.ca http://www.kalalawines.ca -1 4
+http://www.tantalus.ca http://www.nicholvineyard.com -1 4
+http://www.tantalus.ca http://www.closdusoleil.ca -1 4
+http://www.tantalus.ca http://www.intriguewines.ca -1 4

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -555,6 +556,9 @@ public class distance<V>
 			components.put(cID, stringUtils.inducedFromVertexSet(g, f.communityMap.get(cID)));
 		}
 	
+		writer.println("Mean community distance: \t" + d.meanCommunityDistance(components, mapping));
+		writer.println("Median community distance: \t" + d.medianCommunityDistance(components, mapping));
+		
 		
 		for (int cID : components.keySet())
 		{
@@ -577,6 +581,77 @@ public class distance<V>
 		}
 		
 		writer.close();
+	}
+	/**
+	 * Get the mean of all community member distances
+	 * @param hashmap
+	 * @param mapping
+	 * @return
+	 */
+	private double meanCommunityDistance(HashMap<Integer, Graph<String, Pair<String>>> components, HashMap<String, Pair<Double>> mapping)
+	{
+		GeodeticCalculator geoCalc = new GeodeticCalculator();
+
+		Ellipsoid reference = Ellipsoid.WGS84;  
+		
+		double sum = 0;
+		int count = 0;
+		
+		for (int cID : components.keySet())
+		{
+			ArrayList<String> vertices = new ArrayList<String>();
+			vertices.addAll(components.get(cID).getVertices());
+			
+			for (int i = 0; i < vertices.size(); i++)
+			{
+				for (int j = i+1; j < vertices.size(); j++)
+				{
+					GlobalPosition pointA = new GlobalPosition(mapping.get(vertices.get(i)).getFirst(), mapping.get(vertices.get(i)).getSecond(), 0.0); // Point A
+
+					GlobalPosition pointB = new GlobalPosition(mapping.get(vertices.get(j)).getFirst(), mapping.get(vertices.get(j)).getSecond(), 0.0); // Point B
+
+					double distance = geoCalc.calculateGeodeticCurve(reference, pointA, pointB).getEllipsoidalDistance();
+					
+					sum += distance;
+					count++;
+				}
+			}
+		}
+		
+		
+		return (sum/count) / 1000;
+	}
+	
+	private double medianCommunityDistance(HashMap<Integer, Graph<String, Pair<String>>> components, HashMap<String, Pair<Double>> mapping)
+	{
+		GeodeticCalculator geoCalc = new GeodeticCalculator();
+
+		Ellipsoid reference = Ellipsoid.WGS84;  
+		
+		ArrayList<Double> list = new ArrayList<Double>();
+		
+		for (int cID : components.keySet())
+		{
+			ArrayList<String> vertices = new ArrayList<String>();
+			vertices.addAll(components.get(cID).getVertices());
+			
+			for (int i = 0; i < vertices.size(); i++)
+			{
+				for (int j = i+1; j < vertices.size(); j++)
+				{
+					GlobalPosition pointA = new GlobalPosition(mapping.get(vertices.get(i)).getFirst(), mapping.get(vertices.get(i)).getSecond(), 0.0); // Point A
+
+					GlobalPosition pointB = new GlobalPosition(mapping.get(vertices.get(j)).getFirst(), mapping.get(vertices.get(j)).getSecond(), 0.0); // Point B
+
+					double distance = geoCalc.calculateGeodeticCurve(reference, pointA, pointB).getEllipsoidalDistance();
+					
+					list.add(distance);
+				}
+			}
+		}
+		
+		Collections.sort(list);
+		return (list.get(list.size()/2)) / 1000;
 	}
 	
 

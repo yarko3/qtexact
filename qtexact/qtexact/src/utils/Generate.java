@@ -4,22 +4,24 @@
  */
 
 
-package qtUtils;
+package utils;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Random;
 import java.util.Scanner;
 
-import utils.distance;
+import qtUtils.myEdge;
 
 import com.rits.cloning.Cloner;
 
@@ -37,8 +39,10 @@ import edu.uci.ics.jung.graph.util.Pair;
  *
  * @param <V> vertex
  */
-public class qtGenerate<V>
+public class Generate<V>
 {
+	
+	public static Random rand = new Random();
 	public static Cloner clone = new Cloner();
 	/**
 	 * generate a completely connected graph of number of edges
@@ -527,15 +531,251 @@ public class qtGenerate<V>
 		return graph;
 	}
 	
+	public static Hashtable<String, HashSet<String>> leftBipartiteVertices(String filename)
+	{
+		Hashtable<String, HashSet<String>> left = new Hashtable<String, HashSet<String>>();
+		Hashtable<String, HashSet<String>> right = new Hashtable<String, HashSet<String>>();
+		
+		//read initial bipartite graph from file
+		FileReader file = null;
+		try {
+			file = new FileReader(filename);
+		} catch (FileNotFoundException e) {
+			System.out.println("File " + filename + " could not be found.");
+			e.printStackTrace();
+		}
+		
+		Scanner scan = new Scanner(file);
+
+		while (scan.hasNext()) {
+			String a = scan.next();
+			String b = scan.next();
+			
+			if (!left.keySet().contains(a))
+				left.put(a, new HashSet<String>());
+			if (!right.keySet().contains(b))
+				right.put(b, new HashSet<String>());
+			
+			left.get(a).add(b);
+			right.get(b).add(a);
+			
+		}
+		try {
+			scan.close();
+			file.close();
+		} catch (IOException e) {
+			System.out.println("File " + filename + " could not be found.");
+			e.printStackTrace();
+		}
+		
+		return left;
+	}
+	
+	/**
+	 * get right vertices from bipartite file
+	 * @param filename
+	 * @return
+	 */
+	public static Hashtable<String, HashSet<String>> rightBipartiteVertices(String filename)
+	{
+		Hashtable<String, HashSet<String>> left = new Hashtable<String, HashSet<String>>();
+		Hashtable<String, HashSet<String>> right = new Hashtable<String, HashSet<String>>();
+		
+		//read initial bipartite graph from file
+		FileReader file = null;
+		try {
+			file = new FileReader(filename);
+		} catch (FileNotFoundException e) {
+			System.out.println("File " + filename + " could not be found.");
+			e.printStackTrace();
+		}
+		
+		Scanner scan = new Scanner(file);
+
+		while (scan.hasNext()) {
+			String a = scan.next();
+			String b = scan.next();
+			
+
+			if (!left.keySet().contains(a))
+				left.put(a, new HashSet<String>());
+			if (!right.keySet().contains(b))
+				right.put(b, new HashSet<String>());
+			
+			left.get(a).add(b);
+			right.get(b).add(a);
+			
+		}
+		try {
+			scan.close();
+			file.close();
+		} catch (IOException e) {
+			System.out.println("File " + filename + " could not be found.");
+			e.printStackTrace();
+		}
+		
+		return right;
+	}
 	
 	
-	public UndirectedGraph<String, Pair<String>> fromBipartiteFile(String filename, int k) throws FileNotFoundException, UnsupportedEncodingException
+	/**
+	 * returns a graph from file consisting of an edge set 
+	 * @param filename
+	 * @param k
+	 * @return
+	 */
+	public static UndirectedGraph<String, Pair<String>> graphFromFile(String filename)
+	{
+		UndirectedGraph<String, Pair<String>> initial = new UndirectedSparseGraph<String, Pair<String>>();
+		HashSet<String> leftVertices = new HashSet<String>();
+		HashSet<String> rightVertices = new HashSet<String>();
+		
+		//read initial bipartite graph from file
+		FileReader file = null;
+		try {
+			file = new FileReader(filename);
+		} catch (FileNotFoundException e) {
+			System.out.println("File " + filename + " could not be found.");
+			e.printStackTrace();
+		}
+		
+		Scanner scan = new Scanner(file);
+
+		while (scan.hasNext()) {
+			String a = scan.next();
+			String b = scan.next();
+			
+			leftVertices.add(a);
+			rightVertices.add(b);
+			
+			initial.addEdge(new Pair<String>(a, b), a, b);
+		}
+		try {
+			scan.close();
+			file.close();
+		} catch (IOException e) {
+			System.out.println("File " + filename + " could not be found.");
+			e.printStackTrace();
+		}
+		
+		return initial;
+	}
+	
+	/**
+	 * Project a bipartite graph with k and side 
+	 * @param filename
+	 * @param k
+	 * @param side false for projection on left, true for projection on right
+	 * @return
+	 * @throws FileNotFoundException
+	 * @throws UnsupportedEncodingException
+	 */
+	public static UndirectedGraph<String, Pair<String>> bipartiteProjection(String filename, int k, boolean side) throws FileNotFoundException, UnsupportedEncodingException
+	{
+		
+		Hashtable<String, HashSet<String>> left = new Hashtable<String, HashSet<String>>();
+		Hashtable<String, HashSet<String>> right = new Hashtable<String, HashSet<String>>();
+		
+		//read initial bipartite graph from file
+		FileReader file = null;
+		try {
+			file = new FileReader(filename);
+		} catch (FileNotFoundException e) {
+			System.out.println("File " + filename + " could not be found.");
+			e.printStackTrace();
+		}
+		
+		Scanner scan = new Scanner(file);
+
+		while (scan.hasNext()) {
+			String a = scan.next();
+			String b = scan.next();
+			
+
+			if (!left.keySet().contains(a))
+				left.put(a, new HashSet<String>());
+			if (!right.keySet().contains(b))
+				right.put(b, new HashSet<String>());
+			
+			left.get(a).add(b);
+			right.get(b).add(a);
+			
+		}
+		try {
+			scan.close();
+			file.close();
+		} catch (IOException e) {
+			System.out.println("File " + filename + " could not be found.");
+			e.printStackTrace();
+		}
+		
+		UndirectedGraph<String, Pair<String>> g = new UndirectedSparseGraph<String, Pair<String>>();
+		
+		
+		
+		ArrayList<String> vertices = new ArrayList<String>();
+		ArrayList<String> others = new ArrayList<String>();
+		
+		if (side)
+		{
+			vertices.addAll(right.keySet());
+			others.addAll(left.keySet());
+			
+			Hashtable<String, HashSet<String>> temp = left;
+			left = right;
+			right = temp;
+		}
+		else
+		{
+			vertices.addAll(left.keySet());
+			others.addAll(right.keySet());
+		}
+		
+		
+		
+		//build return graph
+		for (int i = 0; i < vertices.size(); i++)
+		{
+			HashSet<String> temp1 = left.get(vertices.get(i));
+			//temp1.removeAll(vertices);
+			
+			for (int j = i+1; j <  vertices.size(); j++)
+			{
+				HashSet<String> temp2 = (HashSet<String>) left.get(vertices.get(j)).clone();
+				
+				//remove all non-bipartite vertices
+				//temp2.removeAll(vertices);
+				
+				//get intersection
+				temp2.retainAll(temp1);
+				
+				//add edge
+				if (temp2.size() >= k)
+					g.addEdge(new Pair<String>(vertices.get(i), vertices.get(j)),vertices.get(i), vertices.get(j));
+			}
+		}
+		
+		return g;
+		
+	}
+	
+
+	
+	/**
+	 * get a bipartite projection graph
+	 * @param filename
+	 * @param k
+	 * @return
+	 * @throws FileNotFoundException
+	 * @throws UnsupportedEncodingException
+	 */
+	public static UndirectedGraph<String, Pair<String>> bipartiteProjectionOLD(String filename, int k) throws FileNotFoundException, UnsupportedEncodingException
 	{
 		Graph<String, Pair<String>> initial = new UndirectedSparseGraph<String, Pair<String>>();
 		HashSet<String> leftVertices = new HashSet<String>();
 		HashSet<String> rightVertices = new HashSet<String>();
 		
-		
+		//read initial bipartite graph from file
 		FileReader file = null;
 		try {
 			file = new FileReader(filename);
@@ -568,10 +808,6 @@ public class qtGenerate<V>
 		//build new graph
 		
 		
-		//remove common vertices from both sides
-		HashSet<Integer> all = new HashSet<Integer>();
-		HashSet<Integer> common = new HashSet<Integer>();
-		
 		PrintWriter writer = new PrintWriter("datasets/bipartiteEdgeSet.txt", "UTF-8");
 		
 		//must be bipartite for this to work
@@ -580,48 +816,49 @@ public class qtGenerate<V>
 		
 		for (String i : leftVertices)
 		{
-			if (initial.containsVertex(i))
-			{
-				Collection<String> neighbours = initial.getNeighbors(i);
+			//if vertex not in initial graph
+			if (!initial.containsVertex(i))
+				continue;
+			
+			//neighbours of i
+			Collection<String> neighbours = initial.getNeighbors(i);
 
-				for (String n : neighbours)
+			for (String n : neighbours)
+			{
+				//no self edges or right vertices doesn't have neighbour
+				if (n.equals(i) || !rightVertices.contains(n) || !initial.containsVertex(n))
+					continue;
+				
+				//get the neighbours of neighbour
+				Collection<String> nn = initial.getNeighbors(n);
+				for (String friend : nn)
 				{
-					//no self edges
-					if (!n.equals(i))
+					//if we're back looking at our initial vertex or friend is not in left side or edge already exists
+					if (i.equals(friend) || rightVertices.contains(friend) || !leftVertices.contains(friend) /*|| g.isNeighbor(i, friend)*/)
+						continue;
+					
+
+					Collection<String> friendN = initial.getNeighbors(friend);
+					
+					//check for number of common neighbours
+					HashSet<String> temp = new HashSet<String>();
+					temp.addAll(friendN);
+					
+					temp.retainAll(neighbours);
+					
+					
+					if (friendN.size() > k)
 					{
-						Collection<String> nn = initial.getNeighbors(n);
-						for (String friend : nn)
+						if (!g.containsVertex(friend) || !g.containsVertex(i) || !g.isNeighbor(friend, i))
 						{
-							if (!i.equals(friend) && !rightVertices.contains(friend))
-							{
-								int count = 0;
-								Collection<String> friendN = initial.getNeighbors(friend);
-								
-								//check for number of common neighbours
-								for (String temp0 : neighbours)
-								{
-									for (String temp1 : friendN)
-									{
-										if (temp0.equals(temp1))
-										{
-											count++;
-										}
-									}
-								}
-								if (count > k)
-								{
-									if (!(g.containsVertex(friend) && g.containsVertex(i) && g.isNeighbor(friend, i)))
-									{
-										g.addEdge(new Pair<String>(i , friend), i, friend);
-										writer.println(i + " " + friend);
-									}
-								}
-							}
+							g.addEdge(new Pair<String>(i , friend), i, friend);
+							writer.println(i + " " + friend);
 						}
 					}
+					
 				}
-			}
 			
+			}			
 		}
 		
 		
@@ -843,7 +1080,7 @@ public class qtGenerate<V>
 		{
 			if (!g1.containsVertex(v0))
 			{
-				System.out.println("\nGraph 1 does not contain vertex " + v0);
+				//System.out.println("\nGraph 1 does not contain vertex " + v0);
 				flag = false;
 			}
 		}
@@ -851,7 +1088,7 @@ public class qtGenerate<V>
 		{
 			if (!g0.containsVertex(v1))
 			{
-				System.out.println("\nGraph 0 does not contain vertex " + v1);
+				//System.out.println("\nGraph 0 does not contain vertex " + v1);
 				flag = false;
 			}
 		}
@@ -865,7 +1102,7 @@ public class qtGenerate<V>
 			{
 				if (g1.findEdge(e0.getFirst(), e0.getSecond()) == null){
 					
-					System.out.println("\nGraph 1 does not contain edge " + e0);
+					//System.out.println("\nGraph 1 does not contain edge " + e0);
 					flag = false;
 				}
 			}
@@ -879,7 +1116,7 @@ public class qtGenerate<V>
 			{
 				if (g0.findEdge(e1.getFirst(), e1.getSecond()) == null)
 				{
-					System.out.println("\nGraph 0 does not contain edge " + e1);
+					//System.out.println("\nGraph 0 does not contain edge " + e1);
 					flag = false;
 				}
 			}
@@ -1139,13 +1376,67 @@ public class qtGenerate<V>
 				{
 					graph.addEdge(new Pair<Integer>(v0, v1), v0, v1);
 				}
-			}
-			
-			
-		}
-		
+			}	
+		}	
 		return graph;
 	}
+	
+	/**
+	 * generate a random bipartite graph like an ER graph
+	 * @param size of left side
+	 * @param size of right side
+	 * @param percent probability of an edge existing
+	 */
+	public static void randomBipartiteGraph(int left, int right,  double percent, long seed)
+	{
+		rand.setSeed(seed);
+		
+		//make nodes
+		Hashtable<Integer, HashSet<Integer>> edgeSet = new Hashtable<Integer, HashSet<Integer>>();
+		
+		for (int l = 0; l < left; l++)
+			for (int r = 0; r < right; r++)
+			{
+				if (rand.nextDouble() <= percent)
+				{
+					if (!edgeSet.keySet().contains(l))
+						edgeSet.put(l, new HashSet<Integer>());
+					
+					edgeSet.get(l).add(r);
+					
+				}
+			}
+		
+		for (int l = left; l < left*2; l++)
+			for (int r = right; r < right*2; r++)
+			{
+				if (rand.nextDouble() <= percent)
+				{
+					if (!edgeSet.keySet().contains(l))
+						edgeSet.put(l, new HashSet<Integer>());
+					
+					edgeSet.get(l).add(r);
+					
+				}
+			}
+		
+		//write graph
+		try {
+			PrintWriter writer = new PrintWriter("datasets/bipartite/random.txt", "UTF-8");
+			
+			for (Integer l : edgeSet.keySet())
+				for (Integer r : edgeSet.get(l))
+				{
+					writer.write(l + " " + r + "\n");
+				}
+			writer.close();
+		} catch (FileNotFoundException | UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
 	
 }
 	

@@ -24,7 +24,6 @@ import javax.swing.JFrame;
 
 import modularDecomposition.myGraph;
 import qtUtils.branchingReturnC;
-import qtUtils.qtGenerate;
 import reduction.biconnectedReduction;
 import reduction.c4p4Reduction;
 import reduction.centralNodeReduction;
@@ -38,6 +37,7 @@ import search.clusterSearch;
 import search.cographSearch;
 import search.diQTSearch;
 import search.qtLBFSNoHeuristic;
+import utils.Generate;
 import utils.distance;
 import utils.graphFromEdgeSetWithCommunities;
 import utils.graphUtils;
@@ -56,8 +56,8 @@ import clusterRules.clusterBranch;
 import cographRules.cographAllStruct;
 
 import com.rits.cloning.Cloner;
-import components.branchComponents;
 
+import components.branchComponents;
 import controller.Controller;
 import edu.uci.ics.jung.algorithms.cluster.WeakComponentClusterer;
 import edu.uci.ics.jung.algorithms.layout.FRLayout;
@@ -87,8 +87,8 @@ public class fun<V> extends JApplet {
 	 */
 	static Graph<Integer, String> graph;
 	static Cloner clone = new Cloner();
-	static qtGenerate<Integer> gen = new qtGenerate<Integer>();
-	static qtGenerate<String> genString = new qtGenerate<String>();
+	static Generate<Integer> gen = new Generate<Integer>();
+	static Generate<String> genString = new Generate<String>();
 	
 	static graphUtils<String> stringUtils = new graphUtils<String>();
 	
@@ -124,7 +124,9 @@ public class fun<V> extends JApplet {
 		
 		//honoursTest();
 	
-		approximateBranchingFactor();
+		honoursBipartiteTest();
+		
+		//approximateBranchingFactor();
 		
 		//lesMisTest();
 		
@@ -150,7 +152,7 @@ public class fun<V> extends JApplet {
 		int g = scan.nextInt();
 		
 		Graph<Integer, Pair<Integer>> graph = null;
-		qtGenerate<Integer> gen = new qtGenerate<Integer>();
+		Generate<Integer> gen = new Generate<Integer>();
 		int nodes;
 		long seed;
 		switch (g)
@@ -174,7 +176,7 @@ public class fun<V> extends JApplet {
 			System.out.println("\nSet random seed: ");
 			seed = scan.nextLong();
 			
-			graph = qtGenerate.ER(nodes, probability, seed);
+			graph = Generate.ER(nodes, probability, seed);
 			break;
 		case 5:
 			System.out.println("\nEnter number of nodes in graph: ");
@@ -739,7 +741,7 @@ public class fun<V> extends JApplet {
 	{
 		//run the same graph as a test over multiple traversal methods
 		qtLBFSNoHeuristic<Integer> search = new qtLBFSNoHeuristic<Integer>();
-		qtGenerate<Integer> gen = new qtGenerate<Integer>();
+		Generate<Integer> gen = new Generate<Integer>();
 		Cloner clone = new Cloner();
 		
 		//load all test branching methods
@@ -850,7 +852,7 @@ public class fun<V> extends JApplet {
 		
 		Controller<String> c = new Controller<String>(null, true);
 		
-		qtGenerate<String> gen = new qtGenerate<String>();
+		Generate<String> gen = new Generate<String>();
 		
 		
 		//test size of graph
@@ -994,7 +996,7 @@ public class fun<V> extends JApplet {
 		clusterSearch<Integer> search = new clusterSearch<Integer>();
 		
 		Graph<Integer, Pair<Integer>> exampleQT;
-		qtGenerate<Integer> gen = new qtGenerate<Integer>();
+		Generate<Integer> gen = new Generate<Integer>();
 		exampleQT = gen.ER(20, .8, (long) 3);
 		//exampleQT = gen.randomTreeGraph(20, 0, 10);
 		exampleQT = gen.treeRandom(25, 6);
@@ -1379,7 +1381,7 @@ public class fun<V> extends JApplet {
 		cographSearch<Integer> search = new cographSearch<Integer>();
 		
 		Graph<Integer, Pair<Integer>> exampleQT;
-		qtGenerate<Integer> gen = new qtGenerate<Integer>();
+		Generate<Integer> gen = new Generate<Integer>();
 		exampleQT = gen.randomTreeGraph(11, 4, 13);
 		
 		//exampleQT = gen.ER(30, .2, (long) 0);
@@ -1440,14 +1442,14 @@ public class fun<V> extends JApplet {
 		
 		for (int k = 2; k < 11; k++)
 		{
-			wine = genString.fromBipartiteFile("datasets/wine/" + province + "/ProvinceSpecificEdgeList.txt", k);
+			wine = genString.bipartiteProjectionOLD("datasets/wine/" + province + "/ProvinceSpecificEdgeList.txt", k);
 			
 			
 			Graph<String, Pair<String>> cln = clone.deepClone(wine);
 			
 			Controller<String> c = new Controller<String>(null, true);
 			
-			qtGenerate<String> gen = new qtGenerate<String>();
+			Generate<String> gen = new Generate<String>();
 			
 			
 			//test size of graph
@@ -1526,7 +1528,7 @@ public class fun<V> extends JApplet {
 			
 			Controller<String> c = new Controller<String>(null, true);
 			
-			qtGenerate<String> gen = new qtGenerate<String>();
+			Generate<String> gen = new Generate<String>();
 			
 			qtBranchComponents<String> branchC = new qtBranchComponents<String>(c);
 			Dive<String> dive = new maxObsGreedy<String>(branchC);
@@ -1540,7 +1542,7 @@ public class fun<V> extends JApplet {
 			{
 			
 				try {
-					wine = genString.fromBipartiteFile("datasets/wine/" + province + "/ProvinceSpecificEdgeList.txt", k);
+					wine = genString.bipartiteProjectionOLD("datasets/wine/" + province + "/ProvinceSpecificEdgeList.txt", k);
 				} catch (FileNotFoundException | UnsupportedEncodingException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -1602,7 +1604,7 @@ public class fun<V> extends JApplet {
 			{
 			
 				try {
-					wine = genString.fromBipartiteFile("datasets/wine/" + province + "/ProvinceSpecificEdgeList.txt", k);
+					wine = Generate.bipartiteProjectionOLD("datasets/wine/" + province + "/ProvinceSpecificEdgeList.txt", k);
 				} catch (FileNotFoundException | UnsupportedEncodingException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -1726,7 +1728,7 @@ public class fun<V> extends JApplet {
 			{
 			
 				try {
-					wine = genString.fromBipartiteFile("datasets/wine/" + province + "/ProvinceSpecificEdgeList.txt", k);
+					wine = Generate.bipartiteProjectionOLD("datasets/wine/" + province + "/ProvinceSpecificEdgeList.txt", k);
 				} catch (FileNotFoundException | UnsupportedEncodingException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -1953,7 +1955,7 @@ public class fun<V> extends JApplet {
 	{
 		//run the same graph as a test over multiple traversal methods
 		clusterSearch<Integer> search = new clusterSearch<Integer>();
-		qtGenerate<Integer> gen = new qtGenerate<Integer>();
+		Generate<Integer> gen = new Generate<Integer>();
 		Cloner clone = new Cloner();
 		
 		//load all test branching methods
@@ -2047,7 +2049,7 @@ public class fun<V> extends JApplet {
 	{
 		//run the same graph as a test over multiple traversal methods
 		cographSearch<Integer> search = new cographSearch<Integer>();
-		qtGenerate<Integer> gen = new qtGenerate<Integer>();
+		Generate<Integer> gen = new Generate<Integer>();
 		Cloner clone = new Cloner();
 		
 		//load all test branching methods
@@ -2183,7 +2185,7 @@ public class fun<V> extends JApplet {
 			{
 			
 				try {
-					wine = genString.fromBipartiteFile("datasets/wine/" + province + "/ProvinceSpecificEdgeList.txt", k);
+					wine = Generate.bipartiteProjectionOLD("datasets/wine/" + province + "/ProvinceSpecificEdgeList.txt", k);
 				} catch (FileNotFoundException | UnsupportedEncodingException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -2289,13 +2291,12 @@ public class fun<V> extends JApplet {
 		}
 	}
 	
-	
-	public static void honoursTest()
+	public static void honoursTest() throws FileNotFoundException, UnsupportedEncodingException
 	{
 		//----------------------------------------------------
 		//initialize distance measurements
 		distance<String> d = new distance<String>();
-		String distanceFile = "datasets/wine/Distance/CANADA/CANADADistance.txt";
+		String distanceFile = "datasets/wine/Distance/BC/BCDistance.txt";
 		HashMap<String, Pair<Double>> mapping = distance.getLatLongFromFile(distanceFile);
 		
 		
@@ -2315,7 +2316,7 @@ public class fun<V> extends JApplet {
 		
 		cographAllStruct<String> cograph = new cographAllStruct<String>(c);
 		
-		//cograph.addReduction(new cographReduction<String>(cograph));
+		cograph.addReduction(new cographReduction<String>(cograph));
 		
 		
 		cograph.setDive(new cographGreedy<String>(cograph));
@@ -2334,8 +2335,11 @@ public class fun<V> extends JApplet {
 		
 		//----------------------------------------------------
 		//set up data
+		Graph<String, Pair<String>> wine;
 		
-		Graph<String, Pair<String>> wine = fillGraphFromFileWithStrings("datasets/wine/CANADA/wineryEdgeSet.txt");
+		String filename = "datasets/wine/BC/wineryEdgeSet.txt";
+		
+		wine = fillGraphFromFileWithStrings(filename);
 		
 		Graph<String, Pair<String>> originalWineClone = clone.deepClone(wine);
 		
@@ -2345,46 +2349,157 @@ public class fun<V> extends JApplet {
 		
 		branchingReturnC<String> goal = new branchingReturnC<String>(wine);
 		
+		
+		goal = new branchingReturnC<String>(wine);
+//			
 		for (int i = 2; i < 3; i++)
 		{
 			Branch<String> bStruct = bStructs.get(i);
-			
-			c.setbStruct(bStruct);
-			
-			//try approximate edit
-			goal = c.diveAtStartEdit(wine, 8);
-			
-			
-//			//try regular edit
-//			goal = c.branchStart(wine, 50);
-			
-			//try iterative deepening
-			//goal = c.branchID(wine, 2, 17);
 		
+			c.setbStruct(bStruct);
+		
+////		try approximate edit
+//			goal = c.diveAtStartEdit(wine, 10);
+//		
+//		
+			//try regular edit
+			goal = c.branchStart(wine, 17);
+//		
+////		try iterative deepening
+//			goal = c.branchID(wine, 2, 17);
+	
+			String path = null;
 			if (bStruct.getSearch().isTarget(goal.getG()))
 			{
 				//print results
-				String path = null;
 				if (i == 0)
-					path = "datasets/wine/Thesis/QC/Cluster/Approximate/";
+					path = "datasets/wine/Thesis/Cluster/Approximate/";
 				else if (i == 1)
-					path = "datasets/wine/Thesis/QC/Cograph/Approximate/";
+					path = "datasets/wine/Thesis/Cograph/Approximate/";
 				else
-					path = "datasets/wine/Thesis/QC/QT/Approximate/";
+					path = "datasets/wine/Thesis/QT/";
 			
-				stringUtils.printSolutionEdgeSetWithWeightsComponents(goal, path+"wineSolution.txt");
-				
-				d.outputDistanceMeasurements(path+"wineSolution.txt", distanceFile, path+"wineDistances.txt");
+				stringUtils.printSolutionEdgeSetWithWeightsComponents(goal, path+"wineSolutionNEWDISTANCE.txt");
+//					
+				distance.outputDistanceMeasurements(path+"wineSolution.txt", distanceFile, path+"wineDistancesNEWDISTANCE.txt");
 			}
 			
+		}
+		
+		//FOR TESTING
+//		String path = "datasets/wine/Thesis/Unedited/";
+//		stringUtils.printSolutionEdgeSetWithWeightsComponents(goal, path+"wine-wineSolution.txt");
+//		
+//		d.outputDistanceMeasurements(path+"wine-wineSolution.txt", distanceFile, path+"wine-wineDistances.txt");
+		
+		
+	}
+	
+	public static void honoursBipartiteTest() throws FileNotFoundException, UnsupportedEncodingException
+	{
+		//----------------------------------------------------
+		//initialize distance measurements
+		distance<String> d = new distance<String>();
+		String distanceFile = "datasets/wine/Distance/BC/BCDistance.txt";
+		HashMap<String, Pair<Double>> mapping = distance.getLatLongFromFile(distanceFile);
+		
+		
+		//----------------------------------------------------
+		//initialize editor
+		Controller<String> c = new Controller<String>(null, true);
+		
+		ArrayList<Branch<String>> bStructs = new ArrayList<Branch<String>>(3);
+		
+		clusterAllStruct<String> cluster = new clusterAllStruct<String>(c);
+		cluster.addReduction(new clusterReductionBasic<String>(cluster));
+		
+		cluster.setDive(new clusterGreedy<String>(cluster));
+		
+		bStructs.add(0, new branchComponents<String>(c, cluster));
+		
+		
+		cographAllStruct<String> cograph = new cographAllStruct<String>(c);
+		
+		cograph.addReduction(new cographReduction<String>(cograph));
+		
+		
+		cograph.setDive(new cographGreedy<String>(cograph));
+	
+		bStructs.add(1, new branchComponents<String>(c, cograph));
+		
+		//set up qt editor with reduction rule
+		qtBranch<String> temp = new qtAllStruct<String>(c);
+		
+		temp.addReduction(new c4p4Reduction<String>(temp));
+		
+		temp.setDive(new maxObsGreedy<String>(temp));
+		
+		bStructs.add(2, new branchComponents<String>(c, temp));
+		
+		
+		//----------------------------------------------------
+		//set up data
+		Graph<String, Pair<String>> wine;
+		
+		String filename = "datasets/wine/BC/ProvinceSpecificEdgeList.txt";
+		
+		wine = fillGraphFromFileWithStrings(filename);
+		
+		Graph<String, Pair<String>> originalWineClone = clone.deepClone(wine);
+		
+		
+		//----------------------------------------------------
+		//perform editing
+		
+		branchingReturnC<String> goal = new branchingReturnC<String>(wine);
+		
+		for (int k = 11; k < 20; k++)
+		{
+			//bipartite graph
+			wine = Generate.bipartiteProjectionOLD(filename, k);
+			boolean bipartite = true;
 			
-			//ONLY FOR TEST
-			String path = "datasets/wine/Thesis/QC/QT/Approximate/";
-			stringUtils.printSolutionEdgeSetWithWeightsComponents(goal, path+"wineSolution.txt");
+			goal = new branchingReturnC<String>(wine);
 			
-			d.outputDistanceMeasurements(path+"wineSolution.txt", distanceFile, path+"wineDistances.txt");
+			String oPath = "datasets/wine/Thesis/Bipartite/Unedited/";
+			stringUtils.printSolutionEdgeSetWithWeightsComponents(goal, oPath+((bipartite)?"k"+k:"") +"Original.txt");
 			
+			d.outputDistanceMeasurements(oPath+((bipartite)?"k"+k:"") +"Original.txt", distanceFile, oPath+((bipartite)?"k"+k:"") +"OriginalDistances.txt");
 			
+//			
+			for (int i = 0; i < 3; i++)
+			{
+				Branch<String> bStruct = bStructs.get(i);
+				
+				c.setbStruct(bStruct);
+				
+				//try approximate edit
+				goal = c.diveAtStartEdit(wine, 10);
+				
+				
+	//			//try regular edit
+//				goal = c.branchStart(wine, 20);
+				
+				//try iterative deepening
+				//goal = c.branchID(wine, 2, 17);
+			
+				if (bStruct.getSearch().isTarget(goal.getG()))
+				{
+					//print results
+					String path = null;
+					if (i == 0)
+						path = "datasets/wine/Thesis/"+ ((bipartite)?"Bipartite":"") + "/Cluster/Approximate/";
+					else if (i == 1)
+						path = "datasets/wine/Thesis/"+ ((bipartite)?"Bipartite":"") + "/Cograph/Approximate/";
+					else
+						path = "datasets/wine/Thesis/"+ ((bipartite)?"Bipartite":"") + "/QT/Approximate/";
+				
+					stringUtils.printSolutionEdgeSetWithWeightsComponents(goal, path+((bipartite)?"k"+k:"") +"BipartiteSolution.txt");
+					
+					d.outputDistanceMeasurements(path+((bipartite)?"k"+k:"") +"BipartiteSolution.txt", distanceFile, path+((bipartite)?"k"+k:"") +"BipartiteDistances.txt");
+				}
+				
+			}
 		}
 		
 		
@@ -2394,7 +2509,7 @@ public class fun<V> extends JApplet {
 	{
 		//run the same graph as a test over multiple traversal methods
 		cographSearch<Integer> search = new cographSearch<Integer>();
-		qtGenerate<Integer> gen = new qtGenerate<Integer>();
+		Generate<Integer> gen = new Generate<Integer>();
 		Cloner clone = new Cloner();
 		
 		//load all test branching methods
@@ -2540,9 +2655,11 @@ public class fun<V> extends JApplet {
 			{
 				
 				seedLoop:
-				for (int seed = 0; seed<6; seed++)
+				for (int seed = 0; seed<20; seed++)
 				{
-					graph = gen.randomTreeGraph(size, (size-1)/2, seed);
+					//graph = gen.randomTreeGraph(size, (size-1)/2, seed);
+					rand.setSeed(seed);
+					graph = gen.ER(size, rand.nextDouble(), (long) seed);
 					prev = -1;
 					boundLoop:
 					for (int bound = 3; bound < 7; bound++)
