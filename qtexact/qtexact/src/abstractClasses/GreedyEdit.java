@@ -6,7 +6,6 @@ import utils.Generate;
 
 import com.rits.cloning.Cloner;
 
-import edu.uci.ics.jung.graph.DirectedGraph;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Pair;
 
@@ -53,8 +52,6 @@ public abstract class GreedyEdit<V> extends Dive<V>
 		System.out.println("Original number of edges " + s.getG().getEdgeCount());
 		System.out.println("Original clone number of edges " + cloneGraph.getEdgeCount());
 		
-		Graph<V, Pair<V>> cloneGraph1 = null;
-		
 		
 		//for every two vertices, see if adding a non-existing edge or removing an edge decreases the obstruction count
 		do
@@ -85,7 +82,7 @@ public abstract class GreedyEdit<V> extends Dive<V>
 							if (newObs < best)
 							{
 								
-								cloneGraph1 = clone.deepClone(s.getG());
+//								cloneGraph1 = clone.deepClone(s.getG());
 								
 								best = newObs;
 								move = new myEdge<V>(new Pair<V>(v0, v1), false, directed);

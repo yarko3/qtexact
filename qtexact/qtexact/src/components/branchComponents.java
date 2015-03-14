@@ -68,9 +68,12 @@ public class branchComponents<V> extends Branch<V> {
 			//build graphs from connected components
 			LinkedList<Graph<V, Pair<V>>> cGraphs = new LinkedList<Graph<V, Pair<V>>>();
 			LinkedList<branchingReturnC<V>> results = new LinkedList<branchingReturnC<V>>();
+			
 			for (Set<V> l : lex.getcComponents())
 			{
-				cGraphs.add(connectedCFromVertexSet(s.getG(), l));
+				//do we even care about editing this component?
+				if (l.size() > 1)
+					cGraphs.add(connectedCFromVertexSet(s.getG(), l));
 			}
 			
 			
@@ -78,7 +81,7 @@ public class branchComponents<V> extends Branch<V> {
 			branchingReturnC<V> min = null;
 			
 			branchingReturnC<V> t;
-			//number of components larger than 3 nodes
+			
 			int count = cGraphs.size();
 			
 			//sort connected components in increasing size
@@ -126,9 +129,11 @@ public class branchComponents<V> extends Branch<V> {
 //					need += needEdit.get(j);
 //				}
 				
+				//success flag
+				boolean flag = true;
 				
 				//does this component need editing and are more moves allowed?
-				if (/*needEdit.get(i) > 0 &&*/ bound >= 0 /*&& bound >= need*/)
+				if (/*needEdit.get(i) > 0 &&*/ bound >= 0 /*&& bound >= need*/ && g.getVertexCount() > 1)
 				{
 					
 					//fill new minMoves with bounded edge set of component
@@ -146,6 +151,12 @@ public class branchComponents<V> extends Branch<V> {
 					results.addFirst(controller.branch(t));
 					//update bound
 					bound -= (t.getMinMoves().getChanges().size() - s.getChanges().size());
+					
+					//check if component edited successfully (BREAKS IF SOLUTION FOR COMPONENT NOT FOUND)
+//					t.getMinMoves().getChanges().removeAll(s.getChanges());
+//					applyMoves(t, t.getMinMoves().getChanges());
+//					if (!getSearch().isTarget(g))
+//						flag = false;
 				}				
 			}
 			
@@ -153,27 +164,41 @@ public class branchComponents<V> extends Branch<V> {
 			//construct new minMoves from all old ones
 			min = new branchingReturnC<V>(s.getG(), s.getDeg());
 			min.setMinMoves(min);
+			
 			//throw all minMoves into a HashSet, so they don't have duplicates
 			HashSet<myEdge<V>> temp = new HashSet<myEdge<V>>();
-			temp.addAll(s.getChanges());
+			
+			//get all old edits into temp
+//			temp.addAll(s.getChanges());
+			
+			//for every component's results
 			for (branchingReturnC<V> r : results)
 			{
+				//remove the previously made moves from result's best so it now contains only the new edits
 				r.getMinMoves().getChanges().removeAll(s.getChanges());
-				
+				//add all new edits to temp
 				temp.addAll(r.getMinMoves().getChanges());
 			}
 			
+			//add new edits
 			min.getChanges().addAll(temp);
 			
-			//if new solution is better than current one
+			//if new solution is better than current one, apply new moves to graph
 			Graph<V, Pair<V>> rtn = applyMoves(Branch.clone.deepClone(s.getG()), min.getChanges());
 			
-			if (s.getMinMoves().getChanges().size() >= min.getChanges().size() && getSearch().isTarget(rtn))
+			//add old edits
+			min.getChanges().addAll(s.getChanges());
+			
+			//is it at goal state?
+			boolean success = getSearch().isTarget(rtn);
+			
+			if (s.getMinMoves().getChanges().size() >= min.getChanges().size() && success)
 			{
 				s.setMinMoves(min);
 			}
 			else
 			{
+				//we didn't find a solution, do we dive for one?
 				if (controller.getUseDive())
 				{
 					controller.dive(s);

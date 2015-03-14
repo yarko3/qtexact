@@ -212,6 +212,7 @@ public class Controller<V>
 		//save old moves as best solution so far
 		s.getMinMoves().setChanges(Branch.clone.deepClone(s.getChanges()));
 		
+		int numRevert = numRevertORIGINAL;
 		
 		do
 		{
@@ -226,8 +227,6 @@ public class Controller<V>
 			//store old solution count
 			oldC = s.getMinMoves().getChanges().size();
 			
-			//how many moves to undo
-			int numRevert = numRevertORIGINAL;
 			if (success)
 			{
 				if (s.getChanges().size() - numRevert < 0)
@@ -239,6 +238,7 @@ public class Controller<V>
 			//greedy did not solve
 			else
 			{
+				//fill solution with numRevert extra moves for bound
 				s.getMinMoves().setChanges(bStruct.fillMinMoves(s, s.getChanges().size() + numRevert));
 				oldC = s.getMinMoves().getChanges().size();
 			}
@@ -250,6 +250,13 @@ public class Controller<V>
 			
 			//new solution size
 			newC = s.getMinMoves().getChanges().size();
+			
+//			//check if solved
+//			success = bStruct.getSearch().isTarget(s.getG());
+//			
+//			//increase depth if solution still not found
+//			if (!success)
+//				numRevert++;
 			
 			System.out.println("Current best solution: " + s.getMinMoves().getChanges().size());
 			

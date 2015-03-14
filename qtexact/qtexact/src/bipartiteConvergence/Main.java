@@ -100,7 +100,7 @@ public class Main<V>
 		//side to project (false = left, true = right)
 		boolean side = false;
 		
-		Generate.randomBipartiteGraph(10, 10, .2, 2);
+		Generate.randomBipartiteGraph(20, 30, .2, 10);
 		
 		String filename = "datasets/bipartite/random.txt";
 		

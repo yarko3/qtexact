@@ -42,7 +42,8 @@ public class clusterSearch<V> extends Search<V> {
 			//make connected component graphs
 			for (Set<V> s : components)
 			{
-				cGraphs.add(this.connectedCFromVertexSet(graph, s));
+				if (s.size() > 2)
+					cGraphs.add(this.connectedCFromVertexSet(graph, s));
 			}
 			
 

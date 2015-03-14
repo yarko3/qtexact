@@ -1420,6 +1420,9 @@ public class Generate<V>
 				}
 			}
 		
+//		//add edge to join two components
+//		edgeSet.get(0).add(right);
+		
 		//write graph
 		try {
 			PrintWriter writer = new PrintWriter("datasets/bipartite/random.txt", "UTF-8");
