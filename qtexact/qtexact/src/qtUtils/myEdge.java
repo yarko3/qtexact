@@ -90,7 +90,8 @@ public class myEdge<V> implements Comparable<myEdge<V>>
 	{
 		if (!directed)
 		{
-			if ((arg0.getEdge().getFirst().equals(edge.getFirst()) && arg0.getEdge().getSecond().equals(edge.getSecond())) || (arg0.getEdge().getSecond().equals(edge.getFirst()) && arg0.getEdge().getFirst().equals(edge.getSecond())))
+			if ((arg0.getEdge().getFirst().equals(edge.getFirst()) && arg0.getEdge().getSecond().equals(edge.getSecond())) 
+					|| (arg0.getEdge().getSecond().equals(edge.getFirst()) && arg0.getEdge().getFirst().equals(edge.getSecond())))
 			{
 				if (arg0.isFlag() == flag)
 					return 0;

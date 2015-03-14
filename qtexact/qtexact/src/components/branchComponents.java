@@ -165,29 +165,35 @@ public class branchComponents<V> extends Branch<V> {
 			min = new branchingReturnC<V>(s.getG(), s.getDeg());
 			min.setMinMoves(min);
 			
-			//throw all minMoves into a HashSet, so they don't have duplicates
-			HashSet<myEdge<V>> temp = new HashSet<myEdge<V>>();
+			//all moves made to each component
+			LinkedList<myEdge<V>> temp = new LinkedList<myEdge<V>>();
 			
-			//get all old edits into temp
-//			temp.addAll(s.getChanges());
+			temp.addAll(s.getChanges());
 			
 			//for every component's results
 			for (branchingReturnC<V> r : results)
 			{
 				//remove the previously made moves from result's best so it now contains only the new edits
-				r.getMinMoves().getChanges().removeAll(s.getChanges());
+				//r.getMinMoves().getChanges().removeAll(s.getChanges());
+//				
+				for (int i = 0; i < s.getChanges().size(); i++)
+				{
+					if (r.getMinMoves().getChanges().isEmpty())
+						break;
+					r.getMinMoves().getChanges().removeFirst();
+				}
+				
+				
 				//add all new edits to temp
 				temp.addAll(r.getMinMoves().getChanges());
 			}
 			
-			//add new edits
-			min.getChanges().addAll(temp);
 			
 			//if new solution is better than current one, apply new moves to graph
-			Graph<V, Pair<V>> rtn = applyMoves(Branch.clone.deepClone(s.getG()), min.getChanges());
+			Graph<V, Pair<V>> rtn = applyMoves(Branch.clone.deepClone(s.getG()), temp);
 			
 			//add old edits
-			min.getChanges().addAll(s.getChanges());
+//			min.getChanges().addAll(s.getChanges());
 			
 			//is it at goal state?
 			boolean success = getSearch().isTarget(rtn);

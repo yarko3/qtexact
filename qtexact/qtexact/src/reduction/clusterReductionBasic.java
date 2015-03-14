@@ -48,6 +48,7 @@ public class clusterReductionBasic<V> extends Reduction<V> {
 		//store original move count
 		int ogCount = s.getChanges().size();
 		int bound = s.getMinMoves().getChanges().size() - ogCount;
+		int movesMade = 0;
 		
 		//reduction rule only works on a connected component
 		if (componentClusterer.transform(s.getG()).size() > 1 || bound <= 0)
@@ -65,7 +66,9 @@ public class clusterReductionBasic<V> extends Reduction<V> {
 		
 		outer:
 		for (int i = 0; i < vertices.size(); i++)
-		{
+		{	
+			
+			
 			//first vertex
 			V v0 = vertices.get(i);
 			//neighbours of first vertex
@@ -74,14 +77,15 @@ public class clusterReductionBasic<V> extends Reduction<V> {
 			//look through all vertices after the first vertex
 			for (int j = i+1; j < vertices.size(); j++)
 			{
+				//if we cannot do any more moves, stop reduction rule
+				if (bound == 0)
+					break outer;
+				
 				//second vertex
 				V v1 = vertices.get(j);
 				//this should never happen but ok
 				if (v0.equals(v1))
 					continue;
-				//if we cannot do any more moves, stop reduction rule
-				if (bound == 0)
-					break outer;
 				
 				//check for number of common neighbours (if # common neighbours > bound)
 				Collection<V> v1Neighbours = s.getG().getNeighbors(v1);
@@ -122,6 +126,7 @@ public class clusterReductionBasic<V> extends Reduction<V> {
 						bStruct.deleteResult(s, v0, v1);
 //						toBeMade.add(new myEdge<V>(new Pair<V>(v0, v1), false, directed));
 						bound--;
+						movesMade++;
 //					}
 				}
 				
@@ -143,6 +148,7 @@ public class clusterReductionBasic<V> extends Reduction<V> {
 						
 //						toBeMade.add(new myEdge<V>(new Pair<V>(v0, v1), true, directed));
 						bound--;
+						movesMade++;
 //					}
 				}
 //				//edge must exist and not exist for optimal solution
@@ -166,7 +172,7 @@ public class clusterReductionBasic<V> extends Reduction<V> {
 //		applyMoves(s, toBeMade);
 		
 		//push how many modifications reduction rule made
-		stack.push(s.getChanges().size() - ogCount);
+		stack.push(movesMade);
 		
 		return s;
 		
@@ -215,10 +221,8 @@ public class clusterReductionBasic<V> extends Reduction<V> {
 		//return the number of modifications from stack
 		int editCount = stack.pop();
 		
-		for (int i = 0; i < editCount; i++)
-		{
-			bStruct.revert(s);
-		}
+		bStruct.revert(s, editCount);
+		
 		return s;
 	}
 	

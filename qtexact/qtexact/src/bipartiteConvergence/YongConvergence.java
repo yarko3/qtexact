@@ -18,7 +18,10 @@ import abstractClasses.Branch;
 import branch.qtAllStruct;
 import clusterRules.clusterAllStruct;
 import cographRules.cographAllStruct;
+
+import com.rits.cloning.Cloner;
 import components.branchComponents;
+
 import controller.Controller;
 import edu.uci.ics.jung.algorithms.cluster.WeakComponentClusterer;
 import edu.uci.ics.jung.algorithms.layout.FRLayout;
@@ -31,7 +34,7 @@ import greedy.clusterGreedy;
 import greedy.cographGreedy;
 import greedy.maxObsGreedy;
 
-public class Main<V>
+public class YongConvergence<V>
 {
 	/**
 	 * Used for finding connected components (communities)
@@ -50,9 +53,13 @@ public class Main<V>
 	 */
 	private static Controller<String> c = new Controller<String>(null, true);
 	
+	/**
+	 * cloner for testing
+	 */
+	private static Cloner clone = new Cloner();
+	
 	/*
 	 * Initialize graph editing stuff
-	 * 
 	 */
 	static
 	{
@@ -96,16 +103,20 @@ public class Main<V>
 	{
 		Generate<String> gen = new Generate<String>();
 		//editing method used
-		int method = 2;
+		int method = 0;
 		//side to project (false = left, true = right)
 		boolean side = false;
 		
-		Generate.randomBipartiteGraph(20, 30, .2, 10);
+		//Generate.randomBipartiteGraph(20, 30, .1, 10);
 		
-		String filename = "datasets/bipartite/random.txt";
+		String filename = "datasets/bipartite/southernwomen";
+		
 		
 		//get initial projection graph
-		Graph<String, Pair<String>> bipartiteProj = Generate.bipartiteProjection(filename, 2, side);
+		Graph<String, Pair<String>> bipartiteProj = Generate.bipartiteProjection(filename, 3, side);
+		
+		//visualize original graph
+		visualize(clone.deepClone(bipartiteProj));
 		
 		//vertices from both sides
 		Hashtable<String, HashSet<String>> left = Generate.leftBipartiteVertices(filename);

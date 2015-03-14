@@ -6,9 +6,13 @@ import java.util.LinkedList;
 import qtUtils.branchingReturnC;
 import qtUtils.myEdge;
 import search.qtLBFS;
+import utils.Generate;
 import abstractClasses.Branch;
 import abstractClasses.Dive;
 import abstractClasses.SearchResult;
+
+import com.rits.cloning.Cloner;
+
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Pair;
 
@@ -49,6 +53,16 @@ public class Controller<V>
 	 * original graph size (before connected component split)
 	 */
 	private int ogGraphSize;
+	
+	/**
+	 * cloner used for testing
+	 */
+	private static Cloner clone = new Cloner();
+	
+	/**
+	 * used for comparing graphs
+	 */
+	private Generate<V> gen = new Generate<V>();
 	/**
 	 * best diving solution
 	 */
@@ -198,7 +212,7 @@ public class Controller<V>
 		//setup the branchingReturnC with an empty MinMoves
 		branchingReturnC<V> s = bStruct.setup(G);
 		
-		//run dive approach
+		//run dive approach (modifies graph in s)
 		bStruct.getDive().dive(s);
 		
 		System.out.println("Dive terminated after " + s.getChanges().size() + " moves.");
@@ -210,7 +224,7 @@ public class Controller<V>
 		int newC = 0;
 		
 		//save old moves as best solution so far
-		s.getMinMoves().setChanges(Branch.clone.deepClone(s.getChanges()));
+		s.getMinMoves().setChanges(clone.deepClone(s.getChanges()));
 		
 		int numRevert = numRevertORIGINAL;
 		
@@ -245,8 +259,15 @@ public class Controller<V>
 			
 			System.out.println("Exact with initial moves: " + s.getChanges().size() + " and bound: " + s.getMinMoves().getChanges().size());
 			
+			//create a clone for testing
+			Graph<V, Pair<V>> c = clone.deepClone(s.getG());
+			
 			//branch with exact algorithm with a bound of numRevert
 			branch(s);
+			
+			//test clone
+			if (!gen.graphEquals(c, s.getG()))
+				throw new NullPointerException("Graph modified during exact after greedy.");
 			
 			//new solution size
 			newC = s.getMinMoves().getChanges().size();
