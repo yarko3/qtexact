@@ -1,5 +1,3 @@
-/jimsFiles
-/modularDecomposition
 /abstractClasses
 /bipartiteConvergence
 /branch
@@ -10,7 +8,11 @@
 /controller
 /dive
 /greedy
-/utils
+/jimsFiles
+/modularDecomposition
+/org
 /qtUtils
-/search
 /reduction
+/scorer
+/search
+/utils

@@ -168,6 +168,9 @@ public class branchComponents<V> extends Branch<V> {
 			//all moves made to each component
 			LinkedList<myEdge<V>> temp = new LinkedList<myEdge<V>>();
 			
+			//temp is now the best moves from this search
+			min.setChanges(temp);
+			
 			temp.addAll(s.getChanges());
 			
 			//for every component's results
@@ -178,6 +181,7 @@ public class branchComponents<V> extends Branch<V> {
 //				
 				for (int i = 0; i < s.getChanges().size(); i++)
 				{
+					//I don't know why sometimes this doesn't work
 					if (r.getMinMoves().getChanges().isEmpty())
 						break;
 					r.getMinMoves().getChanges().removeFirst();
@@ -200,7 +204,13 @@ public class branchComponents<V> extends Branch<V> {
 			
 			if (s.getMinMoves().getChanges().size() >= min.getChanges().size() && success)
 			{
+				
+				
+				//solution has been found
 				s.setMinMoves(min);
+				
+				//set flag
+				s.setSolutionFound(true);
 			}
 			else
 			{

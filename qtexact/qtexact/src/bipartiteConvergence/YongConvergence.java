@@ -107,13 +107,19 @@ public class YongConvergence<V>
 		//side to project (false = left, true = right)
 		boolean side = false;
 		
-		//Generate.randomBipartiteGraph(20, 30, .1, 10);
+		Generate.randomBipartiteGraph(10, 20, .35, 0.02, 7);
 		
-		String filename = "datasets/bipartite/southernwomen";
+		
+		//Generate.randomBipartiteGraph(20, 30, .15, 6);
+		
+		String filename = "datasets/bipartite/random.txt";
 		
 		
 		//get initial projection graph
-		Graph<String, Pair<String>> bipartiteProj = Generate.bipartiteProjection(filename, 3, side);
+		Graph<String, Pair<String>> bipartiteProj = Generate.bipartiteProjection(filename, 4, side);
+		
+		//original projection components
+		int originalProjComponentCount = cluster.transform(bipartiteProj).size();
 		
 		//visualize original graph
 		visualize(clone.deepClone(bipartiteProj));
@@ -125,6 +131,10 @@ public class YongConvergence<V>
 		
 		//edit initial projection graph
 		Graph<String, Pair<String>> editedProj = graphEdit(bipartiteProj, method);
+		
+		//original projection components
+		int editedProjComponentCount = cluster.transform(editedProj).size();
+				
 		
 		//construct the clique-superposition graph of other side
 		Graph<String, Pair<String>> cliqueSuper = cliqueSuper(editedProj, left, right, side);
@@ -168,6 +178,7 @@ public class YongConvergence<V>
 			//edit new projection
 			editNewProj = graphEdit(newProj, method);
 			
+			
 			System.out.println("Is the new projection the same as the old? " + gen.graphEquals(editedProj, editNewProj));
 			
 			System.out.println("Old projection vertices: " + editedProj.getVertexCount());
@@ -179,7 +190,12 @@ public class YongConvergence<V>
 			count++;
 		}
 		
-		System.out.println("Iterations to convergence: " + count);
+		
+		System.out.println("\nIterations to convergence: " + count);
+		System.out.println("Start number of projection components: " + originalProjComponentCount);
+		System.out.println("Start edited number of projection components: " + editedProjComponentCount);
+		System.out.println("End number of projection components: " + cluster.transform(editNewProj).size());
+		
 		visualize(editedProj);
 		
 	}

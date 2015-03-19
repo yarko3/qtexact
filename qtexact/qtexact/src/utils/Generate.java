@@ -1387,17 +1387,27 @@ public class Generate<V>
 	 * @param size of right side
 	 * @param percent probability of an edge existing
 	 */
-	public static void randomBipartiteGraph(int left, int right,  double percent, long seed)
+	public static void randomBipartiteGraph(int left, int right,  double percent, double innerPercent, long seed)
 	{
 		rand.setSeed(seed);
 		
 		//make nodes
 		Hashtable<Integer, HashSet<Integer>> edgeSet = new Hashtable<Integer, HashSet<Integer>>();
 		
-		for (int l = 0; l < left; l++)
-			for (int r = 0; r < right; r++)
+		for (int l = 0; l < left*2; l++)
+			for (int r = 0; r < right*2; r++)
 			{
-				if (rand.nextDouble() <= percent)
+				//add component edges
+				if (((l < left && r < right) || (r >= right && l >= left)) && (rand.nextDouble() <= percent))
+				{
+					if (!edgeSet.keySet().contains(l))
+						edgeSet.put(l, new HashSet<Integer>());
+					
+					edgeSet.get(l).add(r);
+					
+				}
+				//add edges between two components
+				if (((l < left && r >= right) || (l >= left && r < right)) && (rand.nextDouble() <= innerPercent))
 				{
 					if (!edgeSet.keySet().contains(l))
 						edgeSet.put(l, new HashSet<Integer>());
@@ -1407,21 +1417,23 @@ public class Generate<V>
 				}
 			}
 		
-		for (int l = left; l < left*2; l++)
-			for (int r = right; r < right*2; r++)
-			{
-				if (rand.nextDouble() <= percent)
-				{
-					if (!edgeSet.keySet().contains(l))
-						edgeSet.put(l, new HashSet<Integer>());
-					
-					edgeSet.get(l).add(r);
-					
-				}
-			}
-		
+//		for (int l = left; l < left*2; l++)
+//			for (int r = right; r < right*2; r++)
+//			{
+//				if (rand.nextDouble() <= percent)
+//				{
+//					if (!edgeSet.keySet().contains(l))
+//						edgeSet.put(l, new HashSet<Integer>());
+//					
+//					edgeSet.get(l).add(r);
+//					
+//				}
+//			}
+//		
 //		//add edge to join two components
-//		edgeSet.get(0).add(right);
+		//edgeSet.get(0).add(right);
+		
+		
 		
 		//write graph
 		try {

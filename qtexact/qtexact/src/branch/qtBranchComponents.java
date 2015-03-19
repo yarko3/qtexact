@@ -199,6 +199,9 @@ public class qtBranchComponents<V> extends qtAllStruct<V>
 			if (s.getMinMoves().getChanges().size() >= min.getChanges().size() && getSearch().isTarget(rtn))
 			{
 				s.setMinMoves(min);
+				
+				//solution found
+				s.setSolutionFound(true);
 			}
 			else
 			{

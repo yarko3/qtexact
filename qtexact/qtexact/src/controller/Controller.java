@@ -217,6 +217,9 @@ public class Controller<V>
 		
 		System.out.println("Dive terminated after " + s.getChanges().size() + " moves.");
 		boolean success = bStruct.getSearch().isTarget(s.getG());
+		//mark that solution has been found
+		if (success)
+			s.setSolutionFound(true);
 		System.out.println("Dive solution was " + ((success) ? "" : " not ") + "successful");
 		
 		//initialize old solution count & new solution count
@@ -234,20 +237,25 @@ public class Controller<V>
 			globalPercent = 0;
 			percent = 0;
 			timesRun = 0;
-			
 			//clear bad edges
 			s.getKnownBadEdges().clear();
 			
 			//store old solution count
 			oldC = s.getMinMoves().getChanges().size();
 			
+			//if a solution was previously found
 			if (success)
 			{
+				//can we undo the designated number of moves?
+				//if not, undo as many as we can
 				if (s.getChanges().size() - numRevert < 0)
 					numRevert = s.getChanges().size();
 				
 				//revert the number of moves to be tried by exact algorithm
 				bStruct.revert(s, numRevert);
+				
+				//solution not yet found
+				s.setSolutionFound(false);
 			}
 			//greedy did not solve
 			else
@@ -273,11 +281,11 @@ public class Controller<V>
 			newC = s.getMinMoves().getChanges().size();
 			
 //			//check if solved
-//			success = bStruct.getSearch().isTarget(s.getG());
+			success = s.isSolutionFound();
 //			
 //			//increase depth if solution still not found
-//			if (!success)
-//				numRevert++;
+			if (!success)
+				numRevert++;
 			
 			System.out.println("Current best solution: " + s.getMinMoves().getChanges().size());
 			
@@ -496,6 +504,9 @@ public class Controller<V>
 				branchingReturnC<V> newMin = new branchingReturnC<V>(s.getG(), s.getDeg(), Branch.clone.deepClone(s.getChanges()));
 				newMin.setMinMoves(newMin);
 				s.setMinMoves(newMin);
+				
+				//solution has been found
+				s.setSolutionFound(true);
 			}
 			
 			//revert reduction

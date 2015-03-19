@@ -50,6 +50,10 @@ public class branchingReturnC<V> implements Comparable<branchingReturnC<V>>
 	 */
 	boolean continueEditing;
 	
+	/**
+	 * a flag for if the solution was found by editing
+	 */
+	boolean solutionFound;
 	
 	public int timesRun;
 	
@@ -61,6 +65,7 @@ public class branchingReturnC<V> implements Comparable<branchingReturnC<V>>
 		minMoves = null;
 		knownBadEdges = new HashSet<Pair<V>>();
 		continueEditing = true;
+		solutionFound = false;
 	}
 	
 	public branchingReturnC(Graph<V, Pair<V>> graph, branchingReturnC<V> min)
@@ -71,6 +76,7 @@ public class branchingReturnC<V> implements Comparable<branchingReturnC<V>>
 		minMoves = min;
 		knownBadEdges = new HashSet<Pair<V>>();
 		continueEditing = true;
+		solutionFound = false;
 	}
 	
 	public branchingReturnC(Graph<V, Pair<V>> graph, ArrayList<LinkedList<V>> d, LinkedList<myEdge<V>> c, branchingReturnC<V> m)
@@ -81,6 +87,7 @@ public class branchingReturnC<V> implements Comparable<branchingReturnC<V>>
 		minMoves = m;
 		knownBadEdges = new HashSet<Pair<V>>();
 		continueEditing = true;
+		solutionFound = false;
 	}
 	public branchingReturnC(Graph<V, Pair<V>> graph, ArrayList<LinkedList<V>> d, LinkedList<myEdge<V>> c)
 	{
@@ -89,6 +96,7 @@ public class branchingReturnC<V> implements Comparable<branchingReturnC<V>>
 		deg = d;
 		knownBadEdges = new HashSet<Pair<V>>();
 		continueEditing = true;
+		solutionFound = false;
 	}
 	public branchingReturnC(Graph<V, Pair<V>> graph, ArrayList<LinkedList<V>> d, branchingReturnC<V> m)
 	{
@@ -98,6 +106,7 @@ public class branchingReturnC<V> implements Comparable<branchingReturnC<V>>
 		minMoves = m;
 		knownBadEdges = new HashSet<Pair<V>>();
 		continueEditing = true;
+		solutionFound = false;
 	}
 	public branchingReturnC(Graph<V, Pair<V>> graph, ArrayList<LinkedList<V>> d)
 	{
@@ -106,6 +115,7 @@ public class branchingReturnC<V> implements Comparable<branchingReturnC<V>>
 		changes = new LinkedList<myEdge<V>>();
 		knownBadEdges = new HashSet<Pair<V>>();
 		continueEditing = true;
+		solutionFound = false;
 	}
 
 	
@@ -240,6 +250,23 @@ public class branchingReturnC<V> implements Comparable<branchingReturnC<V>>
 	 */
 	public void setKnownBadEdges(HashSet<Pair<V>> knownBadEdges) {
 		this.knownBadEdges = knownBadEdges;
+	}
+	
+	/**
+	 * has solution been found by this editing?
+	 * @return
+	 */
+	public boolean isSolutionFound()
+	{
+		return solutionFound;
+	}
+
+	/**
+	 * Solution has been found
+	 */
+	public void setSolutionFound(boolean b)
+	{
+		solutionFound = b;
 	}
 	
 }
