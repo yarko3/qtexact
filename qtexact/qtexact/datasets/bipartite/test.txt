@@ -1,16 +1,4 @@
-1 a
-1 c
-1 d
-2 a
-2 b
-3 c
-3 d
-4 e
-4 f
-4 b
-5 e
-6 e
-6 f
-6 g
-7 g
-2 e
+Iteration	Vertices	Edges	Components
+0	200	9900	2
+1	0	0	0
+2	0	0	0

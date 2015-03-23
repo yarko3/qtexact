@@ -2,7 +2,11 @@ package bipartiteConvergence;
 
 import java.awt.Dimension;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Hashtable;
@@ -10,6 +14,7 @@ import java.util.Set;
 
 import javax.swing.JFrame;
 
+import qtUtils.branchingReturnC;
 import reduction.c4p4Reduction;
 import reduction.clusterReductionBasic;
 import reduction.cographReduction;
@@ -92,93 +97,111 @@ public class YongConvergence<V>
 		bStruct.add(temp);
 	}
 	
-	
-	/**
-	 * performs the bipartite convergence
-	 * @param args
-	 * @throws UnsupportedEncodingException 
-	 * @throws FileNotFoundException 
-	 */
+	@SuppressWarnings("unused")
 	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException
 	{
+//		//generate lots of test cases and run them
+//		int leftMax = 16;
+//		int rightMax = 20;
+//		
+//		leftLoop:
+//		for (int left = 15; left < leftMax; left++)
+//		{
+//			rightLoop:
+//			for (int right = 15; right < rightMax; right++)
+//			{
+//				percentLoop:
+//				for (double percent = .2; percent < 0.9; percent+=0.2)
+//				{
+//					for (double innerPercent = 0.01; innerPercent < 0.05; innerPercent+=0.01)
+//					{
+//						seedLoop:
+//						for (int seed = 0; seed < 1; seed++)
+//						{
+//							//generate the random graph
+//							Generate.randomBipartiteGraph(left, right, percent, innerPercent, seed);
+//							kLoop:
+//							for(int k = 2; k < 15; k++)
+//							{
+//								//if the result is empty, stop looking
+//								if (!yongConvergence("datasets/bipartite/random.txt", "datasets/bipartite/qt/qtL"+left+"R"+right+"P"+String.format("%.1f", percent)+"I"+String.format("%.2f", innerPercent)+"S"+seed+"K"+k+".txt",
+//										k, 2, false))
+//									break kLoop;
+//	
+//								
+//							}
+//						}
+//					}
+//				}
+//			}
+//		}
+//		Generate.randomBipartiteGraph(100, 200, 0.8, 0.2, 0);
+		
+		yongConvergence("datasets/bipartite/random.txt", "datasets/bipartite/test.txt",
+				93, -1, false);
+	}
+	
+	/**
+	 * Given a bipartite edge set in file, try Yong convergence on it
+	 * @param inputFileName path to input file
+	 * @param outputFileName path to output file
+	 * @param k projection parameter
+	 * @param method 0 for Cluster Editing, 1 for Cogrpah Editing, 2 for QT Editing
+	 * @param side false for projection on left side, true for projection on right side
+	 * @throws FileNotFoundException
+	 * @throws UnsupportedEncodingException
+	 */
+	public static boolean yongConvergence(String inputFileName, String outputFileName, int k, int method, boolean side) throws FileNotFoundException, UnsupportedEncodingException
+	{
 		Generate<String> gen = new Generate<String>();
-		//editing method used
-		int method = 0;
-		//side to project (false = left, true = right)
-		boolean side = false;
 		
-		Generate.randomBipartiteGraph(10, 20, .35, 0.02, 7);
-		
-		
-		//Generate.randomBipartiteGraph(20, 30, .15, 6);
-		
-		String filename = "datasets/bipartite/random.txt";
-		
-		
-		//get initial projection graph
-		Graph<String, Pair<String>> bipartiteProj = Generate.bipartiteProjection(filename, 4, side);
-		
-		//original projection components
-		int originalProjComponentCount = cluster.transform(bipartiteProj).size();
-		
-		//visualize original graph
-		visualize(clone.deepClone(bipartiteProj));
-		
-		//vertices from both sides
-		Hashtable<String, HashSet<String>> left = Generate.leftBipartiteVertices(filename);
-		Hashtable<String, HashSet<String>> right = Generate.rightBipartiteVertices(filename);
-		
-		
-		//edit initial projection graph
-		Graph<String, Pair<String>> editedProj = graphEdit(bipartiteProj, method);
-		
-		//original projection components
-		int editedProjComponentCount = cluster.transform(editedProj).size();
-				
-		
-		//construct the clique-superposition graph of other side
-		Graph<String, Pair<String>> cliqueSuper = cliqueSuper(editedProj, left, right, side);
-		
-		//edit superposition graph
-		Graph<String, Pair<String>> editedSuper = graphEdit(cliqueSuper, method);
-		
-		//construct the new projection graph
-		Graph<String, Pair<String>> newProj = cliqueSuper(editedSuper, left, right, !side);
-		
-		//edit new projection graph
-		Graph<String, Pair<String>> editNewProj = graphEdit(newProj, method);
-		
-		//how close is this new projection graph to the old one?
-		System.out.println("Is the new projection the same as the old? " + gen.graphEquals(editedProj, editNewProj));
-		
-		System.out.println("Old projection vertices: " + editedProj.getVertexCount());
-		System.out.println("New projection vertices: " + editNewProj.getVertexCount());
-		
-		System.out.println("Old projection edges: " + editedProj.getEdgeCount());
-		System.out.println("New projection edges: " + editNewProj.getEdgeCount());
-		
-		
-		int count = 1;
-		
-		//keep running until convergence
-		while (!gen.graphEquals(editedProj, editNewProj))
+		//only works when editing succeeds
+		try
 		{
-			//new becomes old
-			editedProj = editNewProj;
+		
+			//number of iterations
+			int count = 1;
 			
-			//construct new super
-			cliqueSuper = cliqueSuper(editedProj, left, right, side);
+			//set up writer
+			PrintWriter writer = new PrintWriter(outputFileName, "UTF-8");
 			
-			//edit super
-			editedSuper = graphEdit(cliqueSuper, method);
+			//writer column titles
+			writer.println("Iteration\tVertices\tEdges\tComponents");
 			
-			//new projection
-			newProj = cliqueSuper(editedSuper, left, right, !side);
+			//get initial projection graph
+			Graph<String, Pair<String>> bipartiteProj = Generate.bipartiteProjection(inputFileName, k, side);
 			
-			//edit new projection
-			editNewProj = graphEdit(newProj, method);
+			//original projection components
+			int originalProjComponentCount = cluster.transform(bipartiteProj).size();
+			
+			//visualize original graph
+			//visualize(clone.deepClone(bipartiteProj));
+			
+			//vertices from both sides
+			Hashtable<String, HashSet<String>> left = Generate.leftBipartiteVertices(inputFileName);
+			Hashtable<String, HashSet<String>> right = Generate.rightBipartiteVertices(inputFileName);
 			
 			
+			//edit initial projection graph
+			Graph<String, Pair<String>> editedProj = graphEdit(bipartiteProj, method);
+			
+			//original projection components
+			int editedProjComponentCount = cluster.transform(editedProj).size();
+					
+			
+			//construct the clique-superposition graph of other side
+			Graph<String, Pair<String>> cliqueSuper = cliqueSuper(editedProj, left, right, k, side);
+			
+			//edit superposition graph
+			Graph<String, Pair<String>> editedSuper = graphEdit(cliqueSuper, method);
+			
+			//construct the new projection graph
+			Graph<String, Pair<String>> newProj = cliqueSuper(editedSuper, left, right, k, !side);
+			
+			//edit new projection graph
+			Graph<String, Pair<String>> editNewProj = graphEdit(newProj, method);
+			
+			//how close is this new projection graph to the old one?
 			System.out.println("Is the new projection the same as the old? " + gen.graphEquals(editedProj, editNewProj));
 			
 			System.out.println("Old projection vertices: " + editedProj.getVertexCount());
@@ -187,29 +210,101 @@ public class YongConvergence<V>
 			System.out.println("Old projection edges: " + editedProj.getEdgeCount());
 			System.out.println("New projection edges: " + editNewProj.getEdgeCount());
 			
-			count++;
+			//write stuff
+			writer.println("0\t" + editedProj.getVertexCount()+ "\t" + editedProj.getEdgeCount() + "\t" + editedProjComponentCount );
+			writer.println("1\t" + editNewProj.getVertexCount()+ "\t" + editNewProj.getEdgeCount() + "\t" + cluster.transform(editNewProj).size());
+			
+			
+			//keep running until convergence
+			while (!gen.graphEquals(editedProj, editNewProj))
+			{
+				count++;
+				
+				//new becomes old
+				editedProj = editNewProj;
+				
+				//construct new super
+				cliqueSuper = cliqueSuper(editedProj, left, right, k, side);
+				
+				//edit super
+				editedSuper = graphEdit(cliqueSuper, method);
+				
+				//new projection
+				newProj = cliqueSuper(editedSuper, left, right, k, !side);
+				
+				//edit new projection
+				editNewProj = graphEdit(newProj, method);
+				
+				
+				System.out.println("Is the new projection the same as the old? " + gen.graphEquals(editedProj, editNewProj));
+				
+				System.out.println("Old projection vertices: " + editedProj.getVertexCount());
+				System.out.println("New projection vertices: " + editNewProj.getVertexCount());
+				
+				System.out.println("Old projection edges: " + editedProj.getEdgeCount());
+				System.out.println("New projection edges: " + editNewProj.getEdgeCount());
+				
+				writer.println(count + "\t" + editNewProj.getVertexCount()+ "\t" + editNewProj.getEdgeCount() + "\t" + cluster.transform(editNewProj).size());
+				
+			}
+			
+			System.out.println("\nIterations to convergence: " + count);
+			System.out.println("Start number of projection components: " + originalProjComponentCount);
+			System.out.println("Start edited number of projection components: " + editedProjComponentCount);
+			System.out.println("End number of projection components: " + cluster.transform(editNewProj).size());
+			
+			//visualize(editedProj);
+			
+			writer.close();
+			
+			//delete file if it yielded nothing interesting
+			try {
+				if (count == 1 && editNewProj.getEdgeCount() ==0)
+					Files.delete(Paths.get(outputFileName));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			//return true if result was not an empty graph
+			return editNewProj.getEdgeCount() > 0;
 		}
-		
-		
-		System.out.println("\nIterations to convergence: " + count);
-		System.out.println("Start number of projection components: " + originalProjComponentCount);
-		System.out.println("Start edited number of projection components: " + editedProjComponentCount);
-		System.out.println("End number of projection components: " + cluster.transform(editNewProj).size());
-		
-		visualize(editedProj);
-		
+		catch(SolutionNotFoundException solException)
+		{
+			//delete file if one was created
+			try {
+				Files.deleteIfExists(Paths.get(outputFileName));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return true;
+		}
 	}
 	
-	private static Graph<String, Pair<String>> graphEdit(Graph<String, Pair<String>> graph, int method)
+	private static Graph<String, Pair<String>> graphEdit(Graph<String, Pair<String>> graph, int method) throws SolutionNotFoundException
 	{
-		//set method to be used
-		c.setbStruct(bStruct.get(method));
 		
-		//try greedy editing
-		return c.diveAtStartEdit(graph, 11).getG();
+		//if we're actually editing
+		if (method >= 0)
+		{
+			//set method to be used
+			c.setbStruct(bStruct.get(method));
+			
+			//try greedy editing
+			branchingReturnC<String> rtn = c.diveAtStartEdit(graph, 10);
+			
+			//if solution was not found, throw error
+			if (!rtn.isSolutionFound())
+				throw new SolutionNotFoundException();
+			
+			return rtn.getG();
+		}
+		else
+			return clone.deepClone(graph);
+		
 	}
 	
-	private static Graph<String, Pair<String>> cliqueSuper(Graph<String, Pair<String>> edited, Hashtable<String, HashSet<String>> left, Hashtable<String, HashSet<String>> right, boolean side)
+	private static Graph<String, Pair<String>> cliqueSuper(Graph<String, Pair<String>> edited, Hashtable<String, HashSet<String>> left, Hashtable<String, HashSet<String>> right, int k, boolean side)
 	{
 		
 		//set the right side (lol)
@@ -236,22 +331,48 @@ public class YongConvergence<V>
 			//vertices to make a clique
 			HashSet<String> cliqueVertices = new HashSet<String>();
 			
-			//look through the members of each component in original graph
-			for (String v : component)
+			//build a hashtable for clique super graph
+			Hashtable<String, Integer> occurrenceTable = new Hashtable<String, Integer>();
+			
+			//for every member of community, count how many times each vertex on opposite side is encountered
+			for (String v : component) 
 			{
-				for (String v2 : component)
+				for (String temp : tempLeft.get(v))
 				{
-					if (v.equals(v2))
-						continue;
-					
-					HashSet<String> intersection = new HashSet<String>(tempLeft.get(v));
-					intersection.retainAll(tempLeft.get(v2));
-					
-					cliqueVertices.addAll(intersection);
+					//haven't encountered this one before
+					if (!occurrenceTable.containsKey(temp))
+					{
+						occurrenceTable.put(temp, 0);
+					}
+					//increment
+					occurrenceTable.put(temp, occurrenceTable.get(temp)+1);
 				}
-				
-//				cliqueVertices.addAll(tempLeft.get(v));
 			}
+			
+			//add vertices to cliqueVertices
+			for (String temp : occurrenceTable.keySet())
+			{
+				//if we've seen this opposite side vertex in k or more members of community, add it
+				if (occurrenceTable.get(temp) >= k)
+					cliqueVertices.add(temp);
+			}
+			
+//			//look through the members of each component in original graph
+//			for (String v : component)
+//			{
+//				for (String v2 : component)
+//				{
+//					if (v.equals(v2))
+//						continue;
+//					
+//					HashSet<String> intersection = new HashSet<String>(tempLeft.get(v));
+//					intersection.retainAll(tempLeft.get(v2));
+//					
+//					cliqueVertices.addAll(intersection);
+//				}
+//				
+////				cliqueVertices.addAll(tempLeft.get(v));
+//			}
 			
 			//build clique in return graph
 			for (String v1 : cliqueVertices)

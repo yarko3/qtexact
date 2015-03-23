@@ -255,11 +255,14 @@ public class Controller<V>
 				bStruct.revert(s, numRevert);
 				
 				//solution not yet found
-				s.setSolutionFound(false);
+				//s.setSolutionFound(false);
 			}
 			//greedy did not solve
 			else
 			{
+				//if we've done this too much, concede defeat
+				if (numRevert > 2*numRevertORIGINAL)
+					break;
 				//fill solution with numRevert extra moves for bound
 				s.getMinMoves().setChanges(bStruct.fillMinMoves(s, s.getChanges().size() + numRevert));
 				oldC = s.getMinMoves().getChanges().size();
@@ -305,30 +308,32 @@ public class Controller<V>
 		//undo all moves
 		bStruct.revertAll(s);
 		
-		//check for solution correctness
-		Graph<V, Pair<V>> rtn = bStruct.applyMoves(Branch.clone.deepClone(s.getG()), s.getMinMoves().getChanges());
-		
-		
-		
 		System.out.println("Branching run: " + timesRun);
 		
 		s.timesRun = timesRun;
 		
-		//return QT graph if edit succeeds
-		if (bStruct.getSearch().isTarget(rtn))
+		if (s.isSolutionFound())
 		{
-			System.out.println("Solution found. ");
-			System.out.println(s.getMinMoves().getChanges());
-			s.setGraph(rtn);
-			return s;
+			//check for solution correctness
+			Graph<V, Pair<V>> rtn = bStruct.applyMoves(Branch.clone.deepClone(s.getG()), s.getMinMoves().getChanges());
+			if (bStruct.getSearch().isTarget(rtn))
+			{
+				System.out.println("Solution found. ");
+				System.out.println(s.getMinMoves().getChanges());
+				s.setGraph(rtn);
+			}
+			
 		}
 		else
 		{
 			//otherwise return original graph
 			System.out.println("Solution not found. ");
 			//goal.setGraph(null);
-			return s;
+			
+			
 		}
+		
+		return s;
 		
 		
 	}

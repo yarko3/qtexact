@@ -1452,6 +1452,44 @@ public class Generate<V>
 	}
 	
 	
+	public static void bipartiteER(int left, int right,  double percent, long seed)
+	{
+		rand.setSeed(seed);
+		
+		//make nodes
+		Hashtable<Integer, HashSet<Integer>> edgeSet = new Hashtable<Integer, HashSet<Integer>>();
+		
+		for (int l = 0; l < left; l++)
+			for (int r = 0; r < right; r++)
+			{
+				//add component edges
+				if (rand.nextDouble() <= percent)
+				{
+					if (!edgeSet.keySet().contains(l))
+						edgeSet.put(l, new HashSet<Integer>());
+					
+					edgeSet.get(l).add(r);
+					
+				}
+				
+			}
+		
+		//write graph
+		try {
+			PrintWriter writer = new PrintWriter("datasets/bipartite/random.txt", "UTF-8");
+			
+			for (Integer l : edgeSet.keySet())
+				for (Integer r : edgeSet.get(l))
+				{
+					writer.write(l + " " + r + "\n");
+				}
+			writer.close();
+		} catch (FileNotFoundException | UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	
 }
 	
