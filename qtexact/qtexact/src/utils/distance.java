@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -652,6 +651,51 @@ public class distance<V>
 		
 		Collections.sort(list);
 		return (list.get(list.size()/2)) / 1000;
+	}
+	
+	public static void outputAllDistances(Graph<String, Pair<String>> graph, String outputFile, String distanceFile) throws FileNotFoundException, UnsupportedEncodingException
+	{
+		PrintWriter writer = new PrintWriter(outputFile, "UTF-8");
+		GeodeticCalculator geoCalc = new GeodeticCalculator();
+		Ellipsoid reference = Ellipsoid.WGS84;  
+		
+		HashMap<String, Pair<Double>> mapping = distance.getLatLongFromFile(distanceFile);
+		
+		writer.println("Edge Distances: (Distance v1 v2)");
+		//for every edge, output distance measure
+		for (Pair<String> edge : graph.getEdges())
+		{
+			GlobalPosition pointA = new GlobalPosition(mapping.get(edge.getFirst()).getFirst(), mapping.get(edge.getFirst()).getSecond(), 0.0); // Point A
+
+			GlobalPosition pointB = new GlobalPosition(mapping.get(edge.getSecond()).getFirst(), mapping.get(edge.getSecond()).getSecond(), 0.0); // Point B
+
+			double distance = geoCalc.calculateGeodeticCurve(reference, pointA, pointB).getEllipsoidalDistance() / 1000;
+			
+			writer.println(distance + " " + edge.getFirst() + " " + edge.getSecond());
+		}
+		
+		
+		writer.println("Pair Distances: (Distance v1 v2)");
+		//for every edge, output distance measure
+		ArrayList<String> vertices = new ArrayList<String>();
+		vertices.addAll(graph.getVertices());
+		
+		for (int i = 0; i < vertices.size(); i++)
+		{
+			for (int j = i+1; j < vertices.size(); j++)
+			{
+				GlobalPosition pointA = new GlobalPosition(mapping.get(vertices.get(i)).getFirst(), mapping.get(vertices.get(i)).getSecond(), 0.0); // Point A
+
+				GlobalPosition pointB = new GlobalPosition(mapping.get(vertices.get(j)).getFirst(), mapping.get(vertices.get(j)).getSecond(), 0.0); // Point B
+
+				double distance = geoCalc.calculateGeodeticCurve(reference, pointA, pointB).getEllipsoidalDistance() / 1000;
+				
+				
+				writer.println(distance + " " + vertices.get(i) + " " + vertices.get(j));
+			}
+		}
+		
+		writer.close();
 	}
 	
 

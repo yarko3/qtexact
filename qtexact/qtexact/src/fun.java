@@ -124,13 +124,15 @@ public class fun<V> extends JApplet {
 		
 		//honoursTest();
 	
-		honoursBipartiteTest();
+		//honoursBipartiteTest();
 		
 		//approximateBranchingFactor();
 		
 		//lesMisTest();
 		
 		//projectionOverlapDistanceAnalysis();
+		
+		getEdgeDistancesForJim();
 	}
 	
 	
@@ -2761,10 +2763,14 @@ public class fun<V> extends JApplet {
 			} catch (FileNotFoundException | UnsupportedEncodingException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
-			
-	
-				
+			}			
 		}
+	}
+	
+	private static void getEdgeDistancesForJim() throws FileNotFoundException, UnsupportedEncodingException
+	{
+		Graph<String, Pair<String>> graph = fillGraphFromFileWithStrings("datasets/wine/wineSolutionEdgeSet.tgf");
+		
+		distance.outputAllDistances(graph, "datasets/wine/ForJim-EdgeDistances/ON-QT-Edge Distances.txt", "datasets/wine/Distance/CANADA/CANADADistance.txt");
 	}
 }
