@@ -1,0 +1,84 @@
+Overall: 
+Mean winery-winery distance: 	197.7362351609345, 166.10181442871325
+Median winery-winery distance: 	183.43625141280265, 166.71623283804
+Mean edge distance: 	41.65436585393458, 105.89604652309522
+Median edge distance: 	8.561720727849174, 110.94636465726387
+Mean community distance: 	208041.96463288463, 207834.03632190084
+Median community distance: 	47.75332918843149, 270.06411653877853
+
+
+Component 0	Number of nodes: 5
+http://www.coyotesrunwinery.com	http://www.fiverows.com	http://www.chateaudescharmes.com	http://www.ravinevineyard.com	http://www.theicehouse.ca	
+
+
+Mean winery-winery distance: 	149.264288217102, 178.91825940390262
+Median winery-winery distance: 	5.225906476985595, 229.69283611474194
+Mean edge distance: 	94.07523506442205, 158.9866964116298
+Median edge distance: 	4.195444657953664, 182.633913497451
+
+
+
+Component 1	Number of nodes: 2
+http://www.ontario-wine.com	http://www.kingscourtwinery.ca	
+
+
+Mean winery-winery distance: 	0.0, 0.0
+Median winery-winery distance: 	0.0, 0.0
+Mean edge distance: 	0.0, 0.0
+Median edge distance: 	0.0, 0.0
+
+
+
+Component 2	Number of nodes: 9
+http://www.vieni.ca	http://www.vineland.com	http://www.flatrockcellars.com	http://www.malivoire.com	http://www.tawsewinery.ca	http://www.featherstonewinery.ca	http://www.2027cellars.ca	http://www.fieldingwines.com	http://www.ridgepointwines.com	
+
+
+Mean winery-winery distance: 	4.022919263757355, 2.5426273502948082
+Median winery-winery distance: 	3.722215275610452, 2.5603469942479773
+Mean edge distance: 	3.10900041809566, 3.360414992589026
+Median edge distance: 	3.1676315912834325, 3.3609264402670993
+
+
+
+Component 3	Number of nodes: 3
+http://www.dovervineyards.com	http://www.burningkilnwinery.ca	http://www.villanovaestatewinery.ca	
+
+
+Mean winery-winery distance: 	18.260775551091008, 6.220105331215951
+Median winery-winery distance: 	16.688171455708147, 6.415823717359761
+Mean edge distance: 	14.11996683321423, 2.5682046224938437
+Median edge distance: 	16.688171455708, 3.631989808080017
+
+
+
+Component 4	Number of nodes: 2
+http://www.hernder.com	http://www.harvestwines.com	
+
+
+Mean winery-winery distance: 	4.404337160204567, 6.705894116530902E-14
+Median winery-winery distance: 	4.404337160204634, 9.483358450450001E-14
+Mean edge distance: 	4.404337160204567, 6.705894116530902E-14
+Median edge distance: 	4.404337160204634, 9.483358450450001E-14
+
+
+
+Component 5	Number of nodes: 46
+http://www.mastronardiwines.com	http://www.grangeofprinceedward.com	http://www.charlesbaker.ca	http://www.colchesterridge.com	http://www.aleksanderestate.com	http://www.hilliercreekestates.com	http://www.blackprincewinery.com	http://www.13thstreetwinery.com	http://www.smithandwilsonestatewines.ca	http://www.hubbscreekvineyard.ca	http://www.casadeaestates.com	http://www.harwoodestatevineyards.com	http://www.exultet.ca	http://www.southbrook.com	http://www.normanhardie.com	http://www.huffestates.com	http://www.laceyestates.com	http://www.longdog.ca	http://www.peleeisland.com	http://www.sprucewoodshores.com	http://www.wagnerorchards.com	http://www.halfmoonbayvineyardsandwinery.ca	http://www.devilswishbone.com	http://www.sugarbushvineyards.ca	http://www.del-gattoestates.ca	http://www.erieshore.ca	http://www.karloestates.com	http://www.dangelowinery.com	http://www.theoldthird.com	http://www.viewpointewinery.com	http://www.hinterlandwine.com	http://www.countycider.com	http://www.terracellowinery.com	http://www.sandbankswinery.com	http://www.33vines.com	http://www.redtailvineyard.com	http://www.muscederevineyards.com	http://www.brokenstone.ca	http://www.rosehallrun.com	http://www.bychadseyscairns.com	http://www.clossonchase.com	http://www.stratuswines.com	http://www.lighthallvineyards.com	http://www.waupooswinery.com	http://www.bergeronestatewinery.com	http://www.stannersvineyard.ca	
+
+
+Mean winery-winery distance: 	217.71098005865, 218.12873345780406
+Median winery-winery distance: 	155.68511233924318, 226.7759965830845
+Mean edge distance: 	46.43479994086788, 112.72718234365922
+Median edge distance: 	9.707589366351261, 118.55929164652382
+
+
+
+Component 6	Number of nodes: 4
+http://www.thirtybench.com	http://www.crushvqa.com	http://www.hillebrand.com	http://www.peller.com	
+
+
+Mean winery-winery distance: 	25.717729821198798, 9.365007185550109
+Median winery-winery distance: 	29.89841694144409, 10.255803448915644
+Mean edge distance: 	25.72079731493526, 11.469469650972357
+Median edge distance: 	30.853240987663625, 12.565457099855355
+

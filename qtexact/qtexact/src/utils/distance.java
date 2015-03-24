@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -47,13 +49,14 @@ public class distance<V>
 	 * @param mapping 
 	 * @return
 	 */
-	public double meanNeighbourDistance(Graph<V, Pair<V>> g, HashMap<V, Pair<Double>> mapping)
+	public double[] meanNeighbourDistance(Graph<V, Pair<V>> g, HashMap<V, Pair<Double>> mapping)
 	{
 		
 		GeodeticCalculator geoCalc = new GeodeticCalculator();
 
 		Ellipsoid reference = Ellipsoid.WGS84;  
 
+		List<Double> distances = new LinkedList<Double>();
 		
 		int count = 0;
 		double temp = 0;
@@ -87,23 +90,28 @@ public class distance<V>
 				temp += distance;
 				count++;
 				
+				distances.add(distance / 1000);
+				
 			}
 		}
 		
 		temp /= 2;
 		count /= 2;
 		
-		return (temp / count) / 1000; 
+		double mean = (temp / count) / 1000; 
+		
+		return standardDeviation(distances, mean);
 	}
 	
 	
-	public double meanDistance(Graph<V, Pair<V>> g, HashMap<V, Pair<Double>> mapping)
+	public double[] meanDistance(Graph<V, Pair<V>> g, HashMap<V, Pair<Double>> mapping)
 	{
 		
 		GeodeticCalculator geoCalc = new GeodeticCalculator();
 
 		Ellipsoid reference = Ellipsoid.WGS84;  
 
+		LinkedList<Double> distances = new LinkedList<Double>();
 		
 		int count = 0;
 		double temp = 0;
@@ -134,6 +142,9 @@ public class distance<V>
 				double distance = geoCalc.calculateGeodeticCurve(reference, pointA, pointB).getEllipsoidalDistance();
 				
 				temp += distance;
+				
+				//add to list for standard deviation later
+				distances.add(distance / 1000);
 				count++;
 				
 			}
@@ -142,16 +153,39 @@ public class distance<V>
 		temp /= 2;
 		count /= 2;
 		
-		return (temp / count) / 1000; 
+		double mean = (temp / count) / 1000; 
+		
+		return standardDeviation(distances, mean);
+		
 	}
 	
-	public double meanDistance(Set<V> community, HashMap<V, Pair<Double>> mapping)
+	private double[] standardDeviation(List<Double> distances, double mean)
+	{
+		//calculate standard deviation
+		double sum = 0;
+		for (Double d : distances)
+		{
+			sum += (mean - d) * (mean - d); 
+		}
+		
+		sum = sum / distances.size();
+		
+		double sd = Math.sqrt(sum);
+		
+		double[] rtn = new double[2];
+		rtn[0] = mean;
+		rtn[1] = sd;
+		return rtn;
+	}
+	
+	public double[] meanDistance(Set<V> community, HashMap<V, Pair<Double>> mapping)
 	{
 		
 		GeodeticCalculator geoCalc = new GeodeticCalculator();
 
 		Ellipsoid reference = Ellipsoid.WGS84;  
 
+		LinkedList<Double> distances = new LinkedList<Double>();
 		
 		int count = 0;
 		double temp = 0;
@@ -178,16 +212,19 @@ public class distance<V>
 				temp += distance;
 				count++;
 				
+				distances.add(distance / 1000);
 			}
 		}
 		
 		temp /= 2;
 		count /= 2;
 		
-		return (temp / count) / 1000; 
+		double mean = (temp / count) / 1000;
+		
+		return standardDeviation(distances, mean);
 	}
 	
-	public double medianNeighbourDistance(Graph<V, Pair<V>> g, HashMap<V, Pair<Double>> mapping)
+	public double[] medianNeighbourDistance(Graph<V, Pair<V>> g, HashMap<V, Pair<Double>> mapping)
 	{
 		
 		GeodeticCalculator geoCalc = new GeodeticCalculator();
@@ -220,7 +257,7 @@ public class distance<V>
 
 				double distance = geoCalc.calculateGeodeticCurve(reference, pointA, pointB).getEllipsoidalDistance();
 				
-				temp.add(distance);
+				temp.add(distance / 1000);
 				
 				
 			}
@@ -228,14 +265,13 @@ public class distance<V>
 		
 		Collections.sort(temp);
 		
-		if (temp.isEmpty())
-			return Double.NaN;
 		
+		double median =  temp.get(temp.size()/2); 
 		
-		return temp.get(temp.size()/2) / 1000; 
+		return standardDeviation(temp, median);
 	}
 	
-	public double medianDistance(Set<V> community, HashMap<V, Pair<Double>> mapping)
+	public double[] medianDistance(Set<V> community, HashMap<V, Pair<Double>> mapping)
 	{
 		
 		GeodeticCalculator geoCalc = new GeodeticCalculator();
@@ -268,7 +304,7 @@ public class distance<V>
 
 				double distance = geoCalc.calculateGeodeticCurve(reference, pointA, pointB).getEllipsoidalDistance();
 				
-				temp.add(distance);
+				temp.add(distance / 1000);
 				
 				
 			}
@@ -276,14 +312,13 @@ public class distance<V>
 		
 		Collections.sort(temp);
 		
-		if (temp.isEmpty())
-			return Double.NaN;
 		
+		double median = temp.get(temp.size()/2);
 		
-		return temp.get(temp.size()/2) / 1000; 
+		return standardDeviation(temp, median);
 	}
 	
-	public double medianDistance(Graph<V, Pair<V>> g, HashMap<V, Pair<Double>> mapping)
+	public double[] medianDistance(Graph<V, Pair<V>> g, HashMap<V, Pair<Double>> mapping)
 	{
 		
 		GeodeticCalculator geoCalc = new GeodeticCalculator();
@@ -316,17 +351,17 @@ public class distance<V>
 
 				double distance = geoCalc.calculateGeodeticCurve(reference, pointA, pointB).getEllipsoidalDistance();
 				
-				temp.add(distance);
+				temp.add(distance / 1000);
 				
 				
 			}
 		}
 		
 		Collections.sort(temp);
-		if (temp.isEmpty())
-			return Double.NaN;
 		
-		return temp.get(temp.size()/2) / 1000; 
+		double median = temp.get(temp.size()/2);
+		
+		return standardDeviation(temp, median);
 	}
 	
 	public static HashMap<String, Pair<Double>> getLatLongFromFile(String filename)
@@ -541,10 +576,10 @@ public class distance<V>
 		}
 		
 		writer.println("Overall: ");
-		writer.println("Mean winery-winery distance: \t" + d.meanDistance(g, mapping));
-		writer.println("Median winery-winery distance: \t" + d.medianDistance(g, mapping));
-		writer.println("Mean edge distance: \t" + d.meanNeighbourDistance(g, mapping));
-		writer.println("Median edge distance: \t" + d.medianNeighbourDistance(g, mapping));
+		writer.println("Mean winery-winery distance: \t" + d.meanDistance(g, mapping)[0] + ", " +d.meanDistance(g, mapping)[1]);
+		writer.println("Median winery-winery distance: \t" + d.medianDistance(g, mapping)[0] + ", " + d.medianDistance(g, mapping)[1]);
+		writer.println("Mean edge distance: \t" + d.meanNeighbourDistance(g, mapping)[0] + ", " + d.meanNeighbourDistance(g, mapping)[1]);
+		writer.println("Median edge distance: \t" + d.medianNeighbourDistance(g, mapping)[0] + ", " + d.medianNeighbourDistance(g, mapping)[1]);
 		
 		
 		
@@ -555,8 +590,8 @@ public class distance<V>
 			components.put(cID, stringUtils.inducedFromVertexSet(g, f.communityMap.get(cID)));
 		}
 	
-		writer.println("Mean community distance: \t" + d.meanCommunityDistance(components, mapping));
-		writer.println("Median community distance: \t" + d.medianCommunityDistance(components, mapping));
+		writer.println("Mean community distance: \t" + d.meanCommunityDistance(components, mapping)[0] + ", " + d.meanCommunityDistance(components, mapping)[1]);
+		writer.println("Median community distance: \t" + d.medianCommunityDistance(components, mapping)[0] + ", " + d.medianCommunityDistance(components, mapping)[1]);
 		
 		
 		for (int cID : components.keySet())
@@ -571,10 +606,10 @@ public class distance<V>
 				writer.print(winery + "\t");
 			}
 			writer.println();
-			writer.println("\n\nMean winery-winery distance: \t" + d.meanDistance(components.get(cID), mapping));
-			writer.println("Median winery-winery distance: \t" + d.medianDistance(components.get(cID), mapping));
-			writer.println("Mean edge distance: \t" + d.meanNeighbourDistance(components.get(cID), mapping));
-			writer.println("Median edge distance: \t" + d.medianNeighbourDistance(components.get(cID), mapping));
+			writer.println("\n\nMean winery-winery distance: \t" + d.meanDistance(components.get(cID), mapping)[0] + ", " + d.meanDistance(components.get(cID), mapping)[1]);
+			writer.println("Median winery-winery distance: \t" + d.medianDistance(components.get(cID), mapping)[0] + ", " + d.medianDistance(components.get(cID), mapping)[1]);
+			writer.println("Mean edge distance: \t" + d.meanNeighbourDistance(components.get(cID), mapping)[0] + ", " + d.meanNeighbourDistance(components.get(cID), mapping)[1]);
+			writer.println("Median edge distance: \t" + d.medianNeighbourDistance(components.get(cID), mapping)[0] + ", " + d.medianNeighbourDistance(components.get(cID), mapping)[1]);
 			
 			writer.println();
 		}
@@ -587,7 +622,7 @@ public class distance<V>
 	 * @param mapping
 	 * @return
 	 */
-	private double meanCommunityDistance(HashMap<Integer, Graph<String, Pair<String>>> components, HashMap<String, Pair<Double>> mapping)
+	private double[] meanCommunityDistance(HashMap<Integer, Graph<String, Pair<String>>> components, HashMap<String, Pair<Double>> mapping)
 	{
 		GeodeticCalculator geoCalc = new GeodeticCalculator();
 
@@ -595,6 +630,8 @@ public class distance<V>
 		
 		double sum = 0;
 		int count = 0;
+		
+		LinkedList<Double> distances = new LinkedList<Double>();
 		
 		for (int cID : components.keySet())
 		{
@@ -613,15 +650,19 @@ public class distance<V>
 					
 					sum += distance;
 					count++;
+					
+					distances.add(distance / 1000);
 				}
 			}
 		}
 		
 		
-		return (sum/count) / 1000;
+		double mean = (sum/count);
+		
+		return standardDeviation(distances, mean);
 	}
 	
-	private double medianCommunityDistance(HashMap<Integer, Graph<String, Pair<String>>> components, HashMap<String, Pair<Double>> mapping)
+	private double[] medianCommunityDistance(HashMap<Integer, Graph<String, Pair<String>>> components, HashMap<String, Pair<Double>> mapping)
 	{
 		GeodeticCalculator geoCalc = new GeodeticCalculator();
 
@@ -644,13 +685,15 @@ public class distance<V>
 
 					double distance = geoCalc.calculateGeodeticCurve(reference, pointA, pointB).getEllipsoidalDistance();
 					
-					list.add(distance);
+					list.add(distance / 1000);
 				}
 			}
 		}
 		
 		Collections.sort(list);
-		return (list.get(list.size()/2)) / 1000;
+		double median = (list.get(list.size()/2));
+		
+		return standardDeviation(list, median);
 	}
 	
 	public static void outputAllDistances(Graph<String, Pair<String>> graph, String outputFile, String distanceFile) throws FileNotFoundException, UnsupportedEncodingException

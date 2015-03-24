@@ -2769,8 +2769,9 @@ public class fun<V> extends JApplet {
 	
 	private static void getEdgeDistancesForJim() throws FileNotFoundException, UnsupportedEncodingException
 	{
-		Graph<String, Pair<String>> graph = fillGraphFromFileWithStrings("datasets/wine/wineSolutionEdgeSet.tgf");
+		Graph<String, Pair<String>> graph = fillGraphFromFileWithStrings("datasets/wine/ON/wineryEdgeSet.tgf");
 		
-		distance.outputAllDistances(graph, "datasets/wine/ForJim-EdgeDistances/ON-QT-Edge Distances.txt", "datasets/wine/Distance/CANADA/CANADADistance.txt");
+		stringUtils.printSolutionEdgeSetWithWeightsComponents(new branchingReturnC<String>(graph), "datasets/wine/temp.txt");
+		distance.outputDistanceMeasurements("datasets/wine/temp.txt", "datasets/wine/Distance/CANADA/CANADADistance.txt", "datasets/wine/ForJim-EdgeDistances/Standard Deviation Distances/ON-ORIGINAL-Distances with SD.txt");
 	}
 }
